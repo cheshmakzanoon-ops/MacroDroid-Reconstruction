@@ -7,7 +7,7 @@ on:
       - '.github/workflows/preserve-editor-evidence.yml'
       - 'tools/evidence_archive/**'
   workflow_run:
-    workflows: [Android editor journey comparison]
+    workflows: [Android editor journey comparison, Post-onboarding editor session]
     types: [completed]
     branches: [main]
   workflow_dispatch:

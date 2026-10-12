@@ -55,7 +55,7 @@ def validate_run(run):
         or run.get('head_repository', {}).get('id') != REPOSITORY_ID
         or run.get('head_branch') != 'main'
         or run.get('event') not in ('push', 'workflow_dispatch')
-        or run.get('path') != '.github/workflows/editor-journey.yml'
+        or run.get('path') not in ('.github/workflows/editor-journey.yml', '.github/workflows/editor-session.yml')
         or run.get('status') != 'completed'
         or type(run.get('id')) is not int or run['id'] <= 0
         or type(run.get('run_attempt')) is not int or run['run_attempt'] <= 0
@@ -148,7 +148,7 @@ def archive_run(run_id, token):
         (staging / 'evidence.zip').write_bytes(data)
         (staging / 'manifest.json').write_bytes(encoded)
         with zipfile.ZipFile(io.BytesIO(data)) as archive:
-            for name in ('comparison.json', 'journey.json'):
+            for name in ('comparison.json', 'journey.json', 'editor-session-comparison.json', 'editor-session-replay.json'):
                 key = 'ci-editor/journey/' + name
                 if key in archive.namelist():
                     payload = archive.read(key)

@@ -14,6 +14,7 @@ class ArchiveTests(unittest.TestCase):
                  'head_repository': {'id': archive.REPOSITORY_ID}, 'head_branch': 'main', 'event': 'push',
                  'path': '.github/workflows/editor-journey.yml', 'status': 'completed', 'head_sha': 'a' * 40}
         archive.validate_run(valid)
+        archive.validate_run(valid | {'path': '.github/workflows/editor-session.yml'})
         changes = [{'head_repository': {'id': 1}}, {'repository': {'id': 1}}, {'event': 'pull_request'},
                    {'head_branch': 'foreign'}, {'status': 'in_progress'}, {'head_sha': '../bad'},
                    {'run_attempt': True}, {'id': False}, {'path': 'unrelated.yml'}]
