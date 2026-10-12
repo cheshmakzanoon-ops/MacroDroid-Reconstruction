@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "verified_utc": "2026-10-12T01:54:47.627572+00:00",
+  "scope": "Static original-APK and recovered-source analysis for an explicitly configured still-frame capture scenario.",
+  "original_apk": {
+    "bytes": 95725918,
+    "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+  },
+  "original_dex": {
+    "entry": "classes.dex",
+    "bytes": 16762632,
+    "sha256": "2d091500fd399d5afb3a29131037558451b72729a5dfe5f32ba3d85c40d18111"
+  },
+  "disassembler": {
+    "source_relative_path": "tools/apktool_v3.0.3-26-0a1c54f7-SNAPSHOT.jar",
+    "bytes": 15545856,
+    "sha256": "0059c7e8805ad8e0a3125164cfce2b04d058fc8ad168ec1e84bd7f6baba4572f"
+  },
+  "inspection_program": {
+    "repository_path": "tools/android/InspectOriginalLottie.java",
+    "bytes": 2326,
+    "sha256": "c8270f057617df3410cc4efcc5cfb677f2321625e7722b28bdf1fd626d3dd17c"
+  },
+  "inspection_command_exit_code": 0,
+  "inspection_java": "Eclipse Temurin JDK 21.0.12.1+1",
+  "classes": [
+    {
+      "descriptor": "Llk9;",
+      "original_dex_entry": "classes.dex",
+      "generated_filename": "LottieDrawable.smali",
+      "source_relative_path": "source/smali/classes/03/Llk9_03760aa21d3c5cdf.smali",
+      "bytes": 86626,
+      "sha256": "9acd4458901ba63da1581db25a99e9a15e9bafca39685ab3ca9e09660918be63",
+      "original_disassembly_equals_current_and_restored_smali": true
+    },
+    {
+      "descriptor": "Lcom/airbnb/lottie/LottieAnimationView;",
+      "original_dex_entry": "classes.dex",
+      "generated_filename": "LottieAnimationView.smali",
+      "source_relative_path": "source/smali/classes/15/LottieAnimationView_15193c3fbf8c644e.smali",
+      "bytes": 91115,
+      "sha256": "ea4bdc7e617db4e76f914be51b97e1cd7067526558b151247dcb1b8ace1e05cd",
+      "original_disassembly_equals_current_and_restored_smali": true
+    },
+    {
+      "descriptor": "Lvk9;",
+      "original_dex_entry": "classes.dex",
+      "generated_filename": "LottieValueAnimator.smali",
+      "source_relative_path": "source/smali/classes/9e/Lvk9_9eab450e5947cdf9.smali",
+      "bytes": 24206,
+      "sha256": "ad261beb17b346e66f7cb31b06db2dece02557e22ed84d6f601b12131230cbe3",
+      "original_disassembly_equals_current_and_restored_smali": true
+    }
+  ],
+  "raw_animations": [
+    {
+      "resource_name": "clock_animation",
+      "resource_id": "0x7f13000e",
+      "original_apk_entry": "res/Far.json",
+      "source_relative_path": "source/android/res/raw/clock_animation.json",
+      "bytes": 3910,
+      "sha256": "637b76adcd73fdfb713c228604a67da9f56e57a1e75f27554aa59821c3473c6e",
+      "original_entry_equals_current_and_restored_resource": true,
+      "declared_frames_per_second": 10,
+      "declared_in_point": 0,
+      "declared_out_point": 360,
+      "markers": []
+    },
+    {
+      "resource_name": "volume_off_animation",
+      "resource_id": "0x7f13005f",
+      "original_apk_entry": "res/JTQ.json",
+      "source_relative_path": "source/android/res/raw/volume_off_animation.json",
+      "bytes": 26940,
+      "sha256": "ff3a1c9b3cc64acae75d10815d10224da23b1e90d595991bdac8c7c457c0616a",
+      "original_entry_equals_current_and_restored_resource": true,
+      "declared_frames_per_second": 40,
+      "declared_in_point": 0,
+      "declared_out_point": 180,
+      "markers": []
+    },
+    {
+      "resource_name": "phone_screen_animation",
+      "resource_id": "0x7f130041",
+      "original_apk_entry": "res/0T4.json",
+      "source_relative_path": "source/android/res/raw/phone_screen_animation.json",
+      "bytes": 7686,
+      "sha256": "51e4bc9775f12dad97a531d6e65d738a2d0138b8c26f78b7a3f98671342f43f6",
+      "original_entry_equals_current_and_restored_resource": true,
+      "declared_frames_per_second": 25,
+      "declared_in_point": 0,
+      "declared_out_point": 70,
+      "markers": []
+    }
+  ],
+  "intro_layouts": [
+    {
+      "page": "trigger",
+      "source_relative_path": "source/android/res/layout/fragment_trigger_onboard.xml",
+      "bytes": 2969,
+      "sha256": "65eaa58968c4ff38a1b08e47c60cab0cb46bc2133f3aab1885442032eb5153fb",
+      "current_equals_restored_xml": true,
+      "observed_lottie_attributes": {
+        "lottie_autoPlay": "true",
+        "lottie_loop": "true",
+        "lottie_rawRes": "@raw/clock_animation",
+        "lottie_ignoreDisabledSystemAnimations": null
+      }
+    },
+    {
+      "page": "action",
+      "source_relative_path": "source/android/res/layout/fragment_action_onboard.xml",
+      "bytes": 2540,
+      "sha256": "0d69bc08d5aa304df22bcf9f2f1c4238abeeea03a7d53d3896fe10f9d88f49f9",
+      "current_equals_restored_xml": true,
+      "observed_lottie_attributes": {
+        "lottie_autoPlay": "true",
+        "lottie_loop": "true",
+        "lottie_rawRes": "@raw/volume_off_animation",
+        "lottie_ignoreDisabledSystemAnimations": null
+      }
+    },
+    {
+      "page": "constraint",
+      "source_relative_path": "source/android/res/layout/fragment_constraint_onboard.xml",
+      "bytes": 3028,
+      "sha256": "bfcac1e72edf1cd434c702ffe67fe3404f304017577c1d168bc21de8b6b64d7e",
+      "current_equals_restored_xml": true,
+      "observed_lottie_attributes": {
+        "lottie_autoPlay": "true",
+        "lottie_loop": "true",
+        "lottie_rawRes": "@raw/phone_screen_animation",
+        "lottie_ignoreDisabledSystemAnimations": null
+      }
+    }
+  ],
+  "method_observations": [
+    {
+      "descriptor": "Llk9;->b(Landroid/content/Context;)Z",
+      "finding": "Reads Settings.Global animator_duration_scale with default 1.0; zero selects reduced motion unless ignoreDisabledSystemAnimations is true. The drawable constructor sets the ignore flag false."
+    },
+    {
+      "descriptor": "Lcom/airbnb/lottie/LottieAnimationView;->d(Landroid/util/AttributeSet;I)V",
+      "finding": "Reads lottie_ignoreDisabledSystemAnimations with default false. All three reviewed intro layouts omit the override."
+    },
+    {
+      "descriptor": "Llk9;->h()Landroid/content/Context;",
+      "finding": "Obtains context from its View drawable callback, which is used when evaluating system animation settings."
+    },
+    {
+      "descriptor": "Llk9;->j()V",
+      "finding": "When system animations are disabled, chooses an allowed reduced-motion marker if present; otherwise selects the minimum frame for negative speed or maximum frame for nonnegative speed, then stops the animator."
+    }
+  ],
+  "inference": "With the requested system animator scale 0, an attached intro Lottie view using its default positive speed is expected to render its terminal still frame. The reviewed original animation resources contain no markers. Actual displayed frames require subsequent emulator capture.",
+  "requested_device_settings": {
+    "animator_duration_scale": "0",
+    "window_animation_scale": "0",
+    "transition_animation_scale": "0"
+  },
+  "setting_control_opt_in": "--disable-animations",
+  "settings_observed_by_helper": "before and after; every requested value must be numeric zero",
+  "app_apk_or_resources_modified": false,
+  "screenshot_masks_or_comparison_tolerances_added": false,
+  "emulator_execution_performed_in_this_check": false,
+  "animation_timing_and_motion_parity_tested": false,
+  "full_runtime_1_to_1_established": false,
+  "primary_references": [
+    {
+      "url": "https://developer.android.com/reference/android/provider/Settings.Global#ANIMATOR_DURATION_SCALE",
+      "finding": "Zero animator scale ends Animator animations immediately; zero window/transition scales disable their corresponding animations."
+    },
+    {
+      "url": "https://github.com/airbnb/lottie-android/blob/master/lottie/src/main/java/com/airbnb/lottie/LottieDrawable.java",
+      "finding": "Upstream playAnimation uses the reduced-motion marker or terminal frame when animationsEnabled is false. The original APK smali is the authoritative evidence for the bundled version."
+    }
+  ]
+}

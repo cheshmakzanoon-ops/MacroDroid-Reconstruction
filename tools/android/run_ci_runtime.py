@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Capture and compare the original and candidate on a fresh disposable AVD.
 
-This is a measured cold-launch check. Success never means whole-app feature
-parity. The service, readiness gate, recorder, and comparator retain their own
-evidence and exit codes. No account or permission prompts are accepted here.
+This measures cold launches and four English intro page stills, with three
+observed Next transitions. The device's three animation scales are explicitly
+set to zero; motion parity is not measured. Each stage retains its own evidence
+and exit code. No account or permission prompts are accepted here.
 """
 from __future__ import annotations
 
@@ -39,13 +40,18 @@ def main() -> int:
     capture = output / 'capture'
     original, candidate = args.original.resolve(), args.candidate.resolve()
     report = {
-        'scope': 'Exact cold-launch capture comparison only',
+        'scope': 'Exact cold launch, four English intro page stills, and three observed Next transitions only',
         'started_utc': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
         'original_sha256': digest(original),
         'candidate_sha256': digest(candidate),
         'capture_device_configured': False,
         'systemui_demo_clock_requested': '1200',
+        'zero_device_animation_scales_requested': True,
         'cold_launch_capture_equal': False,
+        'intro_sequence_equal': False,
+        'android_runtime_executed': False,
+        'complete_intro_sequences_observed': False,
+        'animation_parity_established': False,
         'full_runtime_1_to_1_established': False,
         'commands': [],
     }
@@ -89,13 +95,14 @@ def main() -> int:
                 '--cwd', str(source), '--',
                 sys.executable, str(here / 'configure_capture_device.py'),
                 '--serial', 'emulator-5560', '--output', str(capture_device),
-                '--demo-clock', '1200',
+                '--demo-clock', '1200', '--disable-animations',
             ], 280)
             configuration_path = capture_device / 'capture-device.json'
             if configuration_path.is_file():
                 configuration = json.loads(configuration_path.read_text())
                 report['capture_device_configured'] = configuration.get('status') == 'CAPTURE_DEVICE_CONFIGURED'
                 report['capture_device_status'] = configuration.get('status')
+                report['capture_device_report_sha256'] = digest(configuration_path)
             save()
             if configured or not report['capture_device_configured']:
                 report['failure'] = 'capture-device-configuration'
@@ -107,6 +114,7 @@ def main() -> int:
                 sys.executable, str(source / 'android_acceptance.py'),
                 '--serial', 'emulator-5560', '--original', str(original),
                 '--candidate', str(candidate), '--accept-package-data-removal',
+                '--intro-pages',
                 '--install-timeout', '600', '--launch-timeout', '180',
                 '--ui-timeout', '120', '--output', str(capture),
             ], 1840)
@@ -117,9 +125,22 @@ def main() -> int:
             if comparison_path.is_file():
                 comparison = json.loads(comparison_path.read_text())
                 report['cold_launch_capture_equal'] = comparison.get('cold_launch_capture_equal') is True
-            if captured or compared or not report['cold_launch_capture_equal']:
+                report['cold_launch_comparison_status'] = comparison.get('status')
+                report['android_runtime_executed'] = comparison.get('android_runtime_executed') is True
+                report['cold_launch_comparison_sha256'] = digest(comparison_path)
+            intro_compared = run('compare-four-intro-pages-and-transitions', [
+                sys.executable, str(source / 'android_intro.py'), str(capture),
+            ], 120)
+            intro_path = capture / 'intro-comparison.json'
+            if intro_path.is_file():
+                intro = json.loads(intro_path.read_text())
+                report['intro_sequence_equal'] = intro.get('intro_sequence_equal') is True
+                report['intro_comparison_status'] = intro.get('status')
+                report['complete_intro_sequences_observed'] = intro.get('complete_intro_sequences_observed') is True
+                report['intro_comparison_sha256'] = digest(intro_path)
+            if captured or compared or intro_compared or not report['cold_launch_capture_equal'] or not report['intro_sequence_equal']:
                 report['failure'] = 'capture-or-comparison'
-                return captured or compared or 2
+                return captured or compared or intro_compared or 2
             return 0
     finally:
         if service is not None and service.poll() is None:

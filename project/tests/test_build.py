@@ -100,7 +100,7 @@ class ReleaseSourceTests(unittest.TestCase):
     def test_original_inventory_count(self):self.assertEqual(len(self.index),71267)
     def test_method_inventory_count(self):self.assertEqual(sum(i['methods'] for i in self.index.values()),349972)
     def test_nine_partitions(self):self.assertEqual(len(json.loads((ROOT/'source/partitions.json').read_text())),9)
-    def test_registry_count(self):self.assertEqual(len(self.registry),1238)
+    def test_registry_count(self):self.assertEqual(len(self.registry),1239)
     def test_registry_unique(self):self.assertEqual(len({(e['target'],e['method']) for e in self.registry}),len(self.registry))
     def test_registered_classes_count(self):self.assertEqual(len({e['target'] for e in self.registry}),602)
     def test_constant_coverage(self):self.assertEqual(sum(e.get('proof_family')=='constant' for e in self.registry),1119)
@@ -112,7 +112,7 @@ class ReleaseSourceTests(unittest.TestCase):
     def test_fixture_provenance(self):
         p=json.loads((ROOT/'tests/fixtures/provenance.json').read_text())
         self.assertEqual(hashlib.sha256((ROOT/'tests/fixtures/original-methods.dex').read_bytes()).hexdigest(),p['fixture_sha256'])
-        self.assertEqual(p['methods'],1238)
+        self.assertEqual(p['methods'],1239)
     def test_carrier_has_no_executable_dex_or_compiled_resources(self):
         with zipfile.ZipFile(ROOT/'source/payload.zip') as z:
             self.assertIsNone(z.testzip())

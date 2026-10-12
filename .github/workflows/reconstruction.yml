@@ -76,6 +76,8 @@ jobs:
             workspace/MacroDroid_v9/reports/python-unit-tests.log
             workspace/MacroDroid_v9/reports/*-differential-tests.log
             workspace/MacroDroid_v9/reports/full-apk-edit-probe.json
+            workspace/MacroDroid_v9/reports/migration-static-proof.json
+            workspace/MacroDroid_v9/reports/migration-linkage-check.json
             workspace/MacroDroid_v9/reports/reference-failures-status-v9.json
             workspace/MacroDroid_v9/reports/android-runtime/result.json
 
@@ -99,7 +101,7 @@ jobs:
           test -c /dev/kvm
           sudo setfacl -m "u:$(id -un):rw" /dev/kvm
           "$RUNNER_TEMP/macrodroid-tooling/android/emulator/emulator" -no-window -accel-check
-      - name: Record original and candidate cold launches and compare complete captures
+      - name: Compare complete cold-launch captures and four observed intro pages
         run: |
           python3 tools/android/run_ci_runtime.py \
             --tooling "$RUNNER_TEMP/macrodroid-tooling" \

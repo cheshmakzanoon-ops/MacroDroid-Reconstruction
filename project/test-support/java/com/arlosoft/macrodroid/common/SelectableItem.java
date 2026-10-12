@@ -16,6 +16,9 @@ public class SelectableItem {
  public Context getContext(){CoreTrace.add(testId+".context");return context;}
  public Macro getMacro(){CoreTrace.add(testId+".macro");return macro;}
  public Long macroGuid=42L;
+ public long itemGuid=71L;
+ public long getSIGUID(){CoreTrace.add(testId+".itemGuid");return itemGuid;}
+ public String getName(){CoreTrace.add(testId+".name");return configured;}
  public java.util.Map<String,String> expansions=new java.util.HashMap<String,String>();
  public String expansionFailureInput;public RuntimeException expansionFailure;
  public Long getMacroGuid(){CoreTrace.add(testId+".macroGuid");return macroGuid;}

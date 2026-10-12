@@ -42,14 +42,17 @@ The exact supplied reference APK is committed in 12 parts under `vendor/original
 It is 95,725,918 bytes with SHA-256
 `84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800`.
 The current reconstructed candidate is committed in 12 parts under
-`artifacts/current/`; it is 94,683,307 bytes with SHA-256
-`2eabb2d883598254ca71f99999297e1b98fa9ea56fb24c200d5f053456cff4d6`.
-Both have been fetched back through Git and checked against their complete original
-byte streams. `scripts/assemble_artifact.py` reconstructs either file from its
-committed manifest, verifying each part and the assembled APK.
+`artifacts/current/`; it is 94,683,342 bytes with SHA-256
+`be1138a5cb72c5f79efaa1490b4b9c74ccb637fbb6d0975f6680da48435c50ce`.
+The baseline control is separately preserved under `artifacts/baseline/`:
+94,677,674 bytes, SHA-256
+`aa8ad3013ad211c8a39d083943b0a671d75e0bbbedccc924ea0093c590c9a096`.
+`scripts/assemble_artifact.py` reconstructs each file from its committed manifest,
+verifying every part and the complete APK. Earlier candidate bytes remain available
+at their historical commits, including the 1,238-body candidate at `bebf448`.
 
-The editable 1,238-body Java recovery and its build/test inputs are committed in
-`project/`, beginning at checkpoint `06bbded7b0428144a0da24308b76bc6148b97ec0`.
+The editable Java recovery and its build/test inputs are committed in `project/`,
+beginning with the 1,238-body checkpoint `06bbded7b0428144a0da24308b76bc6148b97ec0`.
 The candidate APK and reproducible Android tooling were added at
 `8cb274e1e17a0563691c6accc905c9f686c3dc46`. The automated build and Android capture
 workflow was added at `5d8c6ff25503b225929eb8443f04570f872b4a08`.
@@ -63,3 +66,31 @@ is an openly distributed test identity, not the publisher's signing key.
 
 All older repository documentation, quality reports and recovered Java samples
 remain available. There is no assertion that GitHub release attachments exist.
+
+
+## Latest scene and runtime checkpoint
+
+The active overlay now contains 1,239 recovered bodies across 602 classes. Its
+81,211 build inputs are pinned by canonical SHA-256
+`8c8999f971f61def792cdf4ecd7999220c2fa2e56a5bdfecf3b04dee113bf7b0`.
+The candidate manifest binds the new APK bytes to that input snapshot and the
+[exact integration checkpoint](verification/scene-runtime-integration/checkpoint.json).
+The isolated scene proof passed 185,738 three-path host cases and all 22 UI
+negative controls. Full acceptance of the combined scene, strict four-page
+recorder and corrected device helper remains pending a fresh completed run.
+
+The previous 1,238-body source checkpoint already passed all 16 configured hosted
+acceptance gates. Its complete report files, verified output identities and job
+metadata are preserved at [source-ci-bebf448](verification/source-ci-bebf448/),
+commit `56bff54c905e45dd7ce8776c96b54ff9a0608bf9`. The exact Android capture
+failure and later preparation failure remain under
+[android-ci-ba52fd6](verification/android-ci-ba52fd6/) and
+[android-ci-bebf448](verification/android-ci-bebf448/), respectively.
+
+Immutable scene checkpoints and their complete signed proof archive are preserved
+under `work-in-progress/custom-scene/`, ending with checkpoint commit
+`b260db63712b0049e587ef4dfe5598d1c93df1b7`. The incomplete plugin lookup
+checkpoint is preserved under `work-in-progress/plugin-lookup/` at
+`88155fd82c5b894649c9257e0e2bb03b85c33593`; its coverage gate remains failed
+and its registry is inactive. The materializer applies only `project/`, so
+preserving unfinished work does not adopt it as active application source.

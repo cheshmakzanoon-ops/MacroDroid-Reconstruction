@@ -1,0 +1,62 @@
+{
+  "scope": "Schema-3 installed APK verification and four English intro still capture; synthetic checks only until actual hosted execution",
+  "files": [
+    {
+      "path": "android_acceptance.py",
+      "before_sha256": "ee82cadf5e2472eaa6f7096303c9c511fa19e68dc7ac37a71ab57385373304c5",
+      "after_sha256": "8f9ec00acd2f85c86284284946a56759421c3f084d94304afbc5c084a42d3b2e",
+      "bytes": 21792
+    },
+    {
+      "path": "android_compare.py",
+      "before_sha256": "be2dc5c8d949c80829ed9ab9e6e7d06de14edb0dd574e33d846135a8df636853",
+      "after_sha256": "24da5bedb4a6e4650f83e58cff735323596522468096891efd4cb8e6c6c58b85",
+      "bytes": 16011
+    },
+    {
+      "path": "android_intro.py",
+      "before_sha256": null,
+      "after_sha256": "5d08ff52092496e85372542b45cd1b0f50cd59f0bc33c88700996bf428a28268",
+      "bytes": 11359
+    },
+    {
+      "path": "tests/test_intro_capture.py",
+      "before_sha256": null,
+      "after_sha256": "403cd43ab18e26f163a0aa3ea4c893463e0502661b884a1ce0bd05b513b1302f",
+      "bytes": 16919
+    },
+    {
+      "path": "tests/test_recorder_boundaries.py",
+      "before_sha256": null,
+      "after_sha256": "f6bae7ad6ee560267f741011a4a096162a544db4f0b85f7a200caf487869e98b",
+      "bytes": 9380
+    },
+    {
+      "path": "tests/test_v9.py",
+      "before_sha256": "c813c51b9cd32aacf3a8c2b4113a23a5856b1af7b9a873b9c50c3dda93d2aaaa",
+      "after_sha256": "e50dd953d938884260f3ef83e7d4f01063d9d75ad2ef4187ab5196e7ac96c15a",
+      "bytes": 15421
+    }
+  ],
+  "staging_unit_tests": 86,
+  "staging_unit_exit": 0,
+  "staging_unit_seconds": 9.84,
+  "full_combined_acceptance": "pending",
+  "android_four_page_execution": "not_yet_executed",
+  "independent_review": {
+    "previous_86_tests_passed": true,
+    "precondition_freshness": "Timing now starts before UI dump/retrieval and is checked immediately before tap; slow fetch regression added.",
+    "corrected_report_consistency": [
+      "Required complete overall intro status and request completion",
+      "Reject same resolved precondition hierarchy path even with extra metadata"
+    ]
+  },
+  "slow_xml_fetch_regression": {
+    "seconds": 11,
+    "tap_count": 0,
+    "recorder_exit": 2,
+    "both_completed_cold_captures_preserved": true,
+    "test_passed": true,
+    "android_executed": false
+  }
+}

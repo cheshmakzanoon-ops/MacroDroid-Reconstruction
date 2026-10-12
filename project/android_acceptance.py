@@ -9,9 +9,9 @@ from __future__ import annotations
 import argparse,hashlib,json,re,shlex,shutil,subprocess,sys,time,uuid,zipfile
 from datetime import datetime,timezone
 from pathlib import Path
-from android_compare import CaptureError,foreground_ok,launch_ok,live_pids,png_pixels,xml_state
+from android_compare import (CaptureError,ORIGINAL_SHA256,absence_ok,foreground_ok,
+                             install_ok,installed_path,installed_digest,launch_ok,live_pids,png_pixels,xml_state)
 PACKAGE='com.arlosoft.macrodroid'
-ORIGINAL_SHA256='84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800'
 ROOT=Path(__file__).resolve().parent
 PROPERTIES=['ro.product.cpu.abilist','ro.product.cpu.abi','ro.build.version.sdk','ro.build.fingerprint',
             'ro.kernel.qemu','ro.hardware','ro.dalvik.vm.native.bridge','ro.dalvik.vm.isa.arm64',
@@ -25,17 +25,6 @@ def positive_timeout(value:str)->int:
     except ValueError as exc:raise argparse.ArgumentTypeError('Timeout must be an integer number of seconds') from exc
     if not 1<=seconds<=1800:raise argparse.ArgumentTypeError('Timeout must be between 1 and 1800 seconds')
     return seconds
-
-def install_ok(code:int,stdout:str,stderr:str='')->bool:
-    """ADB prints a transport banner before the package manager's final status.
-
-    A zero exit status and an exact terminal Success line are both required.
-    Explicit failure diagnostics in either stream still reject the installation.
-    """
-    lines=[line.strip() for line in stdout.splitlines() if line.strip()]
-    if code!=0 or not lines or lines[-1]!='Success':return False
-    diagnostics=stdout.splitlines()+stderr.splitlines()
-    return not any(re.search(r'\b(?:Failure|Error|Exception|failed)\b',line,re.I) for line in diagnostics)
 
 def sha(path:Path)->str:
     with path.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
@@ -74,6 +63,8 @@ def main()->int:
     ap.add_argument('--accept-package-data-removal',action='store_true')
     ap.add_argument('--allow-physical-device',action='store_true',help='Allow an explicitly selected disposable physical device.')
     ap.add_argument('--probe-only',action='store_true',help='Availability only; installs nothing.')
+    ap.add_argument('--intro-pages',action='store_true',
+                    help='Also record four English intro pages using three observed app Next buttons.')
     ap.add_argument('--install-timeout',type=positive_timeout,default=180,
                     help='Maximum seconds for each APK install (default: 180).')
     ap.add_argument('--launch-timeout',type=positive_timeout,default=90,
@@ -81,10 +72,16 @@ def main()->int:
     ap.add_argument('--ui-timeout',type=positive_timeout,default=90,
                     help='Maximum seconds for each UI hierarchy dump (default: 90).')
     ap.add_argument('--output',type=Path,default=ROOT/'reports/android-runtime')
-    args=ap.parse_args();args.output.mkdir(parents=True,exist_ok=True)
-    report={'schema_version':2,'time_utc':datetime.now(timezone.utc).isoformat(),'android_runtime_executed':False,
+    args=ap.parse_args()
+    if not args.probe_only and args.output.is_dir() and any(args.output.iterdir()):ap.error('A new or empty capture output directory is required')
+    args.output.mkdir(parents=True,exist_ok=True)
+    report={'schema_version':3,'time_utc':datetime.now(timezone.utc).isoformat(),'android_runtime_executed':False,
             'full_parity_established':False,'status':'BLOCKED','runs':[],'scope':'Cold-launch capture only; no feature parity claim'}
     report['command_timeouts_seconds']={'install':args.install_timeout,'launch':args.launch_timeout,'ui_dump':args.ui_timeout}
+    report['intro_pages_requested']=args.intro_pages
+    if args.intro_pages:report['scope']='Cold launch plus four intro pages and three Next transitions only'
+    # A killed or timed-out capture must leave a current non-success result.
+    (args.output/'result.json').write_text(json.dumps(report,indent=2)+'\n')
     adb=shutil.which('adb')
     def command(argv,*,timeout=60,binary=False):return subprocess.run(argv,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=not binary,timeout=timeout,check=False)
     def device(argv,**kw):return command([adb,'-s',args.serial,*argv],**kw)
@@ -112,11 +109,87 @@ def main()->int:
                         ('wifi_on',['settings','get','global','wifi_on']),
                         ('mobile_data',['settings','get','global','mobile_data']),
                         ('sysui_demo_allowed',['settings','get','global','sysui_demo_allowed']),
-                        ('sysui_tuner_demo_on',['settings','get','global','sysui_tuner_demo_on'])]:
+                        ('sysui_tuner_demo_on',['settings','get','global','sysui_tuner_demo_on']),
+                        ('animator_duration_scale',['settings','get','global','animator_duration_scale']),
+                        ('window_animation_scale',['settings','get','global','window_animation_scale']),
+                        ('transition_animation_scale',['settings','get','global','transition_animation_scale'])]:
             r=shell(cmd)
             if r.returncode:raise Blocked('Device display settings unreadable')
             props[key]=r.stdout.strip()
         return props
+    def capture_intro(run,label):
+        import android_intro as intro
+        initial=run['artifacts']
+        sequence={'status':'RECORDING','pages':[], 'transitions':[]};run['intro_sequence']=sequence
+        first={'page':1,'sample_interval_seconds':run['sample_interval_seconds'],'artifacts':{
+            'pid_first':initial['pid_first'],'pid_final':initial['pid_final'],
+            'foreground':initial['foreground'],'hierarchy':initial['hierarchy'],'screenshot':initial['screenshot']}}
+        sequence['pages'].append(first)
+        hierarchy=(args.output/initial['hierarchy']['path']).read_bytes()
+        foreground=(args.output/initial['foreground']['path']).read_text()
+        if not intro.intro_foreground(foreground):raise CaptureError('Intro activity was not observed before navigation')
+        first['title']=intro.page_title(hierarchy,1)
+        identities=[intro.page_identity(hierarchy)]
+        anchor=(args.output/initial['pid_final']['path']).read_text()
+        width,height=run['screen_size']
+        for number in range(2,intro.PAGE_COUNT+1):
+            previous=sequence['pages'][-1]
+            hierarchy=(args.output/previous['artifacts']['hierarchy']['path']).read_bytes()
+            name=f'{label}-intro-{number}'
+            before={}
+            remote='/data/local/tmp/mdrecovery-'+uuid.uuid4().hex+'.xml'
+            # Include dump and retrieval latency in the age of the UI observation.
+            observed=time.monotonic()
+            try:
+                checked(name+'-before-ui-dump',shell(['uiautomator','dump',remote],timeout=args.ui_timeout))
+                fresh=device(['exec-out','cat',remote],binary=True)
+                if fresh.returncode:raise CaptureError('Intro input precondition could not be captured')
+                before['hierarchy']=evidence(name+'-before-hierarchy.xml',fresh.stdout)
+            finally:save(name+'-before-ui-cleanup',shell(['rm','-f',remote]))
+            if xml_state(fresh.stdout)[0]!=xml_state(hierarchy)[0]:raise CaptureError('Intro UI changed before input')
+            current_pid=shell(['pidof',PACKAGE]);before['pid']=checked(name+'-before-pid',current_pid)
+            live_pids(anchor,current_pid.stdout)
+            front=shell(['dumpsys','activity','activities']);before['foreground']=checked(name+'-before-foreground',front)
+            if not intro.intro_foreground(front.stdout):raise CaptureError('Intro activity was not foreground before input')
+            coordinates=intro.next_target(fresh.stdout,width,height)
+            argv=['input','tap',*map(str,coordinates)]
+            transition={'from_page':number-1,'to_page':number,'selector':intro.NEXT_ID,
+                        'coordinates':list(coordinates),'precondition_hierarchy':before['hierarchy'],
+                        'precondition_artifacts':before,
+                        'shell_argv':argv}
+            sequence['transitions'].append(transition)
+            age=time.monotonic()-observed;transition['precondition_age_seconds']=age
+            if age>intro.MAX_PRECONDITION_AGE:raise CaptureError('Intro UI precondition expired before input')
+            tapped=shell(argv);transition['command']=save(name+'-tap',tapped)
+            if tapped.returncode or tapped.stdout.strip() or tapped.stderr.strip():raise CaptureError('Intro Next tap did not complete cleanly')
+            time.sleep(3)
+            page={'page':number,'artifacts':{}};sequence['pages'].append(page);a=page['artifacts']
+            before=shell(['pidof',PACKAGE]);a['pid_first']=checked(name+'-pid-first',before);sampled=time.monotonic()
+            live_pids(anchor,before.stdout)
+            front=shell(['dumpsys','activity','activities']);a['foreground']=checked(name+'-foreground',front)
+            if not intro.intro_foreground(front.stdout):raise CaptureError('Intro activity left the foreground during navigation')
+            remote='/data/local/tmp/mdrecovery-'+uuid.uuid4().hex+'.xml'
+            try:
+                checked(name+'-ui-dump',shell(['uiautomator','dump',remote],timeout=args.ui_timeout))
+                hierarchy_result=device(['exec-out','cat',remote],binary=True)
+                if hierarchy_result.returncode:raise CaptureError('Intro hierarchy retrieval failed')
+                hierarchy=hierarchy_result.stdout;_,nodes=xml_state(hierarchy);page['app_ui_nodes']=nodes
+                a['hierarchy']=evidence(name+'-hierarchy.xml',hierarchy)
+            finally:save(name+'-ui-cleanup',shell(['rm','-f',remote]))
+            identity=intro.page_identity(hierarchy)
+            if identity in identities:raise CaptureError('Intro Next did not reach a distinct page')
+            identities.append(identity)
+            page['title']=intro.page_title(hierarchy,number)
+            screenshot=device(['exec-out','screencap','-p'],binary=True)
+            if screenshot.returncode:raise CaptureError('Intro screenshot retrieval failed')
+            width,height,_=png_pixels(screenshot.stdout);page['screen_size']=[width,height]
+            a['screenshot']=evidence(name+'.png',screenshot.stdout)
+            time.sleep(max(0,1-(time.monotonic()-sampled)))
+            after=shell(['pidof',PACKAGE]);a['pid_final']=checked(name+'-pid-final',after)
+            page['sample_interval_seconds']=time.monotonic()-sampled
+            live_pids(anchor,before.stdout,after.stdout)
+            if environment()!=run['environment']:raise CaptureError('Device environment changed during intro navigation')
+        sequence['status']='INTRO_PAGES_RECORDED'
     try:
         if not adb:raise Blocked('ADB is not installed or not on PATH. No Android process was executed.')
         if not args.serial:raise Blocked('An explicit disposable device --serial is required.')
@@ -139,9 +212,15 @@ def main()->int:
                 run['environment']=environment()
                 run['uninstall']=save(label+'-uninstall',device(['uninstall',PACKAGE]))
                 present=shell(['pm','path',PACKAGE]);run['after_uninstall']=save(label+'-absent',present)
-                if 'package:' in present.stdout:raise CaptureError('Target package still installed after explicit removal')
+                if not absence_ok(present.returncode,present.stdout,present.stderr):raise CaptureError('Target package absence was not verified after removal')
                 installed=device(['install','--no-streaming',str(apk)],timeout=args.install_timeout);run['install']=save(label+'-install',installed)
                 if not install_ok(installed.returncode,installed.stdout,installed.stderr):raise CaptureError('APK installation did not succeed')
+                on_device=shell(['pm','path',PACKAGE]);run['installed_apk']={'package_path':save(label+'-installed-path',on_device)}
+                base_apk=installed_path(on_device.returncode,on_device.stdout,on_device.stderr)
+                checksum=shell(['sha256sum',base_apk]);run['installed_apk']['checksum']=save(label+'-installed-sha256',checksum)
+                observed=installed_digest(checksum.returncode,checksum.stdout,checksum.stderr,base_apk)
+                run['installed_apk']['sha256']=observed
+                if observed!=entry['apk_sha256']:raise CaptureError('Installed APK differs from the prevalidated input')
                 run['status']='INSTALLED_NOT_EXECUTED'
                 resolved=shell(['cmd','package','resolve-activity','--brief','-a','android.intent.action.MAIN','-c','android.intent.category.LAUNCHER','-p',PACKAGE]);run['resolve']=save(label+'-resolve',resolved)
                 components=[line.strip() for line in resolved.stdout.splitlines() if re.fullmatch(re.escape(PACKAGE)+r'/[A-Za-z0-9_.$]+',line.strip())]
@@ -175,12 +254,20 @@ def main()->int:
                 live_pids(second.stdout,final.stdout)
                 if environment()!=run['environment']:raise CaptureError('Device environment changed during capture')
                 run['status']='APP_CAPTURE_RECORDED'
+                if args.intro_pages:
+                    try:capture_intro(run,label)
+                    except (Blocked,CaptureError,OSError,ValueError,zipfile.BadZipFile,subprocess.TimeoutExpired) as exc:
+                        sequence=run.setdefault('intro_sequence',{})
+                        sequence['status']='INTRO_CAPTURE_FAILED';sequence['reason']=str(exc)
             except (Blocked,CaptureError,OSError,ValueError,zipfile.BadZipFile,subprocess.TimeoutExpired) as exc:
                 run['status']='CAPTURE_FAILED';run['reason']=str(exc)
             (args.output/'result.json').write_text(json.dumps(report,indent=2)+'\n')
         complete=len(report['runs'])==2 and all(r['status']=='APP_CAPTURE_RECORDED' for r in report['runs'])
+        intro_complete=not args.intro_pages or all(r.get('intro_sequence',{}).get('status')=='INTRO_PAGES_RECORDED' for r in report['runs'])
+        report['requested_capture_complete']=complete and intro_complete
         report['status']='CAPTURES_RECORDED_NOT_PARITY' if complete else 'CAPTURE_INCOMPLETE'
-        return 0 if complete else 2
+        if complete and not intro_complete:report['status']='COLD_CAPTURES_RECORDED_INTRO_INCOMPLETE'
+        return 0 if report['requested_capture_complete'] else 2
     except (Blocked,CaptureError,OSError,ValueError,zipfile.BadZipFile,subprocess.TimeoutExpired) as exc:report['reason']=str(exc);return 2
     finally:
         (args.output/'result.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))

@@ -1,0 +1,76 @@
+{
+  "recorded_utc": "2026-10-12T01:55:25.775Z",
+  "scope": "Host regression tests only; ADB responses and monotonic time are simulated.",
+  "files": [
+    {
+      "path": "tools/android/configure_capture_device.py",
+      "bytes": 14264,
+      "sha256": "50b93f00b68147323be46c8311ee32d3f201683a40b1825d17a02bc51ce25ec8"
+    },
+    {
+      "path": "tools/android/test_configure_capture_device.py",
+      "bytes": 7985,
+      "sha256": "17948c9f26f01c86e4d04ee93c95aece48e399685fe5e942af59e98db8bf4720"
+    },
+    {
+      "path": "tools/android/README.md",
+      "bytes": 16417,
+      "sha256": "24dc020ac7e47315c73cc400df53f8b3e08cfc6265151964a75008fee8d03e23"
+    },
+    {
+      "path": "tools/android/InspectOriginalLottie.java",
+      "bytes": 2326,
+      "sha256": "c8270f057617df3410cc4efcc5cfb677f2321625e7722b28bdf1fd626d3dd17c"
+    },
+    {
+      "path": "docs/verification/android-environment/lottie-still-capture-analysis.json",
+      "bytes": 7858,
+      "sha256": "ea9ddd128563b88fa3a27ff2eb2bdd763fb787f23f4618637e94b6483ee2d68f"
+    }
+  ],
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android",
+    "-p",
+    "test_configure_capture_device.py",
+    "-v"
+  ],
+  "cwd": "repository root",
+  "observed_exit_code": 0,
+  "observed_tests_run": 7,
+  "observed_failures": 0,
+  "observed_errors": 0,
+  "observed_skips": 0,
+  "observed_test_seconds": 0.634,
+  "passed_cases": [
+    "completion rejects a primary-radio handoff",
+    "computed-level drop resets the 15-second sampling window",
+    "missing or multiple modems fail at the deadline",
+    "primary-radio change resets the 15-second sampling window",
+    "preserved raw measurement variation succeeds while every observed raw field is retained",
+    "optional animation-scale writes preserve before/after values and require observed zero for all three settings",
+    "an unobserved write to any one of the three animation scales fails configuration"
+  ],
+  "historical_fixture": {
+    "path": "docs/verification/android-ci-bebf448/capture-device/capture-device.json",
+    "sha256": "e28736e07362479f37c62e0a847cc33d01c3f59ff54714ee41e4afcf4dfa6430",
+    "run_id": 38191908311,
+    "status_unchanged": "CAPTURE_DEVICE_CONFIGURATION_FAILED"
+  },
+  "python_syntax": "pass",
+  "real_device_configuration_executed": false,
+  "systemui_demo_controls_executed": false,
+  "app_install_or_capture_executed": false,
+  "comparison_rules_modified": false,
+  "full_runtime_1_to_1_established": false,
+  "next_verification": "Execute corrected helper and capture comparison on a fresh hosted emulator; retain the original failure unchanged.",
+  "observed_command_output": "test_completion_rejects_a_primary_radio_handoff (test_configure_capture_device.CaptureSignalStabilityTests.test_completion_rejects_a_primary_radio_handoff) ... ok\ntest_level_drop_restarts_the_fifteen_second_window (test_configure_capture_device.CaptureSignalStabilityTests.test_level_drop_restarts_the_fifteen_second_window) ... ok\ntest_missing_or_multiple_modems_fail_at_the_deadline (test_configure_capture_device.CaptureSignalStabilityTests.test_missing_or_multiple_modems_fail_at_the_deadline) ... ok\ntest_primary_radio_change_restarts_the_fifteen_second_window (test_configure_capture_device.CaptureSignalStabilityTests.test_primary_radio_change_restarts_the_fifteen_second_window) ... ok\ntest_recorded_raw_variation_keeps_primary_level_stable (test_configure_capture_device.CaptureSignalStabilityTests.test_recorded_raw_variation_keeps_primary_level_stable) ... ok\ntest_requested_animation_scales_are_recorded_and_verified (test_configure_capture_device.CaptureSignalStabilityTests.test_requested_animation_scales_are_recorded_and_verified) ... ok\ntest_unobserved_animation_scale_change_fails (test_configure_capture_device.CaptureSignalStabilityTests.test_unobserved_animation_scale_change_fails) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.634s\n\nOK\n",
+  "animation_scale_controls_executed_on_real_device": false,
+  "original_apk_static_inspection_performed": true,
+  "original_apk_proof": "lottie-still-capture-analysis.json"
+}

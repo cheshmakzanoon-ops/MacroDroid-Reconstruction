@@ -18,8 +18,14 @@ public android.content.res.Resources getResources(){defpackage.CoreTrace.add("co
  public ComponentName startService(Intent intent){
   defpackage.TouchControl.hit("service.start:"+testContextId+":"+intent.id);
   defpackage.TouchControl.starts.add(intent);
-  if(intent.target==com.arlosoft.macrodroid.action.services.BlockTouchesService.class)com.arlosoft.macrodroid.action.services.BlockTouchesService.j=true;
-  else com.arlosoft.macrodroid.triggers.services.MacroDroidAccessibilityServiceJellyBean.v=true;
+  if(!defpackage.SceneControl.active) {
+   if(intent.target==com.arlosoft.macrodroid.action.services.BlockTouchesService.class)com.arlosoft.macrodroid.action.services.BlockTouchesService.j=true;
+   else com.arlosoft.macrodroid.triggers.services.MacroDroidAccessibilityServiceJellyBean.v=true;
+  }
   return defpackage.TouchControl.startReturnsNull?null:new ComponentName();
+ }
+ public void startActivity(Intent intent) {
+  defpackage.TouchControl.hit("activity.start:"+testContextId+":"+intent.id);
+  defpackage.SceneControl.activityStarts.add(intent);
  }
 }

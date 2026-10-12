@@ -33,7 +33,7 @@ class UiSourceTests(unittest.TestCase):
     def setUpClass(cls):
         cls.entries=json.loads((build.ROOT/'source/ui-methods.json').read_text());cls.registry=json.loads((build.ROOT/'source/java-method-map.json').read_text())
         cls.index={x['descriptor']:x for x in build.index().values()}
-    def test_exact_six_methods_and_classes(self):self.assertEqual((len(self.entries),len({e['target'] for e in self.entries})),(6,6))
+    def test_exact_seven_methods_and_classes(self):self.assertEqual((len(self.entries),len({e['target'] for e in self.entries})),(7,7))
     def test_registry_partition(self):self.assertEqual(self.entries,[e for e in self.registry if e.get('proof_family')=='v9-ui'])
     def test_each_original_hash(self):
         for e in self.entries:
@@ -157,6 +157,9 @@ class CaptureComparisonTests(unittest.TestCase):
             run={'label':label,'apk_sha256':digest,'environment':env.copy(),'component':compare.PACKAGE+'/.Main','status':'APP_CAPTURE_RECORDED','android_runtime_executed':True,'sample_interval_seconds':2.0,'launch_exit':0,'artifacts':{}}
             for kind,data in {'launch':b'Status: ok\n','pid_first':b'31','pid_second':b'31','pid_final':b'31','foreground':b'mResumedActivity: com.arlosoft.macrodroid/.Main','hierarchy':b'<hierarchy><node package="com.arlosoft.macrodroid" text="Home"/></hierarchy>','screenshot':png()}.items():
                 self.put(run,kind,data)
+            for name,code,stdout in [('install',0,b'Performing Push Install\nSuccess\n'),('after_uninstall',1,b'')]:
+                self.put(run,name+'_stdout',stdout);self.put(run,name+'_stderr',b'')
+                run[name]={'returncode':code,'stdout':run['artifacts'][name+'_stdout'],'stderr':run['artifacts'][name+'_stderr']}
             self.report['runs'].append(run)
     def tearDown(self):self.temp.cleanup()
     def put(self,run,kind,data):

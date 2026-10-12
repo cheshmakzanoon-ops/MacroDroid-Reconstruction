@@ -1,7 +1,7 @@
-# UI, scene-state, selection and touch-blocking recovery
+# UI, scene-state, selection, touch-blocking and scene-dispatch recovery
 
-Six existing method bodies in this family are compiled from readable Java. The full
-registry has 1,238 bodies across 602 classes; 1,119 are prior constant/no-op bodies.
+Seven existing method bodies in this family are compiled from readable Java. The full
+registry has 1,239 bodies across 602 classes; 1,119 are prior constant/no-op bodies.
 This is not a complete Java/Kotlin application or Android runtime equivalence.
 
 | Original method | Recovered helper | Scope |
@@ -12,6 +12,7 @@ This is not a complete Java/Kotlin application or Android runtime equivalence.
 | `SceneTextConfig$a.createFromParcel(Parcel)` | `SceneStateMethods.read` | Original constructor argument/read sequence |
 | `SceneTextConfig.writeToParcel(Parcel,int)` | `SceneStateMethods.write` | Original field/write sequence and Parcelable flags |
 | `BlockTouchesAction.invokeAction(TriggerContextInfo)` | `BlockTouchesMethods.invoke` | Trigger restrictions, block/unblock/toggle selection, original service calls and typed Intent payloads |
+| `CustomSceneAction.W(int,TriggerContextInfo,boolean,Stack,ResumeMacroInfo)` | `CustomSceneMethods.display` | Overlay/dialog/full-screen selection, existing-scene dispatch, original permission-warning fallthrough and ordered payloads/events |
 
 `source/ui-methods.json` pins the exact descriptors and original method hashes.
 Only the registered bodies replace existing implementations. Class structure,
@@ -55,6 +56,16 @@ Its earlier context/null checks and color resolution remain outside that handler
 `Error` propagates. The overlay and unblock paths retain their unguarded calls.
 Service return values are ignored exactly as in the uploaded implementation.
 
+Custom scene dispatch retains the separate accessibility and regular overlay paths,
+plus dialog/full-screen activity selection. Its background/overlay-permission warning
+continues into display selection. Existing scene activities are reused only when they
+are neither finishing nor destroyed, with the original short-circuit order and
+Runnable discriminator. New activities receive the original extras and flags, and
+the clear-by-exact-name event is posted before launch. Only accessibility overlay
+Intent construction/start has the original narrow Exception handler. Repeated
+macro, scene, context and identifier reads and all companion/null checks remain in
+their original order. See `SCENE_RECOVERY.md` for the complete scope and evidence.
+
 Scene state retains its 21-field read/write protocol in this order:
 
 ```
@@ -74,15 +85,19 @@ are not reconstructed by these two methods.
 
 `UiParityTests` compares original selected instructions, recovered Java on the JVM
 and rebuilt DEX instructions whose bytes are checked against the signed APK. The
-suite has 11,353 cases: 1,271 sound-token; 2,065 SMS-validation; 1,494 drag; 945
-scene-read; 3,158 scene-write; and 2,420 touch-blocking cases. Its 9,543 independently
+suite has 15,423 cases: 1,271 sound-token; 2,065 SMS-validation; 1,494 drag; 945
+scene-read; 3,158 scene-write; 2,420 touch-blocking; and 4,070 scene-dispatch cases. Its 13,555 independently
 specified result/state expectations supplement the three-path comparisons. All
-563 represented original instructions in these six methods were visited. The
+968 represented original instructions in these seven methods were visited. The
 new touch-blocking method visited all 162 original instructions and both outcomes
 of its 15 conditional branches (30/30 edges); the suite requires that coverage.
+Scene dispatch visits all 405 original instructions and all 40 conditional edges,
+and the suite requires that coverage as well. Eight explicitly identified cases
+inject a returning `j68.h0` boundary to exercise the defensive `throw null` instructions;
+they do not claim that the original null-guard implementation returns.
 This remains bounded evidence rather than exhaustive path/input coverage.
 
-The complete `test.py --three-way` run passes 181,668 cases across all 1,238
+The complete `test.py --three-way` run passes 185,738 cases across all 1,239
 registered method bodies, with zero failed cases or unsupported executions and an
 exact, non-overlapping method-key partition across the five suites. All nine rebuilt
 DEX partitions were matched byte-for-byte to the signed APK. The independent hybrid
@@ -115,7 +130,7 @@ opcode implementation is checked by `UiOracleConformance`: 6,270 cases including
 21 fixed expected vectors, generated raw floating-point values, saturation,
 NaN/zero, subnormal values and integer-subtraction overflow. This is not ART.
 
-Twelve temporary host defects must be rejected by named cases. The five existing
+Twenty-two temporary host defects must be rejected by named cases. The five existing
 controls move the drag cast, accept only boolean integer 1, substitute italic for
 bold during writing, swallow SMS provider Error, and reject generic sound tokens.
 Seven touch-blocking controls recompute the toggle state after stopping, omit the
@@ -124,10 +139,23 @@ hidden-color sentinel, narrow the handler to RuntimeException, and widen it to
 swallow Error. Each control must fail its named case with zero unsupported
 executions. The correct positive suite runs again afterward, and hashes verify
 that recovered source, the original fixture and the signed APK remain unchanged.
-No faulty APK is distributed. The current run passes all twelve controls and the
-11,353-case positive restoration, with zero unsupported executions. The seven new
-controls detect 34, 31, 926, 420, 159, 9 and 41 affected cases respectively; see
-`reports/ui-negative-controls.json`.
+Ten scene controls stop after the permission warning, change the accessibility
+description key, alter the dialog Runnable discriminator, reuse a destroyed
+activity, launch before posting the clear event, substitute the macro identifier
+for the item identifier, omit the description reread after context lookup, narrow
+the catch to RuntimeException, swallow Error, and hard-code the activity description
+key. Each is required to reject a specific named case. All 22 controls passed,
+each rejecting its named case with zero unsupported executions and unchanged
+source/fixture/APK hashes. The final clean 15,423-case positive restoration passed.
+These results are recorded in `reports/ui-negative-controls.json` and
+`reports/ui-positive-restoration.json`.
+No faulty APK is distributed.
+
+VM-generated null/cast message wording is excluded from equality because it depends
+on the interpreter/JVM/ART implementation. Exception class, ordering and partial
+effects still compare. This exclusion does not apply to injected boundary exceptions:
+their exact identities and messages, including injected NullPointerException messages,
+are checked. The original uninitialized-property message is checked separately.
 
 ## Report and runner boundaries
 

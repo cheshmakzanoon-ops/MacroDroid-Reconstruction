@@ -1,1 +1,1 @@
-package defpackage;public class aj5 {public void e(Object o){CoreTrace.add("eventBus.post:"+o.getClass().getName());}}
+package defpackage;public class aj5 {public void e(Object o){if(SceneControl.active){TouchControl.hit("eventBus.post:"+SceneControl.id(this)+":"+SceneControl.id(o));SceneControl.postedEvents.add(o);}else CoreTrace.add("eventBus.post:"+o.getClass().getName());}}

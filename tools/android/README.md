@@ -138,9 +138,36 @@ The repository's `reconstruction.yml` workflow runs two independent jobs. The so
 
 `run_ci_runtime.py` starts the service, waits up to 900 seconds for a completed boot and the required ARM64 bridge, configures and observes the capture environment, runs the recorder through the command queue, and compares complete screenshots and UI hierarchies. It records each command's actual exit code and stops its own emulator when finished. The recorder removes the known MacroDroid package and its app data between the two installs on this disposable device. It does not accept account, payment, or permission prompts.
 
-Before either installation, `configure_capture_device.py` verifies the selected disposable AVD, requests real modem home registration and signal profile 4, and requires the primary Android telephony signal to remain at level 4 with identical measurements for at least 15 seconds. It then enables the documented SystemUI demo mode and requests a displayed clock of 12:00. Demo mode can also hold other status indicators at their state when enabled. The helper records the actual mode-controller state, modem measurements, battery state, device wall clock, and every ADB command; the recorder includes the two demo settings in both capture environments. The device's wall clock and battery values are left at their observed values. The helper has a 240-second queue deadline, and a configuration failure stops the run with its evidence preserved under `capture-device/`.
+Before either installation, `configure_capture_device.py` verifies the selected disposable AVD, requests real modem home registration and signal profile 4, and requires one primary Android radio type and its computed signal level 4 to remain the same throughout a sampling window of at least 15 seconds. Raw signal measurements may vary within that computed level; all measurements remain in the evidence. It then enables the documented SystemUI demo mode and requests a displayed clock of 12:00. Demo mode can also hold other status indicators at their state when enabled. The helper records the actual mode-controller state, modem measurements, battery state, device wall clock, and every ADB command; the recorder includes the two demo settings in both capture environments. The device's wall clock and battery values are left at their observed values. The helper has a 240-second queue deadline, and a configuration failure stops the run with its evidence preserved under `capture-device/`.
 
 These controls address the first measured hosted comparison: both APKs launched and produced byte-identical UI hierarchies, while 75 decoded pixels differed within Android's signal-strength icon. The complete failed comparison remains in [`docs/verification/android-ci-ba52fd6/`](../../docs/verification/android-ci-ba52fd6/). Every pixel is still compared after configuring the environment; no screenshot regions, application content, or comparison thresholds were changed. A newly configured device run must establish the result independently.
+
+The first configuration attempt failed before either app was installed because its gate also required identical raw measurement strings. Its 18 samples all reported level 4; after an initial LTE-to-WCDMA transition, WCDMA RSSI changed from -53 to -73 dBm while the primary type and computed level remained stable. The complete failed artifact and analysis are preserved in [`docs/verification/android-ci-bebf448/`](../../docs/verification/android-ci-bebf448/). The corrected gate uses the primary type and computed level, which Android uses for general signal quality, and verifies both again at configuration completion. Historical-sample replay verifies this correction on the host; a subsequent actual device run must establish successful configuration and capture.
+
+The focused host regressions exercise the actual helper loop with the preserved signal observations and simulated ADB/time. They cover raw readings changing within one level, a genuine level drop, a primary-radio change, missing or multiple modem entries, and a radio change at completion. Run them from the repository root:
+
+```bash
+python3 -B -m unittest discover -s tools/android -p test_configure_capture_device.py -v
+```
+
+These regressions do not execute an emulator or establish a runtime comparison result.
+
+### Still-frame intro captures
+
+`configure_capture_device.py --disable-animations` is an explicit option for the four-page intro still-capture scenario. It writes `0` to the global `animator_duration_scale`, `window_animation_scale`, and `transition_animation_scale` settings on the selected disposable emulator. The helper records all three values before and after configuration, preserves each command's output, and fails if any requested zero value is not observed. Without the option, it only reads those settings. The recorder must include all three settings in both app capture environments.
+
+This configuration follows the original app's existing reduced-motion behavior. Its three intro layouts enable looping Lottie animations and omit the override that would ignore disabled system animations. The Lottie drawable reads `animator_duration_scale`; with a zero value, it selects a reduced-motion marker or a terminal frame and ends the animator. These three animation files contain no reduced-motion markers. Direct disassembly of the original APK reproduced the complete recovered `LottieDrawable` and `LottieAnimationView` smali files byte-for-byte. The source observations, original-APK proof, and file hashes are in [`lottie-still-capture-analysis.json`](../../docs/verification/android-environment/lottie-still-capture-analysis.json). A subsequent emulator run must establish which frames are actually displayed.
+
+The read-only disassembly check uses the existing pinned Apktool bundle and JDK 21, with a new output directory:
+
+```bash
+/absolute/path/to/tooling/jdk21/bin/java \
+  -cp /absolute/path/to/reconstruction/tools/apktool_v3.0.3-26-0a1c54f7-SNAPSHOT.jar \
+  tools/android/InspectOriginalLottie.java \
+  /absolute/path/to/original.apk /absolute/path/to/new-lottie-disassembly
+```
+
+The option configures the test device before either app starts. APKs, resources, and capture bytes are preserved, and the full pixel/XML comparison remains strict. **Animation timing and motion parity are untested in this scenario.** A still-frame match covers the declared device configuration and captured pages; it does not establish matching animated frames, frame rates, transitions, or synchronization.
 
 A failed install, launch, capture, or exact comparison fails the Android job. Both successful and failed runs preserve their evidence as workflow artifacts. A successful cold-launch comparison covers only that measured screen and execution interval; it does not establish triggers, actions, constraints, scheduling, permissions, or external integrations. No screenshot regions or UI attributes are ignored by the comparator.
 
@@ -166,5 +193,10 @@ Source references:
 - [Google SDK repository metadata](https://dl.google.com/android/repository/repository2-3.xml)
 - [Google APIs system-image metadata](https://dl.google.com/android/repository/sys-img/google_apis/sys-img2-3.xml)
 - [Android emulator command-line documentation](https://developer.android.com/studio/run/emulator-commandline)
+- [Android emulator telephony controls](https://developer.android.com/studio/run/emulator-console#telephony-emulation)
+- [Android 15 primary signal and computed level](https://android.googlesource.com/platform/frameworks/base/+/refs/tags/android-15.0.0_r1/telephony/java/android/telephony/SignalStrength.java)
+- [Android 15 SystemUI demo mode](https://android.googlesource.com/platform/frameworks/base/+/refs/tags/android-15.0.0_r1/packages/SystemUI/docs/demo_mode.md)
+- [Android global animation-scale settings](https://developer.android.com/reference/android/provider/Settings.Global#ANIMATOR_DURATION_SCALE)
+- [Lottie's disabled-animation frame selection](https://github.com/airbnb/lottie-android/blob/master/lottie/src/main/java/com/airbnb/lottie/LottieDrawable.java)
 - [Android's ARM translation background](https://android-developers.googleblog.com/2020/03/run-arm-apps-on-android-emulator.html)
 - [GitHub-hosted runner hardware acceleration](https://docs.github.com/en/actions/reference/runners/github-hosted-runners)

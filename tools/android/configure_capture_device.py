@@ -2,10 +2,13 @@
 """Set and observe a fixed cellular signal on the disposable capture emulator.
 
 Uses real emulator modem controls, then waits for the Android telephony registry
-to report the strongest primary signal continuously for at least 15 seconds.
+to report the same primary radio at computed level 4 for at least 15 seconds.
+Raw measurements may vary within that level and are retained in the evidence.
 An optional --demo-clock HHMM fixes only the requested SystemUI clock display;
 enabling SystemUI demo mode can also hold other status indicators at entry.
-Battery, wall clock, app UI, screenshots, and comparison rules are not modified.
+Optional --disable-animations sets Android's three animation scales to zero for
+still-frame captures. This excludes animation timing and motion from validation.
+Battery, wall clock, APK/resources, screenshots, and comparison rules are not edited.
 
 Run inside the runtime service queue, where the genuine ADB server is reachable.
 Allow about 180 seconds for the queue command. Evidence is written even on failure.
@@ -29,7 +32,13 @@ SOURCES = [
     'https://android.googlesource.com/platform/frameworks/base/+/refs/tags/android-15.0.0_r1/telephony/java/android/telephony/CellSignalStrengthLte.java',
     'https://android.googlesource.com/platform/frameworks/base/+/refs/tags/android-15.0.0_r1/packages/SystemUI/docs/demo_mode.md',
     'https://android.googlesource.com/platform/frameworks/base/+/refs/tags/android-15.0.0_r1/packages/SystemUI/src/com/android/systemui/demomode/DemoModeController.kt',
+    'https://developer.android.com/reference/android/provider/Settings.Global#ANIMATOR_DURATION_SCALE',
+    'https://developer.android.com/reference/android/provider/Settings.Global#WINDOW_ANIMATION_SCALE',
+    'https://developer.android.com/reference/android/provider/Settings.Global#TRANSITION_ANIMATION_SCALE',
 ]
+
+ANIMATION_SCALE_KEYS = ('animator_duration_scale', 'window_animation_scale',
+                        'transition_animation_scale')
 
 
 def now() -> str:
@@ -62,6 +71,8 @@ def main() -> int:
     parser.add_argument('--signal-timeout', type=float, default=90)
     parser.add_argument('--demo-clock', metavar='HHMM',
                         help='Explicitly enable documented SystemUI demo mode and fix its clock')
+    parser.add_argument('--disable-animations', action='store_true',
+                        help='Set Android animation scales to zero for declared still-frame captures')
     args = parser.parse_args()
     if not re.fullmatch(r'emulator-[0-9]+', args.serial):
         parser.error('Select an explicit emulator serial')
@@ -74,9 +85,15 @@ def main() -> int:
     report = {'started_utc': now(), 'status': 'CONFIGURING', 'serial': args.serial,
               'expected_avd': args.avd, 'requested_signal_profile': 4,
               'required_stable_seconds': 15, 'signal_timeout_seconds': args.signal_timeout,
+              'signal_stability_fields': ['primary', 'level'],
               'demo_clock_requested': args.demo_clock, 'systemui_demo_mode_requested': args.demo_clock is not None,
+              'disable_animations_requested': args.disable_animations,
+              'animation_scales_requested': {key: '0' for key in ANIMATION_SCALE_KEYS} if args.disable_animations else None,
+              'requested_animation_scales_observed': False,
+              'animation_timing_and_motion_parity_tested': False,
               'battery_modified': False, 'device_wall_clock_modified': False,
-              'app_ui_modified': False, 'screenshots_modified': False,
+              'app_apk_modified': False, 'app_resources_modified': False,
+              'screenshots_modified': False,
               'full_runtime_1_to_1_established': False, 'sources': SOURCES,
               'commands': [], 'signal_observations': []}
 
@@ -122,6 +139,8 @@ def main() -> int:
             'device_utc': run(label + '-clock', ['shell', 'date', '-u', '+%Y-%m-%dT%H:%M:%SZ']).strip(),
             'sysui_demo_allowed': run(label + '-demo-allowed', ['shell', 'settings', 'get', 'global', 'sysui_demo_allowed']).strip(),
             'sysui_tuner_demo_on': run(label + '-demo-on', ['shell', 'settings', 'get', 'global', 'sysui_tuner_demo_on']).strip(),
+            'animation_scales': {key: run(label + '-' + key, ['shell', 'settings', 'get', 'global', key]).strip()
+                                 for key in ANIMATION_SCALE_KEYS},
         }
 
     save()
@@ -147,7 +166,9 @@ def main() -> int:
             signals = primary_signals(dump)
             observation = {'observed_utc': now(), 'signals': signals}
             report['signal_observations'].append(observation)
-            current = [(x['primary'], x['primary_measurements']) for x in signals]
+            # Android derives the displayed strength from the primary radio's level.
+            # Raw RSSI/RSRP can vary within one level; keep those readings as evidence.
+            current = [(x['primary'], x['level']) for x in signals]
             # The pinned disposable AVD has one modem. Do not accept another SIM's level.
             strong = len(signals) == 1 and signals[0]['level'] == 4
             measured = time.monotonic()
@@ -163,10 +184,13 @@ def main() -> int:
             print(json.dumps({'signal_levels': [x['level'] for x in signals], 'observed_utc': now()}), flush=True)
             time.sleep(min(5, max(0, deadline - time.monotonic())))
         else:
-            raise RuntimeError('Primary modem signal did not settle at level 4 within the deadline')
+            raise RuntimeError('One primary radio type and computed level 4 did not remain stable for 15 seconds within the deadline')
         status = run('confirmed-gsm', ['emu', 'gsm', 'status'], console=True)
         if not all(re.search(r'gsm ' + kind + r' state:\s*home\b', status) for kind in ('voice', 'data')):
             raise RuntimeError('Emulator did not confirm home voice and data registration')
+        if args.disable_animations:
+            for key in ANIMATION_SCALE_KEYS:
+                run('disable-' + key, ['shell', 'settings', 'put', 'global', key, '0'])
         if args.demo_clock is not None:
             run('allow-demo', ['shell', 'settings', 'put', 'global', 'sysui_demo_allowed', '1'])
             run('start-demo', ['shell', 'settings', 'put', 'global', 'sysui_tuner_demo_on', '1'])
@@ -186,10 +210,19 @@ def main() -> int:
         report['after'] = observe('after')
         final_signals = primary_signals(run('after-telephony', ['shell', 'dumpsys', 'telephony.registry']))
         report['after']['primary_signals'] = final_signals
-        if len(final_signals) != 1 or final_signals[0]['level'] != 4:
-            raise RuntimeError('Primary signal no longer reports level 4 at configuration completion')
+        if len(final_signals) != 1 or (final_signals[0]['primary'], final_signals[0]['level']) != (report['confirmed_primary_signal']['primary'], 4):
+            raise RuntimeError('Primary radio type or computed level changed at configuration completion')
         if args.demo_clock is not None and (report['after']['sysui_demo_allowed'] != '1' or report['after']['sysui_tuner_demo_on'] != '1'):
             raise RuntimeError('Requested SystemUI demo settings were not observed')
+        if args.disable_animations:
+            try:
+                scales_zero = all(float(report['after']['animation_scales'][key]) == 0.0
+                                  for key in ANIMATION_SCALE_KEYS)
+            except (TypeError, ValueError):
+                scales_zero = False
+            if not scales_zero:
+                raise RuntimeError('Requested zero animation scales were not observed at configuration completion')
+            report['requested_animation_scales_observed'] = True
         report['status'] = 'CAPTURE_DEVICE_CONFIGURED'
         return 0
     except RuntimeError as exc:
