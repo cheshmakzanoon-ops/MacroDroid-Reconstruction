@@ -20,7 +20,8 @@ from pathlib import Path
 PACKAGE = 'com.arlosoft.macrodroid'
 PERMISSION = 'com.google.android.permissioncontroller'
 NEXT = {'resource-id': PACKAGE + ':id/button_next'}
-DENY = {'resource-id': PERMISSION + ':id/permission_deny_button'}
+# The Google permission-controller APK retains the AOSP resource namespace.
+DENY = {'resource-id': 'com.android.permissioncontroller:id/permission_deny_button'}
 TRIGGER = {'resource-id': PACKAGE + ':id/edit_macro_addTriggerButton'}
 ACTION = {'resource-id': PACKAGE + ':id/edit_macro_addActionButton'}
 CONSTRAINT = {'resource-id': PACKAGE + ':id/edit_macro_addConstraintButton'}

@@ -146,6 +146,12 @@ class JourneyTests(unittest.TestCase):
             with self.subTest(value=value):
                 with self.assertRaises(journey.JourneyError):
                     journey.target(value, journey.PACKAGE, journey.NEXT, 4, 4)
+    def test_observed_google_permission_dialog_uses_aosp_resource_id(self):
+        data = (Path(__file__).parent / 'fixtures/notification-permission-api35.xml').read_bytes()
+        self.assertEqual(journey.target(data, journey.PERMISSION, journey.DENY, 720, 1280), [360, 820])
+        with self.assertRaises(journey.JourneyError):
+            journey.target(data, journey.PERMISSION, {'resource-id': journey.PERMISSION + ':id/permission_deny_button'}, 720, 1280)
+
     def test_xml_declarations_are_rejected(self):
         with self.assertRaises(journey.JourneyError):
             journey.tree(b'<!DOCTYPE hierarchy><hierarchy/>', journey.PACKAGE)

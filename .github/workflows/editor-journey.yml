@@ -25,7 +25,9 @@ jobs:
         with:
           persist-credentials: false
       - name: Run verifier adversarial host tests
+        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p ci-editor
           python3 -m unittest discover -s tools/parity_journeys -p 'test_*.py' -v 2>&1 | tee ci-editor/host-tests.log
       - name: Materialize the source tools and both exact APKs
@@ -61,4 +63,4 @@ jobs:
             ci-editor/journey/
             ci-editor/environment/runtime-status.json
             ci-editor/environment/runtime-properties.json
-            tools/parity_journeys/*.py
+            tools/parity_journeys/
