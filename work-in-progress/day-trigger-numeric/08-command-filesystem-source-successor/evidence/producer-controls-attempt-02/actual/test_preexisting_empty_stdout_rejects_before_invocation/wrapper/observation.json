@@ -1,0 +1,103 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "-c",
+    "raise AssertionError(\"must not run\")"
+  ],
+  "cwd": "/dev/shm/day-numeric-hosted-02/reports/03-producer-controls-attempt-02/actual/test_preexisting_empty_stdout_rejects_before_invocation/wrapper",
+  "timeout_seconds": 5,
+  "returncode": null,
+  "timed_out": false,
+  "error": "FileExistsError(17, 'File exists')",
+  "started_unix_ns": 1791799664279352698,
+  "started_monotonic_ns": 37385074015807,
+  "started_utc": "2026-10-12T10:07:44.279352+00:00",
+  "ended_unix_ns": 1791799664279614236,
+  "ended_monotonic_ns": 37385074277141,
+  "ended_utc": "2026-10-12T10:07:44.279614+00:00",
+  "duration_seconds": 0.000261334,
+  "stdout": null,
+  "stderr": null,
+  "stream_evidence": {
+    "schema": 2,
+    "started": {
+      "unix_ns": 1791799664279352698,
+      "monotonic_ns": 37385074015807,
+      "utc": "2026-10-12T10:07:44.279352+00:00"
+    },
+    "streams": {},
+    "after_witnesses": [],
+    "after_witness_attempt_limit": 16,
+    "after_witness_poll_ns": 5000000,
+    "filesystem_bracket_complete": false,
+    "before_witness": {
+      "path": "probe.filesystem-before.log",
+      "exclusive_mode": "xb",
+      "open_started": {
+        "unix_ns": 1791799664279414950,
+        "monotonic_ns": 37385074077824,
+        "utc": "2026-10-12T10:07:44.279414+00:00"
+      },
+      "initial_stat": {
+        "device": 26,
+        "inode": 157990,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 0,
+        "mtime_ns": 1791799664278833185,
+        "ctime_ns": 1791799664278833185
+      },
+      "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "opened": {
+        "unix_ns": 1791799664279447378,
+        "monotonic_ns": 37385074110279,
+        "utc": "2026-10-12T10:07:44.279447+00:00"
+      },
+      "closing": {
+        "unix_ns": 1791799664279504227,
+        "monotonic_ns": 37385074167125,
+        "utc": "2026-10-12T10:07:44.279504+00:00"
+      },
+      "final_stat": {
+        "device": 26,
+        "inode": 157990,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 0,
+        "mtime_ns": 1791799664278833185,
+        "ctime_ns": 1791799664278833185
+      },
+      "closed": {
+        "unix_ns": 1791799664279512963,
+        "monotonic_ns": 37385074175805,
+        "utc": "2026-10-12T10:07:44.279512+00:00"
+      },
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hashed": {
+        "unix_ns": 1791799664279557303,
+        "monotonic_ns": 37385074220169,
+        "utc": "2026-10-12T10:07:44.279557+00:00"
+      }
+    },
+    "failed_file_operations": [
+      {
+        "path": "probe.stdout.log",
+        "exclusive_mode": "xb",
+        "open_started": {
+          "unix_ns": 1791799664279597746,
+          "monotonic_ns": 37385074260632,
+          "utc": "2026-10-12T10:07:44.279597+00:00"
+        },
+        "error": "FileExistsError(17, 'File exists')"
+      }
+    ],
+    "error": "FileExistsError(17, 'File exists')",
+    "finished": {
+      "unix_ns": 1791799664279614236,
+      "monotonic_ns": 37385074277141,
+      "utc": "2026-10-12T10:07:44.279614+00:00"
+    }
+  }
+}
