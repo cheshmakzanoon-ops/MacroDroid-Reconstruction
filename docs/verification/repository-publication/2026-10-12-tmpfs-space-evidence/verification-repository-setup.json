@@ -1,0 +1,41 @@
+{
+  "scope": "Temporary read-only fetch-verification repository; existing source object database is read through an alternate without modification.",
+  "steps": [
+    {
+      "argv": [
+        "git",
+        "init",
+        "--bare",
+        "--initial-branch=main",
+        "/dev/shm/macrodroid-transfer-space-20261012/verification.git"
+      ],
+      "returncode": 0,
+      "stdout": "Initialized empty Git repository in /dev/shm/macrodroid-transfer-space-20261012/verification.git/\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "--git-dir=/dev/shm/macrodroid-transfer-space-20261012/verification.git",
+        "config",
+        "remote.origin.url",
+        "https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction.git"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "--git-dir=/dev/shm/macrodroid-transfer-space-20261012/verification.git",
+        "update-ref",
+        "refs/heads/main",
+        "394234b0e74c9f1d660836c8f2a89901fe05ff9d"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

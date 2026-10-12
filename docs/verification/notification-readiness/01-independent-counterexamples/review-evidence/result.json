@@ -1,0 +1,70 @@
+{
+  "scope": "Synthetic guard counterexamples using the real current validator; not Android, no parity credit.",
+  "reviewedModule": {
+    "bytes": 18934,
+    "sha256": "c61e2d2e3981939d024b70a7442e8b6b0e1e59f80418fa5fc5bffa18b0202f86"
+  },
+  "cases": [
+    {
+      "name": "whole-block-ledger-reorder",
+      "journeyEqual": true,
+      "originalPositions": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34
+      ],
+      "newPositions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "reason": null
+    },
+    {
+      "name": "boolean-schema-indices",
+      "journeyEqual": false,
+      "reason": "Notification readiness observations are out of order"
+    },
+    {
+      "name": "row-wrapper-span-inflation-phase-only",
+      "phaseAccepted": true,
+      "rawHomeCommandSpanSeconds": 0.5499999999997272,
+      "rowWrapperSpanSeconds": 1.3499999999994543,
+      "policyMinimumReadySpanSeconds": 1.05,
+      "reason": null,
+      "fullReportAcceptanceClaimed": false
+    }
+  ],
+  "baselinePassed": true,
+  "syntheticArtifacts": {
+    "count": 1344,
+    "archive": {
+      "bytes": 73148,
+      "sha256": "e9cfe773c96a004f40fef36e8dc4aacdabd481559c46ea9e6fd60f317dfd230b"
+    }
+  },
+  "exactSyntheticResultRestored": true,
+  "status": "COUNTEREXAMPLE_REVIEW_COMPLETED",
+  "allBoundSourceBytesUnchanged": true,
+  "durationSeconds": 6.734147644001496
+}
