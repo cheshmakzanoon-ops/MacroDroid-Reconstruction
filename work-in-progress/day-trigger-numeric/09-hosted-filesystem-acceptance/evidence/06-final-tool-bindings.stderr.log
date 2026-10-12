@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/dev/shm/day-numeric-hosted-02/finalize_tooling.py", line 34, in <module>
+    assert remote_cp.read_bytes() == (CAPSULE / 'checkpoint.json').read_bytes()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4130730d15aa/MacroDroid-Reconstruction/work-in-progress/day-trigger-numeric/08-command-filesystem-source-successor/checkpoint.json'

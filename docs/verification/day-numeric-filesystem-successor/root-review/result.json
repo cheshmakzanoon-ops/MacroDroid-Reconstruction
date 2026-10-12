@@ -1,0 +1,86 @@
+{
+  "status": "BOUNDED_NUMERIC_FILESYSTEM_SUCCESSOR_REVIEW_PASSED",
+  "started_utc": "2026-10-12T10:37:03.559532+00:00",
+  "finished_utc": "2026-10-12T10:37:05.079579+00:00",
+  "seconds": 1.520080483998754,
+  "tooling_checkpoint_sha256": "815612f827f1b0d2bcec90bbb1ae8a35a8c76ced8f6b5f44cf413bc40b81f493",
+  "source_checkpoint_sha256": "d9ddd3e0f692c66e2cd47870ff3cf95bfa0a2b1cd50fc2fd55a3c09e66df9bcf",
+  "all_tooling_payloads_verified": 2964,
+  "all_source_payloads_verified": 408,
+  "all_closed_inputs_unchanged": true,
+  "final_verifier_equals_previously_reviewed_correction": true,
+  "producer_helper_asts_identical": {
+    "command_clock": "04f3d8eba59efd5c4b4fcdabff5220946a31a50a4930ac3a2109361d51370546",
+    "command_file_stat": "ac93a9a416b050ae85e9d227a05323ccd550fe482707de4b0cefb114ce1bbc98",
+    "CommandStreamEvidence": "a39f675c3ee4a86d05f199b098781c062965e7425e86aca0d0cda2fcfbbfdc6e"
+  },
+  "owned_process_group_cleanup_ast_unchanged": true,
+  "closed_full_tool_tests": {
+    "tests": 92,
+    "seconds": 3.888,
+    "passed": true
+  },
+  "independent_actual_python_controls": [
+    {
+      "case": "empty",
+      "returncode": 0,
+      "producer_error_observed": false,
+      "receipt_rejected": false,
+      "reason": null,
+      "coarse_initial_mtime_before_fine_open": {
+        "stdout": true,
+        "stderr": true
+      },
+      "all_owned_streams_closed": true,
+      "actual_python_child_executed": true,
+      "application_or_java_or_android_executed": false
+    },
+    {
+      "case": "nonempty-exit-seven",
+      "returncode": 7,
+      "producer_error_observed": false,
+      "receipt_rejected": false,
+      "reason": null,
+      "coarse_initial_mtime_before_fine_open": {
+        "stdout": true,
+        "stderr": true
+      },
+      "all_owned_streams_closed": true,
+      "actual_python_child_executed": true,
+      "application_or_java_or_android_executed": false
+    },
+    {
+      "case": "child-adds-hardlink",
+      "returncode": 0,
+      "producer_error_observed": true,
+      "receipt_rejected": true,
+      "reason": "ValueError: Missing, partial or additional command creation evidence: probe",
+      "coarse_initial_mtime_before_fine_open": {
+        "stdout": true,
+        "stderr": true
+      },
+      "all_owned_streams_closed": true,
+      "actual_python_child_executed": true,
+      "application_or_java_or_android_executed": false
+    },
+    {
+      "case": "child-replaces-stream",
+      "returncode": 0,
+      "producer_error_observed": true,
+      "receipt_rejected": true,
+      "reason": "ValueError: Missing, partial or additional command creation evidence: probe",
+      "coarse_initial_mtime_before_fine_open": {
+        "stdout": true,
+        "stderr": true
+      },
+      "all_owned_streams_closed": true,
+      "actual_python_child_executed": true,
+      "application_or_java_or_android_executed": false
+    }
+  ],
+  "application_build_executed": false,
+  "android_executed": false,
+  "full_runtime_1_to_1_established": false,
+  "activation_scope": "Eligible only for the separately reviewed isolated numeric host workflow. Active application source and APK promotion remain pending actual full acceptance.",
+  "metadata_scope": "The four independent receipt checks use their original live files. Copied archived fixture metadata is retained verbatim and is not substituted into a live-stat replay."
+}

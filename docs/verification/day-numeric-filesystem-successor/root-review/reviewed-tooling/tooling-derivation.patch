@@ -1,0 +1,1358 @@
+--- prior/.github/workflows/day-numeric-wip-acceptance.yml
++++ successor/.github/workflows/day-numeric-wip-acceptance.yml
+@@ -22,7 +22,7 @@
+ env:
+   PYTHONUTF8: '1'
+   PYTHONDONTWRITEBYTECODE: '1'
+-  DAY_NUMERIC_RUNTIME_MANIFEST_SHA256: 'a2e8c137dd5aed3a3605eddf560789206ec9626593bdc97824a1c78c2245fe69'
++  DAY_NUMERIC_RUNTIME_MANIFEST_SHA256: 'a1b6464be0603913f9fe37b0b90e7026034fd1823f3b24b949355109b9632428'
+ 
+ jobs:
+   isolated-numeric-source:
+@@ -56,13 +56,13 @@
+       - name: Check out the independently committed nineteen-file numeric overlay
+         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+         with:
+-          ref: 394234b0e74c9f1d660836c8f2a89901fe05ff9d
++          ref: 811f979eda1b937917c18defef38455c49a59062
+           path: overlay-repository
+           fetch-depth: 1
+           persist-credentials: false
+           sparse-checkout-cone-mode: true
+           sparse-checkout: |
+-            work-in-progress/day-trigger-numeric/06-source-integration
++            work-in-progress/day-trigger-numeric/08-command-filesystem-source-successor
+       - name: Set up the parent workflow's Java 21 toolchain
+         uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+         with:
+@@ -92,6 +92,8 @@
+           Path('hosted-tool-source-verification.json').write_text(json.dumps({'passed': True, 'manifest_sha256': os.environ['DAY_NUMERIC_RUNTIME_MANIFEST_SHA256'], 'files': value['files']}, indent=2) + '\n')
+           PY
+       - name: Run bounded job policy and subprocess controls
++        env:
++          DAY_NUMERIC_CONTROL_EVIDENCE_ROOT: ${{ github.workspace }}/hosted-tool-control-evidence
+         run: python3 -B -m unittest discover -s job-source/tools/day_numeric_acceptance -p 'test_*.py' -v > hosted-tool-host-tests.log 2>&1
+       - name: Verify the complete baseline and apply exactly the reviewed source overlay
+         run: |
+@@ -131,6 +133,7 @@
+             numeric-workspace/MacroDroid_v9/reports/
+             numeric-workspace/MacroDroid_v9/dist/*.apk
+             hosted-tool-host-tests.log
++            hosted-tool-control-evidence/
+             hosted-tool-source-verification.json
+             job-source/tools/day_numeric_acceptance/
+             job-source/.github/workflows/day-numeric-wip-acceptance.yml
+--- prior/tools/day_numeric_acceptance/README.md
++++ successor/tools/day_numeric_acceptance/README.md
+@@ -13,12 +13,12 @@
+ | Role | Fixed identity |
+ | --- | --- |
+ | Application baseline | `dbcad968c5c3e8f084205393a6c0d2d06a203c71` |
+-| Reviewed overlay publication | `394234b0e74c9f1d660836c8f2a89901fe05ff9d` |
+-| Overlay capsule | `work-in-progress/day-trigger-numeric/06-source-integration/checkpoint.json` |
+-| Overlay checkpoint SHA-256 | `c59d9624844864de085723167ed67af017ed6e0ef17e06ba0206a33649e92b2f` |
++| Reviewed overlay publication | `811f979eda1b937917c18defef38455c49a59062` |
++| Overlay capsule | `work-in-progress/day-trigger-numeric/08-command-filesystem-source-successor/checkpoint.json` |
++| Overlay checkpoint SHA-256 | `d9ddd3e0f692c66e2cd47870ff3cf95bfa0a2b1cd50fc2fd55a3c09e66df9bcf` |
+ | Complete baseline input inventory | 81,291 files; snapshot `b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553` |
+-| Complete future input inventory | 81,298 files; snapshot `04b2867b722335f6b2b4910fc4ccba02e89bdbca52f80e1e9a9b9ac4b18fa1d4` |
+-| Future manifest bytes | 14,504,095 bytes; SHA-256 `25a60c227b5083b6e608b161ee403503b0232ad59368ba9603db5e6b8e00eb23` |
++| Complete future input inventory | 81,298 files; snapshot `f8fc1cadac8213468e42ac99a2cd5d807827dcdeee25166b8025620ff39a6545` |
++| Future manifest bytes | 14,504,095 bytes; SHA-256 `896f3eb29dc832eb245fee8dcb70b0e8c8935c9635bf1ccc54c09987b26c91c6` |
+ 
+ `pins.json` contains the complete nineteen copy roles, all twelve old-file hashes,
+ all seven absence requirements, the exact future manifest identity, the 91 compiled
+@@ -30,7 +30,12 @@
+ The workflow validates the SHA-256 of `runtime-files.json` before executing the
+ job tools. That manifest binds every top-level tool file. `prepare.py`,
+ `run_acceptance.py`, and `verify.py` each check it again. The source capsule's
+-complete 113-file inventory and its checkpoint are checked without editing them.
++complete 408-file inventory and its checkpoint are checked without editing them.
++This source successor changes only command-evidence instrumentation in
++`day_numeric_dex_controls.py`; the other eighteen overlay files remain byte-identical
++to the earlier source capsule. Its complete old/new input binding, semantic AST
++comparison, first producer attempt, exceptional-cleanup counterexample, and
++corrected sixteen-control evidence remain in that immutable capsule.
+ 
+ ## Preparation and execution
+ 
+@@ -52,7 +57,10 @@
+ input paths.
+ 
+ `run_acceptance.py` records the actual Python and Java observations, exact child
+-command, resolved Python executable identity, stream hashes, start/end times and return code. It executes the unchanged
++command, resolved Python executable identity, stream hashes, integer Unix and
++monotonic operation clocks, filesystem witnesses, and return code. A zero-exit
++Java observation with a recording/cleanup error stops before the acceptance child.
++The wrapper executes the unchanged
+ sixteen-gate acceptance sequence from the reviewed overlay, including the isolated
+ signed source-edit test and the final positive three-path run. The UI gate retains
+ its reviewed 5,400-second limit; each other gate retains 1,200 seconds. The outer
+@@ -68,7 +76,8 @@
+ codes, and verifies all 23 required fresh report hashes. Result paths must be
+ canonical, physically distinct and created/modified inside the recorded acceptance
+ interval. The Java-version and acceptance streams must use their exact distinct
+-filenames and fall within their own child invocation intervals. A prior report,
++filenames and complete exclusive-creation receipts, with separately ordered
++integer command clocks and the actual filesystem bracket described below. A prior report,
+ aliased log, skipped source-edit test or missing gate
+ prevents success.
+ 
+@@ -94,6 +103,60 @@
+ configuration names or stream files cannot substitute for those independently
+ reconstructed roles.
+ 
++## Exact command file creation and clocks
++
++Hosted run [38232050667](https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/actions/runs/38232050667)
++failed in the 67 tooling controls before materialization or an application build.
++The [unchanged raw artifact](../../docs/verification/day-numeric-hosted-run-5c402b4/)
++retains 64 successes, two errors and one dependent failure. It did not record those
++fixtures' exact stat deltas. The separate unchanged-source diagnosis retained eight
++actual empty subprocesses whose sixteen streams had inode timestamps before a
++precise clock sampled immediately before exclusive creation. This is a coarse
++filesystem-clock issue. Floating-point conversion of an epoch timestamp and ISO
++microsecond truncation were distinct additional precision problems; the successor
++uses integer conversions throughout.
++
++For each Java-version, acceptance, and numeric D8/harness command, the producer:
++
++1. Records exact integer Unix and monotonic nanoseconds; ISO is derived from the
++   same Unix value, with no floating-point epoch conversion.
++2. Exclusively creates and closes one empty witness in the stream directory.
++3. Opens stdout and stderr using `xb`, recording the operation clocks, initial
++   empty fstat/hash, and later final fstat/hash and closure clocks for each file.
++4. Preserves every exclusive after-witness observation until the first actual
++   filesystem clock brackets both streams' initial and final mtime/ctime values.
++   There are at most sixteen observations, with a requested five-millisecond wait
++   between failed observations: at most fifteen waits. A missing bracket fails.
++
++The observer never changes a timestamp or adds a tolerance. Repeated observations
++allow a coarse filesystem clock to advance past a recently written fine timestamp.
++The 120-second numeric subprocess limit, 15-second Java-observation limit and
++6,600-second outer acceptance limit stay unchanged. Exception paths attempt every
++owned descriptor's cleanup, retain cleanup errors and preserve an original child
++exception; they never turn that evidence into success.
++
++The independent verifier reconstructs all roles and exact argv, checks the live
++files against recorded final fstat/hash, enforces one regular inode and one link,
++and checks the ordered exclusive-open, invocation, closure and witness clocks.
++Both Unix and monotonic clocks must move forward. All unsuccessful witnesses must
++precede the first successful one; missing, reordered, borrowed or later selected
++witnesses reject. The literal sixteen-observation and five-millisecond policy is
++fixed. Empty files with unchanged creation/final metadata are valid, including
++observed equal filesystem ticks.
++
++**Live verification and archive replay have different metadata scopes.** The
++hosted verifier compares original inode/ctime and bytes while those files still
++exist. The artifact retains the exact serialized original observations and bytes.
++Extraction creates other inodes and ctimes, so a later replay must verify its raw
++byte identities and recorded observations without treating extraction metadata as
++the hosted stat. This tooling does not silently substitute extracted metadata or
++claim that a post-extraction live-stat check occurred on the runner.
++
++The clock interpretation follows the primary [Linux multigrain timestamp
++documentation](https://cdn.kernel.org/doc/html/latest/filesystems/multigrain-ts.html),
++[Linux timekeeping accessors](https://cdn.kernel.org/doc/html/latest/core-api/timekeeping.html),
++and [Python datetime precision](https://docs.python.org/3.12/library/datetime.html).
++
+ The unchanged baseline APK must reproduce its existing SHA-256. The new hybrid
+ APK's identity is measured from its actual bytes and must be bound by its code,
+ resource, host, numeric and source-edit reports. The workflow does not substitute
+@@ -107,6 +170,10 @@
+ preparation/execution/verification receipts, the complete old and future input
+ manifests, the exact nineteen overlay payloads, retained historical outputs,
+ runtime class evidence, host-control logs, and the exact job tools/workflow.
++The hosted test step also retains each owned fixture's raw files, recorded
++creation receipts, and original stat inventory under `hosted-tool-control-evidence`.
++Intentional symlink faults are retained as inert descriptions. This output is
++separate from preparation and cannot populate the fresh application result scope.
+ Temporary build caches and installed Java binaries are infrastructure; their
+ source/tool identities and actual runtime observations are recorded. Failed and
+ partial results are retained with their literal statuses.
+@@ -120,6 +187,11 @@
+ These controls use small synthetic report fixtures and actual bounded Python child
+ processes. They test inventory truncation, overlay omission, stale or physically
+ aliased artifacts, nonzero exits, skips, timeouts and source-preservation guards.
++The successor adds witness ownership/order, actual replaced inodes and stale
++mtime, live-stat mismatch, both fine-clock reversals, exact integer precision,
++partial cleanup and zero-exit fail-fast controls. Actual small empty subprocesses
++check the complete live creation receipt; synthetic command rows explicitly have
++synthetic contents and do not execute Java.
+ They do not claim that the full application build or 91 UI controls have executed.
+ 
+ The job inherits the pinned action versions and Java 21 setup from the reviewed
+--- prior/tools/day_numeric_acceptance/inputs.py
++++ successor/tools/day_numeric_acceptance/inputs.py
+@@ -261,8 +261,8 @@
+     require(manifest['active_files'] == [] and manifest['source_changes'] == pins['source_changes'],
+             'Frozen nineteen source roles differ')
+     files = manifest['files']
+-    require(isinstance(files, list) and len(files) == 113
+-            and len({row['path'] for row in files}) == 113, 'Source capsule inventory differs')
++    require(isinstance(files, list) and len(files) == 408
++            and len({row['path'] for row in files}) == 408, 'Source capsule inventory differs')
+     actual_files = set()
+     for path in capsule.rglob('*'):
+         require(not path.is_symlink(), 'Symlink in frozen source capsule')
+--- prior/tools/day_numeric_acceptance/pins.json
++++ successor/tools/day_numeric_acceptance/pins.json
+@@ -2,11 +2,11 @@
+   "schema": 1,
+   "scope": "Isolated DayTrigger.r0 WIP full host acceptance; no active application promotion or Android claim",
+   "baseline_commit": "dbcad968c5c3e8f084205393a6c0d2d06a203c71",
+-  "overlay_commit": "394234b0e74c9f1d660836c8f2a89901fe05ff9d",
+-  "overlay_capsule_path": "work-in-progress/day-trigger-numeric/06-source-integration",
++  "overlay_commit": "811f979eda1b937917c18defef38455c49a59062",
++  "overlay_capsule_path": "work-in-progress/day-trigger-numeric/08-command-filesystem-source-successor",
+   "overlay_checkpoint": {
+-    "bytes": 29809,
+-    "sha256": "c59d9624844864de085723167ed67af017ed6e0ef17e06ba0206a33649e92b2f"
++    "bytes": 112846,
++    "sha256": "d9ddd3e0f692c66e2cd47870ff3cf95bfa0a2b1cd50fc2fd55a3c09e66df9bcf"
+   },
+   "baseline_manifest": {
+     "path": "project/reports/release-input-snapshot.json",
+@@ -17,11 +17,11 @@
+   "baseline_snapshot_sha256": "b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553",
+   "future_snapshot": {
+     "files": 81298,
+-    "snapshot_sha256": "04b2867b722335f6b2b4910fc4ccba02e89bdbca52f80e1e9a9b9ac4b18fa1d4"
++    "snapshot_sha256": "f8fc1cadac8213468e42ac99a2cd5d807827dcdeee25166b8025620ff39a6545"
+   },
+   "future_manifest": {
+     "bytes": 14504095,
+-    "sha256": "25a60c227b5083b6e608b161ee403503b0232ad59368ba9603db5e6b8e00eb23"
++    "sha256": "896f3eb29dc832eb245fee8dcb70b0e8c8935c9635bf1ccc54c09987b26c91c6"
+   },
+   "source_changes": [
+     {
+@@ -41,8 +41,8 @@
+       "path": "day_numeric_dex_controls.py",
+       "baseline": null,
+       "candidate": {
+-        "bytes": 30381,
+-        "sha256": "2d5c58fc15dc50d74aeaf85802e5d57a785937439f6692772801a621209211e2"
++        "bytes": 39491,
++        "sha256": "10bd78a41dcc9f16e0a301229e7b714189fd3bf7e497c5b35c49c7ccbcfd9e7c"
+       },
+       "must_be_absent_if_new": true,
+       "source": "project/day_numeric_dex_controls.py"
+--- prior/tools/day_numeric_acceptance/run_acceptance.py
++++ successor/tools/day_numeric_acceptance/run_acceptance.py
+@@ -5,6 +5,8 @@
+ import argparse
+ from datetime import datetime, timezone
+ import os
++import hashlib
++import stat
+ from pathlib import Path
+ import platform
+ import signal
+@@ -16,6 +18,196 @@
+ from prepare import inventory
+ 
+ 
++def command_clock():
++    """Record exact clocks; the ISO text is a display of this same Unix value."""
++    unix_ns = time.time_ns()
++    monotonic_ns = time.monotonic_ns()
++    seconds, nanos = divmod(unix_ns, 1_000_000_000)
++    utc = datetime.fromtimestamp(seconds, timezone.utc).replace(microsecond=nanos // 1000)
++    return {'unix_ns': unix_ns, 'monotonic_ns': monotonic_ns,
++            'utc': utc.isoformat(timespec='microseconds')}
++
++
++def command_file_stat(value):
++    return {'device': value.st_dev, 'inode': value.st_ino, 'mode': value.st_mode,
++            'links': value.st_nlink, 'bytes': value.st_size,
++            'mtime_ns': value.st_mtime_ns, 'ctime_ns': value.st_ctime_ns}
++
++
++class CommandStreamEvidence:
++    """Observe exclusive files using both clocks and actual filesystem witnesses.
++
++    Witnesses contain no invented timestamps. Every attempted after-witness is
++    retained; the first whose actual filesystem clock brackets the closed streams
++    is used. The bounded wait changes no timestamp and adds no acceptance slack.
++    """
++    WITNESS_ATTEMPTS = 16
++    WITNESS_POLL_NS = 5_000_000
++
++    def __init__(self, root, stdout, stderr):
++        self.root = Path(root).resolve()
++        self.paths = {'stdout': Path(stdout), 'stderr': Path(stderr)}
++        if self.paths['stdout'].parent != self.paths['stderr'].parent:
++            raise RuntimeError('Command streams must share a filesystem witness directory')
++        if not self.paths['stdout'].name.endswith('.stdout.log'):
++            raise RuntimeError('Command stdout role differs')
++        self.label = self.paths['stdout'].name[:-len('.stdout.log')]
++        if self.paths['stderr'].name != self.label + '.stderr.log':
++            raise RuntimeError('Command stderr role differs')
++        self.folder = self.paths['stdout'].parent
++        self.handles = {}
++        self.value = {'schema': 2, 'started': command_clock(), 'streams': {},
++                      'after_witnesses': [], 'after_witness_attempt_limit': self.WITNESS_ATTEMPTS,
++                      'after_witness_poll_ns': self.WITNESS_POLL_NS,
++                      'filesystem_bracket_complete': False}
++
++    def open_file(self, path):
++        name = path.relative_to(self.root).as_posix()
++        row = {'path': name, 'exclusive_mode': 'xb', 'open_started': command_clock()}
++        try:
++            handle = path.open('xb')
++        except BaseException as error:
++            self.value.setdefault('failed_file_operations', []).append({**row, 'error': repr(error)})
++            raise
++        try:
++            row['initial_stat'] = command_file_stat(os.fstat(handle.fileno()))
++            row['initial_sha256'] = hashlib.sha256(b'').hexdigest()
++            row['opened'] = command_clock()
++            value = row['initial_stat']
++            if not stat.S_ISREG(value['mode']) or value['links'] != 1 or value['bytes'] != 0:
++                raise RuntimeError('Exclusive command file is not a new empty regular inode')
++            return handle, row
++        except BaseException as error:
++            self.value.setdefault('failed_file_operations', []).append({**row, 'error': repr(error)})
++            self.close_after_error(handle)
++            raise
++
++    def close_after_error(self, handle):
++        """A second close error must not prevent cleanup of another owned handle."""
++        try:
++            if not handle.closed:
++                handle.close()
++        except BaseException as error:
++            self.value.setdefault('cleanup_errors', []).append(repr(error))
++            return error
++        return None
++
++    def close_file(self, handle, row):
++        handle.flush()
++        row['closing'] = command_clock()
++        row['final_stat'] = command_file_stat(os.fstat(handle.fileno()))
++        handle.close()
++        row['closed'] = command_clock()
++        path = self.root / row['path']
++        before = command_file_stat(path.stat())
++        if before != row['final_stat'] or path.is_symlink():
++            raise RuntimeError('Command file changed inode or metadata during closure')
++        with path.open('rb') as stream:
++            digest = hashlib.file_digest(stream, 'sha256').hexdigest()
++        after = command_file_stat(path.stat())
++        if after != before:
++            raise RuntimeError('Command file changed while hashing')
++        first = row['initial_stat']
++        if any(first[key] != before[key] for key in ('device', 'inode', 'mode', 'links')):
++            raise RuntimeError('Exclusive command file ownership changed')
++        row.update(bytes=before['bytes'], sha256=digest, hashed=command_clock())
++
++    def witness(self, suffix):
++        handle, row = self.open_file(self.folder / (self.label + '.' + suffix + '.log'))
++        try:
++            self.close_file(handle, row)
++        except BaseException as error:
++            self.value.setdefault('failed_witnesses', []).append({**row, 'error': repr(error)})
++            raise
++        finally:
++            self.close_after_error(handle)
++        return row
++
++    def __enter__(self):
++        try:
++            self.value['before_witness'] = self.witness('filesystem-before')
++            for name in ('stdout', 'stderr'):
++                handle, row = self.open_file(self.paths[name])
++                self.handles[name] = handle
++                self.value['streams'][name] = row
++            self.value['invocation_started'] = command_clock()
++            return self
++        except BaseException as error:
++            self.value['error'] = repr(error)
++            for name, handle in self.handles.items():
++                if not handle.closed:
++                    try:
++                        self.close_file(handle, self.value['streams'][name])
++                    except BaseException as cleanup_error:
++                        self.value.setdefault('cleanup_errors', []).append(repr(cleanup_error))
++                        self.close_after_error(handle)
++            self.value['finished'] = command_clock()
++            raise
++
++    def __exit__(self, kind, error, traceback):
++        self.value['invocation_finished'] = command_clock()
++        if error is not None:
++            self.value['error'] = repr(error)
++        cleanup_error = None
++        for name in ('stderr', 'stdout'):
++            handle = self.handles[name]
++            try:
++                self.close_file(handle, self.value['streams'][name])
++            except BaseException as failure:
++                self.value.setdefault('cleanup_errors', []).append(repr(failure))
++                if cleanup_error is None:
++                    cleanup_error = failure
++            finally:
++                failure = self.close_after_error(handle)
++                if cleanup_error is None and failure is not None:
++                    cleanup_error = failure
++        try:
++            before = self.value['before_witness']['final_stat']
++            streams = [self.value['streams'][name][phase]
++                       for name in ('stdout', 'stderr') for phase in ('initial_stat', 'final_stat')]
++            for index in range(self.WITNESS_ATTEMPTS):
++                witness = self.witness(f'filesystem-after-{index:02d}')
++                self.value['after_witnesses'].append(witness)
++                after = witness['final_stat']
++                complete = all(before['device'] == value['device'] == after['device']
++                    and before['ctime_ns'] <= value['mtime_ns'] <= after['ctime_ns']
++                    and before['ctime_ns'] <= value['ctime_ns'] <= after['ctime_ns'] for value in streams)
++                if complete:
++                    self.value['filesystem_bracket_complete'] = True
++                    break
++                if index + 1 < self.WITNESS_ATTEMPTS:
++                    time.sleep(self.WITNESS_POLL_NS / 1_000_000_000)
++            if not self.value['filesystem_bracket_complete']:
++                raise RuntimeError('Actual filesystem witnesses did not bracket command stream timestamps')
++        except BaseException as failure:
++            self.value.setdefault('cleanup_errors', []).append(repr(failure))
++            if cleanup_error is None:
++                cleanup_error = failure
++        self.value['finished'] = command_clock()
++        if error is None and cleanup_error is not None:
++            raise cleanup_error
++        return False
++
++    def add_to(self, row):
++        for prefix, name in (('started', 'started'), ('ended', 'finished')):
++            value = self.value.get(name)
++            if value is not None:
++                row[prefix + '_unix_ns'] = value['unix_ns']
++                row[prefix + '_monotonic_ns'] = value['monotonic_ns']
++                row[prefix + '_utc'] = value['utc']
++        if 'finished' in self.value:
++            row['duration_seconds'] = (self.value['finished']['monotonic_ns'] - self.value['started']['monotonic_ns']) / 1_000_000_000
++        for name in ('stdout', 'stderr'):
++            value = self.value['streams'].get(name)
++            if value is not None and all(key in value for key in ('path', 'bytes', 'sha256')):
++                row[name] = {key: value[key] for key in ('path', 'bytes', 'sha256')}
++            else:
++                row[name] = None
++        row['stream_evidence'] = self.value
++
++
++
++
+ def stop_owned_group(process):
+     try:
+         os.killpg(process.pid, signal.SIGTERM)
+@@ -39,29 +231,30 @@
+ 
+ def run_child(command, cwd, env, stdout, stderr, timeout):
+     result = {'argv': list(command), 'cwd': str(cwd), 'timeout_seconds': timeout,
+-              'returncode': None, 'timed_out': False, 'started_unix_ns': time.time_ns()}
++              'returncode': None, 'timed_out': False}
++    observation = CommandStreamEvidence(stdout.parent, stdout, stderr)
+     process = None
+     try:
+-        with stdout.open('xb') as out, stderr.open('xb') as err:
+-            process = subprocess.Popen(command, cwd=cwd, env=env, stdout=out, stderr=err, start_new_session=True)
+-            result['owned_process_group'] = process.pid
++        with observation as streams:
+             try:
+-                result['returncode'] = process.wait(timeout=timeout)
+-            except subprocess.TimeoutExpired:
+-                result['timed_out'] = True
+-                stop_owned_group(process)
+-                result['returncode'] = process.returncode
++                process = subprocess.Popen(command, cwd=cwd, env=env, stdout=streams.handles['stdout'],
++                                           stderr=streams.handles['stderr'], start_new_session=True)
++                result['owned_process_group'] = process.pid
++                try:
++                    result['returncode'] = process.wait(timeout=timeout)
++                except subprocess.TimeoutExpired:
++                    result['timed_out'] = True
++                    stop_owned_group(process)
++                    result['returncode'] = process.returncode
++            finally:
++                if process is not None:
++                    stop_owned_group(process)
+     except BaseException as error:
+         result['error'] = repr(error)
+         if process is not None:
+-            stop_owned_group(process)
+             result['returncode'] = process.returncode
+     finally:
+-        if process is not None:
+-            stop_owned_group(process)
+-        result['ended_unix_ns'] = time.time_ns()
+-        result['stdout'] = {'path': stdout.name, **inputs.identity(stdout)} if stdout.is_file() else None
+-        result['stderr'] = {'path': stderr.name, **inputs.identity(stderr)} if stderr.is_file() else None
++        observation.add_to(result)
+     return result
+ 
+ 
+@@ -74,8 +267,10 @@
+     args = parser.parse_args()
+     output = args.output.resolve()
+     inputs.require(output.is_dir() and not output.is_symlink(), 'Missing owned preparation output')
+-    report = {'schema': 1, 'status': 'HOST_ACCEPTANCE_NOT_COMPLETED', 'passed': False,
+-              'started_utc': datetime.now(timezone.utc).isoformat(), 'active_promoted': False,
++    started = command_clock()
++    report = {'schema': 2, 'status': 'HOST_ACCEPTANCE_NOT_COMPLETED', 'passed': False,
++              'started_utc': started['utc'], 'started_unix_ns': started['unix_ns'],
++              'started_monotonic_ns': started['monotonic_ns'], 'active_promoted': False,
+               'android_runtime_executed': False, 'full_runtime_1_to_1_established': False}
+     try:
+         inputs.verify_runtime_manifest(args.runtime_manifest_sha256)
+@@ -104,7 +299,8 @@
+         for name, argv in [('java-version', ['java', '-version']), ('javac-version', ['javac', '-version'])]:
+             value = run_child(argv, project, env, output / (name + '.stdout.log'), output / (name + '.stderr.log'), 15)
+             report['java_versions'].append(value)
+-            inputs.require(type(value['returncode']) is int and value['returncode'] == 0 and value['timed_out'] is False,
++            inputs.require(type(value['returncode']) is int and value['returncode'] == 0
++                           and value['timed_out'] is False and 'error' not in value,
+                            'Java toolchain observation failed')
+         inputs.write_json(output / 'execution-start.json', report)
+         command = [sys.executable, '-B', 'acceptance.py']
+@@ -123,7 +319,9 @@
+         print('HOST ACCEPTANCE WRAPPER FAILED:', error, file=sys.stderr)
+         return 2
+     finally:
+-        report['finished_utc'] = datetime.now(timezone.utc).isoformat()
++        finished = command_clock()
++        report.update(finished_utc=finished['utc'], finished_unix_ns=finished['unix_ns'],
++                      finished_monotonic_ns=finished['monotonic_ns'])
+         inputs.write_json(output / 'execution.json', report)
+         print(report['status'], flush=True)
+ 
+--- prior/tools/day_numeric_acceptance/runtime-files.json
++++ successor/tools/day_numeric_acceptance/runtime-files.json
+@@ -4,18 +4,18 @@
+   "files": [
+     {
+       "path": "README.md",
+-      "bytes": 8178,
+-      "sha256": "39c5d48cb9fffff6dd6c77fc85b1a281c83f5675323475457f4581b9fd4435f9"
++      "bytes": 13092,
++      "sha256": "2693c15f61cb4aa94668045ae67848bd21bcbfec780eeabe5d92c49d40b838a1"
+     },
+     {
+       "path": "inputs.py",
+       "bytes": 13313,
+-      "sha256": "2ffebcfe01c7a8d1cccc553150bb2bfaa3d248ad6aa5212f2ab8cd3928cd4019"
++      "sha256": "be5be21a7f809943e8d0d1ae8e7e756b100b85757368460393fb2d6eff9b107d"
+     },
+     {
+       "path": "pins.json",
+-      "bytes": 46827,
+-      "sha256": "4cfa391af7c48d8743ec8741d08c3796f45659ac4714eb0b25e8b606e0e839f9"
++      "bytes": 46845,
++      "sha256": "22c8163aff91199500b24577d036f8aedb3d20b033b28241d403938c10c5e57b"
+     },
+     {
+       "path": "prepare.py",
+@@ -24,18 +24,18 @@
+     },
+     {
+       "path": "run_acceptance.py",
+-      "bytes": 6646,
+-      "sha256": "422392138125042b79433c29da8c00a8fa618d7e92cbbe146f54856b9efd51f9"
++      "bytes": 16018,
++      "sha256": "f4f0cbd44b0f02ea9f4a699fa5752396241ac52a3ae66b60706f74b11ff1e1f4"
+     },
+     {
+       "path": "test_day_numeric_acceptance.py",
+-      "bytes": 34218,
+-      "sha256": "3565636f3b2726ec5fc7aaee70135a26bac99595d74ecf212efc77bfe51028c4"
++      "bytes": 51000,
++      "sha256": "834acf67ae836ca2e54c9938e3fe163b0e77ee9e75053a3a42d438bb4efe48ab"
+     },
+     {
+       "path": "verify.py",
+-      "bytes": 49930,
+-      "sha256": "e58525d32a71170f08520caf18c4d6cfc67b4bc87d7e18f692322dac4a886a39"
++      "bytes": 57942,
++      "sha256": "242f016afdacce4231580b92cfa8b01bc3a6420d3456d3370340a5864e971649"
+     }
+   ]
+ }
+--- prior/tools/day_numeric_acceptance/test_day_numeric_acceptance.py
++++ successor/tools/day_numeric_acceptance/test_day_numeric_acceptance.py
+@@ -5,6 +5,7 @@
+ application execution, signed-build, method-parity, or Android evidence.
+ """
+ import copy
++import shutil
+ from datetime import datetime, timezone
+ import json
+ import os
+@@ -27,7 +28,69 @@
+         self.root = Path(self.temp.name)
+ 
+     def tearDown(self):
++        # Hosted failures retain actual receipts and original metadata even though
++        # an artifact copy cannot preserve the host's inode or ctime.
++        retained = os.environ.get('DAY_NUMERIC_CONTROL_EVIDENCE_ROOT')
++        if retained:
++            output = Path(retained) / self.id()
++            output.mkdir(parents=True, exist_ok=False)
++            rows = []
++            for path in sorted(self.root.rglob('*')):
++                relative = path.relative_to(self.root).as_posix()
++                status = path.lstat()
++                if path.is_symlink():
++                    rows.append({'path': relative, 'type': 'inert-symlink-description',
++                                 'target': os.readlink(path)})
++                elif path.is_file():
++                    destination = output / 'files' / relative
++                    destination.parent.mkdir(parents=True, exist_ok=True)
++                    shutil.copyfile(path, destination)
++                    rows.append({'path': relative, 'type': 'regular', **inputs.identity(path),
++                                 'observed_stat': run_acceptance.command_file_stat(status)})
++            values = {}
++            for key, value in vars(self).items():
++                if key.startswith('_') and key != '_control_observations':
++                    continue
++                try:
++                    json.dumps(value, allow_nan=False)
++                except (TypeError, ValueError):
++                    continue
++                values[key] = value
++            inputs.write_json(output / 'observations.json', {
++                'schema': 1, 'test': self.id(), 'original_temporary_root': str(self.root),
++                'scope': 'Tool policy fixtures and declared small Python subprocesses only; no application build or Java parity claim',
++                'metadata_scope': 'Recorded original live stat; copied inode/ctime are not substituted',
++                'values': values, 'files': rows})
+         self.temp.cleanup()
++
++    def observed_command(self, prefix, label, **row):
++        """Use real exclusive files; the contents explicitly remain synthetic."""
++        folder = self.root / prefix
++        folder.mkdir(parents=True, exist_ok=True)
++        observed = run_acceptance.CommandStreamEvidence(
++            self.root, folder / (label + '.stdout.log'), folder / (label + '.stderr.log'))
++        with observed as stream:
++            for name in ('stdout', 'stderr'):
++                stream.handles[name].write(('SYNTHETIC COMMAND POLICY ONLY ' + prefix + '/' + label + ':' + name).encode())
++        observed.add_to(row)
++        self.__dict__.setdefault('_control_observations', []).append(copy.deepcopy(row))
++        return row
++
++    @staticmethod
++    def set_flat_clock(row, prefix, value):
++        row[prefix + '_unix_ns'] = value['unix_ns']
++        row[prefix + '_monotonic_ns'] = value['monotonic_ns']
++        row[prefix + '_utc'] = value['utc']
++
++    @staticmethod
++    def changed_clock(value, unix_delta=0, mono_delta=0):
++        changed = copy.deepcopy(value)
++        changed['unix_ns'] += unix_delta
++        changed['monotonic_ns'] += mono_delta
++        seconds, fraction = divmod(changed['unix_ns'], 1_000_000_000)
++        changed['utc'] = datetime.fromtimestamp(seconds, timezone.utc).replace(
++            microsecond=fraction // 1000).isoformat(timespec='microseconds')
++        return changed
+ 
+     def put(self, name, raw=b'original'):
+         path = self.root / name
+@@ -301,14 +364,14 @@
+         env = os.environ.copy()
+         env.update(PYTHONDONTWRITEBYTECODE='1', TMPDIR=str(self.root))
+         return run_acceptance.run_child([sys.executable, '-B', '-c', code], self.root, env,
+-                                        self.root / 'stdout.log', self.root / 'stderr.log', timeout)
++                                        self.root / 'actual.stdout.log', self.root / 'actual.stderr.log', timeout)
+ 
+     def test_actual_nonzero_exit_and_both_streams_are_retained(self):
+         result = self.execute("import sys; print('stdout evidence'); print('stderr evidence', file=sys.stderr); sys.exit(7)")
+         self.assertEqual(7, result['returncode'])
+         self.assertFalse(result['timed_out'])
+-        self.assertEqual(b'stdout evidence\n', (self.root / 'stdout.log').read_bytes())
+-        self.assertEqual(b'stderr evidence\n', (self.root / 'stderr.log').read_bytes())
++        self.assertEqual(b'stdout evidence\n', (self.root / 'actual.stdout.log').read_bytes())
++        self.assertEqual(b'stderr evidence\n', (self.root / 'actual.stderr.log').read_bytes())
+ 
+     def test_actual_zero_exit_is_recorded_without_a_parity_claim(self):
+         result = self.execute("print('controlled subprocess')")
+@@ -346,9 +409,9 @@
+         self.java = '/synthetic/jdk/bin/java'
+         self.make_report()
+ 
+-    def make_report(self, alias_first_streams=False):
+-        self.start = time.time_ns() - 10_000_000
+-        self.report = {'started_utc': datetime.now(timezone.utc).isoformat(), 'commands': []}
++    def make_report(self):
++        self.report = {'schema': 2, 'commands': []}
++        self.set_flat_clock(self.report, 'started', run_acceptance.command_clock())
+         output = self.root / self.folder
+         jar = str(self.root / 'tools/lib/jadx-r2721.4574686-all.jar')
+         cp = ':'.join([jar, str(self.root / 'build/java/hostclasses'), str(self.root / 'tools/classes')])
+@@ -380,30 +443,28 @@
+         harness('original-as-rebuilt-rejected', 1)
+         harness('wrong-helper-class-rejected', 1)
+         harness('positive-restoration', 0)
+-        for index, (subdir, label, code, argv) in enumerate(rows):
+-            started = datetime.now(timezone.utc).isoformat()
+-            value = {'name': label, 'argv': argv, 'started_utc': started, 'returncode': code,
+-                     'timeout_seconds': 120, 'duration_seconds': 0.01}
++        for subdir, label, code, argv in rows:
+             prefix = self.folder + ('/' + subdir if subdir else '')
+-            for stream in ('stdout', 'stderr'):
+-                name = prefix + '/' + label + '.' + stream + '.log'
+-                path = self.put(name, ('SYNTHETIC NUMERIC POLICY ONLY ' + name).encode())
+-                if alias_first_streams and index == 0 and stream == 'stderr':
+-                    path.unlink()
+-                    os.link(self.root / value['stdout']['path'], path)
+-                value[stream] = {'path': name, **inputs.identity(path)}
+-            value['ended_utc'] = datetime.now(timezone.utc).isoformat()
+-            self.report['commands'].append(value)
+-        self.report['finished_utc'] = datetime.now(timezone.utc).isoformat()
+-        self.end = time.time_ns() + 10_000_000
++            self.report['commands'].append(self.observed_command(
++                prefix, label, name=label, argv=argv, returncode=code, timeout_seconds=120))
++        self.set_flat_clock(self.report, 'finished', run_acceptance.command_clock())
++        # This is the command guard alone, not a synthetic full acceptance claim.
++        # Its encompassing fixture bounds include the actual filesystem witnesses.
++        first = self.report['commands'][0]['stream_evidence']['before_witness']['final_stat']['ctime_ns']
++        final = self.report['commands'][-1]['stream_evidence']['after_witnesses'][-1]['final_stat']['ctime_ns']
++        self.start = min(first, self.report['started_unix_ns'])
++        self.end = max(final, self.report['finished_unix_ns'])
+ 
+     def check(self):
+         ledger = verify.Artifacts(self.root, self.start, self.end)
+         verify.verify_numeric_commands(self.report, self.folder, ledger, self.java)
+         return ledger
+ 
+-    def test_exact_seventeen_synthetic_command_rows_preserve_thirty_four_distinct_streams(self):
+-        self.assertEqual(34, len(self.check().rows))
++    def test_exact_seventeen_synthetic_command_rows_preserve_streams_and_all_witnesses(self):
++        rows = self.check().rows
++        self.assertEqual(34, len([name for name in rows if name.endswith(('.stdout.log', '.stderr.log'))]))
++        expected = sum(3 + len(row['stream_evidence']['after_witnesses']) for row in self.report['commands'])
++        self.assertEqual(expected, len(rows))
+ 
+     def test_retained_streams_cannot_make_bin_true_a_d8_command(self):
+         self.report['commands'][0]['argv'] = ['/bin/true']
+@@ -447,18 +508,29 @@
+ 
+     def test_reused_numeric_stream_name_rejects(self):
+         self.report['commands'][1]['stdout'] = copy.deepcopy(self.report['commands'][0]['stdout'])
+-        with self.assertRaisesRegex(ValueError, 'reused another stream'):
++        with self.assertRaisesRegex(ValueError, 'reused, renamed or substituted'):
+             self.check()
+ 
+     def test_physical_numeric_stream_alias_rejects_even_with_matching_hashes(self):
+-        self.make_report(alias_first_streams=True)
+-        with self.assertRaisesRegex(ValueError, 'physical result file'):
++        row = self.report['commands'][0]
++        first, second = (self.root / row[stream]['path'] for stream in ('stdout', 'stderr'))
++        second.unlink()
++        os.link(first, second)
++        for stream in ('stdout', 'stderr'):
++            receipt = row['stream_evidence']['streams'][stream]
++            receipt['final_stat'] = run_acceptance.command_file_stat((self.root / receipt['path']).stat())
++            receipt.update(inputs.identity(self.root / receipt['path']))
++            row[stream] = {key: receipt[key] for key in ('path', 'bytes', 'sha256')}
++        with self.assertRaisesRegex(ValueError, 'one owned regular inode'):
+             self.check()
+ 
+     def test_stream_from_before_its_own_numeric_child_rejects(self):
+         row = self.report['commands'][0]
+-        row['started_utc'] = row['ended_utc']
+-        with self.assertRaisesRegex(ValueError, 'own subprocess interval'):
++        value = row['stream_evidence']
++        value['started'] = copy.deepcopy(value['invocation_finished'])
++        self.set_flat_clock(row, 'started', value['started'])
++        row['duration_seconds'] = (value['finished']['monotonic_ns'] - value['started']['monotonic_ns']) / 1_000_000_000
++        with self.assertRaisesRegex(ValueError, 'reverse or escape'):
+             self.check()
+ 
+     def test_omitted_last_numeric_child_rejects(self):
+@@ -471,39 +543,39 @@
+     def setUp(self):
+         super().setUp()
+         self.prepared = {'project': '/synthetic/project'}
+-        self.execution = {'started_utc': datetime.now(timezone.utc).isoformat(), 'java_versions': []}
++        self.execution = {'schema': 2, 'java_versions': []}
++        self.set_flat_clock(self.execution, 'started', run_acceptance.command_clock())
+         for label, argv, timeout in [('java-version', ['java', '-version'], 15),
+                                       ('javac-version', ['javac', '-version'], 15),
+                                       ('acceptance', [sys.executable, '-B', 'acceptance.py'], 6600)]:
+-            row = {'argv': argv, 'cwd': self.prepared['project'], 'timeout_seconds': timeout,
+-                   'returncode': 0, 'timed_out': False, 'started_unix_ns': time.time_ns()}
+-            for stream in ('stdout', 'stderr'):
+-                name = label + '.' + stream + '.log'
+-                path = self.put(name, ('SYNTHETIC OUTER CHILD POLICY ONLY ' + name).encode())
+-                row[stream] = {'path': name, **inputs.identity(path)}
+-            row['ended_unix_ns'] = time.time_ns()
++            row = self.observed_command('', label, argv=argv, cwd=self.prepared['project'],
++                                        timeout_seconds=timeout, returncode=0, timed_out=False)
+             if label == 'acceptance':
+                 self.execution['execution'] = row
+             else:
+                 self.execution['java_versions'].append(row)
+-        self.execution['finished_utc'] = datetime.now(timezone.utc).isoformat()
++        self.set_flat_clock(self.execution, 'finished', run_acceptance.command_clock())
+ 
+     def check(self):
+         return verify.verify_wrapper_streams(self.execution, self.prepared, self.root)
+ 
+     def test_exact_synthetic_child_stream_roles_and_intervals_are_accepted(self):
+-        self.assertEqual(6, len(self.check()))
++        rows = self.check()
++        self.assertEqual(6, len([row for row in rows if row['path'].endswith(('.stdout.log', '.stderr.log'))]))
++        expected = sum(3 + len(row['stream_evidence']['after_witnesses'])
++                       for row in self.execution['java_versions'] + [self.execution['execution']])
++        self.assertEqual(expected, len(rows))
+ 
+     def test_java_version_streams_cannot_replace_acceptance_streams(self):
+         for stream in ('stdout', 'stderr'):
+             (self.root / self.execution['execution'][stream]['path']).unlink()
+             self.execution['execution'][stream] = copy.deepcopy(self.execution['java_versions'][0][stream])
+-        with self.assertRaisesRegex(ValueError, 'reused or renamed'):
++        with self.assertRaises((ValueError, FileNotFoundError)):
+             self.check()
+ 
+     def test_dot_alias_does_not_create_a_new_acceptance_stream_role(self):
+         self.execution['execution']['stdout']['path'] = './acceptance.stdout.log'
+-        with self.assertRaisesRegex(ValueError, 'reused or renamed'):
++        with self.assertRaisesRegex(ValueError, 'reused, renamed or substituted'):
+             self.check()
+ 
+     def test_version_command_cannot_be_replaced_by_true(self):
+@@ -511,16 +583,246 @@
+         with self.assertRaisesRegex(ValueError, 'Outer child invocation'):
+             self.check()
+ 
+-    def test_old_acceptance_stream_fails_its_specific_child_window(self):
++    def test_old_acceptance_stream_fails_its_recorded_creation_order(self):
+         row = self.execution['execution']
+-        row['started_unix_ns'] = row['ended_unix_ns'] - 1
+-        with self.assertRaisesRegex(ValueError, 'own child interval'):
++        evidence = row['stream_evidence']
++        evidence['started'] = copy.deepcopy(evidence['invocation_finished'])
++        self.set_flat_clock(row, 'started', evidence['started'])
++        row['duration_seconds'] = (evidence['finished']['monotonic_ns'] - evidence['started']['monotonic_ns']) / 1_000_000_000
++        with self.assertRaisesRegex(ValueError, 'reverse or escape'):
+             self.check()
+ 
+     def test_acceptance_interval_cannot_precede_the_java_observations(self):
+-        self.execution['execution']['started_unix_ns'] = self.execution['java_versions'][0]['started_unix_ns']
+-        with self.assertRaisesRegex(ValueError, 'Outer child chronology'):
+-            self.check()
++        row = self.execution['execution']
++        first = self.execution['java_versions'][0]
++        delta = first['started_unix_ns'] - row['started_unix_ns'] - 1_000_000_000
++        def shift(value):
++            if isinstance(value, dict):
++                if set(value) == {'unix_ns', 'monotonic_ns', 'utc'}:
++                    return self.changed_clock(value, delta, delta)
++                return {key: shift(item) for key, item in value.items()}
++            if isinstance(value, list):
++                return [shift(item) for item in value]
++            return value
++        row['stream_evidence'] = shift(row['stream_evidence'])
++        self.set_flat_clock(row, 'started', row['stream_evidence']['started'])
++        self.set_flat_clock(row, 'ended', row['stream_evidence']['finished'])
++        with self.assertRaisesRegex(ValueError, 'outer child:acceptance'):
++            self.check()
++
++
++class ExclusiveStreamControls(OwnedTemporary):
++    """Direct command-receipt boundary; the full outer envelope is tested above."""
++    def setUp(self):
++        super().setUp()
++        self.row = self.observed_command('', 'guard', argv=['SYNTHETIC'],
++                                         returncode=0, timeout_seconds=120)
++
++    def check(self):
++        # This direct boundary deliberately makes no overall acceptance claim.
++        ledger = verify.Artifacts(self.root, 1, 2 ** 63 - 1)
++        verify.verify_command_stream_evidence(self.row, '', 'guard', ledger)
++        return ledger
++
++    def test_complete_live_creation_receipts_match_all_actual_files(self):
++        ledger = self.check()
++        self.assertEqual(3 + len(self.row['stream_evidence']['after_witnesses']), len(ledger.rows))
++
++    def test_missing_before_witness_rejects(self):
++        self.row['stream_evidence'].pop('before_witness')
++        with self.assertRaisesRegex(ValueError, 'Missing, partial or additional'):
++            self.check()
++
++    def test_missing_after_witness_rejects(self):
++        self.row['stream_evidence']['after_witnesses'] = []
++        with self.assertRaisesRegex(ValueError, 'After-witness inventory'):
++            self.check()
++
++    def test_borrowed_before_witness_rejects(self):
++        other = self.observed_command('', 'other', argv=['SYNTHETIC'], returncode=0)
++        self.row['stream_evidence']['before_witness'] = other['stream_evidence']['before_witness']
++        with self.assertRaisesRegex(ValueError, 'Exclusive file role'):
++            self.check()
++
++    def test_borrowed_after_witness_rejects(self):
++        other = self.observed_command('', 'other', argv=['SYNTHETIC'], returncode=0)
++        self.row['stream_evidence']['after_witnesses'][-1] = other['stream_evidence']['after_witnesses'][-1]
++        with self.assertRaisesRegex(ValueError, 'Exclusive file role'):
++            self.check()
++
++    def test_renamed_empty_borrowed_witness_cannot_reuse_original_fstat(self):
++        other = self.observed_command('', 'other', argv=['SYNTHETIC'], returncode=0)
++        receipt = self.row['stream_evidence']['after_witnesses'][-1]
++        path = self.root / receipt['path']
++        replacement = self.root / other['stream_evidence']['after_witnesses'][-1]['path']
++        path.unlink()
++        replacement.rename(path)
++        with self.assertRaisesRegex(ValueError, 'Live file differs'):
++            self.check()
++
++    def test_nonexclusive_open_declaration_rejects(self):
++        self.row['stream_evidence']['streams']['stdout']['exclusive_mode'] = 'wb'
++        with self.assertRaisesRegex(ValueError, 'Exclusive file role'):
++            self.check()
++
++    def test_preexisting_nonempty_initial_file_rejects(self):
++        self.row['stream_evidence']['streams']['stdout']['initial_stat']['bytes'] = 1
++        with self.assertRaisesRegex(ValueError, 'not initially empty'):
++            self.check()
++
++    def test_recorded_final_fstat_must_match_live_metadata(self):
++        self.row['stream_evidence']['streams']['stdout']['final_stat']['ctime_ns'] += 1
++        with self.assertRaisesRegex(ValueError, 'Live file differs'):
++            self.check()
++
++    def test_recorded_initial_inode_cannot_belong_to_another_file(self):
++        value = self.row['stream_evidence']['streams']
++        value['stdout']['initial_stat']['inode'] = value['stderr']['initial_stat']['inode']
++        with self.assertRaisesRegex(ValueError, 'inode ownership changed'):
++            self.check()
++
++    def test_actual_inode_replacement_with_identical_bytes_rejects(self):
++        receipt = self.row['stream_evidence']['streams']['stdout']
++        path = self.root / receipt['path']
++        replacement = self.put('replacement', path.read_bytes())
++        replacement.replace(path)
++        with self.assertRaisesRegex(ValueError, 'Live file differs'):
++            self.check()
++
++    def test_actual_old_mtime_cannot_precede_exclusive_initial_stat(self):
++        receipt = self.row['stream_evidence']['streams']['stdout']
++        path = self.root / receipt['path']
++        os.utime(path, ns=(1, 1))
++        receipt['final_stat'] = run_acceptance.command_file_stat(path.stat())
++        with self.assertRaisesRegex(ValueError, 'predates its recorded exclusive creation'):
++            self.check()
++
++    def test_boolean_stat_value_is_not_an_inode(self):
++        self.row['stream_evidence']['streams']['stdout']['final_stat']['inode'] = True
++        with self.assertRaisesRegex(ValueError, 'Exact filesystem stat fields'):
++            self.check()
++
++    def test_fine_unix_clock_reversal_rejects_even_inside_same_iso_microsecond(self):
++        receipt = self.row['stream_evidence']['streams']['stdout']
++        receipt['opened'] = self.changed_clock(receipt['open_started'], unix_delta=-1, mono_delta=1)
++        with self.assertRaisesRegex(ValueError, 'reverse or escape'):
++            self.check()
++
++    def test_fine_monotonic_clock_reversal_rejects(self):
++        receipt = self.row['stream_evidence']['streams']['stdout']
++        receipt['opened'] = self.changed_clock(receipt['open_started'], unix_delta=1, mono_delta=-1)
++        with self.assertRaisesRegex(ValueError, 'reverse or escape'):
++            self.check()
++
++    def test_iso_cannot_contradict_recorded_integer_time(self):
++        self.row['stream_evidence']['streams']['stdout']['opened']['utc'] = '2020-01-01T00:00:00.000000+00:00'
++        with self.assertRaisesRegex(ValueError, 'integer-clock truncation'):
++            self.check()
++
++    def test_literal_witness_attempt_limit_cannot_be_expanded(self):
++        self.row['stream_evidence']['after_witness_attempt_limit'] = 17
++        with self.assertRaisesRegex(ValueError, 'attempt bound'):
++            self.check()
++
++    def test_literal_poll_interval_cannot_be_reduced(self):
++        self.row['stream_evidence']['after_witness_poll_ns'] = 4_999_999
++        with self.assertRaisesRegex(ValueError, 'polling bound'):
++            self.check()
++
++    def append_actual_extra_witness(self):
++        value = self.row['stream_evidence']
++        index = len(value['after_witnesses'])
++        time.sleep(0.005)
++        observer = run_acceptance.CommandStreamEvidence(self.root,
++            self.root / 'guard.stdout.log', self.root / 'guard.stderr.log')
++        extra = observer.witness('filesystem-after-%02d' % index)
++        value['after_witnesses'].append(extra)
++        value['finished'] = run_acceptance.command_clock()
++        self.set_flat_clock(self.row, 'ended', value['finished'])
++        self.row['duration_seconds'] = (value['finished']['monotonic_ns'] - value['started']['monotonic_ns']) / 1_000_000_000
++        return value
++
++    def test_successful_first_bracket_cannot_be_followed_by_another_selected_witness(self):
++        self.append_actual_extra_witness()
++        with self.assertRaisesRegex(ValueError, 'first actual filesystem bracket'):
++            self.check()
++
++    def test_reordered_witnesses_reject_with_every_file_retained(self):
++        value = self.append_actual_extra_witness()
++        value['after_witnesses'][0], value['after_witnesses'][-1] = value['after_witnesses'][-1], value['after_witnesses'][0]
++        with self.assertRaisesRegex(ValueError, 'Exclusive file role'):
++            self.check()
++
++    def test_partial_cleanup_evidence_cannot_be_a_zero_exit_success(self):
++        self.row['stream_evidence']['cleanup_errors'] = ['synthetic recorded cleanup failure']
++        with self.assertRaisesRegex(ValueError, 'Missing, partial or additional'):
++            self.check()
++
++
++class ClockPrecisionControls(unittest.TestCase):
++    def test_all_one_thousand_integer_microseconds_convert_without_float_rounding(self):
++        seconds = 1791798408
++        for microsecond in range(1000):
++            stamp = datetime.fromtimestamp(seconds, timezone.utc).replace(microsecond=microsecond).isoformat(timespec='microseconds')
++            self.assertEqual(seconds * 1_000_000_000 + microsecond * 1000, verify.epoch_ns(stamp))
++
++    def test_correctly_ordered_integer_nanoseconds_can_share_one_iso_microsecond(self):
++        floor = 1791798408 * 1_000_000_000 + 123456000
++        utc = '2026-10-12T09:46:48.123456+00:00'
++        first = {'unix_ns': floor + 900, 'monotonic_ns': 2000000900, 'utc': utc}
++        second = {'unix_ns': floor + 950, 'monotonic_ns': 2000000950, 'utc': utc}
++        verify.checked_clock(first, 'synthetic earlier child')
++        verify.checked_clock(second, 'synthetic later wrapper')
++        verify.clocks_ordered(first, second, 'same display microsecond', strict=True)
++
++
++class LiveEmptyStreamControls(OwnedTemporary):
++    def test_actual_empty_python_child_retains_unchanged_empty_stat_and_valid_bracket(self):
++        env = os.environ.copy()
++        env.update(PYTHONDONTWRITEBYTECODE='1', TMPDIR=str(self.root))
++        self.row = run_acceptance.run_child([sys.executable, '-B', '-c', 'pass'], self.root, env,
++            self.root / 'empty.stdout.log', self.root / 'empty.stderr.log', 5)
++        self.assertEqual(0, self.row['returncode'])
++        self.assertNotIn('error', self.row)
++        receipts = self.row['stream_evidence']['streams']
++        for name in ('stdout', 'stderr'):
++            self.assertEqual(receipts[name]['initial_stat'], receipts[name]['final_stat'])
++            self.assertEqual(0, receipts[name]['bytes'])
++        self.equal_initial_filesystem_ticks_observed = (receipts['stdout']['initial_stat']['ctime_ns']
++                                                       == receipts['stderr']['initial_stat']['ctime_ns'])
++        ledger = verify.Artifacts(self.root, 1, 2 ** 63 - 1)
++        verify.verify_command_stream_evidence(self.row, '', 'empty', ledger)
++
++
++class JavaObservationFailureControls(OwnedTemporary):
++    def test_zero_exit_with_evidence_error_stops_before_long_acceptance_child(self):
++        pins = inputs.load_pins()
++        expected = dict(pins['future_snapshot'])
++        project = self.root / 'project'
++        output = self.root / 'output'
++        output.mkdir()
++        manifest = 'a' * 64
++        preparation = {'passed': True, 'status': 'EXACT_19_FILE_WIP_PREPARED', 'output': str(output),
++                       'project': str(project), 'runtime_source': {'manifest': {'sha256': manifest}}}
++        inputs.write_json(output / 'preparation.json', preparation)
++        argv = ['run_acceptance.py', '--baseline-repository', str(self.root / 'baseline'),
++                '--overlay-repository', str(self.root / 'overlay'), '--output', str(output),
++                '--runtime-manifest-sha256', manifest]
++        failure = {'returncode': 0, 'timed_out': False, 'error': 'SYNTHETIC unbracketed witness'}
++        inventory = lambda path: ([{'path': 'release-input-snapshot.json', **pins['future_manifest']}]
++                                  if path.name == 'reports' else [])
++        with patch.object(sys, 'argv', argv), patch.object(inputs, 'verify_runtime_manifest'), \
++             patch.object(inputs, 'contract', return_value=(pins, {}, expected, None)), \
++             patch.object(inputs, 'scan_inputs', return_value=expected), \
++             patch.object(inputs, 'compare_inputs'), patch.object(run_acceptance, 'inventory', side_effect=inventory), \
++             patch.object(run_acceptance, 'run_child', return_value=failure) as child:
++            self.assertEqual(2, run_acceptance.main())
++        self.assertEqual(1, child.call_count)
++        self.assertEqual(['java', '-version'], child.call_args.args[0])
++        self.execution = inputs.read_json(output / 'execution.json')
++        self.assertFalse(self.execution['passed'])
++        self.assertNotIn('execution', self.execution)
++        self.assertIn('Java toolchain observation failed', self.execution['error'])
+ 
+ 
+ class NumericProvenanceControls(unittest.TestCase):
+--- prior/tools/day_numeric_acceptance/verify.py
++++ successor/tools/day_numeric_acceptance/verify.py
+@@ -10,6 +10,7 @@
+ from pathlib import Path
+ import re
+ import shutil
++import stat
+ import sys
+ import zipfile
+ 
+@@ -32,7 +33,8 @@
+     inputs.require(isinstance(value, str), 'Missing timestamp')
+     parsed = datetime.fromisoformat(value)
+     inputs.require(parsed.tzinfo is not None, 'Timestamp lacks timezone')
+-    return int(parsed.timestamp() * 1_000_000_000)
++    delta = parsed - datetime(1970, 1, 1, tzinfo=timezone.utc)
++    return (delta.days * 86400 + delta.seconds) * 1_000_000_000 + delta.microseconds * 1000
+ 
+ 
+ class Artifacts:
+@@ -52,7 +54,8 @@
+         inputs.require(key not in self.physical or self.physical[key] == name,
+                        'One physical result file represents multiple artifacts: ' + name)
+         row = {'path': name, **inputs.identity(path), 'device': status.st_dev, 'inode': status.st_ino,
+-               'mtime_ns': status.st_mtime_ns, 'ctime_ns': status.st_ctime_ns}
++               'mtime_ns': status.st_mtime_ns, 'ctime_ns': status.st_ctime_ns,
++               'mode': status.st_mode, 'links': status.st_nlink}
+         inputs.require(name not in self.rows or self.rows[name] == row, 'Result changed during verification: ' + name)
+         self.rows[name] = row
+         self.physical[key] = name
+@@ -70,6 +73,135 @@
+     def hash(self, name, expected):
+         self.path(name)
+         inputs.require(self.rows[name]['sha256'] == expected, 'Recorded result hash differs: ' + name)
++
++
++def checked_clock(value, role):
++    inputs.require(isinstance(value, dict) and set(value) == {'unix_ns', 'monotonic_ns', 'utc'},
++                   'Exact clock fields differ: ' + role)
++    inputs.require(type(value['unix_ns']) is int and value['unix_ns'] > 0
++                   and type(value['monotonic_ns']) is int and value['monotonic_ns'] > 0,
++                   'Missing exact integer clocks: ' + role)
++    seconds, fraction = divmod(value['unix_ns'], 1_000_000_000)
++    expected = datetime.fromtimestamp(seconds, timezone.utc).replace(microsecond=fraction // 1000).isoformat(timespec='microseconds')
++    inputs.require(value['utc'] == expected, 'ISO text is not the exact integer-clock truncation: ' + role)
++    return value
++
++
++def row_clock(row, prefix, role):
++    return checked_clock({'unix_ns': row.get(prefix + '_unix_ns'),
++                          'monotonic_ns': row.get(prefix + '_monotonic_ns'),
++                          'utc': row.get(prefix + '_utc')}, role)
++
++
++def clocks_ordered(first, second, role, strict=False):
++    for name in ('unix_ns', 'monotonic_ns'):
++        inputs.require(first[name] < second[name] if strict else first[name] <= second[name],
++                       'Command clocks reverse or escape their ordered operation: ' + role)
++
++
++def checked_stat(value, role):
++    fields = {'device', 'inode', 'mode', 'links', 'bytes', 'mtime_ns', 'ctime_ns'}
++    inputs.require(isinstance(value, dict) and set(value) == fields
++                   and all(type(value[key]) is int for key in fields), 'Exact filesystem stat fields differ: ' + role)
++    inputs.require(value['device'] > 0 and value['inode'] > 0 and stat.S_ISREG(value['mode'])
++                   and value['links'] == 1 and value['bytes'] >= 0
++                   and value['mtime_ns'] > 0 and value['ctime_ns'] > 0,
++                   'File is not one owned regular inode: ' + role)
++    return value
++
++
++def verify_file_creation(receipt, name, artifacts, witness=False):
++    """Check recorded creation against the live host file, not extracted ZIP stats."""
++    fields = {'path', 'exclusive_mode', 'open_started', 'initial_stat', 'initial_sha256', 'opened',
++              'closing', 'final_stat', 'closed', 'bytes', 'sha256', 'hashed'}
++    inputs.require(isinstance(receipt, dict) and set(receipt) == fields
++                   and receipt.get('path') == name and receipt.get('exclusive_mode') == 'xb',
++                   'Exclusive file role or creation receipt differs: ' + name)
++    clocks = [checked_clock(receipt[stage], name + ':' + stage)
++              for stage in ('open_started', 'opened', 'closing', 'closed', 'hashed')]
++    for first, second in zip(clocks, clocks[1:]):
++        clocks_ordered(first, second, name)
++    initial = checked_stat(receipt['initial_stat'], name + ':initial')
++    final = checked_stat(receipt['final_stat'], name + ':final')
++    inputs.require(initial['bytes'] == 0 and receipt['initial_sha256'] == hashlib.sha256(b'').hexdigest()
++                   and initial['mtime_ns'] == initial['ctime_ns'], 'Exclusive file was not initially empty: ' + name)
++    inputs.require(all(initial[key] == final[key] for key in ('device', 'inode', 'mode', 'links')),
++                   'Exclusive file inode ownership changed: ' + name)
++    inputs.require(initial['mtime_ns'] <= final['mtime_ns'] and initial['ctime_ns'] <= final['ctime_ns'],
++                   'File metadata predates its recorded exclusive creation: ' + name)
++    artifacts.hash(name, receipt['sha256'])
++    actual = artifacts.rows[name]
++    inputs.require({key: actual[key] for key in final} == final,
++                   'Live file differs from the recorded final fstat: ' + name)
++    count(receipt['bytes'], final['bytes'], 'Final stream byte count differs')
++    if witness:
++        inputs.require(initial == final and final['bytes'] == 0
++                       and receipt['sha256'] == hashlib.sha256(b'').hexdigest(),
++                       'Filesystem witness was written, changed or substituted: ' + name)
++    return receipt
++
++
++def verify_command_stream_evidence(row, prefix, label, artifacts):
++    value = row.get('stream_evidence')
++    fields = {'schema', 'started', 'streams', 'after_witnesses', 'after_witness_attempt_limit',
++              'after_witness_poll_ns', 'filesystem_bracket_complete', 'before_witness',
++              'invocation_started', 'invocation_finished', 'finished'}
++    inputs.require(isinstance(value, dict) and set(value) == fields,
++                   'Missing, partial or additional command creation evidence: ' + label)
++    count(value['schema'], 2, 'Command creation evidence schema differs')
++    count(value['after_witness_attempt_limit'], 16, 'Filesystem witness attempt bound differs')
++    count(value['after_witness_poll_ns'], 5_000_000, 'Filesystem witness polling bound differs')
++    inputs.require(value['filesystem_bracket_complete'] is True, 'Actual filesystem bracket did not complete')
++    start = checked_clock(value['started'], label + ':start')
++    end = checked_clock(value['finished'], label + ':finish')
++    clocks_ordered(start, end, label, strict=True)
++    inputs.require(row_clock(row, 'started', label) == start and row_clock(row, 'ended', label) == end,
++                   'Command timestamps differ from its stream-creation evidence')
++    inputs.require(type(row.get('duration_seconds')) in (int, float)
++                   and math.isfinite(row['duration_seconds'])
++                   and row['duration_seconds'] == (end['monotonic_ns'] - start['monotonic_ns']) / 1_000_000_000,
++                   'Command duration differs from its exact monotonic interval')
++    prefix = prefix + '/' if prefix else ''
++    before = verify_file_creation(value['before_witness'], prefix + label + '.filesystem-before.log', artifacts, True)
++    clocks_ordered(start, before['open_started'], label + ':before-witness')
++    inputs.require(isinstance(value['streams'], dict) and set(value['streams']) == {'stdout', 'stderr'},
++                   'Exclusive command stream inventory differs')
++    previous = before['hashed']
++    receipts = []
++    for stream in ('stdout', 'stderr'):
++        name = prefix + label + '.' + stream + '.log'
++        receipt = verify_file_creation(value['streams'][stream], name, artifacts)
++        inputs.require(row.get(stream) == {key: receipt[key] for key in ('path', 'bytes', 'sha256')},
++                       'Command reused, renamed or substituted another stream: ' + name)
++        clocks_ordered(previous, receipt['open_started'], name + ':open')
++        previous = receipt['opened']
++        receipts.append(receipt)
++    invocation_start = checked_clock(value['invocation_started'], label + ':invocation-start')
++    invocation_end = checked_clock(value['invocation_finished'], label + ':invocation-end')
++    clocks_ordered(previous, invocation_start, label + ':invoke')
++    clocks_ordered(invocation_start, invocation_end, label + ':return')
++    previous = invocation_end
++    for receipt in reversed(receipts):
++        clocks_ordered(previous, receipt['closing'], receipt['path'] + ':close')
++        previous = receipt['hashed']
++    witnesses = value['after_witnesses']
++    inputs.require(isinstance(witnesses, list) and 1 <= len(witnesses) <= 16, 'After-witness inventory differs')
++    for index, witness in enumerate(witnesses):
++        witness = verify_file_creation(witness, prefix + label + f'.filesystem-after-{index:02d}.log', artifacts, True)
++        clocks_ordered(previous, witness['open_started'], label + ':after-witness')
++        if index:
++            inputs.require(witness['open_started']['monotonic_ns'] - previous['monotonic_ns'] >= 5_000_000,
++                           'After-witness retry omitted its recorded polling interval')
++        previous = witness['hashed']
++        floor, ceiling = before['final_stat'], witness['final_stat']
++        complete = all(floor['device'] == observed['device'] == ceiling['device']
++            and floor['ctime_ns'] <= observed['mtime_ns'] <= ceiling['ctime_ns']
++            and floor['ctime_ns'] <= observed['ctime_ns'] <= ceiling['ctime_ns']
++            for receipt in receipts for observed in (receipt['initial_stat'], receipt['final_stat']))
++        inputs.require(complete is (index == len(witnesses) - 1),
++                       'Witness inventory did not stop at the first actual filesystem bracket')
++    clocks_ordered(previous, end, label + ':complete')
++    return start, end
+ 
+ 
+ def verify_execution(execution, prepared, pins):
+@@ -97,15 +229,23 @@
+ 
+ 
+ def verify_wrapper_streams(execution, prepared, output):
+-    """Bind each outer stream to its exact child, time window and physical file."""
+-    beginning, completion = epoch_ns(execution.get('started_utc')), epoch_ns(execution.get('finished_utc'))
+-    inputs.require(beginning < completion, 'Wrapper interval differs')
+-    artifacts = Artifacts(output, beginning, completion)
++    """Bind outer streams to exact live files and separately ordered integer clocks."""
++    count(execution.get('schema'), 2, 'Wrapper creation-evidence schema differs')
++    beginning = row_clock(execution, 'started', 'wrapper-start')
++    completion = row_clock(execution, 'finished', 'wrapper-finish')
++    clocks_ordered(beginning, completion, 'wrapper', strict=True)
+     versions = execution.get('java_versions')
+     inputs.require(isinstance(versions, list) and len(versions) == 2, 'Java observation inventory differs')
+     expected = [('java-version', ['java', '-version'], versions[0], 15),
+                 ('javac-version', ['javac', '-version'], versions[1], 15),
+                 ('acceptance', [sys.executable, '-B', 'acceptance.py'], execution['execution'], None)]
++    last = execution['execution'].get('stream_evidence', {}).get('after_witnesses')
++    inputs.require(isinstance(last, list) and 1 <= len(last) <= 16, 'Missing final wrapper filesystem witness')
++    # These bounds come from the live expected witness files. Their recorded
++    # identity and actual exclusive-open operation are checked below as well.
++    first_path = inputs.regular(output, 'java-version.filesystem-before.log')
++    final_path = inputs.regular(output, f'acceptance.filesystem-after-{len(last)-1:02d}.log')
++    artifacts = Artifacts(output, first_path.stat().st_ctime_ns, final_path.stat().st_ctime_ns)
+     previous = beginning
+     for label, argv, row, timeout in expected:
+         inputs.require(row.get('argv') == argv and row.get('cwd') == prepared['project']
+@@ -114,22 +254,11 @@
+         count(row.get('returncode'), 0, 'Outer child did not exit zero: ' + label)
+         if timeout is not None:
+             count(row.get('timeout_seconds'), timeout, 'Java observation timeout differs')
+-        start, end = row.get('started_unix_ns'), row.get('ended_unix_ns')
+-        inputs.require(type(start) is int and type(end) is int and previous <= start < end <= completion,
+-                       'Outer child chronology differs: ' + label)
++        start, end = verify_command_stream_evidence(row, '', label, artifacts)
++        clocks_ordered(previous, start, 'outer child:' + label)
++        clocks_ordered(end, completion, 'outer completion:' + label)
+         previous = end
+-        for stream in ('stdout', 'stderr'):
+-            name = label + '.' + stream + '.log'
+-            value = row.get(stream, {})
+-            inputs.require(isinstance(value, dict) and value.get('path') == name,
+-                           'Outer child reused or renamed another stream: ' + label)
+-            artifacts.hash(name, value['sha256'])
+-            actual = artifacts.rows[name]
+-            count(actual['bytes'], value['bytes'], 'Outer stream length differs')
+-            inputs.require(start <= actual['mtime_ns'] <= end and start <= actual['ctime_ns'] <= end,
+-                           'Outer stream is outside its own child interval: ' + name)
+     return sorted(artifacts.rows.values(), key=lambda row: row['path'])
+-
+ 
+ def verify_gates(latest, execution, pins, artifacts):
+     flags(latest, {'host_acceptance_passed': True, 'source_edit_probe_skipped': False,
+@@ -378,32 +507,23 @@
+ def verify_numeric_commands(report, folder, artifacts, java):
+     expected = expected_numeric_commands(artifacts.root, folder, java)
+     commands = report.get('commands')
++    count(report.get('schema'), 2, 'Numeric command creation-evidence schema differs')
+     inputs.require(isinstance(commands, list) and len(commands) == len(expected) == 17, 'Numeric actual command inventory differs')
+-    previous_end = epoch_ns(report['started_utc'])
+-    inputs.require(artifacts.started_ns <= previous_end, 'Numeric commands predate acceptance')
++    previous = row_clock(report, 'started', 'numeric-report-start')
++    completion = row_clock(report, 'finished', 'numeric-report-finish')
++    clocks_ordered(previous, completion, 'numeric report', strict=True)
++    inputs.require(artifacts.started_ns <= previous['unix_ns']
++                   and completion['unix_ns'] <= artifacts.ended_ns, 'Numeric report is outside acceptance')
+     for row, (subdir, label, code, argv) in zip(commands, expected):
+         inputs.require(row.get('name') == label, 'Numeric command order differs')
+         inputs.require(row.get('argv') == argv, 'Numeric exact command, JVM policy or input role differs: ' + label)
+         count(row.get('returncode'), code, 'Numeric actual subprocess outcome differs')
+         count(row.get('timeout_seconds'), 120, 'Numeric child timeout differs')
+-        start, end = epoch_ns(row.get('started_utc')), epoch_ns(row.get('ended_utc'))
+-        inputs.require(previous_end <= start <= end <= artifacts.ended_ns, 'Numeric subprocess chronology differs')
+-        previous_end = end
+-        inputs.require(type(row.get('duration_seconds')) in (int, float) and math.isfinite(row['duration_seconds'])
+-                       and row['duration_seconds'] >= 0,
+-                       'Numeric subprocess lacks an actual bounded invocation')
+         prefix = folder + ('/' + subdir if subdir else '')
+-        for stream in ('stdout', 'stderr'):
+-            name = prefix + '/' + label + '.' + stream + '.log'
+-            value = row.get(stream, {})
+-            inputs.require(value.get('path') == name, 'Numeric subprocess reused another stream')
+-            artifacts.hash(name, value['sha256'])
+-            count(artifacts.rows[name]['bytes'], value['bytes'], 'Numeric stream length differs')
+-            inputs.require(start <= artifacts.rows[name]['mtime_ns'] <= end
+-                           and start <= artifacts.rows[name]['ctime_ns'] <= end,
+-                           'Numeric stream is outside its own subprocess interval: ' + name)
+-    inputs.require(previous_end <= epoch_ns(report.get('finished_utc')) <= artifacts.ended_ns, 'Numeric completion time differs')
+-
++        start, end = verify_command_stream_evidence(row, prefix, label, artifacts)
++        clocks_ordered(previous, start, 'numeric child:' + label)
++        clocks_ordered(end, completion, 'numeric completion:' + label)
++        previous = end
+ 
+ def verify_java_policy(artifacts):
+     policy = artifacts.json('reports/ui-runtime-policy.json')
+@@ -462,7 +582,7 @@
+     inputs.require(report.get('status') == 'TWO_ACTUAL_NUMERIC_DEX_FAULTS_DETECTED_SIGNED_POSITIVE_RESTORED'
+                    and report.get('signed_apk_sha256') == apk and report.get('original_fixture_sha256') == pins['fixture']['sha256']
+                    and report.get('input_inventory_sha256') == catalog.DAY_INPUT_INVENTORY_SHA256, 'Numeric acceptance identity differs')
+-    for key, expected in [('schema', 1), ('primary_recovered_methods', 1), ('original_dependency_methods', 3),
++    for key, expected in [('schema', 2), ('primary_recovered_methods', 1), ('original_dependency_methods', 3),
+                           ('expected_java_faults', 13), ('expected_actual_dex_faults', 2), ('provenance_controls_rejected', 2),
+                           ('cases', 1291), ('execution_paths', 3), ('original_instruction_count', 32),
+                           ('rebuilt_instruction_count', 25), ('conditional_edges_per_path', 4)]:
+@@ -609,7 +729,8 @@
+     result = {'schema': 1, 'status': 'WIP_FULL_HOST_ACCEPTANCE_NOT_ESTABLISHED', 'passed': False,
+               'started_utc': datetime.now(timezone.utc).isoformat(), 'active_promoted': False,
+               'android_runtime_executed': False, 'full_runtime_1_to_1_established': False,
+-              'complete_high_level_java_kotlin_source': False}
++              'complete_high_level_java_kotlin_source': False,
++              'file_metadata_verification_scope': 'Live host filesystem; archived recorded inode/ctime values are historical observations, not extracted-file metadata'}
+     artifacts = None
+     retained = {}
+     try:

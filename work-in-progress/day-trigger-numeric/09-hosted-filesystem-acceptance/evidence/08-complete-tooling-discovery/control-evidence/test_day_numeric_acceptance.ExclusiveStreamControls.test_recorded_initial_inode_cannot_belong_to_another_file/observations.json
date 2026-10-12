@@ -1,0 +1,581 @@
+{
+  "schema": 1,
+  "test": "test_day_numeric_acceptance.ExclusiveStreamControls.test_recorded_initial_inode_cannot_belong_to_another_file",
+  "original_temporary_root": "/dev/shm/day-numeric-hosted-02/reports/08-complete-tooling-discovery/tmp/day-numeric-host-control-kg6x50bm",
+  "scope": "Tool policy fixtures and declared small Python subprocesses only; no application build or Java parity claim",
+  "metadata_scope": "Recorded original live stat; copied inode/ctime are not substituted",
+  "values": {
+    "_control_observations": [
+      {
+        "argv": [
+          "SYNTHETIC"
+        ],
+        "returncode": 0,
+        "timeout_seconds": 120,
+        "started_unix_ns": 1791800991144809723,
+        "started_monotonic_ns": 38711939472867,
+        "started_utc": "2026-10-12T10:29:51.144809+00:00",
+        "ended_unix_ns": 1791800991145769430,
+        "ended_monotonic_ns": 38711940432318,
+        "ended_utc": "2026-10-12T10:29:51.145769+00:00",
+        "duration_seconds": 0.000959451,
+        "stdout": {
+          "path": "guard.stdout.log",
+          "bytes": 43,
+          "sha256": "86fd58f1627fd80e2c9313679c3efc442afef02d607498e11a8552e2e5880b9b"
+        },
+        "stderr": {
+          "path": "guard.stderr.log",
+          "bytes": 43,
+          "sha256": "d9ba7b48733d6b2bb16810e2393f70e7e88c9069a34c2a81e58e161137ae77ee"
+        },
+        "stream_evidence": {
+          "schema": 2,
+          "started": {
+            "unix_ns": 1791800991144809723,
+            "monotonic_ns": 38711939472867,
+            "utc": "2026-10-12T10:29:51.144809+00:00"
+          },
+          "streams": {
+            "stdout": {
+              "path": "guard.stdout.log",
+              "exclusive_mode": "xb",
+              "open_started": {
+                "unix_ns": 1791800991144985639,
+                "monotonic_ns": 38711939648494,
+                "utc": "2026-10-12T10:29:51.144985+00:00"
+              },
+              "initial_stat": {
+                "device": 26,
+                "inode": 246820,
+                "mode": 33188,
+                "links": 1,
+                "bytes": 0,
+                "mtime_ns": 1791800991144854486,
+                "ctime_ns": 1791800991144854486
+              },
+              "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "opened": {
+                "unix_ns": 1791800991145057644,
+                "monotonic_ns": 38711939720522,
+                "utc": "2026-10-12T10:29:51.145057+00:00"
+              },
+              "closing": {
+                "unix_ns": 1791800991145163837,
+                "monotonic_ns": 38711939826709,
+                "utc": "2026-10-12T10:29:51.145163+00:00"
+              },
+              "final_stat": {
+                "device": 26,
+                "inode": 246820,
+                "mode": 33188,
+                "links": 1,
+                "bytes": 43,
+                "mtime_ns": 1791800991145115939,
+                "ctime_ns": 1791800991145115939
+              },
+              "closed": {
+                "unix_ns": 1791800991145167638,
+                "monotonic_ns": 38711939830480,
+                "utc": "2026-10-12T10:29:51.145167+00:00"
+              },
+              "bytes": 43,
+              "sha256": "86fd58f1627fd80e2c9313679c3efc442afef02d607498e11a8552e2e5880b9b",
+              "hashed": {
+                "unix_ns": 1791800991145527149,
+                "monotonic_ns": 38711940190073,
+                "utc": "2026-10-12T10:29:51.145527+00:00"
+              }
+            },
+            "stderr": {
+              "path": "guard.stderr.log",
+              "exclusive_mode": "xb",
+              "open_started": {
+                "unix_ns": 1791800991145089628,
+                "monotonic_ns": 38711939752480,
+                "utc": "2026-10-12T10:29:51.145089+00:00"
+              },
+              "initial_stat": {
+                "device": 26,
+                "inode": 246821,
+                "mode": 33188,
+                "links": 1,
+                "bytes": 0,
+                "mtime_ns": 1791800991145065289,
+                "ctime_ns": 1791800991145065289
+              },
+              "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "opened": {
+                "unix_ns": 1791800991145103880,
+                "monotonic_ns": 38711939766729,
+                "utc": "2026-10-12T10:29:51.145103+00:00"
+              },
+              "closing": {
+                "unix_ns": 1791800991145120136,
+                "monotonic_ns": 38711939783071,
+                "utc": "2026-10-12T10:29:51.145120+00:00"
+              },
+              "final_stat": {
+                "device": 26,
+                "inode": 246821,
+                "mode": 33188,
+                "links": 1,
+                "bytes": 43,
+                "mtime_ns": 1791800991145115939,
+                "ctime_ns": 1791800991145115939
+              },
+              "closed": {
+                "unix_ns": 1791800991145124704,
+                "monotonic_ns": 38711939787561,
+                "utc": "2026-10-12T10:29:51.145124+00:00"
+              },
+              "bytes": 43,
+              "sha256": "d9ba7b48733d6b2bb16810e2393f70e7e88c9069a34c2a81e58e161137ae77ee",
+              "hashed": {
+                "unix_ns": 1791800991145157991,
+                "monotonic_ns": 38711939820843,
+                "utc": "2026-10-12T10:29:51.145157+00:00"
+              }
+            }
+          },
+          "after_witnesses": [
+            {
+              "path": "guard.filesystem-after-00.log",
+              "exclusive_mode": "xb",
+              "open_started": {
+                "unix_ns": 1791800991145591490,
+                "monotonic_ns": 38711940254362,
+                "utc": "2026-10-12T10:29:51.145591+00:00"
+              },
+              "initial_stat": {
+                "device": 26,
+                "inode": 246822,
+                "mode": 33188,
+                "links": 1,
+                "bytes": 0,
+                "mtime_ns": 1791800991145572418,
+                "ctime_ns": 1791800991145572418
+              },
+              "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "opened": {
+                "unix_ns": 1791800991145713436,
+                "monotonic_ns": 38711940376376,
+                "utc": "2026-10-12T10:29:51.145713+00:00"
+              },
+              "closing": {
+                "unix_ns": 1791800991145719727,
+                "monotonic_ns": 38711940382587,
+                "utc": "2026-10-12T10:29:51.145719+00:00"
+              },
+              "final_stat": {
+                "device": 26,
+                "inode": 246822,
+                "mode": 33188,
+                "links": 1,
+                "bytes": 0,
+                "mtime_ns": 1791800991145572418,
+                "ctime_ns": 1791800991145572418
+              },
+              "closed": {
+                "unix_ns": 1791800991145724527,
+                "monotonic_ns": 38711940387394,
+                "utc": "2026-10-12T10:29:51.145724+00:00"
+              },
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "hashed": {
+                "unix_ns": 1791800991145761686,
+                "monotonic_ns": 38711940424541,
+                "utc": "2026-10-12T10:29:51.145761+00:00"
+              }
+            }
+          ],
+          "after_witness_attempt_limit": 16,
+          "after_witness_poll_ns": 5000000,
+          "filesystem_bracket_complete": true,
+          "before_witness": {
+            "path": "guard.filesystem-before.log",
+            "exclusive_mode": "xb",
+            "open_started": {
+              "unix_ns": 1791800991144865069,
+              "monotonic_ns": 38711939527948,
+              "utc": "2026-10-12T10:29:51.144865+00:00"
+            },
+            "initial_stat": {
+              "device": 26,
+              "inode": 246819,
+              "mode": 33188,
+              "links": 1,
+              "bytes": 0,
+              "mtime_ns": 1791800991144854486,
+              "ctime_ns": 1791800991144854486
+            },
+            "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "opened": {
+              "unix_ns": 1791800991144894538,
+              "monotonic_ns": 38711939557415,
+              "utc": "2026-10-12T10:29:51.144894+00:00"
+            },
+            "closing": {
+              "unix_ns": 1791800991144899820,
+              "monotonic_ns": 38711939562655,
+              "utc": "2026-10-12T10:29:51.144899+00:00"
+            },
+            "final_stat": {
+              "device": 26,
+              "inode": 246819,
+              "mode": 33188,
+              "links": 1,
+              "bytes": 0,
+              "mtime_ns": 1791800991144854486,
+              "ctime_ns": 1791800991144854486
+            },
+            "closed": {
+              "unix_ns": 1791800991144906768,
+              "monotonic_ns": 38711939569617,
+              "utc": "2026-10-12T10:29:51.144906+00:00"
+            },
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "hashed": {
+              "unix_ns": 1791800991144948194,
+              "monotonic_ns": 38711939611077,
+              "utc": "2026-10-12T10:29:51.144948+00:00"
+            }
+          },
+          "invocation_started": {
+            "unix_ns": 1791800991145106830,
+            "monotonic_ns": 38711939769670,
+            "utc": "2026-10-12T10:29:51.145106+00:00"
+          },
+          "invocation_finished": {
+            "unix_ns": 1791800991145111510,
+            "monotonic_ns": 38711939774345,
+            "utc": "2026-10-12T10:29:51.145111+00:00"
+          },
+          "finished": {
+            "unix_ns": 1791800991145769430,
+            "monotonic_ns": 38711940432318,
+            "utc": "2026-10-12T10:29:51.145769+00:00"
+          }
+        }
+      }
+    ],
+    "row": {
+      "argv": [
+        "SYNTHETIC"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 120,
+      "started_unix_ns": 1791800991144809723,
+      "started_monotonic_ns": 38711939472867,
+      "started_utc": "2026-10-12T10:29:51.144809+00:00",
+      "ended_unix_ns": 1791800991145769430,
+      "ended_monotonic_ns": 38711940432318,
+      "ended_utc": "2026-10-12T10:29:51.145769+00:00",
+      "duration_seconds": 0.000959451,
+      "stdout": {
+        "path": "guard.stdout.log",
+        "bytes": 43,
+        "sha256": "86fd58f1627fd80e2c9313679c3efc442afef02d607498e11a8552e2e5880b9b"
+      },
+      "stderr": {
+        "path": "guard.stderr.log",
+        "bytes": 43,
+        "sha256": "d9ba7b48733d6b2bb16810e2393f70e7e88c9069a34c2a81e58e161137ae77ee"
+      },
+      "stream_evidence": {
+        "schema": 2,
+        "started": {
+          "unix_ns": 1791800991144809723,
+          "monotonic_ns": 38711939472867,
+          "utc": "2026-10-12T10:29:51.144809+00:00"
+        },
+        "streams": {
+          "stdout": {
+            "path": "guard.stdout.log",
+            "exclusive_mode": "xb",
+            "open_started": {
+              "unix_ns": 1791800991144985639,
+              "monotonic_ns": 38711939648494,
+              "utc": "2026-10-12T10:29:51.144985+00:00"
+            },
+            "initial_stat": {
+              "device": 26,
+              "inode": 246821,
+              "mode": 33188,
+              "links": 1,
+              "bytes": 0,
+              "mtime_ns": 1791800991144854486,
+              "ctime_ns": 1791800991144854486
+            },
+            "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "opened": {
+              "unix_ns": 1791800991145057644,
+              "monotonic_ns": 38711939720522,
+              "utc": "2026-10-12T10:29:51.145057+00:00"
+            },
+            "closing": {
+              "unix_ns": 1791800991145163837,
+              "monotonic_ns": 38711939826709,
+              "utc": "2026-10-12T10:29:51.145163+00:00"
+            },
+            "final_stat": {
+              "device": 26,
+              "inode": 246820,
+              "mode": 33188,
+              "links": 1,
+              "bytes": 43,
+              "mtime_ns": 1791800991145115939,
+              "ctime_ns": 1791800991145115939
+            },
+            "closed": {
+              "unix_ns": 1791800991145167638,
+              "monotonic_ns": 38711939830480,
+              "utc": "2026-10-12T10:29:51.145167+00:00"
+            },
+            "bytes": 43,
+            "sha256": "86fd58f1627fd80e2c9313679c3efc442afef02d607498e11a8552e2e5880b9b",
+            "hashed": {
+              "unix_ns": 1791800991145527149,
+              "monotonic_ns": 38711940190073,
+              "utc": "2026-10-12T10:29:51.145527+00:00"
+            }
+          },
+          "stderr": {
+            "path": "guard.stderr.log",
+            "exclusive_mode": "xb",
+            "open_started": {
+              "unix_ns": 1791800991145089628,
+              "monotonic_ns": 38711939752480,
+              "utc": "2026-10-12T10:29:51.145089+00:00"
+            },
+            "initial_stat": {
+              "device": 26,
+              "inode": 246821,
+              "mode": 33188,
+              "links": 1,
+              "bytes": 0,
+              "mtime_ns": 1791800991145065289,
+              "ctime_ns": 1791800991145065289
+            },
+            "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "opened": {
+              "unix_ns": 1791800991145103880,
+              "monotonic_ns": 38711939766729,
+              "utc": "2026-10-12T10:29:51.145103+00:00"
+            },
+            "closing": {
+              "unix_ns": 1791800991145120136,
+              "monotonic_ns": 38711939783071,
+              "utc": "2026-10-12T10:29:51.145120+00:00"
+            },
+            "final_stat": {
+              "device": 26,
+              "inode": 246821,
+              "mode": 33188,
+              "links": 1,
+              "bytes": 43,
+              "mtime_ns": 1791800991145115939,
+              "ctime_ns": 1791800991145115939
+            },
+            "closed": {
+              "unix_ns": 1791800991145124704,
+              "monotonic_ns": 38711939787561,
+              "utc": "2026-10-12T10:29:51.145124+00:00"
+            },
+            "bytes": 43,
+            "sha256": "d9ba7b48733d6b2bb16810e2393f70e7e88c9069a34c2a81e58e161137ae77ee",
+            "hashed": {
+              "unix_ns": 1791800991145157991,
+              "monotonic_ns": 38711939820843,
+              "utc": "2026-10-12T10:29:51.145157+00:00"
+            }
+          }
+        },
+        "after_witnesses": [
+          {
+            "path": "guard.filesystem-after-00.log",
+            "exclusive_mode": "xb",
+            "open_started": {
+              "unix_ns": 1791800991145591490,
+              "monotonic_ns": 38711940254362,
+              "utc": "2026-10-12T10:29:51.145591+00:00"
+            },
+            "initial_stat": {
+              "device": 26,
+              "inode": 246822,
+              "mode": 33188,
+              "links": 1,
+              "bytes": 0,
+              "mtime_ns": 1791800991145572418,
+              "ctime_ns": 1791800991145572418
+            },
+            "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "opened": {
+              "unix_ns": 1791800991145713436,
+              "monotonic_ns": 38711940376376,
+              "utc": "2026-10-12T10:29:51.145713+00:00"
+            },
+            "closing": {
+              "unix_ns": 1791800991145719727,
+              "monotonic_ns": 38711940382587,
+              "utc": "2026-10-12T10:29:51.145719+00:00"
+            },
+            "final_stat": {
+              "device": 26,
+              "inode": 246822,
+              "mode": 33188,
+              "links": 1,
+              "bytes": 0,
+              "mtime_ns": 1791800991145572418,
+              "ctime_ns": 1791800991145572418
+            },
+            "closed": {
+              "unix_ns": 1791800991145724527,
+              "monotonic_ns": 38711940387394,
+              "utc": "2026-10-12T10:29:51.145724+00:00"
+            },
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "hashed": {
+              "unix_ns": 1791800991145761686,
+              "monotonic_ns": 38711940424541,
+              "utc": "2026-10-12T10:29:51.145761+00:00"
+            }
+          }
+        ],
+        "after_witness_attempt_limit": 16,
+        "after_witness_poll_ns": 5000000,
+        "filesystem_bracket_complete": true,
+        "before_witness": {
+          "path": "guard.filesystem-before.log",
+          "exclusive_mode": "xb",
+          "open_started": {
+            "unix_ns": 1791800991144865069,
+            "monotonic_ns": 38711939527948,
+            "utc": "2026-10-12T10:29:51.144865+00:00"
+          },
+          "initial_stat": {
+            "device": 26,
+            "inode": 246819,
+            "mode": 33188,
+            "links": 1,
+            "bytes": 0,
+            "mtime_ns": 1791800991144854486,
+            "ctime_ns": 1791800991144854486
+          },
+          "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "opened": {
+            "unix_ns": 1791800991144894538,
+            "monotonic_ns": 38711939557415,
+            "utc": "2026-10-12T10:29:51.144894+00:00"
+          },
+          "closing": {
+            "unix_ns": 1791800991144899820,
+            "monotonic_ns": 38711939562655,
+            "utc": "2026-10-12T10:29:51.144899+00:00"
+          },
+          "final_stat": {
+            "device": 26,
+            "inode": 246819,
+            "mode": 33188,
+            "links": 1,
+            "bytes": 0,
+            "mtime_ns": 1791800991144854486,
+            "ctime_ns": 1791800991144854486
+          },
+          "closed": {
+            "unix_ns": 1791800991144906768,
+            "monotonic_ns": 38711939569617,
+            "utc": "2026-10-12T10:29:51.144906+00:00"
+          },
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "hashed": {
+            "unix_ns": 1791800991144948194,
+            "monotonic_ns": 38711939611077,
+            "utc": "2026-10-12T10:29:51.144948+00:00"
+          }
+        },
+        "invocation_started": {
+          "unix_ns": 1791800991145106830,
+          "monotonic_ns": 38711939769670,
+          "utc": "2026-10-12T10:29:51.145106+00:00"
+        },
+        "invocation_finished": {
+          "unix_ns": 1791800991145111510,
+          "monotonic_ns": 38711939774345,
+          "utc": "2026-10-12T10:29:51.145111+00:00"
+        },
+        "finished": {
+          "unix_ns": 1791800991145769430,
+          "monotonic_ns": 38711940432318,
+          "utc": "2026-10-12T10:29:51.145769+00:00"
+        }
+      }
+    }
+  },
+  "files": [
+    {
+      "path": "guard.filesystem-after-00.log",
+      "type": "regular",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_stat": {
+        "device": 26,
+        "inode": 246822,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 0,
+        "mtime_ns": 1791800991145572418,
+        "ctime_ns": 1791800991145572418
+      }
+    },
+    {
+      "path": "guard.filesystem-before.log",
+      "type": "regular",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_stat": {
+        "device": 26,
+        "inode": 246819,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 0,
+        "mtime_ns": 1791800991144854486,
+        "ctime_ns": 1791800991144854486
+      }
+    },
+    {
+      "path": "guard.stderr.log",
+      "type": "regular",
+      "bytes": 43,
+      "sha256": "d9ba7b48733d6b2bb16810e2393f70e7e88c9069a34c2a81e58e161137ae77ee",
+      "observed_stat": {
+        "device": 26,
+        "inode": 246821,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 43,
+        "mtime_ns": 1791800991145115939,
+        "ctime_ns": 1791800991145115939
+      }
+    },
+    {
+      "path": "guard.stdout.log",
+      "type": "regular",
+      "bytes": 43,
+      "sha256": "86fd58f1627fd80e2c9313679c3efc442afef02d607498e11a8552e2e5880b9b",
+      "observed_stat": {
+        "device": 26,
+        "inode": 246820,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 43,
+        "mtime_ns": 1791800991145115939,
+        "ctime_ns": 1791800991145115939
+      }
+    }
+  ]
+}

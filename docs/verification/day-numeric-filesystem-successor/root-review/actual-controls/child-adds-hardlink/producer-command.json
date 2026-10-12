@@ -1,0 +1,255 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "-c",
+    "import os,sys; os.link(sys.argv[1], sys.argv[2])",
+    "/dev/shm/macrodroid-numeric-final-review/actual-controls/child-adds-hardlink/probe.stdout.log",
+    "/dev/shm/macrodroid-numeric-final-review/actual-controls/child-adds-hardlink/extra-hardlink.log"
+  ],
+  "cwd": "/dev/shm/macrodroid-numeric-final-review/actual-controls/child-adds-hardlink",
+  "timeout_seconds": 15,
+  "returncode": 0,
+  "timed_out": false,
+  "owned_process_group": 7,
+  "error": "RuntimeError('Exclusive command file ownership changed')",
+  "started_unix_ns": 1791801424668009031,
+  "started_monotonic_ns": 39145462672190,
+  "started_utc": "2026-10-12T10:37:04.668009+00:00",
+  "ended_unix_ns": 1791801424739870090,
+  "ended_monotonic_ns": 39145534532963,
+  "ended_utc": "2026-10-12T10:37:04.739870+00:00",
+  "duration_seconds": 0.071860773,
+  "stdout": null,
+  "stderr": {
+    "path": "probe.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stream_evidence": {
+    "schema": 2,
+    "started": {
+      "unix_ns": 1791801424668009031,
+      "monotonic_ns": 39145462672190,
+      "utc": "2026-10-12T10:37:04.668009+00:00"
+    },
+    "streams": {
+      "stdout": {
+        "path": "probe.stdout.log",
+        "exclusive_mode": "xb",
+        "open_started": {
+          "unix_ns": 1791801424668320538,
+          "monotonic_ns": 39145462983420,
+          "utc": "2026-10-12T10:37:04.668320+00:00"
+        },
+        "initial_stat": {
+          "device": 26,
+          "inode": 345521,
+          "mode": 33188,
+          "links": 1,
+          "bytes": 0,
+          "mtime_ns": 1791801424668174553,
+          "ctime_ns": 1791801424668174553
+        },
+        "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "opened": {
+          "unix_ns": 1791801424668339904,
+          "monotonic_ns": 39145463002742,
+          "utc": "2026-10-12T10:37:04.668339+00:00"
+        },
+        "closing": {
+          "unix_ns": 1791801424735775142,
+          "monotonic_ns": 39145530438030,
+          "utc": "2026-10-12T10:37:04.735775+00:00"
+        },
+        "final_stat": {
+          "device": 26,
+          "inode": 345521,
+          "mode": 33188,
+          "links": 2,
+          "bytes": 0,
+          "mtime_ns": 1791801424668174553,
+          "ctime_ns": 1791801424712446029
+        },
+        "closed": {
+          "unix_ns": 1791801424735784559,
+          "monotonic_ns": 39145530447423,
+          "utc": "2026-10-12T10:37:04.735784+00:00"
+        }
+      },
+      "stderr": {
+        "path": "probe.stderr.log",
+        "exclusive_mode": "xb",
+        "open_started": {
+          "unix_ns": 1791801424668372844,
+          "monotonic_ns": 39145463035749,
+          "utc": "2026-10-12T10:37:04.668372+00:00"
+        },
+        "initial_stat": {
+          "device": 26,
+          "inode": 345522,
+          "mode": 33188,
+          "links": 1,
+          "bytes": 0,
+          "mtime_ns": 1791801424668174553,
+          "ctime_ns": 1791801424668174553
+        },
+        "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "opened": {
+          "unix_ns": 1791801424668533228,
+          "monotonic_ns": 39145463196244,
+          "utc": "2026-10-12T10:37:04.668533+00:00"
+        },
+        "closing": {
+          "unix_ns": 1791801424733489571,
+          "monotonic_ns": 39145528152456,
+          "utc": "2026-10-12T10:37:04.733489+00:00"
+        },
+        "final_stat": {
+          "device": 26,
+          "inode": 345522,
+          "mode": 33188,
+          "links": 1,
+          "bytes": 0,
+          "mtime_ns": 1791801424668174553,
+          "ctime_ns": 1791801424668174553
+        },
+        "closed": {
+          "unix_ns": 1791801424733513194,
+          "monotonic_ns": 39145528176075,
+          "utc": "2026-10-12T10:37:04.733513+00:00"
+        },
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "hashed": {
+          "unix_ns": 1791801424735750707,
+          "monotonic_ns": 39145530413921,
+          "utc": "2026-10-12T10:37:04.735750+00:00"
+        }
+      }
+    },
+    "after_witnesses": [
+      {
+        "path": "probe.filesystem-after-00.log",
+        "exclusive_mode": "xb",
+        "open_started": {
+          "unix_ns": 1791801424735947222,
+          "monotonic_ns": 39145530610148,
+          "utc": "2026-10-12T10:37:04.735947+00:00"
+        },
+        "initial_stat": {
+          "device": 26,
+          "inode": 345523,
+          "mode": 33188,
+          "links": 1,
+          "bytes": 0,
+          "mtime_ns": 1791801424732445135,
+          "ctime_ns": 1791801424732445135
+        },
+        "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "opened": {
+          "unix_ns": 1791801424738192969,
+          "monotonic_ns": 39145532856396,
+          "utc": "2026-10-12T10:37:04.738192+00:00"
+        },
+        "closing": {
+          "unix_ns": 1791801424738216381,
+          "monotonic_ns": 39145532879256,
+          "utc": "2026-10-12T10:37:04.738216+00:00"
+        },
+        "final_stat": {
+          "device": 26,
+          "inode": 345523,
+          "mode": 33188,
+          "links": 1,
+          "bytes": 0,
+          "mtime_ns": 1791801424732445135,
+          "ctime_ns": 1791801424732445135
+        },
+        "closed": {
+          "unix_ns": 1791801424739740663,
+          "monotonic_ns": 39145534404024,
+          "utc": "2026-10-12T10:37:04.739740+00:00"
+        },
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "hashed": {
+          "unix_ns": 1791801424739852942,
+          "monotonic_ns": 39145534515874,
+          "utc": "2026-10-12T10:37:04.739852+00:00"
+        }
+      }
+    ],
+    "after_witness_attempt_limit": 16,
+    "after_witness_poll_ns": 5000000,
+    "filesystem_bracket_complete": true,
+    "before_witness": {
+      "path": "probe.filesystem-before.log",
+      "exclusive_mode": "xb",
+      "open_started": {
+        "unix_ns": 1791801424668152694,
+        "monotonic_ns": 39145462815624,
+        "utc": "2026-10-12T10:37:04.668152+00:00"
+      },
+      "initial_stat": {
+        "device": 26,
+        "inode": 345520,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 0,
+        "mtime_ns": 1791801424667776710,
+        "ctime_ns": 1791801424667776710
+      },
+      "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "opened": {
+        "unix_ns": 1791801424668184480,
+        "monotonic_ns": 39145462847346,
+        "utc": "2026-10-12T10:37:04.668184+00:00"
+      },
+      "closing": {
+        "unix_ns": 1791801424668189694,
+        "monotonic_ns": 39145462852540,
+        "utc": "2026-10-12T10:37:04.668189+00:00"
+      },
+      "final_stat": {
+        "device": 26,
+        "inode": 345520,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 0,
+        "mtime_ns": 1791801424667776710,
+        "ctime_ns": 1791801424667776710
+      },
+      "closed": {
+        "unix_ns": 1791801424668195116,
+        "monotonic_ns": 39145462857968,
+        "utc": "2026-10-12T10:37:04.668195+00:00"
+      },
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hashed": {
+        "unix_ns": 1791801424668261155,
+        "monotonic_ns": 39145462924009,
+        "utc": "2026-10-12T10:37:04.668261+00:00"
+      }
+    },
+    "invocation_started": {
+      "unix_ns": 1791801424668539467,
+      "monotonic_ns": 39145463202335,
+      "utc": "2026-10-12T10:37:04.668539+00:00"
+    },
+    "invocation_finished": {
+      "unix_ns": 1791801424733464172,
+      "monotonic_ns": 39145528127406,
+      "utc": "2026-10-12T10:37:04.733464+00:00"
+    },
+    "cleanup_errors": [
+      "RuntimeError('Exclusive command file ownership changed')"
+    ],
+    "finished": {
+      "unix_ns": 1791801424739870090,
+      "monotonic_ns": 39145534532963,
+      "utc": "2026-10-12T10:37:04.739870+00:00"
+    }
+  }
+}

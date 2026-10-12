@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "test": "test_day_numeric_acceptance.JavaPolicyControls.test_changed_actual_java_bytes_reject_the_retained_policy_hash",
+  "original_temporary_root": "/dev/shm/day-numeric-hosted-02/reports/08-complete-tooling-discovery/tmp/day-numeric-host-control-s49agooz",
+  "scope": "Tool policy fixtures and declared small Python subprocesses only; no application build or Java parity claim",
+  "metadata_scope": "Recorded original live stat; copied inode/ctime are not substituted",
+  "values": {
+    "start": 1791800991920328331,
+    "text": "COMMAND: [\"/dev/shm/day-numeric-hosted-02/reports/08-complete-tooling-discovery/tmp/day-numeric-host-control-s49agooz/jdk/bin/java\", \"-XX:-OmitStackTraceInFastThrow\", \"-XX:+ShowCodeDetailsInExceptionMessages\", \"-XX:+PrintFlagsFinal\", \"-version\"]\n bool OmitStackTraceInFastThrow = false {product}\n bool ShowCodeDetailsInExceptionMessages = true {product}\n",
+    "policy": {
+      "passed": true,
+      "androidRuntime": false,
+      "scope": "Host UI exception runtime only; unchanged APK and exact injected messages",
+      "java_executable": "/dev/shm/day-numeric-hosted-02/reports/08-complete-tooling-discovery/tmp/day-numeric-host-control-s49agooz/jdk/bin/java",
+      "java_sha256": "a6859597a0a61a53abca708778db29c98c0874becdb9cf0bda31f2661c75eba4",
+      "vm_library": "/dev/shm/day-numeric-hosted-02/reports/08-complete-tooling-discovery/tmp/day-numeric-host-control-s49agooz/jdk/lib/server/libjvm.so",
+      "vm_library_sha256": "b56e88ed800485b85799f5c640e6ab387f5ee6d5ad6a9fdb1cfdb6ffd23d627d",
+      "argv": [
+        "/dev/shm/day-numeric-hosted-02/reports/08-complete-tooling-discovery/tmp/day-numeric-host-control-s49agooz/jdk/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-XX:+PrintFlagsFinal",
+        "-version"
+      ],
+      "log": "ui-runtime-policy.log",
+      "effective_flags": {
+        "OmitStackTraceInFastThrow": false,
+        "ShowCodeDetailsInExceptionMessages": true
+      },
+      "log_sha256": "e25aef1aa5a0c2c47c410ad5ad70c559ac47c521cd3be3626fd582530e5d1e4a"
+    }
+  },
+  "files": [
+    {
+      "path": "jdk/bin/java",
+      "type": "regular",
+      "bytes": 30,
+      "sha256": "4d4b94a1de6565573c45b50d9ff5db7919e39e6ab76d2aaa6add3128fefd34cc",
+      "observed_stat": {
+        "device": 26,
+        "inode": 249237,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 30,
+        "mtime_ns": 1791800991931081391,
+        "ctime_ns": 1791800991931081391
+      }
+    },
+    {
+      "path": "jdk/lib/server/libjvm.so",
+      "type": "regular",
+      "bytes": 26,
+      "sha256": "b56e88ed800485b85799f5c640e6ab387f5ee6d5ad6a9fdb1cfdb6ffd23d627d",
+      "observed_stat": {
+        "device": 26,
+        "inode": 249240,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 26,
+        "mtime_ns": 1791800991930566105,
+        "ctime_ns": 1791800991930566105
+      }
+    },
+    {
+      "path": "reports/ui-runtime-policy.json",
+      "type": "regular",
+      "bytes": 1111,
+      "sha256": "f98bdc54b6c21fb4e027dfc17f13d147b29182ef3795529cf2b64766f486626a",
+      "observed_stat": {
+        "device": 26,
+        "inode": 249243,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 1111,
+        "mtime_ns": 1791800991931515359,
+        "ctime_ns": 1791800991931515359
+      }
+    },
+    {
+      "path": "reports/ui-runtime-policy.log",
+      "type": "regular",
+      "bytes": 354,
+      "sha256": "e25aef1aa5a0c2c47c410ad5ad70c559ac47c521cd3be3626fd582530e5d1e4a",
+      "observed_stat": {
+        "device": 26,
+        "inode": 249242,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 354,
+        "mtime_ns": 1791800991931333106,
+        "ctime_ns": 1791800991931333106
+      }
+    }
+  ]
+}
