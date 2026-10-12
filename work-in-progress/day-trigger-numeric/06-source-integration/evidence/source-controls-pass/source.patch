@@ -1,0 +1,1807 @@
+--- a/acceptance.py
++++ b/acceptance.py
+@@ -76,7 +76,8 @@
+            'java-all-path-parity.json','java-ui-three-path-parity.json','ui-oracle-semantics.json','ui-negative-controls.json','java-engine-three-path-parity.json','oracle-semantics.json','engine-oracle-semantics.json',
+            'engine-negative-controls.json','core-negative-controls.json','environment-negative-controls.json','negative-control.json',
+            'migration-static-proof.json','migration-linkage-check.json','reference-failures-status-v9.json',
+-           'constructor-oracle-conformance.json','widget-bitwise-oracle-conformance.json','ui-runtime-policy.json']
++           'constructor-oracle-conformance.json','widget-bitwise-oracle-conformance.json','ui-runtime-policy.json',
++           'day-numeric-dex-controls.json']
+     if not args.skip_edit_probe:names.append('full-apk-edit-probe.json')
+     result['fresh_evidence_sha256']={n:digest(ROOT/'reports'/n) for n in names}
+     result['finished_utc']=datetime.now(timezone.utc).isoformat();result['host_acceptance_passed']=True;save()
+--- /dev/null
++++ b/day_numeric_dex_controls.py
+@@ -0,0 +1,428 @@
++#!/usr/bin/env python3
++"""Bind the thirteen UI Java faults and separately measure two actual numeric DEX faults.
++
++The acceptance entry point requires a signed-APK instruction match for the positive
++target, the three getter bodies from that APK, current Java-control artifacts, and
++exact positive restoration. The lower-level one-class compiler is also useful for
++explicitly scoped private studies; it alone makes no packaging or acceptance claim.
++"""
++from __future__ import annotations
++
++from datetime import datetime, timezone
++import copy
++import hashlib
++import json
++import os
++from pathlib import Path
++import shutil
++import subprocess
++import tempfile
++import time
++import zipfile
++
++import build
++import ui_mutation_catalog as catalog
++import ui_runtime_policy
++
++METHOD = catalog.DAY_METHOD
++TARGET, SIGNATURE = METHOD.split('->', 1)
++HELPER_NAME = 'recovered.ui.DayTriggerValueMethods'
++HELPER_CLASS = 'recovered/ui/DayTriggerValueMethods.class'
++# The active host's three referenced nested types are non-final. Only their
++# InnerClasses metadata differs from the standalone study; method bytes are exact.
++HELPER_CLASS_SHA256 = '2f8b2d3769749301442dae35aca9fda5314eb1f17d59ea6310bd50be62596211'
++DEPENDENCY_PATH = 'tests/fixtures/original-dependencies.json'
++DEPENDENCY_SHA256 = 'e30552cc8ba0520bbee3a993298cb0bcaa973a9d4633649e80362d35b3eda631'
++ORIGINAL_METHOD_SHA256 = '8383c90ebe3d35afa63d52cf92cd4c92b54ed4525ca0d8a31a29fe603f9eef21'
++GETTERS = {
++    'Lcom/arlosoft/macrodroid/variables/VariableValue$DecimalValue;->getDecimalValue()D': '89c5a3751f7de7f7bdfaddba05f28651eb8b0b78413e4263e05c9dc795acf7ae',
++    'Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;->getVariable()Lcom/arlosoft/macrodroid/variables/VariableValue;': 'b3674d51703eb3811fc4918e739777c37de3c580bee961343b80c21e014ca5c0',
++    'Lcom/arlosoft/macrodroid/variables/VariableValue$IntegerValue;->getIntValue()J': '1760568e68babc8e32459eed0352a8a20cfdbe35e02b87f2fc6dacc914399993',
++}
++JAVA_FAILURE_COUNTS = {
++    'integer-zero': 509, 'decimal-zero': 406, 'integer-saturation': 468,
++    'integer-via-double': 468, 'integer-via-byte': 449, 'decimal-round': 351,
++    'decimal-floor': 210, 'decimal-nan-one': 8, 'decimal-infinity-zero': 2,
++    'other-minus-one': 9, 'parse-string': 4, 'null-contained-throws': 1, 'null-entry-zero': 1,
++}
++
++
++def require(value, message):
++    if not value:
++        raise RuntimeError(message)
++
++
++def sha(path: Path) -> str:
++    with path.open('rb') as stream:
++        return hashlib.file_digest(stream, 'sha256').hexdigest()
++
++
++def identity(path: Path) -> dict:
++    return {'bytes': path.stat().st_size, 'sha256': sha(path)}
++
++
++def write_json(path: Path, value) -> None:
++    path.write_text(json.dumps(value, indent=2) + '\n')
++
++
++def validate_dependencies(root: Path, registry: list[dict]) -> set[str]:
++    """Require the exact uncredited getters and a unique registered numeric consumer."""
++    require(sha(root / DEPENDENCY_PATH) == DEPENDENCY_SHA256, 'Original numeric dependency bytes changed')
++    keys = [row['target'] + '->' + row['method'] for row in registry]
++    require(len(set(keys)) == len(keys) and keys.count(METHOD) == 1, 'Numeric consumer is absent or duplicated')
++    data = json.loads((root / DEPENDENCY_PATH).read_text())
++    observed = {}
++    for row in data['dependencies']:
++        key = row['target'] + '->' + row['method']
++        require(row['consumer'] == METHOD and key not in keys and key not in observed, 'Original dependency credited, duplicated or misbound')
++        observed[key] = row['original_method_sha256']
++    require(observed == GETTERS, 'Original numeric getter selection changed')
++    return set(observed)
++
++
++def target_entry(root: Path) -> dict:
++    registry = json.loads((root / 'source/java-method-map.json').read_text())
++    validate_dependencies(root, registry)
++    rows = [row for row in registry if row['target'] + '->' + row['method'] == METHOD]
++    require(len(rows) == 1, 'Numeric target must be registered exactly once')
++    entry = rows[0]
++    require(entry['java_source'] == catalog.DAY_HELPER_PATH and entry['helper'] == 'Lrecovered/ui/DayTriggerValueMethods;'
++            and entry['helper_method'] == 'numericValue' and entry['instance'] is False
++            and entry['proof_family'] == 'v9-ui' and entry['original_method_sha256'] == ORIGINAL_METHOD_SHA256,
++            'Numeric registry binding changed')
++    require(sha(root / catalog.DAY_HELPER_PATH) == catalog.DAY_HELPER_SHA256, 'Numeric positive source changed')
++    return entry
++
++
++def compile_target(production, source_root: Path, index: dict, entry: dict, helper_class: Path,
++                   folder: Path, run, java: str | Path, jar: Path) -> tuple[Path, dict]:
++    """Apply the production relocation and sole-method transplant to one real class."""
++    folder.mkdir(parents=True, exist_ok=False)
++    matches = [row for row in index.values() if row['descriptor'] == TARGET]
++    require(len(matches) == 1, 'Original numeric class is not unique')
++    original = source_root / matches[0]['path']
++    require(sha(original) == matches[0]['sha256'], 'Original numeric class differs from its source index')
++    old_text = original.read_text(); old_methods = production.methods(old_text); old = old_methods[SIGNATURE]
++    require(hashlib.sha256(old.encode()).hexdigest() == ORIGINAL_METHOD_SHA256, 'Original numeric method body changed')
++    relocated = folder / 'relocated' / HELPER_CLASS; relocated.parent.mkdir(parents=True)
++    relocated.write_bytes(production.relocate_class(helper_class.read_bytes()))
++    compiler_input = folder / 'inputs.jar'
++    with zipfile.ZipFile(compiler_input, 'x') as archive:
++        member = zipfile.ZipInfo(HELPER_CLASS, (1980, 1, 1, 0, 0, 0)); member.external_attr = 0o100644 << 16
++        archive.writestr(member, relocated.read_bytes())
++    with zipfile.ZipFile(compiler_input) as archive:
++        require(archive.namelist() == [HELPER_CLASS] and archive.read(HELPER_CLASS) == relocated.read_bytes(), 'Unexpected D8 compiler input')
++    dex_dir = folder / 'd8'; dex_dir.mkdir()
++    run(folder, 'd8-helper', [java, '-Xmx512m', '-cp', jar, 'com.android.tools.r8.D8',
++                            '--release', '--no-desugaring', '--min-api', '23', '--output', dex_dir, compiler_input])
++    require(sorted(p.name for p in dex_dir.iterdir()) == ['classes.dex'], 'Unexpected numeric D8 output inventory')
++    helper_dex_sha = production.dex_integrity(dex_dir / 'classes.dex')
++    smali = folder / 'helper-smali'
++    run(folder, 'disassemble-helper', [java, '-Xmx512m', '-cp', jar, 'com.android.tools.smali.baksmali.Main',
++                                      'd', '--api', '23', '--use-locals', '-o', smali, dex_dir / 'classes.dex'])
++    require(sorted(p.relative_to(smali).as_posix() for p in smali.rglob('*.smali')) == ['recovered/ui/DayTriggerValueMethods.smali'], 'Unexpected helper disassembly class')
++    emitted = production.methods((smali / 'recovered/ui/DayTriggerValueMethods.smali').read_text())
++    compiled = emitted['numericValue' + SIGNATURE[SIGNATURE.index('('):]]
++    restored, corrections = production.restore_from_preserved_source(entry, compiled, old, index, source_root)
++    require(restored == compiled and corrections == [], 'Numeric method unexpectedly needs constructor-owner correction')
++    body = production.ANNOT.sub('', compiled.split('\n', 1)[1].rsplit('.end method', 1)[0])
++    require('Lrecovered/' not in body and 'Ldefpackage/' not in body, 'Host/helper type escaped numeric transplant')
++    replacement = old.splitlines()[0] + '\n' + ''.join(production.ANNOT.findall(old)) + body + '.end method'
++    require(old_text.count(old) == 1, 'Numeric replacement anchor is not unique')
++    new_text = old_text.replace(old, replacement, 1); new_methods = production.methods(new_text)
++    require(set(new_methods) == set(old_methods) and all(new_methods[k] == v for k, v in old_methods.items() if k != SIGNATURE), 'Other original methods changed')
++    require(new_text.replace(replacement, '<NUMERIC>', 1) == old_text.replace(old, '<NUMERIC>', 1), 'Non-target class text changed')
++    target = folder / 'target-smali/DayTrigger.smali'; target.parent.mkdir(); target.write_text(new_text)
++    dex = folder / 'numeric-target.dex'
++    run(folder, 'assemble-target', [java, '-Xmx512m', '-cp', jar, 'com.android.tools.smali.smali.Main',
++                                  'a', '--api', '23', '-j', '2', '-o', dex, target.parent])
++    digest = production.dex_integrity(dex)
++    binding = {'method': METHOD, 'original_class': identity(original), 'original_method_sha256': ORIGINAL_METHOD_SHA256,
++               'helper_class': identity(helper_class), 'relocated_class': identity(relocated), 'compiler_input': identity(compiler_input),
++               'compiler_input_classes': [HELPER_CLASS], 'host_stubs_sent_to_d8': 0, 'helper_dex_sha256': helper_dex_sha,
++               'compiled_method_sha256': hashlib.sha256(compiled.encode()).hexdigest(),
++               'transplanted_method_sha256': hashlib.sha256(replacement.encode()).hexdigest(),
++               'transplanted_class': identity(target), 'target_dex_sha256': digest,
++               'other_original_methods_unchanged': len(old_methods) - 1, 'non_target_class_text_unchanged': True,
++               'constructor_owner_corrections': []}
++    write_json(folder / 'method-body-binding.json', binding)
++    return dex, binding
++
++
++def class_pins(host: Path, tools: Path, helper_override: Path | None = None) -> dict:
++    """Pin every declared class of the harness, active oracle and scoped host types."""
++    pins = {}
++    specs = [(tools, 'DayNumericControlHarness'), (tools, 'DayTriggerParityCases'), (tools, 'BytecodeOracle'),
++             (host, 'com/arlosoft/macrodroid/variables/VariableValue'), (host, 'defpackage/EngineRuntime'),
++             (host, 'defpackage/TestClock'), (helper_override or host, 'recovered/ui/DayTriggerValueMethods')]
++    for root, prefix in specs:
++        stem = root / prefix
++        paths = sorted(p for p in stem.parent.glob(stem.name + '*.class') if p.name == stem.name + '.class' or p.name.startswith(stem.name + '$'))
++        require(any(p.name == stem.name + '.class' for p in paths), 'Missing numeric harness class: ' + prefix)
++        for path in paths:
++            name = path.relative_to(root).as_posix()[:-6].replace('/', '.')
++            require(name not in pins, 'Duplicate class pin')
++            pins[name] = {'path': str(path.resolve()), 'sha256': sha(path)}
++    return pins
++
++
++def same_inputs(a: dict, b: dict) -> bool:
++    fields = ('case', 'kind', 'rawBitsHex', 'text', 'expected', 'expectedExceptionClass')
++    return {k: a[k] for k in fields if k in a} == {k: b[k] for k in fields if k in b}
++
++
++def require_counts(report: dict, expected: dict[str, int], message: str) -> None:
++    require(all(type(report.get(key)) is int and report[key] == count for key, count in expected.items()), message)
++
++
++def validate_report_identity(report: dict) -> None:
++    require_counts(report, {'schema': 1, 'cases': 1291, 'executionPaths': 3,
++                           'primaryRecoveredMethods': 1, 'originalDependencyMethods': 3},
++                   'Numeric report count or schema differs')
++    require(report.get('primaryMethod') == METHOD and report.get('androidRuntime') is False
++            and report.get('dependencyKeys') == sorted(GETTERS)
++            and report.get('inputInventorySha256') == catalog.DAY_INPUT_INVENTORY_SHA256,
++            'Numeric report method or uncredited dependency identity differs')
++
++
++def validate_positive_coverage(coverage: dict, count: int) -> None:
++    methods = coverage.get('methods')
++    require(isinstance(methods, list) and len(methods) == 4
++            and [row.get('key') for row in methods] == sorted({METHOD, *GETTERS}),
++            'Numeric coverage method/dependency inventory differs')
++    instructions = edges = 0
++    for row in methods:
++        primary = row['key'] == METHOD
++        require(row.get('primaryRecovery') is primary, 'Numeric getter was given recovery credit')
++        offsets, branches = row.get('requiredOffsets'), row.get('requiredEdges')
++        require(isinstance(offsets, list) and offsets
++                and all(type(offset) is int and offset >= 0 for offset in offsets)
++                and offsets == sorted(set(offsets)), 'Malformed numeric instruction offsets')
++        require(isinstance(branches, list) and all(isinstance(edge, str) for edge in branches)
++                and branches == sorted(set(branches)), 'Malformed numeric conditional edges')
++        for edge in branches:
++            parts = edge.split(':')
++            require(len(parts) == 2 and all(part.isdecimal() for part in parts)
++                    and all(int(part) in offsets for part in parts), 'Numeric branch edge names another instruction')
++        wanted = count - 7 if primary else 3 if 'DictionaryEntry;' in row['key'] else 2
++        require_counts(row, {'instructionCount': wanted, 'exceptionRegions': 0}, 'Numeric method coverage count differs')
++        require(len(offsets) == wanted and len(branches) == (4 if primary else 0)
++                and row.get('executedOffsets') == offsets and row.get('executedEdges') == branches
++                and row.get('missingOffsets') == [] and row.get('missingEdges') == [],
++                'Incomplete numeric method instruction/edge coverage')
++        instructions += len(offsets); edges += len(branches)
++    require(instructions == count and edges == 4, 'Numeric coverage totals differ from method rows')
++    require_counts(coverage, {'instructionCount': instructions, 'executedInstructionCount': instructions,
++                              'requiredBranchEdges': edges, 'executedBranchEdges': edges},
++                   'Numeric coverage summary differs from method rows')
++    require(coverage.get('allInstructionsAndEdgesExecuted') is True, 'Incomplete numeric coverage flag')
++
++
++def validate_observations(report: dict) -> list[str]:
++    """Recompute the fixed case inventory, integer-bit expectations and raw flags."""
++    rows = report.get('observations')
++    require(isinstance(rows, list) and len(rows) == 1291, 'Missing numeric observation inventory')
++    inputs = [{k: row[k] for k in ('case', 'kind', 'rawBitsHex', 'text') if k in row} for row in rows]
++    digest = hashlib.sha256(json.dumps(inputs, separators=(',', ':'), ensure_ascii=False).encode()).hexdigest()
++    require(digest == catalog.DAY_INPUT_INVENTORY_SHA256, 'Numeric input identities changed')
++    failures, unsupported, wrong_expected = [], 0, 0
++    for row in rows:
++        bits = int(row['rawBitsHex'], 16); kind = row['kind']
++        if kind == 'integer':
++            expected = bits & 0xffffffff
++            if expected & 0x80000000:
++                expected -= 1 << 32
++        elif kind == 'decimal':
++            exponent, fraction = (bits >> 52) & 0x7ff, bits & ((1 << 52) - 1)
++            negative = bool(bits >> 63)
++            if exponent == 0x7ff:
++                expected = 0 if fraction else -(1 << 31) if negative else (1 << 31) - 1
++            else:
++                significand = fraction | ((1 << 52) if exponent else 0)
++                shift = (exponent or 1) - 1023 - 52
++                magnitude = significand << shift if shift >= 0 else significand >> -shift
++                expected = max(-(1 << 31), min((1 << 31) - 1, -magnitude if negative else magnitude))
++        else:
++            expected = 0
++        null_entry = kind == 'null-entry'
++        require((row.get('expectedExceptionClass') == 'java.lang.NullPointerException' and 'expected' not in row)
++                if null_entry else type(row.get('expected')) is int and row['expected'] == expected and 'expectedExceptionClass' not in row,
++                'Numeric recorded expectation differs from raw-bit arithmetic')
++        observations = [row.get(path) for path in ('original', 'java', 'rebuilt')]
++        for observed in observations:
++            require(isinstance(observed, dict) and set(observed) == {'value', 'exceptionClass', 'rawMessage', 'unsupported'}
++                    and type(observed['unsupported']) is bool and (observed['value'] is None or type(observed['value']) is int)
++                    and (observed['exceptionClass'] is None or isinstance(observed['exceptionClass'], str))
++                    and (observed['rawMessage'] is None or isinstance(observed['rawMessage'], str)), 'Malformed raw numeric outcome')
++        def correct(observed):
++            return not observed['unsupported'] and (observed['value'] is None and observed['exceptionClass'] == 'java.lang.NullPointerException'
++                    if null_entry else observed['exceptionClass'] is None and observed['value'] == expected)
++        same = all(correct(o) for o in observations) if null_entry else observations[0] == observations[1] == observations[2]
++        right = all(correct(o) for o in observations)
++        require(row.get('sameScopedOutcome') is same and row.get('allPathsMatchIndependentExpected') is right, 'Numeric outcome flags disagree with raw observations')
++        if not same or not right:
++            failures.append('day-numeric:' + row['case'])
++        unsupported += sum(o['unsupported'] for o in observations)
++        wrong_expected += not right
++    require(report.get('mismatches') == failures, 'Numeric summary labels differ from all recorded cases')
++    require_counts(report, {'mismatchCount': len(failures), 'unsupportedCount': unsupported,
++                           'independentExpectedChecks': 1291, 'independentExpectedFailures': wrong_expected},
++                   'Numeric summary differs from all recorded cases')
++    return failures
++
++
++def validate_positive(report: dict) -> None:
++    validate_report_identity(report)
++    require(validate_observations(report) == [], 'Positive numeric raw outcomes contain a failure')
++    require(report.get('passed') is True
++            and report.get('mismatchCount') == 0 and report.get('unsupportedCount') == 0
++            and report.get('independentExpectedChecks') == 1291 and report.get('independentExpectedFailures') == 0,
++            'Incomplete positive numeric three-path report')
++    require(len(report.get('observations', [])) == 1291 and all(row.get('sameScopedOutcome') is True
++            and row.get('allPathsMatchIndependentExpected') is True for row in report['observations']), 'Missing positive numeric observations')
++    for key, count in [('originalCoverage', 32), ('rebuiltCoverage', 25)]:
++        validate_positive_coverage(report.get(key, {}), count)
++
++
++def validate_fault(positive: dict, fault: dict, required: list[str], expected_count: int, changed_path: str) -> None:
++    validate_report_identity(fault)
++    require(len(validate_observations(fault)) == expected_count, 'Numeric fault raw outcome count differs')
++    require(changed_path in {'java', 'rebuilt'}, 'Invalid numeric changed path')
++    require(fault.get('passed') is False and fault.get('cases') == 1291 and fault.get('executionPaths') == 3
++            and fault.get('inputInventorySha256') == catalog.DAY_INPUT_INVENTORY_SHA256
++            and fault.get('mismatchCount') == expected_count and fault.get('unsupportedCount') == 0
++            and set(required).issubset(fault.get('mismatches', [])), 'Numeric fault lacks its required measured failures')
++    old, changed = positive['observations'], fault.get('observations', [])
++    require(len(old) == len(changed) == 1291, 'Numeric fault changed case count')
++    stable_paths = {'original', 'java', 'rebuilt'} - {changed_path}
++    for a, b in zip(old, changed):
++        require(same_inputs(a, b) and all(a[path] == b[path] for path in stable_paths), 'Numeric fault changed an independent input/path')
++    require(fault.get('originalCoverage') == positive['originalCoverage'], 'Numeric fault changed original instruction coverage')
++
++
++def validate_java_controls(root: Path, records: list[dict]) -> tuple[dict[str, Path], list[dict]]:
++    jobs = catalog.load_day_mutations(root)
++    wanted = {job['name']: job for job in jobs}
++    selected = [row for row in records if row.get('mutation', '').startswith('day-numeric-')]
++    require(len(selected) == 13 and {row.get('mutation') for row in selected} == set(wanted), 'All thirteen actual UI Java faults are required')
++    classes, bindings = {}, []
++    for row in selected:
++        name = row['mutation']; job = wanted[name]; short = name.removeprefix('day-numeric-')
++        source = root / row['retainedSource']; compiled = root / row['retainedClass']
++        expected_root = (root / 'reports/ui-mutants' / name).resolve()
++        require(source.resolve() == expected_root / 'DayTriggerValueMethods.java'
++                and compiled.resolve() == expected_root / 'DayTriggerValueMethods.class', 'Java control reused another artifact path')
++        require(row.get('pass') is True and row.get('exitCode') == 2
++                and row.get('failedCases') == JAVA_FAILURE_COUNTS[short] and row.get('unsupportedExecutions') == 0
++                and row.get('requiredCases') == job['required_cases'] and row.get('requiredCaseRejected') is True
++                and row.get('sourceFixtureAndApkUnchanged') is True and row.get('originalCoverageAndInventoryUnchanged') is True
++                and row.get('positiveClassSha256') == HELPER_CLASS_SHA256, 'Current UI Java fault proof is incomplete')
++        require(source.read_text() == job['mutant'] and sha(source) == row['mutantSourceSha256']
++                and sha(compiled) == row['mutantClassSha256'] != HELPER_CLASS_SHA256, 'Java fault source/class differs from actual UI control')
++        classes[short] = compiled
++        bindings.append({'name': name, 'source': row['retainedSource'], 'source_identity': identity(source),
++                         'class': row['retainedClass'], 'class_identity': identity(compiled),
++                         'failed_cases': row['failedCases'], 'required_cases': job['required_cases']})
++    return classes, bindings
++
++
++def run_controls(root: Path, java_control_records: list[dict]) -> dict:
++    """Acceptance entry: all positive/fault/packaging/provenance/restoration gates required."""
++    root = root.resolve(); reports = root / 'reports'; reports.mkdir(exist_ok=True)
++    output = Path(tempfile.mkdtemp(prefix='day-numeric-dex-', dir=reports))
++    destination = reports / 'day-numeric-dex-controls.json'
++    report = {'schema': 1, 'passed': False, 'status': 'RUNNING', 'androidRuntime': False,
++              'started_utc': datetime.now(timezone.utc).isoformat(), 'commands': [],
++              'evidence_directory': output.relative_to(root).as_posix(), 'primary_recovered_methods': 1,
++              'original_dependency_methods': 3, 'expected_java_faults': 13, 'expected_actual_dex_faults': 2}
++    write_json(destination, report)
++
++    def run(folder, name, argv, expected=0, timeout=120):
++        folder.mkdir(parents=True, exist_ok=True)
++        stdout, stderr = folder / (name + '.stdout.log'), folder / (name + '.stderr.log')
++        require(not stdout.exists() and not stderr.exists(), 'Numeric command output already exists')
++        started = datetime.now(timezone.utc).isoformat(); tick = time.monotonic(); code = None
++        try:
++            with stdout.open('xb') as out, stderr.open('xb') as err:
++                code = subprocess.run(list(map(str, argv)), cwd=root, stdout=out, stderr=err, timeout=timeout).returncode
++        finally:
++            row = {'name': name, 'argv': list(map(str, argv)), 'started_utc': started,
++                   'ended_utc': datetime.now(timezone.utc).isoformat(), 'duration_seconds': time.monotonic() - tick,
++                   'timeout_seconds': timeout, 'returncode': code,
++                   'stdout': {'path': stdout.relative_to(root).as_posix(), **identity(stdout)},
++                   'stderr': {'path': stderr.relative_to(root).as_posix(), **identity(stderr)}}
++            report['commands'].append(row); write_json(destination, report)
++        require(code == expected, 'Numeric command failed: ' + name)
++        return row
++
++    try:
++        entry = target_entry(root)
++        host, tools, jar = root / 'build/java/hostclasses', root / 'tools/classes', root / 'tools/lib/jadx-r2721.4574686-all.jar'
++        apk = root / 'dist/MacroDroid-5.67.8-v9-hybrid.apk'; fixture = root / 'tests/fixtures/original-methods.dex'
++        getter = root / 'build/hybrid/classes3.dex'
++        require(sha(host / HELPER_CLASS) == HELPER_CLASS_SHA256, 'Current positive numeric class differs from measured compilation')
++        classes, java_bindings = validate_java_controls(root, java_control_records)
++        report['java_fault_bindings'] = java_bindings
++        policy = ui_runtime_policy.verify(reports); java = policy['java_executable']
++        index = json.loads((root / 'source/class-index.json').read_text())
++        selected_original = [root / row['path'] for row in index.values() if row['descriptor'] in {TARGET, *(k.split('->', 1)[0] for k in GETTERS)}]
++        pinned = [apk, fixture, getter, jar, root / 'build.py', root / 'constructor_owner.py',
++                  root / 'tests/java/BytecodeOracle.java', root / catalog.DAY_HELPER_PATH, root / DEPENDENCY_PATH,
++                  root / catalog.DAY_CATALOG_PATH, root / 'source/java-method-map.json',
++                  root / 'test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java', *selected_original,
++                  *[Path(row['class']) if Path(row['class']).is_absolute() else root / row['class'] for row in java_bindings]]
++        pins = {str(p): identity(p) for p in pinned}
++        write_json(output / 'input-identities.json', pins)
++        require(sha(root / 'tests/java/BytecodeOracle.java') == 'd91ddcd8ec3d67d41d69b8252835e747c2cad2c6d5ea898323794ceec30e6b56', 'Active numeric oracle changed')
++        positive_dex, positive_binding = compile_target(build, root, index, entry, host / HELPER_CLASS, output / 'positive-pipeline', run, java, jar)
++        cp = os.pathsep.join(map(str, [jar, host, tools]))
++        for name, dex in [('signed-apk', getter), ('positive-transplant', positive_dex)]:
++            run(output, name + '-instructions', [java, '-Xmx512m', '-cp', cp, 'InspectMethod', dex, METHOD, output / (name + '-instructions.json')])
++        packaged = (output / 'signed-apk-instructions.json').read_bytes() == (output / 'positive-transplant-instructions.json').read_bytes()
++        require(packaged, 'Positive numeric transplant does not match the signed APK instructions')
++        cfg = {'schema': 1, 'originalFixture': {'path': str(fixture), 'sha256': sha(fixture)},
++               'rebuiltApk': {'path': str(apk), 'sha256': sha(apk)},
++               'rebuiltGetterDex': {'path': str(getter), 'sha256': sha(getter), 'apk_member': 'classes3.dex'},
++               'targetDex': {'path': str(positive_dex), 'sha256': sha(positive_dex)}, 'classPins': class_pins(host, tools)}
++
++        def execute(name, config, expected=0):
++            folder = output / name; folder.mkdir()
++            path = folder / 'config.json'; target = folder / 'result.json'; write_json(path, config)
++            run(folder, 'execute', [java, *ui_runtime_policy.JVM_FLAGS, '-Xmx512m', '-cp', cp,
++                                    'DayNumericControlHarness', path, target], expected)
++            return json.loads(target.read_text()) if target.exists() else None
++
++        positive = execute('positive', cfg); validate_positive(positive)
++        report['positive_signed_apk_instruction_match'] = True
++        report['positive_pipeline'] = positive_binding
++        faults = []
++        jobs = {job['name'].removeprefix('day-numeric-'): job for job in catalog.load_day_mutations(root)}
++        for name in ('integer-zero', 'decimal-zero'):
++            dex, binding = compile_target(build, root, index, entry, classes[name], output / (name + '-pipeline'), run, java, jar)
++            altered = copy.deepcopy(cfg); altered['targetDex'] = {'path': str(dex), 'sha256': sha(dex)}
++            bad = execute(name + '-dex-fault', altered, 3)
++            validate_fault(positive, bad, jobs[name]['required_cases'], JAVA_FAILURE_COUNTS[name], 'rebuilt')
++            faults.append({'name': name, 'passed': True, 'mismatches': bad['mismatchCount'],
++                           'required_cases': jobs[name]['required_cases'], 'pipeline': binding})
++        original_substitution = copy.deepcopy(cfg); original_substitution['targetDex'] = copy.deepcopy(cfg['originalFixture'])
++        require(execute('original-as-rebuilt-rejected', original_substitution, 1) is None, 'Provenance fault emitted an accepted report')
++        require('Original fixture cannot masquerade as rebuilt target' in (output / 'original-as-rebuilt-rejected/execute.stderr.log').read_text(), 'Original substitution failed for another reason')
++        wrong_class = copy.deepcopy(cfg); wrong_class['classPins'][HELPER_NAME]['sha256'] = '0' * 64
++        require(execute('wrong-helper-class-rejected', wrong_class, 1) is None, 'Wrong helper identity emitted an accepted report')
++        require('Wrong input identity: class ' + HELPER_NAME in (output / 'wrong-helper-class-rejected/execute.stderr.log').read_text(), 'Wrong helper identity failed for another reason')
++        restored = execute('positive-restoration', cfg); validate_positive(restored)
++        require(restored == positive and (output / 'positive/result.json').read_bytes() == (output / 'positive-restoration/result.json').read_bytes(), 'Numeric positive restoration differs')
++        require(all(identity(Path(p)) == value for p, value in pins.items()), 'Numeric source, class, fixture, APK or original inputs changed')
++        validate_java_controls(root, java_control_records)
++        report.update(passed=True, status='TWO_ACTUAL_NUMERIC_DEX_FAULTS_DETECTED_SIGNED_POSITIVE_RESTORED',
++                      actual_dex_faults=faults, provenance_controls_rejected=2,
++                      positive_restoration_byte_exact=True, source_class_fixture_and_apk_unchanged=True,
++                      cases=1291, execution_paths=3, input_inventory_sha256=catalog.DAY_INPUT_INVENTORY_SHA256,
++                      original_instruction_count=32, rebuilt_instruction_count=25, conditional_edges_per_path=4,
++                      signed_apk_sha256=sha(apk), original_fixture_sha256=sha(fixture))
++    except BaseException as error:
++        report.update(status='NUMERIC_DEX_CONTROL_FAILED', error=repr(error))
++        raise
++    finally:
++        report['finished_utc'] = datetime.now(timezone.utc).isoformat(); write_json(destination, report)
++    return report
+--- a/source/java-method-map.json
++++ b/source/java-method-map.json
+@@ -19002,5 +19002,15 @@
+         "occurrences": 1
+       }
+     ]
++  },
++  {
++    "target": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;",
++    "method": "r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
++    "helper": "Lrecovered/ui/DayTriggerValueMethods;",
++    "helper_method": "numericValue",
++    "instance": false,
++    "java_source": "source/java/recovered/ui/DayTriggerValueMethods.java",
++    "proof_family": "v9-ui",
++    "original_method_sha256": "8383c90ebe3d35afa63d52cf92cd4c92b54ed4525ca0d8a31a29fe603f9eef21"
+   }
+ ]
+--- /dev/null
++++ b/source/java/recovered/ui/DayTriggerValueMethods.java
+@@ -0,0 +1,17 @@
++package recovered.ui;
++
++import com.arlosoft.macrodroid.variables.VariableValue;
++
++/** Recovered DayTrigger.r0 body; registration is pending independent proof. */
++public final class DayTriggerValueMethods {
++    public static int numericValue(VariableValue.DictionaryEntry entry) {
++        VariableValue value = entry.getVariable();
++        if (value instanceof VariableValue.IntegerValue) {
++            return (int) ((VariableValue.IntegerValue) value).getIntValue();
++        }
++        if (value instanceof VariableValue.DecimalValue) {
++            return (int) ((VariableValue.DecimalValue) value).getDecimalValue();
++        }
++        return 0;
++    }
++}
+--- a/source/ui-methods.json
++++ b/source/ui-methods.json
+@@ -106,5 +106,15 @@
+         "occurrences": 1
+       }
+     ]
++  },
++  {
++    "target": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;",
++    "method": "r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
++    "helper": "Lrecovered/ui/DayTriggerValueMethods;",
++    "helper_method": "numericValue",
++    "instance": false,
++    "java_source": "source/java/recovered/ui/DayTriggerValueMethods.java",
++    "proof_family": "v9-ui",
++    "original_method_sha256": "8383c90ebe3d35afa63d52cf92cd4c92b54ed4525ca0d8a31a29fe603f9eef21"
+   }
+ ]
+--- a/test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java
++++ b/test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java
+@@ -3,9 +3,9 @@
+ /** Host boundary recorders, NOT recovered Android implementations and NOT packaged. */
+ public class VariableValue {
+  public static class Dictionary extends VariableValue { public final List<DictionaryEntry> entries; public final boolean array; public final List<String> keys; public Dictionary(List<DictionaryEntry> e, boolean a, List<String> k){ entries=e;array=a;keys=k; } }
+- public static class DictionaryEntry extends VariableValue { public boolean equals(Object other){ return super.equals(other); } public final String key; public final VariableValue value; public final List<String> keys; public DictionaryEntry(String k,VariableValue v,List<String> ks){key=k;value=v;keys=ks;} }
++ public static class DictionaryEntry extends VariableValue { public boolean equals(Object other){ return super.equals(other); } public final String key; public final VariableValue value; public final List<String> keys; private transient final VariableValue variable; public DictionaryEntry(String k,VariableValue v,List<String> ks){key=k;value=v;keys=ks;variable=v;} public final VariableValue getVariable(){return variable;} }
+  public static class StringValue extends VariableValue {public final String value;public StringValue(String v,List<String> k){value=v;} }
+- public static class IntegerValue extends VariableValue {public final long value;public IntegerValue(long v,List<String> k){value=v;} }
+- public static class DecimalValue extends VariableValue {public final double value;public DecimalValue(double v,List<String> k){value=v;} }
++ public static class IntegerValue extends VariableValue {public final long value;private transient final long intValue;public IntegerValue(long v,List<String> k){value=v;intValue=v;} public final long getIntValue(){return intValue;} }
++ public static class DecimalValue extends VariableValue {public final double value;private transient final double decimalValue;public DecimalValue(double v,List<String> k){value=v;decimalValue=v;} public final double getDecimalValue(){return decimalValue;} }
+  public static class BooleanValue extends VariableValue {public final boolean value;public BooleanValue(boolean v,List<String> k){value=v;} }
+ }
+--- /dev/null
++++ b/tests/fixtures/day-numeric-mutants.json
+@@ -0,0 +1,193 @@
++{
++  "schema": 1,
++  "method": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
++  "helper_path": "source/java/recovered/ui/DayTriggerValueMethods.java",
++  "helper_sha256": "b99984c0ca9128f9def8658d874f98d9a8e4529433d0f76f7f86e9e8299cc792",
++  "input_inventory_sha256": "e083bc1996c5c7191bffe837fc0f30e254848a4754676ba0a8a119d23e8f6e79",
++  "reviewed_study_checkpoint_sha256": "d93f08507afce1b6eebe1e3ae64338f86eb04ca01e26118bdd97f98f5d6af631",
++  "host_field_adaptation": "parse-string reads the existing public StringValue.value field; its fault and required case are unchanged.",
++  "controls": [
++    {
++      "name": "integer-zero",
++      "reason": "Measured numeric fault: integer-zero",
++      "edits": [
++        {
++          "find": "return (int) ((VariableValue.IntegerValue) value).getIntValue();",
++          "replace": "return 0;",
++          "count": 1
++        }
++      ],
++      "expected_failure_labels": [
++        "day-numeric:integer-boundary-1"
++      ]
++    },
++    {
++      "name": "decimal-zero",
++      "reason": "Measured numeric fault: decimal-zero",
++      "edits": [
++        {
++          "find": "return (int) ((VariableValue.DecimalValue) value).getDecimalValue();",
++          "replace": "return 0;",
++          "count": 1
++        }
++      ],
++      "expected_failure_labels": [
++        "day-numeric:decimal-boundary-6"
++      ]
++    },
++    {
++      "name": "integer-saturation",
++      "reason": "Measured numeric fault: integer-saturation",
++      "edits": [
++        {
++          "find": "return (int) ((VariableValue.IntegerValue) value).getIntValue();",
++          "replace": "long n = ((VariableValue.IntegerValue) value).getIntValue(); return n > Integer.MAX_VALUE ? Integer.MAX_VALUE : n < Integer.MIN_VALUE ? Integer.MIN_VALUE : (int) n;",
++          "count": 1
++        }
++      ],
++      "expected_failure_labels": [
++        "day-numeric:integer-boundary-15"
++      ]
++    },
++    {
++      "name": "integer-via-double",
++      "reason": "Measured numeric fault: integer-via-double",
++      "edits": [
++        {
++          "find": "return (int) ((VariableValue.IntegerValue) value).getIntValue();",
++          "replace": "return (int) (double) ((VariableValue.IntegerValue) value).getIntValue();",
++          "count": 1
++        }
++      ],
++      "expected_failure_labels": [
++        "day-numeric:integer-boundary-15"
++      ]
++    },
++    {
++      "name": "integer-via-byte",
++      "reason": "Measured numeric fault: integer-via-byte",
++      "edits": [
++        {
++          "find": "return (int) ((VariableValue.IntegerValue) value).getIntValue();",
++          "replace": "return (byte) ((VariableValue.IntegerValue) value).getIntValue();",
++          "count": 1
++        }
++      ],
++      "expected_failure_labels": [
++        "day-numeric:integer-boundary-6"
++      ]
++    },
++    {
++      "name": "decimal-round",
++      "reason": "Measured numeric fault: decimal-round",
++      "edits": [
++        {
++          "find": "return (int) ((VariableValue.DecimalValue) value).getDecimalValue();",
++          "replace": "return (int) Math.round(((VariableValue.DecimalValue) value).getDecimalValue());",
++          "count": 1
++        }
++      ],
++      "expected_failure_labels": [
++        "day-numeric:decimal-boundary-10"
++      ]
++    },
++    {
++      "name": "decimal-floor",
++      "reason": "Measured numeric fault: decimal-floor",
++      "edits": [
++        {
++          "find": "return (int) ((VariableValue.DecimalValue) value).getDecimalValue();",
++          "replace": "return (int) Math.floor(((VariableValue.DecimalValue) value).getDecimalValue());",
++          "count": 1
++        }
++      ],
++      "expected_failure_labels": [
++        "day-numeric:decimal-boundary-3"
++      ]
++    },
++    {
++      "name": "decimal-nan-one",
++      "reason": "Measured numeric fault: decimal-nan-one",
++      "edits": [
++        {
++          "find": "return (int) ((VariableValue.DecimalValue) value).getDecimalValue();",
++          "replace": "double n = ((VariableValue.DecimalValue) value).getDecimalValue(); return Double.isNaN(n) ? 1 : (int) n;",
++          "count": 1
++        }
++      ],
++      "expected_failure_labels": [
++        "day-numeric:decimal-boundary-35"
++      ]
++    },
++    {
++      "name": "decimal-infinity-zero",
++      "reason": "Measured numeric fault: decimal-infinity-zero",
++      "edits": [
++        {
++          "find": "return (int) ((VariableValue.DecimalValue) value).getDecimalValue();",
++          "replace": "double n = ((VariableValue.DecimalValue) value).getDecimalValue(); return Double.isInfinite(n) ? 0 : (int) n;",
++          "count": 1
++        }
++      ],
++      "expected_failure_labels": [
++        "day-numeric:decimal-boundary-33"
++      ]
++    },
++    {
++      "name": "other-minus-one",
++      "reason": "Measured numeric fault: other-minus-one",
++      "edits": [
++        {
++          "find": "        return 0;",
++          "replace": "        return -1;",
++          "count": 1
++        }
++      ],
++      "expected_failure_labels": [
++        "day-numeric:null-value"
++      ]
++    },
++    {
++      "name": "parse-string",
++      "reason": "Measured numeric fault: parse-string",
++      "edits": [
++        {
++          "find": "        return 0;",
++          "replace": "        if (value instanceof VariableValue.StringValue) return Integer.parseInt(((VariableValue.StringValue) value).value);\n        return 0;",
++          "count": 1
++        }
++      ],
++      "expected_failure_labels": [
++        "day-numeric:string-numeric"
++      ]
++    },
++    {
++      "name": "null-contained-throws",
++      "reason": "Measured numeric fault: null-contained-throws",
++      "edits": [
++        {
++          "find": "VariableValue value = entry.getVariable();",
++          "replace": "VariableValue value = entry.getVariable(); if (value == null) throw new NullPointerException(\"deliberate contained-null fault\");",
++          "count": 1
++        }
++      ],
++      "expected_failure_labels": [
++        "day-numeric:null-value"
++      ]
++    },
++    {
++      "name": "null-entry-zero",
++      "reason": "Measured numeric fault: null-entry-zero",
++      "edits": [
++        {
++          "find": "VariableValue value = entry.getVariable();",
++          "replace": "if (entry == null) return 0; VariableValue value = entry.getVariable();",
++          "count": 1
++        }
++      ],
++      "expected_failure_labels": [
++        "day-numeric:null-entry"
++      ]
++    }
++  ]
++}
+--- /dev/null
++++ b/tests/fixtures/original-dependencies.json
+@@ -0,0 +1,24 @@
++{
++  "schema": 1,
++  "purpose": "Test-only original getter instructions; no recovered-method credit and not an application build input.",
++  "dependencies": [
++    {
++      "consumer": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
++      "target": "Lcom/arlosoft/macrodroid/variables/VariableValue$DecimalValue;",
++      "method": "getDecimalValue()D",
++      "original_method_sha256": "89c5a3751f7de7f7bdfaddba05f28651eb8b0b78413e4263e05c9dc795acf7ae"
++    },
++    {
++      "consumer": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
++      "target": "Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
++      "method": "getVariable()Lcom/arlosoft/macrodroid/variables/VariableValue;",
++      "original_method_sha256": "b3674d51703eb3811fc4918e739777c37de3c580bee961343b80c21e014ca5c0"
++    },
++    {
++      "consumer": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
++      "target": "Lcom/arlosoft/macrodroid/variables/VariableValue$IntegerValue;",
++      "method": "getIntValue()J",
++      "original_method_sha256": "1760568e68babc8e32459eed0352a8a20cfdbe35e02b87f2fc6dacc914399993"
++    }
++  ]
++}
+--- a/tests/fixtures/provenance.json
++++ b/tests/fixtures/provenance.json
+@@ -1,10 +1,18 @@
+ {
+   "origin": "User-uploaded APK",
+   "original_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+-  "fixture_sha256": "bfc27193f5fcd067e374ba2715e52e9eac067ea78c752189dba8c0ab0c7bb27e",
+-  "fixture_bytes": 528076,
+-  "methods": 1242,
+-  "classes": 605,
+-  "purpose": "Test-only original instructions; not an application build input.",
+-  "extraction": "Fresh ExtractOracle run against the unchanged original upload; exact registered plugin upload and Widget methods added to the published 1,240-method fixture"
++  "fixture_sha256": "6a7c7f5acc1bca7b2eab584a40d8037a2256756b7244acf9b6ba2f0880b245b4",
++  "fixture_bytes": 531000,
++  "methods": 1246,
++  "classes": 607,
++  "registered_methods": 1243,
++  "dependency_methods": 3,
++  "dependency_declaration_sha256": "e30552cc8ba0520bbee3a993298cb0bcaa973a9d4633649e80362d35b3eda631",
++  "dependency_keys": [
++    "Lcom/arlosoft/macrodroid/variables/VariableValue$DecimalValue;->getDecimalValue()D",
++    "Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;->getVariable()Lcom/arlosoft/macrodroid/variables/VariableValue;",
++    "Lcom/arlosoft/macrodroid/variables/VariableValue$IntegerValue;->getIntValue()J"
++  ],
++  "purpose": "Test-only original instructions; dependencies earn no recovered-method credit. Not an application build input.",
++  "extraction": "Fresh hash-checked ExtractOracle run directly from the exact original APK; all prior 1242-method fixture bytes independently recreated from the new selection."
+ }
+--- /dev/null
++++ b/tests/java/DayNumericControlHarness.java
+@@ -0,0 +1,123 @@
++import com.arlosoft.macrodroid.variables.VariableValue;
++import com.google.gson.*;
++import recovered.ui.DayTriggerValueMethods;
++import java.io.InputStream;
++import java.nio.file.*;
++import java.security.MessageDigest;
++import java.util.*;
++import java.util.zip.ZipFile;
++
++/** A separate, explicitly bounded three-path harness for actual numeric DEX faults.
++ * It does not replace the complete UI suite or claim that a standalone target DEX
++ * was packaged. The owning acceptance driver separately checks the positive target
++ * instruction listing against the signed APK before accepting its control report. */
++public final class DayNumericControlHarness {
++    static final Gson JSON = new GsonBuilder().serializeNulls().disableHtmlEscaping().setPrettyPrinting().create();
++    static void require(boolean value, String message) { if (!value) throw new IllegalStateException(message); }
++    static String sha(InputStream stream) throws Exception {
++        MessageDigest digest = MessageDigest.getInstance("SHA-256"); byte[] buffer = new byte[65536]; int count;
++        while ((count = stream.read(buffer)) != -1) digest.update(buffer, 0, count);
++        return HexFormat.of().formatHex(digest.digest());
++    }
++    static String sha(Path path) throws Exception { try (InputStream stream = Files.newInputStream(path)) { return sha(stream); } }
++    static Path boundPath(JsonObject row, String role) throws Exception {
++        require(row != null && row.keySet().containsAll(Set.of("path", "sha256")), "Missing identity: " + role);
++        Path path = Path.of(row.get("path").getAsString()).toRealPath();
++        require(sha(path).equals(row.get("sha256").getAsString()), "Wrong input identity: " + role);
++        return path;
++    }
++    static Set<Class<?>> requiredClasses() {
++        Set<Class<?>> selected = new LinkedHashSet<>(List.of(DayNumericControlHarness.class, DayTriggerParityCases.class,
++            BytecodeOracle.class, DayTriggerValueMethods.class, VariableValue.class,
++            defpackage.EngineRuntime.class, defpackage.TestClock.class));
++        boolean more = true;
++        while (more) {
++            more = false;
++            for (Class<?> type : new ArrayList<>(selected)) for (Class<?> nested : type.getDeclaredClasses()) more |= selected.add(nested);
++        }
++        return selected;
++    }
++    static JsonObject bindClasses(JsonObject pins) throws Exception {
++        JsonObject found = new JsonObject(); Set<String> names = new TreeSet<>();
++        for (Class<?> type : requiredClasses()) {
++            names.add(type.getName()); JsonObject pin = pins.getAsJsonObject(type.getName());
++            Path expected = boundPath(pin, "class " + type.getName());
++            var resource = type.getResource("/" + type.getName().replace('.', '/') + ".class");
++            require(resource != null && resource.getProtocol().equals("file"), "Class origin is not a file: " + type.getName());
++            Path actual = Path.of(resource.toURI()).toRealPath();
++            require(actual.equals(expected), "Wrong loaded class origin: " + type.getName());
++            JsonObject row = new JsonObject(); row.addProperty("path", actual.toString()); row.addProperty("sha256", sha(actual));
++            found.add(type.getName(), row);
++        }
++        require(pins.keySet().equals(names), "Incomplete or extra class-origin pin inventory");
++        return found;
++    }
++    public static void main(String[] args) throws Exception {
++        require(args.length == 2, "Expected config.json report.json");
++        JsonObject config = JsonParser.parseString(Files.readString(Path.of(args[0]))).getAsJsonObject();
++        require(config.get("schema").getAsInt() == 1, "Unknown numeric control schema");
++        Path fixture = boundPath(config.getAsJsonObject("originalFixture"), "original fixture");
++        Path apk = boundPath(config.getAsJsonObject("rebuiltApk"), "signed APK");
++        Path getterDex = boundPath(config.getAsJsonObject("rebuiltGetterDex"), "signed getter partition");
++        Path targetDex = boundPath(config.getAsJsonObject("targetDex"), "standalone target DEX");
++        require(!sha(fixture).equals(sha(targetDex)), "Original fixture cannot masquerade as rebuilt target");
++        require(!sha(fixture).equals(sha(getterDex)), "Original fixture cannot masquerade as signed getters");
++        String member = config.getAsJsonObject("rebuiltGetterDex").get("apk_member").getAsString();
++        require(member.matches("classes[2-9][0-9]*\\.dex|classes\\.dex"), "Invalid signed DEX member");
++        try (ZipFile zip = new ZipFile(apk.toFile())) {
++            var entry = zip.getEntry(member); require(entry != null && !entry.isDirectory(), "Signed getter partition missing");
++            require(zip.stream().filter(item -> item.getName().equals(member)).count() == 1, "Duplicate signed getter partition");
++            try (InputStream stream = zip.getInputStream(entry)) {
++                require(sha(stream).equals(sha(getterDex)), "Getter partition differs from exact signed APK");
++            }
++        }
++        JsonObject classOrigins = bindClasses(config.getAsJsonObject("classPins"));
++        require(!defpackage.EngineRuntime.active && !defpackage.TestClock.enabled, "Unexpected enabled host runtime hook");
++        BytecodeOracle original = new BytecodeOracle(fixture, DayTriggerParityCases.ALL);
++        BytecodeOracle rebuilt = new BytecodeOracle(getterDex, DayTriggerParityCases.GETTERS);
++        rebuilt.add(targetDex, Set.of(DayTriggerParityCases.KEY));
++        require(original.methods.keySet().equals(DayTriggerParityCases.ALL), "Original numeric method/dependency inventory differs");
++        require(rebuilt.methods.keySet().equals(DayTriggerParityCases.ALL), "Rebuilt numeric method/dependency inventory differs");
++        List<DayTriggerParityCases.Input> inputs = DayTriggerParityCases.cases();
++        JsonArray rows = new JsonArray(), mismatches = new JsonArray(); int unsupported = 0, expectedFailures = 0;
++        for (DayTriggerParityCases.Input input : inputs) {
++            DayTriggerParityCases.Observed old = DayTriggerParityCases.observe(() -> original.invoke(DayTriggerParityCases.KEY, DayTriggerParityCases.entry(input)));
++            DayTriggerParityCases.Observed java = DayTriggerParityCases.observe(() -> DayTriggerValueMethods.numericValue(DayTriggerParityCases.entry(input)));
++            DayTriggerParityCases.Observed fresh = DayTriggerParityCases.observe(() -> rebuilt.invoke(DayTriggerParityCases.KEY, DayTriggerParityCases.entry(input)));
++            JsonObject row = DayTriggerParityCases.inputIdentity(input);
++            if (input.kind().equals("null-entry")) row.addProperty("expectedExceptionClass", "java.lang.NullPointerException");
++            else row.addProperty("expected", DayTriggerParityCases.expected(input));
++            row.add("original", JSON.toJsonTree(old)); row.add("java", JSON.toJsonTree(java)); row.add("rebuilt", JSON.toJsonTree(fresh));
++            boolean same = DayTriggerParityCases.sameScopedOutcome(input, old, java) && DayTriggerParityCases.sameScopedOutcome(input, old, fresh);
++            boolean correct = DayTriggerParityCases.matchesExpected(input, old) && DayTriggerParityCases.matchesExpected(input, java) && DayTriggerParityCases.matchesExpected(input, fresh);
++            row.addProperty("sameScopedOutcome", same); row.addProperty("allPathsMatchIndependentExpected", correct);
++            if (!same || !correct) mismatches.add("day-numeric:" + input.name());
++            for (var observed : List.of(old, java, fresh)) if (observed.unsupported()) unsupported++;
++            if (!correct) expectedFailures++;
++            rows.add(row);
++        }
++        JsonObject oldCoverage = DayTriggerParityCases.coverage(original, DayTriggerParityCases.ALL);
++        JsonObject rebuiltCoverage = DayTriggerParityCases.coverage(rebuilt, DayTriggerParityCases.ALL);
++        require(classOrigins.equals(bindClasses(config.getAsJsonObject("classPins"))), "Loaded class bytes changed during execution");
++        for (String role : List.of("originalFixture", "rebuiltApk", "rebuiltGetterDex", "targetDex")) boundPath(config.getAsJsonObject(role), role + " after execution");
++        JsonObject report = new JsonObject();
++        report.addProperty("schema", 1); report.addProperty("scope", "One numeric method with three original field-getter dependencies. A standalone target DEX is tested; packaging equality is a separate acceptance-driver check. No Android/ART/calendar execution.");
++        report.addProperty("exceptionComparisonScope", "Only the explicit null-entry NPE compares its class. Every raw exception message is retained; all other complete outcomes compare.");
++        report.addProperty("primaryMethod", DayTriggerParityCases.KEY); report.addProperty("primaryRecoveredMethods", 1);
++        report.addProperty("originalDependencyMethods", 3); report.add("dependencyKeys", JSON.toJsonTree(new TreeSet<>(DayTriggerParityCases.GETTERS)));
++        report.addProperty("cases", inputs.size()); report.addProperty("executionPaths", 3); report.addProperty("androidRuntime", false);
++        report.addProperty("inputInventorySha256", DayTriggerParityCases.inputInventorySha256(inputs));
++        report.addProperty("mismatchCount", mismatches.size()); report.addProperty("unsupportedCount", unsupported);
++        report.addProperty("independentExpectedChecks", inputs.size()); report.addProperty("independentExpectedFailures", expectedFailures);
++        report.add("inputIdentities", config.deepCopy()); report.add("loadedClassOrigins", classOrigins);
++        report.add("originalCoverage", oldCoverage); report.add("rebuiltCoverage", rebuiltCoverage);
++        report.add("mismatches", mismatches); report.add("observations", rows);
++        report.addProperty("passed", mismatches.isEmpty() && unsupported == 0 && expectedFailures == 0
++                && oldCoverage.get("allInstructionsAndEdgesExecuted").getAsBoolean()
++                && rebuiltCoverage.get("allInstructionsAndEdgesExecuted").getAsBoolean());
++        Files.writeString(Path.of(args[1]), JSON.toJson(report) + "\n");
++        System.out.println("DAY_NUMERIC_CONTROL cases=" + inputs.size() + " paths=3 mismatches=" + mismatches.size()
++                + " unsupported=" + unsupported + " expectedFailures=" + expectedFailures + " passed=" + report.get("passed"));
++        if (!report.get("passed").getAsBoolean()) System.exit(3);
++    }
++}
+--- /dev/null
++++ b/tests/java/DayTriggerParityCases.java
+@@ -0,0 +1,243 @@
++import com.android.tools.smali.dexlib2.iface.instruction.Instruction;
++import com.android.tools.smali.dexlib2.iface.instruction.OffsetInstruction;
++import com.arlosoft.macrodroid.variables.VariableValue;
++import com.google.gson.*;
++import java.math.BigInteger;
++import java.nio.file.*;
++import java.security.MessageDigest;
++import java.util.*;
++
++/** One recovered numeric method. The three original getters are fixture dependencies,
++ * not recovered methods. Host/JVM/interpreter evidence does not establish Android,
++ * calendar, alarm, time-zone, persistence or lifecycle behavior. */
++public final class DayTriggerParityCases {
++    static final String BASE = "Lcom/arlosoft/macrodroid/variables/VariableValue";
++    static final String KEY = "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(" + BASE + "$DictionaryEntry;)I";
++    static final String PRIMARY = KEY;
++    static final Set<String> GETTERS = Set.of(
++        BASE + "$DictionaryEntry;->getVariable()" + BASE + ";",
++        BASE + "$IntegerValue;->getIntValue()J",
++        BASE + "$DecimalValue;->getDecimalValue()D");
++    static final Set<String> ALL;
++    static { TreeSet<String> keys = new TreeSet<>(GETTERS); keys.add(KEY); ALL = Collections.unmodifiableSet(keys); }
++    static final String DEPENDENCIES_SHA256 = "e30552cc8ba0520bbee3a993298cb0bcaa973a9d4633649e80362d35b3eda631";
++    static final String INPUT_INVENTORY_SHA256 = "e083bc1996c5c7191bffe837fc0f30e254848a4754676ba0a8a119d23e8f6e79";
++    static final Gson JSON = new GsonBuilder().serializeNulls().disableHtmlEscaping().create();
++    static Input current;
++    static final JsonArray rawExceptions = new JsonArray();
++    record Input(String name, String kind, long bits, String text) {}
++    record Observed(Integer value, String exceptionClass, String rawMessage, boolean unsupported) {}
++    interface Throwing { Object get() throws Throwable; }
++
++    static void require(boolean condition, String message) { if (!condition) throw new IllegalStateException(message); }
++    static String sha(byte[] bytes) {
++        try { return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(bytes)); }
++        catch (java.security.NoSuchAlgorithmException error) { throw new AssertionError(error); }
++    }
++    static JsonObject inputIdentity(Input input) {
++        JsonObject row = new JsonObject(); row.addProperty("case", input.name()); row.addProperty("kind", input.kind());
++        row.addProperty("rawBitsHex", String.format(Locale.ROOT, "%016x", input.bits()));
++        if (input.text() != null) row.addProperty("text", input.text());
++        return row;
++    }
++    static String inputInventorySha256(List<Input> inputs) {
++        JsonArray rows = new JsonArray(); for (Input input : inputs) rows.add(inputIdentity(input));
++        return sha(JSON.toJson(rows).getBytes(java.nio.charset.StandardCharsets.UTF_8));
++    }
++    static Set<String> loadDependencies(Path root, Set<String> registeredKeys) throws Exception {
++        require(registeredKeys.contains(KEY), "Numeric primary is not registered");
++        byte[] data = Files.readAllBytes(root.resolve("tests/fixtures/original-dependencies.json"));
++        require(sha(data).equals(DEPENDENCIES_SHA256), "Numeric original dependency declaration changed");
++        JsonObject manifest = JsonParser.parseString(new String(data, java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();
++        require(manifest.get("schema").getAsInt() == 1, "Unknown original dependency schema");
++        Set<String> selected = new TreeSet<>();
++        for (JsonElement item : manifest.getAsJsonArray("dependencies")) {
++            JsonObject row = item.getAsJsonObject(); String key = row.get("target").getAsString() + "->" + row.get("method").getAsString();
++            require(row.get("consumer").getAsString().equals(KEY), "Wrong numeric dependency consumer");
++            require(!registeredKeys.contains(key) && selected.add(key), "Registered or duplicate dependency");
++        }
++        require(selected.equals(GETTERS), "Exactly the three original numeric getters are required");
++        return Collections.unmodifiableSet(selected);
++    }
++    static Observed observe(Throwing body) {
++        try {
++            Object result = body.get();
++            if (!(result instanceof Integer)) return new Observed(null, "INVALID_RETURN_TYPE", String.valueOf(result), true);
++            return new Observed((Integer) result, null, null, false);
++        } catch (Throwable error) {
++            return new Observed(null, error.getClass().getName(), error.getMessage(), error instanceof BytecodeOracle.Unsupported);
++        }
++    }
++    static VariableValue.DictionaryEntry entry(Input input) {
++        if (input.kind().equals("null-entry")) return null;
++        VariableValue value = switch (input.kind()) {
++            case "integer" -> new VariableValue.IntegerValue(input.bits(), null);
++            case "decimal" -> new VariableValue.DecimalValue(Double.longBitsToDouble(input.bits()), null);
++            case "string" -> new VariableValue.StringValue(input.text(), null);
++            case "boolean" -> new VariableValue.BooleanValue(input.bits() != 0, null);
++            case "dictionary" -> new VariableValue.Dictionary(new ArrayList<>(), false, null);
++            case "nested-entry" -> new VariableValue.DictionaryEntry("nested", new VariableValue.IntegerValue(input.bits(), null), null);
++            case "null-value" -> null;
++            default -> throw new IllegalArgumentException(input.kind());
++        };
++        return new VariableValue.DictionaryEntry("numeric", value, null);
++    }
++    // Independent expected arithmetic: modular signed-integer interpretation and
++    // integer-only IEEE-754 sign/exponent/significand decomposition. No floating
++    // narrowing cast, Math.round/floor or recovered getter computes expectations.
++    static Integer expected(Input input) {
++        if (input.kind().equals("null-entry")) return null;
++        if (input.kind().equals("integer")) {
++            BigInteger unsigned = BigInteger.valueOf(input.bits()).mod(BigInteger.ONE.shiftLeft(32));
++            return (unsigned.testBit(31) ? unsigned.subtract(BigInteger.ONE.shiftLeft(32)) : unsigned).intValueExact();
++        }
++        if (input.kind().equals("decimal")) {
++            long bits = input.bits(), exponent = (bits >>> 52) & 0x7ffL, fraction = bits & 0x000fffffffffffffL;
++            boolean negative = bits < 0;
++            if (exponent == 0x7ffL) return fraction != 0 ? 0 : negative ? Integer.MIN_VALUE : Integer.MAX_VALUE;
++            BigInteger significand = BigInteger.valueOf(fraction);
++            if (exponent != 0) significand = significand.setBit(52);
++            int shift = Math.toIntExact((exponent == 0 ? 1 : exponent) - 1023 - 52);
++            BigInteger magnitude = shift >= 0 ? significand.shiftLeft(shift) : significand.shiftRight(-shift);
++            BigInteger signed = negative ? magnitude.negate() : magnitude;
++            if (signed.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0) return Integer.MAX_VALUE;
++            if (signed.compareTo(BigInteger.valueOf(Integer.MIN_VALUE)) < 0) return Integer.MIN_VALUE;
++            return signed.intValueExact();
++        }
++        return 0;
++    }
++    static boolean matchesExpected(Input input, Observed output) {
++        if (output.unsupported()) return false;
++        if (input.kind().equals("null-entry"))
++            return output.value() == null && "java.lang.NullPointerException".equals(output.exceptionClass());
++        return output.exceptionClass() == null && Objects.equals(expected(input), output.value());
++    }
++    static boolean sameScopedOutcome(Input input, Observed a, Observed b) {
++        if (input.kind().equals("null-entry")) return matchesExpected(input, a) && matchesExpected(input, b);
++        return a.equals(b);
++    }
++    static List<Input> cases() {
++        List<Input> out = new ArrayList<>();
++        long[] integers = {0, 1, -1, 2, -2, 127, 128, 255, 256, 32767, 32768, 65535, 65536,
++            2147483646L, 2147483647L, 2147483648L, 2147483649L, -2147483647L, -2147483648L,
++            -2147483649L, -2147483650L, 4294967295L, 4294967296L, 4294967297L, -4294967295L,
++            -4294967296L, -4294967297L, 9007199254740991L, 9007199254740992L, 9007199254740993L,
++            -9007199254740991L, -9007199254740992L, -9007199254740993L, Long.MAX_VALUE, Long.MIN_VALUE};
++        for (int i = 0; i < integers.length; i++) out.add(new Input("integer-boundary-" + i, "integer", integers[i], null));
++        for (int bit = 0; bit < 64; bit++) {
++            long value = 1L << bit;
++            out.add(new Input("integer-bit-" + bit, "integer", value, null));
++            out.add(new Input("integer-complement-" + bit, "integer", ~value, null));
++        }
++        Random random = new Random(0x567800896700008L);
++        for (int i = 0; i < 384; i++) out.add(new Input("integer-seeded-" + i, "integer", random.nextLong(), null));
++        double[] decimals = {0.0d, -0.0d, 0.1d, -0.1d, 0.999d, -0.999d, 1.0d, -1.0d, 1.1d, -1.1d,
++            1.5d, -1.5d, 1.9d, -1.9d, 2.9d, -2.9d, 2147483646.75d, 2147483647.0d, 2147483647.75d,
++            2147483648.0d, -2147483647.75d, -2147483648.0d, -2147483648.75d, 4294967296.0d,
++            -4294967296.0d, 9007199254740991.0d, -9007199254740991.0d, Double.MIN_VALUE,
++            -Double.MIN_VALUE, Double.MIN_NORMAL, -Double.MIN_NORMAL, Double.MAX_VALUE, -Double.MAX_VALUE,
++            Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NaN};
++        for (int i = 0; i < decimals.length; i++) out.add(new Input("decimal-boundary-" + i, "decimal", Double.doubleToRawLongBits(decimals[i]), null));
++        for (double pivot : new double[]{-2147483649d, -2147483648d, -2147483647d, -2d, -1d, 0d, 1d, 2d, 2147483646d, 2147483647d, 2147483648d}) {
++            double value = pivot;
++            for (int i = 0; i < 8; i++) {
++                value = Math.nextDown(value);
++                out.add(new Input("decimal-next-down-" + Double.toHexString(pivot) + "-" + i, "decimal", Double.doubleToRawLongBits(value), null));
++            }
++            value = pivot;
++            for (int i = 0; i < 8; i++) {
++                value = Math.nextUp(value);
++                out.add(new Input("decimal-next-up-" + Double.toHexString(pivot) + "-" + i, "decimal", Double.doubleToRawLongBits(value), null));
++            }
++        }
++        long[] special = {1L, 0x8000000000000001L, 0x000fffffffffffffL, 0x800fffffffffffffL,
++            0x7ff0000000000001L, 0x7ff8000000000001L, 0x7fffffffffffffffL,
++            0xfff0000000000001L, 0xfff8000000000001L, 0xffffffffffffffffL};
++        for (int i = 0; i < special.length; i++) out.add(new Input("decimal-special-bits-" + i, "decimal", special[i], null));
++        for (int i = 0; i < 512; i++) out.add(new Input("decimal-seeded-bits-" + i, "decimal", random.nextLong(), null));
++        out.add(new Input("null-entry", "null-entry", 0, null));
++        out.add(new Input("null-value", "null-value", 0, null));
++        out.add(new Input("string-numeric", "string", 0, "27"));
++        out.add(new Input("string-decimal", "string", 0, "1.9"));
++        out.add(new Input("string-empty", "string", 0, ""));
++        out.add(new Input("string-null", "string", 0, null));
++        out.add(new Input("boolean-false", "boolean", 0, null));
++        out.add(new Input("boolean-true", "boolean", 1, null));
++        out.add(new Input("dictionary", "dictionary", 0, null));
++        out.add(new Input("nested-entry", "nested-entry", 91, null));
++        require(out.stream().map(Input::name).distinct().count() == out.size(), "Duplicate case identifiers");
++        require(out.size() == 1291 && inputInventorySha256(out).equals(INPUT_INVENTORY_SHA256), "Numeric case inventory changed");
++        return out;
++    }
++    static JsonObject coverage(BytecodeOracle oracle, Set<String> keys) {
++        JsonObject output = new JsonObject(); JsonArray methods = new JsonArray();
++        int total = 0, covered = 0, edgeTotal = 0, edgeCovered = 0;
++        for (String key : new TreeSet<>(keys)) {
++            var method = oracle.methods.get(key); require(method != null, "Coverage method missing: " + key);
++            Set<Integer> required = new TreeSet<>(); Set<String> requiredEdges = new TreeSet<>(); int pc = 0;
++            for (Instruction instruction : method.getImplementation().getInstructions()) {
++                required.add(pc);
++                if (instruction.getOpcode().name().startsWith("IF_")) {
++                    requiredEdges.add(pc + ":" + (pc + instruction.getCodeUnits()));
++                    requiredEdges.add(pc + ":" + (pc + ((OffsetInstruction) instruction).getCodeOffset()));
++                }
++                pc += instruction.getCodeUnits();
++            }
++            Set<Integer> actual = new TreeSet<>(oracle.executed.getOrDefault(key, Set.of()));
++            Set<String> actualEdges = new TreeSet<>(oracle.branchEdges.getOrDefault(key, Set.of()));
++            require(required.containsAll(actual) && requiredEdges.containsAll(actualEdges), "Unexpected coverage coordinates");
++            Set<Integer> missing = new TreeSet<>(required); missing.removeAll(actual);
++            Set<String> missingEdges = new TreeSet<>(requiredEdges); missingEdges.removeAll(actualEdges);
++            JsonObject row = new JsonObject(); row.addProperty("key", key); row.addProperty("primaryRecovery", key.equals(PRIMARY));
++            row.add("requiredOffsets", new Gson().toJsonTree(required)); row.add("executedOffsets", new Gson().toJsonTree(actual));
++            row.add("missingOffsets", new Gson().toJsonTree(missing)); row.add("requiredEdges", new Gson().toJsonTree(requiredEdges));
++            row.add("executedEdges", new Gson().toJsonTree(actualEdges)); row.add("missingEdges", new Gson().toJsonTree(missingEdges));
++            row.addProperty("instructionCount", required.size()); row.addProperty("exceptionRegions", method.getImplementation().getTryBlocks().size());
++            methods.add(row); total += required.size(); covered += actual.size(); edgeTotal += requiredEdges.size(); edgeCovered += actualEdges.size();
++        }
++        output.add("methods", methods); output.addProperty("instructionCount", total); output.addProperty("executedInstructionCount", covered);
++        output.addProperty("requiredBranchEdges", edgeTotal); output.addProperty("executedBranchEdges", edgeCovered);
++        output.addProperty("allInstructionsAndEdgesExecuted", total == covered && edgeTotal == edgeCovered);
++        return output;
++    }
++
++    static void recordException(String path, Throwable error, JsonObject compared) {
++        require(current != null, "Numeric exception without its current input");
++        JsonObject row = inputIdentity(current); row.addProperty("path", path);
++        row.addProperty("exceptionClass", error.getClass().getName()); row.addProperty("rawMessage", error.getMessage());
++        row.addProperty("rawMessageWasNull", error.getMessage() == null);
++        rawExceptions.add(row);
++        boolean scopedNullEntry = current.kind().equals("null-entry") && error instanceof NullPointerException;
++        if (!scopedNullEntry) {
++            compared.addProperty("rawExceptionMessage", error.getMessage());
++            compared.addProperty("rawExceptionMessageWasNull", error.getMessage() == null);
++        }
++    }
++    static void run() {
++        List<Input> inputs = cases();
++        for (Input input : inputs) {
++            java.util.function.Supplier<Object[]> make = () -> { current = input; return new Object[]{entry(input)}; };
++            if (input.kind().equals("null-entry")) {
++                JsonObject expected = new JsonObject(); expected.addProperty("exception", "java.lang.NullPointerException");
++                UiParityTests.check(KEY, "day-numeric:" + input.name(), make, UiParityTests.UNKNOWN, false, expected);
++            } else UiParityTests.check(KEY, "day-numeric:" + input.name(), make, expected(input));
++        }
++    }
++    static boolean addReport(JsonObject report, BytecodeOracle original, BytecodeOracle rebuilt) {
++        JsonObject old = coverage(original, ALL), fresh = rebuilt == null ? null : coverage(rebuilt, ALL);
++        report.addProperty("dayNumericRecoveredMethods", 1);
++        report.addProperty("dayNumericOriginalDependencyMethods", GETTERS.size());
++        report.add("dayNumericOriginalDependencyKeys", JSON.toJsonTree(new TreeSet<>(GETTERS)));
++        report.addProperty("dayNumericInputInventorySha256", inputInventorySha256(cases()));
++        report.add("dayNumericOriginalCoverage", old);
++        if (fresh != null) report.add("dayNumericRebuiltCoverage", fresh);
++        report.add("dayNumericRawExceptions", rawExceptions);
++        report.addProperty("dayNumericExceptionComparisonScope", "Only the explicit null-entry NPE compares its class. Raw messages are retained. Other exceptions include their complete raw message in comparison.");
++        boolean passed = old.get("allInstructionsAndEdgesExecuted").getAsBoolean()
++            && old.get("instructionCount").getAsInt() == 32 && old.get("requiredBranchEdges").getAsInt() == 4
++            && (fresh == null || (fresh.get("allInstructionsAndEdgesExecuted").getAsBoolean()
++                && fresh.get("instructionCount").getAsInt() == 25 && fresh.get("requiredBranchEdges").getAsInt() == 4));
++        report.addProperty("dayNumericInstructionAndConditionalCoverage", passed);
++        return passed;
++    }
++}
+--- a/tests/java/UiParityTests.java
++++ b/tests/java/UiParityTests.java
+@@ -88,7 +88,7 @@
+         catch(InvocationTargetException e){throw e.getCause();}
+     }
+     static JsonObject outcome(String key,String path,Supplier<Object[]> make,boolean serializeAgain) {
+-        EngineRuntime.active=false;UiTrace.reset();CoreTrace.reset();TouchControl.reset();SceneControl.reset();SceneParityCases.current=null;PluginControl.reset();PluginParityCases.current=null;PluginUploadControl.reset();PluginUploadParityCases.current=null;WidgetControl.reset();WidgetParityCases.current=null;
++        EngineRuntime.active=false;UiTrace.reset();CoreTrace.reset();TouchControl.reset();SceneControl.reset();SceneParityCases.current=null;PluginControl.reset();PluginParityCases.current=null;PluginUploadControl.reset();PluginUploadParityCases.current=null;WidgetControl.reset();WidgetParityCases.current=null;DayTriggerParityCases.current=null;
+         Object[] args=make.get();UiTrace.calls.clear();CoreTrace.calls.clear();
+         JsonObject result=new JsonObject();
+         try {
+@@ -110,6 +110,7 @@
+             if(key.equals(PluginParityCases.KEY)||key.equals(PluginUploadParityCases.KEY))PluginControl.escaped=e;
+             if(key.equals(WidgetParityCases.KEY))WidgetControl.escaped=e;
+             result.addProperty("exception",e.getClass().getName());
++            if(key.equals(DayTriggerParityCases.KEY))DayTriggerParityCases.recordException(path,e,result);
+             boolean supported=e instanceof NullPointerException || e instanceof ClassCastException || e instanceof IndexOutOfBoundsException || e instanceof IllegalStateException || e instanceof SecurityException || e instanceof AssertionError || e instanceof java.io.IOException || e instanceof kotlin.UninitializedPropertyAccessException || e instanceof retrofit2.HttpException || e instanceof IllegalArgumentException || e instanceof java.util.NoSuchElementException;
+             if(e instanceof BytecodeOracle.Unsupported || !supported) {unsupported++;result.addProperty("unsupported",e.toString());}
+         }
+@@ -439,12 +440,15 @@
+     public static void main(String[] args)throws Exception {
+         Path root=Paths.get(args[0]);
+         for(JsonElement element:JsonParser.parseString(Files.readString(root.resolve("source/ui-methods.json"))).getAsJsonArray()) {JsonObject entry=element.getAsJsonObject();registry.put(entry.get("target").getAsString()+"->"+entry.get("method").getAsString(),entry);}
+-        original=new BytecodeOracle(root.resolve("tests/fixtures/original-methods.dex"),registry.keySet());
+-        if(original.methods.size()!=registry.size())throw new IllegalStateException("Original UI fixture incomplete");
+-        if(args.length>1) {rebuilt=new BytecodeOracle();try(var stream=Files.list(Paths.get(args[1]))) {for(Path path:stream.filter(p->p.toString().endsWith(".dex")).toList())rebuilt.add(path,registry.keySet());}if(rebuilt.methods.size()!=registry.size())throw new IllegalStateException("Rebuilt UI methods incomplete");}
++        Set<String> fixtureKeys=new TreeSet<>(registry.keySet());
++        if(registry.containsKey(DayTriggerParityCases.KEY))fixtureKeys.addAll(DayTriggerParityCases.loadDependencies(root,registry.keySet()));
++        original=new BytecodeOracle(root.resolve("tests/fixtures/original-methods.dex"),fixtureKeys);
++        if(!original.methods.keySet().equals(fixtureKeys))throw new IllegalStateException("Original UI fixture incomplete");
++        if(args.length>1) {rebuilt=new BytecodeOracle();try(var stream=Files.list(Paths.get(args[1]))) {for(Path path:stream.filter(p->p.toString().endsWith(".dex")).toList())rebuilt.add(path,fixtureKeys);}if(!rebuilt.methods.keySet().equals(fixtureKeys))throw new IllegalStateException("Rebuilt UI methods or original getter dependencies incomplete");}
+         WidgetParityCases.configure(original);if(rebuilt!=null)WidgetParityCases.configure(rebuilt);
+         sound();sms();touch();parcel();blockTouches();SceneParityCases.run();PluginParityCases.run();PluginUploadParityCases.run();
+         if(registry.containsKey(WidgetParityCases.KEY))WidgetParityCases.run();
++        if(registry.containsKey(DayTriggerParityCases.KEY))DayTriggerParityCases.run();
+         JsonObject report=new JsonObject();report.addProperty("passed",mismatches==0&&unsupported==0&&counts.keySet().equals(registry.keySet()));report.addProperty("cases",cases);report.addProperty("failedCases",mismatches);report.addProperty("unsupportedExecutions",unsupported);report.addProperty("independentExpectedResultChecks",expectedChecks);report.addProperty("expectedResultFailures",expectedFailures);report.addProperty("methodsCovered",counts.size());report.add("methodKeys",G.toJsonTree(counts.keySet()));report.addProperty("paths",rebuilt==null?2:3);report.addProperty("androidRuntime",false);report.add("methods",G.toJsonTree(counts));report.add("failures",G.toJsonTree(failures));report.add("failedCaseLabels",G.toJsonTree(failedLabels));
+         JsonObject coverage=new JsonObject();boolean blockBranchesCovered=false,sceneBranchesCovered=false,pluginBranchesCovered=false,uploadBranchesCovered=false,widgetBranchesCovered=!registry.containsKey(WidgetParityCases.KEY);
+         for(String key:registry.keySet()) {
+@@ -479,6 +483,7 @@
+         report.addProperty("widgetInvalidLabelReturnUsesInjectedReturningBoundary",registry.containsKey(WidgetParityCases.KEY));
+         report.add("hostParentConstructorAdapterCalls",G.toJsonTree(original.parentConstructorAdapterCalls));
+         report.add("widgetGeneratedNullMessageExclusions",G.toJsonTree(WidgetParityCases.generatedNullMessageExclusions));
++        if(registry.containsKey(DayTriggerParityCases.KEY)&&!DayTriggerParityCases.addReport(report,original,rebuilt))report.addProperty("passed",false);
+         if(!blockBranchesCovered||!sceneBranchesCovered||!pluginBranchesCovered||!uploadBranchesCovered||!widgetBranchesCovered)report.addProperty("passed",false);
+         Path reportPath=System.getProperty("ui.report")==null?root.resolve("reports/java-ui-"+(rebuilt==null?"two":"three")+"-path-parity.json"):Paths.get(System.getProperty("ui.report"));
+         Files.writeString(reportPath,G.toJson(report));
+--- a/tests/test_build.py
++++ b/tests/test_build.py
+@@ -100,7 +100,7 @@
+     def test_original_inventory_count(self):self.assertEqual(len(self.index),71267)
+     def test_method_inventory_count(self):self.assertEqual(sum(i['methods'] for i in self.index.values()),349972)
+     def test_nine_partitions(self):self.assertEqual(len(json.loads((ROOT/'source/partitions.json').read_text())),9)
+-    def test_registry_count(self):self.assertEqual(len(self.registry),1242)
++    def test_registry_count(self):self.assertEqual(len(self.registry),1243)
+     def test_registry_unique(self):self.assertEqual(len({(e['target'],e['method']) for e in self.registry}),len(self.registry))
+     def test_registered_classes_count(self):self.assertEqual(len({e['target'] for e in self.registry}),605)
+     def test_constant_coverage(self):self.assertEqual(sum(e.get('proof_family')=='constant' for e in self.registry),1119)
+@@ -112,7 +112,12 @@
+     def test_fixture_provenance(self):
+         p=json.loads((ROOT/'tests/fixtures/provenance.json').read_text())
+         self.assertEqual(hashlib.sha256((ROOT/'tests/fixtures/original-methods.dex').read_bytes()).hexdigest(),p['fixture_sha256'])
+-        self.assertEqual(p['methods'],1242)
++        self.assertEqual(p['methods'],1246)
++        self.assertEqual(p['registered_methods'],1243)
++        self.assertEqual(p['dependency_methods'],3)
++        self.assertEqual(p['methods'],p['registered_methods']+p['dependency_methods'])
++        self.assertEqual(p['classes'],607)
++        self.assertEqual(p['dependency_declaration_sha256'],hashlib.sha256((ROOT/'tests/fixtures/original-dependencies.json').read_bytes()).hexdigest())
+     def test_carrier_has_no_executable_dex_or_compiled_resources(self):
+         with zipfile.ZipFile(ROOT/'source/payload.zip') as z:
+             self.assertIsNone(z.testzip())
+--- /dev/null
++++ b/tests/test_day_numeric.py
+@@ -0,0 +1,324 @@
++"""Reject drift in numeric method credit, original getter selection and proof rows.
++
++The selector tests execute the real ExtractOracle Java implementation. The small
++coverage fixtures isolate report validation; actual 1,291-case observations and
++compiled fault detection are separate acceptance evidence.
++"""
++from __future__ import annotations
++
++import copy
++import hashlib
++import json
++import os
++from pathlib import Path
++import shutil
++import subprocess
++import tempfile
++import time
++import unittest
++
++import build
++import day_numeric_dex_controls as numeric
++import ui_mutation_catalog as catalog
++
++ROOT = Path(__file__).resolve().parents[1]
++
++
++def read(path):
++    return json.loads(path.read_text())
++
++
++def copy_inputs(folder):
++    for name in ('source/java-method-map.json', numeric.DEPENDENCY_PATH,
++                 catalog.DAY_CATALOG_PATH, catalog.DAY_HELPER_PATH):
++        target = folder / name
++        target.parent.mkdir(parents=True, exist_ok=True)
++        target.write_bytes((ROOT / name).read_bytes())
++
++
++class DayNumericCatalogTests(unittest.TestCase):
++    def test_all_thirteen_real_source_mutations(self):
++        source = (ROOT / catalog.DAY_HELPER_PATH).read_bytes()
++        jobs = catalog.load_day_mutations(ROOT)
++        self.assertEqual(len(jobs), 13)
++        self.assertEqual({job['name'].removeprefix('day-numeric-') for job in jobs}, set(numeric.JAVA_FAILURE_COUNTS))
++        self.assertTrue(all(job['mutant'].encode() != source and job['day_numeric'] is True
++                            and job['widget'] is False and job['required_cases'] for job in jobs))
++        self.assertEqual((ROOT / catalog.DAY_HELPER_PATH).read_bytes(), source)
++
++    def test_changed_catalog_bytes_are_rejected(self):
++        with tempfile.TemporaryDirectory() as temp:
++            root = Path(temp); copy_inputs(root)
++            path = root / catalog.DAY_CATALOG_PATH
++            path.write_bytes(path.read_bytes() + b'\n')
++            with self.assertRaisesRegex(RuntimeError, 'catalog differs'):
++                catalog.load_day_mutations(root)
++
++    def test_changed_positive_helper_is_rejected(self):
++        with tempfile.TemporaryDirectory() as temp:
++            root = Path(temp); copy_inputs(root)
++            path = root / catalog.DAY_HELPER_PATH
++            path.write_bytes(path.read_bytes() + b'\n')
++            with self.assertRaisesRegex(RuntimeError, 'positive source'):
++                catalog.load_day_mutations(root)
++
++    def test_exact_recovered_and_uncredited_dependency_inventory(self):
++        registry = read(ROOT / 'source/java-method-map.json')
++        dependencies = numeric.validate_dependencies(ROOT, registry)
++        self.assertEqual(len(registry), 1243)
++        self.assertEqual(len({row['target'] for row in registry}), 605)
++        self.assertEqual(dependencies, set(numeric.GETTERS))
++        keys = {row['target'] + '->' + row['method'] for row in registry}
++        self.assertEqual(len(keys | dependencies), 1246)
++        self.assertFalse(keys & dependencies)
++        self.assertEqual(len({key.split('->', 1)[0] for key in keys | dependencies}), 607)
++
++    def test_duplicate_numeric_consumer_is_rejected(self):
++        registry = read(ROOT / 'source/java-method-map.json')
++        registry.append(copy.deepcopy(next(row for row in registry if row['target'] + '->' + row['method'] == numeric.METHOD)))
++        with self.assertRaisesRegex(RuntimeError, 'absent or duplicated'):
++            numeric.validate_dependencies(ROOT, registry)
++
++    def test_original_getter_cannot_be_credited_as_recovered(self):
++        registry = read(ROOT / 'source/java-method-map.json')
++        row = read(ROOT / numeric.DEPENDENCY_PATH)['dependencies'][0]
++        registry.append({'target': row['target'], 'method': row['method']})
++        with self.assertRaisesRegex(RuntimeError, 'credited'):
++            numeric.validate_dependencies(ROOT, registry)
++
++    def test_dependency_declaration_bytes_are_required(self):
++        with tempfile.TemporaryDirectory() as temp:
++            root = Path(temp); copy_inputs(root)
++            path = root / numeric.DEPENDENCY_PATH
++            data = read(path); data['dependencies'] = []
++            path.write_text(json.dumps(data))
++            with self.assertRaisesRegex(RuntimeError, 'dependency bytes'):
++                numeric.validate_dependencies(root, read(root / 'source/java-method-map.json'))
++
++    def test_numeric_registry_cannot_bind_another_helper_method(self):
++        with tempfile.TemporaryDirectory() as temp:
++            root = Path(temp); copy_inputs(root)
++            path = root / 'source/java-method-map.json'; registry = read(path)
++            next(row for row in registry if row['target'] + '->' + row['method'] == numeric.METHOD)['helper_method'] = 'other'
++            path.write_text(json.dumps(registry))
++            with self.assertRaisesRegex(RuntimeError, 'registry binding'):
++                numeric.target_entry(root)
++
++
++def report_identity():
++    return {'schema': 1, 'cases': 1291, 'executionPaths': 3, 'primaryMethod': numeric.METHOD,
++            'primaryRecoveredMethods': 1, 'originalDependencyMethods': 3, 'androidRuntime': False,
++            'dependencyKeys': sorted(numeric.GETTERS), 'inputInventorySha256': catalog.DAY_INPUT_INVENTORY_SHA256}
++
++
++def coverage_fixture(count=32):
++    methods = []
++    for key in sorted({numeric.METHOD, *numeric.GETTERS}):
++        primary = key == numeric.METHOD
++        size = count - 7 if primary else 3 if 'DictionaryEntry;' in key else 2
++        offsets = list(range(size)); edges = ['0:1', '0:2', '1:2', '1:3'] if primary else []
++        methods.append({'key': key, 'primaryRecovery': primary, 'requiredOffsets': offsets,
++                        'executedOffsets': list(offsets), 'missingOffsets': [], 'requiredEdges': edges,
++                        'executedEdges': list(edges), 'missingEdges': [], 'instructionCount': size, 'exceptionRegions': 0})
++    return {'methods': methods, 'instructionCount': count, 'executedInstructionCount': count,
++            'requiredBranchEdges': 4, 'executedBranchEdges': 4, 'allInstructionsAndEdgesExecuted': True}
++
++
++class DayNumericReportGuardTests(unittest.TestCase):
++    def test_exact_numeric_identity_is_accepted(self):
++        numeric.validate_report_identity(report_identity())
++
++    def test_wrong_primary_method_is_rejected(self):
++        value = report_identity(); value['primaryMethod'] = 'Lanother/Type;->other()I'
++        with self.assertRaisesRegex(RuntimeError, 'identity'):
++            numeric.validate_report_identity(value)
++
++    def test_boolean_recovered_credit_is_rejected(self):
++        value = report_identity(); value['primaryRecoveredMethods'] = True
++        with self.assertRaisesRegex(RuntimeError, 'count'):
++            numeric.validate_report_identity(value)
++
++    def test_duplicate_uncredited_getter_is_rejected(self):
++        value = report_identity(); value['dependencyKeys'].append(value['dependencyKeys'][0])
++        with self.assertRaisesRegex(RuntimeError, 'identity'):
++            numeric.validate_report_identity(value)
++
++    def test_omitted_uncredited_getter_is_rejected(self):
++        value = report_identity(); value['dependencyKeys'].pop()
++        with self.assertRaisesRegex(RuntimeError, 'identity'):
++            numeric.validate_report_identity(value)
++
++    def test_unexecuted_android_claim_is_rejected(self):
++        value = report_identity(); value['androidRuntime'] = True
++        with self.assertRaisesRegex(RuntimeError, 'identity'):
++            numeric.validate_report_identity(value)
++
++    def test_different_case_inventory_is_rejected(self):
++        value = report_identity(); value['inputInventorySha256'] = '0' * 64
++        with self.assertRaisesRegex(RuntimeError, 'identity'):
++            numeric.validate_report_identity(value)
++
++    def test_boolean_zero_and_float_summary_counts_are_rejected(self):
++        for value in (False, 0.0, '0', None):
++            with self.subTest(value=value), self.assertRaisesRegex(RuntimeError, 'summary'):
++                numeric.require_counts({'failed': value}, {'failed': 0}, 'summary count')
++
++    def test_complete_original_and_rebuilt_coverage_rows_are_accepted(self):
++        for count in (32, 25): numeric.validate_positive_coverage(coverage_fixture(count), count)
++
++    def test_deleted_method_rows_cannot_reuse_total_counters(self):
++        value = coverage_fixture(); value['methods'] = []
++        with self.assertRaisesRegex(RuntimeError, 'inventory'):
++            numeric.validate_positive_coverage(value, 32)
++
++    def test_duplicate_method_row_is_rejected(self):
++        value = coverage_fixture(); value['methods'][-1] = copy.deepcopy(value['methods'][0])
++        with self.assertRaisesRegex(RuntimeError, 'inventory'):
++            numeric.validate_positive_coverage(value, 32)
++
++    def test_getter_recovery_credit_is_rejected(self):
++        value = coverage_fixture(); value['methods'][1]['primaryRecovery'] = True
++        with self.assertRaisesRegex(RuntimeError, 'recovery credit'):
++            numeric.validate_positive_coverage(value, 32)
++
++    def test_missing_executed_offset_is_rejected(self):
++        value = coverage_fixture(); value['methods'][0]['executedOffsets'].pop()
++        with self.assertRaisesRegex(RuntimeError, 'Incomplete'):
++            numeric.validate_positive_coverage(value, 32)
++
++    def test_duplicate_required_offset_is_rejected(self):
++        value = coverage_fixture(); value['methods'][0]['requiredOffsets'][1] = 0
++        with self.assertRaisesRegex(RuntimeError, 'offsets'):
++            numeric.validate_positive_coverage(value, 32)
++
++    def test_branch_to_an_unlisted_instruction_is_rejected(self):
++        value = coverage_fixture(); value['methods'][0]['requiredEdges'][0] = '0:999'
++        value['methods'][0]['requiredEdges'].sort()
++        with self.assertRaisesRegex(RuntimeError, 'another instruction'):
++            numeric.validate_positive_coverage(value, 32)
++
++    def test_missing_conditional_edge_is_rejected(self):
++        value = coverage_fixture(); value['methods'][0]['executedEdges'].pop()
++        with self.assertRaisesRegex(RuntimeError, 'Incomplete'):
++            numeric.validate_positive_coverage(value, 32)
++
++    def test_inconsistent_summary_is_rejected(self):
++        value = coverage_fixture(); value['executedInstructionCount'] = 31
++        with self.assertRaisesRegex(RuntimeError, 'summary'):
++            numeric.validate_positive_coverage(value, 32)
++
++
++SELECTOR_PROBE = r'''
++import com.google.gson.*;
++import java.nio.file.*;
++public final class NumericSelectionTestProbe {
++  public static void main(String[] args) throws Exception {
++    var registry = JsonParser.parseString(Files.readString(Path.of(args[0]))).getAsJsonArray();
++    var declaration = JsonParser.parseString(Files.readString(Path.of(args[1]))).getAsJsonObject();
++    var selection = ExtractOracle.selection(registry, declaration);
++    JsonObject report = new JsonObject();
++    report.addProperty("registered", selection.registered().size());
++    report.addProperty("dependencies", selection.dependencies().size());
++    report.addProperty("selected", selection.registered().size() + selection.dependencies().size());
++    report.addProperty("classes", selection.methods().size());
++    System.out.println(report);
++  }
++}
++'''
++
++
++class DayOriginalSelectorExecutionTests(unittest.TestCase):
++    @staticmethod
++    def execute(argv, timeout):
++        started = time.monotonic()
++        result = subprocess.run(list(map(str, argv)), capture_output=True, text=True, timeout=timeout)
++        # A targeted integration run may retain every child stream and command.
++        log = os.environ.get('DAY_NUMERIC_TEST_COMMAND_LOG')
++        if log:
++            with Path(log).open('a') as stream:
++                stream.write(json.dumps({'argv': list(map(str, argv)), 'returncode': result.returncode,
++                                         'timeout_seconds': timeout, 'duration_seconds': time.monotonic() - started,
++                                         'stdout': result.stdout, 'stderr': result.stderr}) + '\n')
++        return result
++
++    @classmethod
++    def setUpClass(cls):
++        cls.temp = tempfile.TemporaryDirectory(prefix='day-numeric-selector-tests-')
++        cls.addClassCleanup(cls.temp.cleanup)
++        cls.folder = Path(cls.temp.name)
++        cls.java, cls.javac = shutil.which('java'), shutil.which('javac')
++        if cls.java is None or cls.javac is None or not build.JAR.is_file():
++            raise RuntimeError('Actual Day original-selector controls require the configured JDK and build JAR')
++        source = cls.folder / 'NumericSelectionTestProbe.java'; source.write_text(SELECTOR_PROBE)
++        result = cls.execute([cls.javac, '-cp', build.JAR, '-d', cls.folder,
++                              ROOT / 'tools/src/ExtractOracle.java', source], 60)
++        if result.returncode != 0: raise RuntimeError('Actual original-selector compile failed: ' + result.stderr)
++        cls.classpath = os.pathsep.join(map(str, [build.JAR, cls.folder]))
++
++    def selector(self, registry=None, declaration=None, error=None):
++        registry = read(ROOT / 'source/java-method-map.json') if registry is None else registry
++        declaration = read(ROOT / numeric.DEPENDENCY_PATH) if declaration is None else declaration
++        with tempfile.TemporaryDirectory(dir=self.folder) as temp:
++            folder = Path(temp); a = folder / 'registry.json'; b = folder / 'dependencies.json'
++            a.write_text(json.dumps(registry)); b.write_text(json.dumps(declaration))
++            result = self.execute([self.java, '-Xverify:all', '-cp', self.classpath,
++                                   'NumericSelectionTestProbe', a, b], 30)
++        if error is None:
++            self.assertEqual(result.returncode, 0, result.stderr)
++            self.assertEqual(json.loads(result.stdout), {'registered': 1243, 'dependencies': 3, 'selected': 1246, 'classes': 607})
++        else:
++            self.assertNotEqual(result.returncode, 0)
++            self.assertIn(error, result.stderr)
++
++    def test_actual_java_selection_keeps_dependencies_separate(self):
++        self.selector()
++
++    def test_actual_java_rejects_duplicate_registry(self):
++        data = read(ROOT / 'source/java-method-map.json'); data.append(copy.deepcopy(data[0]))
++        self.selector(registry=data, error='Duplicate registered original method')
++
++    def test_actual_java_rejects_unregistered_dependency_consumer(self):
++        data = read(ROOT / numeric.DEPENDENCY_PATH); data['dependencies'][0]['consumer'] = 'Lmissing;->absent()I'
++        self.selector(declaration=data, error='no registered consumer')
++
++    def test_actual_java_rejects_registered_dependency(self):
++        data = read(ROOT / numeric.DEPENDENCY_PATH)
++        first = read(ROOT / 'source/java-method-map.json')[0]
++        data['dependencies'][0].update(target=first['target'], method=first['method'])
++        self.selector(declaration=data, error='overlaps recovered registry')
++
++    def test_actual_java_rejects_duplicate_dependency(self):
++        data = read(ROOT / numeric.DEPENDENCY_PATH); data['dependencies'].append(copy.deepcopy(data['dependencies'][0]))
++        self.selector(declaration=data, error='Duplicate original dependency')
++
++    def test_actual_java_rejects_extra_dependency_field(self):
++        data = read(ROOT / numeric.DEPENDENCY_PATH); data['dependencies'][0]['recovered'] = True
++        self.selector(declaration=data, error='Invalid original dependency fields')
++
++    def test_actual_java_rejects_boolean_schema(self):
++        data = read(ROOT / numeric.DEPENDENCY_PATH); data['schema'] = True
++        self.selector(declaration=data, error='Invalid original dependency declaration')
++
++    def test_actual_java_rejects_non_hash_dependency_provenance(self):
++        data = read(ROOT / numeric.DEPENDENCY_PATH); data['dependencies'][0]['original_method_sha256'] = 'changed'
++        self.selector(declaration=data, error='Invalid original dependency method hash')
++
++    def test_actual_java_rejects_malformed_method_selection(self):
++        data = read(ROOT / numeric.DEPENDENCY_PATH); data['dependencies'][0]['method'] = 'no-descriptor'
++        self.selector(declaration=data, error='Malformed original method selection')
++
++    def test_wrong_original_apk_rejected_before_fixture_write(self):
++        with tempfile.TemporaryDirectory(dir=self.folder) as temp:
++            root = Path(temp); copy_inputs(root)
++            fixture = root / 'tests/fixtures/original-methods.dex'; fixture.write_bytes(b'prior fixture must remain')
++            prior = hashlib.sha256(fixture.read_bytes()).hexdigest()
++            apk = root / 'wrong-original.apk'; apk.write_bytes(b'not the pinned original')
++            result = self.execute([self.java, '-Xverify:all', '-cp', self.classpath,
++                                   'ExtractOracle', root, apk], 30)
++            self.assertNotEqual(result.returncode, 0)
++            self.assertIn('Unexpected original APK identity', result.stderr)
++            self.assertEqual(hashlib.sha256(fixture.read_bytes()).hexdigest(), prior)
++            self.assertFalse(fixture.with_name('original-methods.dex.new').exists())
++
++
++if __name__ == '__main__': unittest.main()
+--- a/tests/test_v9.py
++++ b/tests/test_v9.py
+@@ -33,7 +33,7 @@
+     def setUpClass(cls):
+         cls.entries=json.loads((build.ROOT/'source/ui-methods.json').read_text());cls.registry=json.loads((build.ROOT/'source/java-method-map.json').read_text())
+         cls.index={x['descriptor']:x for x in build.index().values()}
+-    def test_exact_ten_methods_and_classes(self):self.assertEqual((len(self.entries),len({e['target'] for e in self.entries})),(10,10))
++    def test_exact_eleven_methods_and_classes(self):self.assertEqual((len(self.entries),len({e['target'] for e in self.entries})),(11,11))
+     def test_registry_partition(self):self.assertEqual(self.entries,[e for e in self.registry if e.get('proof_family')=='v9-ui'])
+     def test_each_original_hash(self):
+         for e in self.entries:
+--- a/tools/src/ExtractOracle.java
++++ b/tools/src/ExtractOracle.java
+@@ -4,27 +4,96 @@
+ import com.android.tools.smali.dexlib2.writer.pool.DexPool;
+ import com.google.gson.*;
+ import java.nio.file.*;
++import java.security.MessageDigest;
+ import java.util.*;
+-/** Copies only selected original methods into a test-only fixture. Never a build input. */
++
++/** Exact original test-fixture extraction. Declared getter dependencies earn no
++ * recovered-method credit and never become application build inputs. */
+ public final class ExtractOracle {
+- static String signature(Method m){return m.getName()+"("+String.join("",m.getParameterTypes())+")"+m.getReturnType();}
+- public static void main(String[] args) throws Exception {
+-  Path root=Paths.get(args[0]);JsonArray registry=JsonParser.parseString(Files.readString(root.resolve("source/java-method-map.json"))).getAsJsonArray();
+-  Map<String,Set<String>> selected=new TreeMap<>();
+-  for(JsonElement x:registry){JsonObject e=x.getAsJsonObject();selected.computeIfAbsent(e.get("target").getAsString(),k->new TreeSet<>()).add(e.get("method").getAsString());}
+-  var container=DexFileFactory.loadDexContainer(new java.io.File(args[1]),Opcodes.forApi(23));
+-  List<ClassDef> classes=new ArrayList<>();int count=0;
+-  for(String name:container.getDexEntryNames()){
+-   for(ClassDef c:container.getEntry(name).getDexFile().getClasses()){
+-    Set<String> wanted=selected.get(c.getType());if(wanted==null)continue;
+-    List<Method> methods=new ArrayList<>();for(Method m:c.getMethods())if(wanted.contains(signature(m)))methods.add(m);
+-    if(methods.size()!=wanted.size())throw new IllegalStateException("Missing original methods in "+c.getType());
+-    classes.add(new ImmutableClassDef(c.getType(),c.getAccessFlags(),c.getSuperclass(),c.getInterfaces(),c.getSourceFile(),c.getAnnotations(),c.getFields(),methods));count+=methods.size();
+-   }
+-  }
+-  if(classes.size()!=selected.size())throw new IllegalStateException("Incomplete fixture");
+-  Path out=root.resolve("tests/fixtures/original-methods.dex");Files.createDirectories(out.getParent());
+-  DexPool.writeTo(out.toString(),new ImmutableDexFile(Opcodes.forApi(23),classes));
+-  System.out.println("Test-only original fixture: classes="+classes.size()+" methods="+count);
+- }
++    static final String ORIGINAL_APK_SHA256 = "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800";
++    record Selection(Map<String, Set<String>> methods, Set<String> registered, Set<String> dependencies) {}
++    static void require(boolean condition, String message) { if (!condition) throw new IllegalStateException(message); }
++    static String signature(Method method) { return method.getName() + "(" + String.join("", method.getParameterTypes()) + ")" + method.getReturnType(); }
++    static String sha(Path path) throws Exception {
++        MessageDigest digest = MessageDigest.getInstance("SHA-256");
++        try (var stream = Files.newInputStream(path)) {
++            byte[] buffer = new byte[65536]; int count;
++            while ((count = stream.read(buffer)) != -1) digest.update(buffer, 0, count);
++        }
++        return HexFormat.of().formatHex(digest.digest());
++    }
++    static String key(JsonObject entry) {
++        String target = entry.get("target").getAsString(), method = entry.get("method").getAsString();
++        require(target.startsWith("L") && target.endsWith(";") && method.contains("(") && method.contains(")"), "Malformed original method selection");
++        return target + "->" + method;
++    }
++    static Selection selection(JsonArray registry, JsonObject declaration) {
++        Set<String> registered = new TreeSet<>(), dependencies = new TreeSet<>();
++        Map<String, Set<String>> selected = new TreeMap<>();
++        for (JsonElement item : registry) {
++            JsonObject entry = item.getAsJsonObject();
++            require(registered.add(key(entry)), "Duplicate registered original method");
++            selected.computeIfAbsent(entry.get("target").getAsString(), unused -> new TreeSet<>()).add(entry.get("method").getAsString());
++        }
++        require(!registered.isEmpty(), "Empty original registry");
++        require(declaration.keySet().equals(Set.of("schema", "purpose", "dependencies"))
++                && declaration.get("schema").isJsonPrimitive()
++                && declaration.get("schema").getAsJsonPrimitive().isNumber()
++                && declaration.get("schema").getAsString().equals("1"), "Invalid original dependency declaration");
++        for (JsonElement item : declaration.getAsJsonArray("dependencies")) {
++            JsonObject entry = item.getAsJsonObject();
++            require(entry.keySet().equals(Set.of("consumer", "target", "method", "original_method_sha256")), "Invalid original dependency fields");
++            String selectedKey = key(entry);
++            require(registered.contains(entry.get("consumer").getAsString()), "Original dependency has no registered consumer");
++            require(!registered.contains(selectedKey), "Original dependency overlaps recovered registry");
++            require(dependencies.add(selectedKey), "Duplicate original dependency");
++            require(entry.get("original_method_sha256").getAsString().matches("[0-9a-f]{64}"), "Invalid original dependency method hash");
++            require(selected.computeIfAbsent(entry.get("target").getAsString(), unused -> new TreeSet<>()).add(entry.get("method").getAsString()), "Duplicate selected original method");
++        }
++        return new Selection(selected, registered, dependencies);
++    }
++    public static void main(String[] args) throws Exception {
++        require(args.length == 2, "Expected project root and exact original APK");
++        Path root = Path.of(args[0]), apk = Path.of(args[1]);
++        Path registryPath = root.resolve("source/java-method-map.json"), dependencyPath = root.resolve("tests/fixtures/original-dependencies.json");
++        JsonArray registry = JsonParser.parseString(Files.readString(registryPath)).getAsJsonArray();
++        JsonObject declaration = JsonParser.parseString(Files.readString(dependencyPath)).getAsJsonObject();
++        Selection wanted = selection(registry, declaration);
++        require(sha(apk).equals(ORIGINAL_APK_SHA256), "Unexpected original APK identity");
++        var container = DexFileFactory.loadDexContainer(apk.toFile(), Opcodes.forApi(23));
++        List<ClassDef> classes = new ArrayList<>(); Set<String> seenClasses = new TreeSet<>(), seenMethods = new TreeSet<>();
++        for (String name : container.getDexEntryNames()) {
++            for (ClassDef type : container.getEntry(name).getDexFile().getClasses()) {
++                Set<String> methods = wanted.methods().get(type.getType()); if (methods == null) continue;
++                require(seenClasses.add(type.getType()), "Duplicate selected original class");
++                List<Method> selected = new ArrayList<>();
++                for (Method method : type.getMethods()) if (methods.contains(signature(method))) {
++                    require(seenMethods.add(type.getType() + "->" + signature(method)), "Duplicate original method in APK");
++                    selected.add(method);
++                }
++                require(selected.size() == methods.size(), "Missing original methods in " + type.getType());
++                classes.add(new ImmutableClassDef(type.getType(), type.getAccessFlags(), type.getSuperclass(), type.getInterfaces(),
++                        type.getSourceFile(), type.getAnnotations(), type.getFields(), selected));
++            }
++        }
++        Set<String> expected = new TreeSet<>(wanted.registered()); expected.addAll(wanted.dependencies());
++        require(seenClasses.equals(wanted.methods().keySet()) && seenMethods.equals(expected), "Incomplete original fixture");
++        Path output = root.resolve("tests/fixtures/original-methods.dex"), temporary = output.resolveSibling(output.getFileName() + ".new");
++        require(!Files.exists(temporary), "Unclosed original fixture generation exists");
++        Files.createDirectories(output.getParent());
++        DexPool.writeTo(temporary.toString(), new ImmutableDexFile(Opcodes.forApi(23), classes));
++        Files.move(temporary, output, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
++        JsonObject result = new JsonObject();
++        result.addProperty("original_apk_sha256", ORIGINAL_APK_SHA256);
++        result.addProperty("registry_sha256", sha(registryPath)); result.addProperty("dependency_declaration_sha256", sha(dependencyPath));
++        result.addProperty("registered_methods", wanted.registered().size()); result.addProperty("dependency_methods", wanted.dependencies().size());
++        result.addProperty("methods", seenMethods.size()); result.addProperty("classes", classes.size());
++        result.add("dependency_keys", new Gson().toJsonTree(wanted.dependencies()));
++        result.addProperty("fixture_sha256", sha(output)); result.addProperty("fixture_bytes", Files.size(output));
++        result.addProperty("application_build_input", false);
++        Files.createDirectories(root.resolve("reports"));
++        Files.writeString(root.resolve("reports/original-fixture-extraction.json"), new GsonBuilder().setPrettyPrinting().create().toJson(result) + "\n");
++        System.out.println("Test-only original fixture: classes=" + classes.size() + " methods=" + seenMethods.size()
++                + " registered=" + wanted.registered().size() + " dependencies=" + wanted.dependencies().size());
++    }
+ }
+--- a/ui_mutation_catalog.py
++++ b/ui_mutation_catalog.py
+@@ -64,3 +64,47 @@
+                      "required_cases": list(required), "catalog_sha256": CATALOG_SHA256,
+                      "reason": control["reason"], "widget": True})
+     return jobs
++
++
++DAY_CATALOG_PATH = "tests/fixtures/day-numeric-mutants.json"
++DAY_CATALOG_SHA256 = "1e008b16aa92c2e7c42aa88ecea9913391ee4f41b95ed73cd7a4ea17c914f4de"
++DAY_HELPER_PATH = "source/java/recovered/ui/DayTriggerValueMethods.java"
++DAY_HELPER_SHA256 = "b99984c0ca9128f9def8658d874f98d9a8e4529433d0f76f7f86e9e8299cc792"
++DAY_METHOD = "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I"
++DAY_INPUT_INVENTORY_SHA256 = "e083bc1996c5c7191bffe837fc0f30e254848a4754676ba0a8a119d23e8f6e79"
++
++
++def load_day_mutations(root: Path) -> list[dict]:
++    """Load the thirteen measured numeric faults without changing Widget controls."""
++    data, original = (root / DAY_CATALOG_PATH).read_bytes(), (root / DAY_HELPER_PATH).read_bytes()
++    if hashlib.sha256(data).hexdigest() != DAY_CATALOG_SHA256:
++        raise RuntimeError("Day numeric mutation catalog differs from its frozen bytes")
++    if hashlib.sha256(original).hexdigest() != DAY_HELPER_SHA256:
++        raise RuntimeError("Day numeric helper differs from its measured positive source")
++    catalog = json.loads(data)
++    if (catalog.get("schema") != 1 or type(catalog.get("schema")) is not int
++            or catalog.get("method") != DAY_METHOD or catalog.get("helper_path") != DAY_HELPER_PATH
++            or catalog.get("helper_sha256") != DAY_HELPER_SHA256
++            or catalog.get("input_inventory_sha256") != DAY_INPUT_INVENTORY_SHA256):
++        raise RuntimeError("Day numeric catalog identifies another method or case inventory")
++    controls = catalog.get("controls")
++    if not isinstance(controls, list) or len(controls) != 13:
++        raise RuntimeError("Exactly thirteen Day numeric mutations are required")
++    jobs, names = [], set()
++    for control in controls:
++        if (not isinstance(control, dict)
++                or set(control) != {"name", "reason", "edits", "expected_failure_labels"}
++                or not isinstance(control["name"], str)
++                or re.fullmatch(r"[a-z][a-z0-9-]+", control["name"]) is None
++                or control["name"] in names):
++            raise RuntimeError("Invalid or duplicate Day numeric mutation name")
++        names.add(control["name"])
++        required = control["expected_failure_labels"]
++        if (not isinstance(required, list) or not required or len(set(required)) != len(required)
++                or any(not isinstance(label, str) or not label.startswith("day-numeric:") for label in required)):
++            raise RuntimeError("Day numeric mutation must name its required observed failure")
++        jobs.append({"name": "day-numeric-" + control["name"], "classname": "DayTriggerValueMethods",
++                     "source": root / DAY_HELPER_PATH, "mutant": apply_edits(original.decode(), control["edits"]),
++                     "required_cases": list(required), "catalog_sha256": DAY_CATALOG_SHA256,
++                     "reason": control["reason"], "widget": False, "day_numeric": True})
++    return jobs
+--- a/ui_negative_control.py
++++ b/ui_negative_control.py
+@@ -10,6 +10,7 @@
+ import build
+ import ui_runtime_policy
+ import ui_mutation_catalog
++import day_numeric_dex_controls
+ 
+ CONTROLS=[
+     ('cast-before-subtract','InteractionMethods','int distance = (int) event.getY(pointer) - self.g;',
+@@ -182,6 +183,9 @@
+     jobs.extend(ui_mutation_catalog.load_widget_mutations(build.ROOT))
+     if len(CONTROLS)!=54 or len(jobs)!=78 or len({job['name'] for job in jobs})!=78:
+         raise RuntimeError('The exact 54 existing and 24 Widget fault controls are required')
++    jobs.extend(ui_mutation_catalog.load_day_mutations(build.ROOT))
++    if len(jobs)!=91 or len({job['name'] for job in jobs})!=91:
++        raise RuntimeError('All 78 existing controls and thirteen Day numeric controls are required')
+     return jobs
+ 
+ 
+@@ -190,7 +194,10 @@
+     apk=build.ROOT/'dist/MacroDroid-5.67.8-v9-hybrid.apk'
+     if not host.is_dir() or not apk.is_file():raise RuntimeError('Build hybrid and run test.py --three-way first.')
+     fixture=build.ROOT/'tests/fixtures/original-methods.dex'
+-    pins={p:sha(p) for p in [apk,fixture,*(build.ROOT/'source/java/recovered/ui').glob('*.java')]}
++    pins={p:sha(p) for p in [apk,fixture,*(build.ROOT/'source/java/recovered/ui').glob('*.java'),
++        build.ROOT/'test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java',
++        host/day_numeric_dex_controls.HELPER_CLASS,
++        *(host/'com/arlosoft/macrodroid/variables').glob('VariableValue*.class')]}
+     reference_path=build.REPORTS/'java-ui-three-path-parity.json'
+     reference=json.loads(reference_path.read_text())
+     registry=json.loads((build.ROOT/'source/ui-methods.json').read_text())
+@@ -201,21 +208,29 @@
+             or reference.get('methodsCovered')!=len(keys) or reference.get('fixture_sha256')!=pins[fixture]
+             or reference.get('rebuilt_apk_sha256')!=pins[apk] or reference.get('rebuilt_dex_compared_to_apk') is not True):
+         raise RuntimeError('A complete current positive UI report bound to this fixture and APK is required')
++    if (reference.get('dayNumericRecoveredMethods')!=1 or reference.get('dayNumericOriginalDependencyMethods')!=3
++            or reference.get('dayNumericInputInventorySha256')!=ui_mutation_catalog.DAY_INPUT_INVENTORY_SHA256
++            or reference.get('dayNumericInstructionAndConditionalCoverage') is not True
++            or set(reference.get('dayNumericOriginalDependencyKeys',[]))!=set(day_numeric_dex_controls.GETTERS)):
++        raise RuntimeError('The current numeric method and uncredited dependency coverage are required')
+     reference_raw={k:v for k,v in reference.items() if k not in {
+         'fixture_sha256','rebuilt_apk_sha256','rebuilt_dex_compared_to_apk'}}
+     (build.REPORTS/'ui-negative-baseline.json').write_text(json.dumps(reference_raw,indent=2)+'\n')
+     policy=ui_runtime_policy.verify(build.REPORTS)
+     cp=os.pathsep.join(map(str,[build.JAR,host,build.TOOLS]))
+     jobs=prepared_mutations();records=[]
+-    result={'pass':False,'status':'RUNNING','controls':records,'expectedControlCount':78,
++    result={'pass':False,'status':'RUNNING','controls':records,'expectedControlCount':91,
+             'positiveBaselineSha256':sha(reference_path),'androidRuntime':False,
+-            'widgetCatalogSha256':ui_mutation_catalog.CATALOG_SHA256}
++            'widgetCatalogSha256':ui_mutation_catalog.CATALOG_SHA256,
++            'dayNumericCatalogSha256':ui_mutation_catalog.DAY_CATALOG_SHA256}
+     destination=build.REPORTS/'ui-negative-controls.json'
+     def save():destination.write_text(json.dumps(result,indent=2)+'\n')
+     save()
+     try:
+         fixed=['cases','paths','methodsCovered','methodKeys','methods','instructionCoverage',
+-               'independentExpectedResultChecks','expectedResultFailures','unsupportedExecutions']
++               'independentExpectedResultChecks','expectedResultFailures','unsupportedExecutions',
++               'dayNumericRecoveredMethods','dayNumericOriginalDependencyMethods','dayNumericOriginalDependencyKeys',
++               'dayNumericInputInventorySha256','dayNumericOriginalCoverage']
+         for job in jobs:
+             name,classname=job['name'],job['classname'];required=job['required_cases']
+             folder=build.WORK/'negative-ui'/name;build.remove_generated_directory(folder)
+@@ -228,6 +243,8 @@
+             if mutant_hash==original_hash:raise RuntimeError('Mutation compiled to unchanged helper bytes: '+name)
+             if job['widget'] and sorted(p.relative_to(classes).as_posix() for p in classes.rglob('*') if p.is_file())!=['recovered/ui/WidgetUpdateMethods.class']:
+                 raise RuntimeError('Widget mutation emitted another class')
++            if job.get('day_numeric') and sorted(p.relative_to(classes).as_posix() for p in classes.rglob('*') if p.is_file())!=[day_numeric_dex_controls.HELPER_CLASS]:
++                raise RuntimeError('Day numeric mutation emitted another class')
+             retained=build.REPORTS/'ui-mutants'/name;retained.mkdir(parents=True,exist_ok=True)
+             shutil.copyfile(java,retained/java.name);shutil.copyfile(target,retained/target.name)
+             output=folder/'result.json'
+@@ -264,10 +281,15 @@
+         good=json.loads(positive.read_text())
+         if good!=reference_raw or not all(sha(p)==value for p,value in pins.items()):
+             raise RuntimeError('Exact positive restoration not confirmed')
+-        result.update(status='ALL_78_FAULTS_DETECTED_EXACT_POSITIVE_RESTORED',
++        result.update(status='ALL_91_JAVA_FAULTS_DETECTED_EXACT_POSITIVE_RESTORED',
+                       positiveRestorationPassed=True,positiveRestorationExactBaseline=True,
+                       restorationCases=good['cases'],sourceFixtureAndApkUnchanged=True,controlsCount=len(records))
+-        result['pass']=all(row['pass'] for row in records) and len(records)==78
++        save()
++        numeric=day_numeric_dex_controls.run_controls(build.ROOT,records)
++        result.update(dayNumericDexControlsPassed=numeric.get('passed') is True,
++                      dayNumericDexControlsSha256=sha(build.REPORTS/'day-numeric-dex-controls.json'),
++                      status='ALL_91_JAVA_AND_TWO_NUMERIC_DEX_FAULTS_DETECTED_EXACT_POSITIVE_RESTORED')
++        result['pass']=all(row['pass'] for row in records) and len(records)==91 and numeric.get('passed') is True
+     except BaseException as error:
+         result.update(status='UI_FAULT_CONTROL_FAILED',error=repr(error),controlsCount=len(records))
+         raise

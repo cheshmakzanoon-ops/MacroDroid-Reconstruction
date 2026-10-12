@@ -1,0 +1,729 @@
+{
+  "status": "INDEPENDENT_LOOKUP_REVIEW_PASSED",
+  "createdUtc": "2026-10-12T08:46:00.325485+00:00",
+  "scope": "Frozen-source review plus a fresh 371-input original/JVM/rebuilt method-only run; no active app registration, full APK build, ART, or new distinct-case count.",
+  "parentCheckpoint": {
+    "path": "day-trigger-lookup-recovery/checkpoints/02-three-path-and-compiled-controls/checkpoint.json",
+    "sha256": "6b3cbd47969b8f10675afd8b63dcac40967a7b30748f04b60af4989bea071c29"
+  },
+  "sourceFiles": [
+    {
+      "path": "REVIEW.md",
+      "bytes": 12315,
+      "sha256": "2e683708eaefbe65c7f124f8283dd267f8858b41f757066723dfdcf1a42e15c1",
+      "mode": "0o644"
+    },
+    {
+      "path": "review_lookup.py",
+      "bytes": 26806,
+      "sha256": "c0a3fb459e248e700f4d16686de8c33cd39d53ac4f7522e0e7c320ed053bedf7",
+      "mode": "0o644"
+    },
+    {
+      "path": "freeze_review.py",
+      "bytes": 5446,
+      "sha256": "f5aadb4e295766e9fd14873380df3a9eb7934e049caf9863d3a25398deef9867",
+      "mode": "0o644"
+    }
+  ],
+  "readableEvidenceFiles": [
+    {
+      "path": "review-evidence/result.json",
+      "bytes": 39955,
+      "sha256": "0f6ee59efbea40eba04689b1b84b3ca5749a8c707543a9bdff7ec1e7385e8c79",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/command-ledger.json",
+      "bytes": 28081,
+      "sha256": "0fb4d37fa14d5263c1511b02583fd5b57a48314b597b69b1c596dd214d770cdc",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/frozen-capsule-audit.json",
+      "bytes": 32443,
+      "sha256": "246c938b13e097b3ce1689a5d2836693b2ce0ee0e124484d65cfc07f1422e3a3",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/fresh-original-method-inventory.json",
+      "bytes": 3284,
+      "sha256": "f2663d45408c080852a99815ca1e9aca0eeebaf2497c063aff769e61f6235a23",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/fresh-class-identities.json",
+      "bytes": 5975,
+      "sha256": "0479723a5d77c46916bd0dc85fe7664d201c4622ab333f17efe208b7cfa660d0",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/protected-inputs-before.json",
+      "bytes": 9722,
+      "sha256": "23094e099dec778b07fa36b37b4467f51460c96de663cd44bf9b8dd2cc6f3893",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/protected-inputs-after.json",
+      "bytes": 9722,
+      "sha256": "23094e099dec778b07fa36b37b4467f51460c96de663cd44bf9b8dd2cc6f3893",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/launcher-environment-policy.json",
+      "bytes": 319,
+      "sha256": "8090de5389d3bd5aaf4ac8193172152316fce647577b337a95e4bf54b98e275f",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/05-positive-pipeline/method-body-binding.json",
+      "bytes": 1100,
+      "sha256": "c49dd6398a72800c8c3128962446840e72f9fb7fe083808bde698caa9cf81d97",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/12-fault-pipeline/method-body-binding.json",
+      "bytes": 1100,
+      "sha256": "7100a1101e49c8277e400d1901235ed341a5b26dac0e785a83cdbb71d955a598",
+      "mode": "0o644"
+    }
+  ],
+  "evidenceArchive": {
+    "path": "evidence.tar.gz",
+    "bytes": 178116,
+    "sha256": "6174bf8c651874a386133e6b01cac82a7d476261a0ae385e4a78ed1ee5bb451f",
+    "mode": "0o644"
+  },
+  "evidenceFiles": [
+    {
+      "path": "05-positive-pipeline/dex/classes.dex",
+      "bytes": 1160,
+      "sha256": "9f91c97823884c6677313fa4e1177f1f9d5849b3738c2c4c57a8740fda1af025",
+      "mode": "0o644"
+    },
+    {
+      "path": "05-positive-pipeline/helper-smali/recovered/ui/DayTriggerLookupMethods.smali",
+      "bytes": 1355,
+      "sha256": "35b62e695f51bd4a54526cc068121c8301713df078635a8057da281d364581dd",
+      "mode": "0o644"
+    },
+    {
+      "path": "05-positive-pipeline/method-body-binding.json",
+      "bytes": 1100,
+      "sha256": "c49dd6398a72800c8c3128962446840e72f9fb7fe083808bde698caa9cf81d97",
+      "mode": "0o644"
+    },
+    {
+      "path": "05-positive-pipeline/one-helper.jar",
+      "bytes": 1173,
+      "sha256": "3bed734b5f9a1532a92b8e15c1983f38ac22e4ac7e22e9c6c541742f67127197",
+      "mode": "0o644"
+    },
+    {
+      "path": "05-positive-pipeline/rebuilt-day-trigger.dex",
+      "bytes": 18464,
+      "sha256": "cf79aff20187504abf4168c081b0cbd7d80ac664bce7ead175db835d8d06e596",
+      "mode": "0o644"
+    },
+    {
+      "path": "05-positive-pipeline/target-smali/DayTrigger.smali",
+      "bytes": 102414,
+      "sha256": "2330d67090670059890f6b36d374034eb40457340170d3d7c56dc884a0f017b1",
+      "mode": "0o644"
+    },
+    {
+      "path": "06-positive/config.json",
+      "bytes": 6663,
+      "sha256": "6a786f93f825706bc1e4b119cbd8810e29fe73136cb7285767abd568c84d7491",
+      "mode": "0o644"
+    },
+    {
+      "path": "06-positive/parity.json",
+      "bytes": 617046,
+      "sha256": "a8adb83c6f7a94dc5f8c6a3182751f582d7747e2eb7bd60b8e7521f7b2cf26fe",
+      "mode": "0o644"
+    },
+    {
+      "path": "07-wrong-original-hash/config.json",
+      "bytes": 6663,
+      "sha256": "0b348d93b2364ab374bb358520533c659848b048bc9712e5c5582ce53c54c9a8",
+      "mode": "0o644"
+    },
+    {
+      "path": "08-original-as-rebuilt/config.json",
+      "bytes": 6646,
+      "sha256": "144f577c9ec7aef3542b389ec4418fa4c4cbd05021a9f44d8869dddb70362c90",
+      "mode": "0o644"
+    },
+    {
+      "path": "09-wrong-helper-hash/config.json",
+      "bytes": 6663,
+      "sha256": "1e0e772e385017a4a22409a63d1cc1e06b1783061398f0884c219e05ff2c1930",
+      "mode": "0o644"
+    },
+    {
+      "path": "10-reverse-receiver/config.json",
+      "bytes": 6692,
+      "sha256": "46e80cadcce8fe9000b4921e293515e9392123404960bf90838263042a0d3fae",
+      "mode": "0o644"
+    },
+    {
+      "path": "10-reverse-receiver/parity.json",
+      "bytes": 617420,
+      "sha256": "0b4eda410afb4d2b575c2d57467c8148630c8d42d78ed402ac9be543ad56743c",
+      "mode": "0o644"
+    },
+    {
+      "path": "10-reverse-receiver-compiled/hostclasses/recovered/ui/DayTriggerLookupMethods.class",
+      "bytes": 991,
+      "sha256": "668a9d07b878e7869732886a7f132e05d1a4ddd6e1f68dfdb0e17bac18e160d1",
+      "mode": "0o644"
+    },
+    {
+      "path": "10-reverse-receiver-compiled/source/recovered/ui/DayTriggerLookupMethods.java",
+      "bytes": 580,
+      "sha256": "ed424cece1950b3b82395d7f21216cbd72aebe0725611bb96747a92fc4852e6a",
+      "mode": "0o644"
+    },
+    {
+      "path": "11-case-sensitive/config.json",
+      "bytes": 6690,
+      "sha256": "d2cea57456945462978e78d992b250872df7a9a87b2e4609c8d727bc5f26c1a1",
+      "mode": "0o644"
+    },
+    {
+      "path": "11-case-sensitive/parity.json",
+      "bytes": 627353,
+      "sha256": "c79d6e8a8aefac44bc7361de2e0d9fd88e7092808ee9d0769de269f7a5775a43",
+      "mode": "0o644"
+    },
+    {
+      "path": "11-case-sensitive-compiled/hostclasses/recovered/ui/DayTriggerLookupMethods.class",
+      "bytes": 981,
+      "sha256": "061252491e3356e64583d66cffa232475afb6fe9a423366bb80cf87a1408b8d9",
+      "mode": "0o644"
+    },
+    {
+      "path": "11-case-sensitive-compiled/source/recovered/ui/DayTriggerLookupMethods.java",
+      "bytes": 570,
+      "sha256": "8c09b947d1b939dae63e45b9d3408e988e5d73e17d37ca6f03c4977f15285e15",
+      "mode": "0o644"
+    },
+    {
+      "path": "12-fault-pipeline/dex/classes.dex",
+      "bytes": 1152,
+      "sha256": "f01105126a093372d9bd03672e121ac343c0c290389d2a743952394979577bf0",
+      "mode": "0o644"
+    },
+    {
+      "path": "12-fault-pipeline/helper-smali/recovered/ui/DayTriggerLookupMethods.smali",
+      "bytes": 1345,
+      "sha256": "61871217253e7396dc97c3911daa589ab6b120d6e18211dd8d2872de06dd927c",
+      "mode": "0o644"
+    },
+    {
+      "path": "12-fault-pipeline/method-body-binding.json",
+      "bytes": 1100,
+      "sha256": "7100a1101e49c8277e400d1901235ed341a5b26dac0e785a83cdbb71d955a598",
+      "mode": "0o644"
+    },
+    {
+      "path": "12-fault-pipeline/one-helper.jar",
+      "bytes": 1163,
+      "sha256": "d857cb43971fc12f062b5fa64b8b28d621c41c18c79c3a4516f611abb0d46e9a",
+      "mode": "0o644"
+    },
+    {
+      "path": "12-fault-pipeline/rebuilt-day-trigger.dex",
+      "bytes": 18420,
+      "sha256": "97ac97bc119077260583e372ff360c7644b5029890a82e9304f9eed4277bf0a6",
+      "mode": "0o644"
+    },
+    {
+      "path": "12-fault-pipeline/target-smali/DayTrigger.smali",
+      "bytes": 102404,
+      "sha256": "8f7c21dd64a26b9ae1faac621da0aaffbbc575f2aa34defc91b70cda6209800b",
+      "mode": "0o644"
+    },
+    {
+      "path": "13-rebuilt-case-sensitive/config.json",
+      "bytes": 6660,
+      "sha256": "e8399ec90658dca4ce287f79edd8236a2dca1cc7c025f8beff8a4d849fe4794d",
+      "mode": "0o644"
+    },
+    {
+      "path": "13-rebuilt-case-sensitive/parity.json",
+      "bytes": 627219,
+      "sha256": "ba7ddd707f8c08b3bf07f51c16dc9458f5e431b12296c6fc952a7d9c16ba39b2",
+      "mode": "0o644"
+    },
+    {
+      "path": "14-positive-restored/config.json",
+      "bytes": 6663,
+      "sha256": "6a786f93f825706bc1e4b119cbd8810e29fe73136cb7285767abd568c84d7491",
+      "mode": "0o644"
+    },
+    {
+      "path": "14-positive-restored/parity.json",
+      "bytes": 617046,
+      "sha256": "a8adb83c6f7a94dc5f8c6a3182751f582d7747e2eb7bd60b8e7521f7b2cf26fe",
+      "mode": "0o644"
+    },
+    {
+      "path": "command-ledger.json",
+      "bytes": 28081,
+      "sha256": "0fb4d37fa14d5263c1511b02583fd5b57a48314b597b69b1c596dd214d770cdc",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/01-java-version.stderr.txt",
+      "bytes": 205,
+      "sha256": "5b4412738541184e84f6b2d7520d4f4a7c2a455f60650491464c61adcbbbdeb0",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/01-java-version.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/02-javac-host-helper.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/02-javac-host-helper.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/03-javac-harness.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/03-javac-harness.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/04-extract-original-from-apk.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/04-extract-original-from-apk.stdout.txt",
+      "bytes": 64,
+      "sha256": "29c719207db4a3c2c42376c1503da14963ed2e4d484a1f5d577a10092921db6d",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/05-positive-pipeline-baksmali.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/05-positive-pipeline-baksmali.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/05-positive-pipeline-d8.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/05-positive-pipeline-d8.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/05-positive-pipeline-smali.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/05-positive-pipeline-smali.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/06-positive.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/06-positive.stdout.txt",
+      "bytes": 93,
+      "sha256": "eb64bae9ca71688fb1e62b3e03bcb6b2b424d175f6e466ff96b7bd79eb4cf1e0",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/07-wrong-original-hash.stderr.txt",
+      "bytes": 192,
+      "sha256": "f872d6329dd54ed8d106981860ae5aa5338ec4247d7979d5a95019e84a8b5206",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/07-wrong-original-hash.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/08-original-as-rebuilt.stderr.txt",
+      "bytes": 206,
+      "sha256": "73bb0a92301d92348b5d50ab1e4e168c89bc0a9ec9654612e69d33a92f3d82b3",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/08-original-as-rebuilt.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/09-wrong-helper-hash.stderr.txt",
+      "bytes": 275,
+      "sha256": "75cfe0117b7f7712d4f7823bd4c190ba269b67f32334536ecf069335e2438bf5",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/09-wrong-helper-hash.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/10-reverse-receiver-javac.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/10-reverse-receiver-javac.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/10-reverse-receiver.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/10-reverse-receiver.stdout.txt",
+      "bytes": 94,
+      "sha256": "b4419aa6272fcf9b09a3a5872dbaa1425fcfbacf4160ad45f8697fc12f8c9f7f",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/11-case-sensitive-javac.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/11-case-sensitive-javac.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/11-case-sensitive.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/11-case-sensitive.stdout.txt",
+      "bytes": 98,
+      "sha256": "7aaf311c4f84b5a91e6bf56b1ef887ab1c2c4d268c3706130d6025ee7668ae11",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/12-fault-pipeline-baksmali.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/12-fault-pipeline-baksmali.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/12-fault-pipeline-d8.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/12-fault-pipeline-d8.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/12-fault-pipeline-smali.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/12-fault-pipeline-smali.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/13-rebuilt-case-sensitive.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/13-rebuilt-case-sensitive.stdout.txt",
+      "bytes": 98,
+      "sha256": "7aaf311c4f84b5a91e6bf56b1ef887ab1c2c4d268c3706130d6025ee7668ae11",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/14-positive-restored.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    {
+      "path": "commands/14-positive-restored.stdout.txt",
+      "bytes": 93,
+      "sha256": "eb64bae9ca71688fb1e62b3e03bcb6b2b424d175f6e466ff96b7bd79eb4cf1e0",
+      "mode": "0o644"
+    },
+    {
+      "path": "fresh-class-identities.json",
+      "bytes": 5975,
+      "sha256": "0479723a5d77c46916bd0dc85fe7664d201c4622ab333f17efe208b7cfa660d0",
+      "mode": "0o644"
+    },
+    {
+      "path": "fresh-original-method-inventory.json",
+      "bytes": 3284,
+      "sha256": "f2663d45408c080852a99815ca1e9aca0eeebaf2497c063aff769e61f6235a23",
+      "mode": "0o644"
+    },
+    {
+      "path": "fresh-original-selected.dex",
+      "bytes": 8296,
+      "sha256": "261b88a32666b00ce1225c1ba03150b39f36edf0d13df5d36e05bcfd1953c568",
+      "mode": "0o644"
+    },
+    {
+      "path": "frozen-capsule-audit.json",
+      "bytes": 32443,
+      "sha256": "246c938b13e097b3ce1689a5d2836693b2ce0ee0e124484d65cfc07f1422e3a3",
+      "mode": "0o644"
+    },
+    {
+      "path": "harnessclasses/BytecodeOracle$Bits.class",
+      "bytes": 326,
+      "sha256": "701c4bac5d8b5f0e1745d79260eb0c4d847ea01273515662f8dff1d3fff6ceb6",
+      "mode": "0o644"
+    },
+    {
+      "path": "harnessclasses/BytecodeOracle$Escaped.class",
+      "bytes": 420,
+      "sha256": "f2a09a5abb96e9f5f931b5d9a732a90e078c688a3bf1b8091b0b0d2fb5dc1d32",
+      "mode": "0o644"
+    },
+    {
+      "path": "harnessclasses/BytecodeOracle$Frame.class",
+      "bytes": 1240,
+      "sha256": "2fe396d3de68294545611793edfd2701b2a66c68efe2e0240fafa35638be95bc",
+      "mode": "0o644"
+    },
+    {
+      "path": "harnessclasses/BytecodeOracle$Pending.class",
+      "bytes": 440,
+      "sha256": "9e1d4ffac1fef936d0d32fa6258315f1a6ce1efd0e9de0d72ccf680b24e4a26b",
+      "mode": "0o644"
+    },
+    {
+      "path": "harnessclasses/BytecodeOracle$Ref.class",
+      "bytes": 358,
+      "sha256": "fc3cdd194282e66ec8346d0d54d6f5c7d67336c36f6f91ca785c4172a2442069",
+      "mode": "0o644"
+    },
+    {
+      "path": "harnessclasses/BytecodeOracle$Unsupported.class",
+      "bytes": 316,
+      "sha256": "832bd02eb9e1bb13bc0862321eada9397f55504c37d500a91145c12445b13b3c",
+      "mode": "0o644"
+    },
+    {
+      "path": "harnessclasses/BytecodeOracle.class",
+      "bytes": 33864,
+      "sha256": "e29836475549d30f34ce49ace29da6bf17429b573c14ab4ce8a59d8c027fe7fc",
+      "mode": "0o644"
+    },
+    {
+      "path": "harnessclasses/DayLookupStudy$Input.class",
+      "bytes": 2755,
+      "sha256": "4f625dee9b195fce31c65b47f6dbe4c2b5f00b7351a2273a2454071ea8e693ee",
+      "mode": "0o644"
+    },
+    {
+      "path": "harnessclasses/DayLookupStudy$Observed.class",
+      "bytes": 2184,
+      "sha256": "866c41c349b81a6372a477c0d935c77171fa61421965f64fb886e5afeafb4113",
+      "mode": "0o644"
+    },
+    {
+      "path": "harnessclasses/DayLookupStudy$State.class",
+      "bytes": 2982,
+      "sha256": "5d67aa1e9ad67796587c6a9e8aa954f2f2375d6554380cdfd6e34f21294c0359",
+      "mode": "0o644"
+    },
+    {
+      "path": "harnessclasses/DayLookupStudy$Throwing.class",
+      "bytes": 284,
+      "sha256": "9df64a1382db3dc8f1ae1b50a05e1fbc681186fcca22a77b3608870c9864583e",
+      "mode": "0o644"
+    },
+    {
+      "path": "harnessclasses/DayLookupStudy$TraceIterator.class",
+      "bytes": 1974,
+      "sha256": "49454800e2f581d4e25b8f302e1712596b9dbc31b21712bd5efd5bd90241740c",
+      "mode": "0o644"
+    },
+    {
+      "path": "harnessclasses/DayLookupStudy$TraceList.class",
+      "bytes": 2103,
+      "sha256": "c35ed5b48041d0cad99d2820d34d2776cebc8acf5493219cb8f5ee981435ceea",
+      "mode": "0o644"
+    },
+    {
+      "path": "harnessclasses/DayLookupStudy.class",
+      "bytes": 24837,
+      "sha256": "213903559ba58854be9a6885658f5a1dd079473f41e1a101ce804693890ce6ed",
+      "mode": "0o644"
+    },
+    {
+      "path": "harnessclasses/ExtractDayLookupFixture.class",
+      "bytes": 6864,
+      "sha256": "17f9c256530c87601f3ac164228893e1060094de3384a179810ef677aff641f0",
+      "mode": "0o644"
+    },
+    {
+      "path": "hostclasses/com/arlosoft/macrodroid/variables/VariableValue$Dictionary.class",
+      "bytes": 781,
+      "sha256": "cf4563a64a9e665ad5d3d78c0491c7c5b87b1dbacb3e21c8d2b4d5b53b93480a",
+      "mode": "0o644"
+    },
+    {
+      "path": "hostclasses/com/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry.class",
+      "bytes": 395,
+      "sha256": "924214dada83e1385a7428ed7eee35bae602efaa57087818fba805d33f9b0433",
+      "mode": "0o644"
+    },
+    {
+      "path": "hostclasses/com/arlosoft/macrodroid/variables/VariableValue.class",
+      "bytes": 365,
+      "sha256": "607944609b11150deb7f51b2c4a7c693b55af419c31817e26a5a5430e87c0f0a",
+      "mode": "0o644"
+    },
+    {
+      "path": "hostclasses/defpackage/EngineRuntime.class",
+      "bytes": 718,
+      "sha256": "a6ccc3d7292ed8b1b940e3e8480888fd832f99be563788e8601ac5d9576b9cd4",
+      "mode": "0o644"
+    },
+    {
+      "path": "hostclasses/defpackage/TestClock.class",
+      "bytes": 396,
+      "sha256": "db17b7b2fc1f319730fb398027fc93e6ae2fb58213d307e26923f3cf4ecbab70",
+      "mode": "0o644"
+    },
+    {
+      "path": "hostclasses/recovered/ui/DayTriggerLookupMethods.class",
+      "bytes": 991,
+      "sha256": "d0ff3559a30190eb120161faa943700d5a2e6bfeaba85cb97807c19fa219ad61",
+      "mode": "0o644"
+    },
+    {
+      "path": "launcher-environment-policy.json",
+      "bytes": 319,
+      "sha256": "8090de5389d3bd5aaf4ac8193172152316fce647577b337a95e4bf54b98e275f",
+      "mode": "0o644"
+    },
+    {
+      "path": "protected-inputs-after.json",
+      "bytes": 9722,
+      "sha256": "23094e099dec778b07fa36b37b4467f51460c96de663cd44bf9b8dd2cc6f3893",
+      "mode": "0o644"
+    },
+    {
+      "path": "protected-inputs-before.json",
+      "bytes": 9722,
+      "sha256": "23094e099dec778b07fa36b37b4467f51460c96de663cd44bf9b8dd2cc6f3893",
+      "mode": "0o644"
+    },
+    {
+      "path": "result.json",
+      "bytes": 39955,
+      "sha256": "0f6ee59efbea40eba04689b1b84b3ca5749a8c707543a9bdff7ec1e7385e8c79",
+      "mode": "0o644"
+    },
+    {
+      "path": "review_lookup.py",
+      "bytes": 26806,
+      "sha256": "c0a3fb459e248e700f4d16686de8c33cd39d53ac4f7522e0e7c320ed053bedf7",
+      "mode": "0o644"
+    }
+  ],
+  "result": {
+    "status": "INDEPENDENT_THREE_PATH_REVIEW_PASSED",
+    "passed": true,
+    "durationSeconds": 60.255499210998096,
+    "cases": 371,
+    "executionPaths": 3,
+    "mismatchCount": 0,
+    "unsupportedCount": 0,
+    "freshCompiledClassCount": 21,
+    "freshOriginalFixture": {
+      "bytes": 8296,
+      "sha256": "261b88a32666b00ce1225c1ba03150b39f36edf0d13df5d36e05bcfd1953c568"
+    },
+    "freshRebuiltFixture": {
+      "bytes": 18464,
+      "sha256": "cf79aff20187504abf4168c081b0cbd7d80ac664bce7ead175db835d8d06e596"
+    },
+    "positiveReport": {
+      "bytes": 617046,
+      "sha256": "a8adb83c6f7a94dc5f8c6a3182751f582d7747e2eb7bd60b8e7521f7b2cf26fe"
+    },
+    "positiveReportRestoredExactly": true,
+    "allProtectedBytesUnchanged": true
+  },
+  "archivePayloadBytes": 3664410,
+  "activeSourceChanged": false,
+  "activeRegistryChanged": false,
+  "apkChanged": false,
+  "androidExecuted": false,
+  "allArchiveMembersVerified": true
+}

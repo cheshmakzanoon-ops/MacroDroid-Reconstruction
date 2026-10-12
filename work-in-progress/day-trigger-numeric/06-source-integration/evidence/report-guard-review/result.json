@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "scope": "Metadata and coverage rejection controls; the actual numeric execution remains passed.",
+  "reviewed_source_sha256": "f7529ea319a1c6f2c865ac64ed9ae8f7e5852067631fc9428350a52e790c3e59",
+  "actual_positive_report_sha256": "d6bdd19e21bf4a38f4c6e7e9a936dac13889759d4256d061f85aedc22716303a",
+  "unmodified_positive_accepted": true,
+  "controls": [
+    {
+      "name": "wrong-primary-method",
+      "changed_field": "primaryMethod",
+      "replacement": "Lanother/Type;->other()I",
+      "original_validator_accepted": true,
+      "error": null,
+      "raw_case_observations_unchanged": true
+    },
+    {
+      "name": "boolean-primary-credit",
+      "changed_field": "primaryRecoveredMethods",
+      "replacement": true,
+      "original_validator_accepted": true,
+      "error": null,
+      "raw_case_observations_unchanged": true
+    },
+    {
+      "name": "duplicate-getter-credit-inventory",
+      "changed_field": "dependencyKeys",
+      "replacement": [
+        "Lcom/arlosoft/macrodroid/variables/VariableValue$DecimalValue;->getDecimalValue()D",
+        "Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;->getVariable()Lcom/arlosoft/macrodroid/variables/VariableValue;",
+        "Lcom/arlosoft/macrodroid/variables/VariableValue$IntegerValue;->getIntValue()J",
+        "Lcom/arlosoft/macrodroid/variables/VariableValue$DecimalValue;->getDecimalValue()D"
+      ],
+      "original_validator_accepted": true,
+      "error": null,
+      "raw_case_observations_unchanged": true
+    },
+    {
+      "name": "boolean-zero-mismatch-count",
+      "changed_field": "mismatchCount",
+      "replacement": false,
+      "original_validator_accepted": true,
+      "error": null,
+      "raw_case_observations_unchanged": true
+    },
+    {
+      "name": "missing-original-method-coverage",
+      "changed_field": "originalCoverage.methods",
+      "replacement": [],
+      "original_validator_accepted": true,
+      "error": null,
+      "raw_case_observations_unchanged": true
+    },
+    {
+      "name": "missing-rebuilt-method-coverage",
+      "changed_field": "rebuiltCoverage.methods",
+      "replacement": [],
+      "original_validator_accepted": true,
+      "error": null,
+      "raw_case_observations_unchanged": true
+    }
+  ],
+  "concrete_false_acceptances": 6
+}

@@ -1,0 +1,161 @@
+{
+  "schema": 1,
+  "status": "EXACT_APPROVED_PATHS_COPIED",
+  "created_utc": "2026-10-12T08:02:52.749642+00:00",
+  "source_root": "/workspace/scratch/4130730d15aa/MacroDroid-Reconstruction/project",
+  "source_snapshot_sha256": "b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553",
+  "proposal_sha256": "ae98ca78248cc9236ac7c6f60268da56b9905eca41009f50fe2258b6176c4de2",
+  "copied_existing_paths": [
+    {
+      "path": "source/java-method-map.json",
+      "baseline": {
+        "bytes": 779273,
+        "sha256": "73a37f1ac4148c03a1dc0df9810e899ebb8ff7bcc6f1df7c1672fd525d66a20e"
+      },
+      "must_be_absent_if_new": false,
+      "proposed_change": "Register exactly one new method; retain every existing entry."
+    },
+    {
+      "path": "source/ui-methods.json",
+      "baseline": {
+        "bytes": 4682,
+        "sha256": "24e5d5d013c88ec67f6e7c94d5494f691309608c7fca478c8687c3945b6f4005"
+      },
+      "must_be_absent_if_new": false,
+      "proposed_change": "Add the same r0 entry to the UI suite partition."
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+      "baseline": {
+        "bytes": 1309,
+        "sha256": "5953b3925539d215d3f32546d97280ed4403feeb5907909236ced0c5267831a1"
+      },
+      "must_be_absent_if_new": false,
+      "proposed_change": "Retain existing constructors, public fields and equality; add private transient field aliases and exact getters."
+    },
+    {
+      "path": "tests/java/UiParityTests.java",
+      "baseline": {
+        "bytes": 46991,
+        "sha256": "2f248dc08e902bcb8cb256b7c4d32298649225a0f0b0766242db450e3a2bf84e"
+      },
+      "must_be_absent_if_new": false,
+      "proposed_change": "Load the three original dependencies separately, execute Day cases, and require exact primary/dependency coverage without adding dependency method credit."
+    },
+    {
+      "path": "tools/src/ExtractOracle.java",
+      "baseline": {
+        "bytes": 2118,
+        "sha256": "58aa298c68b7a0f9e395236b136f312a126ee297e7513247af26ce18701cae29"
+      },
+      "must_be_absent_if_new": false,
+      "proposed_change": "Include only declared original fixture dependencies in addition to registered methods, with duplicate/overlap/registration guards."
+    },
+    {
+      "path": "tests/fixtures/original-methods.dex",
+      "baseline": {
+        "bytes": 528076,
+        "sha256": "bfc27193f5fcd067e374ba2715e52e9eac067ea78c752189dba8c0ab0c7bb27e"
+      },
+      "must_be_absent_if_new": false,
+      "proposed_change": "Regenerate the test-only fixture directly from the pinned original APK."
+    },
+    {
+      "path": "tests/fixtures/provenance.json",
+      "baseline": {
+        "bytes": 538,
+        "sha256": "6a895dcbdff44a09632344bbe97cfa8a5e3cca02790a5e0100aeb836a56a4284"
+      },
+      "must_be_absent_if_new": false,
+      "proposed_change": "Record registered methods, dependency methods and actual fixture total/classes separately."
+    },
+    {
+      "path": "ui_mutation_catalog.py",
+      "baseline": {
+        "bytes": 3606,
+        "sha256": "2d9822c98c73ce4f9dc6240560e1f6046bebe616a7ff44ddca9a047692fc52f0"
+      },
+      "must_be_absent_if_new": false,
+      "proposed_change": "Add a separate exact Day catalog loader; retain all Widget catalog behavior."
+    },
+    {
+      "path": "ui_negative_control.py",
+      "baseline": {
+        "bytes": 21424,
+        "sha256": "62d2ba93cd7234fd89d3cf77504358e68fc26ed0d8fef7407b97b18c55aea751"
+      },
+      "must_be_absent_if_new": false,
+      "proposed_change": "Retain all78 controls and add thirteen Day Java faults plus a separately recorded actual-Dex control stage."
+    },
+    {
+      "path": "acceptance.py",
+      "baseline": {
+        "bytes": 6172,
+        "sha256": "6a8a81ea5b928194466bc2c873dfde4d572119e4ac7396bdc93d2d631f1b2933"
+      },
+      "must_be_absent_if_new": false,
+      "proposed_change": "Bind the dedicated Day Dex-control report in fresh evidence after the existing UI-control gate."
+    },
+    {
+      "path": "tests/test_build.py",
+      "baseline": {
+        "bytes": 10201,
+        "sha256": "d81bb57b499e50fccb1f8acc1311f1b93300af96f56cabfbe6beee5faa9605ed"
+      },
+      "must_be_absent_if_new": false,
+      "proposed_change": "Update only the recovered-method count and explicit fixture/dependency provenance assertions."
+    },
+    {
+      "path": "tests/test_v9.py",
+      "baseline": {
+        "bytes": 15421,
+        "sha256": "2c154ef4ac334358c5e69dad82d9b84540104981340ffa8b4e6ccb9a17be779d"
+      },
+      "must_be_absent_if_new": false,
+      "proposed_change": "Update the exact UI method count to11 while retaining all other controls."
+    }
+  ],
+  "new_paths_required_absent": [
+    "source/java/recovered/ui/DayTriggerValueMethods.java",
+    "tests/java/DayTriggerParityCases.java",
+    "tests/java/DayNumericControlHarness.java",
+    "tests/fixtures/original-dependencies.json",
+    "tests/fixtures/day-numeric-mutants.json",
+    "day_numeric_dex_controls.py",
+    "tests/test_day_numeric.py"
+  ],
+  "required_unchanged_inputs": [
+    {
+      "path": "tests/java/BytecodeOracle.java",
+      "bytes": 25146,
+      "sha256": "d91ddcd8ec3d67d41d69b8252835e747c2cad2c6d5ea898323794ceec30e6b56"
+    },
+    {
+      "path": "build.py",
+      "bytes": 20325,
+      "sha256": "dd599090fc075fed0835875937a2c2b76d91381936c26f4275f876edf47345f0"
+    },
+    {
+      "path": "constructor_owner.py",
+      "bytes": 12830,
+      "sha256": "b77672c0fb1cca53a2cb88280c2688c93fd6a95f95ee0325cabdddad00f58014"
+    },
+    {
+      "path": "test.py",
+      "bytes": 8938,
+      "sha256": "bd9984250b943807cc76a68a52c37e3493d0b3221212c3c6aec8b6ebe18519e3"
+    },
+    {
+      "path": "tests/fixtures/widget-method-mutants.json",
+      "bytes": 10370,
+      "sha256": "01f3b482ff62378d78d295eaf96e96cf54de7c165e7edbc2f2f4b8f0bd0b6159"
+    },
+    {
+      "path": "tests/test_ui_mutation_catalog.py",
+      "bytes": 2799,
+      "sha256": "d03282b5c1eda20ea46d9cebbeb716987d978c6dfdace3f8f81bcd74692b12f8"
+    }
+  ],
+  "active_paths_changed": [],
+  "full_source_copy": false
+}

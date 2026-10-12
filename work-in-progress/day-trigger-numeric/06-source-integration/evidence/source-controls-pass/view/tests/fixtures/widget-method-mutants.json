@@ -1,0 +1,155 @@
+{
+  "method": "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;",
+  "helper_path": "source/java/recovered/ui/WidgetUpdateMethods.java",
+  "helper_sha256": "dbcb1a98d25ae4637531644da37d24f6e1bc494f941d4212da03c360fe315d79",
+  "scope": "Actual compiled Java mutants compared with the fixed original one-method DEX; two host paths only",
+  "controls": [
+    {
+      "name": "reuse-requires-high-bit",
+      "reason": "A continuation without the high bit must be replaced, even if its saved label looks resumable.",
+      "edits": [{"find": "if ((oldLabel & Integer.MIN_VALUE) != 0)", "replace": "if ((oldLabel & Integer.MIN_VALUE) == 0)", "count": 1}],
+      "expected_failure_labels": ["widget-no-high-bit-creates-new:1", "widget-entry:3:false"]
+    },
+    {
+      "name": "reuse-clears-high-bit",
+      "reason": "A reused continuation clears the high bit before dispatching its saved label.",
+      "edits": [{"find": "existing.label = oldLabel - Integer.MIN_VALUE;", "replace": "existing.label = oldLabel;", "count": 1}],
+      "expected_failure_labels": ["widget-entry:3:false", "widget-two-suspensions"]
+    },
+    {
+      "name": "first-suspension-label",
+      "reason": "The first API suspension resumes at label 1 and must still perform the second call.",
+      "edits": [{"find": "state.label = 1;", "replace": "state.label = 2;", "count": 1}],
+      "expected_failure_labels": ["widget-flow:1:0", "widget-two-suspensions"]
+    },
+    {
+      "name": "second-suspension-label",
+      "reason": "The second API suspension resumes at label 2 and proceeds to the next widget.",
+      "edits": [{"find": "state.label = 2;", "replace": "state.label = 1;", "count": 1}],
+      "expected_failure_labels": ["widget-flow:0:1", "widget-two-suspensions"]
+    },
+    {
+      "name": "retain-label-two-dead-identifier-cast",
+      "reason": "The otherwise unused restored label-2 identifier cast remains observable on a malformed slot.",
+      "edits": [{"find": "gy6 discardedIdentifier = (gy6) state.L$7;", "replace": "Object discardedIdentifier = state.L$7;", "count": 1}],
+      "expected_failure_labels": ["widget-saved-cast:2:7:true"]
+    },
+    {
+      "name": "retain-dead-list-casts",
+      "reason": "Both resumed branches retain their unused saved-list check-cast instructions.",
+      "edits": [{"find": "List discardedList = (List) state.L$1;", "replace": "Object discardedList = state.L$1;", "count": 2}],
+      "expected_failure_labels": ["widget-saved-cast:1:1:true", "widget-saved-cast:2:1:true"]
+    },
+    {
+      "name": "leave-saved-L6-unread",
+      "reason": "The original does not inspect the unused L$6 slot during resume.",
+      "edits": [{"find": "Object result = state.result;", "replace": "Object result = state.result;\n        List extraSavedCast = (List) state.L$6;", "count": 1}],
+      "expected_failure_labels": ["widget-saved-unread-L6:1", "widget-saved-unread-L6:2"]
+    },
+    {
+      "name": "saved-index-does-not-increment",
+      "reason": "The original preserves the fresh literal zero or restored index across every widget.",
+      "edits": [{"find": "state.I$0 = savedIndex;", "replace": "state.I$0 = ++savedIndex;", "count": 2}],
+      "expected_failure_labels": ["widget-resumed-index-never-increments", "widget-multiple-widgets-four-suspensions"]
+    },
+    {
+      "name": "restore-saved-phase",
+      "reason": "Label 1 restores the saved phase even for unusual signed values.",
+      "edits": [{"find": "savedPhase = state.I$2;", "replace": "savedPhase = 0;", "count": 1}],
+      "expected_failure_labels": ["widget-saved-integers:-1:37", "widget-saved-integers:-2147483648:2147483647"]
+    },
+    {
+      "name": "second-call-clears-saved-identifier",
+      "reason": "The second suspension publishes a cleared saved identifier before the call.",
+      "edits": [{"find": "state.L$7 = null;", "replace": "state.L$7 = identifier;", "count": 1}],
+      "expected_failure_labels": ["widget-resumed-result:1:0", "widget-flow:0:1"]
+    },
+    {
+      "name": "second-label-precedes-call",
+      "reason": "State publication must already be visible at the second call boundary, including thrown or suspended outcomes.",
+      "edits": [{"find": "state.label = 2;\n                Object second = ((rx6) renderer).d(context, identifier, state);", "replace": "Object second = ((rx6) renderer).d(context, identifier, state);\n                state.label = 2;", "count": 1}],
+      "expected_failure_labels": ["widget-flow:0:1", "widget-flow:0:3"]
+    },
+    {
+      "name": "factory-precedes-state-publication",
+      "reason": "Factory construction failure occurs before the continuation is changed to label 1.",
+      "edits": [{"find": "zhh factory = new zhh(2, null);", "replace": "state.label = 1;\n                    zhh factory = new zhh(2, null);", "count": 1}],
+      "expected_failure_labels": ["widget-factory-before-state-clear"]
+    },
+    {
+      "name": "factory-arity-is-two",
+      "reason": "The preserved parent constructor receives arity 2 and null completion.",
+      "edits": [{"find": "zhh factory = new zhh(2, null);", "replace": "zhh factory = new zhh(3, null);", "count": 1}],
+      "expected_failure_labels": ["widget-factory-arity-and-null-completion"]
+    },
+    {
+      "name": "catch-includes-checked-exception",
+      "reason": "Original per-widget and resumed handlers catch checked Exception values.",
+      "edits": [{"find": "catch (Exception failure)", "replace": "catch (RuntimeException failure)", "count": 4}],
+      "expected_failure_labels": ["widget-checked-failure-inside-handler:widget.first:", "widget-checked-failure-inside-handler:widget.second:"]
+    },
+    {
+      "name": "catch-excludes-error",
+      "reason": "Error values escape the original Exception handlers, including failures delivered during resume.",
+      "edits": [{"find": "catch (Exception failure)", "replace": "catch (Throwable failure)", "count": 4}],
+      "expected_failure_labels": ["widget-flow:4:0", "widget-suspended-failure:2:4"]
+    },
+    {
+      "name": "logger-failure-escapes",
+      "reason": "Logging is outside the original protected region; a logger failure must escape.",
+      "edits": [
+        {"find": "kjf.h(new StringBuilder(\"Failed to update custom widget instance \")", "replace": "try { kjf.h(new StringBuilder(\"Failed to update custom widget instance \")", "count": 4},
+        {"find": ".append(widgetId).append(\": \").append(message).toString());", "replace": ".append(widgetId).append(\": \").append(message).toString()); } catch (Exception ignored) { }", "count": 4}
+      ],
+      "expected_failure_labels": ["widget-logger-failure-escapes"]
+    },
+    {
+      "name": "message-accessor-read-once",
+      "reason": "A caught exception's message accessor is observable and is read exactly once before logging.",
+      "edits": [{"find": "String message = ((Throwable) failure).getMessage();", "replace": "((Throwable) failure).getMessage();\n                String message = ((Throwable) failure).getMessage();", "count": 4}],
+      "expected_failure_labels": ["widget-flow:3:0", "widget-flow:0:3"]
+    },
+    {
+      "name": "first-suspension-uses-identity",
+      "reason": "A distinct object equal to the suspension marker must not suspend or have equals invoked.",
+      "edits": [{"find": "if (first == suspended)", "replace": "if (first != null && first.equals(suspended))", "count": 1}],
+      "expected_failure_labels": ["widget-first-result-uses-identity"]
+    },
+    {
+      "name": "second-suspension-uses-identity",
+      "reason": "The second suspension result also uses reference identity.",
+      "edits": [{"find": "if (second == suspended)", "replace": "if (second != null && second.equals(suspended))", "count": 1}],
+      "expected_failure_labels": ["widget-second-result-uses-identity"]
+    },
+    {
+      "name": "has-next-remains-outside-handler",
+      "reason": "A checked exception from Iterator.hasNext escapes instead of ending iteration normally.",
+      "edits": [{"find": "if (!iterator.hasNext()) {\n                    return blg.a;\n                }", "replace": "try {\n                    if (!iterator.hasNext()) return blg.a;\n                } catch (Exception ignored) { return blg.a; }", "count": 1}],
+      "expected_failure_labels": ["widget-checked-failure-outside-handler:iterator.hasNext:"]
+    },
+    {
+      "name": "iterator-next-remains-outside-handler",
+      "reason": "A checked exception from Iterator.next remains outside the per-widget catch.",
+      "edits": [{"find": "widgetId = ((Number) iterator.next()).intValue();", "replace": "try { widgetId = ((Number) iterator.next()).intValue(); }\n                catch (Exception ignored) { return blg.a; }", "count": 1}],
+      "expected_failure_labels": ["widget-checked-failure-outside-handler:iterator.next:"]
+    },
+    {
+      "name": "invalid-provider-continues-iteration",
+      "reason": "A caught widget failure is logged and iteration continues to later IDs.",
+      "edits": [{"find": "continue;", "replace": "return blg.a;", "count": 1}],
+      "expected_failure_labels": ["widget-invalid-provider-continues"]
+    },
+    {
+      "name": "initial-result-remains-outside-handler",
+      "reason": "Initial coroutine result validation is outside the per-widget handler.",
+      "edits": [{"find": "} else if (label == 0) {\n            u2f.P(result);", "replace": "} else if (label == 0) {\n            try { u2f.P(result); } catch (Exception ignored) { return blg.a; }", "count": 1}],
+      "expected_failure_labels": ["widget-checked-failure-outside-handler:coroutine.result:"]
+    },
+    {
+      "name": "resume-locals-captured-before-result-validation",
+      "reason": "Fields restored before resumed result validation stay captured even when that boundary mutates continuation slots.",
+      "edits": [{"find": "u2f.P(result);\n                afterFirstSuspension = true;", "replace": "u2f.P(result);\n                context = (Context) state.L$0;\n                manager = (wx6) state.L$2;\n                renderer = (hn9) state.L$3;\n                iterator = (Iterator) state.L$5;\n                identifier = (gy6) state.L$7;\n                afterFirstSuspension = true;", "count": 1}],
+      "expected_failure_labels": ["widget-resume-captured-fields:1"]
+    }
+  ]
+}
