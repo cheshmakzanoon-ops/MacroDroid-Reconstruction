@@ -1,0 +1,37 @@
+name: Offline editable source checkpoint
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/offline-checkpoint.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checkpoint:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out the exact committed state
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Package only committed development inputs and evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p checkpoint
+          git archive --format=tar HEAD project scripts tools .github docs README.md .gitignore .gitattributes | gzip -n > checkpoint/editable-source.tar.gz
+          git rev-parse HEAD > checkpoint/COMMIT.txt
+          sha256sum checkpoint/editable-source.tar.gz > checkpoint/SHA256SUMS.txt
+          printf '%s\n' 'Overlay archive only. Combine with checksum-pinned vendor/v9 archives. This job does not certify source or Android parity.' > checkpoint/SCOPE.txt
+      - name: Preserve the exact source overlay for offline reproduction
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: editable-source-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          path: checkpoint/
