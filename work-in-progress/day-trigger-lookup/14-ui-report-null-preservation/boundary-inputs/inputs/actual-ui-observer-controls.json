@@ -1,0 +1,62 @@
+{
+  "applicationCoverageCredit": 0,
+  "applicationExecutions": 0,
+  "case": "injected-iterator-npe",
+  "changedRecordsRejected": 5,
+  "positive": {
+    "events": [
+      "iterator"
+    ],
+    "exceptionClass": "java.lang.NullPointerException",
+    "injectedExceptionIdentity": true,
+    "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+    "unsupported": false
+  },
+  "positiveAccepted": true,
+  "rejectedRecords": [
+    {
+      "events": [
+        "iterator"
+      ],
+      "exceptionClass": "java.lang.NullPointerException",
+      "injectedExceptionIdentity": true,
+      "rawMessage": "CHANGED_INJECTED_MESSAGE",
+      "unsupported": false
+    },
+    {
+      "events": [
+        "iterator"
+      ],
+      "exceptionClass": "java.lang.NullPointerException",
+      "injectedExceptionIdentity": false,
+      "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+      "unsupported": false
+    },
+    {
+      "events": [],
+      "exceptionClass": "java.lang.NullPointerException",
+      "injectedExceptionIdentity": true,
+      "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+      "unsupported": false
+    },
+    {
+      "events": [
+        "iterator"
+      ],
+      "exceptionClass": "java.lang.NullPointerException",
+      "injectedExceptionIdentity": true,
+      "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+      "returnIndex": 0,
+      "unsupported": false
+    },
+    {
+      "events": [
+        "iterator"
+      ],
+      "exceptionClass": "java.lang.NullPointerException",
+      "injectedExceptionIdentity": true,
+      "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+      "unsupported": true
+    }
+  ]
+}

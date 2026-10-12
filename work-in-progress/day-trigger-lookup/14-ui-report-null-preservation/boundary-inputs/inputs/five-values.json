@@ -1,0 +1,176 @@
+{
+  "dependency_keys": {
+    "actual": [
+      "Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;->getEntries()Ljava/util/List;",
+      "Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;->getKey()Ljava/lang/String;"
+    ],
+    "expected": [
+      "Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;->getEntries()Ljava/util/List;",
+      "Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;->getKey()Ljava/lang/String;"
+    ],
+    "equal": true
+  },
+  "input_inventory_sha256": {
+    "actual": "02dd119966191ad2f56937eda28e63644979080158465ffb13767710f34e32e6",
+    "expected": "02dd119966191ad2f56937eda28e63644979080158465ffb13767710f34e32e6",
+    "equal": true
+  },
+  "coverage_flag": {
+    "actual": true,
+    "expected": true,
+    "equal": true
+  },
+  "generated_null_cases": {
+    "actual": [
+      "dictionary-null",
+      "entries-null",
+      "iterator-null",
+      "null-first-entry",
+      "null-query-and-null-key",
+      "null-query-nonempty",
+      "null-second-entry"
+    ],
+    "expected": [
+      "dictionary-null",
+      "entries-null",
+      "iterator-null",
+      "null-first-entry",
+      "null-query-and-null-key",
+      "null-query-nonempty",
+      "null-second-entry"
+    ],
+    "equal": true
+  },
+  "observer_controls": {
+    "actual": {
+      "case": "injected-iterator-npe",
+      "positiveAccepted": true,
+      "changedRecordsRejected": 5,
+      "applicationExecutions": 0,
+      "applicationCoverageCredit": 0,
+      "positive": {
+        "exceptionClass": "java.lang.NullPointerException",
+        "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+        "injectedExceptionIdentity": true,
+        "events": [
+          "iterator"
+        ],
+        "unsupported": false
+      },
+      "rejectedRecords": [
+        {
+          "exceptionClass": "java.lang.NullPointerException",
+          "rawMessage": "CHANGED_INJECTED_MESSAGE",
+          "injectedExceptionIdentity": true,
+          "events": [
+            "iterator"
+          ],
+          "unsupported": false
+        },
+        {
+          "exceptionClass": "java.lang.NullPointerException",
+          "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+          "injectedExceptionIdentity": false,
+          "events": [
+            "iterator"
+          ],
+          "unsupported": false
+        },
+        {
+          "exceptionClass": "java.lang.NullPointerException",
+          "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+          "injectedExceptionIdentity": true,
+          "events": [],
+          "unsupported": false
+        },
+        {
+          "returnIndex": 0,
+          "exceptionClass": "java.lang.NullPointerException",
+          "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+          "injectedExceptionIdentity": true,
+          "events": [
+            "iterator"
+          ],
+          "unsupported": false
+        },
+        {
+          "exceptionClass": "java.lang.NullPointerException",
+          "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+          "injectedExceptionIdentity": true,
+          "events": [
+            "iterator"
+          ],
+          "unsupported": true
+        }
+      ]
+    },
+    "expected": {
+      "case": "injected-iterator-npe",
+      "positiveAccepted": true,
+      "changedRecordsRejected": 5,
+      "applicationExecutions": 0,
+      "applicationCoverageCredit": 0,
+      "positive": {
+        "returnIndex": null,
+        "exceptionClass": "java.lang.NullPointerException",
+        "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+        "injectedExceptionIdentity": true,
+        "events": [
+          "iterator"
+        ],
+        "unsupported": false
+      },
+      "rejectedRecords": [
+        {
+          "returnIndex": null,
+          "exceptionClass": "java.lang.NullPointerException",
+          "rawMessage": "CHANGED_INJECTED_MESSAGE",
+          "injectedExceptionIdentity": true,
+          "events": [
+            "iterator"
+          ],
+          "unsupported": false
+        },
+        {
+          "returnIndex": null,
+          "exceptionClass": "java.lang.NullPointerException",
+          "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+          "injectedExceptionIdentity": false,
+          "events": [
+            "iterator"
+          ],
+          "unsupported": false
+        },
+        {
+          "returnIndex": null,
+          "exceptionClass": "java.lang.NullPointerException",
+          "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+          "injectedExceptionIdentity": true,
+          "events": [],
+          "unsupported": false
+        },
+        {
+          "returnIndex": 0,
+          "exceptionClass": "java.lang.NullPointerException",
+          "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+          "injectedExceptionIdentity": true,
+          "events": [
+            "iterator"
+          ],
+          "unsupported": false
+        },
+        {
+          "returnIndex": null,
+          "exceptionClass": "java.lang.NullPointerException",
+          "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+          "injectedExceptionIdentity": true,
+          "events": [
+            "iterator"
+          ],
+          "unsupported": true
+        }
+      ]
+    },
+    "equal": false
+  }
+}

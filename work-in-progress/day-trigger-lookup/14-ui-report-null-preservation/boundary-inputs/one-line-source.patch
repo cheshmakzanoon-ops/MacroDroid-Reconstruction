@@ -1,0 +1,11 @@
+--- parent/tests/java/UiParityTests.java
++++ candidate/tests/java/UiParityTests.java
+@@ -491,7 +491,7 @@
+         if(registry.containsKey(DayLookupParityCases.KEY)&&!DayLookupParityCases.addReport(report,original,rebuilt))report.addProperty("passed",false);
+         if(!blockBranchesCovered||!sceneBranchesCovered||!pluginBranchesCovered||!uploadBranchesCovered||!widgetBranchesCovered)report.addProperty("passed",false);
+         Path reportPath=System.getProperty("ui.report")==null?root.resolve("reports/java-ui-"+(rebuilt==null?"two":"three")+"-path-parity.json"):Paths.get(System.getProperty("ui.report"));
+-        Files.writeString(reportPath,G.toJson(report));
++        Files.writeString(reportPath,G.newBuilder().serializeNulls().create().toJson(report));
+         System.out.println("UI cases="+cases+" methods="+counts.size()+" mismatches="+mismatches+" unsupported="+unsupported+" expected="+expectedChecks);
+         if(!report.get("passed").getAsBoolean())System.exit(2);
+     }

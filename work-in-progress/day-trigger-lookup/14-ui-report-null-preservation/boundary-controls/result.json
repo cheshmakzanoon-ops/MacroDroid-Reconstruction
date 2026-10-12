@@ -1,0 +1,325 @@
+{
+  "android_runtime_executed": false,
+  "application_executions": 0,
+  "commands": [
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/dev/shm/macrodroid-ui-report-null-fix/prepare_source.py"
+      ],
+      "cwd": "/dev/shm/macrodroid-ui-report-null-fix",
+      "environment": {
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "PATH": "/workspace/scratch/4130730d15aa/tooling/jdk21/bin:/usr/local/bin:/usr/bin:/bin",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUTF8": "1",
+        "TMPDIR": "/dev/shm/macrodroid-ui-report-null-fix/controls-01/tmp"
+      },
+      "expected_returncode": 0,
+      "finished": {
+        "monotonic_ns": 49074658708550,
+        "unix_ns": 1791811353864044743,
+        "utc": "2026-10-12T13:22:33.864028+00:00"
+      },
+      "name": "01-prepare",
+      "returncode": 0,
+      "started": {
+        "monotonic_ns": 49073863343229,
+        "unix_ns": 1791811353068680228,
+        "utc": "2026-10-12T13:22:33.068678+00:00"
+      },
+      "stderr": {
+        "bytes": 0,
+        "mode": 420,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 484,
+        "mode": 420,
+        "sha256": "fd70e0d5037640a5f27aeb5dc23dd0bbea99c9ef03e3c82d70bd1e186b112085"
+      },
+      "timed_out": false,
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-version"
+      ],
+      "cwd": "/dev/shm/macrodroid-ui-report-null-fix",
+      "environment": {
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "PATH": "/workspace/scratch/4130730d15aa/tooling/jdk21/bin:/usr/local/bin:/usr/bin:/bin",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUTF8": "1",
+        "TMPDIR": "/dev/shm/macrodroid-ui-report-null-fix/controls-01/tmp"
+      },
+      "expected_returncode": 0,
+      "finished": {
+        "monotonic_ns": 49075490128078,
+        "unix_ns": 1791811354695464129,
+        "utc": "2026-10-12T13:22:34.695445+00:00"
+      },
+      "name": "02-java-version",
+      "returncode": 0,
+      "started": {
+        "monotonic_ns": 49074964269571,
+        "unix_ns": 1791811354169605498,
+        "utc": "2026-10-12T13:22:34.169533+00:00"
+      },
+      "stderr": {
+        "bytes": 205,
+        "mode": 420,
+        "sha256": "5b4412738541184e84f6b2d7520d4f4a7c2a455f60650491464c61adcbbbdeb0"
+      },
+      "stdout": {
+        "bytes": 0,
+        "mode": 420,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timed_out": false,
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "-version"
+      ],
+      "cwd": "/dev/shm/macrodroid-ui-report-null-fix",
+      "environment": {
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "PATH": "/workspace/scratch/4130730d15aa/tooling/jdk21/bin:/usr/local/bin:/usr/bin:/bin",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUTF8": "1",
+        "TMPDIR": "/dev/shm/macrodroid-ui-report-null-fix/controls-01/tmp"
+      },
+      "expected_returncode": 0,
+      "finished": {
+        "monotonic_ns": 49076010317986,
+        "unix_ns": 1791811355215654000,
+        "utc": "2026-10-12T13:22:35.215621+00:00"
+      },
+      "name": "03-javac-version",
+      "returncode": 0,
+      "started": {
+        "monotonic_ns": 49075491135321,
+        "unix_ns": 1791811354696471789,
+        "utc": "2026-10-12T13:22:34.696462+00:00"
+      },
+      "stderr": {
+        "bytes": 0,
+        "mode": 420,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 16,
+        "mode": 420,
+        "sha256": "2df6b9c76e710158266aeaae8f3578eaed8ddd747a2272483506ad9a8a5e644a"
+      },
+      "timed_out": false,
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "-encoding",
+        "UTF-8",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/dev/shm/macrodroid-ui-report-null-fix/stage-01/inputs/runtime-classes/tools/classes:/dev/shm/macrodroid-ui-report-null-fix/stage-01/inputs/runtime-classes/build/java/hostclasses",
+        "-d",
+        "/dev/shm/macrodroid-ui-report-null-fix/controls-01/classes",
+        "/dev/shm/macrodroid-ui-report-null-fix/stage-01/control-source/UiReportSerializationControl.java"
+      ],
+      "cwd": "/dev/shm/macrodroid-ui-report-null-fix",
+      "environment": {
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "PATH": "/workspace/scratch/4130730d15aa/tooling/jdk21/bin:/usr/local/bin:/usr/bin:/bin",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUTF8": "1",
+        "TMPDIR": "/dev/shm/macrodroid-ui-report-null-fix/controls-01/tmp"
+      },
+      "expected_returncode": 0,
+      "finished": {
+        "monotonic_ns": 49078347960136,
+        "unix_ns": 1791811357553295498,
+        "utc": "2026-10-12T13:22:37.553274+00:00"
+      },
+      "name": "04-compile",
+      "returncode": 0,
+      "started": {
+        "monotonic_ns": 49076020215809,
+        "unix_ns": 1791811355225552335,
+        "utc": "2026-10-12T13:22:35.225540+00:00"
+      },
+      "stderr": {
+        "bytes": 0,
+        "mode": 420,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "mode": 420,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timed_out": false,
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xverify:all",
+        "-cp",
+        "/dev/shm/macrodroid-ui-report-null-fix/controls-01/classes:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/dev/shm/macrodroid-ui-report-null-fix/stage-01/inputs/runtime-classes/tools/classes:/dev/shm/macrodroid-ui-report-null-fix/stage-01/inputs/runtime-classes/build/java/hostclasses",
+        "UiReportSerializationControl",
+        "original",
+        "/dev/shm/macrodroid-ui-report-null-fix/stage-01/inputs",
+        "/dev/shm/macrodroid-ui-report-null-fix/controls-01/original-output"
+      ],
+      "cwd": "/dev/shm/macrodroid-ui-report-null-fix",
+      "environment": {
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "PATH": "/workspace/scratch/4130730d15aa/tooling/jdk21/bin:/usr/local/bin:/usr/bin:/bin",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUTF8": "1",
+        "TMPDIR": "/dev/shm/macrodroid-ui-report-null-fix/controls-01/tmp"
+      },
+      "expected_returncode": 2,
+      "finished": {
+        "monotonic_ns": 49079636310349,
+        "unix_ns": 1791811358841646228,
+        "utc": "2026-10-12T13:22:38.841588+00:00"
+      },
+      "name": "05-original-counterexample",
+      "returncode": 2,
+      "started": {
+        "monotonic_ns": 49078350288708,
+        "unix_ns": 1791811357555625215,
+        "utc": "2026-10-12T13:22:37.555615+00:00"
+      },
+      "stderr": {
+        "bytes": 0,
+        "mode": 420,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 78,
+        "mode": 420,
+        "sha256": "0d72d5b8dc162ad5fc22df446860d41b5c1a61d497acc6019ab4f1e268dcf387"
+      },
+      "timed_out": false,
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xverify:all",
+        "-cp",
+        "/dev/shm/macrodroid-ui-report-null-fix/controls-01/classes:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/dev/shm/macrodroid-ui-report-null-fix/stage-01/inputs/runtime-classes/tools/classes:/dev/shm/macrodroid-ui-report-null-fix/stage-01/inputs/runtime-classes/build/java/hostclasses",
+        "UiReportSerializationControl",
+        "corrected",
+        "/dev/shm/macrodroid-ui-report-null-fix/stage-01/inputs",
+        "/dev/shm/macrodroid-ui-report-null-fix/controls-01/corrected-output"
+      ],
+      "cwd": "/dev/shm/macrodroid-ui-report-null-fix",
+      "environment": {
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "PATH": "/workspace/scratch/4130730d15aa/tooling/jdk21/bin:/usr/local/bin:/usr/bin:/bin",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUTF8": "1",
+        "TMPDIR": "/dev/shm/macrodroid-ui-report-null-fix/controls-01/tmp"
+      },
+      "expected_returncode": 0,
+      "finished": {
+        "monotonic_ns": 49080711797612,
+        "unix_ns": 1791811359917133068,
+        "utc": "2026-10-12T13:22:39.917001+00:00"
+      },
+      "name": "06-corrected-boundary",
+      "returncode": 0,
+      "started": {
+        "monotonic_ns": 49079639454787,
+        "unix_ns": 1791811358844791220,
+        "utc": "2026-10-12T13:22:38.844781+00:00"
+      },
+      "stderr": {
+        "bytes": 0,
+        "mode": 420,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 77,
+        "mode": 420,
+        "sha256": "2bec55db282e0f304627d573005de4506c8d8f6faafd084910ec3898ab1cf7ed"
+      },
+      "timed_out": false,
+      "timeout_seconds": 120
+    }
+  ],
+  "corrected": {
+    "absentNullReturnIndices": [],
+    "actualCompiledObserverMatchesClosedStandalone": true,
+    "androidRuntime": false,
+    "applicationCoverageCredit": 0,
+    "applicationExecutions": 0,
+    "completeUiHarnessExecuted": false,
+    "gsonClassOrigin": "file:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+    "matchesOriginalClosedUiRecord": false,
+    "mode": "corrected",
+    "nonNullReturnIndexPreserved": true,
+    "observerClassOrigin": "file:/dev/shm/macrodroid-ui-report-null-fix/stage-01/inputs/runtime-classes/tools/classes/",
+    "observerStrictEquality": true,
+    "passed": true,
+    "pinnedInputCount": 371,
+    "pinnedInputInventory": "02dd119966191ad2f56937eda28e63644979080158465ffb13767710f34e32e6",
+    "strictFinalizerModified": false
+  },
+  "exact_ui_source_change_lines": 1,
+  "finished": {
+    "monotonic_ns": 49080899707530,
+    "unix_ns": 1791811360105043700,
+    "utc": "2026-10-12T13:22:40.104908+00:00"
+  },
+  "full_acceptance_executed": false,
+  "original": {
+    "absentNullReturnIndices": [
+      "positive.returnIndex",
+      "rejectedRecords[0].returnIndex",
+      "rejectedRecords[1].returnIndex",
+      "rejectedRecords[2].returnIndex",
+      "rejectedRecords[4].returnIndex"
+    ],
+    "actualCompiledObserverMatchesClosedStandalone": true,
+    "androidRuntime": false,
+    "applicationCoverageCredit": 0,
+    "applicationExecutions": 0,
+    "completeUiHarnessExecuted": false,
+    "gsonClassOrigin": "file:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+    "matchesOriginalClosedUiRecord": true,
+    "mode": "original",
+    "nonNullReturnIndexPreserved": true,
+    "observerClassOrigin": "file:/dev/shm/macrodroid-ui-report-null-fix/stage-01/inputs/runtime-classes/tools/classes/",
+    "observerStrictEquality": false,
+    "passed": false,
+    "pinnedInputCount": 371,
+    "pinnedInputInventory": "02dd119966191ad2f56937eda28e63644979080158465ffb13767710f34e32e6",
+    "strictFinalizerModified": false
+  },
+  "passed": true,
+  "runtime_inputs_unchanged": true,
+  "schema": 1,
+  "source_input_files_unchanged": 53,
+  "started": {
+    "monotonic_ns": 49073863319136,
+    "unix_ns": 1791811353068655619,
+    "utc": "2026-10-12T13:22:33.068644+00:00"
+  },
+  "status": "ORIGINAL_FIVE_NULL_KEY_LOSS_REPRODUCED_AND_CORRECTED_WRITER_PASSED",
+  "strict_finalizer_modified": false
+}

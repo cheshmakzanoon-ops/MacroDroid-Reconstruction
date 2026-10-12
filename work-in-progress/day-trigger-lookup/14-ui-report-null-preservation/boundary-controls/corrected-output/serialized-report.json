@@ -1,0 +1,87 @@
+{
+  "dayLookupObserverRecordControls": {
+    "case": "injected-iterator-npe",
+    "positiveAccepted": true,
+    "changedRecordsRejected": 5,
+    "applicationExecutions": 0,
+    "applicationCoverageCredit": 0,
+    "positive": {
+      "returnIndex": null,
+      "exceptionClass": "java.lang.NullPointerException",
+      "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+      "injectedExceptionIdentity": true,
+      "events": [
+        "iterator"
+      ],
+      "unsupported": false
+    },
+    "rejectedRecords": [
+      {
+        "returnIndex": null,
+        "exceptionClass": "java.lang.NullPointerException",
+        "rawMessage": "CHANGED_INJECTED_MESSAGE",
+        "injectedExceptionIdentity": true,
+        "events": [
+          "iterator"
+        ],
+        "unsupported": false
+      },
+      {
+        "returnIndex": null,
+        "exceptionClass": "java.lang.NullPointerException",
+        "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+        "injectedExceptionIdentity": false,
+        "events": [
+          "iterator"
+        ],
+        "unsupported": false
+      },
+      {
+        "returnIndex": null,
+        "exceptionClass": "java.lang.NullPointerException",
+        "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+        "injectedExceptionIdentity": true,
+        "events": [],
+        "unsupported": false
+      },
+      {
+        "returnIndex": 0,
+        "exceptionClass": "java.lang.NullPointerException",
+        "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+        "injectedExceptionIdentity": true,
+        "events": [
+          "iterator"
+        ],
+        "unsupported": false
+      },
+      {
+        "returnIndex": null,
+        "exceptionClass": "java.lang.NullPointerException",
+        "rawMessage": "EXACT_INJECTED_LOOKUP_FAULT:injected-iterator-npe",
+        "injectedExceptionIdentity": true,
+        "events": [
+          "iterator"
+        ],
+        "unsupported": true
+      }
+    ]
+  },
+  "serializationBoundaryFixture": {
+    "array": [
+      null,
+      {
+        "nullField": null
+      },
+      [],
+      {}
+    ],
+    "nested": {
+      "emptyString": "",
+      "false": false,
+      "nullField": null,
+      "zero": 0
+    },
+    "nullField": null,
+    "text": "\u003c\u003e\u0026\u003d\u0027\"\n\t\u0000 café"
+  }
+}
