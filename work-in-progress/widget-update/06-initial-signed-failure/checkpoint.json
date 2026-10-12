@@ -1,0 +1,199 @@
+{
+  "status": "SIGNED_BUILD_CODE_RESOURCES_PASSED_HOST_METADATA_GATE_FAILED",
+  "frozen_utc": "2026-10-12T04:12:06.067102+00:00",
+  "source_input_snapshot_sha256": "a729f01fc4b0dc136c980501c144b43769332c324f8c6f63438107d605291691",
+  "source_prerequisite_checkpoint_sha256": "2c5557427602bac7d3154d17f127499e8f785cd9f5a0dd73c299d3e6854f938b",
+  "gate_results": [
+    {
+      "label": "hybrid-build",
+      "returncode": 0
+    },
+    {
+      "label": "hybrid-code",
+      "returncode": 0
+    },
+    {
+      "label": "hybrid-resources",
+      "returncode": 0
+    },
+    {
+      "label": "three-path-host-tests",
+      "returncode": 1
+    }
+  ],
+  "python_tests": 259,
+  "python_failures": [
+    "test_fixture_provenance",
+    "test_registered_classes_count",
+    "test_registry_count"
+  ],
+  "apk_sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f",
+  "complete_report_count": 40,
+  "files": [
+    {
+      "path": "preparation.json",
+      "bytes": 20081,
+      "sha256": "87ce8346a82f454c6bbd939489b902e3d559ea7e6553175757dfe55f7ffb9742"
+    },
+    {
+      "path": "result.json",
+      "bytes": 3712,
+      "sha256": "0920e6d620c993b99efe727604b013a0d5dcfd3adb131b77d4bb9132eb3e7069"
+    },
+    {
+      "path": "commands/hybrid-build.log",
+      "bytes": 562,
+      "sha256": "63af15b0913da56b697c0b72947b1cf1f56276f0a263066c7aaaa76799fa8821"
+    },
+    {
+      "path": "commands/hybrid-code.log",
+      "bytes": 511,
+      "sha256": "919faa2b440d18be798db9a7b5b569f4bc240938369d2cb827f5f2ff88b900fd"
+    },
+    {
+      "path": "commands/hybrid-resources.log",
+      "bytes": 196,
+      "sha256": "2e2ff318fe5d66a0ceed93d6403fea4f3865b3b206cdb92cbf6dd73de22a7fdb"
+    },
+    {
+      "path": "commands/three-path-host-tests.log",
+      "bytes": 4182,
+      "sha256": "d176c0d9bcbd9d324e5c6164d8bd2e5c6930888d1e12ba36b542a080f9a8a135"
+    },
+    {
+      "path": "metadata-omission-review.json",
+      "bytes": 1544,
+      "sha256": "69e15309c9725d80b49d520771498dfebdfa64894fcc2a09738ee9cfc762f354"
+    },
+    {
+      "path": "reviewable/hybrid-build.json",
+      "bytes": 279,
+      "sha256": "f591619c2282c3f828f8a68da0e03fa49989470a551ef6df4d05f1d2970bc7fe"
+    },
+    {
+      "path": "reviewable/hybrid-roundtrip.json",
+      "bytes": 183693,
+      "sha256": "38684e5c3754b26271938dab7b1d1533fd927f36ccac5ec2cf3b2a9495ea1362"
+    },
+    {
+      "path": "reviewable/hybrid-resource-parity.json",
+      "bytes": 15626,
+      "sha256": "41e622b1389e230332f6ae0158ff799bba8beb25e224eae8ff62850f35835501"
+    },
+    {
+      "path": "reviewable/java-integration.json",
+      "bytes": 321641,
+      "sha256": "b935f965e647389f8acdcf7f38d46c21246e165cd91c63578505222bb2912ccd"
+    },
+    {
+      "path": "reviewable/python-unit-tests.log",
+      "bytes": 33459,
+      "sha256": "868840ab33947886e01c45cfbcf632b40748ad64ca2827fb5ee516d80751c039"
+    },
+    {
+      "path": "initial-inputs/tests/test_build.py",
+      "bytes": 10201,
+      "sha256": "866b0d2b83d89d787de73022f546ab11e4e9a8f7118261806b09eca35460e308"
+    },
+    {
+      "path": "initial-inputs/tests/fixtures/provenance.json",
+      "bytes": 518,
+      "sha256": "82d683ff234ce4f0ac3a461e96481cee8ee43b1555d08a5e58294d6f81f349b5"
+    },
+    {
+      "path": "freeze_initial_signed_failure.py",
+      "bytes": 9283,
+      "sha256": "e39b73adb05360b577926a8a001d64310b0ea556dbf2bcfaf09a8090368b9079"
+    },
+    {
+      "path": "complete-reports/part-0001.bin",
+      "bytes": 8388608,
+      "sha256": "41c2215c5c08968ee6365ea50a01a1caf64592c03f04252c6907fec115478d69"
+    },
+    {
+      "path": "complete-reports/part-0002.bin",
+      "bytes": 7704628,
+      "sha256": "7ab7b38f4b8dc176a571d955dc35c294d5a06979d6e8af17f506f79262e66d1b"
+    },
+    {
+      "path": "complete-reports/manifest.json",
+      "bytes": 891,
+      "sha256": "94366a7f88a5697485b41d310fd5fb8fdde4c06ce4070ae364666839f552343c"
+    },
+    {
+      "path": "complete-reports-inventory.json",
+      "bytes": 6557,
+      "sha256": "473f6557dbd6ae88901ea0d1f0dd9c69e138ca30d8b5c5dfaa0c0b26860ef8a4"
+    },
+    {
+      "path": "apk/part-0001.bin",
+      "bytes": 8388608,
+      "sha256": "1463aea284b0e9478a1d21f9f10e250ac8aff945a063a5744f9821d72319fb94"
+    },
+    {
+      "path": "apk/part-0002.bin",
+      "bytes": 8388608,
+      "sha256": "4f0cf0ee2cb678ff1d4598e6cd038317c43395fa370c25737574d41477bccc67"
+    },
+    {
+      "path": "apk/part-0003.bin",
+      "bytes": 8388608,
+      "sha256": "e3897ca43e31fdd84f7e8891bae30c5ee8e96f499397d7d75327a544ecdc458d"
+    },
+    {
+      "path": "apk/part-0004.bin",
+      "bytes": 8388608,
+      "sha256": "ed64708406fa58a29e6f41115283597a52ead38609cc05fcdc97b176556b6189"
+    },
+    {
+      "path": "apk/part-0005.bin",
+      "bytes": 8388608,
+      "sha256": "08573ad0332d6ad332134af1f133f79a6cea086524e66d542332f62ff702fe38"
+    },
+    {
+      "path": "apk/part-0006.bin",
+      "bytes": 8388608,
+      "sha256": "1230a412c24ace703f2e2e9c309a2247a980c119814deadabb750107336a7120"
+    },
+    {
+      "path": "apk/part-0007.bin",
+      "bytes": 8388608,
+      "sha256": "08906caeea7f703c20f678b8c397618ec25fc59d5cc25b65e68b1dedf250f90d"
+    },
+    {
+      "path": "apk/part-0008.bin",
+      "bytes": 8388608,
+      "sha256": "d6a1240a3fff117635c8b8959caa581e01c3a2a38894466ab2182147341210bc"
+    },
+    {
+      "path": "apk/part-0009.bin",
+      "bytes": 8388608,
+      "sha256": "31ea2fce036e98ff0dc79222b5fd4d266da83bc8678a5c6b7fc11d4e33641b36"
+    },
+    {
+      "path": "apk/part-0010.bin",
+      "bytes": 8388608,
+      "sha256": "4187594c0171f6e7c2d356971dfc23de3b7cb73452e555763344e10f2af84741"
+    },
+    {
+      "path": "apk/part-0011.bin",
+      "bytes": 8388608,
+      "sha256": "332eaed82b468ce453933a8abc81a7a357eaefdc4108d25356acced2113b03a0"
+    },
+    {
+      "path": "apk/part-0012.bin",
+      "bytes": 2408751,
+      "sha256": "e40fea8206a9206fdfbce13d7a4c43e17dd9eb8b276aa172d07df66c3bb1078e"
+    },
+    {
+      "path": "apk/manifest.json",
+      "bytes": 3508,
+      "sha256": "e0735120e642c1f0ca849a52c3f0f5127c93313457e39d854fad480bc8ef112c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1389,
+      "sha256": "6d71fe60117fc2502fb3ea1d57d7b73e0e61715c4523cca03b012745fc74d487"
+    }
+  ]
+}

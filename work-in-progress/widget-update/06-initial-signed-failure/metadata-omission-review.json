@@ -1,0 +1,34 @@
+{
+  "status": "REGISTRY_FIXTURE_METADATA_OMISSION_IDENTIFIED_BEFORE_HOST_GATE",
+  "observed_utc": "2026-10-12T04:09:11.500717+00:00",
+  "actual_registry_methods": 1241,
+  "actual_registry_classes": 604,
+  "inherited_expected_methods": 1240,
+  "inherited_expected_classes": 603,
+  "inherited_fixture_provenance": {
+    "origin": "User-uploaded APK",
+    "original_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+    "fixture_sha256": "d2a5e077f11552b462abbe9e10c96a0b1702dca479c8b8d7aeb081ad209d669c",
+    "fixture_bytes": 522988,
+    "methods": 1240,
+    "classes": 603,
+    "purpose": "Test-only original instructions; not an application build input.",
+    "extraction": "ExtractOracle run against the unchanged original upload; plugins.j.invokeSuspend added after the frozen exact CustomSceneAction recovery"
+  },
+  "files": {
+    "tests/test_build.py": {
+      "bytes": 10201,
+      "sha256": "866b0d2b83d89d787de73022f546ab11e4e9a8f7118261806b09eca35460e308"
+    },
+    "tests/fixtures/provenance.json": {
+      "bytes": 518,
+      "sha256": "82d683ff234ce4f0ac3a461e96481cee8ee43b1555d08a5e58294d6f81f349b5"
+    },
+    "tests/fixtures/original-methods.dex": {
+      "bytes": 525456,
+      "sha256": "f8ae4520e1a6e20be2f4343cd322a40e91873eb19cf7cc08b05485ccf195afbe"
+    }
+  },
+  "action": "Keep the running candidate inputs unchanged and preserve its actual result. Correct the two metadata/test files in a numbered follow-up only after the current study closes.",
+  "application_helper_unchanged": true
+}

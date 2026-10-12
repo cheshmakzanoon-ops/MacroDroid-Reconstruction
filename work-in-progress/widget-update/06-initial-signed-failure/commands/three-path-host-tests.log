@@ -1,0 +1,56 @@
+COMMAND: ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "test.py", "--three-way"]
+TEST FAILURE: Command failed (1); see reports/python-unit-tests.log
+uardsTests.test_settings_foreground_not_app) ... ok
+test_start_ok_does_not_prove_live_process (test_v9.DeviceGuardsTests.test_start_ok_does_not_prove_live_process) ... ok
+test_status_error_override (test_v9.DeviceGuardsTests.test_status_error_override) ... ok
+test_boolean_count_not_valid (test_v9.ExactCoverageTests.test_boolean_count_not_valid) ... ok
+test_duplicate_registry_rejected (test_v9.ExactCoverageTests.test_duplicate_registry_rejected) ... ok
+test_equal_counts_duplicate_methods_rejected (test_v9.ExactCoverageTests.test_equal_counts_duplicate_methods_rejected) ... ok
+test_missing_list_rejected (test_v9.ExactCoverageTests.test_missing_list_rejected) ... ok
+test_missing_ui_rejected (test_v9.ExactCoverageTests.test_missing_ui_rejected) ... ok
+test_negative_failures_cannot_cancel (test_v9.ExactCoverageTests.test_negative_failures_cannot_cancel) ... ok
+test_partition_valid (test_v9.ExactCoverageTests.test_partition_valid) ... ok
+test_wrong_method_rejected (test_v9.ExactCoverageTests.test_wrong_method_rejected) ... ok
+test_each_original_hash (test_v9.UiSourceTests.test_each_original_hash) ... ok
+test_exact_nine_methods_and_classes (test_v9.UiSourceTests.test_exact_nine_methods_and_classes) ... ok
+test_float_conversion_fixture_is_separate (test_v9.UiSourceTests.test_float_conversion_fixture_is_separate) ... ok
+test_migrated_descriptors_resolve_in_one_partition (test_v9.UiSourceTests.test_migrated_descriptors_resolve_in_one_partition) ... ok
+test_no_stubs_or_placeholder_imports_in_helpers (test_v9.UiSourceTests.test_no_stubs_or_placeholder_imports_in_helpers) ... ok
+test_reference_inventory_inputs_are_pinned (test_v9.UiSourceTests.test_reference_inventory_inputs_are_pinned) ... ok
+test_registry_partition (test_v9.UiSourceTests.test_registry_partition) ... ok
+test_signed_variant_filename_v9 (test_v9.UiSourceTests.test_signed_variant_filename_v9) ... ok
+
+======================================================================
+FAIL: test_fixture_provenance (test_build.ReleaseSourceTests.test_fixture_provenance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9/tests/test_build.py", line 114, in test_fixture_provenance
+    self.assertEqual(hashlib.sha256((ROOT/'tests/fixtures/original-methods.dex').read_bytes()).hexdigest(),p['fixture_sha256'])
+AssertionError: 'f8ae4520e1a6e20be2f4343cd322a40e91873eb19cf7cc08b05485ccf195afbe' != 'd2a5e077f11552b462abbe9e10c96a0b1702dca479c8b8d7aeb081ad209d669c'
+- f8ae4520e1a6e20be2f4343cd322a40e91873eb19cf7cc08b05485ccf195afbe
++ d2a5e077f11552b462abbe9e10c96a0b1702dca479c8b8d7aeb081ad209d669c
+
+
+======================================================================
+FAIL: test_registered_classes_count (test_build.ReleaseSourceTests.test_registered_classes_count)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9/tests/test_build.py", line 105, in test_registered_classes_count
+    def test_registered_classes_count(self):self.assertEqual(len({e['target'] for e in self.registry}),603)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 604 != 603
+
+======================================================================
+FAIL: test_registry_count (test_build.ReleaseSourceTests.test_registry_count)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9/tests/test_build.py", line 103, in test_registry_count
+    def test_registry_count(self):self.assertEqual(len(self.registry),1240)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1241 != 1240
+
+----------------------------------------------------------------------
+Ran 259 tests in 20.114s
+
+FAILED (failures=3)
+

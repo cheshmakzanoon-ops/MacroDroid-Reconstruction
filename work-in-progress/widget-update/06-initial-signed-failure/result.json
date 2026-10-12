@@ -1,0 +1,108 @@
+{
+  "status": "SIGNED_WIDGET_PROOF_FAILED",
+  "passed": false,
+  "started_utc": "2026-10-12T04:02:08.550809+00:00",
+  "project": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+  "preparation": {
+    "path": "/workspace/scratch/4130730d15aa/widget-recovery/reports/signed-integration-06/preparation.json",
+    "bytes": 20081,
+    "sha256": "87ce8346a82f454c6bbd939489b902e3d559ea7e6553175757dfe55f7ffb9742"
+  },
+  "commands": [
+    {
+      "label": "hybrid-build",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "build.py",
+        "build",
+        "--variant",
+        "hybrid"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:02:25.472605+00:00",
+      "timeout_seconds": 1200,
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:06:51.687359+00:00",
+      "elapsed_seconds": 266.214764,
+      "log": {
+        "path": "hybrid-build.log",
+        "bytes": 562,
+        "sha256": "63af15b0913da56b697c0b72947b1cf1f56276f0a263066c7aaaa76799fa8821"
+      },
+      "passed": true
+    },
+    {
+      "label": "hybrid-code",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "build.py",
+        "verify",
+        "--variant",
+        "hybrid"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:06:51.699817+00:00",
+      "timeout_seconds": 1200,
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:09:14.092690+00:00",
+      "elapsed_seconds": 142.393016,
+      "log": {
+        "path": "hybrid-code.log",
+        "bytes": 511,
+        "sha256": "919faa2b440d18be798db9a7b5b569f4bc240938369d2cb827f5f2ff88b900fd"
+      },
+      "passed": true
+    },
+    {
+      "label": "hybrid-resources",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "resource_verify.py",
+        "--variant",
+        "hybrid"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:09:14.107554+00:00",
+      "timeout_seconds": 1200,
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:10:25.244519+00:00",
+      "elapsed_seconds": 71.137028,
+      "log": {
+        "path": "hybrid-resources.log",
+        "bytes": 196,
+        "sha256": "2e2ff318fe5d66a0ceed93d6403fea4f3865b3b206cdb92cbf6dd73de22a7fdb"
+      },
+      "passed": true
+    },
+    {
+      "label": "three-path-host-tests",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "test.py",
+        "--three-way"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:10:25.252876+00:00",
+      "timeout_seconds": 1200,
+      "returncode": 1,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:10:48.959760+00:00",
+      "elapsed_seconds": 23.706903,
+      "log": {
+        "path": "three-path-host-tests.log",
+        "bytes": 4182,
+        "sha256": "d176c0d9bcbd9d324e5c6164d8bd2e5c6930888d1e12ba36b542a080f9a8a135"
+      },
+      "passed": false
+    }
+  ],
+  "scope": "Five planned host and signed-artifact gates; no full acceptance or Android feature claim",
+  "source_input_snapshot_sha256": "a729f01fc4b0dc136c980501c144b43769332c324f8c6f63438107d605291691",
+  "source_input_files": 81264,
+  "inputs_verified_before_commands": true,
+  "error": "RuntimeError('Signed Widget command failed: three-path-host-tests')",
+  "finished_utc": "2026-10-12T04:10:48.962422+00:00"
+}
