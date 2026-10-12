@@ -1,0 +1,257 @@
+{
+  "status": "ORIGINAL_JVM_ALL_SUITE_COVERAGE_PASSED_SIGNED_PROOF_PENDING",
+  "frozen_at_utc": "2026-10-12T03:24:15.280121+00:00",
+  "scope": "Isolated plugin upload candidate; bounded original/JVM comparison only. Signed APK, rebuilt body, roundtrip, all54 behavioral fault controls, Android execution and parent combined acceptance remain pending.",
+  "method": "Lcom/arlosoft/macrodroid/plugins/k;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+  "recovery_source": "source/java/recovered/ui/PluginUploadMethods.java",
+  "recovery_source_sha256": "51ff522fa350fe832aca87ceba718ec30dd06687a51238062f4d14f70c20b3d4",
+  "original_smali": "source/smali/classes3/52/k_5259e6b9bbdca2b7.smali",
+  "original_method_sha256": "e1e358c48fd74e5bff3dae102917559cbc463795413aa0d329f3bede881609fe",
+  "original_class_sha256": "368d725aac720215134cdceae0b8fb04111fa88556c12a4a05107e411f74d66c",
+  "original_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+  "registered_bodies": 1241,
+  "registered_classes": 604,
+  "added_bodies": 1,
+  "ui_methods": 9,
+  "upload_cases": 2356,
+  "ui_cases": 20832,
+  "ui_independent_expected_result_checks": 15128,
+  "all_suite_cases": 191147,
+  "suite_cases": {
+    "legacy": 95262,
+    "core": 34753,
+    "environment": 30684,
+    "engine": 9616,
+    "ui": 20832
+  },
+  "paths": 2,
+  "failed_cases": 0,
+  "unsupported_executions": 0,
+  "exact_method_key_partition_verified": true,
+  "upload_coverage": {
+    "instructions": 163,
+    "visited": 163,
+    "unvisitedOffsets": [],
+    "conditionalEdges": 26,
+    "conditionalEdgesVisited": 26,
+    "unvisitedConditionalEdges": []
+  },
+  "ui_instructions_visited": 1329,
+  "coverage_fault_scope": {
+    "injected_returning_invalid_label_guard_cases": 1,
+    "case": "upload-invalid-label-injected-return",
+    "normally_throws": "java.lang.IllegalStateException",
+    "purpose": "Visit only the original defensive return-null after a deliberately returning e6d.r boundary. Ordinary invalid labels require the original exception and exact message."
+  },
+  "exception_comparison": {
+    "compared": [
+      "exception class",
+      "escape/catch behavior",
+      "call order",
+      "partial state and construction effects",
+      "observable injected/external exception identity",
+      "exact injected/external messages including injected NPE and CCE",
+      "ordinary invalid-label exception message"
+    ],
+    "excluded": "Only VM-generated null/cast exception wording. Caught exception identity is compared only where exposed through controlled boundary effects."
+  },
+  "python_unit_tests": 161,
+  "static_proof": {
+    "pass": true,
+    "methods_registered": 1241,
+    "constant_methods_proven": 1119,
+    "member_references_checked": 645,
+    "app_members_resolved": 440,
+    "new_external_refs": [],
+    "errors": [],
+    "android_executed": false
+  },
+  "linkage_proof": {
+    "pass": true,
+    "registered_methods": 1241,
+    "invocations_seen": 1498,
+    "fields_seen": 417,
+    "original_invocations_checked": 577,
+    "original_fields_checked": 404,
+    "external_or_unresolved": 934,
+    "errors": [],
+    "android_runtime_executed": false,
+    "scope": "Check migrated invocation kinds and private/static accesses against original declarations.\n\nThis is a bounded static check, NOT the ART verifier. It does not prove Android API\navailability, protected/package access, receiver dataflow or classloader behavior.\nThe separate validate_migration.py checks signatures and external-reference provenance."
+  },
+  "roundtrip": null,
+  "negative_controls": {
+    "behavioral_execution": false,
+    "total_ui_controls_authored": 54,
+    "new_upload_controls": 17,
+    "compile_only_result": {
+      "pass": true,
+      "controls_compiled": 17,
+      "total_ui_controls_authored": 54,
+      "controls": [
+        {
+          "mutation": "upload-retain-saved-part-cast",
+          "required_case": "upload-saved-cast:1:4:true",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-compression-result-is-ignored",
+          "required_case": "upload-compress-false-is-ignored",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-nested-media-catch",
+          "required_case": "upload-nested-media-argument-handler",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-request-companion-capture",
+          "required_case": "upload-request-companion-captured-before-media",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-request-default-mask",
+          "required_case": "upload-flow:0:true:0:0",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-icon-suspension-label",
+          "required_case": "upload-two-suspensions",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-plugin-suspension-label",
+          "required_case": "upload-two-suspensions",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-icon-clears-saved-part",
+          "required_case": "upload-flow:0:true:1:0",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-null-icon-uses-fallback",
+          "required_case": "upload-null-icon-fallback",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-http-status-is-read-twice",
+          "required_case": "upload-second-status-read-and-priority",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-denied-flag-before-publication",
+          "required_case": "upload-no-icon:4",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-success-sink-before-payload",
+          "required_case": "upload-success-sink-captured-before-payload",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-catch-includes-checked-exception",
+          "required_case": "upload-fault:0:1:4",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-catch-must-not-swallow-error",
+          "required_case": "upload-fault:0:1:3",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-error-publication-precedes-log",
+          "required_case": "upload-no-icon:5",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-icon-suspension-uses-identity",
+          "required_case": "upload-icon-marker-identity",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        },
+        {
+          "mutation": "upload-plugin-suspension-uses-identity",
+          "required_case": "upload-plugin-marker-identity",
+          "unique_source_anchor": true,
+          "javac_passed": true,
+          "behavioral_execution": false
+        }
+      ],
+      "correct_helper_sha256": "51ff522fa350fe832aca87ceba718ec30dd06687a51238062f4d14f70c20b3d4",
+      "scope": "Mutant source anchors and compilation only; behavioral rejection and signed restoration are pending."
+    }
+  },
+  "positive_restoration": null,
+  "reference_marker_inventory": {
+    "reference_java_files": 1893,
+    "failed_decompilation_markers": 42,
+    "markers_with_registered_replacements": 20,
+    "markers_without_registered_replacements": 22,
+    "reference_tree_is_compilable_application": false,
+    "scope": "Exact-signature metadata inventory only"
+  },
+  "apk": null,
+  "fixture": {
+    "path": "tests/fixtures/original-methods.dex",
+    "bytes": 525652,
+    "sha256": "3038175ccb3eba87ee326352e123aed81ac8f69317283387ca3fa2f136b48bf7"
+  },
+  "assembly": {
+    "javac_passed": true,
+    "d8_passed": true,
+    "signed_apk_built": false,
+    "rebuilt_dex_compared_to_apk": false,
+    "android_runtime_executed": false
+  },
+  "private_baseline": {
+    "root": "/tmp/macrodroid-plugin-upload-tynqcwun/MacroDroid_v9",
+    "baseline_root": "/workspace/scratch/4130730d15aa/plugin-recovery/MacroDroid_v9",
+    "baseline_checkpoint_sha256": "43ec5fd958e43258f62b3639aac275cccff2333435c7f48bc8fd6f3717cd958d",
+    "input_manifest": "evidence/upload-private-source-inputs.json",
+    "input_manifest_sha256": "cca9e26fc669714caa0f13b2f67e7cfe00f448d532efe06b78cd71d7fda9c84f",
+    "files": 81249,
+    "logical_bytes": 819374473,
+    "every_copy_hash_verified": true,
+    "mutable_hardlinks": false,
+    "generated_cache_outputs_copied": false
+  },
+  "prior_inactive_checkpoints": [
+    {
+      "commit": "1e1f5c3404071b8dc5a5b0b5bf534099895017ae",
+      "path": "work-in-progress/plugin-upload/01-draft-compile",
+      "scope": "Unregistered javac-only initial draft"
+    }
+  ],
+  "merge_boundaries": "Do not replace parent build.py, runtime files or BytecodeOracle. Apply the three narrow test/count/UI-control patches while retaining strict generated cleanup, runtime evidence fixtures and parent tests. Other paths require baseline hash checks. Existing source registries gain only k in this isolated 1241-body baseline. Frozen checkpoint files are immutable."
+}
