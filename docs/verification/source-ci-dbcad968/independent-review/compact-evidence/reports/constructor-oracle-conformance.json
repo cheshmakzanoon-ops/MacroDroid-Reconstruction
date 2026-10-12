@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "cases": 16,
+  "androidRuntime": false,
+  "scope": "Synthetic host constructor-owner boundary only; compile-only child reflection adapter",
+  "checks": [
+    "ordinary same-owner constructor still executes",
+    "unconfigured direct-parent owner is rejected",
+    "explicit method-scoped parent adapter executes",
+    "allowance cannot cross method boundaries",
+    "constructor cannot use invoke-virtual",
+    "unselected target cannot obtain an adapter",
+    "non-parent owner cannot obtain an adapter",
+    "same-owner rules are not parent adapters",
+    "abstract allocated type is rejected",
+    "zero occurrence count is rejected",
+    "wrong occurrence count is rejected",
+    "wrong constructor descriptor is rejected",
+    "duplicate adapter is rejected",
+    "adapter cannot be added after execution",
+    "allowance is bound to actual allocated type",
+    "allowance is bound to actual constructor parameters"
+  ],
+  "fixtureSourceSha256": "1cd51ecf03135f228bdc5dba6b52b44ee034524be667bd89064d9660da7a7eaf",
+  "fixtureDexSha256": "4b5601fd336138a60d4726db1b29fde9a89363839bb73a557aaaf3c7dd8908e2"
+}

@@ -13,10 +13,14 @@ upload and Widget candidate passed all 16 configured host acceptance gates,
 positive restoration, and the signed source-edit experiment. Its exact source,
 signed APK and every closed report are retained in the
 [complete combined proof](work-in-progress/combined-recovery/05-full-acceptance/).
-Clean hosted reproduction and Android measurements for this new APK have their
-own pending scopes. The [verification workflow](.github/workflows/reconstruction.yml)
-records those actual outcomes separately; previous hosted/device results retain
-their original source and APK identities.
+The clean [hosted source reproduction](docs/verification/source-ci-dbcad968/)
+has now passed the same 16 gates and reproduced the exact committed APK.
+The [Android capture](docs/verification/android-ci-dbcad968/) records an exact
+cold launch, a 35-pixel TRIGGERS difference and a successful bounded constructor
+ART probe. The separately reviewed
+[post-home session](docs/verification/editor-journey/run-38214498414-attempt-1/analysis/)
+has ten exact scoped still pairs while preserving the recorded startup crashes
+and restarts. These measured outcomes retain their separate acceptance scopes.
 
 ## Get the working source
 
@@ -82,12 +86,19 @@ all 78 deliberate UI faults were detected and the full positive baseline restore
 All 551 closed reports and the exact signed artifact are preserved in
 [the current combined evidence](work-in-progress/combined-recovery/05-full-acceptance/).
 
+Hosted source job 114695960566 independently passed all 16 gates for commit
+`dbcad968c5c3e8f084205393a6c0d2d06a203c71`, with the same 193,489 cases,
+273 Python tests, 78 UI faults and exact `5f635e16…` APK. The complete original
+1,136-member ZIP, all gate logs and a separate streamed review are preserved in
+[the hosted source artifact](docs/verification/source-ci-dbcad968/). Its source
+success remains separate from the Android job's failed intro comparison.
+
 The prior 1,240-body source separately passed two complete hosted acceptance runs,
 38200503458 and 38202401393, with 188,791 cases and 259 Python tests each. Its
 9108 candidate also has a complete ten-screen Android observation with a remaining
 26-pixel intro indicator difference. The isolated Widget candidate passed a
 separate eight-case ART probe. These historical measurements do not certify the
-new combined APK's unobserved Android behavior.
+new combined APK beyond the separately recorded device scopes linked above.
 
 The previous combined 1,239-body scene, recorder and device-helper checkpoint
 `95077fcb1d3c86f3b1c91026619642d99198f149` passed all 16 configured hosted source
@@ -99,6 +110,9 @@ for both jobs; the isolated recovery proof remains separately identified.
 | Check | Measured result | Evidence |
 | --- | --- | --- |
 | Active combined host/artifact proof | All 16 configured gates; 193,489 three-path cases across 1,242 bodies; 273 Python tests; all 78 UI faults and exact restoration | [Complete combined evidence](work-in-progress/combined-recovery/05-full-acceptance/) |
+| Current hosted source reproduction | All 16 gates, 22 fresh report hashes and 78 retained mutants verified; both APK hashes reproduce; all 1,136 original artifact members preserved | [Exact source CI artifact and independent review](docs/verification/source-ci-dbcad968/) |
+| Current cold launch, intro and constructor probe | Cold launch exact; TRIGGERS differs by 35 pixels; other measured intro and raw post-intro pairs exact; constructor ART probe passes | [Unchanged Android evidence](docs/verification/android-ci-dbcad968/) |
+| Current scoped post-home editor session | Ten full-frame/XML/component pairs match; recorded startup crashes and restarts retained; continuous startup remains rejected | [Independent session replay](docs/verification/editor-journey/run-38214498414-attempt-1/analysis/) |
 | Isolated plugin lookup proof | 3,053 cases; all 198 instructions and 34 conditional edges; all 37 UI fault controls and clean restoration | [Signed plugin checkpoint](work-in-progress/plugin-lookup/04-signed-proof/) |
 | Previous hosted 1,239-body source checkpoint | All 16 configured acceptance gates; 185,738 three-path cases; all 1,239 methods; zero mismatches/unsupported executions; 203 Python tests passed | [Fresh source CI evidence](docs/verification/source-ci-95077fc/) |
 | Previous hosted UI deliberate-fault checks | All 22 controls passed; the restored 15,423-case UI suite passed; inputs unchanged | [Actual control report](docs/verification/source-ci-95077fc/reports/ui-negative-controls.json) |
@@ -158,10 +172,11 @@ rewrite either historical run or establish whole-app 1:1 behavior.
 | `scripts/import_v9.py` | Import the exact historical source/toolchain ZIPs when supplied separately. |
 | `docs/verification/restored-v9/` | Fresh v9 host build and test evidence from the restored full snapshot. |
 | `docs/verification/current/` | Earlier 1,238-body recovery and verification results; report identities retain their original scope. |
-| `docs/verification/plugin-runtime-integration/` | Active 1,240-body source merge, five-check clean proof, complete reports and new Android-tooling host checks. |
+| `docs/verification/plugin-runtime-integration/` | Previous 1,240-body source merge, five-check clean proof, complete reports and its Android-tooling host checks. |
+| `docs/verification/source-ci-dbcad968/` | Exact complete ZIP and independently verified 16-gate hosted source reproduction for the active 1,242-body candidate. |
 | `docs/verification/source-ci-95077fc/` | Successful 16-gate hosted source acceptance for the previous 1,239-body scene/runtime checkpoint. |
 | `docs/verification/source-ci-bebf448/` | Successful 16-gate hosted source acceptance for the previous 1,238-body checkpoint. |
-| `docs/verification/android-ci-*/` | Exact hosted Android evidence, including the latest cold-launch/four-page still match and earlier failed comparisons or preparation. |
+| `docs/verification/android-ci-*/` | Exact hosted Android evidence, including scoped matches and preserved failed visual comparisons or device preparation. |
 | `work-in-progress/` | Immutable recovery checkpoints and proof archives, including incomplete work; the materializer does not apply these directories. |
 | `tools/android/` | Reproducible JDK/SDK pins, disposable emulator setup, and runtime orchestration. |
 | `docs/v9/` and `docs/history/` | Historical quality reports, delivery records, provenance and checksums. |

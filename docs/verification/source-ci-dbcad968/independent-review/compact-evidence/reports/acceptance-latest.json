@@ -1,0 +1,280 @@
+{
+  "started_utc": "2026-10-12T06:51:46.140289+00:00",
+  "input_snapshot_before": "b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553",
+  "input_files": 81291,
+  "commands": [
+    {
+      "label": "input-integrity",
+      "command": [
+        "/usr/bin/python3",
+        "release_integrity.py",
+        "verify"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/01-input-integrity.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 5.276,
+      "log_sha256": "f595d4a4b1649835674cba80e0b7ad0a536d68286519469b8482a2a9ede2879f"
+    },
+    {
+      "label": "baseline-build",
+      "command": [
+        "/usr/bin/python3",
+        "build.py",
+        "build",
+        "--variant",
+        "baseline"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/02-baseline-build.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 67.659,
+      "log_sha256": "3cc2e1eb270c842420f8a76c55a1d89a8ca2c99a8680bacb790084e25a548a16"
+    },
+    {
+      "label": "hybrid-build",
+      "command": [
+        "/usr/bin/python3",
+        "build.py",
+        "build",
+        "--variant",
+        "hybrid"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/03-hybrid-build.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 45.733,
+      "log_sha256": "fe1951552911735511c0401b32d7b770a1fed30b1754b69e88b25e9c883e44db"
+    },
+    {
+      "label": "baseline-code",
+      "command": [
+        "/usr/bin/python3",
+        "build.py",
+        "verify",
+        "--variant",
+        "baseline"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/04-baseline-code.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 32.194,
+      "log_sha256": "a82ee71c10de50427deee7d8ceaecc7acfd19d68642324fbf07e26ccdd04a232"
+    },
+    {
+      "label": "hybrid-code",
+      "command": [
+        "/usr/bin/python3",
+        "build.py",
+        "verify",
+        "--variant",
+        "hybrid"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/05-hybrid-code.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 31.538,
+      "log_sha256": "2d1c64ed8eaa034d4e0b4122ea5b6f6b36ae7607b3b76552cb3b703c8e27291e"
+    },
+    {
+      "label": "baseline-resources",
+      "command": [
+        "/usr/bin/python3",
+        "resource_verify.py",
+        "--variant",
+        "baseline"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/06-baseline-resources.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 7.84,
+      "log_sha256": "f570b9dd243be220d60f1ba5a944573f9f0de97c31ed165ef597ecec6e711fea"
+    },
+    {
+      "label": "hybrid-resources",
+      "command": [
+        "/usr/bin/python3",
+        "resource_verify.py",
+        "--variant",
+        "hybrid"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/07-hybrid-resources.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 6.688,
+      "log_sha256": "821424d8d69ac2aabd1f51b2cc77dd0a0d331341999dde133d0eb97faac59b9f"
+    },
+    {
+      "label": "positive-host-tests",
+      "command": [
+        "/usr/bin/python3",
+        "test.py",
+        "--three-way"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/08-positive-host-tests.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 92.373,
+      "log_sha256": "9d703cf3937284598ce668f0d5b8931f166226120d8cd4102a83e5ce80647ef5"
+    },
+    {
+      "label": "reference-status",
+      "command": [
+        "/usr/bin/python3",
+        "reference_status.py"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/09-reference-status.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.264,
+      "log_sha256": "518184919e15cbd7e910640f928a6cf3acb55f75b477fcce67205a622eaff6df"
+    },
+    {
+      "label": "engine-negative-controls",
+      "command": [
+        "/usr/bin/python3",
+        "engine_negative_control.py"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/10-engine-negative-controls.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 11.672,
+      "log_sha256": "9fcecf607c59b40d4132e220c74d6b384060096d3a0d65236b98c40bc0d09a8d"
+    },
+    {
+      "label": "ui-negative-controls",
+      "command": [
+        "/usr/bin/python3",
+        "ui_negative_control.py"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/11-ui-negative-controls.log",
+      "timeout_seconds": 5400,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 725.704,
+      "log_sha256": "355b7ade132bcdaf6805f2869bce257b293cf5600a8fd58f9e5e07db75e314ea"
+    },
+    {
+      "label": "core-negative-controls",
+      "command": [
+        "/usr/bin/python3",
+        "core_negative_control.py"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/12-core-negative-controls.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 13.75,
+      "log_sha256": "ca716316a69f355527f045b037ced485c63653b04dd04acfcff53e8191d7a0ba"
+    },
+    {
+      "label": "environment-negative-controls",
+      "command": [
+        "/usr/bin/python3",
+        "environment_negative_control.py"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/13-environment-negative-controls.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 50.542,
+      "log_sha256": "ad7ed8c0c38917ce0fc316f2a05d2eda9b9f899fd437652e93b8b92915eed847"
+    },
+    {
+      "label": "legacy-negative-control",
+      "command": [
+        "/usr/bin/python3",
+        "negative_control.py"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/14-legacy-negative-control.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 93.486,
+      "log_sha256": "1aea8360155182d7ff2c7bb103493c1e380cd52bcbcbfd99e2e46ce3d687070a"
+    },
+    {
+      "label": "signed-source-edit",
+      "command": [
+        "/usr/bin/python3",
+        "full_apk_edit_probe.py"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/15-signed-source-edit.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 48.308,
+      "log_sha256": "46fd25765dfb47a66c9287cf502bef521e2cc7970f59075f09209b457488dbb0"
+    },
+    {
+      "label": "final-positive-host-tests",
+      "command": [
+        "/usr/bin/python3",
+        "test.py",
+        "--three-way"
+      ],
+      "log": "reports/acceptance-20261012T065140692696Z/16-final-positive-host-tests.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 91.023,
+      "log_sha256": "9d703cf3937284598ce668f0d5b8931f166226120d8cd4102a83e5ce80647ef5"
+    }
+  ],
+  "host_acceptance_passed": true,
+  "android_runtime_executed": false,
+  "full_runtime_1_to_1_established": false,
+  "complete_high_level_java_kotlin_source": false,
+  "source_edit_probe_skipped": false,
+  "input_snapshot_after": "b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553",
+  "build_inputs_unchanged": true,
+  "android_probe_exit_code": 2,
+  "android_status": "BLOCKED",
+  "apks": {
+    "baseline": {
+      "bytes": 94677674,
+      "sha256": "aa8ad3013ad211c8a39d083943b0a671d75e0bbbedccc924ea0093c590c9a096",
+      "path": "dist/MacroDroid-5.67.8-v9-baseline.apk"
+    },
+    "hybrid": {
+      "bytes": 94683119,
+      "sha256": "5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182",
+      "path": "dist/MacroDroid-5.67.8-v9-hybrid.apk"
+    }
+  },
+  "fresh_evidence_sha256": {
+    "baseline-roundtrip.json": "65df2516932c8fb6971b5a6625521af18108c222b1ceca1775f0aa85a9b0c80f",
+    "hybrid-roundtrip.json": "c1ac9c8e3086debf4bc380ad49ece2136cac49d0be7f4835d1ebf4e024af4eae",
+    "baseline-resource-parity.json": "29ef896b451e39ce5a9c507d5cbdb56d8caa367b580581bafe8660dbd83ea14f",
+    "hybrid-resource-parity.json": "d59258ec811ea54403f8d460bdb4b05ce43adc521d0fba1053844beddcc439b9",
+    "java-all-path-parity.json": "9d703cf3937284598ce668f0d5b8931f166226120d8cd4102a83e5ce80647ef5",
+    "java-ui-three-path-parity.json": "7432935adfac312c8eda689f1f1bdcb6747aa2369a588d48986ba4fc8be201df",
+    "ui-oracle-semantics.json": "a33dc35354c849da5cd91038342eee424375d8f1176ffc02ee17fd36a6d2b1f9",
+    "ui-negative-controls.json": "73454346600b878fc4939319de5a24f2453c9c0b131d3b825dfa41ada1cc03bd",
+    "java-engine-three-path-parity.json": "fc649c4c87693da7c9664c423213de4b5a531364fe2520551a7d7c3484d7ed4e",
+    "oracle-semantics.json": "4114dc8bee417402fb1064b92d43891c257890b4f9663766b00bd071b339a57f",
+    "engine-oracle-semantics.json": "efc253aea23a98a5549623021127861b67e032b143639974d7661fd6a29e55be",
+    "engine-negative-controls.json": "9fcecf607c59b40d4132e220c74d6b384060096d3a0d65236b98c40bc0d09a8d",
+    "core-negative-controls.json": "ea8e7e4432e773e15759c8c76c33ca8cb0c02fd6ef6f43838ae8c97f5fd5aaa8",
+    "environment-negative-controls.json": "6e206c6881ea2e925fde24ad2fc56f9cfdf55cc3a245a0eaf7f9f91eecd6c1b8",
+    "negative-control.json": "c9d0deb0e2c14e2e7f5a5343452a54e9b1ef403b4de170a28d1c01f62a9fdfca",
+    "migration-static-proof.json": "9f9e9dd04c432ebdee265a250750f49832b2786ddc95cbd3aee73cf358e32584",
+    "migration-linkage-check.json": "6a4ffd1e3104a06beefd0c79034232c1f4c305bc912ac2a1a8ce3b56ea29ebc2",
+    "reference-failures-status-v9.json": "8ffbc1ac5b72d7de2a5e712ae179ff6caf1a556b52a8d003d6e56ea2edb0a282",
+    "constructor-oracle-conformance.json": "7eef8e090f3da731e03613b15dbefc4b34b204e3878ffcfaa25b95ad094b5b5f",
+    "widget-bitwise-oracle-conformance.json": "9622fab805a5a6b1e6ddbf6fab6c947cecfae36fb98df4fee66d5fdeac390975",
+    "ui-runtime-policy.json": "90f42c86a05279f67718627a16c9dd8241b73b0beb065e9639a194bf11356b39",
+    "full-apk-edit-probe.json": "46fd25765dfb47a66c9287cf502bef521e2cc7970f59075f09209b457488dbb0"
+  },
+  "finished_utc": "2026-10-12T07:13:55.222515+00:00"
+}

@@ -166,8 +166,23 @@ The reviewed Trigger05/session03 guard union is activated with its exact 148-tes
 host proof. It rejects stale capture order and resolved-path/physical-file reuse,
 and verifies paired final activity components. The source workflow allows 120
 minutes and preserves the complete nested reports tree; its Android job is
-unchanged. Fresh hosted source, Android, and editor results for this promoted
-candidate remain pending at this publication.
+unchanged. Hosted source job 114695960566 for `dbcad968` has now passed all 16
+gates and reproduced both APK hashes. The exact 188,134,390-byte ZIP preserves all
+1,136 members; the independent review checked every member, all 22 fresh hashes,
+16 gate logs, 78 retained mutants, the complete input-manifest binding, 273 Python
+successes and 193,489 three-path cases. See the
+[complete source CI artifact](verification/source-ci-dbcad968/).
+
+The separate [Android run](verification/android-ci-dbcad968/) preserves its failed
+intro comparison: cold launch is exact, TRIGGERS has 35 differing pixels, the
+other measured intro and raw post-intro pairs are exact, and the bounded constructor ART probe
+passes. The independently reviewed
+[session](verification/editor-journey/run-38214498414-attempt-1/analysis/) has ten
+exact post-home scoped full-frame/XML/component pairs while retaining the shared
+startup crashes and restarts; continuous startup remains rejected. A separate
+[editor attempt](verification/editor-journey/run-38214498409-attempt-1/analysis/)
+failed device preparation before any app journey because the measured radio type
+changed. Each artifact keeps its original result and finite scope.
 
 The separate normal-animation diagnostic checked out its frozen original/9108
 inputs at `3edcddd86660ea10c8aff71b651b446f86412525` before this promotion.
