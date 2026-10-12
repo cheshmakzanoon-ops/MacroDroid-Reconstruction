@@ -1,0 +1,24 @@
+{
+  "scope": "Exact prepared inputs only; no Android execution in preflight",
+  "github_sha": "offline-control-no-git-execution",
+  "passed": false,
+  "files": [
+    {
+      "path": "scripts/assemble_artifact.py",
+      "bytes": 4658,
+      "sha256": "f85a570f864ec2481dd75783b82006129755194c941b54e193c893b7ee17e97c",
+      "expected_sha256": "f85a570f864ec2481dd75783b82006129755194c941b54e193c893b7ee17e97c"
+    },
+    {
+      "path": "tools/android/bootstrap_android_runtime.py",
+      "bytes": 9900,
+      "sha256": "219db783fd30b997111a6f67044eec83bf18a814ba4139e4aec8bc36a47c0b4b",
+      "expected_sha256": "8ae2a365cc5ec5109c76967642d6ee7f6655df96287cf8feb3355444e14e4e36"
+    }
+  ],
+  "error": "RuntimeError: Pinned input identity changed: tools/android/bootstrap_android_runtime.py"
+}
+Traceback (most recent call last):
+  File "<stdin>", line 38, in <module>
+  File "<stdin>", line 32, in verify
+RuntimeError: Pinned input identity changed: tools/android/bootstrap_android_runtime.py
