@@ -1,0 +1,70 @@
+{
+  "scope": "Exact cold-launch capture comparison only",
+  "started_utc": "2026-10-12T01:07:48Z",
+  "original_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+  "candidate_sha256": "2eabb2d883598254ca71f99999297e1b98fa9ea56fb24c200d5f053456cff4d6",
+  "cold_launch_capture_equal": false,
+  "full_runtime_1_to_1_established": false,
+  "commands": [
+    {
+      "label": "boot-readiness",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/tools/android/wait_android_ready.py",
+        "--evidence",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-runtime/environment",
+        "--timeout",
+        "900"
+      ],
+      "exit_code": 0,
+      "seconds": 42.087
+    },
+    {
+      "label": "capture-original-and-candidate",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/tools/android/runtime_job.py",
+        "--queue",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-runtime/environment/queue",
+        "--timeout",
+        "1800",
+        "--cwd",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/MacroDroid_v9",
+        "--",
+        "/usr/bin/python3",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/MacroDroid_v9/android_acceptance.py",
+        "--serial",
+        "emulator-5560",
+        "--original",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-original.apk",
+        "--candidate",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-current-hybrid.apk",
+        "--accept-package-data-removal",
+        "--install-timeout",
+        "600",
+        "--launch-timeout",
+        "180",
+        "--ui-timeout",
+        "120",
+        "--output",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-runtime/capture"
+      ],
+      "exit_code": 0,
+      "seconds": 66.602
+    },
+    {
+      "label": "compare-complete-captures",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/MacroDroid_v9/android_compare.py",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-runtime/capture"
+      ],
+      "exit_code": 2,
+      "seconds": 3.129
+    }
+  ],
+  "failure": "capture-or-comparison",
+  "service_exit_code": 0,
+  "emulator_log_lines_omitted": 2,
+  "finished_utc": "2026-10-12T01:09:42Z"
+}
