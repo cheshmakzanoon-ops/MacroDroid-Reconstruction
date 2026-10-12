@@ -24,3 +24,22 @@ The exact earlier failure remains in
 
 No application method body changes in this proposal. The same 1,239-body scene APK
 is expected; its reproducibility and acceptance require a completed measured run.
+
+## 02: Subsequent local acceptance failed during hybrid verification
+
+[Checkpoint 02](02-local-verification-failure/checkpoint.json) preserves all 12
+closed logs, reports and diagnostics from the failed local run. Input integrity,
+baseline build, hybrid build and baseline code verification passed. The next
+gate, hybrid code verification, failed after trying to read the vanished generated
+path `build/verify-hybrid/classes/.rsync-tmp/aja.smali`. The eleven remaining gates
+were not executed; this run did not pass full host acceptance or execute Android.
+
+The contemporaneous diagnostic observed `rsync` and `sync_share.sh` process names,
+and the temporary directory had already disappeared. Those observations do not
+conclusively establish the synchronization mechanism. The next planned check is
+to repeat the unchanged frozen inputs in a private temporary checkout.
+
+[The exact acceptance result](02-local-verification-failure/reports/acceptance-20261012T022105883695Z/result.json)
+and [diagnostic](02-local-verification-failure/reports/verification-staging-diagnostic.json)
+retain the actual failure. The second checkpoint SHA-256 is
+`d122aecf218768d08fd715189868c4c81be607cc78ac2fb6a414444108429ff4`.

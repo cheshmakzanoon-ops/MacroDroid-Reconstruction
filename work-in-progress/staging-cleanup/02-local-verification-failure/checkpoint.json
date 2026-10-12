@@ -1,0 +1,80 @@
+{
+  "status": "FROZEN_LOCAL_ACCEPTANCE_FAILED_HYBRID_VERIFICATION",
+  "frozen_utc": "2026-10-12T02:30:58.202795+00:00",
+  "input_snapshot_sha256": "f83e1b06145a67238a722fe088c35525de359f1b20c72c06d7931c3dcc825d85",
+  "completed_passing_gates": [
+    "input-integrity",
+    "baseline-build",
+    "hybrid-build",
+    "baseline-code"
+  ],
+  "failed_gate": "hybrid-code",
+  "failure": "FileNotFoundError while reading a vanished .rsync-tmp/aja.smali during generated DEX disassembly scanning.",
+  "remaining_gates_not_executed": 11,
+  "observation": "Concurrent rsync and sync_share.sh process names were observed; the temporary directory was absent when the diagnostic ran. The full synchronization mechanism is not established.",
+  "android_executed_by_this_run": false,
+  "full_host_acceptance_passed": false,
+  "next_step": "Repeat the unchanged frozen inputs in an isolated private temporary checkout, outside workspace synchronization. Preserve all actual outputs.",
+  "files": [
+    {
+      "path": "reports/acceptance-20261012T022105883695Z/01-input-integrity.log",
+      "bytes": 183,
+      "sha256": "03587216afc82fb9172f0b2a89ab3b2a25f5e8fb3ac9455418e70433980072f7"
+    },
+    {
+      "path": "reports/acceptance-20261012T022105883695Z/02-baseline-build.log",
+      "bytes": 461,
+      "sha256": "7e8e666adfb231a304ed8d27ddfa68dd0438dce3c7909658e97b5145b2e7f5f7"
+    },
+    {
+      "path": "reports/acceptance-20261012T022105883695Z/03-hybrid-build.log",
+      "bytes": 440,
+      "sha256": "09ad951a3e1a1e899ea6d21619343d7518fe0234aaa5ea957d98e2a86c9f4aa1"
+    },
+    {
+      "path": "reports/acceptance-20261012T022105883695Z/04-baseline-code.log",
+      "bytes": 381,
+      "sha256": "a82ee71c10de50427deee7d8ceaecc7acfd19d68642324fbf07e26ccdd04a232"
+    },
+    {
+      "path": "reports/acceptance-20261012T022105883695Z/05-hybrid-code.log",
+      "bytes": 155,
+      "sha256": "922beb9bb038867f945e6c40b3dd29d1a1b3a7afd1745baf551f3ef724166f1f"
+    },
+    {
+      "path": "reports/acceptance-20261012T022105883695Z/result.json",
+      "bytes": 3103,
+      "sha256": "da35ca626c72cf5215ac1cdcd7fc848839ef10f4a3f8db786f45723f45f81b32"
+    },
+    {
+      "path": "reports/acceptance-staging-fix-console.log",
+      "bytes": 105,
+      "sha256": "89d565814f73e78984e1683a98cadd851135ff92abee02ba89a770c8b2642741"
+    },
+    {
+      "path": "reports/java-staging.json",
+      "bytes": 305,
+      "sha256": "ad9e8cea6e31c438bfb07fcba15e80bbac0e456d8ae48cf1f7354299b575787d"
+    },
+    {
+      "path": "reports/verification-staging-diagnostic.json",
+      "bytes": 1968,
+      "sha256": "b15c6baa860dc256a1131fb854647e04ecdc5b9399a9013fd162f063948984f7"
+    },
+    {
+      "path": "reports/baseline-build.json",
+      "bytes": 283,
+      "sha256": "fa84bc13cec37cca9cd833df0d675b927e153e3269d8c892c377d85766c430eb"
+    },
+    {
+      "path": "reports/hybrid-build.json",
+      "bytes": 279,
+      "sha256": "06d6233ed296f4cbacd9d3678bf552b1abfb97bd12914db83d53c522a1c62283"
+    },
+    {
+      "path": "reports/baseline-roundtrip.json",
+      "bytes": 430,
+      "sha256": "65df2516932c8fb6971b5a6625521af18108c222b1ceca1775f0aa85a9b0c80f"
+    }
+  ]
+}

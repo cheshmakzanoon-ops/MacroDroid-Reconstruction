@@ -1,0 +1,322 @@
+test_allocation_type_or_receiver_mismatch_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_allocation_type_or_receiver_mismatch_is_rejected) ... 
+  test_allocation_type_or_receiver_mismatch_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_allocation_type_or_receiver_mismatch_is_rejected) (replacement='new-instance v0, LOther;') ... ERROR
+  test_allocation_type_or_receiver_mismatch_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_allocation_type_or_receiver_mismatch_is_rejected) (replacement='new-instance v3, LChild;') ... ERROR
+test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected) ... 
+  test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected) (instruction=':label') ... ERROR
+  test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected) (instruction='if-eqz v1, :elsewhere') ... ERROR
+  test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected) (instruction='move-object v0, v3') ... ERROR
+  test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected) (instruction='invoke-static {}, LOther;->effect()V') ... ERROR
+  test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected) (instruction='const-class v2, LOther;') ... ERROR
+test_changed_original_hash_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_changed_original_hash_is_rejected) ... ok
+test_constructor_register_words_are_validated (test_constructor_owner.ConstructorOwnerTests.test_constructor_register_words_are_validated) ... ERROR
+test_duplicate_rules_and_unknown_fields_are_rejected (test_constructor_owner.ConstructorOwnerTests.test_duplicate_rules_and_unknown_fields_are_rejected) ... ERROR
+test_exact_owner_rewrite_preserves_every_other_byte (test_constructor_owner.ConstructorOwnerTests.test_exact_owner_rewrite_preserves_every_other_byte) ... ERROR
+test_existing_child_constructor_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_existing_child_constructor_is_rejected) ... ok
+test_missing_and_extra_occurrences_are_rejected (test_constructor_owner.ConstructorOwnerTests.test_missing_and_extra_occurrences_are_rejected) ... 
+  test_missing_and_extra_occurrences_are_rejected (test_constructor_owner.ConstructorOwnerTests.test_missing_and_extra_occurrences_are_rejected) (compiled='.method public static create()LChild;\n.locals 3\nnew-instance v0, LChild;\nconst/4 v1, 0x2\nconst/4 v2, 0x0\ninvoke-direct {v0, v1, v2}, LOther;-><init>(ILContinuation;)V\nreturn-object v0\n.end method') ... ERROR
+  test_missing_and_extra_occurrences_are_rejected (test_constructor_owner.ConstructorOwnerTests.test_missing_and_extra_occurrences_are_rejected) (compiled='.method public static create()LChild;\n.locals 3\nnew-instance v0, LChild;\nconst/4 v1, 0x2\nconst/4 v2, 0x0\ninvoke-direct {v0, v1, v2}, LChild;-><init>(ILContinuation;)V\nreturn-object v0\n.end method\n.method public static create()LChild;\n.locals 3\nnew-instance v0, LChild;\nconst/4 v1, 0x2\nconst/4 v2, 0x0\ninvoke-direct {v0, v1, v2}, LChild;-><init>(ILContinuation;)V\nreturn-object v0\n.end method') ... ERROR
+test_non_public_or_non_concrete_parent_constructor_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_non_public_or_non_concrete_parent_constructor_is_rejected) ... ok
+test_original_shape_is_validated_independently (test_constructor_owner.ConstructorOwnerTests.test_original_shape_is_validated_independently) ... ERROR
+test_receiver_constant_overwrite_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_receiver_constant_overwrite_is_rejected) ... ERROR
+test_rules_require_an_exact_positive_count (test_constructor_owner.ConstructorOwnerTests.test_rules_require_an_exact_positive_count) ... ok
+test_unconfigured_body_is_untouched (test_constructor_owner.ConstructorOwnerTests.test_unconfigured_body_is_untouched) ... ok
+test_unrelated_parent_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_unrelated_parent_is_rejected) ... ok
+test_wide_constant_cannot_overwrite_receiver_high_word (test_constructor_owner.ConstructorOwnerTests.test_wide_constant_cannot_overwrite_receiver_high_word) ... ERROR
+test_wrong_invocation_kind_and_range_are_rejected (test_constructor_owner.ConstructorOwnerTests.test_wrong_invocation_kind_and_range_are_rejected) ... 
+  test_wrong_invocation_kind_and_range_are_rejected (test_constructor_owner.ConstructorOwnerTests.test_wrong_invocation_kind_and_range_are_rejected) (opcode='invoke-virtual') ... ERROR
+  test_wrong_invocation_kind_and_range_are_rejected (test_constructor_owner.ConstructorOwnerTests.test_wrong_invocation_kind_and_range_are_rejected) (opcode='invoke-direct/range') ... ERROR
+
+======================================================================
+ERROR: test_allocation_type_or_receiver_mismatch_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_allocation_type_or_receiver_mismatch_is_rejected) (replacement='new-instance v0, LOther;')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 57, in test_allocation_type_or_receiver_mismatch_is_rejected
+    self.transform(COMPILED.replace('new-instance v0, LChild;', replacement))
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_allocation_type_or_receiver_mismatch_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_allocation_type_or_receiver_mismatch_is_rejected) (replacement='new-instance v3, LChild;')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 57, in test_allocation_type_or_receiver_mismatch_is_rejected
+    self.transform(COMPILED.replace('new-instance v0, LChild;', replacement))
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected) (instruction=':label')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 71, in test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected
+    self.transform(COMPILED.replace('const/4 v1, 0x2', instruction))
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected) (instruction='if-eqz v1, :elsewhere')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 71, in test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected
+    self.transform(COMPILED.replace('const/4 v1, 0x2', instruction))
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected) (instruction='move-object v0, v3')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 71, in test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected
+    self.transform(COMPILED.replace('const/4 v1, 0x2', instruction))
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected) (instruction='invoke-static {}, LOther;->effect()V')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 71, in test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected
+    self.transform(COMPILED.replace('const/4 v1, 0x2', instruction))
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected) (instruction='const-class v2, LOther;')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 71, in test_branch_label_alias_or_side_effect_between_allocation_and_init_is_rejected
+    self.transform(COMPILED.replace('const/4 v1, 0x2', instruction))
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_constructor_register_words_are_validated (test_constructor_owner.ConstructorOwnerTests.test_constructor_register_words_are_validated)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 91, in test_constructor_register_words_are_validated
+    self.transform(COMPILED.replace('{v0, v1, v2}', '{v0, v1}'))
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_duplicate_rules_and_unknown_fields_are_rejected (test_constructor_owner.ConstructorOwnerTests.test_duplicate_rules_and_unknown_fields_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 103, in test_duplicate_rules_and_unknown_fields_are_rejected
+    self.transform()
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_exact_owner_rewrite_preserves_every_other_byte (test_constructor_owner.ConstructorOwnerTests.test_exact_owner_rewrite_preserves_every_other_byte)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 24, in test_exact_owner_rewrite_preserves_every_other_byte
+    result, evidence = self.transform()
+                       ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_missing_and_extra_occurrences_are_rejected (test_constructor_owner.ConstructorOwnerTests.test_missing_and_extra_occurrences_are_rejected) (compiled='.method public static create()LChild;\n.locals 3\nnew-instance v0, LChild;\nconst/4 v1, 0x2\nconst/4 v2, 0x0\ninvoke-direct {v0, v1, v2}, LOther;-><init>(ILContinuation;)V\nreturn-object v0\n.end method')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 82, in test_missing_and_extra_occurrences_are_rejected
+    self.transform(compiled)
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_missing_and_extra_occurrences_are_rejected (test_constructor_owner.ConstructorOwnerTests.test_missing_and_extra_occurrences_are_rejected) (compiled='.method public static create()LChild;\n.locals 3\nnew-instance v0, LChild;\nconst/4 v1, 0x2\nconst/4 v2, 0x0\ninvoke-direct {v0, v1, v2}, LChild;-><init>(ILContinuation;)V\nreturn-object v0\n.end method\n.method public static create()LChild;\n.locals 3\nnew-instance v0, LChild;\nconst/4 v1, 0x2\nconst/4 v2, 0x0\ninvoke-direct {v0, v1, v2}, LChild;-><init>(ILContinuation;)V\nreturn-object v0\n.end method')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 82, in test_missing_and_extra_occurrences_are_rejected
+    self.transform(compiled)
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_original_shape_is_validated_independently (test_constructor_owner.ConstructorOwnerTests.test_original_shape_is_validated_independently)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 77, in test_original_shape_is_validated_independently
+    self.transform(original=original)
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_receiver_constant_overwrite_is_rejected (test_constructor_owner.ConstructorOwnerTests.test_receiver_constant_overwrite_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 61, in test_receiver_constant_overwrite_is_rejected
+    self.transform(COMPILED.replace('const/4 v1', 'const/4 v0'))
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_wide_constant_cannot_overwrite_receiver_high_word (test_constructor_owner.ConstructorOwnerTests.test_wide_constant_cannot_overwrite_receiver_high_word)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 66, in test_wide_constant_cannot_overwrite_receiver_high_word
+    self.transform(altered)
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_wrong_invocation_kind_and_range_are_rejected (test_constructor_owner.ConstructorOwnerTests.test_wrong_invocation_kind_and_range_are_rejected) (opcode='invoke-virtual')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 87, in test_wrong_invocation_kind_and_range_are_rejected
+    self.transform(COMPILED.replace('invoke-direct', opcode))
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+======================================================================
+ERROR: test_wrong_invocation_kind_and_range_are_rejected (test_constructor_owner.ConstructorOwnerTests.test_wrong_invocation_kind_and_range_are_rejected) (opcode='invoke-direct/range')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 87, in test_wrong_invocation_kind_and_range_are_rejected
+    self.transform(COMPILED.replace('invoke-direct', opcode))
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/tests/test_constructor_owner.py", line 21, in transform
+    return restore_constructor_owners(self.entry, compiled, original, self.sources.__getitem__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 136, in restore_constructor_owners
+    original_calls = matching_calls(original, allocated, owner, constructor)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/constructor-recovery/constructor_owner.py", line 71, in matching_calls
+    if call is None or call[3:] != (owner, constructor):
+                       ~~~~^^^^
+IndexError: no such group
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.013s
+
+FAILED (errors=17)

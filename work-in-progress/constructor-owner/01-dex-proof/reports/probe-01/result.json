@@ -1,0 +1,94 @@
+{
+  "scope": "Standalone constructor owner compilation and DEX roundtrip only",
+  "android_executed": false,
+  "app_apk_modified": false,
+  "original_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+  "pass": true,
+  "commands": [
+    {
+      "label": "original-disassembly",
+      "exit_code": 0,
+      "log": "original-disassembly.log",
+      "log_sha256": "29060a03569477f13ecb76fe2f7d6429e6bc6afa07860143916149a96275d6e4"
+    },
+    {
+      "label": "javac",
+      "exit_code": 0,
+      "log": "javac.log",
+      "log_sha256": "7440c2054811868dcc0f2d10c7f813ce20730a82d7612a787b6fbfa44d99b2e9"
+    },
+    {
+      "label": "host-allocation",
+      "exit_code": 0,
+      "log": "host-allocation.log",
+      "log_sha256": "3c646ffd9f2d2cedccd01870f0e179a1125ecd577b16dcdf1e3457fa9bc90906"
+    },
+    {
+      "label": "d8",
+      "exit_code": 0,
+      "log": "d8.log",
+      "log_sha256": "0ef9b3307d8803f8868f9dcfb96fb5dfaf99b26a563ce8847ce743b3eec2e3c8"
+    },
+    {
+      "label": "compiled-disassembly",
+      "exit_code": 0,
+      "log": "compiled-disassembly.log",
+      "log_sha256": "d8b0711f89ab664cd98444396549f11dda3d374875a0991277e74b13c988d12d"
+    },
+    {
+      "label": "assemble-transformed-probe",
+      "exit_code": 0,
+      "log": "assemble-transformed-probe.log",
+      "log_sha256": "b318e225743d31508815f1eb7bd549bde656ab1b9af99f0bc0fc0358487a967f"
+    },
+    {
+      "label": "transformed-roundtrip",
+      "exit_code": 0,
+      "log": "transformed-roundtrip.log",
+      "log_sha256": "018297f26e1eec7fec528a88308005cb760099c17425042570c47a21d7269a00"
+    }
+  ],
+  "original_classes": [
+    {
+      "source_path": "source/smali/classes/67/WidgetUpdateManager_6791e8994482f6df.smali",
+      "sha256": "3ad59b363eaf1f1816d31a951867dcbf202702152148f6404d3426a8ed68818d",
+      "byte_identical": true
+    },
+    {
+      "source_path": "source/smali/classes/c2/Lzhh_c22737dc2c4c675a.smali",
+      "sha256": "fe51b6738e7edf90f8efe8ffdc98ae23dfe005620e0aaba28623c1dd84577f2e",
+      "byte_identical": true
+    },
+    {
+      "source_path": "source/smali/classes7/d2/Lrff_d2448d30d4685e58.smali",
+      "sha256": "cec933deb27e19e3d2dad93566d59b7730a2f31c9acdfd8a81462c71c32b946a",
+      "byte_identical": true
+    }
+  ],
+  "transformations": [
+    {
+      "allocated_type": "Lzhh;",
+      "original_owner": "Lrff;",
+      "constructor": "<init>(ILm73;)V",
+      "occurrences": 1,
+      "original_method_sha256": "a1dd490bbfd6837fa72e6bf8ae4c75736612989fcba050fe2f0582aa03640e34",
+      "allocated_class_sha256": "fe51b6738e7edf90f8efe8ffdc98ae23dfe005620e0aaba28623c1dd84577f2e",
+      "owner_class_sha256": "cec933deb27e19e3d2dad93566d59b7730a2f31c9acdfd8a81462c71c32b946a",
+      "compiled_before_sha256": "400b6e4f9a2b2f8370e131702f7113ada6d89d82ab47b82cfe3c1039d9ec7384",
+      "compiled_after_sha256": "96881228cadc7f51bdfa381ed979844234145bf0f2bb21dba7a96d702125a8d6",
+      "owner_references_changed": 1,
+      "allocation_types_changed": 0,
+      "constructors_added": 0,
+      "android_verifier_executed": false
+    }
+  ],
+  "runtime_probe_classes": 1,
+  "compile_only_classes_in_dex": 0,
+  "probe_dex": {
+    "bytes": 1436,
+    "sha256": "85f53ad51a1a85fd2161bd485db9f12556f737b0745f6e26ffdff31a927d5281"
+  },
+  "original_method_sha256": "a1dd490bbfd6837fa72e6bf8ae4c75736612989fcba050fe2f0582aa03640e34",
+  "allocation_type_preserved": true,
+  "transformed_smali_roundtrip_byte_identical": true
+}
