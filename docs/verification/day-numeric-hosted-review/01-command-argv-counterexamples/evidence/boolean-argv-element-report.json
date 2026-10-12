@@ -1,0 +1,475 @@
+{
+  "started_utc": "2026-10-12T09:30:02.302768+00:00",
+  "commands": [
+    {
+      "name": "d8-helper",
+      "argv": [
+        false
+      ],
+      "started_utc": "2026-10-12T09:30:02.302937+00:00",
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/positive-pipeline/d8-helper.stdout.log",
+        "bytes": 54,
+        "sha256": "d55440b042b7b094a23b6c88c249077bdf416623ea4266d5190f7e1f9fcf799a"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/positive-pipeline/d8-helper.stderr.log",
+        "bytes": 54,
+        "sha256": "b3d0af06d30650d756cd2b59b56ce064e45eff11ae94f3477e6317c9ae4f3f54"
+      },
+      "duration_seconds": 0.0007512099982704967,
+      "ended_utc": "2026-10-12T09:30:02.303698+00:00"
+    },
+    {
+      "name": "disassemble-helper",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "SyntheticRole.disassemble-helper",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/positive-pipeline/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/positive-pipeline/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.303785+00:00",
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/positive-pipeline/disassemble-helper.stdout.log",
+        "bytes": 63,
+        "sha256": "0279e4be911b9dd717caa7b66cd7e7b37991a8837e8c6505f18b1c8394f02d12"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/positive-pipeline/disassemble-helper.stderr.log",
+        "bytes": 63,
+        "sha256": "558d113c66e9bcbd20254fe4b726138b26416e6180c7988e3817422445f3e8b6"
+      },
+      "duration_seconds": 0.0006723390033585019,
+      "ended_utc": "2026-10-12T09:30:02.304462+00:00"
+    },
+    {
+      "name": "assemble-target",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "SyntheticRole.assemble-target",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/positive-pipeline/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/positive-pipeline/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.304738+00:00",
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/positive-pipeline/assemble-target.stdout.log",
+        "bytes": 60,
+        "sha256": "445f1b4ebdd4d88373ff4eaf586b3bb006714136f4ce48b75ec193d8e149aa23"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/positive-pipeline/assemble-target.stderr.log",
+        "bytes": 60,
+        "sha256": "8af8d4006c5c4e0c206cbbebc698c447d119148d95d14e18e31fcf0539fb6723"
+      },
+      "duration_seconds": 0.00016731399955460802,
+      "ended_utc": "2026-10-12T09:30:02.304911+00:00"
+    },
+    {
+      "name": "signed-apk-instructions",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "SyntheticRole.signed-apk-instructions",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.304945+00:00",
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/signed-apk-instructions.stdout.log",
+        "bytes": 51,
+        "sha256": "7d6b4a1e49a9314daed144a406451d24aebb87615638a49e7a6ccbc089059c9d"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/signed-apk-instructions.stderr.log",
+        "bytes": 51,
+        "sha256": "ec18cf8770e77eaa3705481033e3422bce9348ee6e1163bf383c6ff2bff1cab3"
+      },
+      "duration_seconds": 0.0006597019964829087,
+      "ended_utc": "2026-10-12T09:30:02.305608+00:00"
+    },
+    {
+      "name": "positive-transplant-instructions",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "SyntheticRole.positive-transplant-instructions",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.305650+00:00",
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/positive-transplant-instructions.stdout.log",
+        "bytes": 60,
+        "sha256": "23ba223b186750c1644e113a106add2542d28176867759d1af81d54ef969f1bf"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/positive-transplant-instructions.stderr.log",
+        "bytes": 60,
+        "sha256": "45a2f9a80382afcb44f803d013b8568e95080a72929631e9c82e52adfad4df3a"
+      },
+      "duration_seconds": 0.0003474650002317503,
+      "ended_utc": "2026-10-12T09:30:02.306000+00:00"
+    },
+    {
+      "name": "execute",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "DayNumericControlHarness",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/positive/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/positive/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.306051+00:00",
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/positive/execute.stdout.log",
+        "bytes": 43,
+        "sha256": "7c55b7beda37bbf6d4a296e994b8accf5580f7d8b283811a4d6d5b3cf9f266c7"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/positive/execute.stderr.log",
+        "bytes": 43,
+        "sha256": "18bc15dec16ef78fafdbe616d24b8c93b97b005b970836dd14cc53de0dfcf812"
+      },
+      "duration_seconds": 0.00015524300397373736,
+      "ended_utc": "2026-10-12T09:30:02.306209+00:00"
+    },
+    {
+      "name": "d8-helper",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "SyntheticRole.d8-helper",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/integer-zero-pipeline/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/integer-zero-pipeline/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.306301+00:00",
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/integer-zero-pipeline/d8-helper.stdout.log",
+        "bytes": 58,
+        "sha256": "3cbff69d17664c2df54803c04664cbcfa7776bc814f14496ecd5598992c3da01"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/integer-zero-pipeline/d8-helper.stderr.log",
+        "bytes": 58,
+        "sha256": "86e424662f0d9c12fd792ace53ad3885e935ade61b4de169aabf8ce45410aca7"
+      },
+      "duration_seconds": 0.00047588600136805326,
+      "ended_utc": "2026-10-12T09:30:02.306780+00:00"
+    },
+    {
+      "name": "disassemble-helper",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "SyntheticRole.disassemble-helper",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/integer-zero-pipeline/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/integer-zero-pipeline/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.306908+00:00",
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/integer-zero-pipeline/disassemble-helper.stdout.log",
+        "bytes": 67,
+        "sha256": "f101db8f0a1291c47056cacdf9ba0d19f37b4ec452b96ea4d60658e10f40e8ac"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/integer-zero-pipeline/disassemble-helper.stderr.log",
+        "bytes": 67,
+        "sha256": "00c95e34caccb68c41553b0f0a4af68680c4f3dcee7d67270351ea8a0389c195"
+      },
+      "duration_seconds": 0.00013458499597618356,
+      "ended_utc": "2026-10-12T09:30:02.307046+00:00"
+    },
+    {
+      "name": "assemble-target",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "SyntheticRole.assemble-target",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/integer-zero-pipeline/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/integer-zero-pipeline/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.307072+00:00",
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/integer-zero-pipeline/assemble-target.stdout.log",
+        "bytes": 64,
+        "sha256": "6de161ccb0db62d159be6ef27fb5ae375ad51f97f7d3ca8cd28cfca3bffe711d"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/integer-zero-pipeline/assemble-target.stderr.log",
+        "bytes": 64,
+        "sha256": "f097bda00c64ecd52d960c25a56a3f520ad87964ae926e5d516bdfc41930e4cf"
+      },
+      "duration_seconds": 0.00021072100207675248,
+      "ended_utc": "2026-10-12T09:30:02.307285+00:00"
+    },
+    {
+      "name": "execute",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "DayNumericControlHarness",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/integer-zero-dex-fault/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/integer-zero-dex-fault/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.307475+00:00",
+      "timeout_seconds": 120,
+      "returncode": 3,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/integer-zero-dex-fault/execute.stdout.log",
+        "bytes": 57,
+        "sha256": "6449d616c453d33e48e8b6b2a0ecf9d1bc35dfe2610074c02f5af9668f7d9db5"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/integer-zero-dex-fault/execute.stderr.log",
+        "bytes": 57,
+        "sha256": "f94529d966c4f85362cc2ac42f89c735f6ffa89e71d5b13bd9d77baf312d969b"
+      },
+      "duration_seconds": 0.00017798599583329633,
+      "ended_utc": "2026-10-12T09:30:02.307657+00:00"
+    },
+    {
+      "name": "d8-helper",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "SyntheticRole.d8-helper",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/decimal-zero-pipeline/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/decimal-zero-pipeline/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.307703+00:00",
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/decimal-zero-pipeline/d8-helper.stdout.log",
+        "bytes": 58,
+        "sha256": "9db4c72aad475f7bf8dcf347dd761ee994e7550ba4e98d582f9cc33276213d1a"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/decimal-zero-pipeline/d8-helper.stderr.log",
+        "bytes": 58,
+        "sha256": "d120456879b729fb3cf29c4be9f2570005ff18974d8fe5c1df57242a2a17049d"
+      },
+      "duration_seconds": 0.0001149219970102422,
+      "ended_utc": "2026-10-12T09:30:02.307820+00:00"
+    },
+    {
+      "name": "disassemble-helper",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "SyntheticRole.disassemble-helper",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/decimal-zero-pipeline/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/decimal-zero-pipeline/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.307852+00:00",
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/decimal-zero-pipeline/disassemble-helper.stdout.log",
+        "bytes": 67,
+        "sha256": "fef66f706e355b57bee6534df593299d06c85fe0aea3ee1ce8731208cc0bd63c"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/decimal-zero-pipeline/disassemble-helper.stderr.log",
+        "bytes": 67,
+        "sha256": "fc977594417c85f8c7acad946a16bf9f18350f52440e20cf9726480f5345c1fb"
+      },
+      "duration_seconds": 0.00015328600420616567,
+      "ended_utc": "2026-10-12T09:30:02.308008+00:00"
+    },
+    {
+      "name": "assemble-target",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "SyntheticRole.assemble-target",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/decimal-zero-pipeline/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/decimal-zero-pipeline/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.308035+00:00",
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/decimal-zero-pipeline/assemble-target.stdout.log",
+        "bytes": 64,
+        "sha256": "56f4b041b5d1dce43b4a6682309c19a89430ae0e366ed6fc2b4de75242c44b33"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/decimal-zero-pipeline/assemble-target.stderr.log",
+        "bytes": 64,
+        "sha256": "9f1dfe05fddd1650ae96a855192447d25f827113fbaf4a4b1f369e4abdb99ebb"
+      },
+      "duration_seconds": 0.0006314040001598187,
+      "ended_utc": "2026-10-12T09:30:02.308669+00:00"
+    },
+    {
+      "name": "execute",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "DayNumericControlHarness",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/decimal-zero-dex-fault/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/decimal-zero-dex-fault/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.308703+00:00",
+      "timeout_seconds": 120,
+      "returncode": 3,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/decimal-zero-dex-fault/execute.stdout.log",
+        "bytes": 57,
+        "sha256": "bb2c207a605767d97a19c1b78f35e5368854d8ccfc64f8669b2fd2a190ef17ac"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/decimal-zero-dex-fault/execute.stderr.log",
+        "bytes": 57,
+        "sha256": "940aad5c941fbaa1fba3e3ca9b10dda1b110d76c0e79dae10d7f641bd40c04bc"
+      },
+      "duration_seconds": 0.00011149000056320801,
+      "ended_utc": "2026-10-12T09:30:02.308816+00:00"
+    },
+    {
+      "name": "execute",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "DayNumericControlHarness",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/original-as-rebuilt-rejected/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/original-as-rebuilt-rejected/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.308846+00:00",
+      "timeout_seconds": 120,
+      "returncode": 1,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/original-as-rebuilt-rejected/execute.stdout.log",
+        "bytes": 63,
+        "sha256": "b24fbf2632d0bf2e3d008aee51178a5d39ab415abf0a029694541fd4e8c08372"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/original-as-rebuilt-rejected/execute.stderr.log",
+        "bytes": 63,
+        "sha256": "999e68628e7015ea42c5c8636cccb7094b2ade34606d0e0d0eac73e7726f2649"
+      },
+      "duration_seconds": 0.0004290409997338429,
+      "ended_utc": "2026-10-12T09:30:02.309277+00:00"
+    },
+    {
+      "name": "execute",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "DayNumericControlHarness",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/wrong-helper-class-rejected/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/wrong-helper-class-rejected/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.309672+00:00",
+      "timeout_seconds": 120,
+      "returncode": 1,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/wrong-helper-class-rejected/execute.stdout.log",
+        "bytes": 62,
+        "sha256": "12944c8e410a1bb1c740c3f8ee8b305ac94bd3623e74b3b6e4d87ce7b41ae9f1"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/wrong-helper-class-rejected/execute.stderr.log",
+        "bytes": 62,
+        "sha256": "1b3bb86b1f5ddf187dda8b1798116dd6a1fcd22e796b7f8c667e98a0e8ee04e8"
+      },
+      "duration_seconds": 0.0005860499950358644,
+      "ended_utc": "2026-10-12T09:30:02.310264+00:00"
+    },
+    {
+      "name": "execute",
+      "argv": [
+        "/synthetic/pinned-java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/synthetic/frozen-classpath",
+        "DayNumericControlHarness",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/positive-restoration/config.json",
+        "/dev/shm/macrodroid-transfer-space-20261012/day-numeric-verifier-review-01/evidence/synthetic-project/reports/day-numeric-dex-synthetic/positive-restoration/result.json"
+      ],
+      "started_utc": "2026-10-12T09:30:02.310311+00:00",
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "reports/day-numeric-dex-synthetic/positive-restoration/execute.stdout.log",
+        "bytes": 55,
+        "sha256": "2dc43ce3bcac32da9d88242fdeece21c16db863406c658631d3a4b937a4f7107"
+      },
+      "stderr": {
+        "path": "reports/day-numeric-dex-synthetic/positive-restoration/execute.stderr.log",
+        "bytes": 55,
+        "sha256": "efd68febbec5238ed074e624e7407bce53868949f61ec06186c1055feb8f5691"
+      },
+      "duration_seconds": 0.000273161000222899,
+      "ended_utc": "2026-10-12T09:30:02.310587+00:00"
+    }
+  ],
+  "finished_utc": "2026-10-12T09:30:02.310591+00:00"
+}

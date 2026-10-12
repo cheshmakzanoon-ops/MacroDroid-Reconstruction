@@ -1,0 +1,79 @@
+{
+  "status": "NUMERIC_ARGV_GUARD_FALSE_ACCEPTANCES_REPRODUCED",
+  "reviewed_verifier_sha256": "c0ba5c0df54530eb94a293b4dae9b548e2679dd0251e77c14b3d06e7aa65708a",
+  "scope": "Direct synthetic verify_numeric_commands boundary only; not a complete verifier or host-acceptance pass",
+  "commands_described": 17,
+  "distinct_raw_stream_files": 34,
+  "actual_java_or_d8_executed": false,
+  "android_executed": false,
+  "target_source_modified": false,
+  "reviewed_source_bytes_unchanged": true,
+  "wrong_acceptances": 4,
+  "rejecting_negative_controls": 3,
+  "exact_positive_restoration": true,
+  "results": [
+    {
+      "name": "positive-envelope",
+      "accepted": true,
+      "error": null,
+      "validated_stream_paths": 34,
+      "distinct_stream_inodes": 34
+    },
+    {
+      "name": "non-d8-executable",
+      "accepted": true,
+      "error": null,
+      "validated_stream_paths": 34,
+      "distinct_stream_inodes": 34
+    },
+    {
+      "name": "omitted-jvm-policy",
+      "accepted": true,
+      "error": null,
+      "validated_stream_paths": 34,
+      "distinct_stream_inodes": 34
+    },
+    {
+      "name": "different-config-result-roles",
+      "accepted": true,
+      "error": null,
+      "validated_stream_paths": 34,
+      "distinct_stream_inodes": 34
+    },
+    {
+      "name": "boolean-argv-element",
+      "accepted": true,
+      "error": null,
+      "validated_stream_paths": 34,
+      "distinct_stream_inodes": 34
+    },
+    {
+      "name": "empty-argv-negative-control",
+      "accepted": false,
+      "error": "Numeric subprocess lacks an actual bounded invocation",
+      "validated_stream_paths": 0,
+      "distinct_stream_inodes": 0
+    },
+    {
+      "name": "boolean-returncode-negative-control",
+      "accepted": false,
+      "error": "Numeric actual subprocess outcome differs",
+      "validated_stream_paths": 0,
+      "distinct_stream_inodes": 0
+    },
+    {
+      "name": "reused-stream-role-negative-control",
+      "accepted": false,
+      "error": "Numeric subprocess reused another stream",
+      "validated_stream_paths": 2,
+      "distinct_stream_inodes": 2
+    },
+    {
+      "name": "exact-positive-restoration",
+      "accepted": true,
+      "error": null,
+      "validated_stream_paths": 34,
+      "distinct_stream_inodes": 34
+    }
+  ]
+}
