@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/trigger-catalog-forward/workflow-02/reports/validation-01/input-faults/changed-chronology-guard/work-in-progress/trigger-category-workflow/02-zero-scale-workflow/prepare_trigger_journey.py", line 227, in <module>
+    main()
+  File "/workspace/scratch/4130730d15aa/trigger-catalog-forward/workflow-02/reports/validation-01/input-faults/changed-chronology-guard/work-in-progress/trigger-category-workflow/02-zero-scale-workflow/prepare_trigger_journey.py", line 223, in main
+    print(json.dumps(function(args.root.resolve(), args.output.resolve()), indent=2))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/trigger-catalog-forward/workflow-02/reports/validation-01/input-faults/changed-chronology-guard/work-in-progress/trigger-category-workflow/02-zero-scale-workflow/prepare_trigger_journey.py", line 167, in prepare
+    for row in expected_inputs(root):
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/trigger-catalog-forward/workflow-02/reports/validation-01/input-faults/changed-chronology-guard/work-in-progress/trigger-category-workflow/02-zero-scale-workflow/prepare_trigger_journey.py", line 99, in expected_inputs
+    add(name, row['sha256'], row['bytes'])
+  File "/workspace/scratch/4130730d15aa/trigger-catalog-forward/workflow-02/reports/validation-01/input-faults/changed-chronology-guard/work-in-progress/trigger-category-workflow/02-zero-scale-workflow/prepare_trigger_journey.py", line 81, in add
+    raise ValueError('Pinned input changed: ' + name)
+ValueError: Pinned input changed: work-in-progress/trigger-category/05-physical-identity-host-success/replay-source/tools/parity_journeys/capture_chronology.py
