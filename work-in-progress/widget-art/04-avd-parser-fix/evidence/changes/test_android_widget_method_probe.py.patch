@@ -1,0 +1,135 @@
+--- original/test_android_widget_method_probe.py
++++ corrected/test_android_widget_method_probe.py
+@@ -19,6 +19,7 @@
+ 
+ class SimulatedADB:
+     def __init__(self, *, properties=None, avd=None, state='device', mode='444',
++                 avd_stdout=None, avd_code=0, avd_stderr=b'',
+                  wrong_hash=None, changed_hash=None, changed_binary=None, extra_opts_phase=None,
+                  original_code=0, candidate_code=0, original_stdout=None, candidate_stdout=None,
+                  original_stderr=b'', candidate_stderr=b'', timeout_variant=None,
+@@ -26,6 +27,7 @@
+         self.properties = dict(probe.EXPECTED_DEVICE)
+         self.properties.update(properties or {})
+         self.avd, self.state, self.mode = avd or probe.DEFAULT_AVD, state, mode
++        self.avd_stdout, self.avd_code, self.avd_stderr = avd_stdout, avd_code, avd_stderr
+         self.wrong_hash, self.changed_hash, self.changed_binary = wrong_hash, changed_hash, changed_binary
+         self.extra_opts_phase = extra_opts_phase
+         self.codes = {'original': original_code, 'candidate': candidate_code}
+@@ -45,7 +47,8 @@
+         if argv[3:] == ['get-state']:
+             out = (self.state + '\n').encode()
+         elif argv[3:] == ['emu', 'avd', 'name']:
+-            out = (self.avd + '\nOK\n').encode()
++            code, err = self.avd_code, self.avd_stderr
++            out = self.avd_stdout if self.avd_stdout is not None else (self.avd + '\nOK\n').encode()
+         elif argv[3] == 'push':
+             key = 'probe' if argv[-1].endswith('.dex') else Path(argv[-1]).stem
+             if self.push_failure == key:
+@@ -220,6 +223,106 @@
+         self.assertTrue(report['cleanup_complete'])
+         self.assertEqual(len(report['commands']), 60)
+ 
++    def test_captured_crlf_avd_passes_both_stages_without_rewriting_bytes(self):
++        captured = (probe.ROOT / 'fixtures/observed-avd-name-crlf.stdout.txt').read_bytes()
++        self.assertEqual(len(captured), 33)
++        self.assertEqual(hashlib.sha256(captured).hexdigest(),
++                         '8522ad4bd14867dd505fdecb0e0657c506a22c36d86c8a8634fdfda384bae977')
++        self.assertEqual(captured, b'MacroDroid_API35_Disposable\r\nOK\r\n')
++        code, report, simulator = self.execute(SimulatedADB(avd_stdout=captured))
++        self.assertEqual(code, 0, report.get('evidence_error'))
++        self.assertEqual(simulator.executions, ['original', 'candidate'])
++        self.assertEqual(report['status'], 'SIMULATED_WIDGET_CASES_PASSED')
++        self.assertFalse(report['android_runtime_executed'])
++        row = next(row for row in report['commands'] if row['label'] == 'avd-name')
++        self.assertEqual((self.args.output / row['stdout']['path']).read_bytes(), captured)
++        self.assertEqual(row['stdout']['sha256'], hashlib.sha256(captured).hexdigest())
++        self.assertTrue(probe.verify_result(self.args.output, report, serial=self.args.serial,
++                                          allow_simulated=True))
++        with self.assertRaisesRegex(probe.ProbeError, 'simulated'):
++            probe.verify_result(self.args.output, report, serial=self.args.serial)
++
++    @staticmethod
++    def invalid_avd_outputs():
++        name = b'MacroDroid_API35_Disposable'
++        return {
++            'wrong-name-lf': b'Personal_AVD\nOK\n',
++            'wrong-name-crlf': b'Personal_AVD\r\nOK\r\n',
++            'name-prefix': b'other-' + name + b'\nOK\n',
++            'name-suffix': name + b'-other\nOK\n',
++            'lowercase-ok': name + b'\nOk\n',
++            'missing-ok': name + b'\n',
++            'duplicate-ok': name + b'\nOK\nOK\n',
++            'extra-before': b'EXTRA\n' + name + b'\nOK\n',
++            'extra-after': name + b'\nOK\nEXTRA\n',
++            'leading-blank': b'\n' + name + b'\nOK\n',
++            'trailing-blank': name + b'\nOK\n\n',
++            'name-leading-space': b' ' + name + b'\nOK\n',
++            'name-trailing-space': name + b' \nOK\n',
++            'ok-trailing-space': name + b'\nOK \n',
++            'cr-only': name + b'\rOK\r',
++            'mixed-line-endings': name + b'\r\nOK\n',
++            'double-cr': name + b'\r\r\nOK\r\n',
++            'missing-final-newline': name + b'\nOK',
++            'vertical-tab': name + b'\vOK\n',
++            'form-feed': name + b'\fOK\n',
++            'unicode-line-separator': name + '\u2028OK\n'.encode(),
++            'null-byte': name + b'\x00\nOK\n',
++            'invalid-utf8': name + b'\xff\nOK\n',
++            'byte-order-mark': b'\xef\xbb\xbf' + name + b'\nOK\n',
++            'empty': b'',
++        }
++
++    def test_avd_identity_and_protocol_faults_stop_before_guest_mutation(self):
++        for label, output in self.invalid_avd_outputs().items():
++            with self.subTest(label=label):
++                self.args.output = self.root / label
++                code, report, simulator = self.execute(SimulatedADB(avd_stdout=output))
++                self.assertEqual(code, 2)
++                self.assertIsNone(simulator.owned)
++                self.assertEqual(simulator.executions, [])
++                self.assertFalse(report['art_execution_attempted'])
++                self.assertFalse(report['both_semantic_case_sets_passed'])
++                row = report['commands'][-1]
++                self.assertEqual(row['label'], 'avd-name')
++                self.assertEqual((self.args.output / row['stdout']['path']).read_bytes(), output)
++
++    def test_avd_nonzero_exit_and_diagnostics_stop_before_guest_mutation(self):
++        for label, changes in [('nonzero', {'avd_code': 7}),
++                               ('boolean-exit', {'avd_code': False}),
++                               ('diagnostics', {'avd_stderr': b'unexpected ADB warning\n'})]:
++            with self.subTest(label=label):
++                self.args.output = self.root / label
++                code, report, simulator = self.execute(SimulatedADB(**changes))
++                self.assertEqual(code, 2)
++                self.assertIsNone(simulator.owned)
++                self.assertEqual(simulator.executions, [])
++                self.assertIn('Device command failed: avd-name', report['reason'])
++
++    def test_rehashed_avd_identity_and_protocol_faults_fail_evidence_recheck(self):
++        code, report, simulator = self.execute()
++        self.assertEqual(code, 0)
++        positive_folder = self.args.output
++        for label, output in self.invalid_avd_outputs().items():
++            with self.subTest(label=label):
++                folder = self.root / ('rehashed-' + label)
++                shutil.copytree(positive_folder, folder)
++                changed = copy.deepcopy(report)
++                row = next(row for row in changed['commands'] if row['label'] == 'avd-name')
++                (folder / row['stdout']['path']).write_bytes(output)
++                row['stdout']['bytes'] = len(output)
++                row['stdout']['sha256'] = hashlib.sha256(output).hexdigest()
++                (folder / 'probe-result.json').write_text(json.dumps(changed, indent=2) + '\n')
++                with self.assertRaises(probe.ProbeError) as rejected:
++                    probe.verify_result(folder, changed, serial=self.args.serial, allow_simulated=True)
++                (folder / 'deliberate-fault-result.json').write_text(json.dumps({
++                    'scope': 'Deliberately rewritten simulated evidence; no Android execution',
++                    'control': label, 'accepted': False, 'error': str(rejected.exception),
++                    'changed_stdout': row['stdout'],
++                }, indent=2) + '\n')
++        self.assertTrue(probe.verify_result(positive_folder, report, serial=self.args.serial,
++                                          allow_simulated=True))
++
+     def test_physical_serial_and_other_avd_rejected_before_adb(self):
+         for field, value in [('serial', 'ABC123'), ('avd', 'Personal_AVD')]:
+             with self.subTest(field=field):

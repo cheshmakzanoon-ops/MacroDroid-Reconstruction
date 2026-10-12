@@ -1,0 +1,2046 @@
+{
+  "schema_version": 1,
+  "scope": "Eight bounded Widget method entry/restoration/type-check cases in real original and candidate APK classes",
+  "started_utc": "2026-10-12T05:06:19.541490+00:00",
+  "status": "ART_WIDGET_EVIDENCE_INVALID",
+  "commands": [
+    {
+      "label": "device-state",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "get-state"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:19.775577+00:00",
+      "seconds": 0.003,
+      "stdout": {
+        "path": "001-device-state.stdout.txt",
+        "bytes": 7,
+        "sha256": "c98373c1abef78070f6beef6b4ae4fbf3de348dac280195c7f93441920584af9"
+      },
+      "stderr": {
+        "path": "001-device-state.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-ro-kernel-qemu",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.kernel.qemu"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:19.778842+00:00",
+      "seconds": 0.086,
+      "stdout": {
+        "path": "002-environment-before-ro-kernel-qemu.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "002-environment-before-ro-kernel-qemu.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-sys-boot_completed",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop sys.boot_completed"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:19.865587+00:00",
+      "seconds": 0.018,
+      "stdout": {
+        "path": "003-environment-before-sys-boot_completed.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "003-environment-before-sys-boot_completed.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-ro-build-version-sdk",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.build.version.sdk"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:19.884413+00:00",
+      "seconds": 0.031,
+      "stdout": {
+        "path": "004-environment-before-ro-build-version-sdk.stdout.txt",
+        "bytes": 3,
+        "sha256": "90d7ec0f0acef104d8b6252794295f661a0149634868d02a1ae0c358099638f5"
+      },
+      "stderr": {
+        "path": "004-environment-before-ro-build-version-sdk.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-ro-build-fingerprint",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.build.fingerprint"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:19.918982+00:00",
+      "seconds": 0.041,
+      "stdout": {
+        "path": "005-environment-before-ro-build-fingerprint.stdout.txt",
+        "bytes": 82,
+        "sha256": "633fbfc3b92b012914165717ce367282664c75ad9f6e533b4a1ad6e2418ec93a"
+      },
+      "stderr": {
+        "path": "005-environment-before-ro-build-fingerprint.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-ro-product-cpu-abi",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.product.cpu.abi"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:19.961018+00:00",
+      "seconds": 0.024,
+      "stdout": {
+        "path": "006-environment-before-ro-product-cpu-abi.stdout.txt",
+        "bytes": 7,
+        "sha256": "aaf631698ae5160ceb04a97681a14887fdcab47cd6e0f163c87485b3b1340b62"
+      },
+      "stderr": {
+        "path": "006-environment-before-ro-product-cpu-abi.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-ro-product-cpu-abilist",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.product.cpu.abilist"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:19.985486+00:00",
+      "seconds": 0.021,
+      "stdout": {
+        "path": "007-environment-before-ro-product-cpu-abilist.stdout.txt",
+        "bytes": 17,
+        "sha256": "79861d534dd25845f4329d0546f2202124ad6e6af060fdcd362e176faf1f0b14"
+      },
+      "stderr": {
+        "path": "007-environment-before-ro-product-cpu-abilist.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-ro-dalvik-vm-native-bridge",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.dalvik.vm.native.bridge"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:20.007442+00:00",
+      "seconds": 0.026,
+      "stdout": {
+        "path": "008-environment-before-ro-dalvik-vm-native-bridge.stdout.txt",
+        "bytes": 22,
+        "sha256": "6b483b07df1cb35eb07d9f3578c45a109ab8e548c214dc15731ed722ceaa9cae"
+      },
+      "stderr": {
+        "path": "008-environment-before-ro-dalvik-vm-native-bridge.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-dalvik-vm-extra-opts",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop dalvik.vm.extra-opts"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:20.034756+00:00",
+      "seconds": 0.017,
+      "stdout": {
+        "path": "009-environment-before-dalvik-vm-extra-opts.stdout.txt",
+        "bytes": 1,
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      "stderr": {
+        "path": "009-environment-before-dalvik-vm-extra-opts.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "avd-name",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "avd",
+        "name"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:20.052488+00:00",
+      "seconds": 0.003,
+      "stdout": {
+        "path": "010-avd-name.stdout.txt",
+        "bytes": 33,
+        "sha256": "8522ad4bd14867dd505fdecb0e0657c506a22c36d86c8a8634fdfda384bae977"
+      },
+      "stderr": {
+        "path": "010-avd-name.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "app-process-executable",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "test -x /system/bin/app_process64"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:20.055972+00:00",
+      "seconds": 0.015,
+      "stdout": {
+        "path": "011-app-process-executable.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "011-app-process-executable.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "app-process-sha256-before",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "sha256sum /system/bin/app_process64"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:20.071545+00:00",
+      "seconds": 0.014,
+      "stdout": {
+        "path": "012-app-process-sha256-before.stdout.txt",
+        "bytes": 92,
+        "sha256": "793c74fef67d7ccb28af8399e9a3c4ac6489f1a1433ddcb5e1f084cbb1102ae2"
+      },
+      "stderr": {
+        "path": "012-app-process-sha256-before.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "guest-timeout-executable",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "test -x /system/bin/timeout"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:20.086370+00:00",
+      "seconds": 0.009,
+      "stdout": {
+        "path": "013-guest-timeout-executable.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "013-guest-timeout-executable.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "guest-timeout-sha256-before",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "sha256sum /system/bin/timeout"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:20.095980+00:00",
+      "seconds": 0.022,
+      "stdout": {
+        "path": "014-guest-timeout-sha256-before.stdout.txt",
+        "bytes": 86,
+        "sha256": "5462df6789b0a9bd587fa09803c4fd0834b374bb57f031f499f9b5822e9807e9"
+      },
+      "stderr": {
+        "path": "014-guest-timeout-sha256-before.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "create-owned-directory",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "mkdir -m 700 /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:20.119229+00:00",
+      "seconds": 0.015,
+      "stdout": {
+        "path": "015-create-owned-directory.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "015-create-owned-directory.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "push-probe",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "push",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/work-in-progress/widget-art/01-wrapper-review/probes/widget-method-probe.dex",
+        "/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/widget-method-probe.dex"
+      ],
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:20.135912+00:00",
+      "seconds": 0.056,
+      "stdout": {
+        "path": "016-push-probe.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "016-push-probe.stderr.txt",
+        "bytes": 208,
+        "sha256": "d08594f632f3b6f2ccfd967911165e6062fdc3495168aa53c27104442de5e9ab"
+      }
+    },
+    {
+      "label": "readonly-probe",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "chmod 444 /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/widget-method-probe.dex"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:20.194995+00:00",
+      "seconds": 0.253,
+      "stdout": {
+        "path": "017-readonly-probe.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "017-readonly-probe.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "mode-probe",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "stat -c %a /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/widget-method-probe.dex"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:20.449234+00:00",
+      "seconds": 0.043,
+      "stdout": {
+        "path": "018-mode-probe.stdout.txt",
+        "bytes": 4,
+        "sha256": "07d961b4441af9213b46b56dbf0727702888a63ad1952ff3616430f09c8170be"
+      },
+      "stderr": {
+        "path": "018-mode-probe.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "sha256-before-probe",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "sha256sum /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/widget-method-probe.dex"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:20.493840+00:00",
+      "seconds": 0.029,
+      "stdout": {
+        "path": "019-sha256-before-probe.stdout.txt",
+        "bytes": 156,
+        "sha256": "7c8ae0bddeeaa5173bca6389016a5e286ade68c3b7d06451d0e4e87ff9e676a6"
+      },
+      "stderr": {
+        "path": "019-sha256-before-probe.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "push-original",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "push",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-original.apk",
+        "/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/original.apk"
+      ],
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:20.524812+00:00",
+      "seconds": 0.518,
+      "stdout": {
+        "path": "020-push-original.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "020-push-original.stderr.txt",
+        "bytes": 186,
+        "sha256": "f67c5a6afd00b6ef7ed0fbb58b65c3227eb79005ce928ae0136c782d3a1c0a8b"
+      }
+    },
+    {
+      "label": "readonly-original",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "chmod 444 /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/original.apk"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:21.044298+00:00",
+      "seconds": 0.045,
+      "stdout": {
+        "path": "021-readonly-original.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "021-readonly-original.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "mode-original",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "stat -c %a /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/original.apk"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:21.090180+00:00",
+      "seconds": 0.019,
+      "stdout": {
+        "path": "022-mode-original.stdout.txt",
+        "bytes": 4,
+        "sha256": "07d961b4441af9213b46b56dbf0727702888a63ad1952ff3616430f09c8170be"
+      },
+      "stderr": {
+        "path": "022-mode-original.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "sha256-before-original",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "sha256sum /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/original.apk"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:21.110412+00:00",
+      "seconds": 0.416,
+      "stdout": {
+        "path": "023-sha256-before-original.stdout.txt",
+        "bytes": 145,
+        "sha256": "a777f178f63e85d5f93aef773d4ffb83d685e5309519aa7e020f275557efdbe8"
+      },
+      "stderr": {
+        "path": "023-sha256-before-original.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "push-candidate",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "push",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-widget-update-06.apk",
+        "/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/candidate.apk"
+      ],
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:21.528101+00:00",
+      "seconds": 0.401,
+      "stdout": {
+        "path": "024-push-candidate.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "024-push-candidate.stderr.txt",
+        "bytes": 194,
+        "sha256": "b7a0fff1a0c39f6bc779018047606fadeb1f2a79e236db8cc191b0de645b748a"
+      }
+    },
+    {
+      "label": "readonly-candidate",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "chmod 444 /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/candidate.apk"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:21.930795+00:00",
+      "seconds": 0.016,
+      "stdout": {
+        "path": "025-readonly-candidate.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "025-readonly-candidate.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "mode-candidate",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "stat -c %a /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/candidate.apk"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:22.064016+00:00",
+      "seconds": 0.066,
+      "stdout": {
+        "path": "026-mode-candidate.stdout.txt",
+        "bytes": 4,
+        "sha256": "07d961b4441af9213b46b56dbf0727702888a63ad1952ff3616430f09c8170be"
+      },
+      "stderr": {
+        "path": "026-mode-candidate.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "sha256-before-candidate",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "sha256sum /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/candidate.apk"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:22.177638+00:00",
+      "seconds": 0.644,
+      "stdout": {
+        "path": "027-sha256-before-candidate.stdout.txt",
+        "bytes": 146,
+        "sha256": "b1a079b134ad93bef95b4bfcdc06a0562f9bc5b82e381c4927f07882d0aac943"
+      },
+      "stderr": {
+        "path": "027-sha256-before-candidate.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-original-ro-kernel-qemu",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.kernel.qemu"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:22.823048+00:00",
+      "seconds": 0.018,
+      "stdout": {
+        "path": "028-environment-before-original-ro-kernel-qemu.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "028-environment-before-original-ro-kernel-qemu.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-original-sys-boot_completed",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop sys.boot_completed"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:22.842216+00:00",
+      "seconds": 0.015,
+      "stdout": {
+        "path": "029-environment-before-original-sys-boot_completed.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "029-environment-before-original-sys-boot_completed.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-original-ro-build-version-sdk",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.build.version.sdk"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:22.857929+00:00",
+      "seconds": 0.015,
+      "stdout": {
+        "path": "030-environment-before-original-ro-build-version-sdk.stdout.txt",
+        "bytes": 3,
+        "sha256": "90d7ec0f0acef104d8b6252794295f661a0149634868d02a1ae0c358099638f5"
+      },
+      "stderr": {
+        "path": "030-environment-before-original-ro-build-version-sdk.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-original-ro-build-fingerprint",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.build.fingerprint"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:22.873649+00:00",
+      "seconds": 0.015,
+      "stdout": {
+        "path": "031-environment-before-original-ro-build-fingerprint.stdout.txt",
+        "bytes": 82,
+        "sha256": "633fbfc3b92b012914165717ce367282664c75ad9f6e533b4a1ad6e2418ec93a"
+      },
+      "stderr": {
+        "path": "031-environment-before-original-ro-build-fingerprint.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-original-ro-product-cpu-abi",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.product.cpu.abi"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:22.890266+00:00",
+      "seconds": 0.016,
+      "stdout": {
+        "path": "032-environment-before-original-ro-product-cpu-abi.stdout.txt",
+        "bytes": 7,
+        "sha256": "aaf631698ae5160ceb04a97681a14887fdcab47cd6e0f163c87485b3b1340b62"
+      },
+      "stderr": {
+        "path": "032-environment-before-original-ro-product-cpu-abi.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-original-ro-product-cpu-abilist",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.product.cpu.abilist"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:22.907977+00:00",
+      "seconds": 0.018,
+      "stdout": {
+        "path": "033-environment-before-original-ro-product-cpu-abilist.stdout.txt",
+        "bytes": 17,
+        "sha256": "79861d534dd25845f4329d0546f2202124ad6e6af060fdcd362e176faf1f0b14"
+      },
+      "stderr": {
+        "path": "033-environment-before-original-ro-product-cpu-abilist.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-original-ro-dalvik-vm-native-bridge",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.dalvik.vm.native.bridge"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:22.928960+00:00",
+      "seconds": 0.015,
+      "stdout": {
+        "path": "034-environment-before-original-ro-dalvik-vm-native-bridge.stdout.txt",
+        "bytes": 22,
+        "sha256": "6b483b07df1cb35eb07d9f3578c45a109ab8e548c214dc15731ed722ceaa9cae"
+      },
+      "stderr": {
+        "path": "034-environment-before-original-ro-dalvik-vm-native-bridge.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-original-dalvik-vm-extra-opts",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop dalvik.vm.extra-opts"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:22.945194+00:00",
+      "seconds": 0.012,
+      "stdout": {
+        "path": "035-environment-before-original-dalvik-vm-extra-opts.stdout.txt",
+        "bytes": 1,
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      "stderr": {
+        "path": "035-environment-before-original-dalvik-vm-extra-opts.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "execute-original",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "/system/bin/timeout -s KILL 120 /system/bin/app_process64 -Xverify:all -cp /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/widget-method-probe.dex:/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/original.apk /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403 recovered.probe.WidgetMethodProbe"
+      ],
+      "timeout_seconds": 150,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:22.960688+00:00",
+      "seconds": 2.22,
+      "stdout": {
+        "path": "036-execute-original.stdout.txt",
+        "bytes": 379,
+        "sha256": "5fefb35053ba679c1f0aecdac3c93094023d348310537ba2b2b11653cce9efd7"
+      },
+      "stderr": {
+        "path": "036-execute-original.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-candidate-ro-kernel-qemu",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.kernel.qemu"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:25.184770+00:00",
+      "seconds": 0.025,
+      "stdout": {
+        "path": "037-environment-before-candidate-ro-kernel-qemu.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "037-environment-before-candidate-ro-kernel-qemu.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-candidate-sys-boot_completed",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop sys.boot_completed"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:25.211633+00:00",
+      "seconds": 0.02,
+      "stdout": {
+        "path": "038-environment-before-candidate-sys-boot_completed.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "038-environment-before-candidate-sys-boot_completed.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-candidate-ro-build-version-sdk",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.build.version.sdk"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:25.233602+00:00",
+      "seconds": 0.019,
+      "stdout": {
+        "path": "039-environment-before-candidate-ro-build-version-sdk.stdout.txt",
+        "bytes": 3,
+        "sha256": "90d7ec0f0acef104d8b6252794295f661a0149634868d02a1ae0c358099638f5"
+      },
+      "stderr": {
+        "path": "039-environment-before-candidate-ro-build-version-sdk.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-candidate-ro-build-fingerprint",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.build.fingerprint"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:25.255256+00:00",
+      "seconds": 0.021,
+      "stdout": {
+        "path": "040-environment-before-candidate-ro-build-fingerprint.stdout.txt",
+        "bytes": 82,
+        "sha256": "633fbfc3b92b012914165717ce367282664c75ad9f6e533b4a1ad6e2418ec93a"
+      },
+      "stderr": {
+        "path": "040-environment-before-candidate-ro-build-fingerprint.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-candidate-ro-product-cpu-abi",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.product.cpu.abi"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:25.278146+00:00",
+      "seconds": 0.021,
+      "stdout": {
+        "path": "041-environment-before-candidate-ro-product-cpu-abi.stdout.txt",
+        "bytes": 7,
+        "sha256": "aaf631698ae5160ceb04a97681a14887fdcab47cd6e0f163c87485b3b1340b62"
+      },
+      "stderr": {
+        "path": "041-environment-before-candidate-ro-product-cpu-abi.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-candidate-ro-product-cpu-abilist",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.product.cpu.abilist"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:25.300816+00:00",
+      "seconds": 0.022,
+      "stdout": {
+        "path": "042-environment-before-candidate-ro-product-cpu-abilist.stdout.txt",
+        "bytes": 17,
+        "sha256": "79861d534dd25845f4329d0546f2202124ad6e6af060fdcd362e176faf1f0b14"
+      },
+      "stderr": {
+        "path": "042-environment-before-candidate-ro-product-cpu-abilist.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-candidate-ro-dalvik-vm-native-bridge",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.dalvik.vm.native.bridge"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:25.324633+00:00",
+      "seconds": 0.023,
+      "stdout": {
+        "path": "043-environment-before-candidate-ro-dalvik-vm-native-bridge.stdout.txt",
+        "bytes": 22,
+        "sha256": "6b483b07df1cb35eb07d9f3578c45a109ab8e548c214dc15731ed722ceaa9cae"
+      },
+      "stderr": {
+        "path": "043-environment-before-candidate-ro-dalvik-vm-native-bridge.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-before-candidate-dalvik-vm-extra-opts",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop dalvik.vm.extra-opts"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:25.349678+00:00",
+      "seconds": 0.017,
+      "stdout": {
+        "path": "044-environment-before-candidate-dalvik-vm-extra-opts.stdout.txt",
+        "bytes": 1,
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      "stderr": {
+        "path": "044-environment-before-candidate-dalvik-vm-extra-opts.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "execute-candidate",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "/system/bin/timeout -s KILL 120 /system/bin/app_process64 -Xverify:all -cp /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/widget-method-probe.dex:/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/candidate.apk /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403 recovered.probe.WidgetMethodProbe"
+      ],
+      "timeout_seconds": 150,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:25.369615+00:00",
+      "seconds": 2.73,
+      "stdout": {
+        "path": "045-execute-candidate.stdout.txt",
+        "bytes": 379,
+        "sha256": "5fefb35053ba679c1f0aecdac3c93094023d348310537ba2b2b11653cce9efd7"
+      },
+      "stderr": {
+        "path": "045-execute-candidate.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "sha256-after-probe",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "sha256sum /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/widget-method-probe.dex"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:28.102931+00:00",
+      "seconds": 0.02,
+      "stdout": {
+        "path": "046-sha256-after-probe.stdout.txt",
+        "bytes": 156,
+        "sha256": "7c8ae0bddeeaa5173bca6389016a5e286ade68c3b7d06451d0e4e87ff9e676a6"
+      },
+      "stderr": {
+        "path": "046-sha256-after-probe.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "sha256-after-original",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "sha256sum /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/original.apk"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:28.124601+00:00",
+      "seconds": 1.015,
+      "stdout": {
+        "path": "047-sha256-after-original.stdout.txt",
+        "bytes": 145,
+        "sha256": "a777f178f63e85d5f93aef773d4ffb83d685e5309519aa7e020f275557efdbe8"
+      },
+      "stderr": {
+        "path": "047-sha256-after-original.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "sha256-after-candidate",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "sha256sum /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/candidate.apk"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:29.141959+00:00",
+      "seconds": 0.317,
+      "stdout": {
+        "path": "048-sha256-after-candidate.stdout.txt",
+        "bytes": 146,
+        "sha256": "b1a079b134ad93bef95b4bfcdc06a0562f9bc5b82e381c4927f07882d0aac943"
+      },
+      "stderr": {
+        "path": "048-sha256-after-candidate.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "app-process-sha256-after",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "sha256sum /system/bin/app_process64"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:29.461197+00:00",
+      "seconds": 0.014,
+      "stdout": {
+        "path": "049-app-process-sha256-after.stdout.txt",
+        "bytes": 92,
+        "sha256": "793c74fef67d7ccb28af8399e9a3c4ac6489f1a1433ddcb5e1f084cbb1102ae2"
+      },
+      "stderr": {
+        "path": "049-app-process-sha256-after.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "guest-timeout-sha256-after",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "sha256sum /system/bin/timeout"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:29.476721+00:00",
+      "seconds": 0.014,
+      "stdout": {
+        "path": "050-guest-timeout-sha256-after.stdout.txt",
+        "bytes": 86,
+        "sha256": "5462df6789b0a9bd587fa09803c4fd0834b374bb57f031f499f9b5822e9807e9"
+      },
+      "stderr": {
+        "path": "050-guest-timeout-sha256-after.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-after-ro-kernel-qemu",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.kernel.qemu"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:29.492823+00:00",
+      "seconds": 0.026,
+      "stdout": {
+        "path": "051-environment-after-ro-kernel-qemu.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "051-environment-after-ro-kernel-qemu.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-after-sys-boot_completed",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop sys.boot_completed"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:29.521141+00:00",
+      "seconds": 0.028,
+      "stdout": {
+        "path": "052-environment-after-sys-boot_completed.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "052-environment-after-sys-boot_completed.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-after-ro-build-version-sdk",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.build.version.sdk"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:29.550951+00:00",
+      "seconds": 0.021,
+      "stdout": {
+        "path": "053-environment-after-ro-build-version-sdk.stdout.txt",
+        "bytes": 3,
+        "sha256": "90d7ec0f0acef104d8b6252794295f661a0149634868d02a1ae0c358099638f5"
+      },
+      "stderr": {
+        "path": "053-environment-after-ro-build-version-sdk.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-after-ro-build-fingerprint",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.build.fingerprint"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:29.574832+00:00",
+      "seconds": 0.022,
+      "stdout": {
+        "path": "054-environment-after-ro-build-fingerprint.stdout.txt",
+        "bytes": 82,
+        "sha256": "633fbfc3b92b012914165717ce367282664c75ad9f6e533b4a1ad6e2418ec93a"
+      },
+      "stderr": {
+        "path": "054-environment-after-ro-build-fingerprint.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-after-ro-product-cpu-abi",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.product.cpu.abi"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:29.598602+00:00",
+      "seconds": 0.022,
+      "stdout": {
+        "path": "055-environment-after-ro-product-cpu-abi.stdout.txt",
+        "bytes": 7,
+        "sha256": "aaf631698ae5160ceb04a97681a14887fdcab47cd6e0f163c87485b3b1340b62"
+      },
+      "stderr": {
+        "path": "055-environment-after-ro-product-cpu-abi.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-after-ro-product-cpu-abilist",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.product.cpu.abilist"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:29.623047+00:00",
+      "seconds": 0.02,
+      "stdout": {
+        "path": "056-environment-after-ro-product-cpu-abilist.stdout.txt",
+        "bytes": 17,
+        "sha256": "79861d534dd25845f4329d0546f2202124ad6e6af060fdcd362e176faf1f0b14"
+      },
+      "stderr": {
+        "path": "056-environment-after-ro-product-cpu-abilist.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-after-ro-dalvik-vm-native-bridge",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.dalvik.vm.native.bridge"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:29.645454+00:00",
+      "seconds": 0.027,
+      "stdout": {
+        "path": "057-environment-after-ro-dalvik-vm-native-bridge.stdout.txt",
+        "bytes": 22,
+        "sha256": "6b483b07df1cb35eb07d9f3578c45a109ab8e548c214dc15731ed722ceaa9cae"
+      },
+      "stderr": {
+        "path": "057-environment-after-ro-dalvik-vm-native-bridge.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "environment-after-dalvik-vm-extra-opts",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop dalvik.vm.extra-opts"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:29.674076+00:00",
+      "seconds": 0.013,
+      "stdout": {
+        "path": "058-environment-after-dalvik-vm-extra-opts.stdout.txt",
+        "bytes": 1,
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      "stderr": {
+        "path": "058-environment-after-dalvik-vm-extra-opts.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "remove-owned-directory",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "rm -rf -- /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:29.902460+00:00",
+      "seconds": 0.026,
+      "stdout": {
+        "path": "059-remove-owned-directory.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "059-remove-owned-directory.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "confirm-owned-directory-absent",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "test '!' -e /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403"
+      ],
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:06:29.930860+00:00",
+      "seconds": 0.014,
+      "stdout": {
+        "path": "060-confirm-owned-directory-absent.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "060-confirm-owned-directory-absent.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "serial": "emulator-5560",
+  "expected_avd": "MacroDroid_API35_Disposable",
+  "guest_timeout_seconds": 120,
+  "verification_mode": "-Xverify:all",
+  "execution_backend": "adb-android-runtime",
+  "android_runtime_executed": true,
+  "art_execution_attempted": true,
+  "widget_cases_on_art_verified": true,
+  "both_semantic_case_sets_passed": true,
+  "strict_diagnostics_passed": true,
+  "inputs_unchanged": true,
+  "cleanup_complete": true,
+  "runtime_cases": [
+    "fresh-empty-unit-identity",
+    "reused-label-zero-empty",
+    "resumed-label-two-empty",
+    "invalid-label-exact-exception",
+    "label-two-dead-cast-L7",
+    "label-two-dead-cast-L4",
+    "label-two-dead-cast-L1",
+    "null-list-exception-type"
+  ],
+  "expected_stdout": "WIDGET_ART_CASE_OK fresh-empty-unit-identity\nWIDGET_ART_CASE_OK reused-label-zero-empty\nWIDGET_ART_CASE_OK resumed-label-two-empty\nWIDGET_ART_CASE_OK invalid-label-exact-exception\nWIDGET_ART_CASE_OK label-two-dead-cast-L7\nWIDGET_ART_CASE_OK label-two-dead-cast-L4\nWIDGET_ART_CASE_OK label-two-dead-cast-L1\nWIDGET_ART_CASE_OK null-list-exception-type\nWIDGET_METHOD_ART_OK cases=8\n",
+  "target_method": "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;",
+  "executions": {
+    "original": {
+      "guest_argv": [
+        "/system/bin/timeout",
+        "-s",
+        "KILL",
+        "120",
+        "/system/bin/app_process64",
+        "-Xverify:all",
+        "-cp",
+        "/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/widget-method-probe.dex:/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/original.apk",
+        "/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403",
+        "recovered.probe.WidgetMethodProbe"
+      ],
+      "command": {
+        "label": "execute-original",
+        "argv": [
+          "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+          "-s",
+          "emulator-5560",
+          "shell",
+          "/system/bin/timeout -s KILL 120 /system/bin/app_process64 -Xverify:all -cp /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/widget-method-probe.dex:/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/original.apk /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403 recovered.probe.WidgetMethodProbe"
+        ],
+        "timeout_seconds": 150,
+        "returncode": 0,
+        "timed_out": false,
+        "started_utc": "2026-10-12T05:06:22.960688+00:00",
+        "seconds": 2.22,
+        "stdout": {
+          "path": "036-execute-original.stdout.txt",
+          "bytes": 379,
+          "sha256": "5fefb35053ba679c1f0aecdac3c93094023d348310537ba2b2b11653cce9efd7"
+        },
+        "stderr": {
+          "path": "036-execute-original.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "completed_case_prefix": [
+        "fresh-empty-unit-identity",
+        "reused-label-zero-empty",
+        "resumed-label-two-empty",
+        "invalid-label-exact-exception",
+        "label-two-dead-cast-L7",
+        "label-two-dead-cast-L4",
+        "label-two-dead-cast-L1",
+        "null-list-exception-type"
+      ],
+      "completed_cases": 8,
+      "exact_stdout": true,
+      "semantic_cases_passed": true,
+      "stderr_empty": true,
+      "diagnostic_bytes": 0,
+      "strict_command_passed": true
+    },
+    "candidate": {
+      "guest_argv": [
+        "/system/bin/timeout",
+        "-s",
+        "KILL",
+        "120",
+        "/system/bin/app_process64",
+        "-Xverify:all",
+        "-cp",
+        "/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/widget-method-probe.dex:/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/candidate.apk",
+        "/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403",
+        "recovered.probe.WidgetMethodProbe"
+      ],
+      "command": {
+        "label": "execute-candidate",
+        "argv": [
+          "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+          "-s",
+          "emulator-5560",
+          "shell",
+          "/system/bin/timeout -s KILL 120 /system/bin/app_process64 -Xverify:all -cp /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/widget-method-probe.dex:/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/candidate.apk /data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403 recovered.probe.WidgetMethodProbe"
+        ],
+        "timeout_seconds": 150,
+        "returncode": 0,
+        "timed_out": false,
+        "started_utc": "2026-10-12T05:06:25.369615+00:00",
+        "seconds": 2.73,
+        "stdout": {
+          "path": "045-execute-candidate.stdout.txt",
+          "bytes": 379,
+          "sha256": "5fefb35053ba679c1f0aecdac3c93094023d348310537ba2b2b11653cce9efd7"
+        },
+        "stderr": {
+          "path": "045-execute-candidate.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "completed_case_prefix": [
+        "fresh-empty-unit-identity",
+        "reused-label-zero-empty",
+        "resumed-label-two-empty",
+        "invalid-label-exact-exception",
+        "label-two-dead-cast-L7",
+        "label-two-dead-cast-L4",
+        "label-two-dead-cast-L1",
+        "null-list-exception-type"
+      ],
+      "completed_cases": 8,
+      "exact_stdout": true,
+      "semantic_cases_passed": true,
+      "stderr_empty": true,
+      "diagnostic_bytes": 0,
+      "strict_command_passed": true
+    }
+  },
+  "full_runtime_1_to_1_established": false,
+  "nonempty_widget_behavior_verified": false,
+  "widget_rendering_verified": false,
+  "app_apk_modified": false,
+  "app_installed": false,
+  "app_ui_interaction": false,
+  "compile_only_stubs_on_classpath": false,
+  "inputs_before": {
+    "probe": {
+      "path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/work-in-progress/widget-art/01-wrapper-review/probes/widget-method-probe.dex",
+      "bytes": 7580,
+      "sha256": "79bd3b46e71253b17ec75099cce3611df1735b8f74e8bdcb61c61e5a37ae1a07",
+      "runtime_class_count": 1,
+      "runtime_class": "Lrecovered/probe/WidgetMethodProbe;",
+      "android_or_application_host_stub_definitions": 0,
+      "direct_android_or_application_type_references": 0,
+      "type_references": [
+        "I",
+        "Ldalvik/annotation/Signature;",
+        "Ldalvik/annotation/Throws;",
+        "Ljava/io/PrintStream;",
+        "Ljava/lang/AssertionError;",
+        "Ljava/lang/Class;",
+        "Ljava/lang/ClassCastException;",
+        "Ljava/lang/ClassLoader;",
+        "Ljava/lang/Exception;",
+        "Ljava/lang/IllegalStateException;",
+        "Ljava/lang/Integer;",
+        "Ljava/lang/NullPointerException;",
+        "Ljava/lang/Object;",
+        "Ljava/lang/String;",
+        "Ljava/lang/StringBuilder;",
+        "Ljava/lang/System;",
+        "Ljava/lang/Throwable;",
+        "Ljava/lang/reflect/Constructor;",
+        "Ljava/lang/reflect/Field;",
+        "Ljava/lang/reflect/InvocationTargetException;",
+        "Ljava/lang/reflect/Method;",
+        "Ljava/util/Collections;",
+        "Ljava/util/Iterator;",
+        "Ljava/util/List;",
+        "Lrecovered/probe/WidgetMethodProbe;",
+        "V",
+        "Z",
+        "[I",
+        "[Ljava/lang/Class;",
+        "[Ljava/lang/Object;",
+        "[Ljava/lang/String;"
+      ]
+    },
+    "original": {
+      "path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-original.apk",
+      "bytes": 95725918,
+      "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+    },
+    "candidate": {
+      "path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-widget-update-06.apk",
+      "bytes": 94683439,
+      "sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f"
+    },
+    "provenance": {
+      "path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/work-in-progress/widget-art/01-wrapper-review/probes/widget-method-probe.json",
+      "bytes": 3225,
+      "sha256": "31e7ebb8bebaa12210d1486b87b864e9ed7cf9771dde4488ffe435dd4e434901",
+      "content": {
+        "schema_version": 1,
+        "main_class": "recovered.probe.WidgetMethodProbe",
+        "probe": {
+          "path": "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/widget-method-probe.dex",
+          "bytes": 7580,
+          "sha256": "79bd3b46e71253b17ec75099cce3611df1735b8f74e8bdcb61c61e5a37ae1a07",
+          "runtime_class_count": 1,
+          "runtime_class": "Lrecovered/probe/WidgetMethodProbe;",
+          "android_or_application_host_stub_definitions": 0,
+          "direct_android_or_application_type_references": 0,
+          "compiler_metadata_type_references": [
+            "Ldalvik/annotation/Signature;",
+            "Ldalvik/annotation/Throws;"
+          ],
+          "typed_references": [
+            "Ldalvik/annotation/Signature;",
+            "Ldalvik/annotation/Throws;",
+            "Ljava/io/PrintStream;",
+            "Ljava/lang/AssertionError;",
+            "Ljava/lang/Class;",
+            "Ljava/lang/ClassCastException;",
+            "Ljava/lang/ClassLoader;",
+            "Ljava/lang/Exception;",
+            "Ljava/lang/IllegalStateException;",
+            "Ljava/lang/Integer;",
+            "Ljava/lang/NullPointerException;",
+            "Ljava/lang/Object;",
+            "Ljava/lang/String;",
+            "Ljava/lang/StringBuilder;",
+            "Ljava/lang/System;",
+            "Ljava/lang/Throwable;",
+            "Ljava/lang/reflect/Constructor;",
+            "Ljava/lang/reflect/Field;",
+            "Ljava/lang/reflect/InvocationTargetException;",
+            "Ljava/lang/reflect/Method;",
+            "Ljava/util/Collections;",
+            "Ljava/util/Iterator;",
+            "Ljava/util/List;",
+            "Lrecovered/probe/WidgetMethodProbe;"
+          ]
+        },
+        "apks": {
+          "original": {
+            "path": "/workspace/scratch/4130730d15aa/recovered/automation android app",
+            "bytes": 95725918,
+            "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+          },
+          "candidate": {
+            "path": "/tmp/macrodroid-widget-art-inputs-t0vfcjt_/candidate.apk",
+            "bytes": 94683439,
+            "sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f"
+          }
+        },
+        "target_method": "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;",
+        "original_method_sha256": "a1dd490bbfd6837fa72e6bf8ae4c75736612989fcba050fe2f0582aa03640e34",
+        "candidate_helper_sha256": "dbcb1a98d25ae4637531644da37d24f6e1bc494f941d4212da03c360fe315d79",
+        "runtime_cases": [
+          "fresh-empty-unit-identity",
+          "reused-label-zero-empty",
+          "resumed-label-two-empty",
+          "invalid-label-exact-exception",
+          "label-two-dead-cast-L7",
+          "label-two-dead-cast-L4",
+          "label-two-dead-cast-L1",
+          "null-list-exception-type"
+        ],
+        "expected_stdout_lines": [
+          "WIDGET_ART_CASE_OK fresh-empty-unit-identity",
+          "WIDGET_ART_CASE_OK reused-label-zero-empty",
+          "WIDGET_ART_CASE_OK resumed-label-two-empty",
+          "WIDGET_ART_CASE_OK invalid-label-exact-exception",
+          "WIDGET_ART_CASE_OK label-two-dead-cast-L7",
+          "WIDGET_ART_CASE_OK label-two-dead-cast-L4",
+          "WIDGET_ART_CASE_OK label-two-dead-cast-L1",
+          "WIDGET_ART_CASE_OK null-list-exception-type",
+          "WIDGET_METHOD_ART_OK cases=8"
+        ],
+        "scope": "Eight service-free entry/restoration/type-check paths using real APK classes; no nonempty-widget or rendering-path claim",
+        "android_runtime_executed_during_preparation": false
+      }
+    }
+  },
+  "provenance_artifact": {
+    "path": "input-provenance.json",
+    "bytes": 3225,
+    "sha256": "31e7ebb8bebaa12210d1486b87b864e9ed7cf9771dde4488ffe435dd4e434901"
+  },
+  "probe_artifact": {
+    "path": "input-probe.dex",
+    "bytes": 7580,
+    "sha256": "79bd3b46e71253b17ec75099cce3611df1735b8f74e8bdcb61c61e5a37ae1a07"
+  },
+  "wrapper_artifact": {
+    "path": "executed-wrapper.py",
+    "bytes": 33649,
+    "sha256": "c16dcf9376b1ea4de42ca51c63caeeb2ab157a5f4b89fcd0eea505182302d983"
+  },
+  "adb_path": "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+  "adb_sha256": "a902be8f45c6c62e76c9efaf6947a0fa747c9cabd89a2ac8e0d16ecb30b3ed01",
+  "environment-before": {
+    "ro.kernel.qemu": "1",
+    "sys.boot_completed": "1",
+    "ro.build.version.sdk": "35",
+    "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.product.cpu.abilist": "x86_64,arm64-v8a",
+    "ro.dalvik.vm.native.bridge": "libndk_translation.so",
+    "dalvik.vm.extra-opts": ""
+  },
+  "binaries_before": {
+    "app-process": {
+      "path": "/system/bin/app_process64",
+      "sha256": "fa2d6ccaff829790163035d6e50d52137ad7eeb19a1e35a7249a8cae9b68ecb6"
+    },
+    "guest-timeout": {
+      "path": "/system/bin/timeout",
+      "sha256": "d3904ad603529c6d6e939dc03ef77a49feb52da257ede510641e31e01d4b4602"
+    }
+  },
+  "owned_device_directory": "/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403",
+  "device_inputs_before": {
+    "probe": {
+      "path": "/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/widget-method-probe.dex",
+      "sha256": "79bd3b46e71253b17ec75099cce3611df1735b8f74e8bdcb61c61e5a37ae1a07",
+      "mode": "444"
+    },
+    "original": {
+      "path": "/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/original.apk",
+      "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+      "mode": "444"
+    },
+    "candidate": {
+      "path": "/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/candidate.apk",
+      "sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f",
+      "mode": "444"
+    }
+  },
+  "environment-before-original": {
+    "ro.kernel.qemu": "1",
+    "sys.boot_completed": "1",
+    "ro.build.version.sdk": "35",
+    "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.product.cpu.abilist": "x86_64,arm64-v8a",
+    "ro.dalvik.vm.native.bridge": "libndk_translation.so",
+    "dalvik.vm.extra-opts": ""
+  },
+  "environment-before-candidate": {
+    "ro.kernel.qemu": "1",
+    "sys.boot_completed": "1",
+    "ro.build.version.sdk": "35",
+    "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.product.cpu.abilist": "x86_64,arm64-v8a",
+    "ro.dalvik.vm.native.bridge": "libndk_translation.so",
+    "dalvik.vm.extra-opts": ""
+  },
+  "postcheck_errors": [],
+  "device_inputs_after": {
+    "probe": {
+      "path": "/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/widget-method-probe.dex",
+      "sha256": "79bd3b46e71253b17ec75099cce3611df1735b8f74e8bdcb61c61e5a37ae1a07"
+    },
+    "original": {
+      "path": "/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/original.apk",
+      "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+    },
+    "candidate": {
+      "path": "/data/local/tmp/md-widget-method-63ad41e6ca3e423ba29f09d4215f8403/candidate.apk",
+      "sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f"
+    }
+  },
+  "binaries_after": {
+    "app-process": {
+      "path": "/system/bin/app_process64",
+      "sha256": "fa2d6ccaff829790163035d6e50d52137ad7eeb19a1e35a7249a8cae9b68ecb6"
+    },
+    "guest-timeout": {
+      "path": "/system/bin/timeout",
+      "sha256": "d3904ad603529c6d6e939dc03ef77a49feb52da257ede510641e31e01d4b4602"
+    }
+  },
+  "environment-after": {
+    "ro.kernel.qemu": "1",
+    "sys.boot_completed": "1",
+    "ro.build.version.sdk": "35",
+    "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.product.cpu.abilist": "x86_64,arm64-v8a",
+    "ro.dalvik.vm.native.bridge": "libndk_translation.so",
+    "dalvik.vm.extra-opts": ""
+  },
+  "inputs_after": {
+    "probe": {
+      "path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/work-in-progress/widget-art/01-wrapper-review/probes/widget-method-probe.dex",
+      "bytes": 7580,
+      "sha256": "79bd3b46e71253b17ec75099cce3611df1735b8f74e8bdcb61c61e5a37ae1a07",
+      "runtime_class_count": 1,
+      "runtime_class": "Lrecovered/probe/WidgetMethodProbe;",
+      "android_or_application_host_stub_definitions": 0,
+      "direct_android_or_application_type_references": 0,
+      "type_references": [
+        "I",
+        "Ldalvik/annotation/Signature;",
+        "Ldalvik/annotation/Throws;",
+        "Ljava/io/PrintStream;",
+        "Ljava/lang/AssertionError;",
+        "Ljava/lang/Class;",
+        "Ljava/lang/ClassCastException;",
+        "Ljava/lang/ClassLoader;",
+        "Ljava/lang/Exception;",
+        "Ljava/lang/IllegalStateException;",
+        "Ljava/lang/Integer;",
+        "Ljava/lang/NullPointerException;",
+        "Ljava/lang/Object;",
+        "Ljava/lang/String;",
+        "Ljava/lang/StringBuilder;",
+        "Ljava/lang/System;",
+        "Ljava/lang/Throwable;",
+        "Ljava/lang/reflect/Constructor;",
+        "Ljava/lang/reflect/Field;",
+        "Ljava/lang/reflect/InvocationTargetException;",
+        "Ljava/lang/reflect/Method;",
+        "Ljava/util/Collections;",
+        "Ljava/util/Iterator;",
+        "Ljava/util/List;",
+        "Lrecovered/probe/WidgetMethodProbe;",
+        "V",
+        "Z",
+        "[I",
+        "[Ljava/lang/Class;",
+        "[Ljava/lang/Object;",
+        "[Ljava/lang/String;"
+      ]
+    },
+    "original": {
+      "path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-original.apk",
+      "bytes": 95725918,
+      "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+    },
+    "candidate": {
+      "path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-widget-update-06.apk",
+      "bytes": 94683439,
+      "sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f"
+    },
+    "provenance": {
+      "path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/work-in-progress/widget-art/01-wrapper-review/probes/widget-method-probe.json",
+      "bytes": 3225,
+      "sha256": "31e7ebb8bebaa12210d1486b87b864e9ed7cf9771dde4488ffe435dd4e434901",
+      "content": {
+        "schema_version": 1,
+        "main_class": "recovered.probe.WidgetMethodProbe",
+        "probe": {
+          "path": "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/widget-method-probe.dex",
+          "bytes": 7580,
+          "sha256": "79bd3b46e71253b17ec75099cce3611df1735b8f74e8bdcb61c61e5a37ae1a07",
+          "runtime_class_count": 1,
+          "runtime_class": "Lrecovered/probe/WidgetMethodProbe;",
+          "android_or_application_host_stub_definitions": 0,
+          "direct_android_or_application_type_references": 0,
+          "compiler_metadata_type_references": [
+            "Ldalvik/annotation/Signature;",
+            "Ldalvik/annotation/Throws;"
+          ],
+          "typed_references": [
+            "Ldalvik/annotation/Signature;",
+            "Ldalvik/annotation/Throws;",
+            "Ljava/io/PrintStream;",
+            "Ljava/lang/AssertionError;",
+            "Ljava/lang/Class;",
+            "Ljava/lang/ClassCastException;",
+            "Ljava/lang/ClassLoader;",
+            "Ljava/lang/Exception;",
+            "Ljava/lang/IllegalStateException;",
+            "Ljava/lang/Integer;",
+            "Ljava/lang/NullPointerException;",
+            "Ljava/lang/Object;",
+            "Ljava/lang/String;",
+            "Ljava/lang/StringBuilder;",
+            "Ljava/lang/System;",
+            "Ljava/lang/Throwable;",
+            "Ljava/lang/reflect/Constructor;",
+            "Ljava/lang/reflect/Field;",
+            "Ljava/lang/reflect/InvocationTargetException;",
+            "Ljava/lang/reflect/Method;",
+            "Ljava/util/Collections;",
+            "Ljava/util/Iterator;",
+            "Ljava/util/List;",
+            "Lrecovered/probe/WidgetMethodProbe;"
+          ]
+        },
+        "apks": {
+          "original": {
+            "path": "/workspace/scratch/4130730d15aa/recovered/automation android app",
+            "bytes": 95725918,
+            "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+          },
+          "candidate": {
+            "path": "/tmp/macrodroid-widget-art-inputs-t0vfcjt_/candidate.apk",
+            "bytes": 94683439,
+            "sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f"
+          }
+        },
+        "target_method": "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;",
+        "original_method_sha256": "a1dd490bbfd6837fa72e6bf8ae4c75736612989fcba050fe2f0582aa03640e34",
+        "candidate_helper_sha256": "dbcb1a98d25ae4637531644da37d24f6e1bc494f941d4212da03c360fe315d79",
+        "runtime_cases": [
+          "fresh-empty-unit-identity",
+          "reused-label-zero-empty",
+          "resumed-label-two-empty",
+          "invalid-label-exact-exception",
+          "label-two-dead-cast-L7",
+          "label-two-dead-cast-L4",
+          "label-two-dead-cast-L1",
+          "null-list-exception-type"
+        ],
+        "expected_stdout_lines": [
+          "WIDGET_ART_CASE_OK fresh-empty-unit-identity",
+          "WIDGET_ART_CASE_OK reused-label-zero-empty",
+          "WIDGET_ART_CASE_OK resumed-label-two-empty",
+          "WIDGET_ART_CASE_OK invalid-label-exact-exception",
+          "WIDGET_ART_CASE_OK label-two-dead-cast-L7",
+          "WIDGET_ART_CASE_OK label-two-dead-cast-L4",
+          "WIDGET_ART_CASE_OK label-two-dead-cast-L1",
+          "WIDGET_ART_CASE_OK null-list-exception-type",
+          "WIDGET_METHOD_ART_OK cases=8"
+        ],
+        "scope": "Eight service-free entry/restoration/type-check paths using real APK classes; no nonempty-widget or rendering-path claim",
+        "android_runtime_executed_during_preparation": false
+      }
+    }
+  },
+  "finished_utc": "2026-10-12T05:06:29.947035+00:00",
+  "evidence_error": "Observed environment or state differs: avd-name"
+}

@@ -1,0 +1,96 @@
+{
+  "status": "OLD_FAILURE_REPRODUCED_NEW_POLICY_HOST_CONTROLS_PASSED",
+  "passed": true,
+  "android_executed_during_validation": false,
+  "historical_android_job_stays_failed": true,
+  "fresh_android_rerun_required": true,
+  "started_utc": "2026-10-12T05:16:21.798323+00:00",
+  "commands": [
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/avd-parser-fix-04",
+        "-p",
+        "test_android_widget_method_probe.py",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/4130730d15aa/widget-art-probe/avd-parser-fix-04",
+      "timeout_seconds": 120,
+      "elapsed_seconds": 8.236094,
+      "returncode": 0,
+      "stdout": {
+        "path": "/workspace/scratch/4130730d15aa/widget-art-probe/avd-parser-fix-04/reports/validation-01/tests.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/workspace/scratch/4130730d15aa/widget-art-probe/avd-parser-fix-04/reports/validation-01/tests.stderr.txt",
+        "bytes": 5477,
+        "sha256": "1b8d2cb396b3af84238eb695b397f27932a5b8c565ec8b64d6ff8341ec0447fc"
+      }
+    }
+  ],
+  "replays": [
+    {
+      "source": {
+        "path": "/workspace/scratch/4130730d15aa/widget-art-probe/checkpoints/01-wrapper-review/android_widget_method_probe.py",
+        "bytes": 33649,
+        "sha256": "c16dcf9376b1ea4de42ca51c63caeeb2ab157a5f4b89fcd0eea505182302d983"
+      },
+      "returncode": 2,
+      "status": "SIMULATED_WIDGET_EVIDENCE_INVALID",
+      "command_count": 60,
+      "evidence_error": "Observed environment or state differs: avd-name",
+      "android_executed_during_replay": false,
+      "scope": "Recorded command/stream replay only; local APK hashes are checked, no guest command is executed.",
+      "path_rebindings": "Only the local ADB pathname and three local push source paths differ; all guest commands remain exact.",
+      "report": {
+        "path": "/workspace/scratch/4130730d15aa/widget-art-probe/avd-parser-fix-04/reports/validation-01/old-wrapper-recorded-failure/probe-result.json",
+        "bytes": 72793,
+        "sha256": "d2749b089d64b16951f16b937614808a5762a204883c77a5e67a9d643f6da3d7"
+      }
+    },
+    {
+      "source": {
+        "path": "/workspace/scratch/4130730d15aa/widget-art-probe/avd-parser-fix-04/android_widget_method_probe.py",
+        "bytes": 33979,
+        "sha256": "4738616dd655fd74832b501b95390ae744c7c6050fbb3d16f17bf78300aec541"
+      },
+      "returncode": 0,
+      "status": "SIMULATED_WIDGET_CASES_PASSED",
+      "command_count": 60,
+      "evidence_error": null,
+      "android_executed_during_replay": false,
+      "scope": "Recorded command/stream replay only; local APK hashes are checked, no guest command is executed. Success concerns the new host evidence policy; it does not relabel the historical job.",
+      "path_rebindings": "Only the local ADB pathname and three local push source paths differ; all guest commands remain exact.",
+      "report": {
+        "path": "/workspace/scratch/4130730d15aa/widget-art-probe/avd-parser-fix-04/reports/validation-01/new-policy-recorded-replay/probe-result.json",
+        "bytes": 72720,
+        "sha256": "a2c66a92ab7c5fade1e1982530af97a5a37da83eb9a84971fefa7902b0a4edea"
+      }
+    }
+  ],
+  "actual_artifact": {
+    "path": "/workspace/scratch/4130730d15aa/widget-art-probe/hosted-run-38206308421/artifact.zip",
+    "bytes": 1995749,
+    "sha256": "a860b5ca2b438db9c77e0ed362d4dcc8f2268ea29a767e931e370c29fb79afbe"
+  },
+  "historical_files_hash_verified": 3171,
+  "historical_probe_result_before": {
+    "path": "/workspace/scratch/4130730d15aa/widget-art-probe/hosted-run-38206308421/extracted/probe/probe-result.json",
+    "bytes": 74908,
+    "sha256": "37ec2e3eb9b0bad36a81913b37cfb57176edfdd82744540cb258288db3375b81"
+  },
+  "historical_probe_result_after": {
+    "path": "/workspace/scratch/4130730d15aa/widget-art-probe/hosted-run-38206308421/extracted/probe/probe-result.json",
+    "bytes": 74908,
+    "sha256": "37ec2e3eb9b0bad36a81913b37cfb57176edfdd82744540cb258288db3375b81"
+  },
+  "wrapper_sha256": "4738616dd655fd74832b501b95390ae744c7c6050fbb3d16f17bf78300aec541",
+  "tests_sha256": "1793d2b79bdf23aa44c4cfb1abd8bb999cae9a8c476e9bafda69d6ffcf3f8e43",
+  "finished_utc": "2026-10-12T05:16:33.230208+00:00"
+}

@@ -1,0 +1,47 @@
+--- original/android_widget_method_probe.py
++++ corrected/android_widget_method_probe.py
+@@ -188,6 +188,13 @@
+     return match[1]
+ 
+ 
++def observed_avd_name(stdout: bytes) -> None:
++    """Require the exact pinned name and OK line with complete LF or CRLF lines."""
++    expected = (DEFAULT_AVD + '\nOK\n').encode('ascii')
++    if stdout not in (expected, expected.replace(b'\n', b'\r\n')):
++        raise ProbeError('Selected emulator AVD output differs from the exact two-line protocol')
++
++
+ def observation(code, stdout: bytes, stderr: bytes, *, timed_out=False) -> dict:
+     expected = EXPECTED_STDOUT.encode()
+     lines = stdout.decode('utf-8', errors='replace').splitlines()
+@@ -307,9 +314,9 @@
+         if checked(call('device-state', [adb, '-s', args.serial, 'get-state']), 'device-state') != 'device':
+             raise ProbeError('Selected emulator is unavailable or unauthorized')
+         environment('environment-before')
+-        avd = checked(call('avd-name', [adb, '-s', args.serial, 'emu', 'avd', 'name']), 'avd-name')
+-        if avd.splitlines() != [DEFAULT_AVD, 'OK']:
+-            raise ProbeError('Selected emulator AVD name differs')
++        avd = call('avd-name', [adb, '-s', args.serial, 'emu', 'avd', 'name'])
++        checked(avd, 'avd-name')
++        observed_avd_name(avd[1])
+         report['binaries_before'] = {}
+         for name, path in (('app-process', APP_PROCESS), ('guest-timeout', GUEST_TIMEOUT)):
+             checked(shell(name + '-executable', ['test', '-x', path]), name + '-executable')
+@@ -484,7 +491,7 @@
+ 
+         add('device-state', ['get-state'], kind='text', value='device')
+         env('environment-before')
+-        add('avd-name', ['emu', 'avd', 'name'], kind='text', value=DEFAULT_AVD + '\nOK')
++        add('avd-name', ['emu', 'avd', 'name'], kind='avd')
+         for name, path in (('app-process', APP_PROCESS), ('guest-timeout', GUEST_TIMEOUT)):
+             shell(name + '-executable', ['test', '-x', path])
+             shell(name + '-sha256-before', ['sha256sum', path], kind='sha',
+@@ -538,6 +545,8 @@
+                 raise ProbeError('Silent command produced unexpected output: ' + label)
+             if kind == 'text' and stdout.strip() != value:
+                 raise ProbeError('Observed environment or state differs: ' + label)
++            if kind == 'avd':
++                observed_avd_name(raw['stdout'])
+             if kind == 'sha':
+                 observed_hash(0, stdout, '', value[0], value[1])
+             if kind == 'execution':

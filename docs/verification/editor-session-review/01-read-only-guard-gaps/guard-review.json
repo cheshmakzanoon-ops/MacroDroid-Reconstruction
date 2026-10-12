@@ -1,0 +1,64 @@
+{
+  "reviewed_external_commit": "934c6543dce0897975f52457717b3a70bd27ce00",
+  "source_inputs": {
+    "tools/parity_journeys/post_onboarding.py": "1637f23d6fed1cb3a7939562b6720fa4572a07c71c68e8f2aede145d92955336",
+    "tools/parity_journeys/editor_session_journey.py": "e39430a3a3c15cb79308d24dc58f54c561653e292b339497eacb697adac1eb52",
+    "tools/parity_journeys/test_post_onboarding.py": "fcfe6f3e68b0ce0b6f0863ee231be5244732704fe6e745fbb61465b9801c40b8",
+    "tools/parity_journeys/editor_journey.py": "cc8425fd09ea8c0d5bde354bd3ad2a94289a528b36fde8a485965207234e6f7c",
+    "tools/parity_journeys/test_editor_journey.py": "6e349fdabb35a595ca5ef372ae0c4cbce06991c46bb24b77f9c8c049e0af6e29",
+    "tools/parity_journeys/supplied_reference_journey.py": "7c03b5cf3c7aaeb4211e444a7e86d7b93ccb621c508516f07e7bf1f56b5321b0",
+    "tools/parity_journeys/robust_capture.py": "ab4fea3dfb4220bcfc790027c8eda3b7a3421ca9dc45a3b486a89fb34757ba3d",
+    "tools/parity_journeys/editor-plan.json": "28ea38698dcfcf0146955be9ddd07d1df0fe01a234c13633dac85628edbbc448",
+    "project/android_compare.py": "0b9a50cec26d0cc97a2b8c5592aaf614a40b5dc339bccf85d85f1d753500126f"
+  },
+  "source_inputs_unchanged": true,
+  "cases": [
+    {
+      "name": "endpoint-identity-reuse",
+      "description": "All eight final endpoint command-output files removed; final session_identity reuses the complete start identity, yet the session passes.",
+      "baseline_accepted": true,
+      "mutated_editor_session_equal": true,
+      "mutated_status": "EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY",
+      "reason": null,
+      "false_positive": true,
+      "synthetic_only": true,
+      "android_executed": false
+    },
+    {
+      "name": "preinput-evidence-reuse",
+      "description": "A later input has no own immediate PID/foreground output files and instead reuses the prior input pair; the session passes.",
+      "baseline_accepted": true,
+      "mutated_editor_session_equal": true,
+      "mutated_status": "EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY",
+      "reason": null,
+      "false_positive": true,
+      "synthetic_only": true,
+      "android_executed": false
+    },
+    {
+      "name": "preinput-resolved-alias-reuse",
+      "description": "The same missing-later-input evidence is reused through valid ./ aliases of the prior input files; the session passes.",
+      "baseline_accepted": true,
+      "mutated_editor_session_equal": true,
+      "mutated_status": "EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY",
+      "reason": null,
+      "false_positive": true,
+      "synthetic_only": true,
+      "android_executed": false
+    },
+    {
+      "name": "wrong-endpoint-digest-control",
+      "description": "Control: a wrong final installed APK digest is rejected, confirming the synthetic baseline exercises endpoint validation.",
+      "baseline_accepted": true,
+      "mutated_editor_session_equal": false,
+      "mutated_status": "REJECTED",
+      "reason": "Session endpoint APK differs from the intended input",
+      "false_positive": false,
+      "synthetic_only": true,
+      "android_executed": false
+    }
+  ],
+  "android_executed": false,
+  "active_files_modified": false,
+  "full_runtime_1_to_1_established": false
+}

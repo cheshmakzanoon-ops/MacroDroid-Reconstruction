@@ -1,0 +1,14 @@
+# Read-only review: stale evidence can pass the editor-session comparator
+
+The external implementation at `934c6543dce0897975f52457717b3a70bd27ce00` was retained unchanged. Its declared home-to-editor scope is separate from startup; this review found two concrete guard failures inside that finite scope. All nine imported source/plan files are copied exactly and bound to that commit.
+
+1. The final endpoint can reuse the starting endpoint's entire `session_identity`. The reproduction deletes all eight final endpoint command-output files, substitutes the start identity, and still receives `EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY`. `checked_identity` validates command values and per-run naming but does not require distinct endpoint artifacts.
+2. A later tap can reuse an earlier tap's immediate PID and foreground artifacts. The reproduction deletes the later pair, substitutes the earlier pair, and still passes. A separate case uses `./` path aliases with the same resolved file identity and also passes. `checked_transition` excludes reuse against only that transition's prior/before snapshots, not earlier inputs across the session.
+
+The existing 12 session tests passed in 10.376 seconds. Each of the three new stale-evidence cases starts from a passing synthetic baseline and then reproduces an incorrect pass. A fourth control changes the final installed APK digest and correctly returns `REJECTED`, exercising the endpoint guard's intended failure path. The reproduction script exits successfully only when these exact vulnerable behaviors and the rejecting digest control are reproduced.
+
+All four full synthetic reports, comparator results, mutations and 2,315 exact case artifacts are preserved in `complete-synthetic-evidence.zip`; every member was independently read back and hash checked. Compact reports/results and all pinned imported source remain directly readable. The recorded test-output file is the exact concatenation of the two tool-output chunks from the one existing-suite invocation.
+
+No Android device was executed and no active external source was modified. These are comparator findings, not new app-parity measurements. The original actual runtime reports and failures remain unchanged. Any claimed session pass needs corrected artifact-freshness validation before it can be treated as reviewed evidence. A proposed correction should use session-wide resolved artifact identities for fresh captures, immediate input observations and the two endpoint command groups, while retaining exact bytes and the separate startup result.
+
+The executed reproduction uses explicit task paths and requires the nine repository inputs at the pinned commit. Their complete copies under `inputs/` permit an isolated historical replay; later active fixes must not replace these frozen source bytes.

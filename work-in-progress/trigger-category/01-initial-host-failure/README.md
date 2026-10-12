@@ -1,0 +1,5 @@
+# Inactive Date/Time trigger observation
+
+The initial full host run executed 108 tests and reported five errors. Two external fixture tests lacked their referenced historical archives in the private staging copy. Both raw Date/Time fixture subtests rejected an incorrectly assumed direct clickable parent: the observed row actually has a nonclickable background parent and a clickable category-container grandparent. One plan-preservation test incorrectly nested an adapter whose context deliberately rejects that base plan. Synthetic full-run and guard controls passed. These original failed sources and logs remain unchanged here; no device input occurred.
+
+The proposal adds one observed trigger-add tap and one observed Date/Time category tap after the existing ten-screen sequence. It stops on the next app surface without selecting a trigger or saving or executing a macro. Full-frame, process, APK, artifact and freshness checks remain required. No Android run or active workflow change is included in this checkpoint.
