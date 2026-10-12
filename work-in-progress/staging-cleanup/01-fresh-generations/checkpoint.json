@@ -1,0 +1,87 @@
+{
+  "status": "FROZEN_LOCAL_ACCEPTANCE_IN_PROGRESS",
+  "frozen_utc": "2026-10-12T02:22:06.886074+00:00",
+  "scope": "Generated build staging reliability only. Same 1239 application methods and scene APK expected; current hosted95077 run continues independently.",
+  "source_input_files": 81212,
+  "source_input_snapshot_sha256": "f83e1b06145a67238a722fe088c35525de359f1b20c72c06d7931c3dcc825d85",
+  "source_input_manifest_file_sha256": "5604f592394768e2ac8183cfd767f059a87cf0507d90237cb3a949df4b4f40b3",
+  "strict_generated_reset_sites": 10,
+  "previously_suppressed_cleanup_sites": 9,
+  "java_compilation": "Never-reused staging path; javac,D8,disassembly,DEX integrity before retirement of old output and publication of new generation.",
+  "synthetic_regressions": {
+    "tests": 6,
+    "passed": true,
+    "seconds": 0.07,
+    "android_executed": false
+  },
+  "actual_failure_evidence": "docs/verification/scene-runtime-local-failure/ in repository; plugin later strict-reset diagnostic is independently preserved by recovery agent.",
+  "root_cause": "Underlying retained/reintroduced filesystem metadata mechanism is not established; strict removal alone did not prove this symptom eliminated.",
+  "files": [
+    {
+      "path": "build.py",
+      "bytes": 20006,
+      "sha256": "cb491aff72c091a19b1f8acad2b7a6c67b7cfb22ba2b705ddb8ee7962ea4b591",
+      "baseline_sha256": "64eefa3d0b04d363eb497cff75af3417d3701b0446fcbc90116dbe155f92b17a"
+    },
+    {
+      "path": "full_apk_edit_probe.py",
+      "bytes": 6766,
+      "sha256": "b7236a62e9f005e7627dff967bc50ff1cd8f881baa0d8d8fa38cde92aa71cdf4",
+      "baseline_sha256": "f75a9edf79878874944fc317d1c4cc568f36149c53c16a9783090e08e6ae1edb"
+    },
+    {
+      "path": "negative_control.py",
+      "bytes": 2455,
+      "sha256": "427a009ab1c08b8fe299decd857d5784381d1a1f35004a3a3af2fd7aaeb3a9b9",
+      "baseline_sha256": "3d6abacb6397c8f5e3aba60c0335dac337f2312895e4d14d578d91f235270bf2"
+    },
+    {
+      "path": "ui_negative_control.py",
+      "bytes": 8593,
+      "sha256": "70892c155dd6562b9ee501d2a7b409e9ead2217897bda42be33d40026f361f8f",
+      "baseline_sha256": "ded9625c100e3ce90cc50d0d270b20b9f6baaa9b8364cd16b7ace1006102345e"
+    },
+    {
+      "path": "engine_negative_control.py",
+      "bytes": 4774,
+      "sha256": "ce68ceb5506a4553736a7ae5cf77d8e69e2f3cd888ac5a531eae0a1cbe18ef78",
+      "baseline_sha256": "3b6d591a9127b23fedd505cca8b7ffe223a70ed57e84cc74181d34cb6eeccdfa"
+    },
+    {
+      "path": "core_negative_control.py",
+      "bytes": 3130,
+      "sha256": "ecf8b8c89dc3ee8517133cf27f3d8be550a872fa383d03218596a5be8e3d2c31",
+      "baseline_sha256": "feaa769ce96a2997e63c42ff92cfcb27c44c6539bbc514aa7ee780b4d258ab9c"
+    },
+    {
+      "path": "environment_negative_control.py",
+      "bytes": 4073,
+      "sha256": "b2f29c4157ec7893e00c14467a4c9514003bb31fbe0cf5870b42931c1d67c814",
+      "baseline_sha256": "249ec846e05a9f03b51ca748d953ded8079621c77b626078b97976ea3ae8b61b"
+    },
+    {
+      "path": "tests/test_staging_cleanup.py",
+      "bytes": 5147,
+      "sha256": "bdd6e9781077a6981288b3b4583a3dbb0af1894bb7d338a4454fc53aff976204",
+      "baseline_sha256": null
+    },
+    {
+      "path": "reports/release-input-snapshot.json",
+      "bytes": 14489911,
+      "sha256": "5604f592394768e2ac8183cfd767f059a87cf0507d90237cb3a949df4b4f40b3",
+      "baseline_sha256": "c1a6bd984130a4c50679af6331971995d2f8553d06d32cc8d14e129d67a17558"
+    },
+    {
+      "path": "reports/hybrid-staging-removal-diagnostic.json",
+      "bytes": 420,
+      "sha256": "84851e079dee3c4a323507a11d6cd6d853a7c93a6bf91bbed89b54cc9e71fc2c",
+      "baseline_sha256": null
+    },
+    {
+      "path": "reports/staging-cleanup-regressions.log",
+      "bytes": 1078,
+      "sha256": "331adbf20825bc3b522c06c7f486c403a52d679639be935a13d8af5689624c57",
+      "baseline_sha256": null
+    }
+  ]
+}
