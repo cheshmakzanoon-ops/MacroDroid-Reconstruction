@@ -1,0 +1,355 @@
+{
+  "status": "INACTIVE_WORKFLOW_CONTROLS_PASSED_REVIEW_GAPS_PENDING",
+  "android_executed": false,
+  "active_changes": false,
+  "created_utc": "2026-10-12T06:07:40.959929+00:00",
+  "note": "The exact initial proposal passed21 measured offline commands: six shell syntax checks, one successful182-copy preflight, seven input/output reuse rejection controls, real read-only inspection of both pinned APKs and AAPT2, three host-suite commands (117 journey, nine animation and six downloader tests), and three owned-service cleanup cases. No uploader or Android command was executed. Subsequent independent review found a hardlink alias gap in the frozen Trigger04 guard and a mutable input-preflight inventory gap in these diagnostic helpers. This measured proposal is preserved without activation; a separately numbered correction must close both gaps and retain the historical26-pixel failure before any fresh device run. All old workflow and capture bytes remain unchanged.",
+  "workflow_sha256": "101f3b6663855c98e01ac7160d205c6066a8caeb1aedd75a19f79a767a81c4cf",
+  "offline_validation": {
+    "status": "OFFLINE_NORMAL_ANIMATION_WORKFLOW_VALIDATED",
+    "passed": true,
+    "android_executed": false,
+    "commands": [
+      {
+        "label": "bash-syntax-01",
+        "argv": [
+          "bash",
+          "-n",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/step-01.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.007609,
+        "android_executed": false
+      },
+      {
+        "label": "bash-syntax-02",
+        "argv": [
+          "bash",
+          "-n",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/step-02.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.006442,
+        "android_executed": false
+      },
+      {
+        "label": "bash-syntax-03",
+        "argv": [
+          "bash",
+          "-n",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/step-03.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.009657,
+        "android_executed": false
+      },
+      {
+        "label": "bash-syntax-04",
+        "argv": [
+          "bash",
+          "-n",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/step-04.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.005961,
+        "android_executed": false
+      },
+      {
+        "label": "bash-syntax-05",
+        "argv": [
+          "bash",
+          "-n",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/step-05.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.009173,
+        "android_executed": false
+      },
+      {
+        "label": "bash-syntax-06",
+        "argv": [
+          "bash",
+          "-n",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/step-06.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.005724,
+        "android_executed": false
+      },
+      {
+        "label": "exact-frozen-preflight",
+        "argv": [
+          "bash",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/step-01.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.716482,
+        "android_executed": false
+      },
+      {
+        "label": "changed-original-manifest",
+        "argv": [
+          "bash",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/step-01.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/input-faults/changed-original-manifest",
+        "exit_code": 1,
+        "timed_out": false,
+        "seconds": 0.266252,
+        "android_executed": false
+      },
+      {
+        "label": "changed-active-manifest",
+        "argv": [
+          "bash",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/step-01.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/input-faults/changed-active-manifest",
+        "exit_code": 1,
+        "timed_out": false,
+        "seconds": 0.26554,
+        "android_executed": false
+      },
+      {
+        "label": "changed-chronology-guard",
+        "argv": [
+          "bash",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/step-01.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/input-faults/changed-chronology-guard",
+        "exit_code": 1,
+        "timed_out": false,
+        "seconds": 0.585685,
+        "android_executed": false
+      },
+      {
+        "label": "changed-animation-helper",
+        "argv": [
+          "bash",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/step-01.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/input-faults/changed-animation-helper",
+        "exit_code": 1,
+        "timed_out": false,
+        "seconds": 0.319856,
+        "android_executed": false
+      },
+      {
+        "label": "symlinked-runtime-input",
+        "argv": [
+          "bash",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/step-01.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/input-faults/symlinked-runtime-input",
+        "exit_code": 1,
+        "timed_out": false,
+        "seconds": 0.166206,
+        "android_executed": false
+      },
+      {
+        "label": "changed-reviewed-finalizer",
+        "argv": [
+          "bash",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/step-01.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/input-faults/changed-reviewed-finalizer",
+        "exit_code": 1,
+        "timed_out": false,
+        "seconds": 0.116193,
+        "android_executed": false
+      },
+      {
+        "label": "existing-output",
+        "argv": [
+          "bash",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/step-01.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs",
+        "exit_code": 1,
+        "timed_out": false,
+        "seconds": 0.166332,
+        "android_executed": false
+      },
+      {
+        "label": "exact-offline-apk-preflight",
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/prepare_normal_journey.py",
+          "--root",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs",
+          "--output",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs/ci-normal-animation",
+          "--materialized"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 8.602683,
+        "android_executed": false
+      },
+      {
+        "label": "packaged-host-controls-0",
+        "argv": [
+          "bash",
+          "-o",
+          "pipefail",
+          "-c",
+          "python3 -B -m unittest discover -s tools/android -p 'test_download_retry.py' -v 2>&1 | tee ci-normal-animation/download-tests.log"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.275124,
+        "android_executed": false
+      },
+      {
+        "label": "packaged-host-controls-1",
+        "argv": [
+          "bash",
+          "-o",
+          "pipefail",
+          "-c",
+          "python3 -B -m unittest discover -s ci-normal-animation/reviewed-source/tools/parity_journeys -p 'test_*.py' -v 2>&1 | tee ci-normal-animation/journey-host-tests.log"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 105.632326,
+        "android_executed": false
+      },
+      {
+        "label": "packaged-host-controls-2",
+        "argv": [
+          "bash",
+          "-o",
+          "pipefail",
+          "-c",
+          "python3 -B -m unittest discover -s work-in-progress/animation-diagnostic/01-normal-animation-source -p 'test_enable_normal_animations.py' -v 2>&1 | tee ci-normal-animation/animation-host-tests.log"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.859469,
+        "android_executed": false
+      },
+      {
+        "label": "owned-cleanup-clean",
+        "argv": [
+          "bash",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/cleanup-clean.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/cleanup-controls/clean",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.122763,
+        "android_executed": false
+      },
+      {
+        "label": "owned-cleanup-failed-journey",
+        "argv": [
+          "bash",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/cleanup-failed-journey.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/cleanup-controls/failed-journey",
+        "exit_code": 7,
+        "timed_out": false,
+        "seconds": 0.117472,
+        "android_executed": false
+      },
+      {
+        "label": "owned-cleanup-failed-service",
+        "argv": [
+          "bash",
+          "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/cleanup-failed-service.sh"
+        ],
+        "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/cleanup-controls/failed-service",
+        "exit_code": 1,
+        "timed_out": false,
+        "seconds": 0.115203,
+        "android_executed": false
+      }
+    ],
+    "checks": [
+      "Real preflight copied every declared input, including hidden workflow and exact reviewed-source dependencies",
+      "changed-original-manifest: rejected",
+      "changed-active-manifest: rejected",
+      "changed-chronology-guard: rejected",
+      "changed-animation-helper: rejected",
+      "symlinked-runtime-input: rejected",
+      "changed-reviewed-finalizer: rejected"
+    ],
+    "started_utc": "2026-10-12T05:56:30.527772+00:00",
+    "workflow_sha256": "101f3b6663855c98e01ac7160d205c6066a8caeb1aedd75a19f79a767a81c4cf",
+    "prepared_input_copies": 182,
+    "source_apks_and_preserved_tool_bytes_unchanged": true,
+    "finished_utc": "2026-10-12T05:58:30.381127+00:00"
+  },
+  "evidence_files": 1383,
+  "inert_symlinks": 1,
+  "files": [
+    {
+      "path": ".github/workflows/editor-normal-animation.yml",
+      "bytes": 10991,
+      "sha256": "101f3b6663855c98e01ac7160d205c6066a8caeb1aedd75a19f79a767a81c4cf"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1539,
+      "sha256": "9ea7f70b799b581b16624e7c9ccfdc147be9ad09f7a188f5efdd9dcfad0d9d02"
+    },
+    {
+      "path": "build_workflow.py",
+      "bytes": 7793,
+      "sha256": "b636c003eb82110816cacf55e57c69055e9bcee168bc972573be80cdf2df250d"
+    },
+    {
+      "path": "drafts/01-before-final-status-guard.yml",
+      "bytes": 10991,
+      "sha256": "fe2666178327364d2cd90c31b59314e51f3b7bacb3603c0e7762941ce599b33a"
+    },
+    {
+      "path": "freeze_workflow.py",
+      "bytes": 6506,
+      "sha256": "455b6a7daa14daffb95fd6e323a46d7c982ccdee950c0d27cda0e347075e242f"
+    },
+    {
+      "path": "offline-evidence-manifest.json",
+      "bytes": 378346,
+      "sha256": "8f980d4f323d9e0346f4c7bc72533dc17bba36cb290482b5daf6cd2890a5a036"
+    },
+    {
+      "path": "offline-evidence.tar.gz",
+      "bytes": 102744757,
+      "sha256": "b62e9914e41608a8efe6030e3bba93bc3e8d40fa94739c678ead965d1f710885"
+    },
+    {
+      "path": "prepare_normal_journey.py",
+      "bytes": 9412,
+      "sha256": "0f0c022f556f9798afd886e1943f6e2fc63e35dc0498abe1e6db2b53fce72129"
+    },
+    {
+      "path": "validate_workflow.py",
+      "bytes": 12486,
+      "sha256": "85f9635cf785fa391c64a1cab32e207a5aed1199782d1f3b095434e1ceafb312"
+    },
+    {
+      "path": "verify_normal_journey.py",
+      "bytes": 6335,
+      "sha256": "47137b6f86a95e42ae55aa1d5362e471139436b714c88a07e047bfc17b04b03c"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/prepare_normal_journey.py", line 166, in <module>
+    main()
+  File "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/prepare_normal_journey.py", line 162, in main
+    print(json.dumps(function(args.root.resolve(), args.output.resolve()), indent=2))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/prepare_normal_journey.py", line 124, in materialized
+    raise ValueError('Prepared input changed before execution: ' + row['path'])
+ValueError: Prepared input changed before execution: tools/android/bootstrap_android_runtime.py

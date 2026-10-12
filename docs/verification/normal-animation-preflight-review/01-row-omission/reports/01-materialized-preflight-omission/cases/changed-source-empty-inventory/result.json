@@ -1,0 +1,34 @@
+{
+  "android_executed": false,
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/prepare_normal_journey.py",
+    "--root",
+    "/workspace/scratch/4130730d15aa/normal-preflight-review/private-cases/changed-source-empty-inventory/root",
+    "--output",
+    "/workspace/scratch/4130730d15aa/normal-preflight-review/private-cases/changed-source-empty-inventory/root/ci-normal-animation",
+    "--materialized"
+  ],
+  "baseline_inventory_entries": 182,
+  "case": "changed-source-empty-inventory",
+  "deliberately_modified_private_files": [
+    {
+      "bytes": 9931,
+      "path": "tools/android/bootstrap_android_runtime.py",
+      "sha256": "2d07059e53803f422081867e99eb1eb48a856d4b5620b47ba770caba5516854a"
+    },
+    {
+      "bytes": 9931,
+      "path": "ci-normal-animation/executed-inputs/tools/android/bootstrap_android_runtime.py",
+      "sha256": "2d07059e53803f422081867e99eb1eb48a856d4b5620b47ba770caba5516854a"
+    }
+  ],
+  "exit_code": 0,
+  "false_acceptance": true,
+  "input_inventory_entries": 0,
+  "materialized_passed": true,
+  "materialized_status": "EXACT_APKS_AND_AAPT2_VERIFIED_OFFLINE",
+  "seconds": 7.359533142000146,
+  "started_utc": "2026-10-12T06:06:02.162398+00:00"
+}

@@ -1,0 +1,7 @@
+# Independent normal-animation diagnostic proposal
+
+The exact initial proposal passed21 measured offline commands: six shell syntax checks, one successful182-copy preflight, seven input/output reuse rejection controls, real read-only inspection of both pinned APKs and AAPT2, three host-suite commands (117 journey, nine animation and six downloader tests), and three owned-service cleanup cases. No uploader or Android command was executed. Subsequent independent review found a hardlink alias gap in the frozen Trigger04 guard and a mutable input-preflight inventory gap in these diagnostic helpers. This measured proposal is preserved without activation; a separately numbered correction must close both gaps and retain the historical26-pixel failure before any fresh device run. All old workflow and capture bytes remain unchanged.
+
+This package is inactive until explicitly reviewed and published as an active workflow. Offline host controls and APK metadata inspection are not Android execution. The exact current candidate and supplied original APK remain unchanged. The workflow observes ten full frames per APK with the existing zero-pixel comparison rule; it does not establish animation timing, crash-free lifecycle, or whole-application parity.
+
+The offline archive retains every regular test input and output except three already-published large APK/tool inputs, whose exact identities and source references are retained separately. Deliberate symlink controls are recorded as inert metadata and never restored automatically.

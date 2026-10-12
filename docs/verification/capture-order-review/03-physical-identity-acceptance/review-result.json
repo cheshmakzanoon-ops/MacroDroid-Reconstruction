@@ -1,0 +1,48 @@
+{
+  "checkpoint_sha256": "8c985ee7da3a2f3d0dab9a9b93cac49b07246f9f78f8b0b897144c60c085f743",
+  "exact_source_files_verified": 97,
+  "prior_two_terminal_false_positives_rejected": true,
+  "both_physical_alias_controls_rejected": true,
+  "all_four_genuine_baselines_accepted": true,
+  "android_executed": false,
+  "active_or_frozen_source_modified": false,
+  "results": [
+    {
+      "length": 10,
+      "fault": "stale-terminal",
+      "baseline_accepted": true,
+      "mutated_accepted": false,
+      "status": "REJECTED",
+      "reason": "Accepted acquisition ledger reused by another observation",
+      "full_runtime_1_to_1_established": false
+    },
+    {
+      "length": 12,
+      "fault": "stale-terminal",
+      "baseline_accepted": true,
+      "mutated_accepted": false,
+      "status": "REJECTED",
+      "reason": "Accepted acquisition ledger reused by another observation",
+      "full_runtime_1_to_1_established": false
+    },
+    {
+      "length": 10,
+      "fault": "hardlink-preinput",
+      "baseline_accepted": true,
+      "mutated_accepted": false,
+      "status": "REJECTED",
+      "reason": "Observed journey reused an artifact from another acquisition role",
+      "full_runtime_1_to_1_established": false
+    },
+    {
+      "length": 12,
+      "fault": "hardlink-preinput",
+      "baseline_accepted": true,
+      "mutated_accepted": false,
+      "status": "REJECTED",
+      "reason": "Observed journey reused an artifact from another acquisition role",
+      "full_runtime_1_to_1_established": false
+    }
+  ],
+  "hardlink_metadata_required_for_hardlink_replay": true
+}

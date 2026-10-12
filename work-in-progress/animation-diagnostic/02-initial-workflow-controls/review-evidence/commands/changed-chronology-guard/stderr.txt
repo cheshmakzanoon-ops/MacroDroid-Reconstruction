@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/input-faults/changed-chronology-guard/work-in-progress/animation-diagnostic/02-reviewed-workflow/prepare_normal_journey.py", line 166, in <module>
+    main()
+  File "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/input-faults/changed-chronology-guard/work-in-progress/animation-diagnostic/02-reviewed-workflow/prepare_normal_journey.py", line 162, in main
+    print(json.dumps(function(args.root.resolve(), args.output.resolve()), indent=2))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/input-faults/changed-chronology-guard/work-in-progress/animation-diagnostic/02-reviewed-workflow/prepare_normal_journey.py", line 84, in prepare
+    copy(package + '/' + row['path'], row['sha256'], row['bytes'])
+  File "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/input-faults/changed-chronology-guard/work-in-progress/animation-diagnostic/02-reviewed-workflow/prepare_normal_journey.py", line 67, in copy
+    raise ValueError('Pinned input changed: ' + name)
+ValueError: Pinned input changed: work-in-progress/trigger-category/04-chronology-host-success/replay-source/tools/parity_journeys/capture_chronology.py

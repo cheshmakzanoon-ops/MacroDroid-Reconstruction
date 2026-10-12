@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs/work-in-progress/animation-diagnostic/02-reviewed-workflow/prepare_normal_journey.py", line 166, in <module>
+    main()
+  File "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs/work-in-progress/animation-diagnostic/02-reviewed-workflow/prepare_normal_journey.py", line 162, in main
+    print(json.dumps(function(args.root.resolve(), args.output.resolve()), indent=2))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs/work-in-progress/animation-diagnostic/02-reviewed-workflow/prepare_normal_journey.py", line 59, in prepare
+    output.mkdir(parents=True, exist_ok=False)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileExistsError: [Errno 17] File exists: '/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-02/reports/validation-01/private-inputs/ci-normal-animation'
