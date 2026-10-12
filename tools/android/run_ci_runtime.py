@@ -1,0 +1,133 @@
+#!/usr/bin/env python3
+"""Capture and compare the original and candidate on a fresh disposable AVD.
+
+This is a measured cold-launch check. Success never means whole-app feature
+parity. The service, readiness gate, recorder, and comparator retain their own
+evidence and exit codes. No account or permission prompts are accepted here.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import subprocess
+import sys
+import time
+
+
+def digest(path: Path) -> str:
+    with path.open('rb') as stream:
+        return hashlib.file_digest(stream, 'sha256').hexdigest()
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--tooling', type=Path, required=True)
+    parser.add_argument('--source', type=Path, required=True)
+    parser.add_argument('--original', type=Path, required=True)
+    parser.add_argument('--candidate', type=Path, required=True)
+    parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--acceleration', choices=['on', 'off', 'auto'], default='on')
+    args = parser.parse_args()
+    here = Path(__file__).resolve().parent
+    source = args.source.resolve()
+    output = args.output.resolve()
+    output.mkdir(parents=True, exist_ok=False)
+    environment = output / 'environment'
+    capture = output / 'capture'
+    original, candidate = args.original.resolve(), args.candidate.resolve()
+    report = {
+        'scope': 'Exact cold-launch capture comparison only',
+        'started_utc': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
+        'original_sha256': digest(original),
+        'candidate_sha256': digest(candidate),
+        'cold_launch_capture_equal': False,
+        'full_runtime_1_to_1_established': False,
+        'commands': [],
+    }
+
+    def save() -> None:
+        (output / 'runtime-run.json').write_text(json.dumps(report, indent=2) + '\n')
+
+    def run(label: str, argv: list[str], timeout: int) -> int:
+        started = time.monotonic()
+        entry = {'label': label, 'argv': argv}
+        report['commands'].append(entry)
+        try:
+            result = subprocess.run(argv, timeout=timeout, check=False)
+            code = result.returncode
+        except subprocess.TimeoutExpired:
+            code = 124
+            entry['error'] = 'Command exceeded its recorded deadline'
+        entry.update(exit_code=code, seconds=round(time.monotonic() - started, 3))
+        save()
+        return code
+
+    save()
+    service = None
+    try:
+        with (output / 'service.log').open('w') as log:
+            service = subprocess.Popen([
+                sys.executable, '-u', str(here / 'android_runtime_service.py'),
+                '--tooling', str(args.tooling.resolve()),
+                '--evidence', str(environment), '--acceleration', args.acceleration,
+            ], stdout=log, stderr=subprocess.STDOUT)
+            ready = run('boot-readiness', [
+                sys.executable, str(here / 'wait_android_ready.py'),
+                '--evidence', str(environment), '--timeout', '900',
+            ], 930)
+            if ready:
+                report['failure'] = 'boot-readiness'
+                return ready
+            captured = run('capture-original-and-candidate', [
+                sys.executable, str(here / 'runtime_job.py'),
+                '--queue', str(environment / 'queue'), '--timeout', '1800',
+                '--cwd', str(source), '--',
+                sys.executable, str(source / 'android_acceptance.py'),
+                '--serial', 'emulator-5560', '--original', str(original),
+                '--candidate', str(candidate), '--accept-package-data-removal',
+                '--install-timeout', '600', '--launch-timeout', '180',
+                '--ui-timeout', '120', '--output', str(capture),
+            ], 1840)
+            compared = run('compare-complete-captures', [
+                sys.executable, str(source / 'android_compare.py'), str(capture),
+            ], 120)
+            comparison_path = capture / 'cold-launch-comparison.json'
+            if comparison_path.is_file():
+                comparison = json.loads(comparison_path.read_text())
+                report['cold_launch_capture_equal'] = comparison.get('cold_launch_capture_equal') is True
+            if captured or compared or not report['cold_launch_capture_equal']:
+                report['failure'] = 'capture-or-comparison'
+                return captured or compared or 2
+            return 0
+    finally:
+        if service is not None and service.poll() is None:
+            stop = environment / 'queue' / 'STOP'
+            stop.parent.mkdir(parents=True, exist_ok=True)
+            stop.touch()
+            try:
+                service.wait(timeout=20)
+            except subprocess.TimeoutExpired:
+                service.terminate()
+                try:
+                    service.wait(timeout=20)
+                except subprocess.TimeoutExpired:
+                    service.kill()
+                    service.wait(timeout=5)
+        if service is not None:
+            report['service_exit_code'] = service.returncode
+        # The emulator emits a transient ADB public key. Publish diagnostics with
+        # just that key-bearing line omitted; never publish the AVD/ADB key files.
+        boot_log = environment / 'emulator-boot.log'
+        if boot_log.is_file():
+            lines = boot_log.read_text(errors='replace').splitlines()
+            sanitized = [line for line in lines if 'adb_auth' not in line and 'public key' not in line.lower()]
+            (output / 'emulator-diagnostics.log').write_text('\n'.join(sanitized) + '\n')
+            report['emulator_log_lines_omitted'] = len(lines) - len(sanitized)
+        report['finished_utc'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
+        save()
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

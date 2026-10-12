@@ -1,0 +1,33 @@
+{
+  "source": "Live adb shell getprop",
+  "command_result": {
+    "id": "boot-props-01",
+    "started_utc": "2026-10-12T00:41:31Z",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/android/platform-tools/adb",
+      "-s",
+      "emulator-5560",
+      "shell",
+      "getprop"
+    ],
+    "cwd": null,
+    "timeout_s": 45.0,
+    "exit_code": 0,
+    "completed_utc": "2026-10-12T00:41:46Z",
+    "stdout_path": "/workspace/scratch/4130730d15aa/tooling-validation/queue/responses/boot-props-01.stdout",
+    "stderr_path": "/workspace/scratch/4130730d15aa/tooling-validation/queue/responses/boot-props-01.stderr"
+  },
+  "properties": {
+    "sys.boot_completed": "",
+    "ro.build.version.sdk": "35",
+    "ro.build.version.release": "15",
+    "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.product.cpu.abilist": "x86_64,arm64-v8a",
+    "ro.product.cpu.abilist64": "x86_64,arm64-v8a",
+    "ro.dalvik.vm.native.bridge": "libndk_translation.so",
+    "ro.enable.native.bridge.exec": "1",
+    "ro.ndk_translation.version": "0.2.3",
+    "ro.berberis.version": "0.2.3"
+  }
+}
