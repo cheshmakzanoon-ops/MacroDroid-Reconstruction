@@ -1659,17 +1659,69 @@ class ProducerCwdControls(OwnedTemporary):
         with self.assertRaisesRegex(ValueError,'cwd expression differs'):self.check()
 
 
+COMBINED_JOB_PATHS = {
+    '.github/workflows/day-trigger-wip-acceptance.yml',
+    *('tools/day_trigger_acceptance/' + name for name in (
+        'README.md', 'inputs.py', 'pins.json', 'prepare.py', 'run_acceptance.py',
+        'runtime-files.json', 'test_day_trigger_acceptance.py', 'verify.py')),
+}
+
+
+def assert_declared_combined_job_files(case, repository):
+    """The job owns nine paths, not the enclosing checkout's unrelated files."""
+    workflow = (repository / '.github/workflows/day-trigger-wip-acceptance.yml').read_text()
+    line = next(value for value in workflow.splitlines() if 'DAY_TRIGGER_RUNTIME_MANIFEST_SHA256:' in value)
+    digest = line.split("'")[1]
+    with patch.object(inputs, 'HERE', repository / 'tools/day_trigger_acceptance'):
+        value = inputs.verify_runtime_manifest(digest)
+    case.assertEqual(7, len(value['files']))
+    declared = {'.github/workflows/day-trigger-wip-acceptance.yml',
+                'tools/day_trigger_acceptance/runtime-files.json',
+                *('tools/day_trigger_acceptance/' + row['path'] for row in value['files'])}
+    case.assertEqual(COMBINED_JOB_PATHS, declared)
+    for relative in sorted(declared):
+        inputs.regular(repository, relative)
+    return value
+
+
+class CombinedCheckoutLayoutControls(OwnedTemporary):
+    def setUp(self):
+        super().setUp()
+        self.checkout = self.root / 'checkout'
+        origin = Path(__file__).resolve().parents[2]
+        for relative in sorted(COMBINED_JOB_PATHS):
+            self.put('checkout/' + relative, (origin / relative).read_bytes())
+        # These inert bytes represent unrelated checkout content, not real Git
+        # credentials or a working Git repository. Runtime siblings stay exact.
+        self.metadata = {
+            'README.md': b'Unrelated repository readme\n',
+            'docs/unrelated.txt': b'Unrelated documentation\n',
+            '.git/HEAD': b'ref: refs/heads/synthetic-layout-only\n',
+            '.git/config': b'[core]\n    repositoryformatversion = 0\n',
+            '.git/info/sparse-checkout': b'/tools/day_trigger_acceptance/\n',
+        }
+        for relative, data in self.metadata.items():
+            self.put('checkout/' + relative, data)
+
+    def test_unrelated_root_and_git_style_metadata_do_not_change_the_nine_path_scope(self):
+        self.assertEqual(14, sum(path.is_file() for path in self.checkout.rglob('*')))
+        self.assertEqual(7, len(assert_declared_combined_job_files(self, self.checkout)['files']))
+        for relative, data in self.metadata.items():
+            self.assertEqual(data, (self.checkout / relative).read_bytes())
+
+    def test_extra_runtime_sibling_is_rejected_even_with_allowed_checkout_metadata(self):
+        self.put('checkout/tools/day_trigger_acceptance/unexpected_helper.py', b'# Unbound runtime sibling\n')
+        with self.assertRaisesRegex(ValueError, 'Hosted runtime source inventory differs'):
+            assert_declared_combined_job_files(self, self.checkout)
+
+
 class CombinedWorkflowControls(unittest.TestCase):
     def setUp(self):
         self.root = Path(__file__).resolve().parents[2]
         self.workflow = (self.root / '.github/workflows/day-trigger-wip-acceptance.yml').read_text()
 
     def test_workflow_runtime_pin_binds_all_seven_actual_runtime_siblings(self):
-        line = next(value for value in self.workflow.splitlines() if 'DAY_TRIGGER_RUNTIME_MANIFEST_SHA256:' in value)
-        digest = line.split("'")[1]
-        value = inputs.verify_runtime_manifest(digest)
-        self.assertEqual(7, len(value['files']))
-        self.assertEqual(9, sum(p.is_file() for p in self.root.rglob('*')))
+        assert_declared_combined_job_files(self, self.root)
 
     def test_exact_lookup_checkout_and_all_three_required_cli_boundaries(self):
         pins = inputs.load_pins()
