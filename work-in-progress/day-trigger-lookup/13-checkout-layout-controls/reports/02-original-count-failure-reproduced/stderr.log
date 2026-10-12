@@ -1,0 +1,17 @@
+test_actual_failure_verification_and_complete_owned_artifacts_remain_unconditional (test_day_trigger_acceptance.CombinedWorkflowControls.test_actual_failure_verification_and_complete_owned_artifacts_remain_unconditional) ... ok
+test_exact_lookup_checkout_and_all_three_required_cli_boundaries (test_day_trigger_acceptance.CombinedWorkflowControls.test_exact_lookup_checkout_and_all_three_required_cli_boundaries) ... ok
+test_only_the_two_new_paths_trigger_this_additive_job (test_day_trigger_acceptance.CombinedWorkflowControls.test_only_the_two_new_paths_trigger_this_additive_job) ... ok
+test_workflow_runtime_pin_binds_all_seven_actual_runtime_siblings (test_day_trigger_acceptance.CombinedWorkflowControls.test_workflow_runtime_pin_binds_all_seven_actual_runtime_siblings) ... FAIL
+
+======================================================================
+FAIL: test_workflow_runtime_pin_binds_all_seven_actual_runtime_siblings (test_day_trigger_acceptance.CombinedWorkflowControls.test_workflow_runtime_pin_binds_all_seven_actual_runtime_siblings)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/macrodroid-day-lookup-checkout-fix/reports/02-original-count-failure-reproduced/checkout/tools/day_trigger_acceptance/test_day_trigger_acceptance.py", line 1672, in test_workflow_runtime_pin_binds_all_seven_actual_runtime_siblings
+    self.assertEqual(9, sum(p.is_file() for p in self.root.rglob('*')))
+AssertionError: 9 != 56
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.008s
+
+FAILED (failures=1)

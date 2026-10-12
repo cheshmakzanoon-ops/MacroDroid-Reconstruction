@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/dev/shm/macrodroid-day-lookup-checkout-fix/run_checkout_attempt.py", line 109, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/dev/shm/macrodroid-day-lookup-checkout-fix/run_checkout_attempt.py", line 41, in main
+    before = inventory(source); assert len(before) == 9
+             ^^^^^^^^^^^^^^^^^
+  File "/dev/shm/macrodroid-day-lookup-checkout-fix/run_checkout_attempt.py", line 24, in inventory
+    info = path.lstat(); assert stat.S_ISREG(info.st_mode) and info.st_nlink == 1, str(path)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: /dev/shm/macrodroid-day-lookup-integration/checkpoints/08-combined-tooling-controls/source/.github/workflows/day-trigger-wip-acceptance.yml

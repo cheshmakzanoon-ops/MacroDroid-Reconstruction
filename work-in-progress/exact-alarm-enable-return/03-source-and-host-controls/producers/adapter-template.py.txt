@@ -1,0 +1,283 @@
+#!/usr/bin/env python3
+"""Observe an unchecked exact-alarm row, enable it once, then observe app return.
+
+The on hierarchy is a finite prediction, not a prior device observation. These
+controls never infer an AlarmManager API result, configured trigger or macro.
+"""
+from __future__ import annotations
+
+from contextlib import contextmanager
+import copy
+import hashlib
+import json
+import re
+import shlex
+from pathlib import Path
+
+import editor_journey as runner
+import observed_journey as observed
+import exact_alarm_journey as prior
+
+REPORT_SCHEMA = 7
+FOURTEEN_PLAN_SHA256 = '4133e9410db84ac5636ece780b67331bf139afaa2de6b5c110c5ef5679fda85c'
+PLAN_SHA256 = 'ca597b23d9c2d11ebce1ed3953d609189476d7179635f2a4c4068df0795f2211'
+CONTRACT_SHA256 = '379544de4e9e5d84138959f1e1552fcc9b2e52d7264d30e324c63f2a82814c07'
+CONTRACT_BYTES = @@CONTRACT_BYTES@@
+SETTINGS = 'com.android.settings'
+COMPONENT = 'com.android.settings/com.android.settings.spa.SpaActivity'
+OK = prior.OK
+TOGGLE = {'text': 'Allow setting alarms and reminders'}
+UP = {'content-desc': 'Navigate up'}
+OFF = 'after-exact-alarm-ok'
+ENABLED = 'after-exact-alarm-enable'
+TERMINAL = 'after-exact-alarm-return'
+CAPTURE_ROLES = {OFF: False, ENABLED + '-before': False,
+                 ENABLED: True, TERMINAL + '-before': True}
+POLICY_KEY = 'exact_alarm_enable_return_policy'
+POLICY = {
+    'schema': 1, 'plan_sha256': PLAN_SHA256, 'settings_contract_sha256': CONTRACT_SHA256,
+    'observed_settings_component': COMPONENT, 'full_image_size': [720, 1280],
+    'off_hierarchy_canonical_sha256': '@@OFF_HASH@@',
+    'predicted_on_hierarchy_canonical_sha256': '@@ON_HASH@@',
+    'predicted_on_previously_observed': False,
+    'new_actions': [TOGGLE, UP], 'observed_centers': [[360, 771], [56, 104]],
+    'state_order': [OFF, ENABLED, TERMINAL], 'settings_capture_roles': CAPTURE_ROLES,
+    'require_initial_off_before_toggle': True, 'require_checked_on_before_navigate_up': True,
+    'main_app_pid_continuity_required': True, 'terminal_owner': runner.PACKAGE,
+    'terminal_component_class_assumed': False, 'settings_inputs_per_run': 2,
+    'settings_inputs_total': 4, 'permission_api_result_observed': False,
+    'trigger_configuration_confirmed': False, 'macros_saved': False, 'macros_executed': False,
+    'global_command_contract': {
+        'schema': 1, 'planned_inputs_per_run': 15,
+        'setup_mutations_per_run': ['uninstall', 'install', 'launch'],
+        'state_changing_commands_must_match_declared_roles_in_order': True,
+        'other_commands_use_exact_recorder_evidence_grammar': True,
+        'shell_argv_must_be_canonical': True, 'command_stream_paths_and_inodes_are_unique': True,
+    },
+}
+
+
+def expected_plan():
+    original = prior.expected_plan()
+    if runner.fingerprint(original) != FOURTEEN_PLAN_SHA256:
+        raise runner.JourneyError('Reviewed fourteen-screen prefix changed')
+    value = copy.deepcopy(original)
+    value[-1][2] = copy.deepcopy(TOGGLE)
+    value.extend([[ENABLED, SETTINGS, copy.deepcopy(UP), copy.deepcopy(TOGGLE)],
+                  [TERMINAL, runner.PACKAGE, None, copy.deepcopy(UP)]])
+    if runner.fingerprint(value) != PLAN_SHA256:
+        raise runner.JourneyError('Exact-alarm enable/return plan differs from its reviewed complete identity')
+    return value
+
+
+def is_configured():
+    return runner.fingerprint(runner.PLAN) == PLAN_SHA256
+
+
+def require_plan():
+    if not is_configured() or runner.fingerprint(runner.PLAN) != runner.fingerprint(expected_plan()):
+        raise runner.JourneyError('Exact-alarm enable/return requires the exact new sixteen-screen plan')
+
+
+@contextmanager
+def configured_plan():
+    with prior.configured_plan():
+        old = runner.PLAN
+        try:
+            runner.PLAN = expected_plan()
+            yield runner.PLAN
+        finally:
+            runner.PLAN = old
+
+
+@contextmanager
+def _prefix_plan():
+    require_plan()
+    old = runner.PLAN
+    try:
+        runner.PLAN = prior.expected_plan()
+        yield
+    finally:
+        runner.PLAN = old
+
+
+def contains_evidence(value):
+    return prior._field_count(value, POLICY_KEY) != 0
+
+
+def require_navigation_policy(report):
+    require_plan()
+    if (type(report.get('schema')) is not int or report['schema'] != REPORT_SCHEMA
+            or report.get('plan_sha256') != PLAN_SHA256
+            or runner.fingerprint(report.get('plan')) != PLAN_SHA256
+            or runner.fingerprint(report.get(POLICY_KEY)) != runner.fingerprint(POLICY)
+            or prior._field_count(report, POLICY_KEY) != 1
+            or prior.contains_evidence(report)):
+        raise runner.JourneyError('Missing, altered or misplaced exact-alarm enable/return policy or plan')
+
+
+def _contract():
+    if hashlib.sha256(CONTRACT_BYTES).hexdigest() != CONTRACT_SHA256:
+        raise runner.JourneyError('Frozen observed/predicted Settings contract bytes changed')
+    value = json.loads(CONTRACT_BYTES)
+    for key in ('off_hierarchy_canonical', 'predicted_on_hierarchy_canonical'):
+        if (runner.fingerprint(value[key]) != value[key + '_sha256']
+                or value[key + '_sha256'] != POLICY[key + '_sha256']):
+            raise runner.JourneyError('Frozen Settings hierarchy identity changed')
+    return value
+
+
+def dialog_identity(folder, shot, proof):
+    with _prefix_plan():
+        return prior.dialog_identity(folder, shot, proof)
+
+
+def installed_guard(recorder, run):
+    with _prefix_plan():
+        return prior.installed_guard(recorder, run)
+
+
+def verify_installed_guard(folder, transition, run, proof):
+    with _prefix_plan():
+        return prior.verify_installed_guard(folder, transition, run, proof)
+
+
+def settings_role(shot):
+    require_plan()
+    suffixes = {'pid_first': '-pid-first.txt', 'foreground': '-foreground.txt',
+                'hierarchy': '.xml', 'screenshot': '.png',
+                'foreground_final': '-foreground-final.txt', 'pid_final': '-pid-final.txt'}
+    if (shot.get('owner') != SETTINGS or 'observation' not in shot
+            or set(shot['artifacts']) != set(suffixes)):
+        raise runner.JourneyError('Settings capture is outside the declared six-file observation roles')
+    stems = set()
+    roles = '|'.join(re.escape(name) for name in CAPTURE_ROLES)
+    for role, suffix in suffixes.items():
+        path = shot['artifacts'][role]['path']
+        if not isinstance(path, str) or not path.endswith(suffix):
+            raise runner.JourneyError('Settings enable/return artifact suffix changed')
+        stem = path[:-len(suffix)]
+        match = re.fullmatch(r'(original|candidate)-(' + roles + r')-acquisition-[1-3]-frame-[1-6]', stem)
+        if match is None:
+            raise runner.JourneyError('Settings capture is outside its four exact roles')
+        stems.add(stem)
+    if len(stems) != 1:
+        raise runner.JourneyError('Settings enable/return artifacts combine different observations')
+    name = match.group(2)
+    if 'name' in shot and shot['name'] != name:
+        raise runner.JourneyError('Settings capture name differs from its full observation role')
+    return name, CAPTURE_ROLES[name]
+
+
+def settings_identity(folder, shot, proof):
+    """Bind full off/on hierarchy, exact component, all ancestors and both centers."""
+    name, enabled = settings_role(shot)
+    value = _contract()
+    first = observed.component(proof.artifact(folder, shot['artifacts']['foreground']), proof)
+    last = observed.component(proof.artifact(folder, shot['artifacts']['foreground_final']), proof)
+    if first != COMPONENT or last != COMPONENT:
+        raise runner.JourneyError('Observed Settings component changed within capture')
+    data = proof.artifact(folder, shot['artifacts']['hierarchy'])
+    root = runner.tree(data, SETTINGS)
+    key = 'predicted_on_hierarchy_canonical' if enabled else 'off_hierarchy_canonical'
+    if (root.attrib != value['hierarchy_attributes']
+            or any(node.get('package') != SETTINGS for node in root.iter('node'))
+            or runner.fingerprint(runner.canonical(root)) != value[key + '_sha256']):
+        raise runner.JourneyError('Complete Settings hierarchy does not match the required ' + ('on prediction' if enabled else 'observed off state'))
+    width, height, _ = observed.png_pixels(proof.artifact(folder, shot['artifacts']['screenshot']), proof)
+    if [width, height] != value['full_image_size']:
+        raise runner.JourneyError('Observed Settings full-frame geometry changed')
+    parents = {child: parent for parent in root.iter() for child in parent}
+    centers = {}
+    for role in ('toggle', 'navigate_up'):
+        expected = copy.deepcopy(value[role])
+        if enabled and role == 'toggle':
+            expected['ancestor_chain'][1]['checked'] = 'true'
+            expected['clickable_ancestor']['checked'] = 'true'
+        node = runner.select(root, SETTINGS, expected['selector'])
+        chain = [node]
+        while chain[-1] in parents and parents[chain[-1]] is not root:
+            chain.append(parents[chain[-1]])
+        if (node.attrib != expected['node'] or [item.attrib for item in chain] != expected['ancestor_chain']
+                or parents.get(chain[-1]) is not root):
+            raise runner.JourneyError('Observed Settings ' + role + ' ancestor identity changed')
+        containing = (0, 0, width, height)
+        for item in reversed(chain):
+            match = re.fullmatch(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', item.get('bounds', ''))
+            if match is None:
+                raise runner.JourneyError('Settings ancestor bounds are invalid')
+            left, top, right, bottom = map(int, match.groups())
+            if not (containing[0] <= left < right <= containing[2]
+                    and containing[1] <= top < bottom <= containing[3]):
+                raise runner.JourneyError('Settings ancestor geometry is inconsistent')
+            containing = (left, top, right, bottom)
+        center = runner.target(data, SETTINGS, expected['selector'], width, height)
+        if center != value[role + '_parent_center']:
+            raise runner.JourneyError('Observed Settings ' + role + ' center changed')
+        centers[role] = center
+    return {'name': name, 'enabled': enabled, 'component': COMPONENT, 'centers': centers}
+
+
+def validate_settings_snapshot(folder, shot, proof):
+    return settings_identity(folder, shot, proof)['component']
+
+
+def terminal_surface(folder, shot, proof):
+    require_plan()
+    if shot.get('name') != TERMINAL or shot.get('owner') != runner.PACKAGE:
+        raise runner.JourneyError('Missing exact-alarm return-to-app terminal observation')
+    first = observed.component(proof.artifact(folder, shot['artifacts']['foreground']), proof)
+    last = observed.component(proof.artifact(folder, shot['artifacts']['foreground_final']), proof)
+    root = runner.tree(proof.artifact(folder, shot['artifacts']['hierarchy']), runner.PACKAGE)
+    if first != last or first.split('/', 1)[0] != runner.PACKAGE or any(
+            node.get('package') != runner.PACKAGE for node in root.iter('node')):
+        raise runner.JourneyError('Exact-alarm return is not an owned, stable app surface')
+    return {'name': TERMINAL, 'owner': runner.PACKAGE, 'component': last,
+            'settings_enabled_state_observed': True, 'settings_return_navigation_observed': True,
+            'settings_inputs': 2, 'permission_api_result_observed': False,
+            'trigger_configuration_confirmed': False, 'macros_saved': False, 'macros_executed': False}
+
+
+def required_surface(folder, shot, required, proof):
+    require_plan()
+    if shot['name'] in (OFF, ENABLED):
+        if required != (TOGGLE if shot['name'] == OFF else UP):
+            raise runner.JourneyError('Settings surface has an undeclared required selector')
+        settings_identity(folder, shot, proof)
+        return None
+    if shot['name'] == TERMINAL:
+        if required is not None:
+            raise runner.JourneyError('The return-to-app surface must remain unassumed')
+        return terminal_surface(folder, shot, proof)
+    with _prefix_plan():
+        return prior.required_surface(folder, shot, required, proof)
+
+
+def input_identity(folder, previous, before, action, name, proof):
+    require_plan()
+    if name in (ENABLED, TERMINAL):
+        expected_prior, expected_action = (OFF, TOGGLE) if name == ENABLED else (ENABLED, UP)
+        if previous.get('name') != expected_prior or action != expected_action:
+            raise runner.JourneyError('Settings input is outside its observed off/on/return boundary')
+        settings_identity(folder, previous, proof)
+        identity = settings_identity(folder, before, proof)
+        if identity['name'] != name + '-before':
+            raise runner.JourneyError('Settings preinput observation belongs to another action')
+        return
+    with _prefix_plan():
+        prior.input_identity(folder, previous, before, action, name, proof)
+
+
+@@COMMAND_KIND@@
+
+
+@@GLOBAL_COMMANDS@@
+
+
+def main():
+    with configured_plan():
+        return runner.main()
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

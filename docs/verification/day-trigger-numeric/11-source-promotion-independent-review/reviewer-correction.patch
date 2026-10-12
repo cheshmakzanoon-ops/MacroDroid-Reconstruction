@@ -1,0 +1,22 @@
+--- attempt-01/executed-review.py
++++ attempt-02/executed-review.py
+@@ -22,7 +22,7 @@
+ PROOF_COMMIT = '48ddc442c61e383c4368606cb31984f15d03bb1f'
+ SOURCE_PREFIX = 'work-in-progress/day-trigger-numeric/08-command-filesystem-source-successor'
+ PROOF_PREFIX = 'docs/verification/day-numeric-hosted-run-3d91187'
+-OUT = ROOT / 'attempt-01'
++OUT = ROOT / 'attempt-02'
+ READS = []
+ 
+ def sha(raw):
+@@ -93,7 +93,9 @@
+     cp = json.loads(cp_raw)
+     assert cp['active_files'] == [] and cp['proposed_file_count'] == 22
+     assert len({r['path'] for r in cp['files']}) == len(cp['files'])
+-    assert [r for r in before if r['path'] != 'checkpoint.json'] == sorted(cp['files'], key=lambda r: r['path'])
++    actual_payloads = {r['path']: r for r in before if r['path'] != 'checkpoint.json'}
++    declared_payloads = {r['path']: r for r in cp['files']}
++    assert actual_payloads == declared_payloads
+     put('bound-proposal-checkpoint.json', cp_raw)
+     manifest_raw = (PROPOSAL / 'promotion-manifest.json').read_bytes()
+     manifest = json.loads(manifest_raw)

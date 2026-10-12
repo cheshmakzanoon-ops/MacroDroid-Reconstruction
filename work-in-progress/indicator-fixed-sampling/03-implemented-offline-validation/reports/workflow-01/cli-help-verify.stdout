@@ -1,0 +1,22 @@
+usage: verify.py [-h] --parents PARENTS --source-root SOURCE_ROOT --prepared
+                 PREPARED --output OUTPUT [--archive-replay]
+                 [--archive-apks ARCHIVE_APKS]
+
+Independently verify fixed capture provenance and all predetermined pairs.
+Evidence completeness has no equality requirement. Every full-frame difference
+is retained losslessly. ZIP replay checks saved bytes and the host's
+serialized identity records; it does not claim extracted inode/ctime values
+are host values.
+
+options:
+  -h, --help            show this help message and exit
+  --parents PARENTS
+  --source-root SOURCE_ROOT
+  --prepared PREPARED
+  --output OUTPUT
+  --archive-replay      Compare saved bytes/serialized host metadata; never
+                        equate extracted ctime with host ctime
+  --archive-apks ARCHIVE_APKS
+                        Relocated directory containing the two exact
+                        original.apk/candidate.apk bytes, for archive replay
+                        only

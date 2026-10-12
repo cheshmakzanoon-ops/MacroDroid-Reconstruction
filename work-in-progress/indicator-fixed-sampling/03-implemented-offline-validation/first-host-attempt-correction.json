@@ -1,0 +1,19 @@
+{
+  "scope": "Synthetic host fixture only; no parent or device policy change.",
+  "failed_attempt": "reports/attempt-01/result.json",
+  "actual_tests_completed": 19,
+  "actual_test_failures": 0,
+  "actual_test_errors": 1,
+  "failure": "Synthetic setUpClass tried radio.sys; the unchanged pinned helper has no sys attribute.",
+  "correction": "Patch the imported process sys.argv directly for the pinned helper's argparse call.",
+  "frozen_failed_test_source": {
+    "bytes": 32843,
+    "sha256": "bd9bc9de55da3faf0b2209b88eaa4702140c9eb918f25eae0ef29c619f9b352b"
+  },
+  "corrected_test_source": {
+    "bytes": 32837,
+    "sha256": "c0358116b2eb9a91819098187e2f59ad5b2719a35ad043456f33951904ea0f17"
+  },
+  "successor_full_host_attempt_status_at_freeze": "RUNNING; excluded because its output is not closed",
+  "android_executed": false
+}

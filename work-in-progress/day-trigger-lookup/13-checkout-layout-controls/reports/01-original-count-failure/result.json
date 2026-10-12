@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "status": "COLLECTOR_FAILED_BEFORE_TEST_EXECUTION",
+  "returncode": 1,
+  "tests_executed": 0,
+  "actual_original_failure_reproduced": false,
+  "captured_utc": "2026-10-12T11:58:37.577844+00:00",
+  "error": "Collector unnecessarily required single-link identity for a read-only immutable parent payload",
+  "observed_parent": {
+    "path": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/08-combined-tooling-controls/source/.github/workflows/day-trigger-wip-acceptance.yml",
+    "mode": 420,
+    "regular": true,
+    "nlink": 2,
+    "bytes": 6912,
+    "sha256": "443e184bc3185593e1a8c268d60200ada2b1cdb6df2b8e551e51ae52dae0c6eb"
+  },
+  "correction_scope": "Read-only parent inventory may have immutable aliases; every newly copied executed file still requires one link. No parent or activated source is mutated."
+}

@@ -1,0 +1,15 @@
+usage: prepare.py [-h] --parents PARENTS --source-root SOURCE_ROOT --output
+                  OUTPUT [--apks APKS] [--verify]
+
+Bind every source/part role and inspect the two immutable diagnostic APKs.
+This is a read-only input operation until the two APKs are assembled into a
+new owned directory. It never contacts ADB. AAPT2 is the explicitly added
+dependency; the sixteen source-design parent declarations remain unchanged.
+
+options:
+  -h, --help            show this help message and exit
+  --parents PARENTS
+  --source-root SOURCE_ROOT
+  --output OUTPUT
+  --apks APKS
+  --verify

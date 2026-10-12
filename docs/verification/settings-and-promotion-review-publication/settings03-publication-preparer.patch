@@ -1,0 +1,54 @@
+--- prepare_standard_capsules.py
++++ prepare_settings03_capsules.py
+@@ -58,11 +58,50 @@
+         if 'mode' in row:
+             mode = int(row['mode'], 8) & 0o777 if isinstance(row['mode'], str) else row['mode']
+             assert type(mode) is int and stat.S_IMODE(path.lstat().st_mode) == mode
+-        staged(path, prefix + '/' + row['path'])
++        mapping = item.get('archive_mapping')
++        if mapping and row['path'] == mapping['logical_path']:
++            assert item['checkpoint_sha256'] == '6a4ea8e2794a5459bcb699bb314c9b9b14fe538f45b8e06a9c2aee66a5d08051'
++            assert prefix == 'work-in-progress/exact-alarm-enable-return/03-source-and-host-controls'
++            assert row['path'] == 'evidence.tar.gz' and row['bytes'] == 13014001
++            assert row['sha256'] == '51749196bbc80e9ac82beb4821cb15253c7d94122b628f7ecfd624cc398d6755'
++            transport_root = Path(mapping['source'])
++            manifest_raw = (transport_root / 'manifest.json').read_bytes()
++            assert sha(manifest_raw) == mapping['manifest_sha256']
++            transport = json.loads(manifest_raw)
++            assert transport['format'] == 'macrodroid-multipart-artifact' and transport['format_version'] == 1
++            assert transport['filename'] == row['path'] and transport['mode'] == '100644'
++            assert transport['logical_repository_path'] == prefix + '/' + row['path']
++            assert transport['source_checkpoint']['sha256'] == item['checkpoint_sha256']
++            assert len(transport['parts']) == 2 and len({x['path'] for x in transport['parts']}) == 2
++            checksum, byte_count = hashlib.sha256(), 0
++            for index, part in enumerate(transport['parts'], 1):
++                part_name = 'parts/evidence.' + str(index).zfill(4) + '.part'
++                assert part['path'] == prefix + '/archive-layout/' + part_name
++                part_file = transport_root / part_name
++                info = part_file.lstat()
++                assert stat.S_ISREG(info.st_mode) and stat.S_IMODE(info.st_mode) == 0o644
++                payload = part_file.read_bytes()
++                assert len(payload) == part['size_bytes'] and 0 < len(payload) <= 8388608
++                assert sha(payload) == part['sha256']
++                assert hashlib.sha1(b'blob ' + str(len(payload)).encode() + b'\0' + payload).hexdigest() == part['git_blob_sha1']
++                assert payload == data[byte_count:byte_count + len(payload)]
++                checksum.update(payload)
++                byte_count += len(payload)
++            assert byte_count == row['bytes'] == transport['size_bytes']
++            assert checksum.hexdigest() == row['sha256'] == transport['sha256']
++        else:
++            staged(path, prefix + '/' + row['path'])
+     staged(source / 'checkpoint.json', prefix + '/checkpoint.json')
+     prefixes.append(prefix)
+     checks[prefix] = dict(checkpoint_sha256=item['checkpoint_sha256'], files=item['files'],
+                           bytes=sum(r['bytes'] for r in cp['files']), exact_bytes_and_modes_verified=True)
++    if item.get('archive_mapping'):
++        checks[prefix]['archive_transport'] = dict(logical_path=item['archive_mapping']['logical_path'],
++            direct_original_payloads=180, original_checkpoint_preserved=True,
++            manifest_path=prefix + '/archive-layout/manifest.json',
++            manifest_sha256=item['archive_mapping']['manifest_sha256'],
++            complete_original_archive_byte_equality_verified=True,
++            complete_capsule_requires_archive_reassembly=True)
+ ops = cfg['operations_prefix']
+ staged(Path(__file__), ops + '/prepare_standard_capsules.py')
+ staged(a.configuration, ops + '/configuration.json')

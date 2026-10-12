@@ -1,0 +1,2548 @@
+--- draft-01/.github/workflows/indicator-fixed-sampling.yml
++++ offline-02/.github/workflows/indicator-fixed-sampling.yml
+@@ -0,0 +1,310 @@
++name: Fixed eight-install indicator sampling diagnostic
++
++on:
++  push:
++    branches: [main]
++    paths:
++      - '.github/workflows/indicator-fixed-sampling.yml'
++      - 'tools/indicator_sampling/**'
++  workflow_dispatch:
++
++permissions:
++  contents: read
++
++concurrency:
++  group: indicator-fixed-sampling-${{ github.ref }}
++  cancel-in-progress: false
++
++jobs:
++  fixed-sampling:
++    runs-on: ubuntu-24.04
++    timeout-minutes: 150
++    env:
++      PYTHONDONTWRITEBYTECODE: '1'
++    steps:
++      - name: Check out this exact diagnostic source and workflow
++        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
++        with:
++          persist-credentials: false
++          sparse-checkout-cone-mode: false
++          sparse-checkout: |
++            /tools/indicator_sampling/
++            /.github/workflows/indicator-fixed-sampling.yml
++
++      - name: Check out the forty immutable parent and APK-part roles
++        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
++        with:
++          ref: 6331410cfd2391389270564803623079e8355ad8
++          path: pinned-inputs
++          persist-credentials: false
++          sparse-checkout-cone-mode: false
++          sparse-checkout: |
++            /tools/android/android-toolchain-pins.json
++            /tools/android/bootstrap_android_runtime.py
++            /tools/android/android_runtime_service.py
++            /tools/android/runtime_job.py
++            /tools/android/wait_android_ready.py
++            /tools/android/configure_capture_device.py
++            /work-in-progress/trigger-category/05-physical-identity-host-success/replay-source/tools/parity_journeys/editor_journey.py
++            /work-in-progress/trigger-category/05-physical-identity-host-success/replay-source/tools/parity_journeys/observed_journey.py
++            /work-in-progress/trigger-category/05-physical-identity-host-success/replay-source/project/android_compare.py
++            /work-in-progress/trigger-category/05-physical-identity-host-success/replay-source/project/android_acceptance.py
++            /scripts/assemble_artifact.py
++            /vendor/original/manifest.json
++            /work-in-progress/combined-recovery/05-full-acceptance/apk/manifest.json
++            /.github/workflows/editor-trigger-category.yml
++            /work-in-progress/trigger-category-workflow/02-zero-scale-workflow/prepare_trigger_journey.py
++            /work-in-progress/trigger-category-workflow/02-zero-scale-workflow/verify_trigger_journey.py
++            /vendor/original/original.0001.part
++            /vendor/original/original.0002.part
++            /vendor/original/original.0003.part
++            /vendor/original/original.0004.part
++            /vendor/original/original.0005.part
++            /vendor/original/original.0006.part
++            /vendor/original/original.0007.part
++            /vendor/original/original.0008.part
++            /vendor/original/original.0009.part
++            /vendor/original/original.0010.part
++            /vendor/original/original.0011.part
++            /vendor/original/original.0012.part
++            /work-in-progress/combined-recovery/05-full-acceptance/apk/part-0001.bin
++            /work-in-progress/combined-recovery/05-full-acceptance/apk/part-0002.bin
++            /work-in-progress/combined-recovery/05-full-acceptance/apk/part-0003.bin
++            /work-in-progress/combined-recovery/05-full-acceptance/apk/part-0004.bin
++            /work-in-progress/combined-recovery/05-full-acceptance/apk/part-0005.bin
++            /work-in-progress/combined-recovery/05-full-acceptance/apk/part-0006.bin
++            /work-in-progress/combined-recovery/05-full-acceptance/apk/part-0007.bin
++            /work-in-progress/combined-recovery/05-full-acceptance/apk/part-0008.bin
++            /work-in-progress/combined-recovery/05-full-acceptance/apk/part-0009.bin
++            /work-in-progress/combined-recovery/05-full-acceptance/apk/part-0010.bin
++            /work-in-progress/combined-recovery/05-full-acceptance/apk/part-0011.bin
++            /work-in-progress/combined-recovery/05-full-acceptance/apk/part-0012.bin
++
++      - name: Preserve and verify every executed diagnostic input
++        shell: bash
++        run: |
++          set -euo pipefail
++          mkdir ci-indicator
++          python3 - <<'PY'
++          from pathlib import Path
++          import hashlib, json, os, subprocess
++          expected = {'tools/indicator_sampling/README.md': {'bytes': 8924, 'sha256': 'd72b37bfe4c392f677b623e7800ae3b5679cc80d05064f684d8d39579300e19a'}, 'tools/indicator_sampling/aapt2': {'bytes': 6135688, 'sha256': '6fbed5edaddcfbee99a3ae6e7208c8654c6cb2bedb4ed5cbbf4e154d7d38a745'}, 'tools/indicator_sampling/common.py': {'bytes': 9379, 'sha256': '09a2d1a5360bdb4a6e28f637012949c310f65d1885b9a7a9ef785dc12d4c4a67'}, 'tools/indicator_sampling/fixtures/candidate-intro1-preinput.xml': {'bytes': 5939, 'sha256': '9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93'}, 'tools/indicator_sampling/fixtures/candidate-intro2.xml': {'bytes': 6689, 'sha256': '840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8'}, 'tools/indicator_sampling/fixtures/original-intro1-preinput.xml': {'bytes': 5939, 'sha256': '9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93'}, 'tools/indicator_sampling/fixtures/original-intro2.xml': {'bytes': 6689, 'sha256': '840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8'}, 'tools/indicator_sampling/historical-coordinates.json': {'bytes': 11700, 'sha256': '7a8f88a7e79a23a3fa633f8e75c45a4060a02b86b3c24105181e2b57058da646'}, 'tools/indicator_sampling/pins.json': {'bytes': 4088, 'sha256': 'f6340442c5e26180f2eec358b887b1f7137b49210fab1f42b40422ce676518ae'}, 'tools/indicator_sampling/prepare.py': {'bytes': 16312, 'sha256': '821e08cb4c0e1f568d832588ec85d10f148a27a092ba9269d8871d9ac9cd2905'}, 'tools/indicator_sampling/protocol.json': {'bytes': 4543, 'sha256': 'edbb9647e129b2f3475f0a1b759628996d388a50ad65ee6d527ba0737432a482'}, 'tools/indicator_sampling/record.py': {'bytes': 33511, 'sha256': '2f9d81423930ec7717b6972a6b6bf46ead6e4ae54b0f7950ceabe62d4c947374'}, 'tools/indicator_sampling/test_indicator_sampling.py': {'bytes': 32837, 'sha256': 'c0358116b2eb9a91819098187e2f59ad5b2719a35ad043456f33951904ea0f17'}, 'tools/indicator_sampling/verify.py': {'bytes': 57632, 'sha256': '0ce0a496d22d257d907978db213a0a0b6fe29f8156176f4efb43858d024351e3'}}
++          workflow = '.github/workflows/indicator-fixed-sampling.yml'
++          manifest = 'tools/indicator_sampling/runtime-files.json'
++          output = Path('ci-indicator/owned-source')
++          output.mkdir()
++          actual = []
++          for name in sorted([*expected, workflow, manifest]):
++              source = Path(name)
++              if source.is_symlink() or not source.is_file():
++                  raise RuntimeError('Missing or linked executed source: ' + name)
++              raw = source.read_bytes()
++              target = output / name
++              target.parent.mkdir(parents=True, exist_ok=True)
++              with target.open('xb') as stream:
++                  stream.write(raw)
++              target.chmod(source.stat().st_mode & 0o777)
++              actual.append({'path': name, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()})
++          Path('ci-indicator/executed-source.json').write_text(json.dumps(actual, indent=2) + '\n')
++          def git(argv):
++              result = subprocess.run(['git', *argv], capture_output=True, timeout=60, check=True)
++              if result.stderr.strip():
++                  raise RuntimeError('Unexpected Git verification stderr')
++              return result.stdout
++          head = git(['rev-parse', 'HEAD']).decode().strip()
++          parent = git(['-C', 'pinned-inputs', 'rev-parse', 'HEAD']).decode().strip()
++          if head != os.environ['GITHUB_SHA'] or parent != '6331410cfd2391389270564803623079e8355ad8':
++              raise RuntimeError('Actual source checkout identity differs')
++          if git(['show', 'HEAD:' + workflow]) != Path(workflow).read_bytes():
++              raise RuntimeError('Executed workflow differs from its exact checked-out commit')
++          required = []
++          for row in actual:
++              if row['path'] in expected and {k: row[k] for k in ('bytes', 'sha256')} != expected[row['path']]:
++                  raise RuntimeError('Reviewed source changed: ' + row['path'])
++              if row['path'] != manifest:
++                  required.append(row)
++          if json.loads(Path(manifest).read_text()) != required:
++              raise RuntimeError('Runtime manifest omitted, changed or reordered a required source role')
++          Path('ci-indicator/source-checkout.json').write_text(json.dumps({'head': head, 'parent_head': parent,
++              'workflow_matches_committed_blob': True, 'required_source_files': len(actual)}, indent=2) + '\n')
++          PY
++
++      - name: Run and retain the bounded synthetic observation controls
++        shell: bash
++        run: |
++          set -euo pipefail
++          export INDICATOR_PARENTS="$GITHUB_WORKSPACE/pinned-inputs"
++          export INDICATOR_HOST_EVIDENCE="$GITHUB_WORKSPACE/ci-indicator/host-evidence"
++          timeout 900s python3 -B -m unittest discover -s tools/indicator_sampling -p 'test_*.py' -v \
++            2>&1 | tee ci-indicator/host-tests.log
++
++      - name: Assemble and independently inspect both fixed APK inputs
++        shell: bash
++        run: |
++          set -euo pipefail
++          python3 -B tools/indicator_sampling/prepare.py \
++            --parents "$GITHUB_WORKSPACE/pinned-inputs" --source-root "$GITHUB_WORKSPACE" \
++            --output "$GITHUB_WORKSPACE/ci-indicator/prepared" --apks "$RUNNER_TEMP/indicator-apks" \
++            2>&1 | tee ci-indicator/apk-preflight.log
++
++      - name: Install the pinned disposable runtime and retain toolchain identities
++        shell: bash
++        run: |
++          set -euo pipefail
++          if test -e "$RUNNER_TEMP/indicator-tooling"; then
++            echo 'Refusing to reuse an existing indicator runtime directory' | tee ci-indicator/bootstrap.log
++            exit 1
++          fi
++          python3 pinned-inputs/tools/android/bootstrap_android_runtime.py \
++            --root "$RUNNER_TEMP/indicator-tooling" --create-avd 2>&1 | tee ci-indicator/bootstrap.log
++          python3 - <<'PY' 2>&1 | tee ci-indicator/toolchain-metadata.log
++          import hashlib, json, os
++          from pathlib import Path
++          root = Path(os.environ['RUNNER_TEMP']) / 'indicator-tooling'
++          output = Path('ci-indicator/toolchain')
++          output.mkdir()
++          metadata = ['jdk21/release', 'android/platform-tools/source.properties',
++              'android/emulator/source.properties',
++              'android/system-images/android-35/google_apis/x86_64/source.properties',
++              'android/system-images/android-35/google_apis/x86_64/build.prop',
++              'android-user/avd/MacroDroid_API35_Disposable.ini',
++              'android-user/avd/MacroDroid_API35_Disposable.avd/config.ini']
++          binaries = ['jdk21/bin/java', 'jdk21/bin/javac', 'android/platform-tools/adb',
++              'android/emulator/emulator', 'android/emulator/qemu/linux-x86_64/qemu-system-x86_64-headless']
++          rows = []
++          for name in metadata + binaries:
++              path = root / name
++              with path.open('rb') as stream:
++                  digest = hashlib.file_digest(stream, 'sha256').hexdigest()
++              rows.append({'path': name, 'bytes': path.stat().st_size, 'sha256': digest})
++              if name in metadata:
++                  target = output / name
++                  target.parent.mkdir(parents=True, exist_ok=True)
++                  with target.open('xb') as stream:
++                      stream.write(path.read_bytes())
++          (output / 'installed-inputs.json').write_text(json.dumps(rows, indent=2) + '\n')
++          print(json.dumps(rows, indent=2))
++          PY
++
++      - name: Observe the fixed A-then-B eight-install schedule on one owned AVD
++        shell: bash
++        run: |
++          set -euo pipefail
++          exec > >(tee ci-indicator/runtime-driver.log) 2>&1
++          if ! test -c /dev/kvm; then
++            echo 'The disposable KVM device is unavailable'
++            exit 1
++          fi
++          sudo setfacl -m "u:$(id -un):rw" /dev/kvm
++          mkdir ci-indicator/environment
++          python3 -u pinned-inputs/tools/android/android_runtime_service.py \
++            --tooling "$RUNNER_TEMP/indicator-tooling" \
++            --evidence ci-indicator/environment \
++            --avd MacroDroid_API35_Disposable --port 5560 --acceleration on \
++            > ci-indicator/service.log 2>&1 &
++          indicator_service_pid=$!
++          cleanup_indicator_runtime() {
++            indicator_step_status=$?
++            trap - EXIT INT TERM
++            set +e
++            timeout 30s "$RUNNER_TEMP/indicator-tooling/android/platform-tools/adb" \
++              -s emulator-5560 logcat -d -b crash -b events -v threadtime \
++              > ci-indicator/lifecycle.log 2>&1
++            indicator_logcat_status=$?
++            mkdir -p ci-indicator/environment/queue
++            touch ci-indicator/environment/queue/STOP
++            indicator_stop_status=$?
++            timeout 60s tail --pid="$indicator_service_pid" -f /dev/null
++            indicator_wait_status=$?
++            indicator_service_status=unobserved
++            if test "$indicator_wait_status" -eq 0; then
++              wait "$indicator_service_pid"
++              indicator_service_status=$?
++            fi
++            python3 - "$indicator_step_status" "$indicator_logcat_status" "$indicator_stop_status" \
++              "$indicator_wait_status" "$indicator_service_status" <<'PY'
++          import json, sys
++          from pathlib import Path
++          names = ['diagnostic_step_exit_code', 'diagnostic_logcat_exit_code', 'owned_stop_marker_exit_code',
++                   'bounded_service_wait_exit_code', 'owned_service_exit_code']
++          result = dict(zip(names, sys.argv[1:]))
++          result['scope'] = 'STOP is written only to this job\'s newly created service queue; no unrelated device or process is stopped.'
++          result['service_cleanup_confirmed'] = sys.argv[3:] == ['0', '0', '0']
++          Path('ci-indicator/runtime-cleanup.json').write_text(json.dumps(result, indent=2) + '\n')
++          print(json.dumps(result, indent=2))
++          PY
++            indicator_cleanup_record_status=$?
++            if test "$indicator_step_status" -eq 0 && { test "$indicator_stop_status" -ne 0 || test "$indicator_wait_status" -ne 0 || test "$indicator_service_status" != 0 || test "$indicator_cleanup_record_status" -ne 0; }; then
++              indicator_step_status=1
++            fi
++            exit "$indicator_step_status"
++          }
++          trap cleanup_indicator_runtime EXIT
++          trap 'exit 130' INT
++          trap 'exit 143' TERM
++          printf '%s\n' "$indicator_service_pid" > ci-indicator/owned-service-pid.txt
++          python3 pinned-inputs/tools/android/wait_android_ready.py \
++            --evidence ci-indicator/environment --timeout 900 2>&1 | tee ci-indicator/readiness.log
++          python3 pinned-inputs/tools/android/runtime_job.py \
++            --queue ci-indicator/environment/queue --id indicator-radio-clock-scales --timeout 240 -- \
++            python3 "$GITHUB_WORKSPACE/pinned-inputs/tools/android/configure_capture_device.py" \
++            --adb "$RUNNER_TEMP/indicator-tooling/android/platform-tools/adb" --serial emulator-5560 \
++            --output "$GITHUB_WORKSPACE/ci-indicator/device" --demo-clock 1200 --disable-animations \
++            2>&1 | tee ci-indicator/device-job.log
++          indicator_record_args=(python3 -B "$GITHUB_WORKSPACE/tools/indicator_sampling/record.py"
++            --parents "$GITHUB_WORKSPACE/pinned-inputs" --source-root "$GITHUB_WORKSPACE"
++            --prepared "$GITHUB_WORKSPACE/ci-indicator/prepared"
++            --adb "$RUNNER_TEMP/indicator-tooling/android/platform-tools/adb"
++            --output "$GITHUB_WORKSPACE/ci-indicator/experiment" --accept-package-data-removal)
++          python3 pinned-inputs/tools/android/runtime_job.py \
++            --queue ci-indicator/environment/queue --id indicator-initialize --timeout 240 -- \
++            "${indicator_record_args[@]}" --initialize --runtime "$GITHUB_WORKSPACE/ci-indicator/environment" \
++            --device "$GITHUB_WORKSPACE/ci-indicator/device" \
++            --toolchain-inputs "$GITHUB_WORKSPACE/ci-indicator/toolchain/installed-inputs.json" \
++            --tooling "$RUNNER_TEMP/indicator-tooling" 2>&1 | tee ci-indicator/initialize-job.log
++          indicator_slots_status=0
++          for indicator_slot in 1 2 3 4 5 6 7 8; do
++            set +e
++            python3 pinned-inputs/tools/android/runtime_job.py \
++              --queue ci-indicator/environment/queue --id "indicator-slot-$indicator_slot" --timeout 900 -- \
++              "${indicator_record_args[@]}" --slot "$indicator_slot" \
++              2>&1 | tee "ci-indicator/slot-$indicator_slot-job.log"
++            indicator_slot_status=${PIPESTATUS[0]}
++            set -e
++            if test "$indicator_slot_status" -ne 0; then
++              indicator_slots_status=$indicator_slot_status
++              break
++            fi
++          done
++          set +e
++          python3 pinned-inputs/tools/android/runtime_job.py \
++            --queue ci-indicator/environment/queue --id indicator-finalize --timeout 900 -- \
++            "${indicator_record_args[@]}" --finish 2>&1 | tee ci-indicator/finalize-job.log
++          indicator_finalize_status=${PIPESTATUS[0]}
++          set -e
++          if test "$indicator_slots_status" -ne 0; then
++            exit "$indicator_slots_status"
++          fi
++          exit "$indicator_finalize_status"
++
++      - name: Independently recheck all fixed raw frames and original live metadata
++        if: always()
++        shell: bash
++        run: |
++          set -euo pipefail
++          mkdir -p ci-indicator
++          timeout 900s python3 -B tools/indicator_sampling/verify.py \
++            --parents "$GITHUB_WORKSPACE/pinned-inputs" --source-root "$GITHUB_WORKSPACE" \
++            --prepared "$GITHUB_WORKSPACE/ci-indicator/prepared" \
++            --output "$GITHUB_WORKSPACE/ci-indicator/experiment" \
++            2>&1 | tee ci-indicator/independent-verification.log
++
++      - name: Preserve every owned partial or complete diagnostic record
++        if: always()
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
++        with:
++          name: indicator-fixed-sampling-${{ github.sha }}
++          retention-days: 30
++          if-no-files-found: error
++          path: ci-indicator/
++          include-hidden-files: true
+--- draft-01/tools/indicator_sampling/README.md
++++ offline-02/tools/indicator_sampling/README.md
+@@ -0,0 +1,62 @@
++# Fixed indicator sampling diagnostic
++
++This independent experiment records the actual intro indicator after a fixed input and fixed waits. It uses the reviewed [bounded design](../../work-in-progress/indicator-fixed-sampling/01-bounded-design/) and retains every planned observation. `INDICATOR_FIXED_SAMPLE_EVIDENCE_COMPLETE` means the declared evidence is complete. It does not mean that any original/candidate pair is equal, that animation or crash-free behavior is established, or that full runtime parity has been reached.
++
++## Immutable applications and parent helpers
++
++The original APK is 95,725,918 bytes / SHA-256 `84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800`. The candidate is the already published combined APK, 94,683,119 bytes / `5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182`. A new numeric or lookup APK is not substituted. Both twelve-part manifests, all twenty-four part hashes, all sixteen original helper declarations, and the complete executed diagnostic source inventory are checked before installation and after the observations.
++
++All sixteen design parents remain pinned to commit `6331410cfd2391389270564803623079e8355ad8`; their exact paths and byte hashes are in [pins.json](pins.json). This successor adds the preserved AAPT2 binary explicitly: 6,135,688 bytes / `6fbed5edaddcfbee99a3ae6e7208c8654c6cb2bedb4ed5cbbf4e154d7d38a745`. It runs only read-only `dump badging`, bounded to 60 seconds. Both fixed APK hashes, full ZIP member uniqueness and CRC checks, and the actual parsed package/version metadata are required before any uninstall. Assembly is bounded to 120 seconds per APK. Partial command output is retained on failure.
++
++## Eight fixed slots
++
++| Slot | Animator scale | APK |
++| ---: | ---: | --- |
++| 1 | 0 | Original |
++| 2 | 0 | Candidate |
++| 3 | 0 | Candidate |
++| 4 | 0 | Original |
++| 5 | 1 | Original |
++| 6 | 1 | Candidate |
++| 7 | 1 | Candidate |
++| 8 | 1 | Original |
++
++Every slot removes the package and its data, proves package and old-process absence, writes the three declared animation scales while the app is absent, verifies the actual settings, installs the exact selected APK, and rehashes the installed package. Window and transition scales remain zero in both conditions. The pinned setup helper first establishes the one modem's actual home registration and level-four primary radio, then enables SystemUI clock demo `1200` and the initial zero scales. Its complete before/after report and raw command streams are retained. Battery and wall time receive no writes.
++
++There is one fixed AVD and serial: `MacroDroid_API35_Disposable`, `emulator-5560`, API 35, 720 × 1280, density 320, with the exact published fingerprint and native bridge. A fresh AVD, boot, modem, ADB-file identity, and full environment guard precede each uninstall. Every capture and the sole input require one continuous app PID and the actual `IntroActivity` component.
++
++After launch, the recorder waits four seconds from the launch command's return. It takes the initial full observation, then obtains a fresh installed hash, scales, full preinput observation, and immediate PID/component readings under a 15-second guard. The complete initial and preinput canonical hierarchies must be identical. The unique observed `button_next` must retain its exact enabled/clickable class, text/description, bounds, and ancestor attributes. Its actual center is **(640, 1152)** from bounds `[592,1104][688,1200]`; the fixed input is exactly one tap there. These coordinates are taken from the retained XML, not guessed from a screenshot.
++
++The recorder then waits exactly two seconds from the tap command's return before starting sample 0. It always records samples 0 through 4. Each later observation starts after a fixed one-second wait measured from the preceding complete observation's closure. Actual start, return, closure, wait target, and overshoot times are retained. This is not a one-frame-per-second wall-clock promise: the full acquisition itself takes measured time. Each observation is bounded to 30 seconds and brackets its XML/PNG with fresh PID and foreground evidence.
++
++The expected post-input title is `TRIGGERS`. The title and indicator identities, ancestry, and full viewport are checked. Other hierarchy changes remain measured full XML differences; the historical complete hierarchy is not imposed as a rendering template. No settling loop, image-dependent retry, preferred-frame selection, screenshot edit, crop, tolerance, or mask exists in this experiment.
++
++## Explicit queue and failure contract
++
++The parent service's 3,600-second request ceiling remains unchanged. This implementation uses eight separately queued, fixed-index invocations of at most 900 seconds each. This is an explicit implementation change from the single conceptual design operation. Each invocation has a new owned slot directory and an immutable attempt receipt, with all prior slot receipts rechecked before the next begins. One experiment start and 7,200-second deadline cover all eight slots and comparison finalization. The clock is never reset between invocations.
++
++Any failed slot or preflight aborts the remaining slots. Its owned attempt and partial raw output remain; remaining indices are marked unattempted. An index cannot be retried, repaired in place, skipped, or reordered. The service is stopped only through this job's new owned queue, and the cleanup result is recorded. Boot is bounded to 900 seconds, configuration to 240 seconds, and the complete workflow to 150 minutes.
++
++## Every predetermined comparison and value
++
++The result retains all 40 post-input full PNGs and XML hierarchies, plus the eight initial and eight preinput observations. All six unordered pairs among the four slots in each condition are compared at each of the five sample indices: **60 cross-run pairs**. Four adjacent sample pairs within each of eight slots add **32 temporal pairs**, giving **92 predetermined comparisons**. A missing endpoint produces an explicit unavailable pair; it never reduces the denominator.
++
++Each comparison decodes both complete PNGs, counts every unequal RGBA pixel, compares PNG color metadata, and compares both literal and canonical full XML. All changed coordinates and both RGBA values are saved losslessly in a streamed gzip file. Its fixed **12-byte record** is:
++
++| Bytes | Encoding |
++| --- | --- |
++| 0–3 | Unsigned 32-bit big-endian row-major pixel index, `y × width + x` |
++| 4–7 | First frame's four RGBA bytes |
++| 8–11 | Second frame's four RGBA bytes |
++
++Records are strictly increasing by index. JSON records width, height, count, expanded byte length and SHA-256, and compressed byte length and SHA-256. Independent decoding checks every saved record against both exact source frames and recounts the entire frame. There is no large in-memory list of changed pixels. A zero-difference pair still has a valid empty gzip stream and exact metadata.
++
++Additional raw RGBA arrays for the observed indicator rectangle `[128,1184,592,1200]` and the exact historical coordinate union are numerical diagnostics only. They have zero parity weight and never replace a whole-frame comparison. [historical-coordinates.json](historical-coordinates.json) binds the actual runs by ID and timestamp: Zero12 `38216299675` has five intro-2 pixels; Day13 `38221713675` has zero among five comparable pairs but an incomplete original run; readiness13 `38230072388` completes both thirteen screens and has twenty-six intro-2 pixels. None of those results is rewritten.
++
++## Independent verification and replay
++
++`verify.py` reconstructs the complete fixed command/order/role inventory. It rejects omitted, borrowed, reordered, reused, physically aliased, or stale capture evidence, another AVD/APK/PID/component, a changed scale, an extra input, a missing frame, or an extended deadline. Exact saved slot and observation receipts bind every acquisition to its own command streams. The live mode checks actual final file metadata against the original exclusive-creation records.
++
++An archive replay requires explicit `--archive-replay --archive-apks PATH`, with exact relocated `original.apk` and `candidate.apk` files plus the pinned parent parts and diagnostic source. It reads the immutable original argv/root strings and separately verifies the relocated bytes. For capture metadata it uses the original serialized host observations; it does not claim an extracted file's ctime or inode is the host value. Extracted physical aliases still reject. The raw experiment/comparison are not modified by replay.
++
++Host controls use a clearly labeled synthetic command executor and clock. They do not run ADB or Android and confer no device parity credit. The executed source, all partial attempts, the complete actual raw capture tree, all 92 pair records, and the independent result belong in the workflow artifact, including hidden executed workflow copies.
+--- draft-01/tools/indicator_sampling/common.py
++++ offline-02/tools/indicator_sampling/common.py
+@@ -28,6 +28,17 @@
+     'original': 'vendor/original/manifest.json',
+     'candidate': 'work-in-progress/combined-recovery/05-full-acceptance/apk/manifest.json',
+ }
++TOOL_METADATA = (
++    'jdk21/release', 'android/platform-tools/source.properties',
++    'android/emulator/source.properties',
++    'android/system-images/android-35/google_apis/x86_64/source.properties',
++    'android/system-images/android-35/google_apis/x86_64/build.prop',
++    'android-user/avd/MacroDroid_API35_Disposable.ini',
++    'android-user/avd/MacroDroid_API35_Disposable.avd/config.ini',
++)
++TOOL_BINARIES = ('jdk21/bin/java', 'jdk21/bin/javac', 'android/platform-tools/adb',
++                 'android/emulator/emulator',
++                 'android/emulator/qemu/linux-x86_64/qemu-system-x86_64-headless')
+ 
+ 
+ class Invalid(ValueError):
+@@ -180,3 +191,37 @@
+     values = proof.live_pids(text, text)
+     require(len(values) == 1, 'Exactly one main process is required')
+     return values[0]
++
++
++def surface_identity(xml, surface, parents):
++    """Observed title/indicator and input ancestry; other XML remains measured."""
++    require(surface in ('intro1', 'intro2'), 'Undeclared observation surface')
++    runner = parents['editor_journey']
++    root = runner.tree(xml, PACKAGE)
++    filename = 'original-intro1-preinput.xml' if surface == 'intro1' else 'original-intro2.xml'
++    frozen = runner.tree((HERE / 'fixtures' / filename).read_bytes(), PACKAGE)
++    selectors = [{'resource-id': PACKAGE + ':id/titleText', 'text': 'MACRODROID' if surface == 'intro1' else 'TRIGGERS'},
++                 {'resource-id': PACKAGE + ':id/indicator'}]
++    if surface == 'intro1':
++        selectors.append({'resource-id': PACKAGE + ':id/button_next', 'content-desc': 'Next'})
++
++    def chain(tree, selector):
++        node = runner.select(tree, PACKAGE, selector)
++        links = {child: parent for parent in tree.iter() for child in parent}
++        values = []
++        while True:
++            values.append((node.tag, tuple(sorted(node.attrib.items()))))
++            if node not in links:
++                break
++            node = links[node]
++        return tuple(values)
++
++    for selector in selectors:
++        require(chain(root, selector) == chain(frozen, selector),
++                'Observed node/ancestor/bounds identity differs: ' + repr(selector))
++    indicator = runner.select(root, PACKAGE, {'resource-id': PACKAGE + ':id/indicator'})
++    require(indicator.get('bounds') == '[128,1184][592,1200]', 'Observed indicator bounds changed')
++    if surface == 'intro1':
++        require(runner.target(xml, PACKAGE, selectors[-1], 720, 1280) == [640, 1152],
++                'Observed NEXT target changed')
++    return runner.canonical(root)
+--- draft-01/tools/indicator_sampling/historical-coordinates.json
++++ offline-02/tools/indicator_sampling/historical-coordinates.json
+@@ -0,0 +1,679 @@
++{
++  "schema": 1,
++  "purpose": "Additional raw coordinate values only. Never a pixel mask, input selector, or equality criterion.",
++  "design_commit": "39250fac022aee5551f36782bafd72cabbc33718",
++  "design_checkpoint_sha256": "fccc817be37d821a781348a8870c227ff5471fcdc72d71f38a81bc062c7a3eec",
++  "source_path": "work-in-progress/indicator-fixed-sampling/01-bounded-design/evidence/fixed-historical-capture-bindings.json",
++  "source_identity": {
++    "bytes": 58198,
++    "sha256": "21d70cb8facfad94900a83777727251d035123badba3370a92564e3fc0373820"
++  },
++  "observations": [
++    {
++      "run_id": 38216299675,
++      "journey_identity": {
++        "bytes": 839255,
++        "sha256": "a6253dfea14353a2d8fe552e3772e4fe5e58a693e2339bafcce9f0d008a61409"
++      },
++      "changed_pixels": 5,
++      "coordinates": [
++        {
++          "x": 317,
++          "y": 1186,
++          "original_rgba": [
++            172,
++            36,
++            36,
++            255
++          ],
++          "candidate_rgba": [
++            200,
++            109,
++            109,
++            255
++          ]
++        },
++        {
++          "x": 319,
++          "y": 1189,
++          "original_rgba": [
++            172,
++            36,
++            36,
++            255
++          ],
++          "candidate_rgba": [
++            200,
++            109,
++            109,
++            255
++          ]
++        },
++        {
++          "x": 335,
++          "y": 1192,
++          "original_rgba": [
++            172,
++            36,
++            36,
++            255
++          ],
++          "candidate_rgba": [
++            200,
++            109,
++            109,
++            255
++          ]
++        },
++        {
++          "x": 319,
++          "y": 1194,
++          "original_rgba": [
++            172,
++            36,
++            36,
++            255
++          ],
++          "candidate_rgba": [
++            200,
++            109,
++            109,
++            255
++          ]
++        },
++        {
++          "x": 336,
++          "y": 1195,
++          "original_rgba": [
++            190,
++            83,
++            83,
++            255
++          ],
++          "candidate_rgba": [
++            212,
++            140,
++            140,
++            255
++          ]
++        }
++      ]
++    },
++    {
++      "run_id": 38221713675,
++      "journey_identity": {
++        "bytes": 650608,
++        "sha256": "3ea9c3d787638db54f0caf36df8d8f16726425bd9c06bab45a13604df85c45ce"
++      },
++      "changed_pixels": 0,
++      "coordinates": []
++    },
++    {
++      "run_id": 38230072388,
++      "journey_identity": {
++        "bytes": 921945,
++        "sha256": "0d4565b26a98b4a21d4294ae895fc8ac7c3e32dc313767312e8c9d06f64b8d92"
++      },
++      "changed_pixels": 26,
++      "coordinates": [
++        {
++          "x": 314,
++          "y": 1184,
++          "original_rgba": [
++            200,
++            109,
++            109,
++            255
++          ],
++          "candidate_rgba": [
++            172,
++            36,
++            36,
++            255
++          ]
++        },
++        {
++          "x": 341,
++          "y": 1184,
++          "original_rgba": [
++            221,
++            165,
++            165,
++            255
++          ],
++          "candidate_rgba": [
++            232,
++            195,
++            195,
++            255
++          ]
++        },
++        {
++          "x": 342,
++          "y": 1184,
++          "original_rgba": [
++            243,
++            222,
++            222,
++            255
++          ],
++          "candidate_rgba": [
++            247,
++            233,
++            233,
++            255
++          ]
++        },
++        {
++          "x": 343,
++          "y": 1184,
++          "original_rgba": [
++            254,
++            251,
++            251,
++            255
++          ],
++          "candidate_rgba": [
++            254,
++            253,
++            253,
++            255
++          ]
++        },
++        {
++          "x": 344,
++          "y": 1184,
++          "original_rgba": [
++            254,
++            251,
++            251,
++            255
++          ],
++          "candidate_rgba": [
++            254,
++            253,
++            253,
++            255
++          ]
++        },
++        {
++          "x": 345,
++          "y": 1184,
++          "original_rgba": [
++            243,
++            222,
++            222,
++            255
++          ],
++          "candidate_rgba": [
++            247,
++            233,
++            233,
++            255
++          ]
++        },
++        {
++          "x": 346,
++          "y": 1184,
++          "original_rgba": [
++            221,
++            165,
++            165,
++            255
++          ],
++          "candidate_rgba": [
++            232,
++            195,
++            195,
++            255
++          ]
++        },
++        {
++          "x": 339,
++          "y": 1185,
++          "original_rgba": [
++            220,
++            163,
++            163,
++            255
++          ],
++          "candidate_rgba": [
++            232,
++            194,
++            194,
++            255
++          ]
++        },
++        {
++          "x": 317,
++          "y": 1186,
++          "original_rgba": [
++            200,
++            109,
++            109,
++            255
++          ],
++          "candidate_rgba": [
++            172,
++            36,
++            36,
++            255
++          ]
++        },
++        {
++          "x": 338,
++          "y": 1186,
++          "original_rgba": [
++            231,
++            191,
++            191,
++            255
++          ],
++          "candidate_rgba": [
++            239,
++            212,
++            212,
++            255
++          ]
++        },
++        {
++          "x": 349,
++          "y": 1186,
++          "original_rgba": [
++            231,
++            191,
++            191,
++            255
++          ],
++          "candidate_rgba": [
++            239,
++            212,
++            212,
++            255
++          ]
++        },
++        {
++          "x": 337,
++          "y": 1187,
++          "original_rgba": [
++            220,
++            163,
++            163,
++            255
++          ],
++          "candidate_rgba": [
++            232,
++            194,
++            194,
++            255
++          ]
++        },
++        {
++          "x": 336,
++          "y": 1189,
++          "original_rgba": [
++            221,
++            165,
++            165,
++            255
++          ],
++          "candidate_rgba": [
++            232,
++            195,
++            195,
++            255
++          ]
++        },
++        {
++          "x": 336,
++          "y": 1190,
++          "original_rgba": [
++            243,
++            222,
++            222,
++            255
++          ],
++          "candidate_rgba": [
++            247,
++            233,
++            233,
++            255
++          ]
++        },
++        {
++          "x": 336,
++          "y": 1191,
++          "original_rgba": [
++            254,
++            251,
++            251,
++            255
++          ],
++          "candidate_rgba": [
++            254,
++            253,
++            253,
++            255
++          ]
++        },
++        {
++          "x": 351,
++          "y": 1191,
++          "original_rgba": [
++            254,
++            251,
++            251,
++            255
++          ],
++          "candidate_rgba": [
++            254,
++            253,
++            253,
++            255
++          ]
++        },
++        {
++          "x": 336,
++          "y": 1192,
++          "original_rgba": [
++            254,
++            251,
++            251,
++            255
++          ],
++          "candidate_rgba": [
++            254,
++            253,
++            253,
++            255
++          ]
++        },
++        {
++          "x": 351,
++          "y": 1192,
++          "original_rgba": [
++            254,
++            251,
++            251,
++            255
++          ],
++          "candidate_rgba": [
++            254,
++            253,
++            253,
++            255
++          ]
++        },
++        {
++          "x": 336,
++          "y": 1193,
++          "original_rgba": [
++            243,
++            222,
++            222,
++            255
++          ],
++          "candidate_rgba": [
++            247,
++            233,
++            233,
++            255
++          ]
++        },
++        {
++          "x": 336,
++          "y": 1194,
++          "original_rgba": [
++            221,
++            165,
++            165,
++            255
++          ],
++          "candidate_rgba": [
++            232,
++            195,
++            195,
++            255
++          ]
++        },
++        {
++          "x": 338,
++          "y": 1197,
++          "original_rgba": [
++            231,
++            191,
++            191,
++            255
++          ],
++          "candidate_rgba": [
++            239,
++            212,
++            212,
++            255
++          ]
++        },
++        {
++          "x": 313,
++          "y": 1199,
++          "original_rgba": [
++            200,
++            109,
++            109,
++            255
++          ],
++          "candidate_rgba": [
++            172,
++            36,
++            36,
++            255
++          ]
++        },
++        {
++          "x": 342,
++          "y": 1199,
++          "original_rgba": [
++            243,
++            222,
++            222,
++            255
++          ],
++          "candidate_rgba": [
++            247,
++            233,
++            233,
++            255
++          ]
++        },
++        {
++          "x": 343,
++          "y": 1199,
++          "original_rgba": [
++            254,
++            251,
++            251,
++            255
++          ],
++          "candidate_rgba": [
++            254,
++            253,
++            253,
++            255
++          ]
++        },
++        {
++          "x": 344,
++          "y": 1199,
++          "original_rgba": [
++            254,
++            251,
++            251,
++            255
++          ],
++          "candidate_rgba": [
++            254,
++            253,
++            253,
++            255
++          ]
++        },
++        {
++          "x": 345,
++          "y": 1199,
++          "original_rgba": [
++            243,
++            222,
++            222,
++            255
++          ],
++          "candidate_rgba": [
++            247,
++            233,
++            233,
++            255
++          ]
++        }
++      ]
++    }
++  ],
++  "chronology": [
++    {
++      "run_id": 38216299675,
++      "created_utc": "2026-10-12T07:10:39Z",
++      "scope": "Both twelve-screen runs complete; five intro-2 pixels differ."
++    },
++    {
++      "run_id": 38221713675,
++      "created_utc": "2026-10-12T08:07:53Z",
++      "scope": "Five comparable pairs have zero changed pixels; original run is incomplete, so this is not a complete thirteen-screen match."
++    },
++    {
++      "run_id": 38230072388,
++      "created_utc": "2026-10-12T09:28:07Z",
++      "scope": "Both thirteen-screen runs complete; twenty-six intro-2 pixels differ."
++    }
++  ],
++  "union_coordinates": [
++    [
++      314,
++      1184
++    ],
++    [
++      341,
++      1184
++    ],
++    [
++      342,
++      1184
++    ],
++    [
++      343,
++      1184
++    ],
++    [
++      344,
++      1184
++    ],
++    [
++      345,
++      1184
++    ],
++    [
++      346,
++      1184
++    ],
++    [
++      339,
++      1185
++    ],
++    [
++      317,
++      1186
++    ],
++    [
++      338,
++      1186
++    ],
++    [
++      349,
++      1186
++    ],
++    [
++      337,
++      1187
++    ],
++    [
++      319,
++      1189
++    ],
++    [
++      336,
++      1189
++    ],
++    [
++      336,
++      1190
++    ],
++    [
++      336,
++      1191
++    ],
++    [
++      351,
++      1191
++    ],
++    [
++      335,
++      1192
++    ],
++    [
++      336,
++      1192
++    ],
++    [
++      351,
++      1192
++    ],
++    [
++      336,
++      1193
++    ],
++    [
++      319,
++      1194
++    ],
++    [
++      336,
++      1194
++    ],
++    [
++      336,
++      1195
++    ],
++    [
++      338,
++      1197
++    ],
++    [
++      313,
++      1199
++    ],
++    [
++      342,
++      1199
++    ],
++    [
++      343,
++      1199
++    ],
++    [
++      344,
++      1199
++    ],
++    [
++      345,
++      1199
++    ]
++  ],
++  "new_runtime_parity_credit": 0,
++  "used_as_mask": false
++}
+--- draft-01/tools/indicator_sampling/prepare.py
++++ offline-02/tools/indicator_sampling/prepare.py
+@@ -22,7 +22,7 @@
+ 
+ OWN_FILES = (
+     'README.md', 'common.py', 'prepare.py', 'record.py', 'verify.py',
+-    'test_indicator_sampling.py', 'pins.json', 'protocol.json', 'aapt2',
++    'test_indicator_sampling.py', 'pins.json', 'protocol.json', 'historical-coordinates.json', 'aapt2',
+     'fixtures/original-intro1-preinput.xml', 'fixtures/candidate-intro1-preinput.xml',
+     'fixtures/original-intro2.xml', 'fixtures/candidate-intro2.xml',
+ )
+@@ -32,6 +32,7 @@
+ def source_manifest(source_root):
+     """Reconstruct the required names before reading a report's inventory."""
+     source_root = Path(source_root).resolve()
++    c.require(c.HERE == source_root / 'tools/indicator_sampling', 'Executing diagnostic module has another source root')
+     entries = c.json_file(c.HERE / 'runtime-files.json')
+     expected = ['tools/indicator_sampling/' + name for name in OWN_FILES] + [WORKFLOW]
+     c.require(type(entries) is list and [row.get('path') for row in entries] == sorted(expected),
+@@ -90,6 +91,30 @@
+         return {'members': len(members), 'duplicate_names': False, 'all_member_crc_checks_passed': True}
+ 
+ 
++def offline_command(argv, seconds, label, evidence):
++    """Keep partial stdout/stderr and the literal bounded result on every exit."""
++    record = {'argv': argv, 'timeout_seconds': seconds, 'started_ns': c.now_ns(),
++              'timed_out': False}
++    try:
++        process = subprocess.run(argv, capture_output=True, timeout=seconds)
++        record['returncode'], out, err = process.returncode, process.stdout, process.stderr
++    except subprocess.TimeoutExpired as error:
++        record.update(returncode=None, timed_out=True)
++        out, err = error.stdout or b'', error.stderr or b''
++    except OSError as error:
++        record.update(returncode=None, error=type(error).__name__ + ': ' + str(error))
++        out, err = b'', str(error).encode()
++    record['finished_ns'] = c.now_ns()
++    for name, raw in [('stdout', out), ('stderr', err)]:
++        filename = label + '.' + name
++        with (evidence / filename).open('xb') as stream:
++            stream.write(raw)
++        record[name] = {'path': filename, **c.identity(raw)}
++    with (evidence / (label + '-command.json')).open('xb') as stream:
++        stream.write(c.bytes_json(record))
++    return record
++
++
+ def inspect_apk(path, role, evidence, metadata_function):
+     wanted = c.ORIGINAL if role == 'original' else c.CANDIDATE
+     c.require(c.file_identity(path) == wanted, 'Fixed ' + role + ' APK changed')
+@@ -97,19 +122,12 @@
+     c.require(c.file_identity(aapt) == c.json_file(c.HERE / 'pins.json')['aapt2'], 'AAPT2 differs')
+     archive = zip_metadata(path)
+     argv = [str(aapt), 'dump', 'badging', str(path)]
+-    started = c.now_ns()
+-    result = subprocess.run(argv, capture_output=True, timeout=60)
+-    ended = c.now_ns()
+-    streams = {}
+-    for name, raw in [('stdout', result.stdout), ('stderr', result.stderr)]:
+-        filename = role + '-badging.' + name
+-        with (evidence / filename).open('xb') as stream:
+-            stream.write(raw)
+-        streams[name] = {'path': filename, **c.identity(raw)}
+-    record = {'argv': argv, 'returncode': result.returncode, 'timeout_seconds': 60,
+-              'started_ns': started, 'finished_ns': ended, **streams}
+-    c.require(result.returncode == 0 and not result.stderr.strip(), 'AAPT2 inspection failed')
+-    metadata = metadata_function(result.stdout.decode())
++    record = offline_command(argv, 60, role + '-badging', evidence)
++    out = (evidence / record['stdout']['path']).read_bytes()
++    err = (evidence / record['stderr']['path']).read_bytes()
++    c.require(record['returncode'] == 0 and record['timed_out'] is False and 'error' not in record
++              and not err.strip(), 'AAPT2 inspection failed; partial output retained')
++    metadata = metadata_function(out.decode())
+     c.require(c.file_identity(path) == wanted and c.file_identity(aapt) == c.json_file(c.HERE / 'pins.json')['aapt2'],
+               'APK or AAPT2 changed during read-only inspection')
+     return {'path': str(path), **wanted, 'zip': archive, 'badging': record, 'metadata': metadata}
+@@ -122,6 +140,7 @@
+     report = {'schema': 1, 'status': 'INPUTS_INCOMPLETE', 'started_utc': c.utc(), 'started_ns': c.now_ns(),
+               'parent_commit': c.PARENT_COMMIT, 'source_root': str(source_root), 'parent_root': str(parents),
+               'apk_root': str(apk_root), 'inputs': [], 'apks': {}, 'assembly': {},
++              'python_executable': sys.executable,
+               'android_executed': False, 'aapt2_extra_dependency': True}
+     try:
+         report['inputs'] = expected_inputs(parents, source_root)
+@@ -140,18 +159,11 @@
+             target = apk_root / (role + '.apk')
+             argv = [sys.executable, '-B', str(parents / 'scripts/assemble_artifact.py'),
+                     str(parents / manifest), '--output', str(target)]
+-            start = c.now_ns()
+-            process = subprocess.run(argv, capture_output=True, timeout=120)
+-            end = c.now_ns()
+-            streams = {}
+-            for name, raw in [('stdout', process.stdout), ('stderr', process.stderr)]:
+-                filename = role + '-assembly.' + name
+-                with (output / filename).open('xb') as stream:
+-                    stream.write(raw)
+-                streams[name] = {'path': filename, **c.identity(raw)}
+-            report['assembly'][role] = {'argv': argv, 'returncode': process.returncode,
+-                'timeout_seconds': 120, 'started_ns': start, 'finished_ns': end, **streams}
+-            c.require(process.returncode == 0 and not process.stderr.strip(), 'Pinned assembly failed: ' + role)
++            process = offline_command(argv, 120, role + '-assembly', output)
++            report['assembly'][role] = process
++            c.require(process['returncode'] == 0 and process['timed_out'] is False and 'error' not in process
++                      and not (output / process['stderr']['path']).read_bytes().strip(),
++                      'Pinned assembly failed; partial output retained: ' + role)
+             report['apks'][role] = inspect_apk(target, role, output, modules['android_acceptance'].badging_metadata)
+         report['status'] = 'EXACT_DIAGNOSTIC_INPUTS_READY'
+     except Exception as error:
+@@ -165,8 +177,13 @@
+     return report
+ 
+ 
+-def verify_preparation(parents, source_root, output):
+-    """Live input check: reconstructed inventory, copies, actual APKs and raw argv."""
++def verify_preparation(parents, source_root, output, archive_apks=None):
++    """Exact inputs in either live or explicitly relocated saved-byte replay.
++
++    Replay reads the immutable original argv/root strings. It separately hashes
++    caller-supplied local copies of the same parent parts, source and APK bytes;
++    it never rewrites the original receipt or claims new execution/stat data.
++    """
+     parents, source_root, output = map(lambda p: Path(p).resolve(), (parents, source_root, output))
+     report = c.json_file(output / 'preparation.json')
+     c.require(report.get('schema') == 1 and report.get('status') == 'EXACT_DIAGNOSTIC_INPUTS_READY'
+@@ -174,39 +191,71 @@
+               'The exact offline input preflight is incomplete')
+     expected = expected_inputs(parents, source_root)
+     c.require(report['inputs'] == expected, 'Preflight inventory omitted, changed or reordered a required role')
+-    c.require(report['parent_root'] == str(parents) and report['source_root'] == str(source_root),
+-              'Preflight source roots differ from the executed roots')
++    c.clock_interval(report['started_ns'], report['finished_ns'], 'complete offline preflight')
++    for key in ('parent_root', 'source_root', 'apk_root', 'python_executable'):
++        value = report[key]
++        c.require(type(value) is str and Path(value).is_absolute() and str(Path(value)) == value
++                  and '..' not in Path(value).parts, 'Noncanonical original preflight path: ' + key)
++    if archive_apks is None:
++        c.require(report['parent_root'] == str(parents) and report['source_root'] == str(source_root)
++                  and report['python_executable'] == sys.executable,
++                  'Preflight source/interpreter roots differ from the executed roots')
++        local_apk_root = Path(report['apk_root'])
++    else:
++        local_apk_root = Path(archive_apks).resolve()
++    required_copies = set()
+     for row in expected:
+         if row['role'].endswith('-part'):
+             continue
+         name = 'inputs/' + ('diagnostic/' if row['role'] == 'diagnostic-source' else 'parents/') + row['path']
++        required_copies.add(name)
+         c.require(c.file_identity(c.checked_path(output, name)) == {k: row[k] for k in ('bytes', 'sha256')},
+                   'Retained executed input copy differs: ' + name)
++    c.require({path.relative_to(output).as_posix() for path in (output / 'inputs').rglob('*') if path.is_file()}
++              == required_copies, 'Unlisted or missing retained preflight input copy')
+     modules = c.load_parents(parents)
+-    used = set()
++    used, physical = set(), set()
++    previous = report['started_ns']
++    c.require(set(report['apks']) == set(report['assembly']) == {'original', 'candidate'},
++              'Both exact APK inspection and assembly roles are required')
+     for role, manifest in c.MANIFESTS.items():
+         item = report['apks'][role]
+         wanted = c.ORIGINAL if role == 'original' else c.CANDIDATE
+-        path = Path(report['apk_root']) / (role + '.apk')
+-        c.require(item['path'] == str(path) and not path.is_symlink() and c.file_identity(path) == wanted,
++        recorded_path = Path(report['apk_root']) / (role + '.apk')
++        path = c.checked_path(local_apk_root, role + '.apk')
++        c.require(item['path'] == str(recorded_path) and c.file_identity(path) == wanted
++                  and {key: item[key] for key in ('bytes', 'sha256')} == wanted,
+                   'Materialized APK differs: ' + role)
+         c.require(item['zip'] == zip_metadata(path), 'APK ZIP inspection changed')
+         assembly = report['assembly'][role]
+-        expected_assembly = [sys.executable, '-B', str(parents / 'scripts/assemble_artifact.py'),
+-                             str(parents / manifest), '--output', str(path)]
+-        for command, argv, seconds in [(assembly, expected_assembly, 120),
+-                (item['badging'], [str(c.HERE / 'aapt2'), 'dump', 'badging', str(path)], 60)]:
++        expected_assembly = [report['python_executable'], '-B', str(Path(report['parent_root']) / 'scripts/assemble_artifact.py'),
++                             str(Path(report['parent_root']) / manifest), '--output', str(recorded_path)]
++        for label, command, argv, seconds in [(role + '-assembly', assembly, expected_assembly, 120),
++                (role + '-badging', item['badging'],
++                 [str(Path(report['source_root']) / 'tools/indicator_sampling/aapt2'), 'dump', 'badging', str(recorded_path)], 60)]:
+             c.require(command['argv'] == argv and command['returncode'] == 0 and type(command['returncode']) is int
+-                      and command['timeout_seconds'] == seconds, 'Offline command identity differs')
++                      and command['timeout_seconds'] == seconds and command['timed_out'] is False
++                      and 'error' not in command, 'Offline command identity differs')
++            c.require(c.checked_path(output, label + '-command.json').read_bytes() == c.bytes_json(command),
++                      'Immutable offline command record differs')
+             c.clock_interval(command['started_ns'], command['finished_ns'], 'offline command')
+             c.require(command['finished_ns'] - command['started_ns'] <= seconds * 1_000_000_000,
+                       'Offline command exceeded its bound')
++            c.require(previous <= command['started_ns'] <= command['finished_ns'] <= report['finished_ns'],
++                      'Offline command chronology differs')
++            previous = command['finished_ns']
+             raw = {}
+             for stream in ('stdout', 'stderr'):
+                 artifact = command[stream]
+-                c.require(artifact['path'] not in used, 'Offline command reused another stream')
++                c.require(artifact['path'] == label + '.' + stream and artifact['path'] not in used,
++                          'Offline command reused or renamed another stream')
+                 used.add(artifact['path'])
+-                data = c.checked_path(output, artifact['path']).read_bytes()
++                actual_path = c.checked_path(output, artifact['path'])
++                actual_stat = actual_path.stat()
++                inode = (actual_stat.st_dev, actual_stat.st_ino)
++                c.require(actual_stat.st_nlink == 1 and inode not in physical, 'Offline streams share a physical file')
++                physical.add(inode)
++                data = actual_path.read_bytes()
+                 c.require(c.identity(data) == {k: artifact[k] for k in ('bytes', 'sha256')}, 'Offline stream changed')
+                 raw[stream] = data
+             c.require(not raw['stderr'].strip(), 'Offline command reported stderr')
+--- draft-01/tools/indicator_sampling/record.py
++++ offline-02/tools/indicator_sampling/record.py
+@@ -259,11 +259,7 @@
+     for key in ['foreground', 'foreground_final']:
+         c.require(c.canonical_component(raw[key].decode(), recorder.proof) == c.INTRO,
+                   'Expected IntroActivity left the foreground')
+-    root = recorder.runner.tree(raw['hierarchy'], c.PACKAGE)
+-    fixture = c.HERE / 'fixtures' / ('original-intro1-preinput.xml' if value['surface'] == 'intro1' else 'original-intro2.xml')
+-    expected = recorder.runner.tree(fixture.read_bytes(), c.PACKAGE)
+-    c.require(recorder.runner.canonical(root) == recorder.runner.canonical(expected),
+-              'The complete observed hierarchy differs from the frozen surface')
++    c.surface_identity(raw['hierarchy'], value['surface'], recorder.parents)
+     width, height, _ = recorder.parents['observed_journey'].png_pixels(raw['screenshot'], recorder.proof)
+     c.require((width, height) == (720, 1280), 'Unexpected full-frame size')
+     c.require(recorder.proof.valid_live_interval((value['finished_ns'] - value['started_ns']) / 1e9),
+@@ -334,6 +330,11 @@
+             record['preinput'] = guard
+             c.require(guard['scales']['values'] == desired, 'Scale changed before input')
+             guard['observation'] = recorder.observation(label + '-preinput', 'intro1', initial_pid)
++            initial_xml = (recorder.folder / record['initial']['artifacts']['hierarchy']['path']).read_bytes()
++            fresh_xml = (recorder.folder / guard['observation']['artifacts']['hierarchy']['path']).read_bytes()
++            c.require(recorder.runner.canonical(recorder.runner.tree(initial_xml, c.PACKAGE))
++                      == recorder.runner.canonical(recorder.runner.tree(fresh_xml, c.PACKAGE)),
++                      'Complete initial/preinput hierarchies changed before the only input')
+             index, out = recorder.checked(['pidof', c.PACKAGE])
+             guard['immediate_pid'] = index
+             c.require(c.single_pid(out.decode(), recorder.proof) == initial_pid, 'Main PID changed immediately before input')
+@@ -387,6 +388,7 @@
+     mapping = [(runtime / 'emulator-launch.json', 'prerequisites/emulator-launch.json'),
+                (runtime / 'runtime-status.json', 'prerequisites/runtime-ready.json'),
+                (toolchain, 'prerequisites/toolchain-inputs.json')]
++    mapping += [(toolchain.parent / name, 'prerequisites/toolchain/' + name) for name in c.TOOL_METADATA]
+     report = c.json_file(device / 'capture-device.json')
+     mapping.append((device / 'capture-device.json', 'prerequisites/device/capture-device.json'))
+     for entry in report['commands']:
+@@ -470,19 +472,40 @@
+     policy = c.protocol()
+     c.require(type(args.slot) is int and 1 <= args.slot <= 8 and args.slot == len(experiment['slots']) + 1,
+               'Only the next fixed unattempted slot may be invoked; retries/reordering are forbidden')
+-    parents = c.load_parents(args.parents)
+-    prepare.verify_preparation(args.parents, args.source_root, args.prepared)
+-    c.require(experiment['preparation_identity'] == c.file_identity(args.prepared / 'preparation.json')
+-              and experiment['source_root'] == str(args.source_root.resolve())
+-              and experiment['parents'] == str(args.parents.resolve())
+-              and experiment['prepared'] == str(args.prepared.resolve())
+-              and experiment['adb'] == {'path': str(args.adb.resolve()), **c.file_identity(args.adb)},
+-              'Executed source/preflight/ADB changed between slot invocations')
+-    validate_prefix(output, experiment, parents, live=True)
+-    c.require(invocation_start < c.now_ns() < experiment['deadline_ns'], 'Global experiment deadline expired')
+     spec = policy['slots'][args.slot - 1]
+     folder = output / f'slot-{args.slot:02d}'
+     folder.mkdir(exist_ok=False)
++    # Reserve this exact invocation before any further read/guard. A failed
++    # preflight retains its owned slot folder and cannot be retried after repair.
++    attempt = {'schema': 1, 'experiment_id': experiment['id'], 'slot': args.slot,
++               'started_ns': invocation_start, 'status': 'PREFLIGHT_RUNNING'}
++    c.write_json(folder / 'attempt.json', attempt)
++    experiment['status'] = 'SLOT_INVOCATION_RESERVED'
++    experiment['reserved_slot'] = args.slot
++    experiment['unattempted_indices'] = list(range(args.slot + 1, 9))
++    c.write_json(output / 'experiment.json', experiment)
++    try:
++        parents = c.load_parents(args.parents)
++        prepare.verify_preparation(args.parents, args.source_root, args.prepared)
++        c.require(experiment['preparation_identity'] == c.file_identity(args.prepared / 'preparation.json')
++                  and experiment['source_root'] == str(args.source_root.resolve())
++                  and experiment['parents'] == str(args.parents.resolve())
++                  and experiment['prepared'] == str(args.prepared.resolve())
++                  and experiment['adb'] == {'path': str(args.adb.resolve()), **c.file_identity(args.adb)},
++                  'Executed source/preflight/ADB changed between slot invocations')
++        validate_prefix(output, experiment, parents, live=True)
++        c.require(invocation_start < c.now_ns() < experiment['deadline_ns'], 'Global experiment deadline expired')
++        attempt['status'] = 'PREFLIGHT_VERIFIED'
++        attempt['preflight_finished_ns'] = c.now_ns()
++        c.write_json(folder / 'attempt.json', attempt)
++    except Exception as error:
++        attempt.update(status='PREFLIGHT_FAILED_NO_CONTINUATION', finished_ns=c.now_ns(),
++                       reason=type(error).__name__ + ': ' + str(error))
++        c.write_json(folder / 'attempt.json', attempt)
++        experiment.update(status='FAILED_SLOT_PREFLIGHT_NO_CONTINUATION', failed_reserved_slot=args.slot,
++                          reason=attempt['reason'], updated_ns=c.now_ns())
++        c.write_json(output / 'experiment.json', experiment)
++        raise
+     report = {'schema': 1, 'status': 'INCOMPLETE', 'experiment_id': experiment['id'],
+               'experiment_start_ns': experiment['started_ns'], 'global_deadline_ns': experiment['deadline_ns'],
+               'runtime_manifest_sha256': experiment['runtime_manifest_sha256'],
+@@ -490,6 +513,7 @@
+     recorder = Recorder(folder, args.adb, parents, report)
+     recorder.deadline_ns = min(experiment['deadline_ns'], invocation_start + 900_000_000_000)
+     try:
++        report['attempt'] = recorder.save('attempt-receipt.json', c.bytes_json(attempt))
+         body = slot(recorder, spec, Path(experiment['apks'][spec['apk']]['path']),
+                     recorder.deadline_ns, '0' if args.slot <= 5 else '1', experiment['primary_radio'])
+         report['status'] = body['status']
+@@ -498,6 +522,7 @@
+         recorder.checkpoint()
+         receipt = recorder.save('slot.json', c.bytes_json(report))
+         experiment['slots'].append({'index': args.slot, 'directory': folder.name, 'receipt': receipt})
++        experiment.pop('reserved_slot')
+         experiment['unattempted_indices'] = list(range(args.slot + 1, 9))
+         experiment['status'] = ('FIXED_SLOTS_IN_PROGRESS' if report['status'] == 'COMPLETE' else 'FAILED_SLOT_NO_CONTINUATION')
+         experiment['updated_ns'] = c.now_ns()
+@@ -520,12 +545,12 @@
+     except Exception as error:
+         experiment['live_inputs_verified_after_capture'] = False
+         experiment['final_input_error'] = type(error).__name__ + ': ' + str(error)
+-    experiment['finished_ns'] = c.now_ns()
+-    experiment['finished_utc'] = c.utc()
++    experiment['capture_finished_ns'] = c.now_ns()
+     experiment['status'] = ('FIXED_CAPTURE_SCHEDULE_COMPLETE' if len(experiment['slots']) == 8
+                             and experiment['status'] == 'FIXED_SLOTS_IN_PROGRESS' else 'FIXED_CAPTURE_SCHEDULE_INCOMPLETE')
+     c.write_json(output / 'experiment.json', experiment)
+     result = verify_experiment(output, experiment, parents, live=True, write_pairs=True)
++    c.write_json(output / 'experiment.json', experiment)
+     c.write_json(output / 'comparison.json', result)
+     return result
+ 
+--- draft-01/tools/indicator_sampling/runtime-files.json
++++ offline-02/tools/indicator_sampling/runtime-files.json
+@@ -0,0 +1,77 @@
++[
++  {
++    "path": ".github/workflows/indicator-fixed-sampling.yml",
++    "bytes": 18658,
++    "sha256": "732f4e40d97d3828dcc4d633785cab4dcd085edf23fd55b5f96456bed55d84a1"
++  },
++  {
++    "path": "tools/indicator_sampling/README.md",
++    "bytes": 8924,
++    "sha256": "d72b37bfe4c392f677b623e7800ae3b5679cc80d05064f684d8d39579300e19a"
++  },
++  {
++    "path": "tools/indicator_sampling/aapt2",
++    "bytes": 6135688,
++    "sha256": "6fbed5edaddcfbee99a3ae6e7208c8654c6cb2bedb4ed5cbbf4e154d7d38a745"
++  },
++  {
++    "path": "tools/indicator_sampling/common.py",
++    "bytes": 9379,
++    "sha256": "09a2d1a5360bdb4a6e28f637012949c310f65d1885b9a7a9ef785dc12d4c4a67"
++  },
++  {
++    "path": "tools/indicator_sampling/fixtures/candidate-intro1-preinput.xml",
++    "bytes": 5939,
++    "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
++  },
++  {
++    "path": "tools/indicator_sampling/fixtures/candidate-intro2.xml",
++    "bytes": 6689,
++    "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
++  },
++  {
++    "path": "tools/indicator_sampling/fixtures/original-intro1-preinput.xml",
++    "bytes": 5939,
++    "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
++  },
++  {
++    "path": "tools/indicator_sampling/fixtures/original-intro2.xml",
++    "bytes": 6689,
++    "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
++  },
++  {
++    "path": "tools/indicator_sampling/historical-coordinates.json",
++    "bytes": 11700,
++    "sha256": "7a8f88a7e79a23a3fa633f8e75c45a4060a02b86b3c24105181e2b57058da646"
++  },
++  {
++    "path": "tools/indicator_sampling/pins.json",
++    "bytes": 4088,
++    "sha256": "f6340442c5e26180f2eec358b887b1f7137b49210fab1f42b40422ce676518ae"
++  },
++  {
++    "path": "tools/indicator_sampling/prepare.py",
++    "bytes": 16312,
++    "sha256": "821e08cb4c0e1f568d832588ec85d10f148a27a092ba9269d8871d9ac9cd2905"
++  },
++  {
++    "path": "tools/indicator_sampling/protocol.json",
++    "bytes": 4543,
++    "sha256": "edbb9647e129b2f3475f0a1b759628996d388a50ad65ee6d527ba0737432a482"
++  },
++  {
++    "path": "tools/indicator_sampling/record.py",
++    "bytes": 33511,
++    "sha256": "2f9d81423930ec7717b6972a6b6bf46ead6e4ae54b0f7950ceabe62d4c947374"
++  },
++  {
++    "path": "tools/indicator_sampling/test_indicator_sampling.py",
++    "bytes": 32837,
++    "sha256": "c0358116b2eb9a91819098187e2f59ad5b2719a35ad043456f33951904ea0f17"
++  },
++  {
++    "path": "tools/indicator_sampling/verify.py",
++    "bytes": 57632,
++    "sha256": "0ce0a496d22d257d907978db213a0a0b6fe29f8156176f4efb43858d024351e3"
++  }
++]
+--- draft-01/tools/indicator_sampling/test_indicator_sampling.py
++++ offline-02/tools/indicator_sampling/test_indicator_sampling.py
+@@ -0,0 +1,648 @@
++"""Bounded synthetic controls; no ADB, emulator, Java, or Android execution.
++
++One actual Recorder-produced synthetic eight-slot baseline is retained. Fault
++cases retain only their exact byte/stat differences from that complete baseline,
++plus this source and the observed rejection. No failed fixture is discarded.
++"""
++from __future__ import annotations
++
++from contextlib import ExitStack, redirect_stdout
++import copy
++import gzip
++import io
++import json
++import math
++import os
++from pathlib import Path
++import shlex
++import shutil
++import struct
++import subprocess
++import sys
++import tempfile
++import unittest
++from unittest import mock
++import xml.etree.ElementTree as ET
++import zlib
++
++import common as c
++import prepare
++import record
++import verify
++
++PARENTS = Path(os.environ.get('INDICATOR_PARENTS', c.HERE.parents[1] / 'pinned-inputs')).resolve()
++MODULES = c.load_parents(PARENTS)
++EVIDENCE = Path(os.environ.get('INDICATOR_HOST_EVIDENCE') or tempfile.mkdtemp(prefix='indicator-host-controls-')).resolve()
++EVIDENCE.mkdir(parents=True, exist_ok=True)
++REAL_IDENTITY = c.file_identity
++REAL_RECORDER = record.Recorder
++
++
++def snapshot(root):
++    rows = {}
++    for path in root.rglob('*'):
++        if path.is_file():
++            info = path.stat()
++            rows[path.relative_to(root).as_posix()] = {**REAL_IDENTITY(path),
++                'mode': info.st_mode, 'links': info.st_nlink, 'device': info.st_dev, 'inode': info.st_ino}
++    return rows
++
++
++class Clock:
++    def __init__(self):
++        self.value = c.now_ns()
++
++    def now(self):
++        self.value += 1000
++        return self.value
++
++    def seconds(self):
++        return self.now() / 1e9
++
++    def sleep(self, seconds):
++        self.value += math.ceil(seconds * 1e9)
++
++
++def png(tag):
++    width, height = 720, 1280
++    rgba = bytearray(b'\x01\x02\x03\xff' * (width * height))
++    start = (1190 * width + 200) * 4
++    rgba[start:start + 4] = bytes((tag, 10, 20, 255))
++    scanlines = b''.join(b'\0' + rgba[row * width * 4:(row + 1) * width * 4] for row in range(height))
++    def chunk(name, data):
++        return struct.pack('>I', len(data)) + name + data + struct.pack('>I', zlib.crc32(name + data) & 0xffffffff)
++    return (b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', struct.pack('>2I5B', width, height, 8, 6, 0, 0, 0))
++            + chunk(b'IDAT', zlib.compress(scanlines, 1)) + chunk(b'IEND', b''))
++
++
++class Device:
++    def __init__(self, clock):
++        self.clock, self.slot, self.installed, self.post, self.sample = clock, 0, False, False, -1
++        self.role, self.pid, self.calls, self.fail = 'original', '12345', [], None
++        self.settings = {key.split(':', 1)[1]: value for key, value in c.expected_environment('0').items() if ':' in key}
++        self.signal = 'mSignalStrength=SignalStrength:{mLte=CellSignalStrengthLte: level=4 rsrp=-75,primary=CellSignalStrengthLte}\n'
++        self.bad_preinput = False
++        self.dumps = 0
++
++    def run(self, argv, capture_output=True, timeout=120, text=False, check=False):
++        self.clock.sleep(0.005)
++        command = argv[3:]
++        self.calls.append(command)
++        if self.fail is not None and self.fail(command):
++            raise subprocess.TimeoutExpired(argv, timeout, output=b'synthetic partial output\n', stderr=b'synthetic timeout\n')
++        code, out = 0, b''
++        if command == ['get-state']:
++            out = b'device\n'
++        elif command[:1] == ['emu']:
++            tokens = command[1:]
++            if tokens == ['avd', 'name']:
++                out = (c.AVD + '\nOK\n').encode()
++            elif tokens == ['gsm', 'status']:
++                out = b'gsm voice state: home\ngsm data state: home\nOK\n'
++            else:
++                out = b'OK\n'
++        elif command == ['uninstall', c.PACKAGE]:
++            self.slot += 1
++            self.installed, self.post, self.dumps = False, False, 0
++            self.sample, self.pid = -1, str(12345 + self.slot)
++            out = b'Success\n'
++        elif command[:2] == ['install', '--no-streaming']:
++            self.installed = True
++            self.role = Path(command[2]).stem
++            out = b'Success\n'
++        elif command[:2] == ['exec-out', 'cat']:
++            fixture = 'original-intro2.xml' if self.post else 'original-intro1-preinput.xml'
++            out = (c.HERE / 'fixtures' / fixture).read_bytes()
++            self.dumps += 1
++            if self.post:
++                self.sample += 1
++                tree = ET.fromstring(out)
++                node = next(n for n in tree.iter('node') if n.get('resource-id') == c.PACKAGE + ':id/button_skip')
++                node.set('text', 'synthetic slot %d sample %d' % (self.slot, self.sample))
++                out = ET.tostring(tree)
++            elif self.bad_preinput and self.dumps == 2:
++                out = out.replace(b'text="SKIP"', b'text="synthetic changed preinput"')
++        elif command == ['exec-out', 'screencap', '-p']:
++            out = png(self.slot * 16 + max(self.sample, 0))
++        elif command[:1] == ['shell']:
++            tokens = shlex.split(command[1]) if len(command) == 2 else command[1:]
++            if tokens[:1] == ['getprop']:
++                out = (('1' if tokens[1] == 'sys.boot_completed' else c.expected_environment('0')[tokens[1]]) + '\n').encode()
++            elif tokens[:2] == ['settings', 'get']:
++                out = (self.settings[tokens[3]] + '\n').encode()
++            elif tokens[:2] == ['settings', 'put']:
++                self.settings[tokens[3]] = tokens[4]
++            elif tokens == ['dumpsys', 'telephony.registry']:
++                out = self.signal.encode()
++            elif tokens == ['dumpsys', 'battery']:
++                out = b'level: 100\n'
++            elif tokens[:1] == ['date']:
++                out = b'2026-10-12T00:00:00Z\n'
++            elif tokens[:2] == ['wm', 'size']:
++                out = b'Physical size: 720x1280\n'
++            elif tokens[:2] == ['wm', 'density']:
++                out = b'Physical density: 320\n'
++            elif tokens == ['pm', 'path', c.PACKAGE]:
++                out = b'package:/data/app/synthetic/base.apk\n' if self.installed else b''
++            elif tokens[:1] == ['sha256sum']:
++                out = (((c.ORIGINAL if self.role == 'original' else c.CANDIDATE)['sha256']) + '  ' + tokens[1] + '\n').encode()
++            elif tokens == ['pidof', c.PACKAGE]:
++                code, out = (0, (self.pid + '\n').encode()) if self.installed else (1, b'')
++            elif tokens == ['dumpsys', 'activity', 'activities']:
++                out = ('topResumedActivity: ActivityRecord{a u0 ' + c.INTRO + ' t1}\n').encode()
++            elif tokens[:3] == ['dumpsys', 'activity', 'service']:
++                out = b'isInDemoMode=true\nisDemoModeAllowed=true\n'
++            elif tokens[:3] == ['cmd', 'package', 'resolve-activity']:
++                out = (c.INTRO + '\n').encode()
++            elif tokens[:2] == ['am', 'start']:
++                out = b'Status: ok\n'
++            elif tokens[:2] == ['am', 'broadcast']:
++                out = b'Broadcast completed: result=0\n'
++            elif tokens[:2] == ['input', 'tap']:
++                self.post = True
++            elif tokens[:2] == ['uiautomator', 'dump']:
++                out = ('UI hierarchy dumped to: ' + tokens[2] + '\n').encode()
++            elif tokens[:2] == ['rm', '-f']:
++                pass
++            else:
++                raise AssertionError('Unexpected simulated shell argv: ' + repr(tokens))
++        else:
++            raise AssertionError('Unexpected simulated ADB argv: ' + repr(command))
++        return subprocess.CompletedProcess(argv, code, out.decode() if text else out, '' if text else b'')
++
++
++def build_baseline(folder):
++    folder.mkdir()
++    clock, tooling = Clock(), folder / 'tooling'
++    device = Device(clock)
++    metadata = folder / 'toolchain'
++    rows = []
++    for name in [*c.TOOL_METADATA, *c.TOOL_BINARIES]:
++        path = tooling / name
++        path.parent.mkdir(parents=True, exist_ok=True)
++        path.write_text('SYNTHETIC HOST FIXTURE ONLY: ' + name + '\n')
++        rows.append({'path': name, **REAL_IDENTITY(path)})
++        if name in c.TOOL_METADATA:
++            target = metadata / name
++            target.parent.mkdir(parents=True, exist_ok=True)
++            target.write_bytes(path.read_bytes())
++    c.write_json(metadata / 'installed-inputs.json', rows)
++    adb = tooling / 'android/platform-tools/adb'
++    radio = MODULES['radio']
++    console = io.StringIO()
++    with mock.patch.object(sys, 'argv', ['configure_capture_device.py', '--adb', str(adb),
++              '--serial', c.SERIAL, '--output', str(folder / 'device'), '--demo-clock', '1200', '--disable-animations']), \
++         mock.patch.object(radio.subprocess, 'run', side_effect=device.run), \
++         mock.patch.object(radio.time, 'monotonic', side_effect=clock.seconds), \
++         mock.patch.object(radio.time, 'sleep', side_effect=clock.sleep), redirect_stdout(console):
++        assert radio.main() == 0
++    (folder / 'helper-console.txt').write_text(console.getvalue())
++    runtime = folder / 'runtime'
++    runtime.mkdir()
++    launch = {'serial': c.SERIAL, 'adb_path': str(adb), 'avd': c.AVD,
++        'command': [str(tooling / 'android/emulator/emulator'), '-avd', c.AVD, '-port', '5560',
++                    '-no-window', '-no-audio', '-no-boot-anim', '-no-snapshot', '-accel', 'on',
++                    '-gpu', 'swiftshader', '-cores', '2', '-memory', '3072', '-camera-back', 'none', '-camera-front', 'none'],
++        'ram_mb': 3072, 'virtual_cores': 2, 'acceleration': 'on', 'state': 'booting',
++        'started_utc': '2026-10-12T00:00:00Z'}
++    c.write_json(runtime / 'emulator-launch.json', launch)
++    ready = {**launch, 'state': 'ready', 'adb_exit_code': 0,
++             'properties': {key: value for key, value in c.expected_environment('0').items() if key.startswith('ro.')}}
++    ready['properties']['sys.boot_completed'] = '1'
++    c.write_json(runtime / 'runtime-status.json', ready)
++    apks = {}
++    for role, wanted in [('original', c.ORIGINAL), ('candidate', c.CANDIDATE)]:
++        path = folder / (role + '.apk')
++        path.write_bytes(b'NOT AN APK: synthetic local identity boundary')
++        apks[role] = {'path': str(path), **wanted}
++    prepared = folder / 'prepared'
++    prepared.mkdir()
++    c.write_json(prepared / 'preparation.json', {'synthetic_host_control': True, 'apks': apks})
++    args = type('Args', (), dict(parents=PARENTS, source_root=c.HERE.parents[1], prepared=prepared,
++        adb=adb, output=folder / 'experiment', runtime=runtime, device=folder / 'device',
++        toolchain_inputs=metadata / 'installed-inputs.json', tooling=tooling, slot=None))()
++    def local_identity(path):
++        for role, item in apks.items():
++            if Path(path).resolve() == Path(item['path']):
++                return c.ORIGINAL if role == 'original' else c.CANDIDATE
++        return REAL_IDENTITY(path)
++    def factory(*values, **kwargs):
++        return REAL_RECORDER(*values, **kwargs, clock=clock.now, sleeper=clock.sleep, executor=device.run)
++    with mock.patch.object(c, 'now_ns', side_effect=clock.now), \
++         mock.patch.object(c, 'file_identity', side_effect=local_identity), \
++         mock.patch.object(prepare, 'verify_preparation', return_value={'apks': apks}), \
++         mock.patch.object(record, 'Recorder', side_effect=factory):
++        record.initialize(args)
++        for index in range(1, 9):
++            args.slot = index
++            record.one_slot(args)
++        value = record.finish(args)
++    assert value['evidence_complete'] is True, value['errors']
++    c.write_json(folder / 'simulation-scope.json', {'android_executed': False, 'adb_executed': False,
++        'apk_preflight_mocked_for_capture_protocol_only': True, 'fixture_apk_files_are_not_applications': True,
++        'pinned_radio_helper_executed_with_synthetic_executor': True, 'actual_recorder_and_verifier_executed': True,
++        'completed_slots': 8, 'post_input_frames': 40, 'fixed_pairs': 92,
++        'all_sample_pairs_differ_in_full_rgba_and_canonical_xml': all(p['difference']['changed_pixels'] == 1
++            and p['xml_canonical_equal'] is False for p in value['pairs'])})
++    return value, clock, device, args
++
++
++class PureControls(unittest.TestCase):
++    def setUp(self):
++        self.folder = EVIDENCE / self.id().split('.')[-1]
++        self.folder.mkdir()
++
++    def test_fixed_slot_and_ninety_two_pair_inventory(self):
++        slots = c.protocol()['slots']
++        self.assertEqual([s['apk'] for s in slots], ['original', 'candidate', 'candidate', 'original'] * 2)
++        self.assertEqual([s['animator_duration_scale'] for s in slots], ['0'] * 4 + ['1'] * 4)
++        pairs = verify.fixed_pairs()
++        self.assertEqual((len(pairs), len({p['id'] for p in pairs})), (92, 92))
++        self.assertEqual([sum(p['kind'] == kind for p in pairs) for kind in ['cross-run', 'temporal']], [60, 32])
++        c.write_json(self.folder / 'actual-pairs.json', pairs)
++
++    def test_actual_xml_next_target_is_guarded(self):
++        raw = (c.HERE / 'fixtures/original-intro1-preinput.xml').read_bytes()
++        self.assertEqual(MODULES['editor_journey'].target(raw, c.PACKAGE,
++            {'resource-id': c.PACKAGE + ':id/button_next', 'content-desc': 'Next'}, 720, 1280), [640, 1152])
++        c.surface_identity(raw, 'intro1', MODULES)
++
++    def reject_xml(self, mutation):
++        tree = ET.fromstring((c.HERE / 'fixtures/original-intro1-preinput.xml').read_bytes())
++        node = next(n for n in tree.iter('node') if n.get('resource-id') == c.PACKAGE + ':id/button_next')
++        mutation(tree, node)
++        raw = ET.tostring(tree)
++        (self.folder / 'mutant.xml').write_bytes(raw)
++        with self.assertRaises(c.Invalid):
++            c.surface_identity(raw, 'intro1', MODULES)
++
++    def test_disabled_observed_next_rejects(self):
++        self.reject_xml(lambda tree, node: node.set('enabled', 'false'))
++
++    def test_changed_observed_bounds_reject(self):
++        self.reject_xml(lambda tree, node: node.set('bounds', '[700,1104][800,1200]'))
++
++    def test_duplicate_next_rejects(self):
++        with self.assertRaises((c.Invalid, MODULES['editor_journey'].JourneyError)):
++            tree = ET.fromstring((c.HERE / 'fixtures/original-intro1-preinput.xml').read_bytes())
++            node = next(n for n in tree.iter('node') if n.get('resource-id') == c.PACKAGE + ':id/button_next')
++            tree.append(copy.deepcopy(node))
++            raw = ET.tostring(tree)
++            (self.folder / 'mutant.xml').write_bytes(raw)
++            c.surface_identity(raw, 'intro1', MODULES)
++
++    def test_unrelated_full_xml_difference_is_measured_not_filtered(self):
++        raw = (c.HERE / 'fixtures/original-intro2.xml').read_bytes()
++        tree = ET.fromstring(raw)
++        node = next(n for n in tree.iter('node') if n.get('resource-id') == c.PACKAGE + ':id/button_skip')
++        node.set('text', 'synthetic different leaf')
++        changed = ET.tostring(tree)
++        self.assertNotEqual(c.surface_identity(raw, 'intro2', MODULES), c.surface_identity(changed, 'intro2', MODULES))
++        (self.folder / 'mutant.xml').write_bytes(changed)
++
++    def test_lossless_mixed_rgba_roundtrip(self):
++        a = b'\x00\x01\x02\xff' * 4
++        b = bytearray(a); b[4:8] = b'\x03\x04\x05\x06'; b[12:16] = b'\x07\x08\x09\x0a'
++        path = self.folder / 'values.bin.gz'
++        value = verify.write_difference(path, a, bytes(b), 2, 2)
++        self.assertEqual(value['changed_pixels'], 2)
++        self.assertEqual(list(verify.DIFF.iter_unpack(gzip.decompress(path.read_bytes()))),
++                         [(1, a[4:8], bytes(b[4:8])), (3, a[12:16], bytes(b[12:16]))])
++        c.write_json(self.folder / 'metadata.json', value)
++
++    def test_lossless_empty_pair_is_retained(self):
++        value = verify.write_difference(self.folder / 'values.bin.gz', b'\0' * 16, b'\0' * 16, 2, 2)
++        self.assertEqual((value['changed_pixels'], value['expanded_bytes']), (0, 0))
++        c.write_json(self.folder / 'metadata.json', value)
++
++    def fault_difference(self, transform):
++        a, b = b'\0' * 16, b'\1' * 16
++        path = self.folder / 'values.bin.gz'
++        value = verify.write_difference(path, a, b, 2, 2)
++        raw = transform(gzip.decompress(path.read_bytes()))
++        path.write_bytes(gzip.compress(raw, mtime=0))
++        value.update(c.file_identity(path), expanded_bytes=len(raw), expanded_sha256=c.identity(raw)['sha256'])
++        c.write_json(self.folder / 'mutant-metadata.json', value)
++        with self.assertRaises(c.Invalid):
++            verify.verify_difference(path, value, a, b)
++
++    def test_lossless_missing_coordinate_rejects(self):
++        self.fault_difference(lambda raw: raw[12:])
++
++    def test_lossless_wrong_rgba_rejects(self):
++        self.fault_difference(lambda raw: raw[:4] + b'\x09' + raw[5:])
++
++    def test_lossless_repeated_coordinate_rejects(self):
++        self.fault_difference(lambda raw: raw[:12] + raw[:12] + raw[24:])
++
++    def test_lossless_truncated_record_rejects(self):
++        self.fault_difference(lambda raw: raw[:-1])
++
++    def test_offline_timeout_retains_both_partial_streams(self):
++        error = subprocess.TimeoutExpired(['synthetic'], 60, output=b'partial out\n', stderr=b'partial err\n')
++        with mock.patch.object(prepare.subprocess, 'run', side_effect=error):
++            value = prepare.offline_command(['synthetic'], 60, 'timeout', self.folder)
++        self.assertTrue(value['timed_out'])
++        self.assertIsNone(value['returncode'])
++        self.assertEqual((self.folder / 'timeout.stdout').read_bytes(), b'partial out\n')
++        self.assertEqual((self.folder / 'timeout.stderr').read_bytes(), b'partial err\n')
++
++    def test_capture_timeout_keeps_partial_output_and_cleans_without_retry(self):
++        clock = Clock(); device = Device(clock)
++        device.installed = True
++        device.fail = lambda argv: argv[:2] == ['exec-out', 'cat']
++        trace = {'commands': [], 'observations': []}
++        recorder = record.Recorder(self.folder, Path('/synthetic/adb'), MODULES, trace,
++            clock=clock.now, sleeper=clock.sleep, executor=device.run)
++        recorder.deadline_ns = clock.now() + 900_000_000_000
++        with self.assertRaisesRegex(c.Invalid, 'Fixed observation failed'):
++            recorder.observation('one-failed-observation', 'intro1')
++        self.assertEqual(sum(row['argv'][:2] == ['exec-out', 'cat'] for row in trace['commands']), 1)
++        self.assertEqual(sum(row['argv'][0] == 'shell' and row['argv'][1].startswith('rm -f ') for row in trace['commands']), 1)
++        timed_out = [row for row in trace['commands'] if row['timed_out']]
++        self.assertEqual(len(timed_out), 1)
++        self.assertEqual((self.folder / timed_out[0]['stdout']['path']).read_bytes(), b'synthetic partial output\n')
++        self.assertEqual(trace['observations'][0]['status'], 'INCOMPLETE')
++
++
++class PreflightInventoryControls(unittest.TestCase):
++    def setUp(self):
++        self.temp = Path(tempfile.mkdtemp(prefix='indicator-source-case-'))
++        self.source = self.temp / 'source'
++        shutil.copytree(c.HERE, self.source / 'tools/indicator_sampling')
++        workflow = self.source / prepare.WORKFLOW
++        workflow.parent.mkdir(parents=True)
++        shutil.copyfile(c.HERE.parents[1] / prepare.WORKFLOW, workflow)
++        self.here = self.source / 'tools/indicator_sampling'
++        self.error = None
++
++    def tearDown(self):
++        target = EVIDENCE / self.id().split('.')[-1]
++        target.mkdir()
++        shutil.copyfile(self.here / 'runtime-files.json', target / 'actual-runtime-files.json')
++        c.write_json(target / 'result.json', {'source_hashes_checked': True, 'observed_rejection': self.error,
++            'synthetic_source_copy_only': True, 'android_executed': False})
++        shutil.rmtree(self.temp)
++
++    def check(self, mutate=None):
++        if mutate:
++            path = self.here / 'runtime-files.json'
++            rows = c.json_file(path)
++            mutate(rows)
++            c.write_json(path, rows)
++        with mock.patch.object(c, 'HERE', self.here):
++            if mutate is None:
++                return prepare.source_manifest(self.source)
++            try:
++                prepare.source_manifest(self.source)
++            except c.Invalid as error:
++                self.error = str(error)
++            else:
++                self.fail('Incomplete or changed source inventory was accepted')
++
++    def test_complete_runtime_file_inventory(self):
++        self.assertEqual(len(self.check()), len(prepare.OWN_FILES) + 2)
++
++    def test_runtime_inventory_cannot_omit_hidden_workflow(self):
++        self.check(lambda rows: rows.__setitem__(slice(None), [row for row in rows if row['path'] != prepare.WORKFLOW]))
++        self.assertRegex(self.error, 'independently required inventory')
++
++    def test_runtime_inventory_cannot_omit_recorder(self):
++        self.check(lambda rows: rows.__setitem__(slice(None), [row for row in rows if not row['path'].endswith('/record.py')]))
++        self.assertRegex(self.error, 'independently required inventory')
++
++    def test_runtime_inventory_cannot_reorder_or_duplicate(self):
++        self.check(lambda rows: rows.__setitem__(1, copy.deepcopy(rows[0])))
++        self.assertRegex(self.error, 'independently required inventory')
++
++    def test_runtime_inventory_cannot_change_a_source_hash(self):
++        self.check(lambda rows: rows[1].__setitem__('sha256', '0' * 64))
++        self.assertRegex(self.error, 'Actual diagnostic source differs')
++
++
++class SyntheticTraceControls(unittest.TestCase):
++    @classmethod
++    def setUpClass(cls):
++        cls.baseline = EVIDENCE / 'complete-synthetic-baseline'
++        cls.result, cls.clock, cls.device, cls.args = build_baseline(cls.baseline)
++
++    def setUp(self):
++        self.folder = Path(tempfile.mkdtemp(prefix='indicator-case-'))
++        self.root = self.folder / 'experiment'
++        shutil.copytree(self.baseline / 'experiment', self.root)
++        self.before = snapshot(self.root)
++        self.experiment = c.json_file(self.root / 'experiment.json')
++        self.rejection = None
++
++    def tearDown(self):
++        target = EVIDENCE / self.id().split('.')[-1]
++        target.mkdir()
++        after = snapshot(self.root)
++        changes = []
++        for name in sorted(set(self.before) | set(after)):
++            if self.before.get(name) != after.get(name):
++                row = {'path': name, 'before': self.before.get(name), 'after': after.get(name)}
++                if name in after:
++                    saved = target / 'changed-files' / name
++                    saved.parent.mkdir(parents=True, exist_ok=True)
++                    shutil.copyfile(self.root / name, saved)
++                changes.append(row)
++        c.write_json(target / 'case.json', {'synthetic_control_only': True,
++            'base': '../complete-synthetic-baseline/experiment', 'changes': changes,
++            'observed_rejection': self.rejection, 'android_executed': False})
++        shutil.rmtree(self.folder)
++
++    def rejected(self, pattern):
++        c.write_json(self.root / 'experiment.json', self.experiment)
++        try:
++            verify.validate_prefix(self.root, self.experiment, MODULES, live=False)
++        except Exception as error:
++            self.rejection = type(error).__name__ + ': ' + str(error)
++            self.assertIsInstance(error, (ValueError, KeyError))
++            self.assertRegex(str(error), pattern)
++        else:
++            self.fail('Synthetic damaged evidence was accepted')
++
++    def get_slot(self):
++        return c.json_file(self.root / 'slot-01/slot.json')
++
++    def artifact(self, row, data):
++        (self.root / 'slot-01' / row['path']).write_bytes(data)
++        row.update(c.identity(data))
++        row['creation']['final_stat']['bytes'] = len(data)
++
++    def close_slot(self, value):
++        raw = c.bytes_json(value)
++        self.artifact(self.experiment['slots'][0]['receipt'], raw)
++        (self.root / 'slot-01/journal.json').write_bytes(raw)
++
++    def change_observation_raw(self, value, shot, role, data):
++        positions = {'pid_first': 0, 'foreground': 1, 'hierarchy': 3, 'screenshot': 5,
++                     'foreground_final': 6, 'pid_final': 7}
++        self.artifact(value['commands'][shot['commands'][positions[role]]]['stdout'], data)
++        self.artifact(shot['artifacts'][role], data)
++
++    def close_observation(self, value, shot, index):
++        raw = c.bytes_json({key: item for key, item in shot.items() if key not in ('record_artifact', 'completed_ns')})
++        self.artifact(shot['record_artifact'], raw)
++        value['observations'][index] = copy.deepcopy(shot)
++        self.close_slot(value)
++
++    def test_complete_40_frames_and_92_different_pairs_are_diagnostic_complete(self):
++        self.assertTrue(self.result['evidence_complete'])
++        self.assertEqual((self.result['completed_slots'], self.result['post_input_frames'], self.result['measured_pairs']), (8, 40, 92))
++        self.assertTrue(all(row['difference']['changed_pixels'] == 1 and row['xml_canonical_equal'] is False for row in self.result['pairs']))
++        self.assertFalse(self.result['full_runtime_1_to_1_established'])
++        self.assertEqual(self.result['new_runtime_parity_credit'], 0)
++        replay = verify.verify_experiment(self.root, self.experiment, MODULES, live=False)
++        self.assertEqual(replay, self.result)
++
++    def test_changed_protocol_manifest_rejects(self):
++        self.experiment['runtime_manifest_sha256'] = '0' * 64
++        self.rejected('policy/source manifest')
++
++    def test_reordered_install_slot_rejects(self):
++        self.experiment['slots'][0]['index'] = 2
++        self.rejected('directory/index')
++
++    def test_extended_global_deadline_rejects(self):
++        self.experiment['deadline_ns'] += 1
++        self.rejected('reset or extended')
++
++    def test_missing_toolchain_role_rejects(self):
++        path = self.root / 'prerequisites/toolchain-inputs.json'
++        rows = c.json_file(path); rows.pop()
++        c.write_json(path, rows)
++        entry = next(row for row in self.experiment['prerequisite_inputs'] if row['path'] == 'prerequisites/toolchain-inputs.json')
++        entry.update(c.file_identity(path))
++        self.rejected('toolchain role inventory')
++
++    def test_unlisted_prerequisite_file_rejects(self):
++        (self.root / 'prerequisites/extra.txt').write_text('undeclared')
++        self.rejected('Unlisted or missing prerequisite')
++
++    def test_borrowed_command_index_rejects(self):
++        value = self.get_slot()
++        value['slot']['samples'][0]['commands'][0] = value['slot']['initial']['commands'][0]
++        self.close_slot(value)
++        self.rejected('missing, borrowed, out of order')
++
++    def test_dot_alias_stream_role_rejects(self):
++        value = self.get_slot()
++        value['commands'][0]['stdout']['path'] = './' + value['commands'][0]['stdout']['path']
++        self.close_slot(value)
++        self.rejected('another logical role')
++
++    def test_actual_hardlink_alias_rejects_in_archive_mode(self):
++        first = self.root / 'slot-01/command-00000.stderr'
++        second = self.root / 'slot-01/command-00001.stderr'
++        second.unlink(); os.link(first, second)
++        self.rejected('physical alias')
++
++    def test_missing_immutable_attempt_rejects(self):
++        (self.root / 'slot-01/attempt-receipt.json').unlink()
++        self.rejected('Missing, symbolic or unconfined')
++
++    def test_journal_changed_after_closure_rejects(self):
++        (self.root / 'slot-01/journal.json').write_bytes(b'{}\n')
++        self.rejected('journal differs')
++
++    def test_omitted_fixed_sample_rejects(self):
++        value = self.get_slot(); value['slot']['samples'].pop()
++        self.close_slot(value)
++        self.rejected('five fixed samples')
++
++    def test_changed_one_second_gap_rejects(self):
++        value = self.get_slot(); value['slot']['gaps'][0]['requested_ns'] = 0
++        self.close_slot(value)
++        self.rejected('Fixed wait label, origin or duration')
++
++    def test_changed_local_apk_identity_rejects_before_any_capture_credit(self):
++        value = self.get_slot(); value['slot']['local_apk_before']['sha256'] = '0' * 64
++        self.close_slot(value)
++        self.rejected('Local APK')
++
++    def test_changed_final_scale_rejects(self):
++        value = self.get_slot()
++        scale = value['slot']['scale_final']
++        index = scale['commands'][0]
++        self.artifact(value['commands'][index]['stdout'], b'1\n')
++        scale['values']['animator_duration_scale'] = '1'
++        self.close_slot(value)
++        self.rejected('scale')
++
++    def test_stale_sample_command_before_input_rejects(self):
++        value = self.get_slot()
++        index = value['slot']['samples'][0]['commands'][0]
++        value['commands'][index]['started_ns'] = value['slot']['preinput']['started_ns']
++        self.close_slot(value)
++        self.rejected('command start')
++
++    def test_unplanned_extra_input_argv_rejects(self):
++        value = self.get_slot()
++        index = value['slot']['samples'][0]['commands'][2]
++        value['commands'][index]['argv'] = ['shell', 'input tap 640 1152']
++        self.close_slot(value)
++        self.rejected('command argv/bound')
++
++    def test_consistent_new_pid_within_slot_rejects(self):
++        value = self.get_slot(); shot = value['slot']['samples'][0]
++        for role in ('pid_first', 'pid_final'):
++            self.change_observation_raw(value, shot, role, b'77777\n')
++        shot['pid'] = '77777'
++        self.close_observation(value, shot, 2)
++        self.rejected('Main process changed')
++
++    def test_consistent_other_same_package_component_rejects(self):
++        value = self.get_slot(); shot = value['slot']['samples'][0]
++        component = c.PACKAGE + '/' + c.PACKAGE + '.AnotherActivity'
++        for role in ('foreground', 'foreground_final'):
++            self.change_observation_raw(value, shot, role, ('topResumedActivity: ' + component + '\n').encode())
++        shot['component'] = component
++        self.close_observation(value, shot, 2)
++        self.rejected('foreground component changed')
++
++    def test_initial_to_preinput_full_xml_difference_rejects(self):
++        value = self.get_slot(); shot = value['slot']['preinput']['observation']
++        path = self.root / 'slot-01' / shot['artifacts']['hierarchy']['path']
++        tree = ET.fromstring(path.read_bytes())
++        node = next(n for n in tree.iter('node') if n.get('resource-id') == c.PACKAGE + ':id/button_skip')
++        node.set('text', 'synthetic different preinput leaf')
++        self.change_observation_raw(value, shot, 'hierarchy', ET.tostring(tree))
++        self.close_observation(value, shot, 1)
++        self.rejected('Complete initial/preinput XML changed')
++
++    def test_repaired_slot_cannot_retry_after_reserved_preflight_failure(self):
++        # Use a separate zero-slot prefix; its source/APK preflight is explicitly
++        # mocked to fail before any device action. No application operation runs.
++        experiment = copy.deepcopy(self.experiment)
++        experiment.update(slots=[], unattempted_indices=list(range(1, 9)), status='READY_FOR_FIXED_SLOTS')
++        for path in self.root.glob('slot-*'):
++            shutil.rmtree(path)
++        c.write_json(self.root / 'experiment.json', experiment)
++        args = copy.copy(self.args); args.output = self.root; args.slot = 1
++        with mock.patch.object(prepare, 'verify_preparation', side_effect=c.Invalid('synthetic fixed input failure')):
++            with self.assertRaisesRegex(c.Invalid, 'synthetic fixed input failure'):
++                record.one_slot(args)
++        failed = c.json_file(self.root / 'experiment.json')
++        self.assertEqual(failed['status'], 'FAILED_SLOT_PREFLIGHT_NO_CONTINUATION')
++        self.assertEqual(failed['unattempted_indices'], list(range(2, 9)))
++        with mock.patch.object(prepare, 'verify_preparation', return_value={}) as repaired:
++            with self.assertRaisesRegex(c.Invalid, 'cannot receive another install'):
++                record.one_slot(args)
++            repaired.assert_not_called()
++        self.rejection = 'PREFLIGHT_FAILED_NO_CONTINUATION; repaired retry rejected before its preflight'
++
++    def test_deadline_includes_fixed_pair_finalization(self):
++        self.experiment['finalization']['finished_ns'] = self.experiment['deadline_ns'] + 1
++        self.experiment['finished_ns'] = self.experiment['finalization']['finished_ns']
++        with mock.patch.object(verify, 'validate_prefix', return_value={'slots': [], 'errors': [],
++                'verified_artifact_roles': 0, 'verified_original_host_inodes': 0, 'verified_remote_xml_names': 0}):
++            result = verify.verify_experiment(self.root, self.experiment, MODULES, live=False)
++        self.assertFalse(result['evidence_complete'])
++        self.assertTrue(any(row.get('boundary') == 'global-finalization' for row in result['errors']))
++        self.rejection = 'global-finalization rejected recorded completion beyond the original global deadline'
++
++
++if __name__ == '__main__':
++    unittest.main(verbosity=2)
+--- draft-01/tools/indicator_sampling/verify.py
++++ offline-02/tools/indicator_sampling/verify.py
+@@ -62,6 +62,14 @@
+                           'ro.dalvik.vm.native.bridge': 'libndk_translation.so'}.items():
+         c.require(props.get(key) == expected, 'Required ready property differs: ' + key)
+     binaries = c.json_file(root / 'prerequisites/toolchain-inputs.json')
++    c.require(type(binaries) is list and [row.get('path') for row in binaries]
++              == [*c.TOOL_METADATA, *c.TOOL_BINARIES], 'Complete installed toolchain role inventory differs')
++    for row in binaries:
++        c.require(set(row) == {'path', 'bytes', 'sha256'} and type(row['bytes']) is int and row['bytes'] > 0
++                  and re.fullmatch(r'[0-9a-f]{64}', row['sha256']), 'Invalid installed toolchain record')
++        if row['path'] in c.TOOL_METADATA:
++            c.require(c.file_identity(c.checked_path(root, 'prerequisites/toolchain/' + row['path']))
++                      == {key: row[key] for key in ('bytes', 'sha256')}, 'Actual toolchain metadata copy differs')
+     rows = [row for row in binaries if row['path'] == 'android/platform-tools/adb']
+     c.require(len(rows) == 1 and experiment['adb'] == {'path': adb, **{key: rows[0][key] for key in ('bytes', 'sha256')}},
+               'Executed ADB differs from the pinned bootstrap output observation')
+@@ -128,6 +136,7 @@
+     streams, raw = set(), {}
+     expected_names = {'prerequisites/emulator-launch.json', 'prerequisites/runtime-ready.json',
+                       'prerequisites/toolchain-inputs.json', 'prerequisites/device/capture-device.json'}
++    expected_names.update('prerequisites/toolchain/' + name for name in c.TOOL_METADATA)
+     previous_start = None
+     for index, row in enumerate(device['commands']):
+         label = row['label']
+@@ -156,6 +165,8 @@
+                       'Emulator console setup command did not complete')
+         raw[index] = values['stdout']
+     c.require(actual_names == expected_names, 'Complete prerequisite input inventory differs')
++    c.require({path.relative_to(root).as_posix() for path in (root / 'prerequisites').rglob('*') if path.is_file()}
++              == expected_names, 'Unlisted or missing prerequisite file')
+     single = {label: raw[index] for index, label in enumerate(labels) if labels.count(label) == 1}
+     c.require(single['emulator-check'].strip() == single['boot-check'].strip() == '1'
+               and single['avd-name'].strip().splitlines() == [c.AVD, 'OK'], 'Initial emulator identity differs')
+@@ -189,6 +200,7 @@
+         self.root = Path(root).resolve()
+         self.live = live
+         self.names, self.host_inodes, self.actual_inodes = set(), set(), set()
++        self.remote_xml_names = set()
+ 
+     def artifact(self, prefix, row, name):
+         c.require(type(row) is dict and set(row) == {'path', 'bytes', 'sha256', 'creation'}
+@@ -343,6 +355,7 @@
+               and value['origin_ns'] == origin and value['target_ns'] == origin + duration,
+               'Fixed wait label, origin or duration changed')
+     start, end = value['started_ns'], value['finished_ns']
++    c.clock_interval(start, end, 'fixed wait')
+     c.require(origin <= previous <= start <= end <= following and end >= origin + duration,
+               'Fixed wait is incomplete or out of actual operation order')
+ 
+@@ -359,6 +372,8 @@
+     c.require(len(indices) == 8, 'Observation must have exactly eight acquisition commands')
+     remote = value['remote_xml']
+     c.require(re.fullmatch(r'/data/local/tmp/md-indicator-[0-9a-f]{32}\.xml', remote), 'Unexpected remote XML name')
++    c.require(remote not in commands.ledger.remote_xml_names, 'Another observation reused this remote XML role')
++    commands.ledger.remote_xml_names.add(remote)
+     expected = [(['shell', shlex.join(['pidof', c.PACKAGE])], 'pid_first', label + '-pid_first.txt'),
+         (['shell', 'dumpsys activity activities'], 'foreground', label + '-foreground.txt'),
+         (['shell', 'uiautomator dump ' + remote], None, None),
+@@ -393,10 +408,7 @@
+               'Main process changed within its fresh install')
+     c.require(all(c.canonical_component(raw[key].decode(), proof) == c.INTRO for key in ('foreground', 'foreground_final'))
+               and value['component'] == c.INTRO, 'Observed foreground component changed')
+-    fixture_name = 'original-intro1-preinput.xml' if surface == 'intro1' else 'original-intro2.xml'
+-    canonical = runner.canonical(runner.tree(raw['hierarchy'], c.PACKAGE))
+-    expected_tree = runner.canonical(runner.tree((c.HERE / 'fixtures' / fixture_name).read_bytes(), c.PACKAGE))
+-    c.require(canonical == expected_tree, 'Full XML semantics/ancestors/bounds differ from the observed surface')
++    c.surface_identity(raw['hierarchy'], surface, parents)
+     width, height, rgba = parents['observed_journey'].png_pixels(raw['screenshot'], proof)
+     c.require((width, height, len(rgba)) == (720, 1280, 720 * 1280 * 4), 'Full PNG dimensions differ')
+     serialized = commands.ledger.artifact(commands.prefix, value['record_artifact'], label + '-observation.json')
+@@ -415,6 +427,7 @@
+ def verify_slot(ledger, entry, spec, experiment, parents, previous_end, primary):
+     prefix = f'slot-{spec["index"]:02d}'
+     c.require(entry['index'] == spec['index'] and entry['directory'] == prefix, 'Slot directory/index changed')
++    c.require(type(entry['index']) is int, 'Slot index must be an actual integer')
+     serialized = ledger.artifact(prefix, entry['receipt'], 'slot.json')
+     report = json.loads(serialized)
+     c.require(serialized == c.bytes_json(report), 'Slot serialization changed')
+@@ -436,6 +449,16 @@
+               and begin <= value['started_ns'] <= value['finished_ns'] <= end, 'Fixed slot body is incomplete or reordered')
+     commands = Commands(ledger, prefix, report['commands'], begin, end,
+                         min(begin + 900_000_000_000, experiment['deadline_ns']))
++    attempt_bytes = ledger.artifact(prefix, report['attempt'], 'attempt-receipt.json')
++    attempt = json.loads(attempt_bytes)
++    c.require(attempt_bytes == c.bytes_json(attempt)
++              and c.checked_path(ledger.root, prefix + '/attempt.json').read_bytes() == attempt_bytes
++              and attempt['schema'] == 1 and attempt['experiment_id'] == experiment['id']
++              and attempt['slot'] == spec['index'] and attempt['status'] == 'PREFLIGHT_VERIFIED'
++              and attempt['started_ns'] == begin
++              and begin <= attempt['preflight_finished_ns'] <= report['attempt']['creation']['started_ns']
++              <= report['attempt']['creation']['closed_ns'] <= value['started_ns'],
++              'Slot did not follow its own reserved and verified preflight')
+     expected_apk = c.ORIGINAL if spec['apk'] == 'original' else c.CANDIDATE
+     path = experiment['apks'][spec['apk']]['path']
+     for name in ('local_apk_before', 'local_apk_after'):
+@@ -487,6 +510,9 @@
+     installed(commands, boundary['installed'], expected_apk['sha256'], proof)
+     scales(commands, boundary['scales'], desired)
+     fresh = observation(commands, boundary['observation'], label + '-preinput', 'intro1', first['pid'], parents)
++    c.require(parents['editor_journey'].canonical(parents['editor_journey'].tree(first['hierarchy'], c.PACKAGE))
++              == parents['editor_journey'].canonical(parents['editor_journey'].tree(fresh['hierarchy'], c.PACKAGE)),
++              'Complete initial/preinput XML changed within the fresh input boundary')
+     raw, _, _ = commands.shell(boundary['immediate_pid'], ['pidof', c.PACKAGE])
+     c.require(c.single_pid(raw.decode(), proof) == first['pid'], 'Immediate preinput PID differs')
+     raw, _, _ = commands.shell(boundary['immediate_foreground'], ['dumpsys', 'activity', 'activities'])
+@@ -579,3 +605,267 @@
+     c.require(count == actual_count == metadata['changed_pixels']
+               and digest.hexdigest() == metadata['expanded_sha256'], 'Full-frame decode/recount differs')
+     return count
++
++
++def validate_prefix(root, experiment, parents, live, allow_incomplete=False):
++    c.require(experiment.get('schema') == 1 and type(experiment.get('schema')) is int
++              and experiment.get('kind') == 'FIXED_INDICATOR_DIAGNOSTIC_V1'
++              and re.fullmatch(r'[0-9a-f]{32}', experiment.get('id', ''))
++              and experiment.get('parent_commit') == c.PARENT_COMMIT,
++              'Wrong diagnostic report or fixed parent identity')
++    policy = c.protocol()
++    c.require(experiment['protocol_sha256'] == c.file_identity(c.HERE / 'protocol.json')['sha256']
++              and experiment['runtime_manifest_sha256'] == c.file_identity(c.HERE / 'runtime-files.json')['sha256'],
++              'Executed fixed policy/source manifest changed')
++    c.clock_interval(experiment['started_ns'], experiment['deadline_ns'], 'whole experiment')
++    c.require(experiment['deadline_ns'] == experiment['started_ns'] + 7_200_000_000_000,
++              'Global experiment deadline was reset or extended')
++    c.require(experiment.get('new_runtime_parity_credit') == 0 and type(experiment.get('new_runtime_parity_credit')) is int
++              and all(experiment.get(key) is False for key in ('full_runtime_1_to_1_established', 'cause_established',
++                  'crash_free_run_established', 'app_apk_modified', 'cross_app_frame_selection', 'masks_used')),
++              'Diagnostic report claims undeclared parity or normalization')
++    c.require(set(experiment['apks']) == {'original', 'candidate'}, 'Both fixed APK roles are required')
++    for role, wanted in (('original', c.ORIGINAL), ('candidate', c.CANDIDATE)):
++        row = experiment['apks'][role]
++        c.require({key: row[key] for key in ('bytes', 'sha256')} == wanted
++                  and type(row['path']) is str and Path(row['path']).is_absolute(), 'Fixed APK identity/path changed')
++    primary = verify_prerequisites(root, experiment, parents)
++    ledger = Ledger(root, live)
++    entry = experiment['initialization']
++    c.require(entry['directory'] == 'initialization', 'Initialization evidence directory changed')
++    serialized = ledger.artifact('initialization', entry['receipt'], 'initialization.json')
++    initial = json.loads(serialized)
++    c.require(initial.get('schema') == 1 and initial.get('status') == 'READY'
++              and initial.get('experiment_id') == experiment['id']
++              and initial['started_ns'] == experiment['started_ns']
++              and serialized == c.bytes_json(initial), 'Initial disposable-device observation is incomplete')
++    commands = Commands(ledger, 'initialization', initial['commands'], initial['started_ns'], initial['finished_ns'],
++                        min(experiment['deadline_ns'], initial['started_ns'] + 240_000_000_000))
++    guard(commands, initial['device_guard'], '0', primary, parents)
++    commands.done()
++    c.require(initial['finished_ns'] <= entry['receipt']['creation']['started_ns'], 'Initialization receipt predates its commands')
++    c.require(c.checked_path(root, 'initialization/journal.json').read_bytes() == serialized,
++              'Initialization journal differs from its immutable receipt')
++    previous = entry['receipt']['creation']['closed_ns']
++    entries = experiment['slots']
++    reserved = experiment.get('reserved_slot')
++    c.require(reserved is None or (type(reserved) is int and reserved == len(entries) + 1 and reserved <= 8),
++              'Reserved invocation is not the next fixed slot')
++    c.require(type(entries) is list and len(entries) <= 8
++              and experiment['unattempted_indices'] == list(range(len(entries) + 1 + (reserved is not None), 9)),
++              'Attempted/unattempted slot inventory differs from the fixed prefix')
++    completed, errors = [], []
++    for entry, spec in zip(entries, policy['slots']):
++        try:
++            value = verify_slot(ledger, entry, spec, experiment, parents, previous, primary)
++            completed.append(value)
++            previous = value['receipt_closed_ns']
++        except Exception as error:
++            if not allow_incomplete:
++                raise
++            errors.append({'slot': spec['index'], 'reason': type(error).__name__ + ': ' + str(error)})
++            break
++    if len(completed) != len(entries):
++        c.require(allow_incomplete, 'An incomplete slot cannot be followed')
++    return {'slots': completed, 'errors': errors, 'last_receipt_closed_ns': previous,
++            'verified_artifact_roles': len(ledger.names), 'verified_original_host_inodes': len(ledger.host_inodes),
++            'verified_remote_xml_names': len(ledger.remote_xml_names)}
++
++
++def fixed_pairs():
++    values = []
++    for condition, indices in [('A', (1, 2, 3, 4)), ('B', (5, 6, 7, 8))]:
++        for sample in range(5):
++            for first, second in itertools.combinations(indices, 2):
++                values.append({'id': f'{condition}-sample-{sample}-slot-{first}-{second}', 'kind': 'cross-run',
++                               'first': [first, sample], 'second': [second, sample]})
++    for slot in range(1, 9):
++        for sample in range(4):
++            values.append({'id': f'slot-{slot}-temporal-{sample}-{sample + 1}', 'kind': 'temporal',
++                           'first': [slot, sample], 'second': [slot, sample + 1]})
++    c.require(len(values) == 92, 'Internal fixed-pair inventory differs')
++    return values
++
++
++def pair_result(root, pair, first, second, parents, write):
++    proof, observer, runner = parents['android_compare'], parents['observed_journey'], parents['editor_journey']
++    width, height, a = observer.png_pixels(first['screenshot'], proof)
++    second_width, second_height, b = observer.png_pixels(second['screenshot'], proof)
++    c.require((width, height) == (second_width, second_height) == (720, 1280), 'Pair viewport differs')
++    filename = 'pairs/' + pair['id'] + '.rgba-diff.bin.gz'
++    metadata_path = Path(root) / 'pairs' / (pair['id'] + '.json')
++    if write:
++        metadata = write_difference(Path(root) / filename, a, b, width, height)
++    else:
++        metadata = c.json_file(metadata_path)['difference']
++        verify_difference(c.checked_path(root, filename), metadata, a, b)
++    color_a = [{'chunk': kind.decode('ascii'), 'payload_hex': payload.hex()}
++               for kind, payload in proof.color_metadata(first['screenshot'])]
++    color_b = [{'chunk': kind.decode('ascii'), 'payload_hex': payload.hex()}
++               for kind, payload in proof.color_metadata(second['screenshot'])]
++    value = {**pair, 'status': 'MEASURED', 'first_png': first['source'], 'second_png': second['source'],
++             'first_xml': first['xml_source'], 'second_xml': second['xml_source'],
++             'first_png_sha256': first['png_sha256'], 'second_png_sha256': second['png_sha256'],
++             'first_xml_sha256': first['xml_sha256'], 'second_xml_sha256': second['xml_sha256'],
++             'png_bytes_equal': first['screenshot'] == second['screenshot'],
++             'xml_bytes_equal': first['hierarchy'] == second['hierarchy'],
++             'xml_canonical_equal': runner.canonical(runner.tree(first['hierarchy'], c.PACKAGE))
++                                    == runner.canonical(runner.tree(second['hierarchy'], c.PACKAGE)),
++             'width': width, 'height': height, 'first_color_metadata': color_a, 'second_color_metadata': color_b,
++             'color_metadata_equal': color_a == color_b, 'difference_file': filename, 'difference': metadata}
++    if write:
++        with metadata_path.open('xb') as stream:
++            stream.write(c.bytes_json(value))
++    else:
++        c.require(c.json_file(metadata_path) == value, 'Saved predetermined-pair report differs from independent replay')
++    return value
++
++
++def indicator_values(root, sample, parents, write):
++    """Additional numerical diagnostics only; never a comparison mask."""
++    width, height, rgba = parents['observed_journey'].png_pixels(sample['screenshot'], parents['android_compare'])
++    c.require((width, height) == (720, 1280), 'Indicator-array viewport differs')
++    # Bounds are the actual unique XML node, enforced by surface_identity.
++    left, top, right, bottom = 128, 1184, 592, 1200
++    data = b''.join(rgba[(y * width + left) * 4:(y * width + right) * 4] for y in range(top, bottom))
++    stem = Path(sample['source']).stem
++    filename = 'indicator-arrays/' + stem + '.rgba'
++    path = Path(root) / filename
++    if write:
++        with path.open('xb') as stream:
++            stream.write(data)
++    else:
++        c.require(c.checked_path(root, filename).read_bytes() == data, 'Saved indicator values differ from complete PNG')
++    # Coordinates are taken from the fixed historical read-only design evidence.
++    coordinates = c.json_file(c.HERE / 'historical-coordinates.json')
++    values = [{'x': x, 'y': y, 'rgba': list(rgba[(y * width + x) * 4:(y * width + x) * 4 + 4])}
++              for x, y in coordinates['union_coordinates']]
++    return {'source_png': sample['source'], 'source_png_sha256': sample['png_sha256'],
++            'bounds': [left, top, right, bottom], 'format': 'row-major-rgba8',
++            'artifact': {'path': filename, **c.identity(data)}, 'historical_coordinate_values': values,
++            'parity_weight': 0, 'used_as_mask': False}
++
++
++def verify_experiment(root, experiment, parents, live, write_pairs=False):
++    if write_pairs:
++        measurement_start = c.now_ns()
++    result = {'status': 'INDICATOR_FIXED_SAMPLE_EVIDENCE_INCOMPLETE', 'evidence_complete': False,
++              'schema': 1, 'experiment_id': experiment.get('id'), 'completed_slots': 0,
++              'post_input_frames': 0, 'planned_pairs': 92, 'measured_pairs': 0,
++              'slots': [], 'pairs': [], 'indicator_arrays': [], 'errors': [],
++              'new_runtime_parity_credit': 0, 'full_runtime_1_to_1_established': False,
++              'animation_parity_established': False, 'cause_established': False,
++              'crash_free_run_established': False, 'masks_used': False,
++              'cross_app_frame_selection': False, 'historical_results_rewritten': False}
++    samples = {}
++    try:
++        verified = validate_prefix(root, experiment, parents, live, allow_incomplete=True)
++        result['errors'].extend(verified['errors'])
++        for item in verified['slots']:
++            result['slots'].append({key: value for key, value in item.items() if key != 'samples'})
++            for index, sample in enumerate(item['samples']):
++                samples[(item['index'], index)] = sample
++        result.update(completed_slots=len(verified['slots']), post_input_frames=len(samples),
++                      verified_artifact_roles=verified['verified_artifact_roles'],
++                      verified_original_host_inodes=verified['verified_original_host_inodes'],
++                      verified_remote_xml_names=verified['verified_remote_xml_names'])
++    except Exception as error:
++        result['errors'].append({'boundary': 'fixed-capture-provenance', 'reason': type(error).__name__ + ': ' + str(error)})
++    if write_pairs:
++        (Path(root) / 'pairs').mkdir(exist_ok=False)
++        (Path(root) / 'indicator-arrays').mkdir(exist_ok=False)
++    for pair in fixed_pairs():
++        first, second = tuple(pair['first']), tuple(pair['second'])
++        if first not in samples or second not in samples:
++            result['pairs'].append({**pair, 'status': 'UNAVAILABLE_FIXED_INPUT'})
++            continue
++        try:
++            if write_pairs:
++                c.require(c.now_ns() <= experiment['deadline_ns'], 'Global deadline expired before a fixed comparison')
++            measured = pair_result(root, pair, samples[first], samples[second], parents, write_pairs)
++            result['pairs'].append(measured)
++            result['measured_pairs'] += 1
++        except Exception as error:
++            result['pairs'].append({**pair, 'status': 'MEASUREMENT_FAILED', 'reason': type(error).__name__ + ': ' + str(error)})
++    for key in sorted(samples):
++        try:
++            if write_pairs:
++                c.require(c.now_ns() <= experiment['deadline_ns'], 'Global deadline expired before a fixed indicator array')
++            result['indicator_arrays'].append(indicator_values(root, samples[key], parents, write_pairs))
++        except Exception as error:
++            result['errors'].append({'sample': list(key), 'reason': type(error).__name__ + ': ' + str(error)})
++    c.require(len(result['pairs']) == 92, 'Fixed pair report inventory was reduced')
++    if write_pairs:
++        experiment['finalization'] = {'started_ns': measurement_start, 'finished_ns': c.now_ns(),
++                                      'fixed_comparisons': 92}
++        experiment['finished_ns'] = experiment['finalization']['finished_ns']
++        experiment['finished_utc'] = c.utc()
++    finalization = experiment.get('finalization', {})
++    try:
++        c.require(set(finalization) == {'started_ns', 'finished_ns', 'fixed_comparisons'}
++                  and finalization['fixed_comparisons'] == 92
++                  and experiment['started_ns'] <= experiment['capture_finished_ns'] <= finalization['started_ns']
++                  and finalization['finished_ns'] == experiment['finished_ns'] <= experiment['deadline_ns'],
++                  'Global deadline or finalization record is incomplete')
++        c.clock_interval(finalization['started_ns'], finalization['finished_ns'], 'fixed comparison finalization')
++        if result['slots']:
++            c.require(result['slots'][-1]['receipt_closed_ns'] <= experiment['capture_finished_ns'],
++                      'Finalization predates the last completed slot')
++    except Exception as error:
++        result['errors'].append({'boundary': 'global-finalization', 'reason': type(error).__name__ + ': ' + str(error)})
++    complete = (result['completed_slots'] == 8 and result['post_input_frames'] == 40
++                and result['measured_pairs'] == 92 and len(result['indicator_arrays']) == 40 and not result['errors']
++                and experiment.get('status') == 'FIXED_CAPTURE_SCHEDULE_COMPLETE'
++                and experiment.get('reserved_slot') is None
++                and experiment.get('live_inputs_verified_after_capture') is True
++                and type(experiment.get('finished_ns')) is int
++                and experiment['started_ns'] <= experiment['finished_ns'] <= experiment['deadline_ns'])
++    result['evidence_complete'] = complete
++    if complete:
++        result['status'] = 'INDICATOR_FIXED_SAMPLE_EVIDENCE_COMPLETE'
++    return result
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--parents', type=Path, required=True)
++    parser.add_argument('--source-root', type=Path, required=True)
++    parser.add_argument('--prepared', type=Path, required=True)
++    parser.add_argument('--output', type=Path, required=True)
++    parser.add_argument('--archive-replay', action='store_true',
++                        help='Compare saved bytes/serialized host metadata; never equate extracted ctime with host ctime')
++    parser.add_argument('--archive-apks', type=Path,
++                        help='Relocated directory containing the two exact original.apk/candidate.apk bytes, for archive replay only')
++    args = parser.parse_args()
++    root = args.output.resolve()
++    result = {'status': 'INDICATOR_FIXED_SAMPLE_EVIDENCE_INCOMPLETE', 'evidence_complete': False}
++    envelope = {'verification_mode': 'saved-byte-and-recorded-host-metadata-replay' if args.archive_replay else 'live-host-stat-and-byte-verification',
++                'extracted_ctime_or_inode_claimed_as_original_host': False, 'started_utc': c.utc()}
++    try:
++        import prepare
++        c.require((args.archive_apks is not None) == args.archive_replay,
++                  'Archive replay requires an explicit relocated exact-APK directory')
++        prepare.verify_preparation(args.parents, args.source_root, args.prepared,
++                                   archive_apks=args.archive_apks)
++        parents = c.load_parents(args.parents)
++        experiment = c.json_file(root / 'experiment.json')
++        c.require(experiment['preparation_identity'] == c.file_identity(args.prepared / 'preparation.json'),
++                  'Preparation receipt differs from the one used before installation')
++        result = verify_experiment(root, experiment, parents, live=not args.archive_replay)
++        captured = c.json_file(root / 'comparison.json')
++        c.require(result == captured, 'Independent full fixed-schedule replay differs from its saved result')
++        envelope['literal_replay_equal'] = True
++    except Exception as error:
++        result = {'status': 'INDICATOR_FIXED_SAMPLE_EVIDENCE_INCOMPLETE', 'evidence_complete': False,
++                  'reason': type(error).__name__ + ': ' + str(error)}
++        envelope['literal_replay_equal'] = False
++    envelope.update(result=result, finished_utc=c.utc())
++    c.write_json(root.parent / 'independent-verification.json', envelope)
++    print(json.dumps({'status': result['status'], 'evidence_complete': result['evidence_complete'],
++                      'literal_replay_equal': envelope['literal_replay_equal'],
++                      'verification_mode': envelope['verification_mode']}, indent=2))
++    return 0 if result['evidence_complete'] else 2
++
++
++if __name__ == '__main__':
++    raise SystemExit(main())

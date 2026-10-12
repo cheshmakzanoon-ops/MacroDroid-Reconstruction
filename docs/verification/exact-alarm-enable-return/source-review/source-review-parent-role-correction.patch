@@ -1,0 +1,22 @@
+--- review_closed_source.py
++++ review_closed_source_02.py
+@@ -14,7 +14,7 @@
+ 
+ BASE = Path('/dev/shm/macrodroid-exact-alarm-enable-return')
+ CAP = BASE / 'checkpoints/03-source-and-host-controls'
+-OUT = BASE / 'source-review-01'
++OUT = BASE / 'source-review-02'
+ PARENT = Path('/dev/shm/macrodroid-exact-alarm-navigation/checkpoints/03-corrected-source-and-host-controls/replay-source')
+ RAW = Path('/dev/shm/macrodroid-transfer-space-20261012/alarm14-run-38240023189/extracted')
+ ORIGINAL_REPLAY = Path('/dev/shm/macrodroid-exact-alarm-navigation/checkpoints/05-fourteen-screen-device-analysis/analysis/literal-captured-comparison-replay.json')
+@@ -73,7 +73,9 @@
+         preserved = read(CAP / 'reports/definition-preservation.json')
+         for item in preserved['unchanged_parent_definitions']:
+             name, definition = item.split(':')
+-            assert definitions(PARENT / name)[definition] == definitions(CAP / 'source' / name)[definition], item
++            copied_classifier = (name, definition) == ('tools/parity_journeys/exact_alarm_enable_return.py', '_command_kind')
++            parent_name = 'tools/parity_journeys/exact_alarm_journey.py' if copied_classifier else name
++            assert definitions(PARENT / parent_name)[definition] == definitions(CAP / 'source' / name)[definition], item
+         assert len(preserved['unchanged_parent_definitions']) == 37
+         for name, names in preserved['changed_dispatch_definitions'].items():
+             old, new = definitions(PARENT / name), definitions(CAP / 'source' / name)

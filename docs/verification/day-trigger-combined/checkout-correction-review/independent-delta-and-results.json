@@ -1,0 +1,38 @@
+{
+  "changed_paths": [
+    ".github/workflows/day-trigger-wip-acceptance.yml",
+    "tools/day_trigger_acceptance/runtime-files.json",
+    "tools/day_trigger_acceptance/test_day_trigger_acceptance.py"
+  ],
+  "unchanged_production_files": 6,
+  "unchanged_old_test_bodies": 152,
+  "modified_test": "CombinedWorkflowControls.test_workflow_runtime_pin_binds_all_seven_actual_runtime_siblings",
+  "new_tests": [
+    "CombinedCheckoutLayoutControls.test_extra_runtime_sibling_is_rejected_even_with_allowed_checkout_metadata",
+    "CombinedCheckoutLayoutControls.test_unrelated_root_and_git_style_metadata_do_not_change_the_nine_path_scope"
+  ],
+  "literal_attempts": [
+    {
+      "role": "02-original-count-failure-reproduced",
+      "tests": 4,
+      "exit_code": 1,
+      "unchanged_checkout_files": 56
+    },
+    {
+      "role": "03-focused-layout-controls",
+      "tests": 6,
+      "exit_code": 0,
+      "unchanged_checkout_files": 56
+    },
+    {
+      "role": "04-complete-155-controls",
+      "tests": 155,
+      "exit_code": 0,
+      "unchanged_checkout_files": 56
+    }
+  ],
+  "archive_members": 4600,
+  "actual_failed_hosted_tests": 153,
+  "actual_failed_hosted_successes": 152,
+  "actual_hosted_failure_preserved": true
+}

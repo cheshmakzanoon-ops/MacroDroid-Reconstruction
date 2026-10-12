@@ -1,0 +1,504 @@
+"""Actual Settings XML plus authored on/return/process cases; no Android execution.
+
+OFF_XML is copied byte for byte from both equal, recorded Alarm14 hierarchies.
+Predicted on changes only the observed clickable toggle parent's checked flag.
+Screenshots and clocks used by the finite synthetic journey below are authored.
+"""
+from __future__ import annotations
+
+import copy
+import hashlib
+import json
+from pathlib import Path
+import tempfile
+import unittest
+from unittest.mock import patch
+import xml.etree.ElementTree as ET
+
+import day_time_journey as day
+import editor_journey as runner
+import exact_alarm_journey as prior_alarm
+import exact_alarm_enable_return as alarm
+import exact_alarm_enable_return_readiness as ready
+import observed_journey as observed
+import test_editor_journey as legacy
+import test_notification_readiness as prior_ready
+from test_day_time_journey import ThirteenFixture
+from test_exact_alarm_journey import FourteenFixture, SUFFIXES, synthetic_settings_png
+from test_observed_journey import VirtualRecorder, proof, reviewed_historical_plan
+
+OFF_XML = b'<?xml version=\'1.0\' encoding=\'UTF-8\' standalone=\'yes\' ?><hierarchy rotation="0"><node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][720,1280]"><node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][720,1280]"><node index="0" text="" resource-id="android:id/content" class="android.widget.FrameLayout" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][720,1280]"><node index="0" text="" resource-id="" class="androidx.compose.ui.platform.ComposeView" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][720,1280]"><node index="0" text="" resource-id="" class="android.view.View" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][720,1280]"><node index="0" text="" resource-id="" class="android.view.View" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][720,1280]"><node index="0" text="" resource-id="" class="android.widget.ScrollView" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="true" long-clickable="false" password="false" selected="false" bounds="[0,400][720,1280]"><node index="0" text="" resource-id="" class="android.view.View" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[48,432][672,656]"><node index="0" text="MacroDroid" resource-id="" class="android.widget.TextView" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[253,564][468,611]" /><node index="1" text="5.67.8" resource-id="" class="android.widget.TextView" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[320,623][401,656]" /></node><node index="1" text="" resource-id="" class="android.view.View" package="com.android.settings" content-desc="" checkable="true" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,688][720,855]"><node index="0" text="Allow setting alarms and reminders" resource-id="" class="android.widget.TextView" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[48,724][552,819]" /><node index="1" text="" resource-id="" class="android.view.View" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,688][720,855]" /></node><node index="2" text="Allow this app to set alarms and schedule time-sensitive actions. This lets the app run in the background, which may use more battery.&#10;&#10;If this permission is off, existing alarms and time-based events scheduled by this app won\xe2\x80\x99t work." resource-id="" class="android.widget.TextView" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[48,967][688,1240]" /></node><node index="1" text="" resource-id="" class="android.view.View" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][720,400]"><node index="0" text="" resource-id="" class="android.view.View" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[8,56][104,152]"><node index="0" text="" resource-id="" class="android.view.View" package="com.android.settings" content-desc="Navigate up" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[32,80][80,128]" /><node index="1" text="" resource-id="" class="android.widget.Button" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[16,64][96,144]" /></node><node index="1" text="" resource-id="" class="android.view.View" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[112,80][529,128]" /><node index="2" text="Alarms &amp; reminders" resource-id="" class="android.widget.TextView" package="com.android.settings" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[48,276][680,364]" /></node></node></node></node></node></node></node></hierarchy>'
+OFF_XML_SHA256 = '44247f77da12d0c1eaddbebcd0fa5424399138a9bd995ee87a545294e678425e'
+OBSERVED_FIXTURE_NAMES = (
+    'original-after-exact-alarm-ok-acquisition-1-frame-2.xml',
+    'candidate-after-exact-alarm-ok-acquisition-1-frame-2.xml',
+)
+SETTINGS_COMPONENT = 'com.android.settings/com.android.settings.spa.SpaActivity'
+
+
+def settings_xml(enabled=False):
+    if not enabled:
+        return OFF_XML
+    root = ET.fromstring(OFF_XML)
+    node = next(n for n in root.iter('node') if n.get('text') == 'Allow setting alarms and reminders')
+    parent = {child: ancestor for ancestor in root.iter() for child in ancestor}[node]
+    assert parent.get('checked') == 'false' and parent.get('bounds') == '[0,688][720,855]'
+    parent.set('checked', 'true')
+    return ET.tostring(root)
+
+
+def returned_xml(text='Authored unassumed return surface'):
+    root = ET.Element('hierarchy', {'rotation': '0'})
+    ET.SubElement(root, 'node', {'package': runner.PACKAGE, 'class': 'android.widget.TextView',
+        'enabled': 'true', 'clickable': 'false', 'bounds': '[0,0][720,1280]', 'text': text})
+    return ET.tostring(root)
+
+
+class SixteenFixture(FourteenFixture):
+    """The exact old prefix, recorded off XML, predicted on and an authored app return."""
+    def front(self, index):
+        if index in (13, 14):
+            return SETTINGS_COMPONENT
+        if index == 15:
+            return runner.PACKAGE + '/.SyntheticUnassumedReturn'
+        return super().front(index)
+
+    def xml(self, index):
+        if index in (13, 14):
+            return settings_xml(enabled=index == 14)
+        if index == 15:
+            return returned_xml()
+        return super().xml(index)
+
+    def build(self, candidate_replaced=True):
+        # FourteenFixture.build writes its last input as OK. Here that last input
+        # is Navigate up, so call the unchanged prefix builder and bind all three
+        # observed coordinates explicitly before the shared ledger is collected.
+        ThirteenFixture.build(self, candidate_replaced)
+        self.report['plan'] = copy.deepcopy(runner.PLAN)
+        for run in self.report['runs']:
+            for index, (x, y) in ((12, (560, 809)), (13, (360, 771)), (14, (56, 104))):
+                run['transitions'][index]['command']['argv'] = ['shell', f'input tap {x} {y}']
+            start = run['launch']['started_monotonic'] - 0.6
+            uninstall = self.command([], b'Success\n', start)
+            uninstall['argv'] = ['uninstall', runner.PACKAGE]
+            run['uninstall'] = uninstall
+            setup = {
+                'absence': ['shell', 'pm path ' + runner.PACKAGE],
+                'install': ['install', '--no-streaming', '/synthetic/' + run['label'] + '.apk'],
+                'installed_path': ['shell', 'pm path ' + runner.PACKAGE],
+                'installed_checksum': ['shell', 'sha256sum /data/app/test/base.apk'],
+            }
+            for number, (role, argv) in enumerate(setup.items(), 1):
+                timestamp = start + number * 0.1
+                run[role].update(argv=argv, started_monotonic=timestamp,
+                                 finished_monotonic=timestamp + 0.05, timed_out=False)
+
+
+def add_readiness(fixture):
+    harness = prior_ready.ReadinessReportControls()
+    harness.fixture, harness.folder, harness.report = fixture, fixture.folder, fixture.report
+    with patch.object(prior_ready, 'ready', ready):
+        harness.add_phases()
+    fixture.report[alarm.POLICY_KEY] = copy.deepcopy(alarm.POLICY)
+
+
+class SettingsGeometryControls(unittest.TestCase):
+    def setUp(self):
+        context = alarm.configured_plan(); context.__enter__(); self.addCleanup(context.__exit__, None, None, None)
+        temporary = tempfile.TemporaryDirectory(); self.addCleanup(temporary.cleanup)
+        self.folder, self.sequence = Path(temporary.name), 0
+
+    def put(self, name, data):
+        (self.folder / name).write_bytes(data)
+        return {'path': name, 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
+
+    def shot(self, name=alarm.OFF, enabled=False, xml=None, png=None, component=SETTINGS_COMPONENT,
+             label='original', pid=b'31'):
+        self.sequence += 1
+        stem = label + '-' + name + '-acquisition-1-frame-2'
+        contents = {'hierarchy': settings_xml(enabled) if xml is None else xml,
+                    'screenshot': synthetic_settings_png() if png is None else png,
+                    'foreground': ('topResumedActivity=' + component + '\n').encode(),
+                    'foreground_final': ('topResumedActivity=' + component + '\n').encode(),
+                    'pid_first': pid, 'pid_final': pid}
+        return {'name': name, 'owner': alarm.SETTINGS, 'sample_interval_seconds': 1.1,
+                'observation': {'started_monotonic': 1, 'finished_monotonic': 2.1},
+                'artifacts': {key: self.put(stem + SUFFIXES[key], data) for key, data in contents.items()}}
+
+    def test_recorded_off_bytes_and_embedded_contract_are_exact_and_on_remains_predicted(self):
+        self.assertEqual(len(OFF_XML), 6919)
+        self.assertEqual(hashlib.sha256(OFF_XML).hexdigest(), OFF_XML_SHA256)
+        self.assertEqual(len(alarm.CONTRACT_BYTES), 140449)
+        self.assertEqual(hashlib.sha256(alarm.CONTRACT_BYTES).hexdigest(),
+                         '379544de4e9e5d84138959f1e1552fcc9b2e52d7264d30e324c63f2a82814c07')
+        contract = alarm._contract()
+        self.assertFalse(contract['on_hierarchy_observed'])
+        self.assertFalse(alarm.POLICY['predicted_on_previously_observed'])
+        self.assertEqual(contract['source_run'], 38240023189)
+        for label in ('original', 'candidate'):
+            state = alarm.settings_identity(self.folder, self.shot(label=label), proof)
+            self.assertFalse(state['enabled'])
+            self.assertEqual(state['centers'], {'toggle': [360, 771], 'navigate_up': [56, 104]})
+
+    def test_each_declared_capture_role_requires_its_exact_off_or_predicted_on_state(self):
+        roles = [(alarm.OFF, False), (alarm.ENABLED + '-before', False),
+                 (alarm.ENABLED, True), (alarm.TERMINAL + '-before', True)]
+        for name, enabled in roles:
+            with self.subTest(role=name):
+                state = alarm.settings_identity(self.folder, self.shot(name, enabled), proof)
+                self.assertEqual(state['name'], name)
+                self.assertIs(state['enabled'], enabled)
+                with self.assertRaisesRegex(runner.JourneyError, 'Complete Settings hierarchy'):
+                    alarm.settings_identity(self.folder, self.shot(name, not enabled), proof)
+
+    def test_both_nine_ancestor_chains_reject_each_changed_attribute(self):
+        for selector, value in (('text', 'Allow setting alarms and reminders'), ('content-desc', 'Navigate up')):
+            for depth in range(9):
+                for key, changed in (('bounds', '[0,0][1,1]'), ('class', 'android.widget.EditText'),
+                                     ('enabled', 'false'), ('checked', 'unknown'), ('package', 'other.app')):
+                    root = ET.fromstring(OFF_XML)
+                    node = next(n for n in root.iter('node') if n.get(selector) == value)
+                    parents = {child: parent for parent in root.iter() for child in parent}
+                    for _ in range(depth): node = parents[node]
+                    node.set(key, changed)
+                    with self.subTest(selector=selector, depth=depth, key=key), self.assertRaises(runner.JourneyError):
+                        alarm.settings_identity(self.folder, self.shot(xml=ET.tostring(root)), proof)
+
+    def test_duplicate_nodes_interposed_parent_extra_attributes_and_root_changes_fail(self):
+        for mutation in ('duplicate', 'parent', 'extra', 'rotation', 'foreign', 'text'):
+            root = ET.fromstring(OFF_XML)
+            node = next(n for n in root.iter('node') if n.get('content-desc') == 'Navigate up')
+            if mutation == 'duplicate': root.append(copy.deepcopy(node))
+            elif mutation == 'parent':
+                parent = {child: p for p in root.iter() for child in p}[node]
+                parent.remove(node); ET.SubElement(parent, 'node', parent.attrib).append(node)
+            elif mutation == 'extra': node.set('unobserved', 'value')
+            elif mutation == 'rotation': root.set('rotation', '1')
+            elif mutation == 'foreign': ET.SubElement(root, 'node', {'package': 'other.app'})
+            else: node.set('content-desc', 'Back')
+            with self.subTest(mutation=mutation), self.assertRaises(runner.JourneyError):
+                alarm.settings_identity(self.folder, self.shot(xml=ET.tostring(root)), proof)
+
+    def test_only_the_toggle_parent_checked_attribute_changes_in_the_prediction(self):
+        a, b = ET.fromstring(OFF_XML), ET.fromstring(settings_xml(True))
+        differences = [(index, key, x.get(key), y.get(key)) for index, (x, y) in enumerate(zip(a.iter(), b.iter()))
+                       for key in sorted(set(x.attrib) | set(y.attrib)) if x.get(key) != y.get(key)]
+        self.assertEqual(len(differences), 1)
+        self.assertEqual(differences[0][1:], ('checked', 'false', 'true'))
+        changed = list(b.iter())[differences[0][0]]
+        self.assertEqual(changed.get('bounds'), '[0,688][720,855]')
+        self.assertEqual(changed.get('clickable'), 'true')
+        node = next(n for n in b.iter('node') if n.get('text') == 'Allow setting alarms and reminders')
+        node.set('checked', 'true')
+        with self.assertRaisesRegex(runner.JourneyError, 'Complete Settings hierarchy'):
+            alarm.settings_identity(self.folder, self.shot(alarm.ENABLED, True, xml=ET.tostring(b)), proof)
+
+    def test_exact_component_both_samples_size_and_main_app_pid_checks_remain_required(self):
+        for role in ('foreground', 'foreground_final'):
+            shot = self.shot()
+            shot['artifacts'][role] = self.put(shot['artifacts'][role]['path'],
+                b'topResumedActivity=com.android.settings/.OtherObservedNothing\n')
+            with self.subTest(role=role), self.assertRaisesRegex(runner.JourneyError, 'Settings component'):
+                runner.validate_snapshot(self.folder, shot, proof)
+        with self.assertRaisesRegex(runner.JourneyError, 'geometry'):
+            runner.validate_snapshot(self.folder, self.shot(png=legacy.png(1)), proof)
+        shot = self.shot(); shot['artifacts']['pid_final'] = self.put(shot['artifacts']['pid_final']['path'], b'32')
+        with self.assertRaises(ValueError): runner.validate_snapshot(self.folder, shot, proof)
+
+    def test_every_artifact_must_share_the_same_run_role_acquisition_and_frame(self):
+        shot = self.shot()
+        for role in SUFFIXES:
+            for old, new in (('original-', 'candidate-'), ('-frame-2', '-frame-1'),
+                             ('-acquisition-1', '-acquisition-2'), (alarm.OFF, alarm.ENABLED + '-before')):
+                changed = copy.deepcopy(shot)
+                changed['artifacts'][role]['path'] = changed['artifacts'][role]['path'].replace(old, new)
+                with self.subTest(role=role, new=new), self.assertRaises(runner.JourneyError):
+                    alarm.settings_role(changed)
+        for name in ('home', alarm.OFF + '-before', alarm.TERMINAL, 'unreviewed-' + alarm.OFF):
+            with self.subTest(name=name), self.assertRaises(runner.JourneyError): alarm.settings_role(self.shot(name))
+        for old, new in (('-acquisition-1', '-acquisition-4'), ('-frame-2', '-frame-7')):
+            changed = copy.deepcopy(shot)
+            for row in changed['artifacts'].values(): row['path'] = row['path'].replace(old, new)
+            with self.assertRaises(runner.JourneyError): alarm.settings_role(changed)
+
+    def test_missing_extra_artifacts_observation_owner_and_conflicting_name_fail(self):
+        for mutation in ('missing', 'extra', 'observation', 'owner', 'name'):
+            shot = self.shot()
+            if mutation == 'missing': shot['artifacts'].pop('pid_first')
+            elif mutation == 'extra': shot['artifacts']['unreviewed'] = shot['artifacts']['pid_first']
+            elif mutation == 'observation': shot.pop('observation')
+            elif mutation == 'owner': shot['owner'] = runner.PACKAGE
+            else: shot['name'] = alarm.ENABLED
+            with self.subTest(mutation=mutation), self.assertRaises(runner.JourneyError): alarm.settings_role(shot)
+
+    def test_complete_plan_preserves_thirteen_entries_and_all_thirteen_prior_inputs(self):
+        prefix = prior_alarm.expected_plan()
+        self.assertEqual(runner.PLAN[:13], prefix[:13])
+        self.assertEqual([row[3] for row in runner.PLAN[:14]], [row[3] for row in prefix])
+        self.assertEqual(runner.PLAN[13], [alarm.OFF, alarm.SETTINGS, alarm.TOGGLE, prior_alarm.OK])
+        self.assertEqual(runner.PLAN[14], [alarm.ENABLED, alarm.SETTINGS, alarm.UP, alarm.TOGGLE])
+        self.assertEqual(runner.PLAN[15], [alarm.TERMINAL, runner.PACKAGE, None, alarm.UP])
+        self.assertEqual(sum(bool(row[3]) for row in runner.PLAN), 15)
+        self.assertEqual(runner.fingerprint(runner.PLAN), 'ca597b23d9c2d11ebce1ed3953d609189476d7179635f2a4c4068df0795f2211')
+        observed.require_plan()
+        for index in range(16):
+            changed = copy.deepcopy(runner.PLAN); changed[index][3] = {'text': 'Unobserved input'}
+            with self.subTest(index=index), patch.object(runner, 'PLAN', changed), self.assertRaises(runner.JourneyError):
+                observed.require_plan()
+
+    def test_historical_plans_cannot_authorize_any_of_the_new_settings_roles(self):
+        import favourite_info_journey as favourite
+        import trigger_category_journey as category
+        for plan in (favourite.expected_plan(), category.expected_plan(), day.expected_plan(),
+                     prior_alarm.expected_plan(), reviewed_historical_plan()):
+            with self.subTest(plan=runner.fingerprint(plan)), patch.object(runner, 'PLAN', plan), self.assertRaises(runner.JourneyError):
+                alarm.settings_role(self.shot())
+        with patch.object(alarm, 'CONTRACT_BYTES', alarm.CONTRACT_BYTES + b' '), self.assertRaisesRegex(runner.JourneyError, 'contract bytes'):
+            alarm._contract()
+
+    def test_return_allows_unassumed_app_classes_but_no_foreign_or_ambiguous_component(self):
+        for component in (runner.PACKAGE + '/.SyntheticReturnOne', runner.PACKAGE + '/.UnpredictedDialogActivity'):
+            shot = self.shot(name=alarm.TERMINAL, xml=returned_xml(), component=component)
+            shot['owner'] = runner.PACKAGE
+            state = alarm.terminal_surface(self.folder, shot, proof)
+            self.assertEqual(state['component'], component.replace('/.', '/' + runner.PACKAGE + '.'))
+            self.assertFalse(state['permission_api_result_observed'])
+            self.assertFalse(state['trigger_configuration_confirmed'])
+        for mutation in ('component', 'final', 'owner', 'foreign_node', 'selector'):
+            shot = self.shot(name=alarm.TERMINAL, xml=returned_xml(), component=runner.PACKAGE + '/.Unassumed')
+            shot['owner'] = runner.PACKAGE
+            if mutation in ('component', 'final'):
+                roles = ('foreground', 'foreground_final') if mutation == 'component' else ('foreground_final',)
+                for role in roles: shot['artifacts'][role] = self.put(shot['artifacts'][role]['path'], b'topResumedActivity=com.android.settings/.Other\n')
+            elif mutation == 'owner': shot['owner'] = alarm.SETTINGS
+            elif mutation == 'foreign_node':
+                root = ET.fromstring(returned_xml()); ET.SubElement(root, 'node', {'package': 'other.app'})
+                shot['artifacts']['hierarchy'] = self.put(shot['artifacts']['hierarchy']['path'], ET.tostring(root))
+            with self.subTest(mutation=mutation), self.assertRaises(runner.JourneyError):
+                alarm.required_surface(self.folder, shot, alarm.UP if mutation == 'selector' else None, proof)
+
+
+class SettingsRecorderControls(unittest.TestCase):
+    def setUp(self):
+        context = alarm.configured_plan(); context.__enter__(); self.addCleanup(context.__exit__, None, None, None)
+        temporary = tempfile.TemporaryDirectory(); self.addCleanup(temporary.cleanup)
+        self.folder = Path(temporary.name)
+
+    def input(self, enabled=False, edit=None):
+        clock = {'now': 0.0}
+        frame = {'xml': settings_xml(enabled), 'png': synthetic_settings_png(), 'pid': b'31',
+                 'foreground': ('topResumedActivity=' + SETTINGS_COMPONENT + '\n').encode()}
+        frames = [copy.deepcopy(frame) for _ in range(4)]
+        if edit:
+            for item in frames[2:]: edit(item)
+        self.recorder = VirtualRecorder(self.folder, clock, frames)
+        def sleep(seconds): clock['now'] += seconds
+        previous_name, name, action = (alarm.ENABLED, alarm.TERMINAL, alarm.UP) if enabled else (alarm.OFF, alarm.ENABLED, alarm.TOGGLE)
+        with patch.object(runner.time, 'monotonic', side_effect=lambda: clock['now']), patch.object(runner.time, 'sleep', side_effect=sleep):
+            previous = observed.capture(self.recorder, 'candidate-' + previous_name, alarm.SETTINGS)
+            previous['name'] = previous_name
+            return runner.capture_transition(self.recorder, previous, 'candidate-' + name, name, action, proof)
+
+    def test_real_recorder_builds_exactly_one_fresh_toggle_and_one_separate_navigate_up(self):
+        for enabled, expected in ((False, ['input', 'tap', '360', '771']), (True, ['input', 'tap', '56', '104'])):
+            with self.subTest(enabled=enabled):
+                result = self.input(enabled)
+                self.assertEqual(self.recorder.inputs, [expected])
+                self.assertLess(result['precondition_age_seconds'], 15)
+                self.assertEqual(self.recorder.frames, [])
+                pid_argv = ['shell', 'pidof ' + runner.PACKAGE]
+                self.assertTrue(all(row['argv'] == pid_argv for row in self.recorder.log
+                                    if row['argv'][0] == 'shell' and row['argv'][1].startswith('pidof ')))
+
+    def test_late_pid_component_and_age_faults_issue_no_settings_input(self):
+        edits = [lambda f: f.update(late_pid=b'32'),
+                 lambda f: f.update(late_foreground=b'topResumedActivity=com.android.settings/.Other\n'),
+                 lambda f: f.update(delay=16)]
+        for enabled in (False, True):
+            for edit in edits:
+                with self.subTest(enabled=enabled, edit=edit), self.assertRaises(ValueError): self.input(enabled, edit)
+                self.assertEqual(self.recorder.inputs, [])
+
+    def test_changed_state_or_full_preinput_pixels_prevents_toggle_or_return(self):
+        for enabled in (False, True):
+            for edit in (lambda f: f.update(xml=settings_xml(not enabled)),
+                         lambda f: f.update(png=synthetic_settings_png(29))):
+                with self.subTest(enabled=enabled, edit=edit), self.assertRaises(ValueError): self.input(enabled, edit)
+                self.assertEqual(self.recorder.inputs, [])
+
+    def test_incorrect_initial_or_on_capture_stops_without_retrying_another_surface(self):
+        for name, enabled in ((alarm.OFF, True), (alarm.ENABLED, False)):
+            clock = {'now': 0.0}
+            frame = {'xml': settings_xml(enabled), 'png': synthetic_settings_png(), 'pid': b'31',
+                     'foreground': ('topResumedActivity=' + SETTINGS_COMPONENT + '\n').encode()}
+            recorder = VirtualRecorder(self.folder, clock, [frame, copy.deepcopy(frame)])
+            def sleep(seconds): clock['now'] += seconds
+            with patch.object(runner.time, 'monotonic', side_effect=lambda: clock['now']), patch.object(runner.time, 'sleep', side_effect=sleep):
+                with self.subTest(name=name), self.assertRaisesRegex(runner.JourneyError, 'Complete Settings hierarchy'):
+                    observed.capture(recorder, 'candidate-' + name, alarm.SETTINGS)
+            self.assertEqual(recorder.inputs, [])
+            self.assertEqual(len(recorder.frames), 1)
+            self.assertTrue(recorder.capture_events)
+
+
+class EnableReturnComparisonControls(unittest.TestCase):
+    def setUp(self):
+        context = alarm.configured_plan(); context.__enter__(); self.addCleanup(context.__exit__, None, None, None)
+        self.fixture = SixteenFixture(); self.addCleanup(self.fixture.close)
+        add_readiness(self.fixture)
+
+    def test_complete_authored_pair_keeps_sixteen_screens_and_only_visible_state_scope(self):
+        result = self.fixture.result()
+        self.assertTrue(result['journey_equal'], result)
+        self.assertEqual(len(result['screens']), 16)
+        self.assertEqual(result['status'], 'EXACT_ALARM_ENABLED_RETURN_OBSERVATION_ONLY')
+        self.assertEqual(len(result['notification_readiness_observations']), 2)
+        self.assertEqual(result['settings_inputs'], 4)
+        self.assertEqual(result['settings_inputs_per_run'], 2)
+        self.assertEqual(result['global_command_observations']['planned_inputs'], 30)
+        self.assertEqual(result['global_command_observations']['setup_mutations'], 6)
+        self.assertEqual(result['global_command_observations']['settings_inputs'], 4)
+        self.assertTrue(result['settings_enabled_state_observed'])
+        self.assertTrue(result['settings_return_navigation_observed'])
+        for key in ('permission_api_result_observed', 'trigger_configuration_confirmed', 'full_runtime_1_to_1_established',
+                    'macros_saved', 'macros_executed', 'crash_free_run_established'):
+            self.assertFalse(result[key])
+
+    def test_schema_and_both_exact_policies_are_required_without_foreign_old_policy(self):
+        changes = [lambda r: r.update(schema=6), lambda r: r.update(schema=7.0), lambda r: r.update(schema=True),
+                   lambda r: r.pop(alarm.POLICY_KEY), lambda r: r.pop('notification_readiness_policy'),
+                   lambda r: r[alarm.POLICY_KEY].update(settings_inputs_total=2),
+                   lambda r: r['runs'][0].update({alarm.POLICY_KEY: copy.deepcopy(alarm.POLICY)}),
+                   lambda r: r.update({prior_alarm.POLICY_KEY: copy.deepcopy(prior_alarm.POLICY)}),
+                   lambda r: r.update(plan_sha256=prior_alarm.PLAN_SHA256),
+                   lambda r: r['plan'][-1].__setitem__(2, alarm.UP)]
+        for change in changes:
+            value = copy.deepcopy(self.fixture.report); change(value)
+            with self.subTest(change=change):
+                result = runner.compare(self.fixture.folder, value, proof)
+                self.assertFalse(result['journey_equal'], result)
+                self.assertEqual(result['screens'], [])
+
+    def test_missing_extra_reordered_inputs_or_wrong_coordinates_are_rejected(self):
+        for mutation in ('missing', 'extra', 'reorder', 'toggle_coordinate', 'up_coordinate', 'wrong_action'):
+            value = copy.deepcopy(self.fixture.report); run = value['runs'][1]
+            if mutation == 'missing': run['transitions'].pop()
+            elif mutation == 'extra': run['transitions'].append(copy.deepcopy(run['transitions'][-1]))
+            elif mutation == 'reorder': run['transitions'][-2:] = reversed(run['transitions'][-2:])
+            elif mutation == 'toggle_coordinate': run['transitions'][-2]['command']['argv'] = ['shell', 'input tap 360 770']
+            elif mutation == 'up_coordinate': run['transitions'][-1]['command']['argv'] = ['shell', 'input tap 55 104']
+            else: run['transitions'][-1]['action'] = alarm.TOGGLE
+            with self.subTest(mutation=mutation): self.assertFalse(runner.compare(self.fixture.folder, value, proof)['journey_equal'])
+
+    def test_rehashed_off_state_after_toggle_still_rejects_before_return(self):
+        self.fixture.edit_stable(self.fixture.candidate()['screens'][14],
+            lambda shot: self.fixture.raw_value(shot, 'hierarchy', OFF_XML))
+        result = self.fixture.result()
+        self.assertFalse(result['journey_equal'], result)
+        self.assertIn('Complete Settings hierarchy', result['reason'])
+
+    def test_main_app_pid_replacement_while_settings_is_visible_is_rejected(self):
+        def change(shot):
+            for role in ('pid_first', 'pid_final'): self.fixture.raw_value(shot, role, b'62')
+        self.fixture.edit_stable(self.fixture.candidate()['screens'][14], change)
+        result = self.fixture.result()
+        self.assertFalse(result['journey_equal'], result)
+
+    def test_all_terminal_pixels_remain_in_exact_comparison_without_masks(self):
+        self.fixture.edit_stable(self.fixture.candidate()['screens'][-1],
+            lambda shot: self.fixture.raw_value(shot, 'screenshot', synthetic_settings_png(199)))
+        result = self.fixture.result()
+        self.assertFalse(result['journey_equal'], result)
+        self.assertEqual(result['status'], 'JOURNEY_DIFFERENCE')
+        self.assertEqual(result['screens'][-1]['changed_pixels'], 720 * 1280)
+        self.assertFalse(result['masks_used'])
+
+    def test_unassumed_return_classes_must_still_match_between_apps(self):
+        def edit(shot):
+            for role in ('foreground', 'foreground_final'):
+                self.fixture.raw_value(shot, role, ('topResumedActivity=' + runner.PACKAGE + '/.DifferentUnassumedReturn\n').encode())
+        self.fixture.edit_stable(self.fixture.candidate()['screens'][-1], edit)
+        result = self.fixture.result()
+        self.assertFalse(result['journey_equal'], result)
+        self.assertFalse(result.get('terminal_surface_identities_equal', True), result)
+
+    def test_full_return_hierarchy_differences_are_not_reduced_to_an_owner_check(self):
+        self.fixture.edit_stable(self.fixture.candidate()['screens'][-1],
+            lambda shot: self.fixture.raw_value(shot, 'hierarchy', returned_xml('Different actual returned surface')))
+        result = self.fixture.result()
+        self.assertFalse(result['journey_equal'], result)
+        self.assertFalse(result['screens'][-1]['hierarchy_equal'])
+
+
+class SettingsGlobalCommandControls(unittest.TestCase):
+    def setUp(self):
+        context = alarm.configured_plan(); context.__enter__(); self.addCleanup(context.__exit__, None, None, None)
+        self.fixture = SixteenFixture(); self.addCleanup(self.fixture.close)
+        add_readiness(self.fixture)
+
+    def append(self, report, argv):
+        command = self.fixture.command([], b'', report['commands'][-1]['finished_monotonic'] + 1)
+        command['argv'] = argv
+        report['commands'].append(command)
+
+    def test_exact_thirty_inputs_six_setup_mutations_and_four_settings_roles_are_bound(self):
+        result = alarm.verify_global_commands(self.fixture.folder, self.fixture.report, proof)
+        self.assertEqual((result['planned_inputs'], result['setup_mutations'], result['settings_inputs']), (30, 6, 4))
+        self.assertEqual(result['unbound_mutations'], 0)
+        self.append(self.fixture.report, ['shell', 'getprop ro.kernel.qemu'])
+        expanded = alarm.verify_global_commands(self.fixture.folder, self.fixture.report, proof)
+        self.assertEqual(expanded['commands'], result['commands'] + 1)
+        self.assertEqual(expanded['planned_inputs'], 30)
+
+    def test_extra_toggle_up_input_permission_or_direct_settings_mutation_fails(self):
+        extras = [
+            ['shell', 'input tap 360 771'], ['shell', 'input tap 56 104'], ['shell', 'input tap 20 20'],
+            ['shell', 'input keyevent 4'], ['shell', 'appops set ' + runner.PACKAGE + ' SCHEDULE_EXACT_ALARM allow'],
+            ['shell', 'settings put secure enabled 1'], ['shell', 'am start -n ' + SETTINGS_COMPONENT],
+            ['shell', "sh -c 'input tap 360 771'"], ['shell', 'input', 'tap', '360', '771'],
+            ['uninstall', runner.PACKAGE], ['install', '--no-streaming', '/synthetic/extra.apk'],
+        ]
+        for argv in extras:
+            report = copy.deepcopy(self.fixture.report); self.append(report, argv)
+            with self.subTest(argv=argv), self.assertRaises(runner.JourneyError): alarm.verify_global_commands(self.fixture.folder, report, proof)
+
+    def test_missing_global_settings_rows_and_aliased_streams_fail(self):
+        for mutation in ('toggle_missing', 'up_missing', 'duplicate', 'stream_alias'):
+            report = copy.deepcopy(self.fixture.report)
+            wanted = report['runs'][1]['transitions'][-2 if mutation == 'toggle_missing' else -1]['command']
+            if mutation.endswith('missing'): report['commands'].remove(wanted)
+            elif mutation == 'duplicate': report['commands'].append(copy.deepcopy(wanted))
+            else:
+                self.append(report, ['shell', 'getprop ro.kernel.qemu'])
+                report['commands'][-1]['stdout'] = copy.deepcopy(report['commands'][0]['stdout'])
+            with self.subTest(mutation=mutation), self.assertRaises(runner.JourneyError): alarm.verify_global_commands(self.fixture.folder, report, proof)
+
+    def test_hardlinked_new_name_does_not_create_a_second_owned_command_stream(self):
+        report = copy.deepcopy(self.fixture.report)
+        self.append(report, ['shell', 'getprop ro.kernel.qemu'])
+        old = report['commands'][0]['stdout']
+        target = self.fixture.folder / 'new-name-same-command-stream'
+        target.hardlink_to(self.fixture.folder / old['path'])
+        report['commands'][-1]['stdout'] = dict(old, path=target.name)
+        with self.assertRaisesRegex(runner.JourneyError, 'path or inode'):
+            alarm.verify_global_commands(self.fixture.folder, report, proof)
+
+    def test_settings_input_ownership_cannot_be_relabelled_or_terminal_omitted(self):
+        for mutation in ('screen_owner', 'transition_role', 'terminal_owner', 'terminal_name'):
+            report = copy.deepcopy(self.fixture.report); run = report['runs'][1]
+            if mutation == 'screen_owner': run['screens'][13]['owner'] = runner.PACKAGE
+            elif mutation == 'transition_role': run['transitions'][-1]['to'] = 'unreviewed-input'
+            elif mutation == 'terminal_owner': run['screens'][-1]['owner'] = alarm.SETTINGS
+            else: run['screens'][-1]['name'] = alarm.ENABLED
+            with self.subTest(mutation=mutation), self.assertRaises(runner.JourneyError): alarm.verify_global_commands(self.fixture.folder, report, proof)
+
+    def test_whole_report_rejects_even_one_extra_after_return_toggle(self):
+        self.append(self.fixture.report, ['shell', 'input tap 360 771'])
+        result = self.fixture.result()
+        self.assertFalse(result['journey_equal'], result)
+        self.assertIn('Unbound, missing or reordered', result['reason'])
+
+
+if __name__ == '__main__':
+    unittest.main()

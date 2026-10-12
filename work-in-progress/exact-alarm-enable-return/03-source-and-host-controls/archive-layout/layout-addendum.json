@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "original_checkpoint_sha256": "6a4ea8e2794a5459bcb699bb314c9b9b14fe538f45b8e06a9c2aee66a5d08051",
+  "original_checkpoint_preserved": true,
+  "logical_path": "work-in-progress/exact-alarm-enable-return/03-source-and-host-controls/evidence.tar.gz",
+  "logical_file": {
+    "bytes": 13014001,
+    "sha256": "51749196bbc80e9ac82beb4821cb15253c7d94122b628f7ecfd624cc398d6755",
+    "mode": "100644"
+  },
+  "committed_manifest": "work-in-progress/exact-alarm-enable-return/03-source-and-host-controls/archive-layout/manifest.json",
+  "parts": [
+    {
+      "path": "work-in-progress/exact-alarm-enable-return/03-source-and-host-controls/archive-layout/parts/evidence.0001.part",
+      "size_bytes": 8388608,
+      "sha256": "550db03854608f0c565e9dd891b37fb6784338f175cfb9b329edddf2965988e6",
+      "git_blob_sha1": "7aa652564118fcd736022bacfe58df0ba1757d61",
+      "mode": "100644"
+    },
+    {
+      "path": "work-in-progress/exact-alarm-enable-return/03-source-and-host-controls/archive-layout/parts/evidence.0002.part",
+      "size_bytes": 4625393,
+      "sha256": "b72fddce277db14a84ee83c1f9cd43fe00939c24e6a56fd31c58fcfa293baf1c",
+      "git_blob_sha1": "8c0d6f8da00b303422bbda2140d32f56481523a9",
+      "mode": "100644"
+    }
+  ],
+  "all_other_180_original_payloads_committed_unchanged": true,
+  "archive_content_or_compression_changed": false,
+  "integration_order": [
+    "Verify original checkpoint, transport manifest and both part identities.",
+    "Reassemble to the logical evidence.tar.gz path before complete-capsule validation.",
+    "Verify complete archive size and SHA-256, set mode 0644, then validate all 181 original payloads and all 353 archived members."
+  ],
+  "no_application_or_workflow_activation": true
+}

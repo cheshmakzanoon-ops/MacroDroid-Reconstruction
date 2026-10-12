@@ -1,0 +1,36 @@
+--- review_closed_source_02.py
++++ review_closed_source_03.py
+@@ -14,7 +14,7 @@
+ 
+ BASE = Path('/dev/shm/macrodroid-exact-alarm-enable-return')
+ CAP = BASE / 'checkpoints/03-source-and-host-controls'
+-OUT = BASE / 'source-review-02'
++OUT = BASE / 'source-review-03'
+ PARENT = Path('/dev/shm/macrodroid-exact-alarm-navigation/checkpoints/03-corrected-source-and-host-controls/replay-source')
+ RAW = Path('/dev/shm/macrodroid-transfer-space-20261012/alarm14-run-38240023189/extracted')
+ ORIGINAL_REPLAY = Path('/dev/shm/macrodroid-exact-alarm-navigation/checkpoints/05-fourteen-screen-device-analysis/analysis/literal-captured-comparison-replay.json')
+@@ -118,11 +118,21 @@
+             successes = re.findall(r'^test_\S+ \(([^)]+)\) \.\.\. ok$', text, re.M)
+             assert set(successes) == set(names) and len(successes) == count
+             assert len(re.findall(r'^Ran ' + str(count) + r' tests in [0-9.]+s$', text, re.M)) == 1 and text.rstrip().endswith('\nOK')
++            executed_inputs = dict(source)
++            if role == '03-parent-compatibility-controls':
++                executed_inputs.update({
++                    'docs/verification/editor-journey/run-38198783416-attempt-1/evidence.zip': {'bytes': 3892915, 'sha256': 'abf947195917bb8f090cee7ae2eff250963c8d0ddd5d5663d7b76103a850c46e'},
++                    'docs/verification/editor-journey/run-38202401351-attempt-1/evidence.zip': {'bytes': 6517530, 'sha256': 'fa2eca5f893ae181b91aa7a7bf5df8320620bbc8da21b87eacffb1de0c3bc7ee'},
++                })
++                rows = read(root / 'executed-inputs-before.json')
++                assert set(rows) == set(executed_inputs)
++                assert all({k: row[k] for k in ('bytes', 'sha256')} == executed_inputs[name] for name, row in rows.items())
+             for inventory_name in ('source-before.json', 'source-after.json', 'executed-source-after.json'):
+                 rows = read(root / inventory_name)
+-                assert set(rows) == set(source)
+-                assert all({k: row[k] for k in ('bytes', 'sha256')} == source[name] for name, row in rows.items())
+-            for name, wanted in source.items():
++                expected_inputs = executed_inputs if inventory_name == 'executed-source-after.json' else source
++                assert set(rows) == set(expected_inputs), (role, inventory_name)
++                assert all({k: row[k] for k in ('bytes', 'sha256')} == expected_inputs[name] for name, row in rows.items())
++            for name, wanted in executed_inputs.items():
+                 assert observed[role + '/repository/' + name] == wanted
+             tests.update(names); results.append({'role': role, 'tests': count, 'seconds': run['seconds'], 'all_named_successes': True})
+         assert len(tests) == 259 and sorted(tests) == read(CAP / 'reports/distinct-passed-tests.json')
