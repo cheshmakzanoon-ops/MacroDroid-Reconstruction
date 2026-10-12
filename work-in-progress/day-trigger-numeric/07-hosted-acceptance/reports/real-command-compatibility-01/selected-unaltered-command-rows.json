@@ -1,0 +1,512 @@
+[
+  {
+    "original_command_index": 4,
+    "unaltered_original_row": {
+      "name": "d8-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/positive-pipeline/d8",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/positive-pipeline/inputs.jar"
+      ],
+      "started_utc": "2026-10-12T08:31:14.186487+00:00",
+      "finished_utc": "2026-10-12T08:31:17.267829+00:00",
+      "duration_seconds": 3.0815666089984006,
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "positive-pipeline/d8-helper.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "positive-pipeline/d8-helper.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "original_command_index": 5,
+    "unaltered_original_row": {
+      "name": "disassemble-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/positive-pipeline/helper-smali",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/positive-pipeline/d8/classes.dex"
+      ],
+      "started_utc": "2026-10-12T08:31:17.273528+00:00",
+      "finished_utc": "2026-10-12T08:31:18.718031+00:00",
+      "duration_seconds": 1.4445088840002427,
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "positive-pipeline/disassemble-helper.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "positive-pipeline/disassemble-helper.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "original_command_index": 6,
+    "unaltered_original_row": {
+      "name": "assemble-target",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-j",
+        "2",
+        "-o",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/positive-pipeline/numeric-target.dex",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/positive-pipeline/target-smali"
+      ],
+      "started_utc": "2026-10-12T08:31:18.727165+00:00",
+      "finished_utc": "2026-10-12T08:31:21.395526+00:00",
+      "duration_seconds": 2.6683755820013175,
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "positive-pipeline/assemble-target.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "positive-pipeline/assemble-target.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "original_command_index": 7,
+    "unaltered_original_row": {
+      "name": "execute",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/harnessclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+        "DayNumericControlHarness",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/positive/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/positive/result.json"
+      ],
+      "started_utc": "2026-10-12T08:31:21.620933+00:00",
+      "finished_utc": "2026-10-12T08:31:26.926850+00:00",
+      "duration_seconds": 5.305936085998837,
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "positive/execute.stdout.log",
+        "bytes": 97,
+        "sha256": "82a156d45f1902767e3fb560a5bca0c43e30ea6d6ba33c49a278794ea526e34b"
+      },
+      "stderr": {
+        "path": "positive/execute.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "original_command_index": 34,
+    "unaltered_original_row": {
+      "name": "d8-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/integer-zero-pipeline/d8",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/integer-zero-pipeline/inputs.jar"
+      ],
+      "started_utc": "2026-10-12T08:33:02.029385+00:00",
+      "finished_utc": "2026-10-12T08:33:05.519651+00:00",
+      "duration_seconds": 3.4902445349980553,
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "integer-zero-pipeline/d8-helper.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "integer-zero-pipeline/d8-helper.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "original_command_index": 35,
+    "unaltered_original_row": {
+      "name": "disassemble-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/integer-zero-pipeline/helper-smali",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/integer-zero-pipeline/d8/classes.dex"
+      ],
+      "started_utc": "2026-10-12T08:33:05.527629+00:00",
+      "finished_utc": "2026-10-12T08:33:06.299675+00:00",
+      "duration_seconds": 0.7720826529985061,
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "integer-zero-pipeline/disassemble-helper.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "integer-zero-pipeline/disassemble-helper.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "original_command_index": 36,
+    "unaltered_original_row": {
+      "name": "assemble-target",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-j",
+        "2",
+        "-o",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/integer-zero-pipeline/numeric-target.dex",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/integer-zero-pipeline/target-smali"
+      ],
+      "started_utc": "2026-10-12T08:33:06.307543+00:00",
+      "finished_utc": "2026-10-12T08:33:08.056447+00:00",
+      "duration_seconds": 1.748912568000378,
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "integer-zero-pipeline/assemble-target.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "integer-zero-pipeline/assemble-target.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "original_command_index": 37,
+    "unaltered_original_row": {
+      "name": "execute",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/harnessclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+        "DayNumericControlHarness",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/integer-zero-dex-fault/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/integer-zero-dex-fault/result.json"
+      ],
+      "started_utc": "2026-10-12T08:33:08.070953+00:00",
+      "finished_utc": "2026-10-12T08:33:12.056385+00:00",
+      "duration_seconds": 3.9849761100012984,
+      "timeout_seconds": 120,
+      "returncode": 3,
+      "stdout": {
+        "path": "integer-zero-dex-fault/execute.stdout.log",
+        "bytes": 102,
+        "sha256": "5680c9d5d0fd997f5687aee9dbe32a4d9e7162e024e36ac6685e7c295decaff2"
+      },
+      "stderr": {
+        "path": "integer-zero-dex-fault/execute.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "original_command_index": 38,
+    "unaltered_original_row": {
+      "name": "d8-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/decimal-zero-pipeline/d8",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/decimal-zero-pipeline/inputs.jar"
+      ],
+      "started_utc": "2026-10-12T08:33:12.127715+00:00",
+      "finished_utc": "2026-10-12T08:33:14.181612+00:00",
+      "duration_seconds": 2.0538977940013865,
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "decimal-zero-pipeline/d8-helper.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "decimal-zero-pipeline/d8-helper.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "original_command_index": 39,
+    "unaltered_original_row": {
+      "name": "disassemble-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/decimal-zero-pipeline/helper-smali",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/decimal-zero-pipeline/d8/classes.dex"
+      ],
+      "started_utc": "2026-10-12T08:33:14.185009+00:00",
+      "finished_utc": "2026-10-12T08:33:14.964628+00:00",
+      "duration_seconds": 0.7741472589987097,
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "decimal-zero-pipeline/disassemble-helper.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "decimal-zero-pipeline/disassemble-helper.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "original_command_index": 40,
+    "unaltered_original_row": {
+      "name": "assemble-target",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-j",
+        "2",
+        "-o",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/decimal-zero-pipeline/numeric-target.dex",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/decimal-zero-pipeline/target-smali"
+      ],
+      "started_utc": "2026-10-12T08:33:14.974003+00:00",
+      "finished_utc": "2026-10-12T08:33:16.460581+00:00",
+      "duration_seconds": 1.4865997480010265,
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "decimal-zero-pipeline/assemble-target.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "decimal-zero-pipeline/assemble-target.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "original_command_index": 41,
+    "unaltered_original_row": {
+      "name": "execute",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/harnessclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+        "DayNumericControlHarness",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/decimal-zero-dex-fault/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/decimal-zero-dex-fault/result.json"
+      ],
+      "started_utc": "2026-10-12T08:33:16.478718+00:00",
+      "finished_utc": "2026-10-12T08:33:21.803901+00:00",
+      "duration_seconds": 5.325233979001496,
+      "timeout_seconds": 120,
+      "returncode": 3,
+      "stdout": {
+        "path": "decimal-zero-dex-fault/execute.stdout.log",
+        "bytes": 102,
+        "sha256": "d9b773af815e1a46e3c9bfc87a1a4e2d274c184bb4eb4b1636a35a641bd62c65"
+      },
+      "stderr": {
+        "path": "decimal-zero-dex-fault/execute.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "original_command_index": 42,
+    "unaltered_original_row": {
+      "name": "execute",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/harnessclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+        "DayNumericControlHarness",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/original-as-rebuilt-rejected/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/original-as-rebuilt-rejected/result.json"
+      ],
+      "started_utc": "2026-10-12T08:33:22.134535+00:00",
+      "finished_utc": "2026-10-12T08:33:23.732039+00:00",
+      "duration_seconds": 1.5973694159984007,
+      "timeout_seconds": 120,
+      "returncode": 1,
+      "stdout": {
+        "path": "original-as-rebuilt-rejected/execute.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "original-as-rebuilt-rejected/execute.stderr.log",
+        "bytes": 252,
+        "sha256": "b04dd9ea3601b5e2f1bd28387aa6124df07367d6dc8cbd1c6acd25f6d177592b"
+      }
+    }
+  },
+  {
+    "original_command_index": 43,
+    "unaltered_original_row": {
+      "name": "execute",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/harnessclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+        "DayNumericControlHarness",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/wrong-helper-class-rejected/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/wrong-helper-class-rejected/result.json"
+      ],
+      "started_utc": "2026-10-12T08:33:23.743557+00:00",
+      "finished_utc": "2026-10-12T08:33:25.551925+00:00",
+      "duration_seconds": 1.8083814220008207,
+      "timeout_seconds": 120,
+      "returncode": 1,
+      "stdout": {
+        "path": "wrong-helper-class-rejected/execute.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "wrong-helper-class-rejected/execute.stderr.log",
+        "bytes": 411,
+        "sha256": "a183824d54e26fd906eab4774c0b6341eff85c9ace6104b45ebe325239c3aeb7"
+      }
+    }
+  },
+  {
+    "original_command_index": 44,
+    "unaltered_original_row": {
+      "name": "execute",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/harnessclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+        "DayNumericControlHarness",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/positive-restoration/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/positive-restoration/result.json"
+      ],
+      "started_utc": "2026-10-12T08:33:25.573139+00:00",
+      "finished_utc": "2026-10-12T08:33:29.582928+00:00",
+      "duration_seconds": 4.009790202999284,
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "positive-restoration/execute.stdout.log",
+        "bytes": 97,
+        "sha256": "82a156d45f1902767e3fb560a5bca0c43e30ea6d6ba33c49a278794ea526e34b"
+      },
+      "stderr": {
+        "path": "positive-restoration/execute.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  }
+]

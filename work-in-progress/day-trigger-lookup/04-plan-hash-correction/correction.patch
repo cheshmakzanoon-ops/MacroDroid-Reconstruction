@@ -1,0 +1,10 @@
+--- original/INTEGRATION_PLAN.md
++++ corrected/INTEGRATION_PLAN.md
+@@ -1,6 +1,6 @@
+ # DayTrigger.p0: bounded integration plan after the numeric overlay
+ 
+-This is a read-only integration design. It does not register another method, edit application source, compile a new candidate, rerun the application harness, or promote an APK. The proposed starting point is the frozen 19-path numeric overlay, checkpoint `c59d9624844864de085723167ed6e0ef17e06ba0206a33649e92b2f`, published as `work-in-progress/day-trigger-numeric/06-source-integration`. Its full acceptance remains a separate pending gate. The lookup implementation and its actual 371-case proof come from checkpoint `6b3cbd47969b8f10675afd8b63dcac40967a7b30748f04b60af4989bea071c29`.
++This is a read-only integration design. It does not register another method, edit application source, compile a new candidate, rerun the application harness, or promote an APK. The proposed starting point is the frozen 19-path numeric overlay, checkpoint `c59d9624844864de085723167ed67af017ed6e0ef17e06ba0206a33649e92b2f`, published as `work-in-progress/day-trigger-numeric/06-source-integration`. Its full acceptance remains a separate pending gate. The lookup implementation and its actual 371-case proof come from checkpoint `6b3cbd47969b8f10675afd8b63dcac40967a7b30748f04b60af4989bea071c29`.
+ 
+ The lookup is small enough to integrate through the existing method-body pipeline. The important work is preserving the shared dependency declaration, the identity-sensitive observer, and the complete fault gates. The recommended scope is **21 source/test/fixture paths: six new and fifteen modified**. The exact baseline source location, size, SHA-256 and mode for every modified path, and the verified absence of each new path, are in [prospective-source-paths.json](evidence/prospective-source-paths.json).
+ 

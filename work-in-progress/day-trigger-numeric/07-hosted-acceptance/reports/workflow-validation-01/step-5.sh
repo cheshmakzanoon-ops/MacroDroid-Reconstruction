@@ -1,0 +1,1 @@
+python3 -B -m unittest discover -s job-source/tools/day_numeric_acceptance -p 'test_*.py' -v > hosted-tool-host-tests.log 2>&1

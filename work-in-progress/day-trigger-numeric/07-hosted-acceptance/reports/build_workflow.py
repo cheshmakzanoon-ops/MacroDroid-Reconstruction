@@ -1,0 +1,169 @@
+#!/usr/bin/env python3
+"""Bind exactly the authored tool files and generate the narrow additive workflow."""
+from pathlib import Path
+import hashlib
+import json
+
+ROOT = Path('/dev/shm/day-numeric-hosted-01')
+TOOLS = ROOT / 'source/tools/day_numeric_acceptance'
+
+
+def main():
+    names = ['README.md', 'inputs.py', 'pins.json', 'prepare.py', 'run_acceptance.py', 'test_day_numeric_acceptance.py', 'verify.py']
+    actual = {path.name for path in TOOLS.iterdir() if path.is_file() and path.name != 'runtime-files.json'}
+    if actual != set(names):
+        raise ValueError('Unexpected authored tool inventory')
+    rows = []
+    for name in names:
+        raw = (TOOLS / name).read_bytes()
+        rows.append({'path': name, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()})
+    manifest = {'schema': 1, 'scope': 'Exact hosted WIP tooling; excluded self is pinned by the workflow', 'files': rows}
+    raw = (json.dumps(manifest, indent=2) + '\n').encode()
+    (TOOLS / 'runtime-files.json').write_bytes(raw)
+    digest = hashlib.sha256(raw).hexdigest()
+    workflow = '''name: DayTrigger numeric WIP source acceptance
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/day_numeric_acceptance/**'
+      - '.github/workflows/day-numeric-wip-acceptance.yml'
+  pull_request:
+    paths:
+      - 'tools/day_numeric_acceptance/**'
+      - '.github/workflows/day-numeric-wip-acceptance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: day-numeric-wip-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PYTHONUTF8: '1'
+  PYTHONDONTWRITEBYTECODE: '1'
+  DAY_NUMERIC_RUNTIME_MANIFEST_SHA256: '__RUNTIME_SHA256__'
+
+jobs:
+  isolated-numeric-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - name: Check out only the exact triggering job tooling
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.sha }}
+          path: job-source
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: true
+          sparse-checkout: |
+            tools/day_numeric_acceptance
+            .github/workflows
+      - name: Check out the immutable 1,242-method baseline inputs
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: dbcad968c5c3e8f084205393a6c0d2d06a203c71
+          path: baseline-repository
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: true
+          sparse-checkout: |
+            project
+            vendor/v9
+            scripts
+            .github/workflows
+      - name: Check out the independently committed nineteen-file numeric overlay
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: 394234b0e74c9f1d660836c8f2a89901fe05ff9d
+          path: overlay-repository
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: true
+          sparse-checkout: |
+            work-in-progress/day-trigger-numeric/06-source-integration
+      - name: Set up the parent workflow's Java 21 toolchain
+        uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Verify all job tooling before executing it
+        id: tool-inputs
+        run: |
+          python3 -B - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          root = Path('job-source/tools/day_numeric_acceptance')
+          manifest = root / 'runtime-files.json'
+          if hashlib.sha256(manifest.read_bytes()).hexdigest() != os.environ['DAY_NUMERIC_RUNTIME_MANIFEST_SHA256']:
+              raise SystemExit('Exact hosted tooling manifest differs')
+          value = json.loads(manifest.read_text())
+          names = {row['path'] for row in value['files']}
+          if len(names) != len(value['files']) or names != {path.name for path in root.iterdir() if path.is_file() and path.name != 'runtime-files.json'}:
+              raise SystemExit('Hosted tooling inventory differs')
+          for row in value['files']:
+              path = root / row['path']
+              if path.is_symlink() or not path.is_file() or path.parent != root:
+                  raise SystemExit('Invalid hosted tooling file')
+              raw = path.read_bytes()
+              if len(raw) != row['bytes'] or hashlib.sha256(raw).hexdigest() != row['sha256']:
+                  raise SystemExit('Hosted tooling bytes differ: ' + row['path'])
+          Path('hosted-tool-source-verification.json').write_text(json.dumps({'passed': True, 'manifest_sha256': os.environ['DAY_NUMERIC_RUNTIME_MANIFEST_SHA256'], 'files': value['files']}, indent=2) + '\\n')
+          PY
+      - name: Run bounded job policy and subprocess controls
+        run: python3 -B -m unittest discover -s job-source/tools/day_numeric_acceptance -p 'test_*.py' -v > hosted-tool-host-tests.log 2>&1
+      - name: Verify the complete baseline and apply exactly the reviewed source overlay
+        run: |
+          python3 -B job-source/tools/day_numeric_acceptance/prepare.py \\
+            --baseline-repository baseline-repository \\
+            --overlay-repository overlay-repository \\
+            --destination numeric-workspace \\
+            --output hosted-proof \\
+            --expected-job-commit "$GITHUB_SHA" \\
+            --runtime-manifest-sha256 "$DAY_NUMERIC_RUNTIME_MANIFEST_SHA256"
+      - name: Build both APKs and run all sixteen WIP acceptance gates
+        run: |
+          python3 -B job-source/tools/day_numeric_acceptance/run_acceptance.py \\
+            --baseline-repository baseline-repository \\
+            --overlay-repository overlay-repository \\
+            --output hosted-proof \\
+            --runtime-manifest-sha256 "$DAY_NUMERIC_RUNTIME_MANIFEST_SHA256"
+      - name: Independently verify the actual complete result and preserve any failure
+        if: always() && steps.tool-inputs.outcome == 'success'
+        run: |
+          python3 -B job-source/tools/day_numeric_acceptance/verify.py \\
+            --baseline-repository baseline-repository \\
+            --overlay-repository overlay-repository \\
+            --output hosted-proof \\
+            --runtime-manifest-sha256 "$DAY_NUMERIC_RUNTIME_MANIFEST_SHA256"
+      - name: Preserve complete WIP inputs, reports, APKs and literal outcomes
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: day-numeric-wip-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          include-hidden-files: true
+          path: |
+            hosted-proof/
+            !hosted-proof/tmp/
+            numeric-workspace/MacroDroid_v9/reports/
+            numeric-workspace/MacroDroid_v9/dist/*.apk
+            hosted-tool-host-tests.log
+            hosted-tool-source-verification.json
+            job-source/tools/day_numeric_acceptance/
+            job-source/.github/workflows/day-numeric-wip-acceptance.yml
+'''.replace('__RUNTIME_SHA256__', digest)
+    destination = ROOT / 'source/.github/workflows/day-numeric-wip-acceptance.yml'
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(workflow)
+    print(json.dumps({'runtime_manifest_sha256': digest, 'workflow_bytes': destination.stat().st_size,
+                      'workflow_sha256': hashlib.sha256(destination.read_bytes()).hexdigest()}, indent=2))
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "passed": true,
+  "started_utc": "2026-10-12T09:34:52.823534+00:00",
+  "scope": "Read-only compatibility with existing targeted execution; path role remapping is explicit",
+  "java_or_d8_executed_in_this_check": false,
+  "full_integrated_seventeen_command_run_executed": false,
+  "signed_numeric_primary_packaging_verified": false,
+  "android_executed": false,
+  "targeted_checkpoint": {
+    "bytes": 61652,
+    "sha256": "81f44192b6c8862938d952ec9b5b37368c9a32d7d31e0c5ca9391b3ebbe975bc"
+  },
+  "targeted_result": {
+    "path": "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/result.json",
+    "bytes": 82458,
+    "sha256": "a33c9f47259e727c040bb23efd266ab5c0115d213bb738b214f1421a1a522021"
+  },
+  "verifier": {
+    "bytes": 49930,
+    "sha256": "e58525d32a71170f08520caf18c4d6cfc67b4bc87d7e18f692322dac4a886a39"
+  },
+  "fixed_production_runner": {
+    "path": "/workspace/scratch/4130730d15aa/day-trigger-integration/overlay-01/project/day_numeric_dex_controls.py",
+    "bytes": 30381,
+    "sha256": "2d5c58fc15dc50d74aeaf85802e5d57a785937439f6692772801a621209211e2"
+  },
+  "jar_identity": {
+    "bytes": 80076986,
+    "sha256": "354b10af74c09f5d2ab139def4231f0906dc6cc75738b1057e5a8263a412848e"
+  },
+  "path_role_mapping": {
+    "/explicit-future-project-role/tools/lib/jadx-r2721.4574686-all.jar": "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+    "/explicit-future-project-role/reports/day-numeric-dex-explicit-evidence-role": "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02"
+  },
+  "targeted_classpath": "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/04-targeted-numeric-attempt-02/harnessclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+  "classpath_scope_note": "The actual small study used its new host/harness directories plus the existing compiled baseline; the future complete build uses only its own jar, hostclasses and tools/classes. These layouts are not labeled byte-identical classpaths.",
+  "status": "PRESERVED_TARGETED_COMMAND_TEMPLATES_AND_PROVENANCE_CONFIGS_VERIFIED",
+  "pipeline_commands_verified": 9,
+  "harness_commands_verified": 6,
+  "real_streams_verified": 30,
+  "provenance_configs_verified": [
+    {
+      "role": "original-as-rebuilt-rejected",
+      "bytes": 7971,
+      "sha256": "d4298e7c6d343d3545e52165fc447982f054bea4d341995135dc23632f8a7dd0"
+    },
+    {
+      "role": "wrong-helper-class-rejected",
+      "bytes": 7957,
+      "sha256": "783dca97e7fad88c86bceed319828b463f16e16dc280b0441e05eb0e91705d0f"
+    }
+  ],
+  "checks": [
+    {
+      "future_index": 0,
+      "actual_index": 4,
+      "role": "positive-pipeline/d8-helper",
+      "exact_after_declared_path_mapping": true
+    },
+    {
+      "future_index": 1,
+      "actual_index": 5,
+      "role": "positive-pipeline/disassemble-helper",
+      "exact_after_declared_path_mapping": true
+    },
+    {
+      "future_index": 2,
+      "actual_index": 6,
+      "role": "positive-pipeline/assemble-target",
+      "exact_after_declared_path_mapping": true
+    },
+    {
+      "future_index": 6,
+      "actual_index": 34,
+      "role": "integer-zero-pipeline/d8-helper",
+      "exact_after_declared_path_mapping": true
+    },
+    {
+      "future_index": 7,
+      "actual_index": 35,
+      "role": "integer-zero-pipeline/disassemble-helper",
+      "exact_after_declared_path_mapping": true
+    },
+    {
+      "future_index": 8,
+      "actual_index": 36,
+      "role": "integer-zero-pipeline/assemble-target",
+      "exact_after_declared_path_mapping": true
+    },
+    {
+      "future_index": 10,
+      "actual_index": 38,
+      "role": "decimal-zero-pipeline/d8-helper",
+      "exact_after_declared_path_mapping": true
+    },
+    {
+      "future_index": 11,
+      "actual_index": 39,
+      "role": "decimal-zero-pipeline/disassemble-helper",
+      "exact_after_declared_path_mapping": true
+    },
+    {
+      "future_index": 12,
+      "actual_index": 40,
+      "role": "decimal-zero-pipeline/assemble-target",
+      "exact_after_declared_path_mapping": true
+    },
+    {
+      "future_index": 5,
+      "actual_index": 7,
+      "role": "positive/execute",
+      "exact_after_declared_path_and_classpath_mapping": true
+    },
+    {
+      "future_index": 9,
+      "actual_index": 37,
+      "role": "integer-zero-dex-fault/execute",
+      "exact_after_declared_path_and_classpath_mapping": true
+    },
+    {
+      "future_index": 13,
+      "actual_index": 41,
+      "role": "decimal-zero-dex-fault/execute",
+      "exact_after_declared_path_and_classpath_mapping": true
+    },
+    {
+      "future_index": 14,
+      "actual_index": 42,
+      "role": "original-as-rebuilt-rejected/execute",
+      "exact_after_declared_path_and_classpath_mapping": true
+    },
+    {
+      "future_index": 15,
+      "actual_index": 43,
+      "role": "wrong-helper-class-rejected/execute",
+      "exact_after_declared_path_and_classpath_mapping": true
+    },
+    {
+      "future_index": 16,
+      "actual_index": 44,
+      "role": "positive-restoration/execute",
+      "exact_after_declared_path_and_classpath_mapping": true
+    }
+  ],
+  "future_signed_instruction_commands": [
+    {
+      "index": 3,
+      "actual_execution_pending": true
+    },
+    {
+      "index": 4,
+      "actual_execution_pending": true
+    }
+  ],
+  "finished_utc": "2026-10-12T09:34:53.172544+00:00"
+}

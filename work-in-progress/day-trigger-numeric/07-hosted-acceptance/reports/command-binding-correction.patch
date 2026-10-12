@@ -1,0 +1,615 @@
+--- retained-draft/.github/workflows/day-numeric-wip-acceptance.yml
++++ corrected/.github/workflows/day-numeric-wip-acceptance.yml
+@@ -22,7 +22,7 @@
+ env:
+   PYTHONUTF8: '1'
+   PYTHONDONTWRITEBYTECODE: '1'
+-  DAY_NUMERIC_RUNTIME_MANIFEST_SHA256: '360f5757175d599f1ffe5401a828ecf3180cfecae5369cfd3a19e76e24d823c6'
++  DAY_NUMERIC_RUNTIME_MANIFEST_SHA256: 'a2e8c137dd5aed3a3605eddf560789206ec9626593bdc97824a1c78c2245fe69'
+ 
+ jobs:
+   isolated-numeric-source:
+--- retained-draft/tools/day_numeric_acceptance/README.md
++++ corrected/tools/day_numeric_acceptance/README.md
+@@ -52,7 +52,7 @@
+ input paths.
+ 
+ `run_acceptance.py` records the actual Python and Java observations, exact child
+-command, stream hashes, start/end times and return code. It executes the unchanged
++command, resolved Python executable identity, stream hashes, start/end times and return code. It executes the unchanged
+ sixteen-gate acceptance sequence from the reviewed overlay, including the isolated
+ signed source-edit test and the final positive three-path run. The UI gate retains
+ its reviewed 5,400-second limit; each other gate retains 1,200 seconds. The outer
+@@ -67,7 +67,9 @@
+ source twice, checks all sixteen gate commands in order and their actual exit
+ codes, and verifies all 23 required fresh report hashes. Result paths must be
+ canonical, physically distinct and created/modified inside the recorded acceptance
+-interval. A prior report, aliased log, skipped source-edit test or missing gate
++interval. The Java-version and acceptance streams must use their exact distinct
++filenames and fall within their own child invocation intervals. A prior report,
++aliased log, skipped source-edit test or missing gate
+ prevents success.
+ 
+ The required numerical scope is 194,780 host cases over three paths, with 1,243
+@@ -80,12 +82,17 @@
+ 
+ The numeric check replays all 1,291 raw observations and bit-derived expected
+ results; verifies all 32 original and 25 rebuilt instructions and both four-edge
+-inventories; checks the explicit 17-command D8/harness sequence and all 34 output
+-streams; and binds the positive transplanted method to the actual signed APK's
++inventories; reconstructs the exact 17-command D8/harness sequence, all input/output
++arguments and all 34 distinct output streams; and binds the positive transplanted method to the actual signed APK's
+ instruction bytes. All 23 actual harness/oracle/host class files are retained with
+ their identities. The thirteen numeric Java faults remain part of the larger
+ 91-control UI inventory. The two provenance rejections and byte-exact restoration
+-remain separate required checks.
++remain separate required checks. The command verifier binds the observed Java
++executable and HotSpot library hashes to the exact JVM flag command and its raw
++effective-flag output. Both provenance-test configurations must equal the positive
++configuration with only their declared substitution. Recorded command arguments,
++configuration names or stream files cannot substitute for those independently
++reconstructed roles.
+ 
+ The unchanged baseline APK must reproduce its existing SHA-256. The new hybrid
+ APK's identity is measured from its actual bytes and must be bound by its code,
+--- retained-draft/tools/day_numeric_acceptance/run_acceptance.py
++++ corrected/tools/day_numeric_acceptance/run_acceptance.py
+@@ -93,6 +93,7 @@
+         report['preparation_sha256'] = inputs.identity(prepared_path)['sha256']
+         report['project'] = str(project)
+         report['python_executable'] = sys.executable
++        report['python_executable_identity'] = inputs.identity(Path(sys.executable).resolve(strict=True))
+         report['python_version'] = sys.version
+         report['platform'] = platform.platform()
+         report['input_snapshot_before'] = {k: expected[k] for k in ('files', 'snapshot_sha256')}
+--- retained-draft/tools/day_numeric_acceptance/runtime-files.json
++++ corrected/tools/day_numeric_acceptance/runtime-files.json
+@@ -4,8 +4,8 @@
+   "files": [
+     {
+       "path": "README.md",
+-      "bytes": 7579,
+-      "sha256": "37ab731b3b0edf159e4548936540d18013b758fd5f2a492bc19ec74b4078a4cc"
++      "bytes": 8178,
++      "sha256": "39c5d48cb9fffff6dd6c77fc85b1a281c83f5675323475457f4581b9fd4435f9"
+     },
+     {
+       "path": "inputs.py",
+@@ -24,18 +24,18 @@
+     },
+     {
+       "path": "run_acceptance.py",
+-      "bytes": 6540,
+-      "sha256": "4a0416a5be1eb830b2a57637d4a08ae5409ffadad6d0bbed9ff4ce3464a96bfe"
++      "bytes": 6646,
++      "sha256": "422392138125042b79433c29da8c00a8fa618d7e92cbbe146f54856b9efd51f9"
+     },
+     {
+       "path": "test_day_numeric_acceptance.py",
+-      "bytes": 19216,
+-      "sha256": "b26880984055b13cd4e7433e61a9fcbc2f1437fe6722df2f81f48d14d057231c"
++      "bytes": 34218,
++      "sha256": "3565636f3b2726ec5fc7aaee70135a26bac99595d74ecf212efc77bfe51028c4"
+     },
+     {
+       "path": "verify.py",
+-      "bytes": 42103,
+-      "sha256": "c0ba5c0df54530eb94a293b4dae9b548e2679dd0251e77c14b3d06e7aa65708a"
++      "bytes": 49930,
++      "sha256": "e58525d32a71170f08520caf18c4d6cfc67b4bc87d7e18f692322dac4a886a39"
+     }
+   ]
+ }
+--- retained-draft/tools/day_numeric_acceptance/test_day_numeric_acceptance.py
++++ corrected/tools/day_numeric_acceptance/test_day_numeric_acceptance.py
+@@ -13,6 +13,7 @@
+ import tempfile
+ import time
+ import unittest
++from unittest.mock import patch
+ 
+ import inputs
+ import prepare
+@@ -337,6 +338,271 @@
+             verify.verify_execution(value, prepared, pins)
+ 
+ 
++class NumericCommandControls(OwnedTemporary):
++    """Independent synthetic producer-shaped rows; no Java command is executed."""
++    def setUp(self):
++        super().setUp()
++        self.folder = 'reports/day-numeric-dex-synthetic'
++        self.java = '/synthetic/jdk/bin/java'
++        self.make_report()
++
++    def make_report(self, alias_first_streams=False):
++        self.start = time.time_ns() - 10_000_000
++        self.report = {'started_utc': datetime.now(timezone.utc).isoformat(), 'commands': []}
++        output = self.root / self.folder
++        jar = str(self.root / 'tools/lib/jadx-r2721.4574686-all.jar')
++        cp = ':'.join([jar, str(self.root / 'build/java/hostclasses'), str(self.root / 'tools/classes')])
++        rows = []
++        def pipeline(name):
++            path = output / name
++            rows.extend([
++                (name, 'd8-helper', 0, [self.java, '-Xmx512m', '-cp', jar, 'com.android.tools.r8.D8', '--release',
++                    '--no-desugaring', '--min-api', '23', '--output', str(path / 'd8'), str(path / 'inputs.jar')]),
++                (name, 'disassemble-helper', 0, [self.java, '-Xmx512m', '-cp', jar, 'com.android.tools.smali.baksmali.Main',
++                    'd', '--api', '23', '--use-locals', '-o', str(path / 'helper-smali'), str(path / 'd8/classes.dex')]),
++                (name, 'assemble-target', 0, [self.java, '-Xmx512m', '-cp', jar, 'com.android.tools.smali.smali.Main',
++                    'a', '--api', '23', '-j', '2', '-o', str(path / 'numeric-target.dex'), str(path / 'target-smali')])])
++        def harness(name, code):
++            rows.append((name, 'execute', code, [self.java, '-XX:-OmitStackTraceInFastThrow',
++                '-XX:+ShowCodeDetailsInExceptionMessages', '-Xmx512m', '-cp', cp, 'DayNumericControlHarness',
++                str(output / name / 'config.json'), str(output / name / 'result.json')]))
++        pipeline('positive-pipeline')
++        method = 'Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I'
++        rows.extend([
++            ('', 'signed-apk-instructions', 0, [self.java, '-Xmx512m', '-cp', cp, 'InspectMethod',
++                str(self.root / 'build/hybrid/classes3.dex'), method, str(output / 'signed-apk-instructions.json')]),
++            ('', 'positive-transplant-instructions', 0, [self.java, '-Xmx512m', '-cp', cp, 'InspectMethod',
++                str(output / 'positive-pipeline/numeric-target.dex'), method, str(output / 'positive-transplant-instructions.json')])])
++        harness('positive', 0)
++        for name in ('integer-zero', 'decimal-zero'):
++            pipeline(name + '-pipeline')
++            harness(name + '-dex-fault', 3)
++        harness('original-as-rebuilt-rejected', 1)
++        harness('wrong-helper-class-rejected', 1)
++        harness('positive-restoration', 0)
++        for index, (subdir, label, code, argv) in enumerate(rows):
++            started = datetime.now(timezone.utc).isoformat()
++            value = {'name': label, 'argv': argv, 'started_utc': started, 'returncode': code,
++                     'timeout_seconds': 120, 'duration_seconds': 0.01}
++            prefix = self.folder + ('/' + subdir if subdir else '')
++            for stream in ('stdout', 'stderr'):
++                name = prefix + '/' + label + '.' + stream + '.log'
++                path = self.put(name, ('SYNTHETIC NUMERIC POLICY ONLY ' + name).encode())
++                if alias_first_streams and index == 0 and stream == 'stderr':
++                    path.unlink()
++                    os.link(self.root / value['stdout']['path'], path)
++                value[stream] = {'path': name, **inputs.identity(path)}
++            value['ended_utc'] = datetime.now(timezone.utc).isoformat()
++            self.report['commands'].append(value)
++        self.report['finished_utc'] = datetime.now(timezone.utc).isoformat()
++        self.end = time.time_ns() + 10_000_000
++
++    def check(self):
++        ledger = verify.Artifacts(self.root, self.start, self.end)
++        verify.verify_numeric_commands(self.report, self.folder, ledger, self.java)
++        return ledger
++
++    def test_exact_seventeen_synthetic_command_rows_preserve_thirty_four_distinct_streams(self):
++        self.assertEqual(34, len(self.check().rows))
++
++    def test_retained_streams_cannot_make_bin_true_a_d8_command(self):
++        self.report['commands'][0]['argv'] = ['/bin/true']
++        with self.assertRaisesRegex(ValueError, 'Numeric exact command'):
++            self.check()
++
++    def test_missing_runtime_flag_rejects_with_unchanged_positive_streams(self):
++        self.report['commands'][5]['argv'].remove('-XX:-OmitStackTraceInFastThrow')
++        with self.assertRaisesRegex(ValueError, 'JVM policy'):
++            self.check()
++
++    def test_different_config_and_result_roles_reject(self):
++        self.report['commands'][5]['argv'][-2:] = ['/different/config.json', '/different/result.json']
++        with self.assertRaisesRegex(ValueError, 'input role'):
++            self.check()
++
++    def test_boolean_argv_element_rejects(self):
++        self.report['commands'][0]['argv'] = [True]
++        with self.assertRaisesRegex(ValueError, 'Numeric exact command'):
++            self.check()
++
++    def test_wrong_api_target_rejects_even_when_d8_streams_are_unchanged(self):
++        self.report['commands'][0]['argv'][self.report['commands'][0]['argv'].index('--min-api') + 1] = '24'
++        with self.assertRaisesRegex(ValueError, 'Numeric exact command'):
++            self.check()
++
++    def test_extra_classpath_source_rejects(self):
++        self.report['commands'][5]['argv'][5] += ':/extra/classes'
++        with self.assertRaisesRegex(ValueError, 'Numeric exact command'):
++            self.check()
++
++    def test_another_method_inspection_rejects(self):
++        self.report['commands'][3]['argv'][-2] = 'Lexample/Other;->value()I'
++        with self.assertRaisesRegex(ValueError, 'Numeric exact command'):
++            self.check()
++
++    def test_boolean_subprocess_exit_rejects(self):
++        self.report['commands'][0]['returncode'] = False
++        with self.assertRaisesRegex(ValueError, 'subprocess outcome'):
++            self.check()
++
++    def test_reused_numeric_stream_name_rejects(self):
++        self.report['commands'][1]['stdout'] = copy.deepcopy(self.report['commands'][0]['stdout'])
++        with self.assertRaisesRegex(ValueError, 'reused another stream'):
++            self.check()
++
++    def test_physical_numeric_stream_alias_rejects_even_with_matching_hashes(self):
++        self.make_report(alias_first_streams=True)
++        with self.assertRaisesRegex(ValueError, 'physical result file'):
++            self.check()
++
++    def test_stream_from_before_its_own_numeric_child_rejects(self):
++        row = self.report['commands'][0]
++        row['started_utc'] = row['ended_utc']
++        with self.assertRaisesRegex(ValueError, 'own subprocess interval'):
++            self.check()
++
++    def test_omitted_last_numeric_child_rejects(self):
++        self.report['commands'].pop()
++        with self.assertRaisesRegex(ValueError, 'command inventory'):
++            self.check()
++
++
++class WrapperStreamControls(OwnedTemporary):
++    def setUp(self):
++        super().setUp()
++        self.prepared = {'project': '/synthetic/project'}
++        self.execution = {'started_utc': datetime.now(timezone.utc).isoformat(), 'java_versions': []}
++        for label, argv, timeout in [('java-version', ['java', '-version'], 15),
++                                      ('javac-version', ['javac', '-version'], 15),
++                                      ('acceptance', [sys.executable, '-B', 'acceptance.py'], 6600)]:
++            row = {'argv': argv, 'cwd': self.prepared['project'], 'timeout_seconds': timeout,
++                   'returncode': 0, 'timed_out': False, 'started_unix_ns': time.time_ns()}
++            for stream in ('stdout', 'stderr'):
++                name = label + '.' + stream + '.log'
++                path = self.put(name, ('SYNTHETIC OUTER CHILD POLICY ONLY ' + name).encode())
++                row[stream] = {'path': name, **inputs.identity(path)}
++            row['ended_unix_ns'] = time.time_ns()
++            if label == 'acceptance':
++                self.execution['execution'] = row
++            else:
++                self.execution['java_versions'].append(row)
++        self.execution['finished_utc'] = datetime.now(timezone.utc).isoformat()
++
++    def check(self):
++        return verify.verify_wrapper_streams(self.execution, self.prepared, self.root)
++
++    def test_exact_synthetic_child_stream_roles_and_intervals_are_accepted(self):
++        self.assertEqual(6, len(self.check()))
++
++    def test_java_version_streams_cannot_replace_acceptance_streams(self):
++        for stream in ('stdout', 'stderr'):
++            (self.root / self.execution['execution'][stream]['path']).unlink()
++            self.execution['execution'][stream] = copy.deepcopy(self.execution['java_versions'][0][stream])
++        with self.assertRaisesRegex(ValueError, 'reused or renamed'):
++            self.check()
++
++    def test_dot_alias_does_not_create_a_new_acceptance_stream_role(self):
++        self.execution['execution']['stdout']['path'] = './acceptance.stdout.log'
++        with self.assertRaisesRegex(ValueError, 'reused or renamed'):
++            self.check()
++
++    def test_version_command_cannot_be_replaced_by_true(self):
++        self.execution['java_versions'][0]['argv'] = ['/bin/true']
++        with self.assertRaisesRegex(ValueError, 'Outer child invocation'):
++            self.check()
++
++    def test_old_acceptance_stream_fails_its_specific_child_window(self):
++        row = self.execution['execution']
++        row['started_unix_ns'] = row['ended_unix_ns'] - 1
++        with self.assertRaisesRegex(ValueError, 'own child interval'):
++            self.check()
++
++    def test_acceptance_interval_cannot_precede_the_java_observations(self):
++        self.execution['execution']['started_unix_ns'] = self.execution['java_versions'][0]['started_unix_ns']
++        with self.assertRaisesRegex(ValueError, 'Outer child chronology'):
++            self.check()
++
++
++class NumericProvenanceControls(unittest.TestCase):
++    def setUp(self):
++        self.positive = {'schema': 1, 'originalFixture': {'path': '/synthetic/original.dex', 'sha256': '1' * 64},
++                         'targetDex': {'path': '/synthetic/rebuilt.dex', 'sha256': '2' * 64},
++                         'rebuiltApk': {'path': '/synthetic/signed.apk', 'sha256': '3' * 64},
++                         'classPins': {'recovered.ui.DayTriggerValueMethods': {'path': '/synthetic/helper.class', 'sha256': '4' * 64}}}
++
++    def test_exact_two_declared_provenance_faults_are_accepted_without_mutating_positive(self):
++        saved = copy.deepcopy(self.positive)
++        original = copy.deepcopy(self.positive)
++        original['targetDex'] = copy.deepcopy(original['originalFixture'])
++        wrong = copy.deepcopy(self.positive)
++        wrong['classPins']['recovered.ui.DayTriggerValueMethods']['sha256'] = '0' * 64
++        verify.verify_provenance_config(original, self.positive, 'original-as-rebuilt-rejected')
++        verify.verify_provenance_config(wrong, self.positive, 'wrong-helper-class-rejected')
++        self.assertEqual(saved, self.positive)
++
++    def test_unchanged_positive_cannot_stand_in_for_either_provenance_fault(self):
++        for name in ('original-as-rebuilt-rejected', 'wrong-helper-class-rejected'):
++            with self.subTest(name=name), self.assertRaisesRegex(ValueError, 'declared fault'):
++                verify.verify_provenance_config(self.positive, self.positive, name)
++
++    def test_additional_apk_change_rejects_despite_the_expected_fault(self):
++        wrong = copy.deepcopy(self.positive)
++        wrong['classPins']['recovered.ui.DayTriggerValueMethods']['sha256'] = '0' * 64
++        wrong['rebuiltApk']['sha256'] = 'f' * 64
++        with self.assertRaisesRegex(ValueError, 'changed another input'):
++            verify.verify_provenance_config(wrong, self.positive, 'wrong-helper-class-rejected')
++
++    def test_same_hash_with_another_original_path_rejects(self):
++        original = copy.deepcopy(self.positive)
++        original['targetDex'] = copy.deepcopy(original['originalFixture'])
++        original['targetDex']['path'] = '/synthetic/alias-original.dex'
++        with self.assertRaisesRegex(ValueError, 'declared fault'):
++            verify.verify_provenance_config(original, self.positive, 'original-as-rebuilt-rejected')
++
++
++class JavaPolicyControls(OwnedTemporary):
++    def setUp(self):
++        super().setUp()
++        self.start = time.time_ns() - 10_000_000
++        self.java = self.put('jdk/bin/java', b'SYNTHETIC EXECUTABLE IDENTITY ONLY')
++        self.vm = self.put('jdk/lib/server/libjvm.so', b'SYNTHETIC VM IDENTITY ONLY')
++        argv = [str(self.java), '-XX:-OmitStackTraceInFastThrow', '-XX:+ShowCodeDetailsInExceptionMessages', '-XX:+PrintFlagsFinal', '-version']
++        self.text = ('COMMAND: ' + json.dumps(argv) + '\n bool OmitStackTraceInFastThrow = false {product}\n'
++                     ' bool ShowCodeDetailsInExceptionMessages = true {product}\n')
++        self.policy = {'passed': True, 'androidRuntime': False,
++                       'scope': 'Host UI exception runtime only; unchanged APK and exact injected messages',
++                       'java_executable': str(self.java), 'java_sha256': inputs.identity(self.java)['sha256'],
++                       'vm_library': str(self.vm), 'vm_library_sha256': inputs.identity(self.vm)['sha256'],
++                       'argv': argv, 'log': 'ui-runtime-policy.log',
++                       'effective_flags': {'OmitStackTraceInFastThrow': False, 'ShowCodeDetailsInExceptionMessages': True}}
++
++    def check(self):
++        log = self.put('reports/ui-runtime-policy.log', self.text.encode())
++        self.policy['log_sha256'] = inputs.identity(log)['sha256']
++        self.put('reports/ui-runtime-policy.json', inputs.encoded(self.policy))
++        ledger = verify.Artifacts(self.root, self.start, time.time_ns() + 10_000_000)
++        with patch.object(verify.shutil, 'which', return_value=str(self.java)):
++            return verify.verify_java_policy(ledger)
++
++    def test_synthetic_actual_file_and_raw_effective_flag_binding_is_accepted(self):
++        self.assertEqual(str(self.java), self.check())
++
++    def test_changed_actual_java_bytes_reject_the_retained_policy_hash(self):
++        self.java.write_bytes(b'DIFFERENT SYNTHETIC EXECUTABLE')
++        with self.assertRaisesRegex(ValueError, 'executable identity'):
++            self.check()
++
++    def test_effective_raw_flag_cannot_be_overridden_by_a_true_summary(self):
++        self.text = self.text.replace('OmitStackTraceInFastThrow = false', 'OmitStackTraceInFastThrow = true')
++        with self.assertRaisesRegex(ValueError, 'effective flag'):
++            self.check()
++
++    def test_ambiguous_raw_effective_flag_is_rejected(self):
++        self.text += ' bool OmitStackTraceInFastThrow = false {product}\n'
++        with self.assertRaisesRegex(ValueError, 'effective flag'):
++            self.check()
++
++
+ class PreservedReportSchemaControls(unittest.TestCase):
+     def engine(self):
+         return {'selection': 'all', 'scope': 'Original selected DEX / recovered Java / rebuilt DEX, with controlled Android/action/store/clock/thread boundaries; not Android runtime'}
+--- retained-draft/tools/day_numeric_acceptance/verify.py
++++ corrected/tools/day_numeric_acceptance/verify.py
+@@ -3,6 +3,7 @@
+ from __future__ import annotations
+ 
+ import argparse
++import copy
+ from datetime import datetime, timezone
+ import hashlib
+ import math
+@@ -13,6 +14,10 @@
+ import zipfile
+ 
+ import inputs
++
++JVM_FLAGS = ('-XX:-OmitStackTraceInFastThrow', '-XX:+ShowCodeDetailsInExceptionMessages')
++NUMERIC_METHOD = ('Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0('
++                  'Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I')
+ 
+ 
+ def count(value, expected, message):
+@@ -78,6 +83,9 @@
+                    'Wrapper input identity differs')
+     child = execution.get('execution', {})
+     count(child.get('returncode'), 0, 'Acceptance process did not exit zero')
++    inputs.require(execution.get('python_executable') == sys.executable
++                   and execution.get('python_executable_identity') == inputs.identity(Path(sys.executable).resolve(strict=True)),
++                   'Acceptance Python executable differs from the actual verifier runtime')
+     count(child.get('timeout_seconds'), pins['acceptance_timeout_seconds'], 'Overall acceptance bound differs')
+     inputs.require(child.get('timed_out') is False and 'error' not in child
+                    and child.get('argv') == [execution['python_executable'], '-B', 'acceptance.py']
+@@ -86,6 +94,41 @@
+     inputs.require(type(start) is int and type(end) is int and 0 < start < end,
+                    'Missing actual execution interval')
+     return start, end
++
++
++def verify_wrapper_streams(execution, prepared, output):
++    """Bind each outer stream to its exact child, time window and physical file."""
++    beginning, completion = epoch_ns(execution.get('started_utc')), epoch_ns(execution.get('finished_utc'))
++    inputs.require(beginning < completion, 'Wrapper interval differs')
++    artifacts = Artifacts(output, beginning, completion)
++    versions = execution.get('java_versions')
++    inputs.require(isinstance(versions, list) and len(versions) == 2, 'Java observation inventory differs')
++    expected = [('java-version', ['java', '-version'], versions[0], 15),
++                ('javac-version', ['javac', '-version'], versions[1], 15),
++                ('acceptance', [sys.executable, '-B', 'acceptance.py'], execution['execution'], None)]
++    previous = beginning
++    for label, argv, row, timeout in expected:
++        inputs.require(row.get('argv') == argv and row.get('cwd') == prepared['project']
++                       and row.get('timed_out') is False and 'error' not in row,
++                       'Outer child invocation or outcome differs: ' + label)
++        count(row.get('returncode'), 0, 'Outer child did not exit zero: ' + label)
++        if timeout is not None:
++            count(row.get('timeout_seconds'), timeout, 'Java observation timeout differs')
++        start, end = row.get('started_unix_ns'), row.get('ended_unix_ns')
++        inputs.require(type(start) is int and type(end) is int and previous <= start < end <= completion,
++                       'Outer child chronology differs: ' + label)
++        previous = end
++        for stream in ('stdout', 'stderr'):
++            name = label + '.' + stream + '.log'
++            value = row.get(stream, {})
++            inputs.require(isinstance(value, dict) and value.get('path') == name,
++                           'Outer child reused or renamed another stream: ' + label)
++            artifacts.hash(name, value['sha256'])
++            actual = artifacts.rows[name]
++            count(actual['bytes'], value['bytes'], 'Outer stream length differs')
++            inputs.require(start <= actual['mtime_ns'] <= end and start <= actual['ctime_ns'] <= end,
++                           'Outer stream is outside its own child interval: ' + name)
++    return sorted(artifacts.rows.values(), key=lambda row: row['path'])
+ 
+ 
+ def verify_gates(latest, execution, pins, artifacts):
+@@ -299,29 +342,55 @@
+     return checks
+ 
+ 
+-def verify_numeric_commands(report, folder, artifacts):
++def expected_numeric_commands(project, folder, java):
++    """Reconstruct the fixed producer commands without trusting recorded argv."""
++    project, output = Path(project), Path(project) / inputs.relative(folder)
++    jar = str(project / 'tools/lib/jadx-r2721.4574686-all.jar')
++    cp = ':'.join([jar, str(project / 'build/java/hostclasses'), str(project / 'tools/classes')])
+     expected = []
+     def pipeline(name):
+-        expected.extend((name, label, 0) for label in ('d8-helper', 'disassemble-helper', 'assemble-target'))
++        path = output / name
++        commands = [
++            ('d8-helper', [java, '-Xmx512m', '-cp', jar, 'com.android.tools.r8.D8', '--release',
++                           '--no-desugaring', '--min-api', '23', '--output', path / 'd8', path / 'inputs.jar']),
++            ('disassemble-helper', [java, '-Xmx512m', '-cp', jar, 'com.android.tools.smali.baksmali.Main',
++                                    'd', '--api', '23', '--use-locals', '-o', path / 'helper-smali', path / 'd8/classes.dex']),
++            ('assemble-target', [java, '-Xmx512m', '-cp', jar, 'com.android.tools.smali.smali.Main',
++                                 'a', '--api', '23', '-j', '2', '-o', path / 'numeric-target.dex', path / 'target-smali'])]
++        expected.extend((name, label, 0, list(map(str, argv))) for label, argv in commands)
++    def execute(name, code):
++        expected.append((name, 'execute', code, [java, *JVM_FLAGS, '-Xmx512m', '-cp', cp,
++                        'DayNumericControlHarness', str(output / name / 'config.json'), str(output / name / 'result.json')]))
+     pipeline('positive-pipeline')
+-    expected.extend([('', 'signed-apk-instructions', 0), ('', 'positive-transplant-instructions', 0), ('positive', 'execute', 0)])
++    for name, dex in [('signed-apk', project / 'build/hybrid/classes3.dex'),
++                      ('positive-transplant', output / 'positive-pipeline/numeric-target.dex')]:
++        expected.append(('', name + '-instructions', 0, [java, '-Xmx512m', '-cp', cp, 'InspectMethod',
++                        str(dex), NUMERIC_METHOD, str(output / (name + '-instructions.json'))]))
++    execute('positive', 0)
+     for name in ('integer-zero', 'decimal-zero'):
+         pipeline(name + '-pipeline')
+-        expected.append((name + '-dex-fault', 'execute', 3))
+-    expected += [('original-as-rebuilt-rejected', 'execute', 1), ('wrong-helper-class-rejected', 'execute', 1), ('positive-restoration', 'execute', 0)]
++        execute(name + '-dex-fault', 3)
++    for name, code in [('original-as-rebuilt-rejected', 1), ('wrong-helper-class-rejected', 1), ('positive-restoration', 0)]:
++        execute(name, code)
++    return expected
++
++
++def verify_numeric_commands(report, folder, artifacts, java):
++    expected = expected_numeric_commands(artifacts.root, folder, java)
+     commands = report.get('commands')
+     inputs.require(isinstance(commands, list) and len(commands) == len(expected) == 17, 'Numeric actual command inventory differs')
+     previous_end = epoch_ns(report['started_utc'])
+     inputs.require(artifacts.started_ns <= previous_end, 'Numeric commands predate acceptance')
+-    for row, (subdir, label, code) in zip(commands, expected):
++    for row, (subdir, label, code, argv) in zip(commands, expected):
+         inputs.require(row.get('name') == label, 'Numeric command order differs')
++        inputs.require(row.get('argv') == argv, 'Numeric exact command, JVM policy or input role differs: ' + label)
+         count(row.get('returncode'), code, 'Numeric actual subprocess outcome differs')
+         count(row.get('timeout_seconds'), 120, 'Numeric child timeout differs')
+         start, end = epoch_ns(row.get('started_utc')), epoch_ns(row.get('ended_utc'))
+         inputs.require(previous_end <= start <= end <= artifacts.ended_ns, 'Numeric subprocess chronology differs')
+         previous_end = end
+         inputs.require(type(row.get('duration_seconds')) in (int, float) and math.isfinite(row['duration_seconds'])
+-                       and row['duration_seconds'] >= 0 and isinstance(row.get('argv'), list) and row['argv'],
++                       and row['duration_seconds'] >= 0,
+                        'Numeric subprocess lacks an actual bounded invocation')
+         prefix = folder + ('/' + subdir if subdir else '')
+         for stream in ('stdout', 'stderr'):
+@@ -330,7 +399,55 @@
+             inputs.require(value.get('path') == name, 'Numeric subprocess reused another stream')
+             artifacts.hash(name, value['sha256'])
+             count(artifacts.rows[name]['bytes'], value['bytes'], 'Numeric stream length differs')
++            inputs.require(start <= artifacts.rows[name]['mtime_ns'] <= end
++                           and start <= artifacts.rows[name]['ctime_ns'] <= end,
++                           'Numeric stream is outside its own subprocess interval: ' + name)
+     inputs.require(previous_end <= epoch_ns(report.get('finished_utc')) <= artifacts.ended_ns, 'Numeric completion time differs')
++
++
++def verify_java_policy(artifacts):
++    policy = artifacts.json('reports/ui-runtime-policy.json')
++    flags(policy, {'passed': True, 'androidRuntime': False}, 'Numeric Java policy did not pass in host scope')
++    selected = shutil.which('java')
++    inputs.require(selected is not None, 'Observed Java executable is unavailable')
++    java = Path(selected).resolve(strict=True)
++    vm = java.parent.parent / 'lib/server/libjvm.so'
++    expected = [str(java), *JVM_FLAGS, '-XX:+PrintFlagsFinal', '-version']
++    inputs.require(policy.get('java_executable') == str(java)
++                   and policy.get('java_sha256') == inputs.identity(java)['sha256']
++                   and policy.get('vm_library') == str(vm)
++                   and policy.get('vm_library_sha256') == inputs.identity(vm)['sha256']
++                   and policy.get('argv') == expected and policy.get('log') == 'ui-runtime-policy.log'
++                   and policy.get('scope') == 'Host UI exception runtime only; unchanged APK and exact injected messages',
++                   'Numeric Java/VM executable identity or exact policy command differs')
++    artifacts.hash('reports/ui-runtime-policy.log', policy['log_sha256'])
++    text = artifacts.raw('reports/ui-runtime-policy.log').decode('utf-8')
++    first = text.splitlines()[0]
++    inputs.require(first.startswith('COMMAND: ') and inputs.document(first[len('COMMAND: '):]) == expected,
++                   'Java policy raw command differs')
++    observed = {}
++    for name, wanted in [('OmitStackTraceInFastThrow', False), ('ShowCodeDetailsInExceptionMessages', True)]:
++        rows = re.findall(r'^\s*bool\s+' + re.escape(name) + r'\s*=\s*(true|false)\s+.*$', text, re.M)
++        inputs.require(len(rows) == 1 and (rows[0] == 'true') is wanted, 'Java effective flag differs: ' + name)
++        observed[name] = wanted
++    inputs.require(policy.get('effective_flags') == observed, 'Java flag summary differs from the raw observation')
++    return str(java)
++
++
++def expected_provenance_config(config, name):
++    wanted = copy.deepcopy(config)
++    if name == 'original-as-rebuilt-rejected':
++        wanted['targetDex'] = copy.deepcopy(config['originalFixture'])
++    elif name == 'wrong-helper-class-rejected':
++        wanted['classPins']['recovered.ui.DayTriggerValueMethods']['sha256'] = '0' * 64
++    else:
++        raise ValueError('Unknown numeric provenance control')
++    return wanted
++
++
++def verify_provenance_config(actual, positive, name):
++    inputs.require(actual == expected_provenance_config(positive, name),
++                   'Numeric provenance configuration changed another input or did not inject the declared fault')
+ 
+ 
+ def verify_numeric(project, pins, apk, ui, controls, report, artifacts, output, retained):
+@@ -353,7 +470,8 @@
+     artifacts.hash('reports/day-numeric-dex-controls.json', controls['dayNumericDexControlsSha256'])
+     folder = report.get('evidence_directory')
+     inputs.require(isinstance(folder, str) and re.fullmatch(r'reports/day-numeric-dex-[A-Za-z0-9_]+', folder), 'Numeric evidence directory differs')
+-    verify_numeric_commands(report, folder, artifacts)
++    java = verify_java_policy(artifacts)
++    verify_numeric_commands(report, folder, artifacts, java)
+     inputs.require(report.get('positive_pipeline') == pins['numeric_positive_pipeline'], 'Fresh numeric production transplant differs from the reviewed pipeline')
+     inputs.require(artifacts.json(folder + '/positive-pipeline/method-body-binding.json') == pins['numeric_positive_pipeline'],
+                    'Positive method-body binding differs')
+@@ -367,6 +485,9 @@
+     inputs.require(positive == restoration and artifacts.raw(folder + '/positive/result.json') == artifacts.raw(folder + '/positive-restoration/result.json'),
+                    'Numeric raw positive restoration is not byte-exact')
+     cfg = artifacts.json(folder + '/positive/config.json')
++    count(cfg.get('schema'), 1, 'Numeric positive configuration schema differs')
++    inputs.require(set(cfg) == {'schema', 'originalFixture', 'rebuiltApk', 'rebuiltGetterDex', 'targetDex', 'classPins'},
++                   'Numeric positive configuration inventory differs')
+     inputs.require(positive.get('inputIdentities') == cfg and positive.get('loadedClassOrigins') == cfg.get('classPins'),
+                    'Numeric positive raw input/class origins differ from its actual invocation')
+     inputs.require(artifacts.json(folder + '/positive-restoration/config.json') == cfg, 'Restoration used different positive inputs')
+@@ -407,6 +528,7 @@
+         artifacts.hash(folder + '/' + name + '-pipeline/numeric-target.dex', row['pipeline']['target_dex_sha256'])
+     for name, expected_error in [('original-as-rebuilt-rejected', 'Original fixture cannot masquerade as rebuilt target'),
+                                   ('wrong-helper-class-rejected', 'Wrong input identity: class recovered.ui.DayTriggerValueMethods')]:
++        verify_provenance_config(artifacts.json(folder + '/' + name + '/config.json'), cfg, name)
+         inputs.require(not (project / folder / name / 'result.json').exists()
+                        and expected_error in artifacts.raw(folder + '/' + name + '/execute.stderr.log').decode(),
+                        'Numeric provenance control did not reject for the required reason')
+@@ -506,9 +628,7 @@
+         inputs.require(execution.get('preparation_sha256') == inputs.identity(prepared_path)['sha256'], 'Preparation changed after execution began')
+         start, end = verify_execution(execution, prepared, pins)
+         result['actual_acceptance_execution'] = execution['execution']
+-        for stream in ('stdout', 'stderr'):
+-            row = execution['execution'][stream]
+-            inputs.checked_identity(output, row['path'], {k: row[k] for k in ('bytes', 'sha256')})
++        result['verified_wrapper_streams'] = verify_wrapper_streams(execution, prepared, output)
+         inputs.compare_inputs(inputs.scan_inputs(project), future)
+         inputs.checked_identity(project, 'reports/release-input-snapshot.json', pins['future_manifest'])
+         inputs.require(inputs.read_json(project / 'reports/release-input-snapshot.json') == future, 'Acceptance manifest differs from independent complete derivation')
