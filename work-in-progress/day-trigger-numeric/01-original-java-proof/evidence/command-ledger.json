@@ -1,0 +1,195 @@
+[
+  {
+    "name": "java-version",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+      "-version"
+    ],
+    "startedUtc": "2026-10-12T07:17:16.582886+00:00",
+    "timeoutSeconds": 120,
+    "returncode": 0,
+    "finishedUtc": "2026-10-12T07:17:16.803689+00:00",
+    "durationSeconds": 0.22083842000211007,
+    "stdout": {
+      "path": "java-version.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "java-version.stderr.txt",
+      "bytes": 205,
+      "sha256": "5b4412738541184e84f6b2d7520d4f4a7c2a455f60650491464c61adcbbbdeb0"
+    }
+  },
+  {
+    "name": "compile-host-helper",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+      "--release",
+      "8",
+      "-g:none",
+      "-Xlint:-options",
+      "-d",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/hostclasses",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/inputs/host/com/arlosoft/macrodroid/variables/VariableValue.java",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/inputs/host/defpackage/EngineRuntime.java",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/inputs/host/defpackage/TestClock.java",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/inputs/source/java/recovered/ui/DayTriggerValueMethods.java"
+    ],
+    "startedUtc": "2026-10-12T07:17:16.811751+00:00",
+    "timeoutSeconds": 120,
+    "returncode": 0,
+    "finishedUtc": "2026-10-12T07:17:18.113557+00:00",
+    "durationSeconds": 1.3018656659987755,
+    "stdout": {
+      "path": "compile-host-helper.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "compile-host-helper.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "compile-study",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+      "-cp",
+      "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/hostclasses",
+      "-d",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/harnessclasses",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/inputs/BytecodeOracle.java",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/inputs/DayValueStudy.java",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/inputs/ExtractDayFixture.java"
+    ],
+    "startedUtc": "2026-10-12T07:17:18.114991+00:00",
+    "timeoutSeconds": 120,
+    "returncode": 0,
+    "finishedUtc": "2026-10-12T07:17:21.315709+00:00",
+    "durationSeconds": 3.2008313379992615,
+    "stdout": {
+      "path": "compile-study.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "compile-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "extract-original-methods",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+      "-Xmx768m",
+      "-cp",
+      "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/harnessclasses",
+      "ExtractDayFixture",
+      "/workspace/scratch/4130730d15aa/recovered/automation android app",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/original-selected.dex",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/original-method-inventory.json"
+    ],
+    "startedUtc": "2026-10-12T07:17:21.316708+00:00",
+    "timeoutSeconds": 120,
+    "returncode": 0,
+    "finishedUtc": "2026-10-12T07:17:23.996393+00:00",
+    "durationSeconds": 2.6797245140005543,
+    "stdout": {
+      "path": "extract-original-methods.stdout.txt",
+      "bytes": 63,
+      "sha256": "4e478a5567d5cfcb13ccb1b5e4b1135e4aa43bafa5294dfc1c6ef21ceabf4e52"
+    },
+    "stderr": {
+      "path": "extract-original-methods.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "positive-original-java",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+      "-Xmx512m",
+      "-Xverify:all",
+      "-cp",
+      "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/harnessclasses",
+      "DayValueStudy",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/study-config.json",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/positive-report.json"
+    ],
+    "startedUtc": "2026-10-12T07:17:24.000968+00:00",
+    "timeoutSeconds": 120,
+    "returncode": 0,
+    "finishedUtc": "2026-10-12T07:17:26.138511+00:00",
+    "durationSeconds": 2.138138648999302,
+    "stdout": {
+      "path": "positive-original-java.stdout.txt",
+      "bytes": 93,
+      "sha256": "1e56732f2842040affb2d420c5c1ea9464bfc9c563d6006dbeed2c6b764af738"
+    },
+    "stderr": {
+      "path": "positive-original-java.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "wrong-helper-origin-control",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+      "-Xmx512m",
+      "-Xverify:all",
+      "-cp",
+      "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/harnessclasses",
+      "DayValueStudy",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/wrong-helper-config.json",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/wrong-helper-report.json"
+    ],
+    "startedUtc": "2026-10-12T07:17:26.168307+00:00",
+    "timeoutSeconds": 120,
+    "returncode": 1,
+    "finishedUtc": "2026-10-12T07:17:26.638417+00:00",
+    "durationSeconds": 0.47022335700239637,
+    "stdout": {
+      "path": "wrong-helper-origin-control.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "wrong-helper-origin-control.stderr.txt",
+      "bytes": 268,
+      "sha256": "2fb363ca5190924c12070d635426815dec1b93df1d5f278f9968de48cb6a2fcb"
+    }
+  },
+  {
+    "name": "positive-restored",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+      "-Xmx512m",
+      "-Xverify:all",
+      "-cp",
+      "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/harnessclasses",
+      "DayValueStudy",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/study-config.json",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/restored-report.json"
+    ],
+    "startedUtc": "2026-10-12T07:17:26.639585+00:00",
+    "timeoutSeconds": 120,
+    "returncode": 0,
+    "finishedUtc": "2026-10-12T07:17:28.983016+00:00",
+    "durationSeconds": 2.3435018849995686,
+    "stdout": {
+      "path": "positive-restored.stdout.txt",
+      "bytes": 93,
+      "sha256": "1e56732f2842040affb2d420c5c1ea9464bfc9c563d6006dbeed2c6b764af738"
+    },
+    "stderr": {
+      "path": "positive-restored.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+]

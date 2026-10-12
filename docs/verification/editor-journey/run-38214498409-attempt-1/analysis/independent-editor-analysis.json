@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "status": "PRE_APP_DEVICE_CONFIGURATION_REJECTED_RADIO_TYPE_DRIFT",
+  "analyzed_utc": "2026-10-12T07:17:33.326590+00:00",
+  "run_id": 38214498409,
+  "head_sha": "dbcad968c5c3e8f084205393a6c0d2d06a203c71",
+  "artifact_id": 11731511399,
+  "archive": {
+    "bytes": 659380,
+    "sha256": "888eec110a622313bfc1a0fa4eb183b14d6b7302f38d4b0bf5c063a8844d37a9"
+  },
+  "archive_repository_path": "docs/verification/editor-journey/run-38214498409-attempt-1/evidence.zip",
+  "all_149_archive_members_verified_before_and_after": true,
+  "all_41_commands_succeeded": true,
+  "command_output_hashes_verified": 82,
+  "configuration_report": {
+    "bytes": 39166,
+    "sha256": "08893d05b9d803d90ec760870efdb7d6788d0f82f0987c6ea27cfaf2b0c9d973"
+  },
+  "failure": "Primary radio type or computed level changed at configuration completion",
+  "actual_status": "CAPTURE_DEVICE_CONFIGURATION_FAILED",
+  "stable_observation_seconds": 15.178,
+  "confirmed_primary_signal": {
+    "primary": "CellSignalStrengthLte",
+    "level": 4,
+    "primary_measurements": "rssi=2147483647 rsrp=-54 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=4 parametersUseForLevel=0",
+    "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=2147483647 ber=2147483647 rscp=2147483647 ecno=2147483647 level=0,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=-54 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=4 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthLte}"
+  },
+  "completion_primary_signal": {
+    "primary": "CellSignalStrengthWcdma",
+    "level": 4,
+    "primary_measurements": "ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4",
+    "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=2147483647 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=0 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthWcdma}"
+  },
+  "raw_registry_reparsed_with_exact_git_source": true,
+  "raw_before_and_after": {
+    "before": {
+      "gsm_status": "gsm voice state: home\ngsm data state:  home\nOK\n",
+      "power_state": "AC: online\nstatus: Charging\nhealth: Good\npresent: true\ncapacity: 100\nOK\n",
+      "android_battery": "Current Battery Service state:\n  AC powered: true\n  USB powered: false\n  Wireless powered: false\n  Dock powered: false\n  Max charging current: 5000000\n  Max charging voltage: 5000000\n  Charge counter: 10000\n  status: 2\n  health: 2\n  present: true\n  level: 100\n  scale: 100\n  voltage: 5000\n  temperature: 250\n  technology: Li-ion\n  Charging state: 0\n  Charging policy: 0\n",
+      "device_utc": "2026-10-12T06:54:01Z",
+      "sysui_demo_allowed": "0",
+      "sysui_tuner_demo_on": "0",
+      "animation_scales": {
+        "animator_duration_scale": "null",
+        "window_animation_scale": "1.0",
+        "transition_animation_scale": "1.0"
+      },
+      "primary_signals": []
+    },
+    "after": {
+      "gsm_status": "gsm voice state: home\ngsm data state:  home\nOK\n",
+      "power_state": "AC: online\nstatus: Charging\nhealth: Good\npresent: true\ncapacity: 100\nOK\n",
+      "android_battery": "Current Battery Service state:\n  AC powered: true\n  USB powered: false\n  Wireless powered: false\n  Dock powered: false\n  Max charging current: 5000000\n  Max charging voltage: 5000000\n  Charge counter: 10000\n  status: 2\n  health: 2\n  present: true\n  level: 100\n  scale: 100\n  voltage: 5000\n  temperature: 250\n  technology: Li-ion\n  Charging state: 0\n  Charging policy: 0\n",
+      "device_utc": "2026-10-12T06:54:24Z",
+      "sysui_demo_allowed": "1",
+      "sysui_tuner_demo_on": "1",
+      "animation_scales": {
+        "animator_duration_scale": "0",
+        "window_animation_scale": "0",
+        "transition_animation_scale": "0"
+      },
+      "primary_signals": [
+        {
+          "primary": "CellSignalStrengthWcdma",
+          "level": 4,
+          "primary_measurements": "ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4",
+          "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=2147483647 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=0 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthWcdma}"
+        }
+      ]
+    }
+  },
+  "requested_animation_scales_observed_flag_retained": false,
+  "queue_results": [
+    {
+      "job": "eaa1a981d8bc44a18fdf5661c1c3fd40",
+      "exit_code": 2
+    }
+  ],
+  "journey_artifacts_present": false,
+  "host_results": {
+    "host-tests.log": {
+      "bytes": 24877,
+      "sha256": "94627a27da82ee635cd346796e9cbf997568e38b884096ca26623fa42071416b",
+      "count": 148,
+      "seconds": 59.525
+    },
+    "download-tests.log": {
+      "bytes": 1174,
+      "sha256": "e41f646603430948b6f8c888892e7e31e35b7b82c4fdcf910f15326a905a8245",
+      "count": 6,
+      "seconds": 0.006
+    }
+  },
+  "source_pins": [
+    {
+      "commit": "dbcad968c5c3e8f084205393a6c0d2d06a203c71",
+      "path": "tools/android/configure_capture_device.py",
+      "bytes": 14264,
+      "sha256": "50b93f00b68147323be46c8311ee32d3f201683a40b1825d17a02bc51ce25ec8"
+    },
+    {
+      "commit": "dbcad968c5c3e8f084205393a6c0d2d06a203c71",
+      "path": ".github/workflows/editor-journey.yml",
+      "bytes": 3900,
+      "sha256": "db02be3d08416598e9a2c72ca00dce8ff661ee8e53dd67f996aa644cd6c71725"
+    }
+  ],
+  "app_pixel_or_behavior_conclusion": null,
+  "new_android_actions": [],
+  "helper_main_invoked": false,
+  "raw_bytes_or_active_source_modified": false,
+  "full_runtime_1_to_1_established": false
+}

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/ci-run-analysis/analyze_session_38214498414.py", line 274, in <module>
+    main()
+  File "/workspace/scratch/4130730d15aa/ci-run-analysis/analyze_session_38214498414.py", line 100, in main
+    data = git_bytes(relative)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/ci-run-analysis/analyze_session_38214498414.py", line 48, in git_bytes
+    assert result.returncode == 0, (relative, result.stderr.decode())
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('tools/parity_journeys/__pycache__/capture_chronology.cpython-312.pyc', "fatal: path 'tools/parity_journeys/__pycache__/capture_chronology.cpython-312.pyc' does not exist in 'dbcad968c5c3e8f084205393a6c0d2d06a203c71'\n")

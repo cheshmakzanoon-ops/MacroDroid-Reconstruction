@@ -1,0 +1,130 @@
+{
+  "status": "EXACT_REBUILT_HANDLER_METADATA_COLLECTED",
+  "started_utc": "2026-10-12T07:21:50.535155+00:00",
+  "scope": "Read-only rebuilt DEX instruction/handler metadata. The unchanged old collector uses historical original-instructions.json and Original stdout labels; this wrapper explicitly identifies the input as the rebuilt fixture.",
+  "input_kind": "rebuilt-one-target-dex",
+  "app_method_executions": 0,
+  "coverage_credit": 0,
+  "coverage_exemption_implemented": false,
+  "commands": [
+    {
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx256m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/rebuilt-handler-inventory-14/toolclasses",
+        "VideoHandlerInventory",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/rebuilt-handler-inventory-14/inputs/rebuilt-video-monitor.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/rebuilt-handler-inventory-14"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "seconds": 1.213622,
+      "stdout_sha256": "42eed522dbf2369ea6e4b8c8401c734bfc63bd3284b70f80d34df0744839121a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "inputs": [
+    {
+      "source": "/workspace/scratch/4130730d15aa/video-monitor-recovery/checkpoints/12-method-only-three-path/evidence/run/pipeline-output/rebuilt-video-monitor.dex",
+      "path": "inputs/rebuilt-video-monitor.dex",
+      "bytes": 4484,
+      "sha256": "9a8770cfc8c438a08d6ebf87983767af878b01de39a93562e7bf9122c3c921b5"
+    },
+    {
+      "source": "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/handler-dataflow-04/VideoHandlerInventory.java",
+      "path": "inputs/VideoHandlerInventory.java",
+      "bytes": 5279,
+      "sha256": "06d86e88dd685e53382ec6b9773a8ca9a26e6862336ddc57f5319ce7beb821e2"
+    },
+    {
+      "source": "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/handler-dataflow-04/toolclasses/VideoHandlerInventory.class",
+      "path": "toolclasses/VideoHandlerInventory.class",
+      "bytes": 9559,
+      "sha256": "3b9fb8b04763ec8724ffb9f808165f44bd7a29ed82bfa81a21db8a2e7a5b4333"
+    }
+  ],
+  "instruction_rows": 290,
+  "exception_regions": 8,
+  "unvisited_handler_rows": [
+    {
+      "offset": 235,
+      "opcode": "MOVE_EXCEPTION",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 236,
+      "opcode": "GOTO_16",
+      "units": 2,
+      "target": 522
+    }
+  ],
+  "regions_targeting_handler": [
+    {
+      "start": 132,
+      "end": 163,
+      "handlers": [
+        {
+          "type": "Ljava/lang/Exception;",
+          "offset": 235
+        }
+      ]
+    }
+  ],
+  "inputs_unchanged": true,
+  "tool_unchanged": true,
+  "finished_utc": "2026-10-12T07:21:52.445403+00:00",
+  "files": [
+    {
+      "path": "inputs/VideoHandlerInventory.java",
+      "bytes": 5279,
+      "sha256": "06d86e88dd685e53382ec6b9773a8ca9a26e6862336ddc57f5319ce7beb821e2"
+    },
+    {
+      "path": "inputs/rebuilt-video-monitor.dex",
+      "bytes": 4484,
+      "sha256": "9a8770cfc8c438a08d6ebf87983767af878b01de39a93562e7bf9122c3c921b5"
+    },
+    {
+      "path": "inspect-rebuilt.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "inspect-rebuilt.stdout.txt",
+      "bytes": 95,
+      "sha256": "42eed522dbf2369ea6e4b8c8401c734bfc63bd3284b70f80d34df0744839121a"
+    },
+    {
+      "path": "jrt-classfiles/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "jrt-classfiles/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "jrt-classfiles/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "jrt-classfiles/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "original-instructions.json",
+      "bytes": 46167,
+      "sha256": "c270e94e6afdc667399844f2ddeb5207baac0d9315ed1227b3071bb3a276fc0c"
+    },
+    {
+      "path": "toolclasses/VideoHandlerInventory.class",
+      "bytes": 9559,
+      "sha256": "3b9fb8b04763ec8724ffb9f808165f44bd7a29ed82bfa81a21db8a2e7a5b4333"
+    }
+  ]
+}

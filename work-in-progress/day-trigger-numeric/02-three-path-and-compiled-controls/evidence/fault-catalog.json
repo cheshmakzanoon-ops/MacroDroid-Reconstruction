@@ -1,0 +1,80 @@
+[
+  {
+    "name": "integer-zero",
+    "old": "return (int) ((VariableValue.IntegerValue) value).getIntValue();",
+    "new": "return 0;",
+    "requiredFailingCase": "integer-boundary-1"
+  },
+  {
+    "name": "decimal-zero",
+    "old": "return (int) ((VariableValue.DecimalValue) value).getDecimalValue();",
+    "new": "return 0;",
+    "requiredFailingCase": "decimal-boundary-6"
+  },
+  {
+    "name": "integer-saturation",
+    "old": "return (int) ((VariableValue.IntegerValue) value).getIntValue();",
+    "new": "long n = ((VariableValue.IntegerValue) value).getIntValue(); return n > Integer.MAX_VALUE ? Integer.MAX_VALUE : n < Integer.MIN_VALUE ? Integer.MIN_VALUE : (int) n;",
+    "requiredFailingCase": "integer-boundary-15"
+  },
+  {
+    "name": "integer-via-double",
+    "old": "return (int) ((VariableValue.IntegerValue) value).getIntValue();",
+    "new": "return (int) (double) ((VariableValue.IntegerValue) value).getIntValue();",
+    "requiredFailingCase": "integer-boundary-15"
+  },
+  {
+    "name": "integer-via-byte",
+    "old": "return (int) ((VariableValue.IntegerValue) value).getIntValue();",
+    "new": "return (byte) ((VariableValue.IntegerValue) value).getIntValue();",
+    "requiredFailingCase": "integer-boundary-6"
+  },
+  {
+    "name": "decimal-round",
+    "old": "return (int) ((VariableValue.DecimalValue) value).getDecimalValue();",
+    "new": "return (int) Math.round(((VariableValue.DecimalValue) value).getDecimalValue());",
+    "requiredFailingCase": "decimal-boundary-10"
+  },
+  {
+    "name": "decimal-floor",
+    "old": "return (int) ((VariableValue.DecimalValue) value).getDecimalValue();",
+    "new": "return (int) Math.floor(((VariableValue.DecimalValue) value).getDecimalValue());",
+    "requiredFailingCase": "decimal-boundary-3"
+  },
+  {
+    "name": "decimal-nan-one",
+    "old": "return (int) ((VariableValue.DecimalValue) value).getDecimalValue();",
+    "new": "double n = ((VariableValue.DecimalValue) value).getDecimalValue(); return Double.isNaN(n) ? 1 : (int) n;",
+    "requiredFailingCase": "decimal-boundary-35"
+  },
+  {
+    "name": "decimal-infinity-zero",
+    "old": "return (int) ((VariableValue.DecimalValue) value).getDecimalValue();",
+    "new": "double n = ((VariableValue.DecimalValue) value).getDecimalValue(); return Double.isInfinite(n) ? 0 : (int) n;",
+    "requiredFailingCase": "decimal-boundary-33"
+  },
+  {
+    "name": "other-minus-one",
+    "old": "        return 0;",
+    "new": "        return -1;",
+    "requiredFailingCase": "null-value"
+  },
+  {
+    "name": "parse-string",
+    "old": "        return 0;",
+    "new": "        if (value instanceof VariableValue.StringValue) return Integer.parseInt(((VariableValue.StringValue) value).text);\n        return 0;",
+    "requiredFailingCase": "string-numeric"
+  },
+  {
+    "name": "null-contained-throws",
+    "old": "VariableValue value = entry.getVariable();",
+    "new": "VariableValue value = entry.getVariable(); if (value == null) throw new NullPointerException(\"deliberate contained-null fault\");",
+    "requiredFailingCase": "null-value"
+  },
+  {
+    "name": "null-entry-zero",
+    "old": "VariableValue value = entry.getVariable();",
+    "new": "if (entry == null) return 0; VariableValue value = entry.getVariable();",
+    "requiredFailingCase": "null-entry"
+  }
+]

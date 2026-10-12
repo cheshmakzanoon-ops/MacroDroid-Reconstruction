@@ -1,0 +1,640 @@
+{
+  "status": "THREE_PATH_SEMANTIC_MATCH_CONTROLS_PASSED_RAW_COVERAGE_GATE_FAILED",
+  "frozen_utc": "2026-10-12T07:14:12.853786+00:00",
+  "scope": "Private original/JVM/method-only rebuilt DEX semantic proof; strict raw original coverage gate remains failed.",
+  "study_result_sha256": "495aa3d5049f884a6f0b206fe996141a888c74c53529d51737ebd4faecfa9204",
+  "d8_compiler_passed": true,
+  "target_assembled": true,
+  "application_method_compared": true,
+  "coverage_exemption_implemented": false,
+  "active_source_changed": false,
+  "apk_built": false,
+  "android_executed": false,
+  "raw_original_coverage_gate_passed": false,
+  "raw_original_instructions_visited": 259,
+  "raw_original_instructions": 262,
+  "original_unvisited_offsets": [
+    232,
+    233,
+    235
+  ],
+  "files": [
+    {
+      "path": "METHOD_ONLY_DEX_THREE_PATH.md",
+      "bytes": 5075,
+      "sha256": "2308c13da576f281a7435ce4189e8a96dd3c4fee59e14f9419a10e2c6b94d532"
+    },
+    {
+      "path": "PRIVATE_COVERAGE_PROPOSAL.md",
+      "bytes": 5002,
+      "sha256": "adc7faef80c33cebea2231bf3c0f4537661b638660af4a468e3d7086b1151f69"
+    },
+    {
+      "path": "freeze_video_dex_study.py",
+      "bytes": 7310,
+      "sha256": "bd033dd210512907b28230f4d6771e470cb41aa8cd034ee4410ba5756358ef9d"
+    },
+    {
+      "path": "tests/java/VideoDexLauncher.java",
+      "bytes": 3541,
+      "sha256": "3eeefeb798ad281f1324031529bcb87515d68eb3555945fb1dd2035106557798"
+    },
+    {
+      "path": "tests/java/VideoDexStudy.java",
+      "bytes": 11657,
+      "sha256": "4a681b56f22d1a00b7af85c772f0eb26474f49178e0718b61907a5b6511469b2"
+    },
+    {
+      "path": "video_method_dex_study.py",
+      "bytes": 23983,
+      "sha256": "f8b4acb87e0057eb57a7253aeb30cd009ca7df1cc3e996a4b344e7a1103498c9"
+    },
+    {
+      "path": "video_method_negative_control.py",
+      "bytes": 21106,
+      "sha256": "8d90c144d624f3f4cdf4aaff1ef30b858e45b486bee56801070a4b79a7254089"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "initial-wrapper-failure-checkpoint.json",
+      "bytes": 9225,
+      "sha256": "10a95d413d2d866f3668bff1621bf39a9c8873829e8800b135fdec6e51215dd5"
+    },
+    {
+      "path": "launcher-javac-preflight/VideoDexLauncher.java",
+      "bytes": 3541,
+      "sha256": "3eeefeb798ad281f1324031529bcb87515d68eb3555945fb1dd2035106557798"
+    },
+    {
+      "path": "launcher-javac-preflight/VideoDexStudy.java",
+      "bytes": 11657,
+      "sha256": "4a681b56f22d1a00b7af85c772f0eb26474f49178e0718b61907a5b6511469b2"
+    },
+    {
+      "path": "launcher-javac-preflight/classes/VideoDexLauncher.class",
+      "bytes": 6073,
+      "sha256": "5748ef30d1d4b5783ef5510fbe02c976bb590e32c4dd2a5cd04acbecb79f52a0"
+    },
+    {
+      "path": "launcher-javac-preflight/classes/VideoDexStudy.class",
+      "bytes": 13698,
+      "sha256": "40b4b81a9b494cbc8852188f16426f17493eafb48ff6431cf8f67f31acdf2009"
+    },
+    {
+      "path": "launcher-javac-preflight/result.json",
+      "bytes": 1952,
+      "sha256": "dcdaa3110a1d763df229d5f5ea79d807d70767a5e526ce4e4d140755f61d74cb"
+    },
+    {
+      "path": "launcher-javac-preflight/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "launcher-javac-preflight/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "method-only-three-path-final-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "method-only-three-path-final-stdout.txt",
+      "bytes": 3994,
+      "sha256": "00bf7b7d58fad2d188be29af5256d74e5853a5427e0a8010e61c2f31b4ff2e5a"
+    },
+    {
+      "path": "run/assemble-one-target.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/assemble-one-target.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/compile-three-path-launcher.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/compile-three-path-launcher.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/controls/original-substituted-for-rebuilt/class-origins.json",
+      "bytes": 8649,
+      "sha256": "b3b2d29fab7b677bdb0fb4d5da1799d6f5326626120482e90cdadfbccc7ce0a9"
+    },
+    {
+      "path": "run/controls/original-substituted-for-rebuilt/execute-three-path.stderr.txt",
+      "bytes": 191,
+      "sha256": "df59ba88c6ffe4fbf58e9d55f83929d1c0f70ae1d36d7e51d855567e27577d13"
+    },
+    {
+      "path": "run/controls/original-substituted-for-rebuilt/execute-three-path.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/controls/original-substituted-for-rebuilt/expected-class-origins.json",
+      "bytes": 7385,
+      "sha256": "7e645c5a64ed9bf2f5a8b82f1cf51ab5a069f47a255d58322c2f52fb8083cc3a"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/assemble-delay-fault.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/assemble-delay-fault.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/class-origins.json",
+      "bytes": 8649,
+      "sha256": "b3b2d29fab7b677bdb0fb4d5da1799d6f5326626120482e90cdadfbccc7ce0a9"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/execute-three-path.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/execute-three-path.stdout.txt",
+      "bytes": 102,
+      "sha256": "c265c7ed17bfc797cf04e4170037e211a362e213f7c7567a86a2627458eb8af2"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/expected-class-origins.json",
+      "bytes": 7385,
+      "sha256": "7e645c5a64ed9bf2f5a8b82f1cf51ab5a069f47a255d58322c2f52fb8083cc3a"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/after/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/after/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/after/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/after/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/after/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/after/runtime.json",
+      "bytes": 1874,
+      "sha256": "686c8e119b1fe192a230b71d8f19641b2f5a54c7b2980189c1ab79c427cfaeef"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/before/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/before/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/before/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/before/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/before/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/before/runtime.json",
+      "bytes": 1874,
+      "sha256": "686c8e119b1fe192a230b71d8f19641b2f5a54c7b2980189c1ab79c427cfaeef"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/parity.json",
+      "bytes": 368922,
+      "sha256": "87183a89b4a92d6b4439661d342d557a570a3da0115578c335cde7fc8cf13b76"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/rebuilt-delay-mutant.dex",
+      "bytes": 4484,
+      "sha256": "fc347c9cdedcfae7362e2f0396ac9a3ec160953573232935c6670ada3ab8403b"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/smali/a.smali",
+      "bytes": 19890,
+      "sha256": "66757fb941b7cf97a184896a685a42142cddec0ee691b092c287be9d352bf9b5"
+    },
+    {
+      "path": "run/controls/wrong-loaded-helper-hash/execute-three-path.stderr.txt",
+      "bytes": 173,
+      "sha256": "3f1e9a0b073d5662b89d28091dfcfe21c12dc54e670b862d959ca7d23daf68aa"
+    },
+    {
+      "path": "run/controls/wrong-loaded-helper-hash/execute-three-path.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/controls/wrong-loaded-helper-hash/expected-class-origins.json",
+      "bytes": 7385,
+      "sha256": "de03bdbf48114706248a75a3f9dd8cec774721a4d2bcd607331c5f457c044bb9"
+    },
+    {
+      "path": "run/d8-one-helper.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/d8-one-helper.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/disassemble-one-helper.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/disassemble-one-helper.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/expected-class-origins.json",
+      "bytes": 7385,
+      "sha256": "7e645c5a64ed9bf2f5a8b82f1cf51ab5a069f47a255d58322c2f52fb8083cc3a"
+    },
+    {
+      "path": "run/fixed-class-inventory.json",
+      "bytes": 176643,
+      "sha256": "f1aeb928ea2ecdf9c9344dcbb980594674415c526971a5134bc5a6c1f30a9bcb"
+    },
+    {
+      "path": "run/input-inventory.json",
+      "bytes": 2540,
+      "sha256": "1e67212222708d890a3583fd892ff6d16d13bde23271a51cc7f5f48946592a6f"
+    },
+    {
+      "path": "run/inputs/baseline-checkpoint.json",
+      "bytes": 15252,
+      "sha256": "06986104338d570dd78e4abf34f2691756f772c8f6e521769a9ebf06ea97edbe"
+    },
+    {
+      "path": "run/inputs/fixed-harness-classes.tar.gz",
+      "bytes": 144277,
+      "sha256": "5ab15b3e100e6b1dedd2a99831d91d4fb95a5d20a24cc49db405dbe319c117b9"
+    },
+    {
+      "path": "run/inputs/fixed-host-classes.tar.gz",
+      "bytes": 257767,
+      "sha256": "2640337a908f4abde2e243231d6f19b6e3de7a90088528cd710884dd2fd9fd71"
+    },
+    {
+      "path": "run/inputs/host-checkpoint.json",
+      "bytes": 7462,
+      "sha256": "38656eed5691a48b8a11dc5148dd692e813b629141cad9ece604f0588a0311ea"
+    },
+    {
+      "path": "run/inputs/original-video-monitor.dex",
+      "bytes": 4552,
+      "sha256": "940aee4861d9bd52951ccc835e91a917bb56748b4eaad5deb8a0fa1c7d2c3254"
+    },
+    {
+      "path": "run/inputs/production-pipeline/build.py",
+      "bytes": 20325,
+      "sha256": "dd599090fc075fed0835875937a2c2b76d91381936c26f4275f876edf47345f0"
+    },
+    {
+      "path": "run/inputs/production-pipeline/class-index-selected.json",
+      "bytes": 323,
+      "sha256": "4bc17becbc52aab7778adc58459c442e987e0342c594535fb32ae8a2b0493afd"
+    },
+    {
+      "path": "run/inputs/production-pipeline/constructor_owner.py",
+      "bytes": 12830,
+      "sha256": "b77672c0fb1cca53a2cb88280c2688c93fd6a95f95ee0325cabdddad00f58014"
+    },
+    {
+      "path": "run/inputs/production-pipeline/source/smali/classes/0d/a_0dfe0f87312c8ea9.smali",
+      "bytes": 25564,
+      "sha256": "05149221b78ddab67933f4aa8aba10330787889c9a3749d6d7296eaeb6cd6d4d"
+    },
+    {
+      "path": "run/inputs/proposed-method-entry.json",
+      "bytes": 422,
+      "sha256": "ecdb844cc3f114c41930a1668cba0c7979f916175edf9e3f2dc2545b632e1b01"
+    },
+    {
+      "path": "run/inputs/source/java/recovered/ui/VideoMonitorMethods.java",
+      "bytes": 7922,
+      "sha256": "67f5a47013ffbffa67859f9103d2034b3225521d10be9d96d65acd31599d45ee"
+    },
+    {
+      "path": "run/inputs/tests/java/BytecodeOracle.java",
+      "bytes": 25146,
+      "sha256": "d91ddcd8ec3d67d41d69b8252835e747c2cad2c6d5ea898323794ceec30e6b56"
+    },
+    {
+      "path": "run/inputs/tests/java/VideoDexLauncher.java",
+      "bytes": 3541,
+      "sha256": "3eeefeb798ad281f1324031529bcb87515d68eb3555945fb1dd2035106557798"
+    },
+    {
+      "path": "run/inputs/tests/java/VideoDexStudy.java",
+      "bytes": 11657,
+      "sha256": "4a681b56f22d1a00b7af85c772f0eb26474f49178e0718b61907a5b6511469b2"
+    },
+    {
+      "path": "run/inputs/video_method_dex_study.py",
+      "bytes": 23983,
+      "sha256": "f8b4acb87e0057eb57a7253aeb30cd009ca7df1cc3e996a4b344e7a1103498c9"
+    },
+    {
+      "path": "run/inputs/video_method_negative_control.py",
+      "bytes": 21106,
+      "sha256": "8d90c144d624f3f4cdf4aaff1ef30b858e45b486bee56801070a4b79a7254089"
+    },
+    {
+      "path": "run/launcherclasses/VideoDexLauncher.class",
+      "bytes": 6073,
+      "sha256": "5748ef30d1d4b5783ef5510fbe02c976bb590e32c4dd2a5cd04acbecb79f52a0"
+    },
+    {
+      "path": "run/launcherclasses/VideoDexStudy.class",
+      "bytes": 13698,
+      "sha256": "40b4b81a9b494cbc8852188f16426f17493eafb48ff6431cf8f67f31acdf2009"
+    },
+    {
+      "path": "run/method-body-binding.json",
+      "bytes": 1603,
+      "sha256": "b3e469b788a634d864f5f89a9e123c8d6b62fc33000f7d4f3cd6565e1667e22f"
+    },
+    {
+      "path": "run/pipeline-output/d8/classes.dex",
+      "bytes": 4112,
+      "sha256": "a1f96e51a7fa35ef463b4a3b61f83d227623fcabd86ee977cf678789456f8ce8"
+    },
+    {
+      "path": "run/pipeline-output/helper-smali/recovered/ui/VideoMonitorMethods.smali",
+      "bytes": 17684,
+      "sha256": "de9ca2170869b8737620cb01d0887d4a25002bb77509f24b3e0ba9e368e2695e"
+    },
+    {
+      "path": "run/pipeline-output/host/VideoMonitorMethods.class",
+      "bytes": 4234,
+      "sha256": "80e94baecb1ed256bced1fe81d154688ceb124bda8e535483156779118006704"
+    },
+    {
+      "path": "run/pipeline-output/inputs.jar",
+      "bytes": 4155,
+      "sha256": "f9b14fd4745a12a6ccac017ee7510dfb378036d1fa2a9ae93a4ee8ed90fe9776"
+    },
+    {
+      "path": "run/pipeline-output/rebuilt-video-monitor.dex",
+      "bytes": 4484,
+      "sha256": "9a8770cfc8c438a08d6ebf87983767af878b01de39a93562e7bf9122c3c921b5"
+    },
+    {
+      "path": "run/pipeline-output/relocated/recovered/ui/VideoMonitorMethods.class",
+      "bytes": 3981,
+      "sha256": "4c53a979df8cf6c432d7fe657390efd9fe7fcf0a277ce42296966cc4ae08daae"
+    },
+    {
+      "path": "run/pipeline-output/target-smali/a.smali",
+      "bytes": 19891,
+      "sha256": "964902638ad4fbfdca44db533cb48a088e376dc4b7daf934edebb160641061e7"
+    },
+    {
+      "path": "run/positive/class-origins.json",
+      "bytes": 8649,
+      "sha256": "b3b2d29fab7b677bdb0fb4d5da1799d6f5326626120482e90cdadfbccc7ce0a9"
+    },
+    {
+      "path": "run/positive/execute-three-path.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/positive/execute-three-path.stdout.txt",
+      "bytes": 101,
+      "sha256": "721c486f8037522a89c4429e0131993e7416b2381893f30bc08b58d2ab6bb271"
+    },
+    {
+      "path": "run/positive/expected-class-origins.json",
+      "bytes": 7385,
+      "sha256": "7e645c5a64ed9bf2f5a8b82f1cf51ab5a069f47a255d58322c2f52fb8083cc3a"
+    },
+    {
+      "path": "run/positive/live-runtime/after/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "run/positive/live-runtime/after/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "run/positive/live-runtime/after/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "run/positive/live-runtime/after/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "run/positive/live-runtime/after/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "run/positive/live-runtime/after/runtime.json",
+      "bytes": 1874,
+      "sha256": "686c8e119b1fe192a230b71d8f19641b2f5a54c7b2980189c1ab79c427cfaeef"
+    },
+    {
+      "path": "run/positive/live-runtime/before/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "run/positive/live-runtime/before/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "run/positive/live-runtime/before/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "run/positive/live-runtime/before/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "run/positive/live-runtime/before/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "run/positive/live-runtime/before/runtime.json",
+      "bytes": 1874,
+      "sha256": "686c8e119b1fe192a230b71d8f19641b2f5a54c7b2980189c1ab79c427cfaeef"
+    },
+    {
+      "path": "run/positive/parity.json",
+      "bytes": 24546,
+      "sha256": "a6e172c4cd3c97d1245d01fd3dedeaef7e7afbfd424b6c6abdeebd4677722cca"
+    },
+    {
+      "path": "run/positive-restored/class-origins.json",
+      "bytes": 8649,
+      "sha256": "b3b2d29fab7b677bdb0fb4d5da1799d6f5326626120482e90cdadfbccc7ce0a9"
+    },
+    {
+      "path": "run/positive-restored/execute-three-path.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/positive-restored/execute-three-path.stdout.txt",
+      "bytes": 101,
+      "sha256": "721c486f8037522a89c4429e0131993e7416b2381893f30bc08b58d2ab6bb271"
+    },
+    {
+      "path": "run/positive-restored/expected-class-origins.json",
+      "bytes": 7385,
+      "sha256": "7e645c5a64ed9bf2f5a8b82f1cf51ab5a069f47a255d58322c2f52fb8083cc3a"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/after/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/after/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/after/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/after/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/after/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/after/runtime.json",
+      "bytes": 1874,
+      "sha256": "686c8e119b1fe192a230b71d8f19641b2f5a54c7b2980189c1ab79c427cfaeef"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/before/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/before/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/before/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/before/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/before/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/before/runtime.json",
+      "bytes": 1874,
+      "sha256": "686c8e119b1fe192a230b71d8f19641b2f5a54c7b2980189c1ab79c427cfaeef"
+    },
+    {
+      "path": "run/positive-restored/parity.json",
+      "bytes": 24546,
+      "sha256": "a6e172c4cd3c97d1245d01fd3dedeaef7e7afbfd424b6c6abdeebd4677722cca"
+    },
+    {
+      "path": "run/result.json",
+      "bytes": 20255,
+      "sha256": "495aa3d5049f884a6f0b206fe996141a888c74c53529d51737ebd4faecfa9204"
+    }
+  ],
+  "evidence_bundle": {
+    "path": "/workspace/scratch/4130730d15aa/video-monitor-recovery/checkpoints/12-method-only-three-path-evidence.tar.gz",
+    "bytes": 726151,
+    "sha256": "51428127ac4fdcc77c0ced3e181b8f0b3b0df98c195e6e408144f88e02c3ab46"
+  },
+  "archive_members_hash_verified": true,
+  "positive_cases": 1118,
+  "paths": 3,
+  "semantic_mismatches": 0,
+  "unsupported_executions": 0,
+  "independent_expected_result_checks": 230,
+  "expected_result_failures": 0,
+  "original_conditional_edges_visited": 46,
+  "original_conditional_edges": 46,
+  "rebuilt_coverage": {
+    "instructions": 290,
+    "visited": 288,
+    "unvisitedOffsets": [
+      235,
+      236
+    ],
+    "conditionalEdges": 48,
+    "conditionalEdgesVisited": 47,
+    "unvisitedConditionalEdges": [
+      "81:88"
+    ]
+  },
+  "class_origin_and_fixture_controls": 2,
+  "actual_rebuilt_dex_faults_detected": 1,
+  "positive_entire_report_and_inputs_restored": true
+}

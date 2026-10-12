@@ -1,0 +1,2297 @@
+{
+  "scope": "Metadata only; no selected app method is executed and no original coverage credit is added",
+  "instructions": [
+    {
+      "offset": 0,
+      "opcode": "MOVE_OBJECT_FROM16",
+      "units": 2,
+      "A": 1,
+      "B": 26
+    },
+    {
+      "offset": 2,
+      "opcode": "SGET_OBJECT",
+      "units": 2,
+      "A": 2,
+      "reference": "Lblg;->a:Lblg;"
+    },
+    {
+      "offset": 4,
+      "opcode": "CONST_STRING",
+      "units": 2,
+      "A": 3,
+      "reference": "KB"
+    },
+    {
+      "offset": 6,
+      "opcode": "SGET_OBJECT",
+      "units": 2,
+      "A": 4,
+      "reference": "Lv93;->COROUTINE_SUSPENDED:Lv93;"
+    },
+    {
+      "offset": 8,
+      "opcode": "IGET",
+      "units": 2,
+      "A": 0,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->label:I"
+    },
+    {
+      "offset": 10,
+      "opcode": "CONST_STRING",
+      "units": 2,
+      "A": 5,
+      "reference": "Error in storage monitoring: "
+    },
+    {
+      "offset": 12,
+      "opcode": "CONST_4",
+      "units": 1,
+      "A": 6,
+      "literal": 2
+    },
+    {
+      "offset": 13,
+      "opcode": "CONST_WIDE_16",
+      "units": 2,
+      "A": 7,
+      "literal": 3000
+    },
+    {
+      "offset": 15,
+      "opcode": "CONST_4",
+      "units": 1,
+      "A": 9,
+      "literal": 3
+    },
+    {
+      "offset": 16,
+      "opcode": "CONST_4",
+      "units": 1,
+      "A": 10,
+      "literal": 1
+    },
+    {
+      "offset": 17,
+      "opcode": "CONST_4",
+      "units": 1,
+      "A": 11,
+      "literal": 0
+    },
+    {
+      "offset": 18,
+      "opcode": "IF_NEZ",
+      "units": 2,
+      "A": 0,
+      "target": 35
+    },
+    {
+      "offset": 20,
+      "opcode": "INVOKE_STATIC_RANGE",
+      "units": 3,
+      "firstRegister": 27,
+      "registerCount": 1,
+      "reference": "Lu2f;->P(Ljava/lang/Object;)V"
+    },
+    {
+      "offset": 23,
+      "opcode": "IPUT",
+      "units": 2,
+      "A": 10,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->label:I"
+    },
+    {
+      "offset": 25,
+      "opcode": "CONST_WIDE_16",
+      "units": 2,
+      "A": 12,
+      "literal": 5000
+    },
+    {
+      "offset": 27,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        12,
+        13,
+        1
+      ],
+      "reference": "Lsz6;->s(JLm73;)Ljava/lang/Object;"
+    },
+    {
+      "offset": 30,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 31,
+      "opcode": "IF_NE",
+      "units": 2,
+      "A": 0,
+      "B": 4,
+      "target": 88
+    },
+    {
+      "offset": 33,
+      "opcode": "GOTO_16",
+      "units": 2,
+      "target": 554
+    },
+    {
+      "offset": 35,
+      "opcode": "IF_NE",
+      "units": 2,
+      "A": 0,
+      "B": 10,
+      "target": 41
+    },
+    {
+      "offset": 37,
+      "opcode": "INVOKE_STATIC_RANGE",
+      "units": 3,
+      "firstRegister": 27,
+      "registerCount": 1,
+      "reference": "Lu2f;->P(Ljava/lang/Object;)V"
+    },
+    {
+      "offset": 40,
+      "opcode": "GOTO",
+      "units": 1,
+      "target": 88
+    },
+    {
+      "offset": 41,
+      "opcode": "IF_NE",
+      "units": 2,
+      "A": 0,
+      "B": 6,
+      "target": 85
+    },
+    {
+      "offset": 43,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 0,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->L$1:Ljava/lang/Object;"
+    },
+    {
+      "offset": 45,
+      "opcode": "CHECK_CAST",
+      "units": 2,
+      "A": 0,
+      "reference": "Ljava/io/File;"
+    },
+    {
+      "offset": 47,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 0,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->L$0:Ljava/lang/Object;"
+    },
+    {
+      "offset": 49,
+      "opcode": "CHECK_CAST",
+      "units": 2,
+      "A": 0,
+      "reference": "Lqnc;"
+    },
+    {
+      "offset": 51,
+      "opcode": "INVOKE_STATIC_RANGE",
+      "units": 3,
+      "firstRegister": 27,
+      "registerCount": 1,
+      "reference": "Lu2f;->P(Ljava/lang/Object;)V"
+    },
+    {
+      "offset": 54,
+      "opcode": "RETURN_OBJECT",
+      "units": 1,
+      "A": 2
+    },
+    {
+      "offset": 55,
+      "opcode": "MOVE_EXCEPTION",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 56,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/Throwable;->getMessage()Ljava/lang/String;"
+    },
+    {
+      "offset": 59,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 60,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        5,
+        0
+      ],
+      "reference": "Ljb3;->z(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+    },
+    {
+      "offset": 63,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 64,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 12,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->this$0:Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;"
+    },
+    {
+      "offset": 66,
+      "opcode": "IGET_WIDE",
+      "units": 2,
+      "A": 12,
+      "B": 12,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->s:J"
+    },
+    {
+      "offset": 68,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        12,
+        13,
+        0
+      ],
+      "reference": "Lkjf;->g(JLjava/lang/String;)V"
+    },
+    {
+      "offset": 71,
+      "opcode": "IPUT_OBJECT",
+      "units": 2,
+      "A": 11,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->L$0:Ljava/lang/Object;"
+    },
+    {
+      "offset": 73,
+      "opcode": "IPUT_OBJECT",
+      "units": 2,
+      "A": 11,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->L$1:Ljava/lang/Object;"
+    },
+    {
+      "offset": 75,
+      "opcode": "IPUT",
+      "units": 2,
+      "A": 9,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->label:I"
+    },
+    {
+      "offset": 77,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        7,
+        8,
+        1
+      ],
+      "reference": "Lsz6;->s(JLm73;)Ljava/lang/Object;"
+    },
+    {
+      "offset": 80,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 81,
+      "opcode": "IF_NE",
+      "units": 2,
+      "A": 0,
+      "B": 4,
+      "target": 88
+    },
+    {
+      "offset": 83,
+      "opcode": "GOTO_16",
+      "units": 2,
+      "target": 554
+    },
+    {
+      "offset": 85,
+      "opcode": "IF_NE",
+      "units": 2,
+      "A": 0,
+      "B": 9,
+      "target": 564
+    },
+    {
+      "offset": 87,
+      "opcode": "GOTO",
+      "units": 1,
+      "target": 37
+    },
+    {
+      "offset": 88,
+      "opcode": "SGET_OBJECT",
+      "units": 2,
+      "A": 0,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->A:Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService$a;"
+    },
+    {
+      "offset": 90,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/Object;->getClass()Ljava/lang/Class;"
+    },
+    {
+      "offset": 93,
+      "opcode": "SGET_BOOLEAN",
+      "units": 2,
+      "A": 0,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->B:Z"
+    },
+    {
+      "offset": 95,
+      "opcode": "IF_NEZ",
+      "units": 2,
+      "A": 0,
+      "target": 99
+    },
+    {
+      "offset": 97,
+      "opcode": "GOTO_16",
+      "units": 2,
+      "target": 514
+    },
+    {
+      "offset": 99,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 0,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->this$0:Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;"
+    },
+    {
+      "offset": 101,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 0,
+      "B": 0,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->t:Ljava/io/File;"
+    },
+    {
+      "offset": 103,
+      "opcode": "IF_EQZ",
+      "units": 2,
+      "A": 0,
+      "target": 109
+    },
+    {
+      "offset": 105,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/io/File;->getParentFile()Ljava/io/File;"
+    },
+    {
+      "offset": 108,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 109,
+      "opcode": "IF_NEZ",
+      "units": 2,
+      "A": 0,
+      "target": 119
+    },
+    {
+      "offset": 111,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 0,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->this$0:Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;"
+    },
+    {
+      "offset": 113,
+      "opcode": "SGET_OBJECT",
+      "units": 2,
+      "A": 12,
+      "reference": "Landroid/os/Environment;->DIRECTORY_MOVIES:Ljava/lang/String;"
+    },
+    {
+      "offset": 115,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        12
+      ],
+      "reference": "Landroid/content/Context;->getExternalFilesDir(Ljava/lang/String;)Ljava/io/File;"
+    },
+    {
+      "offset": 118,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 119,
+      "opcode": "CONST_4",
+      "units": 1,
+      "A": 12,
+      "literal": 0
+    },
+    {
+      "offset": 120,
+      "opcode": "IF_EQZ",
+      "units": 2,
+      "A": 0,
+      "target": 238
+    },
+    {
+      "offset": 122,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 15,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->this$0:Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;"
+    },
+    {
+      "offset": 124,
+      "opcode": "CONST_WIDE_16",
+      "units": 2,
+      "A": 16,
+      "literal": 0
+    },
+    {
+      "offset": 126,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        15,
+        0
+      ],
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->c(Ljava/io/File;)J"
+    },
+    {
+      "offset": 129,
+      "opcode": "MOVE_RESULT_WIDE",
+      "units": 1,
+      "A": 13
+    },
+    {
+      "offset": 130,
+      "opcode": "MOVE_WIDE_FROM16",
+      "units": 2,
+      "A": 18,
+      "B": 7
+    },
+    {
+      "offset": 132,
+      "opcode": "IGET_WIDE",
+      "units": 2,
+      "A": 7,
+      "B": 15,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->x:J"
+    },
+    {
+      "offset": 134,
+      "opcode": "CMP_LONG",
+      "units": 2,
+      "A": 0,
+      "B": 7,
+      "C": 16
+    },
+    {
+      "offset": 136,
+      "opcode": "CONST_WIDE_32",
+      "units": 3,
+      "A": 20,
+      "literal": 1048576
+    },
+    {
+      "offset": 139,
+      "opcode": "IF_LEZ",
+      "units": 2,
+      "A": 0,
+      "target": 154
+    },
+    {
+      "offset": 141,
+      "opcode": "CONST_WIDE_32",
+      "units": 3,
+      "A": 22,
+      "literal": 104857600
+    },
+    {
+      "offset": 144,
+      "opcode": "SUB_LONG",
+      "units": 2,
+      "A": 7,
+      "B": 7,
+      "C": 22
+    },
+    {
+      "offset": 146,
+      "opcode": "CMP_LONG",
+      "units": 2,
+      "A": 0,
+      "B": 13,
+      "C": 7
+    },
+    {
+      "offset": 148,
+      "opcode": "IF_GEZ",
+      "units": 2,
+      "A": 0,
+      "target": 151
+    },
+    {
+      "offset": 150,
+      "opcode": "GOTO",
+      "units": 1,
+      "target": 154
+    },
+    {
+      "offset": 151,
+      "opcode": "MOVE_FROM16",
+      "units": 2,
+      "A": 22,
+      "B": 10
+    },
+    {
+      "offset": 153,
+      "opcode": "GOTO",
+      "units": 1,
+      "target": 190
+    },
+    {
+      "offset": 154,
+      "opcode": "IPUT_WIDE",
+      "units": 2,
+      "A": 13,
+      "B": 15,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->x:J"
+    },
+    {
+      "offset": 156,
+      "opcode": "DIV_LONG",
+      "units": 2,
+      "A": 7,
+      "B": 13,
+      "C": 20
+    },
+    {
+      "offset": 158,
+      "opcode": "NEW_INSTANCE",
+      "units": 2,
+      "A": 0,
+      "reference": "Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 160,
+      "opcode": "INVOKE_DIRECT",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/StringBuilder;-><init>()V"
+    },
+    {
+      "offset": 163,
+      "opcode": "MOVE_FROM16",
+      "units": 2,
+      "A": 22,
+      "B": 10
+    },
+    {
+      "offset": 165,
+      "opcode": "CONST_STRING",
+      "units": 2,
+      "A": 10,
+      "reference": "Recording Video - Available storage: "
+    },
+    {
+      "offset": 167,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        10
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 170,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 171,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        7,
+        8
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 174,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 175,
+      "opcode": "CONST_STRING",
+      "units": 2,
+      "A": 7,
+      "reference": "MB"
+    },
+    {
+      "offset": 177,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        7
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 180,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 181,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/StringBuilder;->toString()Ljava/lang/String;"
+    },
+    {
+      "offset": 184,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 185,
+      "opcode": "IGET_WIDE",
+      "units": 2,
+      "A": 7,
+      "B": 15,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->s:J"
+    },
+    {
+      "offset": 187,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        7,
+        8,
+        0
+      ],
+      "reference": "Lkjf;->q(JLjava/lang/String;)V"
+    },
+    {
+      "offset": 190,
+      "opcode": "CONST_WIDE_32",
+      "units": 3,
+      "A": 7,
+      "literal": 134217728
+    },
+    {
+      "offset": 193,
+      "opcode": "CMP_LONG",
+      "units": 2,
+      "A": 0,
+      "B": 13,
+      "C": 7
+    },
+    {
+      "offset": 195,
+      "opcode": "IF_GEZ",
+      "units": 2,
+      "A": 0,
+      "target": 244
+    },
+    {
+      "offset": 197,
+      "opcode": "DIV_LONG",
+      "units": 2,
+      "A": 13,
+      "B": 13,
+      "C": 20
+    },
+    {
+      "offset": 199,
+      "opcode": "NEW_INSTANCE",
+      "units": 2,
+      "A": 0,
+      "reference": "Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 201,
+      "opcode": "INVOKE_DIRECT",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/StringBuilder;-><init>()V"
+    },
+    {
+      "offset": 204,
+      "opcode": "CONST_STRING",
+      "units": 2,
+      "A": 7,
+      "reference": "CRITICAL: Storage space exhausted ("
+    },
+    {
+      "offset": 206,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        7
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 209,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 210,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        13,
+        14
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 213,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 214,
+      "opcode": "CONST_STRING",
+      "units": 2,
+      "A": 7,
+      "reference": "MB remaining). Stopping recording."
+    },
+    {
+      "offset": 216,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        7
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 219,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 220,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/StringBuilder;->toString()Ljava/lang/String;"
+    },
+    {
+      "offset": 223,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 224,
+      "opcode": "IGET_WIDE",
+      "units": 2,
+      "A": 7,
+      "B": 15,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->s:J"
+    },
+    {
+      "offset": 226,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        7,
+        8,
+        0
+      ],
+      "reference": "Lkjf;->g(JLjava/lang/String;)V"
+    },
+    {
+      "offset": 229,
+      "opcode": "MOVE_FROM16",
+      "units": 2,
+      "A": 7,
+      "B": 22
+    },
+    {
+      "offset": 231,
+      "opcode": "GOTO",
+      "units": 1,
+      "target": 245
+    },
+    {
+      "offset": 232,
+      "opcode": "MOVE_EXCEPTION",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 233,
+      "opcode": "GOTO_16",
+      "units": 2,
+      "target": 524
+    },
+    {
+      "offset": 235,
+      "opcode": "MOVE_EXCEPTION",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 236,
+      "opcode": "GOTO_16",
+      "units": 2,
+      "target": 522
+    },
+    {
+      "offset": 238,
+      "opcode": "MOVE_WIDE_FROM16",
+      "units": 2,
+      "A": 18,
+      "B": 7
+    },
+    {
+      "offset": 240,
+      "opcode": "MOVE_FROM16",
+      "units": 2,
+      "A": 22,
+      "B": 10
+    },
+    {
+      "offset": 242,
+      "opcode": "CONST_WIDE_16",
+      "units": 2,
+      "A": 16,
+      "literal": 0
+    },
+    {
+      "offset": 244,
+      "opcode": "MOVE",
+      "units": 1,
+      "A": 7,
+      "B": 12
+    },
+    {
+      "offset": 245,
+      "opcode": "IF_NEZ",
+      "units": 2,
+      "A": 7,
+      "target": 483
+    },
+    {
+      "offset": 247,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 8,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->this$0:Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;"
+    },
+    {
+      "offset": 249,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        8
+      ],
+      "reference": "Ljava/lang/Object;->getClass()Ljava/lang/Class;"
+    },
+    {
+      "offset": 252,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 0,
+      "B": 8,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->t:Ljava/io/File;"
+    },
+    {
+      "offset": 254,
+      "opcode": "IF_EQZ",
+      "units": 2,
+      "A": 0,
+      "target": 275
+    },
+    {
+      "offset": 256,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/Object;->getClass()Ljava/lang/Class;"
+    },
+    {
+      "offset": 259,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/io/File;->exists()Z"
+    },
+    {
+      "offset": 262,
+      "opcode": "MOVE_RESULT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 263,
+      "opcode": "IF_EQZ",
+      "units": 2,
+      "A": 0,
+      "target": 298
+    },
+    {
+      "offset": 265,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 0,
+      "B": 8,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->t:Ljava/io/File;"
+    },
+    {
+      "offset": 267,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/Object;->getClass()Ljava/lang/Class;"
+    },
+    {
+      "offset": 270,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/io/File;->length()J"
+    },
+    {
+      "offset": 273,
+      "opcode": "MOVE_RESULT_WIDE",
+      "units": 1,
+      "A": 13
+    },
+    {
+      "offset": 274,
+      "opcode": "GOTO",
+      "units": 1,
+      "target": 300
+    },
+    {
+      "offset": 275,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 0,
+      "B": 8,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->u:Landroid/os/ParcelFileDescriptor;"
+    },
+    {
+      "offset": 277,
+      "opcode": "IF_EQZ",
+      "units": 2,
+      "A": 0,
+      "target": 298
+    },
+    {
+      "offset": 279,
+      "opcode": "CONST_WIDE_16",
+      "units": 2,
+      "A": 13,
+      "literal": -1
+    },
+    {
+      "offset": 281,
+      "opcode": "GOTO",
+      "units": 1,
+      "target": 300
+    },
+    {
+      "offset": 282,
+      "opcode": "MOVE_EXCEPTION",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 283,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/Throwable;->getMessage()Ljava/lang/String;"
+    },
+    {
+      "offset": 286,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 287,
+      "opcode": "CONST_STRING",
+      "units": 2,
+      "A": 10,
+      "reference": "Failed to get current video file size: "
+    },
+    {
+      "offset": 289,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        10,
+        0
+      ],
+      "reference": "Ljb3;->z(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+    },
+    {
+      "offset": 292,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 293,
+      "opcode": "IGET_WIDE",
+      "units": 2,
+      "A": 13,
+      "B": 8,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->s:J"
+    },
+    {
+      "offset": 295,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        13,
+        14,
+        0
+      ],
+      "reference": "Lkjf;->g(JLjava/lang/String;)V"
+    },
+    {
+      "offset": 298,
+      "opcode": "MOVE_WIDE_FROM16",
+      "units": 2,
+      "A": 13,
+      "B": 16
+    },
+    {
+      "offset": 300,
+      "opcode": "CMP_LONG",
+      "units": 2,
+      "A": 0,
+      "B": 13,
+      "C": 16
+    },
+    {
+      "offset": 302,
+      "opcode": "IF_LTZ",
+      "units": 2,
+      "A": 0,
+      "target": 483
+    },
+    {
+      "offset": 304,
+      "opcode": "CONST_WIDE_16",
+      "units": 2,
+      "A": 20,
+      "literal": 1024
+    },
+    {
+      "offset": 306,
+      "opcode": "MOVE_FROM16",
+      "units": 2,
+      "A": 27,
+      "B": 7
+    },
+    {
+      "offset": 308,
+      "opcode": "DIV_LONG",
+      "units": 2,
+      "A": 6,
+      "B": 13,
+      "C": 20
+    },
+    {
+      "offset": 310,
+      "opcode": "NEW_INSTANCE",
+      "units": 2,
+      "A": 0,
+      "reference": "Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 312,
+      "opcode": "INVOKE_DIRECT",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/StringBuilder;-><init>()V"
+    },
+    {
+      "offset": 315,
+      "opcode": "CONST_STRING",
+      "units": 2,
+      "A": 10,
+      "reference": "Current file size: "
+    },
+    {
+      "offset": 317,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        10
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 320,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 321,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        6,
+        7
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 324,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 325,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        3
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 328,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 329,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/StringBuilder;->toString()Ljava/lang/String;"
+    },
+    {
+      "offset": 332,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 333,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 6,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->this$0:Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;"
+    },
+    {
+      "offset": 335,
+      "opcode": "IGET_WIDE",
+      "units": 2,
+      "A": 6,
+      "B": 6,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->s:J"
+    },
+    {
+      "offset": 337,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        6,
+        7,
+        0
+      ],
+      "reference": "Lkjf;->q(JLjava/lang/String;)V"
+    },
+    {
+      "offset": 340,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 0,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->this$0:Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;"
+    },
+    {
+      "offset": 342,
+      "opcode": "IGET_WIDE",
+      "units": 2,
+      "A": 6,
+      "B": 0,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->v:J"
+    },
+    {
+      "offset": 344,
+      "opcode": "CMP_LONG",
+      "units": 2,
+      "A": 10,
+      "B": 6,
+      "C": 16
+    },
+    {
+      "offset": 346,
+      "opcode": "IF_LEZ",
+      "units": 2,
+      "A": 10,
+      "target": 473
+    },
+    {
+      "offset": 348,
+      "opcode": "SUB_LONG",
+      "units": 2,
+      "A": 6,
+      "B": 13,
+      "C": 6
+    },
+    {
+      "offset": 350,
+      "opcode": "CMP_LONG",
+      "units": 2,
+      "A": 10,
+      "B": 6,
+      "C": 16
+    },
+    {
+      "offset": 352,
+      "opcode": "IF_GTZ",
+      "units": 2,
+      "A": 10,
+      "target": 439
+    },
+    {
+      "offset": 354,
+      "opcode": "IGET",
+      "units": 2,
+      "A": 6,
+      "B": 0,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->w:I"
+    },
+    {
+      "offset": 356,
+      "opcode": "ADD_INT_LIT8",
+      "units": 2,
+      "A": 6,
+      "B": 6,
+      "literal": 1
+    },
+    {
+      "offset": 358,
+      "opcode": "IPUT",
+      "units": 2,
+      "A": 6,
+      "B": 0,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->w:I"
+    },
+    {
+      "offset": 360,
+      "opcode": "NEW_INSTANCE",
+      "units": 2,
+      "A": 0,
+      "reference": "Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 362,
+      "opcode": "INVOKE_DIRECT",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/StringBuilder;-><init>()V"
+    },
+    {
+      "offset": 365,
+      "opcode": "CONST_STRING",
+      "units": 2,
+      "A": 7,
+      "reference": "File size not growing: check "
+    },
+    {
+      "offset": 367,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        7
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 370,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 371,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        6
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 374,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 375,
+      "opcode": "CONST_STRING",
+      "units": 2,
+      "A": 6,
+      "reference": "/3"
+    },
+    {
+      "offset": 377,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        6
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 380,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 381,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/StringBuilder;->toString()Ljava/lang/String;"
+    },
+    {
+      "offset": 384,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 385,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 6,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->this$0:Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;"
+    },
+    {
+      "offset": 387,
+      "opcode": "IGET_WIDE",
+      "units": 2,
+      "A": 6,
+      "B": 6,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->s:J"
+    },
+    {
+      "offset": 389,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        6,
+        7,
+        0
+      ],
+      "reference": "Lkjf;->q(JLjava/lang/String;)V"
+    },
+    {
+      "offset": 392,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 0,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->this$0:Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;"
+    },
+    {
+      "offset": 394,
+      "opcode": "IGET",
+      "units": 2,
+      "A": 0,
+      "B": 0,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->w:I"
+    },
+    {
+      "offset": 396,
+      "opcode": "IF_LT",
+      "units": 2,
+      "A": 0,
+      "B": 9,
+      "target": 473
+    },
+    {
+      "offset": 398,
+      "opcode": "INT_TO_LONG",
+      "units": 1,
+      "A": 6,
+      "B": 0
+    },
+    {
+      "offset": 399,
+      "opcode": "MUL_LONG",
+      "units": 2,
+      "A": 6,
+      "B": 6,
+      "C": 18
+    },
+    {
+      "offset": 401,
+      "opcode": "CONST_WIDE_16",
+      "units": 2,
+      "A": 15,
+      "literal": 1000
+    },
+    {
+      "offset": 403,
+      "opcode": "DIV_LONG_2ADDR",
+      "units": 1,
+      "A": 6,
+      "B": 15
+    },
+    {
+      "offset": 404,
+      "opcode": "NEW_INSTANCE",
+      "units": 2,
+      "A": 0,
+      "reference": "Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 406,
+      "opcode": "INVOKE_DIRECT",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/StringBuilder;-><init>()V"
+    },
+    {
+      "offset": 409,
+      "opcode": "CONST_STRING",
+      "units": 2,
+      "A": 10,
+      "reference": "CRITICAL: Video file stopped growing for "
+    },
+    {
+      "offset": 411,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        10
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 414,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 415,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        6,
+        7
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 418,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 419,
+      "opcode": "CONST_STRING",
+      "units": 2,
+      "A": 6,
+      "reference": " seconds. Storage may be full. Stopping recording."
+    },
+    {
+      "offset": 421,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        6
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 424,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 425,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/StringBuilder;->toString()Ljava/lang/String;"
+    },
+    {
+      "offset": 428,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 429,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 6,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->this$0:Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;"
+    },
+    {
+      "offset": 431,
+      "opcode": "IGET_WIDE",
+      "units": 2,
+      "A": 6,
+      "B": 6,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->s:J"
+    },
+    {
+      "offset": 433,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        6,
+        7,
+        0
+      ],
+      "reference": "Lkjf;->g(JLjava/lang/String;)V"
+    },
+    {
+      "offset": 436,
+      "opcode": "MOVE_FROM16",
+      "units": 2,
+      "A": 7,
+      "B": 22
+    },
+    {
+      "offset": 438,
+      "opcode": "GOTO",
+      "units": 1,
+      "target": 475
+    },
+    {
+      "offset": 439,
+      "opcode": "IPUT",
+      "units": 2,
+      "A": 12,
+      "B": 0,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->w:I"
+    },
+    {
+      "offset": 441,
+      "opcode": "DIV_LONG",
+      "units": 2,
+      "A": 6,
+      "B": 6,
+      "C": 20
+    },
+    {
+      "offset": 443,
+      "opcode": "NEW_INSTANCE",
+      "units": 2,
+      "A": 0,
+      "reference": "Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 445,
+      "opcode": "INVOKE_DIRECT",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/StringBuilder;-><init>()V"
+    },
+    {
+      "offset": 448,
+      "opcode": "CONST_STRING",
+      "units": 2,
+      "A": 10,
+      "reference": "File growing normally: +"
+    },
+    {
+      "offset": 450,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        10
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 453,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 454,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        6,
+        7
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 457,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 458,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        3
+      ],
+      "reference": "Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;"
+    },
+    {
+      "offset": 461,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 462,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/StringBuilder;->toString()Ljava/lang/String;"
+    },
+    {
+      "offset": 465,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 466,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 6,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->this$0:Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;"
+    },
+    {
+      "offset": 468,
+      "opcode": "IGET_WIDE",
+      "units": 2,
+      "A": 6,
+      "B": 6,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->s:J"
+    },
+    {
+      "offset": 470,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        6,
+        7,
+        0
+      ],
+      "reference": "Lkjf;->q(JLjava/lang/String;)V"
+    },
+    {
+      "offset": 473,
+      "opcode": "MOVE_FROM16",
+      "units": 2,
+      "A": 7,
+      "B": 27
+    },
+    {
+      "offset": 475,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 0,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->this$0:Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;"
+    },
+    {
+      "offset": 477,
+      "opcode": "IPUT_WIDE",
+      "units": 2,
+      "A": 13,
+      "B": 0,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->v:J"
+    },
+    {
+      "offset": 479,
+      "opcode": "GOTO",
+      "units": 1,
+      "target": 487
+    },
+    {
+      "offset": 480,
+      "opcode": "MOVE_EXCEPTION",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 481,
+      "opcode": "CONST_4",
+      "units": 1,
+      "A": 8,
+      "literal": 2
+    },
+    {
+      "offset": 482,
+      "opcode": "GOTO",
+      "units": 1,
+      "target": 525
+    },
+    {
+      "offset": 483,
+      "opcode": "MOVE_FROM16",
+      "units": 2,
+      "A": 27,
+      "B": 7
+    },
+    {
+      "offset": 485,
+      "opcode": "MOVE_FROM16",
+      "units": 2,
+      "A": 7,
+      "B": 27
+    },
+    {
+      "offset": 487,
+      "opcode": "IF_EQZ",
+      "units": 2,
+      "A": 7,
+      "target": 517
+    },
+    {
+      "offset": 489,
+      "opcode": "SGET_OBJECT",
+      "units": 2,
+      "A": 0,
+      "reference": "Lzp4;->a:Lad4;"
+    },
+    {
+      "offset": 491,
+      "opcode": "SGET_OBJECT",
+      "units": 2,
+      "A": 0,
+      "reference": "Lat9;->a:Lm47;"
+    },
+    {
+      "offset": 493,
+      "opcode": "NEW_INSTANCE",
+      "units": 2,
+      "A": 6,
+      "reference": "Ld31;"
+    },
+    {
+      "offset": 495,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 7,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->this$0:Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;"
+    },
+    {
+      "offset": 497,
+      "opcode": "INVOKE_DIRECT",
+      "units": 3,
+      "invokeRegisters": [
+        6,
+        7,
+        11
+      ],
+      "reference": "Ld31;-><init>(Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;Lm73;)V"
+    },
+    {
+      "offset": 500,
+      "opcode": "IPUT_OBJECT",
+      "units": 2,
+      "A": 11,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->L$0:Ljava/lang/Object;"
+    },
+    {
+      "offset": 502,
+      "opcode": "IPUT_OBJECT",
+      "units": 2,
+      "A": 11,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->L$1:Ljava/lang/Object;"
+    },
+    {
+      "offset": 504,
+      "opcode": "CONST_4",
+      "units": 1,
+      "A": 8,
+      "literal": 2
+    },
+    {
+      "offset": 505,
+      "opcode": "IPUT",
+      "units": 2,
+      "A": 8,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->label:I"
+    },
+    {
+      "offset": 507,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        0,
+        6,
+        1
+      ],
+      "reference": "Ldt9;->e0(Li93;Ljn6;Lm73;)Ljava/lang/Object;"
+    },
+    {
+      "offset": 510,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 511,
+      "opcode": "IF_NE",
+      "units": 2,
+      "A": 0,
+      "B": 4,
+      "target": 514
+    },
+    {
+      "offset": 513,
+      "opcode": "GOTO",
+      "units": 1,
+      "target": 554
+    },
+    {
+      "offset": 514,
+      "opcode": "RETURN_OBJECT",
+      "units": 1,
+      "A": 2
+    },
+    {
+      "offset": 515,
+      "opcode": "MOVE_EXCEPTION",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 516,
+      "opcode": "GOTO",
+      "units": 1,
+      "target": 525
+    },
+    {
+      "offset": 517,
+      "opcode": "CONST_4",
+      "units": 1,
+      "A": 8,
+      "literal": 2
+    },
+    {
+      "offset": 518,
+      "opcode": "GOTO",
+      "units": 1,
+      "target": 540
+    },
+    {
+      "offset": 519,
+      "opcode": "MOVE_EXCEPTION",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 520,
+      "opcode": "MOVE_WIDE_FROM16",
+      "units": 2,
+      "A": 18,
+      "B": 7
+    },
+    {
+      "offset": 522,
+      "opcode": "MOVE_FROM16",
+      "units": 2,
+      "A": 22,
+      "B": 10
+    },
+    {
+      "offset": 524,
+      "opcode": "MOVE",
+      "units": 1,
+      "A": 8,
+      "B": 6
+    },
+    {
+      "offset": 525,
+      "opcode": "INVOKE_VIRTUAL",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Ljava/lang/Throwable;->getMessage()Ljava/lang/String;"
+    },
+    {
+      "offset": 528,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 529,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        5,
+        0
+      ],
+      "reference": "Ljb3;->z(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+    },
+    {
+      "offset": 532,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 533,
+      "opcode": "IGET_OBJECT",
+      "units": 2,
+      "A": 6,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->this$0:Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;"
+    },
+    {
+      "offset": 535,
+      "opcode": "IGET_WIDE",
+      "units": 2,
+      "A": 6,
+      "B": 6,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->s:J"
+    },
+    {
+      "offset": 537,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        6,
+        7,
+        0
+      ],
+      "reference": "Lkjf;->g(JLjava/lang/String;)V"
+    },
+    {
+      "offset": 540,
+      "opcode": "IPUT_OBJECT",
+      "units": 2,
+      "A": 11,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->L$0:Ljava/lang/Object;"
+    },
+    {
+      "offset": 542,
+      "opcode": "IPUT_OBJECT",
+      "units": 2,
+      "A": 11,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->L$1:Ljava/lang/Object;"
+    },
+    {
+      "offset": 544,
+      "opcode": "IPUT",
+      "units": 2,
+      "A": 9,
+      "B": 1,
+      "reference": "Lcom/arlosoft/macrodroid/action/services/a;->label:I"
+    },
+    {
+      "offset": 546,
+      "opcode": "MOVE_WIDE_FROM16",
+      "units": 2,
+      "A": 6,
+      "B": 18
+    },
+    {
+      "offset": 548,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        6,
+        7,
+        1
+      ],
+      "reference": "Lsz6;->s(JLm73;)Ljava/lang/Object;"
+    },
+    {
+      "offset": 551,
+      "opcode": "MOVE_RESULT_OBJECT",
+      "units": 1,
+      "A": 0
+    },
+    {
+      "offset": 552,
+      "opcode": "IF_NE",
+      "units": 2,
+      "A": 0,
+      "B": 4,
+      "target": 555
+    },
+    {
+      "offset": 554,
+      "opcode": "RETURN_OBJECT",
+      "units": 1,
+      "A": 4
+    },
+    {
+      "offset": 555,
+      "opcode": "MOVE_WIDE_FROM16",
+      "units": 2,
+      "A": 24,
+      "B": 6
+    },
+    {
+      "offset": 557,
+      "opcode": "MOVE",
+      "units": 1,
+      "A": 6,
+      "B": 8
+    },
+    {
+      "offset": 558,
+      "opcode": "MOVE_WIDE_FROM16",
+      "units": 2,
+      "A": 7,
+      "B": 24
+    },
+    {
+      "offset": 560,
+      "opcode": "MOVE_FROM16",
+      "units": 2,
+      "A": 10,
+      "B": 22
+    },
+    {
+      "offset": 562,
+      "opcode": "GOTO_16",
+      "units": 2,
+      "target": 88
+    },
+    {
+      "offset": 564,
+      "opcode": "CONST_STRING",
+      "units": 2,
+      "A": 0,
+      "reference": "call to 'resume' before 'invoke' with coroutine"
+    },
+    {
+      "offset": 566,
+      "opcode": "INVOKE_STATIC",
+      "units": 3,
+      "invokeRegisters": [
+        0
+      ],
+      "reference": "Le6d;->r(Ljava/lang/String;)V"
+    },
+    {
+      "offset": 569,
+      "opcode": "RETURN_OBJECT",
+      "units": 1,
+      "A": 11
+    }
+  ],
+  "exceptionRegions": [
+    {
+      "start": 51,
+      "end": 54,
+      "handlers": [
+        {
+          "type": "Ljava/lang/Exception;",
+          "offset": 55
+        }
+      ]
+    },
+    {
+      "start": 99,
+      "end": 130,
+      "handlers": [
+        {
+          "type": "Ljava/lang/Exception;",
+          "offset": 519
+        }
+      ]
+    },
+    {
+      "start": 132,
+      "end": 163,
+      "handlers": [
+        {
+          "type": "Ljava/lang/Exception;",
+          "offset": 235
+        }
+      ]
+    },
+    {
+      "start": 165,
+      "end": 229,
+      "handlers": [
+        {
+          "type": "Ljava/lang/Exception;",
+          "offset": 232
+        }
+      ]
+    },
+    {
+      "start": 247,
+      "end": 252,
+      "handlers": [
+        {
+          "type": "Ljava/lang/Exception;",
+          "offset": 480
+        }
+      ]
+    },
+    {
+      "start": 252,
+      "end": 277,
+      "handlers": [
+        {
+          "type": "Ljava/lang/Exception;",
+          "offset": 282
+        }
+      ]
+    },
+    {
+      "start": 283,
+      "end": 504,
+      "handlers": [
+        {
+          "type": "Ljava/lang/Exception;",
+          "offset": 480
+        }
+      ]
+    },
+    {
+      "start": 505,
+      "end": 511,
+      "handlers": [
+        {
+          "type": "Ljava/lang/Exception;",
+          "offset": 515
+        }
+      ]
+    }
+  ]
+}

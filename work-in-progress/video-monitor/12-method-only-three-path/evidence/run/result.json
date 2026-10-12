@@ -1,0 +1,418 @@
+{
+  "status": "THREE_PATH_SEMANTIC_MATCH_CONTROLS_PASSED_RAW_COVERAGE_GATE_FAILED",
+  "started_utc": "2026-10-12T07:10:05.293688+00:00",
+  "scope": "Method-only production D8/transplant study; the strict original instruction coverage gate is unchanged.",
+  "private_work": "/tmp/macrodroid-video-dex-study-1qikya4o",
+  "active_source_changed": false,
+  "apk_built": false,
+  "android_executed": false,
+  "coverage_exemption_implemented": false,
+  "method": "Lcom/arlosoft/macrodroid/action/services/a;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+  "commands": [
+    {
+      "label": "d8-one-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/pipeline-output/d8",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/pipeline-output/inputs.jar"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 3.637755,
+      "stdout": {
+        "path": "d8-one-helper.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "d8-one-helper.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "disassemble-one-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/pipeline-output/helper-smali",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/pipeline-output/d8/classes.dex"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 1.143069,
+      "stdout": {
+        "path": "disassemble-one-helper.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "disassemble-one-helper.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "assemble-one-target",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-j",
+        "2",
+        "-o",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/pipeline-output/rebuilt-video-monitor.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/pipeline-output/target-smali"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 1.179417,
+      "stdout": {
+        "path": "assemble-one-target.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "assemble-one-target.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "compile-three-path-launcher",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-dex-study-1qikya4o/fixed-harness/harnessclasses:/tmp/macrodroid-video-dex-study-1qikya4o/fixed-host/classes",
+        "-d",
+        "/tmp/macrodroid-video-dex-study-1qikya4o/launcherclasses",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/inputs/tests/java/VideoDexStudy.java",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/inputs/tests/java/VideoDexLauncher.java"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 2.660442,
+      "stdout": {
+        "path": "compile-three-path-launcher.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compile-three-path-launcher.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "execute-three-path",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-dex-study-1qikya4o/launcherclasses:/tmp/macrodroid-video-dex-study-1qikya4o/fixed-harness/harnessclasses:/tmp/macrodroid-video-dex-study-1qikya4o/fixed-host/classes",
+        "VideoDexLauncher",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/positive/expected-class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/positive/class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/inputs/proposed-method-entry.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/inputs/original-video-monitor.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/pipeline-output/rebuilt-video-monitor.dex",
+        "9a8770cfc8c438a08d6ebf87983767af878b01de39a93562e7bf9122c3c921b5",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/positive/parity.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/positive/live-runtime"
+      ],
+      "returncode": 2,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 3.527517,
+      "stdout": {
+        "path": "positive/execute-three-path.stdout.txt",
+        "sha256": "721c486f8037522a89c4429e0131993e7416b2381893f30bc08b58d2ab6bb271"
+      },
+      "stderr": {
+        "path": "positive/execute-three-path.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "execute-three-path",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-dex-study-1qikya4o/launcherclasses:/tmp/macrodroid-video-dex-study-1qikya4o/fixed-harness/harnessclasses:/tmp/macrodroid-video-dex-study-1qikya4o/fixed-host/classes",
+        "VideoDexLauncher",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/controls/original-substituted-for-rebuilt/expected-class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/controls/original-substituted-for-rebuilt/class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/inputs/proposed-method-entry.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/inputs/original-video-monitor.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/inputs/original-video-monitor.dex",
+        "9a8770cfc8c438a08d6ebf87983767af878b01de39a93562e7bf9122c3c921b5",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/controls/original-substituted-for-rebuilt/parity.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/controls/original-substituted-for-rebuilt/live-runtime"
+      ],
+      "returncode": 1,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 0.469003,
+      "stdout": {
+        "path": "controls/original-substituted-for-rebuilt/execute-three-path.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/original-substituted-for-rebuilt/execute-three-path.stderr.txt",
+        "sha256": "df59ba88c6ffe4fbf58e9d55f83929d1c0f70ae1d36d7e51d855567e27577d13"
+      }
+    },
+    {
+      "label": "execute-three-path",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-dex-study-1qikya4o/launcherclasses:/tmp/macrodroid-video-dex-study-1qikya4o/fixed-harness/harnessclasses:/tmp/macrodroid-video-dex-study-1qikya4o/fixed-host/classes",
+        "VideoDexLauncher",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/controls/wrong-loaded-helper-hash/expected-class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/controls/wrong-loaded-helper-hash/class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/inputs/proposed-method-entry.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/inputs/original-video-monitor.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/pipeline-output/rebuilt-video-monitor.dex",
+        "9a8770cfc8c438a08d6ebf87983767af878b01de39a93562e7bf9122c3c921b5",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/controls/wrong-loaded-helper-hash/parity.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/controls/wrong-loaded-helper-hash/live-runtime"
+      ],
+      "returncode": 1,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 0.268275,
+      "stdout": {
+        "path": "controls/wrong-loaded-helper-hash/execute-three-path.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/wrong-loaded-helper-hash/execute-three-path.stderr.txt",
+        "sha256": "3f1e9a0b073d5662b89d28091dfcfe21c12dc54e670b862d959ca7d23daf68aa"
+      }
+    },
+    {
+      "label": "assemble-delay-fault",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-j",
+        "2",
+        "-o",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/controls/rebuilt-delay-duration/rebuilt-delay-mutant.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/controls/rebuilt-delay-duration/smali"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 1.148503,
+      "stdout": {
+        "path": "controls/rebuilt-delay-duration/assemble-delay-fault.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/rebuilt-delay-duration/assemble-delay-fault.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "execute-three-path",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-dex-study-1qikya4o/launcherclasses:/tmp/macrodroid-video-dex-study-1qikya4o/fixed-harness/harnessclasses:/tmp/macrodroid-video-dex-study-1qikya4o/fixed-host/classes",
+        "VideoDexLauncher",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/controls/rebuilt-delay-duration/execution/expected-class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/controls/rebuilt-delay-duration/execution/class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/inputs/proposed-method-entry.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/inputs/original-video-monitor.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/controls/rebuilt-delay-duration/rebuilt-delay-mutant.dex",
+        "fc347c9cdedcfae7362e2f0396ac9a3ec160953573232935c6670ada3ab8403b",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/controls/rebuilt-delay-duration/execution/parity.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/controls/rebuilt-delay-duration/execution/live-runtime"
+      ],
+      "returncode": 2,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 3.683331,
+      "stdout": {
+        "path": "controls/rebuilt-delay-duration/execution/execute-three-path.stdout.txt",
+        "sha256": "c265c7ed17bfc797cf04e4170037e211a362e213f7c7567a86a2627458eb8af2"
+      },
+      "stderr": {
+        "path": "controls/rebuilt-delay-duration/execution/execute-three-path.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "execute-three-path",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-dex-study-1qikya4o/launcherclasses:/tmp/macrodroid-video-dex-study-1qikya4o/fixed-harness/harnessclasses:/tmp/macrodroid-video-dex-study-1qikya4o/fixed-host/classes",
+        "VideoDexLauncher",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/positive-restored/expected-class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/positive-restored/class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/inputs/proposed-method-entry.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/inputs/original-video-monitor.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/pipeline-output/rebuilt-video-monitor.dex",
+        "9a8770cfc8c438a08d6ebf87983767af878b01de39a93562e7bf9122c3c921b5",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/positive-restored/parity.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-12/positive-restored/live-runtime"
+      ],
+      "returncode": 2,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 3.91907,
+      "stdout": {
+        "path": "positive-restored/execute-three-path.stdout.txt",
+        "sha256": "721c486f8037522a89c4429e0131993e7416b2381893f30bc08b58d2ab6bb271"
+      },
+      "stderr": {
+        "path": "positive-restored/execute-three-path.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "removed_option_environment_keys": [],
+  "tool_jar": {
+    "path": "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+    "bytes": 80076986,
+    "sha256": "354b10af74c09f5d2ab139def4231f0906dc6cc75738b1057e5a8263a412848e"
+  },
+  "jdk_inputs": [
+    {
+      "path": "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+      "bytes": 12328,
+      "sha256": "2a207f5e7d075afa01d97f8048389a64432a44c4a5af0f5e77d6e286ec5f401d"
+    },
+    {
+      "path": "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+      "bytes": 12424,
+      "sha256": "55859b80e7a9c4c4736be19ad3addeb35112ca6d17a30c4e0e116afc0a499bdb"
+    },
+    {
+      "path": "/workspace/scratch/4130730d15aa/tooling/jdk21/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "/workspace/scratch/4130730d15aa/tooling/jdk21/lib/server/libjvm.so",
+      "bytes": 26963256,
+      "sha256": "462fa559157ee8a862e7e4b8a4a74f8abbf5e1a9deb64f22ee23c7e8c43f698b"
+    },
+    {
+      "path": "/workspace/scratch/4130730d15aa/tooling/jdk21/lib/modules",
+      "bytes": 142255299,
+      "sha256": "70c5465dabf8e1bec2860631ea3ffd342f0ec23a5e2efd3a389d2abe32448f98"
+    }
+  ],
+  "class_index": {
+    "path": "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/source/class-index.json",
+    "sha256": "f076e64d661f00c6da4163e88aa43a2f1a28ab6324e477c8c67de23b0976bb06",
+    "selected_records": 1
+  },
+  "positive_semantic_match": true,
+  "positive_parity_sha256": "a6e172c4cd3c97d1245d01fd3dedeaef7e7afbfd424b6c6abdeebd4677722cca",
+  "original_coverage": {
+    "instructions": 262,
+    "visited": 259,
+    "unvisitedOffsets": [
+      232,
+      233,
+      235
+    ],
+    "conditionalEdges": 46,
+    "conditionalEdgesVisited": 46,
+    "unvisitedConditionalEdges": []
+  },
+  "rebuilt_coverage": {
+    "instructions": 290,
+    "visited": 288,
+    "unvisitedOffsets": [
+      235,
+      236
+    ],
+    "conditionalEdges": 48,
+    "conditionalEdgesVisited": 47,
+    "unvisitedConditionalEdges": [
+      "81:88"
+    ]
+  },
+  "positive_restoration": {
+    "returncode": 2,
+    "entire_report_matches_before": true,
+    "source_unchanged": true,
+    "rebuilt_dex_unchanged": true,
+    "helper_class_unchanged": true
+  },
+  "controls": [
+    {
+      "name": "original-substituted-for-rebuilt",
+      "returncode": 1,
+      "rejected_before_parity": true
+    },
+    {
+      "name": "wrong-loaded-helper-hash",
+      "returncode": 1,
+      "rejected_before_parity": true
+    },
+    {
+      "name": "rebuilt-delay-duration",
+      "actual_smali_assembly_returncode": 0,
+      "mutant_dex_sha256": "fc347c9cdedcfae7362e2f0396ac9a3ec160953573232935c6670ada3ab8403b",
+      "returncode": 2,
+      "cases": 1118,
+      "failed_cases": 30,
+      "unsupported_executions": 0,
+      "expected_result_failures": 0,
+      "named_failure_observed": true,
+      "detected": true
+    }
+  ],
+  "all_controls_passed": true,
+  "fixed_class_inventory_unchanged": true,
+  "input_inventory_unchanged": true,
+  "frozen_baseline_unchanged": true,
+  "frozen_host_checkpoint_unchanged": true,
+  "jdk_inputs_unchanged": true,
+  "tool_jar_unchanged": true,
+  "rebuilt_dex_compared": true,
+  "method_only_semantic_and_control_study_complete": true,
+  "raw_original_coverage_gate_passed": false,
+  "passed": false,
+  "finished_utc": "2026-10-12T07:10:31.080653+00:00"
+}

@@ -1,0 +1,990 @@
+{
+  "status": "THREE_PATH_AND_COMPILED_CONTROLS_PASSED",
+  "createdUtc": "2026-10-12T07:25:44.038614+00:00",
+  "scope": "Private one-method original/JVM/rebuilt-bytecode proof and actual compiled controls; no APK or active registry changes.",
+  "sourceFiles": [
+    {
+      "path": "inputs/BytecodeOracle.java",
+      "bytes": 21504,
+      "sha256": "38f60a2ce6f30da923b2fd6a0c1824ba668e7ca8e63a2da72032dcd0b2953a80"
+    },
+    {
+      "path": "inputs/DayValueStudy.java",
+      "bytes": 18230,
+      "sha256": "4542b75d3ca2e5e8299fcdf218f90807e46af312531f2cdafd976b4c265a7442"
+    },
+    {
+      "path": "inputs/ExtractDayFixture.java",
+      "bytes": 3850,
+      "sha256": "fe0485ceae06fe3ed41fee9ccfe677248db4acff28bd055e5eba123b35deedab"
+    },
+    {
+      "path": "inputs/host/com/arlosoft/macrodroid/variables/VariableValue.java",
+      "bytes": 1352,
+      "sha256": "6c0334949679ab53b1c78993fe6c18163d43d03d7cd699ddb0e3fa18dd02a641"
+    },
+    {
+      "path": "inputs/host/defpackage/EngineRuntime.java",
+      "bytes": 750,
+      "sha256": "f2f3708ad480022c859eb237b9dff3517e4eaa1033c304ab33f80a1e85d034db"
+    },
+    {
+      "path": "inputs/host/defpackage/TestClock.java",
+      "bytes": 320,
+      "sha256": "7189bf9d20e3df9fc9a1e24c56ae1f67e76256993e1effe86b654a377f0bc642"
+    },
+    {
+      "path": "inputs/preserved-input-pins.json",
+      "bytes": 3212,
+      "sha256": "d6766864e36a67549e5b144b711f269cd453ca2a83a99e26e8bbb3ec206223cb"
+    },
+    {
+      "path": "inputs/production-pipeline/build.py",
+      "bytes": 20325,
+      "sha256": "dd599090fc075fed0835875937a2c2b76d91381936c26f4275f876edf47345f0"
+    },
+    {
+      "path": "inputs/production-pipeline/constructor_owner.py",
+      "bytes": 12830,
+      "sha256": "b77672c0fb1cca53a2cb88280c2688c93fd6a95f95ee0325cabdddad00f58014"
+    },
+    {
+      "path": "inputs/production-pipeline/source/class-index-selected.json",
+      "bytes": 1510,
+      "sha256": "d61ff30a1e1c6d63a8d20474674d71815937583e96e280490104ebbacf068b57"
+    },
+    {
+      "path": "inputs/production-pipeline/source/smali/classes3/02/VariableValue$DecimalValue_02b9da8b1ab0578a.smali",
+      "bytes": 19785,
+      "sha256": "23075f1f49632c9e550a41777d35ffd1dd15a856f0e0225b79bb93299c580250"
+    },
+    {
+      "path": "inputs/production-pipeline/source/smali/classes3/58/VariableValue$IntegerValue_586aebe3d94ff751.smali",
+      "bytes": 19036,
+      "sha256": "72edfded9bb774d1f64ffc5705b4a16c27defbf57a2a2e567d6be956e0ea1391"
+    },
+    {
+      "path": "inputs/production-pipeline/source/smali/classes3/5b/VariableValue$DictionaryEntry_5b033e39ffcd9130.smali",
+      "bytes": 25593,
+      "sha256": "831f4b1cba5824860a14fd6006e890f02be5c4c36d4cd279c59f0dae5936a319"
+    },
+    {
+      "path": "inputs/production-pipeline/source/smali/classes3/74/DayTrigger_74d1108db13471a8.smali",
+      "bytes": 102706,
+      "sha256": "73914856377629c12077f34916a8674d7d0bdf7799ebc3357c299ce424a7789e"
+    },
+    {
+      "path": "inputs/source/java/recovered/ui/DayTriggerValueMethods.java",
+      "bytes": 651,
+      "sha256": "b99984c0ca9128f9def8658d874f98d9a8e4529433d0f76f7f86e9e8299cc792"
+    },
+    {
+      "path": "THREE_PATH_AND_CONTROLS.md",
+      "bytes": 3601,
+      "sha256": "6a1485682883f0a963364a5ef58eb5d0c9e656d10b638ad9ac6e9287d869bb51"
+    },
+    {
+      "path": "prepare_inputs.py",
+      "bytes": 4081,
+      "sha256": "0cb9dbda07ca8e1f00dcb81abf5b35d1697b4b2024b46dcdf134a975fa7f5b4a"
+    },
+    {
+      "path": "freeze_day_checkpoint.py",
+      "bytes": 3890,
+      "sha256": "14a0fbb28e28ce6e61c19e884cb29f225b468119386069c9e83d75d8473eb8f3"
+    },
+    {
+      "path": "run_day_study.py",
+      "bytes": 8678,
+      "sha256": "917d739546feed6e3e4c0e3cac5c7e8fee6a735957066dfb5afba5e06ffe4596"
+    },
+    {
+      "path": "run_day_dex_controls.py",
+      "bytes": 22374,
+      "sha256": "e4ff8d3c1925ef967ed28108fee29cc361a4e52c63fb5428d124ffc28815fd69"
+    }
+  ],
+  "evidenceArchive": {
+    "path": "evidence.tar.gz",
+    "bytes": 678538,
+    "sha256": "7d90ef95510471fd552ceb1c11e4493d3dad9f7280431be370abc88fafb6279c"
+  },
+  "evidenceFiles": [
+    {
+      "path": "baseline-checkpoint.json",
+      "bytes": 12169,
+      "sha256": "6c78e9a5498e516f4a2b6f939055151fa2ab1d5585e12b77a4c991534593da0e"
+    },
+    {
+      "path": "command-ledger.json",
+      "bytes": 55864,
+      "sha256": "335c4c178fb229413d33e926dc9a10cb7d6ed4339fa9fedd2ff3d7d209384d7e"
+    },
+    {
+      "path": "controls/decimal-floor/compile-actual-source-fault.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-floor/compile-actual-source-fault.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-floor/execution/config.json",
+      "bytes": 7323,
+      "sha256": "0055276557f6683f364a36f607d687c879ddb70ef25cf8c7bb04987dd56ce2a9"
+    },
+    {
+      "path": "controls/decimal-floor/execution/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-floor/execution/execute-study.stdout.txt",
+      "bytes": 98,
+      "sha256": "e31474d4330e1a3bd24c4c4d770047e42ab9e7137251f8b959add781090c164d"
+    },
+    {
+      "path": "controls/decimal-floor/execution/parity.json",
+      "bytes": 856906,
+      "sha256": "361fbf3b083888bcaaa95f9b2be06f9dfe2c286674bcc3b24e2ca81d9d972ef0"
+    },
+    {
+      "path": "controls/decimal-floor/hostclasses/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 871,
+      "sha256": "7a4f3b33e0ed242b32af45349cc3a61ec211229c1b8c7765b82ee3d5961da138"
+    },
+    {
+      "path": "controls/decimal-floor/source/recovered/ui/DayTriggerValueMethods.java",
+      "bytes": 663,
+      "sha256": "d0e845888ff796019fc6e99d23de169c4a7f6e041c2f575967bcdd2330792407"
+    },
+    {
+      "path": "controls/decimal-infinity-zero/compile-actual-source-fault.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-infinity-zero/compile-actual-source-fault.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-infinity-zero/execution/config.json",
+      "bytes": 7331,
+      "sha256": "e9ad9914e2bc32121d966480594749cb6cb8183d727f85778509054b142a94d8"
+    },
+    {
+      "path": "controls/decimal-infinity-zero/execution/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-infinity-zero/execution/execute-study.stdout.txt",
+      "bytes": 94,
+      "sha256": "8e85e2f8d57b3aa40346f2f0d570efc2ef45900fe3c17f4e907b5e7025066947"
+    },
+    {
+      "path": "controls/decimal-infinity-zero/execution/parity.json",
+      "bytes": 849551,
+      "sha256": "c28636b4b6deda7122de290b616a7fcb8ff44af2f2d0937a34d1df11783c3089"
+    },
+    {
+      "path": "controls/decimal-infinity-zero/hostclasses/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 896,
+      "sha256": "4d59471aa7625722ee02ed790dabcdacb32fef3303605b11f61b9e6291165214"
+    },
+    {
+      "path": "controls/decimal-infinity-zero/source/recovered/ui/DayTriggerValueMethods.java",
+      "bytes": 692,
+      "sha256": "cdba2646b3259a7417e998c2ec47986065d42b4436806d623d2c74affb7eee9d"
+    },
+    {
+      "path": "controls/decimal-nan-one/compile-actual-source-fault.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-nan-one/compile-actual-source-fault.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-nan-one/execution/config.json",
+      "bytes": 7325,
+      "sha256": "c91e6f1beb9411218f302301d5b483f86a0634794ddcdfac91c47ff7007f3db9"
+    },
+    {
+      "path": "controls/decimal-nan-one/execution/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-nan-one/execution/execute-study.stdout.txt",
+      "bytes": 94,
+      "sha256": "f680148afa95a2bca46872098c1148d8affd6dc5cb2302f04f925fa86864878d"
+    },
+    {
+      "path": "controls/decimal-nan-one/execution/parity.json",
+      "bytes": 849760,
+      "sha256": "f5952e2b30aa34d332bc0ddc76b113a80fe1c9090324158953f641e0c33f68ab"
+    },
+    {
+      "path": "controls/decimal-nan-one/hostclasses/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 891,
+      "sha256": "9aec8e06f9b99b20fec2135097b72a27a7cb47df3c0cb361ca1f31cb9416dde1"
+    },
+    {
+      "path": "controls/decimal-nan-one/source/recovered/ui/DayTriggerValueMethods.java",
+      "bytes": 687,
+      "sha256": "11e02302207894a1e930e8eb38f64bfbad6ec34ccb8f12f3113154049202ae3a"
+    },
+    {
+      "path": "controls/decimal-round/compile-actual-source-fault.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-round/compile-actual-source-fault.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-round/execution/config.json",
+      "bytes": 7323,
+      "sha256": "b36307abf45d7321441906adc911c665424b7bdc11dbbe6c6db8bd07c60b7aa2"
+    },
+    {
+      "path": "controls/decimal-round/execution/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-round/execution/execute-study.stdout.txt",
+      "bytes": 98,
+      "sha256": "441c6f5a1be2da39052be1f57ecbf1b7fd8e663529dead5bdee7d6cb8a70586f"
+    },
+    {
+      "path": "controls/decimal-round/execution/parity.json",
+      "bytes": 859550,
+      "sha256": "be030233eff05838c8df33be331cb53884c5d0013f393cc66b45dd3ac4317012"
+    },
+    {
+      "path": "controls/decimal-round/hostclasses/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 871,
+      "sha256": "6f177028ae22af7823f6eb121f3cbc2b484b7ca69e3f2fbe89c80b282e15d865"
+    },
+    {
+      "path": "controls/decimal-round/source/recovered/ui/DayTriggerValueMethods.java",
+      "bytes": 663,
+      "sha256": "f8343374d6defac34e595c0da0a1f85cb1f13c6bb92604b5034c4c75c14ab5e2"
+    },
+    {
+      "path": "controls/decimal-zero/compile-actual-source-fault.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-zero/compile-actual-source-fault.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-zero/execution/config.json",
+      "bytes": 7322,
+      "sha256": "019c16cdf4e8d81ba1aeca8c786a6fe52cf7975e19096b7d7ca593bc3b623eee"
+    },
+    {
+      "path": "controls/decimal-zero/execution/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-zero/execution/execute-study.stdout.txt",
+      "bytes": 98,
+      "sha256": "34512556562b96eb78ab0cbdb6737668048aa48f304f8599f85a6df86cc42f5e"
+    },
+    {
+      "path": "controls/decimal-zero/execution/parity.json",
+      "bytes": 860483,
+      "sha256": "9cca447752f6edf20011d6021ba8ee3fa27b0f082abd3ee6e5e97eff5c79b47e"
+    },
+    {
+      "path": "controls/decimal-zero/hostclasses/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 782,
+      "sha256": "d8b6045baf383eaf912b9a294a6be566757bc33bd5d949e6082dca5af949b754"
+    },
+    {
+      "path": "controls/decimal-zero/source/recovered/ui/DayTriggerValueMethods.java",
+      "bytes": 592,
+      "sha256": "6940c674822c10d83b8354a3e2cdb0079648c8d1d94857037a67a380db66d294"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-execution/config.json",
+      "bytes": 7315,
+      "sha256": "7e243fcddbcaacb8b25fcc1760e7b3972c2c5a53e67fa4bccfd48c6a93e0a1ef"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-execution/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-execution/execute-study.stdout.txt",
+      "bytes": 98,
+      "sha256": "34512556562b96eb78ab0cbdb6737668048aa48f304f8599f85a6df86cc42f5e"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-execution/parity.json",
+      "bytes": 860212,
+      "sha256": "b3ac947b4446ed0703ce5c713e9a0a0ce5f33acb42b0e663ee9ff4b34366c3f8"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-pipeline/assemble-target.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-pipeline/assemble-target.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-pipeline/d8/classes.dex",
+      "bytes": 1044,
+      "sha256": "a685c2c603e23a099a49dee3a26996e475aba08d0fa767b6a07a5f79869e8fc5"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-pipeline/d8-one-helper.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-pipeline/d8-one-helper.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-pipeline/disassemble-helper.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-pipeline/disassemble-helper.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-pipeline/helper-smali/recovered/ui/DayTriggerValueMethods.smali",
+      "bytes": 1053,
+      "sha256": "cde839d48c7d77132821bee3283ce14c16b5188244fdbeeae37dd2f68d6f8905"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-pipeline/inputs.jar",
+      "bytes": 962,
+      "sha256": "0b2529af2533c92e8b120f7fce780efbbb98489e3b2a8e1a77d7817bf94f6dac"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-pipeline/method-body-binding.json",
+      "bytes": 1699,
+      "sha256": "969fb5b00206b12ee8575819d1d00ce7162bc313e121be34ce6fd337aee6f95d"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-pipeline/rebuilt-day-trigger.dex",
+      "bytes": 18388,
+      "sha256": "d48cc3974cdbb745a5b45a31e0fb7ae1d4ef47558c7cfa8969c1d731e38785f0"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-pipeline/relocated/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 782,
+      "sha256": "d8b6045baf383eaf912b9a294a6be566757bc33bd5d949e6082dca5af949b754"
+    },
+    {
+      "path": "controls/decimal-zero-rebuilt-pipeline/target-smali/DayTrigger.smali",
+      "bytes": 102034,
+      "sha256": "dfdfac209178ef4835977f1faa85293977ff89fb6401df6dabd46b9a13c48d98"
+    },
+    {
+      "path": "controls/integer-saturation/compile-actual-source-fault.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-saturation/compile-actual-source-fault.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-saturation/execution/config.json",
+      "bytes": 7328,
+      "sha256": "214cfba43d29d6bf6684d4a899d24a2ba5a3e371e4d251a82919f5a2bbc1b482"
+    },
+    {
+      "path": "controls/integer-saturation/execution/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-saturation/execution/execute-study.stdout.txt",
+      "bytes": 98,
+      "sha256": "504149916b37e2284d86a8bf6eccb600708f630aef37e0613f6834d2b7253b7b"
+    },
+    {
+      "path": "controls/integer-saturation/execution/parity.json",
+      "bytes": 863389,
+      "sha256": "b7b9ec0adf1826f2521526dbbb723b421c0102c060d5636079e48c5bf6b1fc7c"
+    },
+    {
+      "path": "controls/integer-saturation/hostclasses/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 909,
+      "sha256": "cf5f3dc8315d070f4a88b91138008d7fcf4ef70f93d2158f7665f23cd7644af7"
+    },
+    {
+      "path": "controls/integer-saturation/source/recovered/ui/DayTriggerValueMethods.java",
+      "bytes": 751,
+      "sha256": "c557b765a9fdaebd645a454202d9f49b4630c19859a7b606a4db779f2bdd1481"
+    },
+    {
+      "path": "controls/integer-via-byte/compile-actual-source-fault.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-via-byte/compile-actual-source-fault.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-via-byte/execution/config.json",
+      "bytes": 7326,
+      "sha256": "b6494cc6083e8886d741b4e0c2055ab98d51ca7fba228ef73234220b031f24b7"
+    },
+    {
+      "path": "controls/integer-via-byte/execution/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-via-byte/execution/execute-study.stdout.txt",
+      "bytes": 98,
+      "sha256": "d06a253ea5899bab5a4333106300d338a605ee769f6d5267e49af0c08a1c1f94"
+    },
+    {
+      "path": "controls/integer-via-byte/execution/parity.json",
+      "bytes": 858778,
+      "sha256": "6e4f400cdc0505a0c85d8af9d2872e37b9f8a29efa21048d794ebd1bbacb3e84"
+    },
+    {
+      "path": "controls/integer-via-byte/hostclasses/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 824,
+      "sha256": "5a50aec47216ee9bfdbaa90724b2de36df93e426b508bc3c9372b7514310220a"
+    },
+    {
+      "path": "controls/integer-via-byte/source/recovered/ui/DayTriggerValueMethods.java",
+      "bytes": 652,
+      "sha256": "96cfa094d7fdb62cc0af9b32ffecad13e9129ea8f888bbab9b5151909b83fd44"
+    },
+    {
+      "path": "controls/integer-via-double/compile-actual-source-fault.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-via-double/compile-actual-source-fault.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-via-double/execution/config.json",
+      "bytes": 7328,
+      "sha256": "cfc87892996f4090a2ba0a9d22944afdb638e9b91e053d8e47a97235fa24f328"
+    },
+    {
+      "path": "controls/integer-via-double/execution/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-via-double/execution/execute-study.stdout.txt",
+      "bytes": 98,
+      "sha256": "504149916b37e2284d86a8bf6eccb600708f630aef37e0613f6834d2b7253b7b"
+    },
+    {
+      "path": "controls/integer-via-double/execution/parity.json",
+      "bytes": 863389,
+      "sha256": "c4c760d412af01cb5139a5a04dce694bd3f72064bd87f2af9e8fbed35b150fd8"
+    },
+    {
+      "path": "controls/integer-via-double/hostclasses/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 824,
+      "sha256": "4d40188b332a7bbe20d6d394e39a77c6c1754a6cb2cad9a45c9ac45083f07d5e"
+    },
+    {
+      "path": "controls/integer-via-double/source/recovered/ui/DayTriggerValueMethods.java",
+      "bytes": 660,
+      "sha256": "d51284632e5a95778a9a092a9c8e04a4d9302de2bdf66968a0f9f0a32f09bf41"
+    },
+    {
+      "path": "controls/integer-zero/compile-actual-source-fault.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-zero/compile-actual-source-fault.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-zero/execution/config.json",
+      "bytes": 7322,
+      "sha256": "ac25c2520d3fce93494ee6d7cff8ac767e946445848fbb93f997212307461ae1"
+    },
+    {
+      "path": "controls/integer-zero/execution/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-zero/execution/execute-study.stdout.txt",
+      "bytes": 98,
+      "sha256": "f9a08a3f9e7831f6bd44a2c22d36a63a2be3e942c2ccd2fcf98e13e424c64f88"
+    },
+    {
+      "path": "controls/integer-zero/execution/parity.json",
+      "bytes": 859830,
+      "sha256": "9f8a85a8ffc88bd5a8be5ed49e9cfdab0893e19a175d9f8c774b7312288ca2fc"
+    },
+    {
+      "path": "controls/integer-zero/hostclasses/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 786,
+      "sha256": "0cd3f371c305c83939672bde7882e433e493a42cdbb0935d4c9a64ba5415d32a"
+    },
+    {
+      "path": "controls/integer-zero/source/recovered/ui/DayTriggerValueMethods.java",
+      "bytes": 596,
+      "sha256": "fa82a3a6235cb2d55e4801e178151ada32f06e1c26ffb6fd1cdd9df58960aaf8"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-execution/config.json",
+      "bytes": 7315,
+      "sha256": "0f6d08b8024b91f1bb4948d5b90621ff8593ca1739babef0c2a00ed2426e2b41"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-execution/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-execution/execute-study.stdout.txt",
+      "bytes": 98,
+      "sha256": "f9a08a3f9e7831f6bd44a2c22d36a63a2be3e942c2ccd2fcf98e13e424c64f88"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-execution/parity.json",
+      "bytes": 859689,
+      "sha256": "c7d93e5f774fba50dba8e10551d41a3443afcacf657c55333dbac69e0f43d864"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-pipeline/assemble-target.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-pipeline/assemble-target.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-pipeline/d8/classes.dex",
+      "bytes": 1056,
+      "sha256": "fe12c2cd15be79c47525adbfdaa6af8efb7d293cab86c4fa958c71e7f89d17ae"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-pipeline/d8-one-helper.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-pipeline/d8-one-helper.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-pipeline/disassemble-helper.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-pipeline/disassemble-helper.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-pipeline/helper-smali/recovered/ui/DayTriggerValueMethods.smali",
+      "bytes": 1110,
+      "sha256": "0f1f8414fb4df79255bf9c8ed6ccd15704822b4b432c9a5b85861e57492220b4"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-pipeline/inputs.jar",
+      "bytes": 966,
+      "sha256": "44ff508fbd1f286b1e93b9f6140b06bb212e6a36b40c43eee22fc2a6d744c6a4"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-pipeline/method-body-binding.json",
+      "bytes": 1699,
+      "sha256": "7012cdc8f5d1a509dfbce837449a5026cf48acd3c489837c83d33b5b38c26ccd"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-pipeline/rebuilt-day-trigger.dex",
+      "bytes": 18416,
+      "sha256": "0473f426466ae0b90b8b9d56f0c53c259d6bfbd1b962b165de6bc7c377156761"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-pipeline/relocated/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 786,
+      "sha256": "0cd3f371c305c83939672bde7882e433e493a42cdbb0935d4c9a64ba5415d32a"
+    },
+    {
+      "path": "controls/integer-zero-rebuilt-pipeline/target-smali/DayTrigger.smali",
+      "bytes": 102091,
+      "sha256": "f000b41fbb743ffa5a01a5120104f44fe00586db2ac7b862ca3bf89c63fb299b"
+    },
+    {
+      "path": "controls/null-contained-throws/compile-actual-source-fault.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/null-contained-throws/compile-actual-source-fault.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/null-contained-throws/execution/config.json",
+      "bytes": 7331,
+      "sha256": "12610f5a1df0e045bf9c76a836e37d2dc795e349350559be59d557d9a3c2a2ab"
+    },
+    {
+      "path": "controls/null-contained-throws/execution/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/null-contained-throws/execution/execute-study.stdout.txt",
+      "bytes": 94,
+      "sha256": "38bc46ab9ef5cd0c58efb6db89fe9d9be8aef0280acda2d373af6508ee048455"
+    },
+    {
+      "path": "controls/null-contained-throws/execution/parity.json",
+      "bytes": 849592,
+      "sha256": "ff2596da0b551b02e338e6cc17a9f41a8220400fb8cf27512feb8936cc790723"
+    },
+    {
+      "path": "controls/null-contained-throws/hostclasses/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 945,
+      "sha256": "612f6ca498d9f4930d7d9cb900bb5965c44c1c783345f4f0db25ba460121f750"
+    },
+    {
+      "path": "controls/null-contained-throws/source/recovered/ui/DayTriggerValueMethods.java",
+      "bytes": 737,
+      "sha256": "d40082ec0a5db4fdef69a2c66754333065e1b4d34154174eedeebd3138decf07"
+    },
+    {
+      "path": "controls/null-entry-zero/compile-actual-source-fault.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/null-entry-zero/compile-actual-source-fault.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/null-entry-zero/execution/config.json",
+      "bytes": 7325,
+      "sha256": "70b78a92afed8b282510476ee1ebdd71a21fec0dab4ed850ba6be313f6d4917f"
+    },
+    {
+      "path": "controls/null-entry-zero/execution/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/null-entry-zero/execution/execute-study.stdout.txt",
+      "bytes": 94,
+      "sha256": "38bc46ab9ef5cd0c58efb6db89fe9d9be8aef0280acda2d373af6508ee048455"
+    },
+    {
+      "path": "controls/null-entry-zero/execution/parity.json",
+      "bytes": 849359,
+      "sha256": "6604c4f31d583c566b7ff2c5bf4d57d0c64bfdbbf0cab3afa772af0d6130819b"
+    },
+    {
+      "path": "controls/null-entry-zero/hostclasses/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 830,
+      "sha256": "0eb33424ec49be4d4363415d50311990bfc6f6eb0633abf9fa3ef4a5a6d32bc1"
+    },
+    {
+      "path": "controls/null-entry-zero/source/recovered/ui/DayTriggerValueMethods.java",
+      "bytes": 680,
+      "sha256": "bae6590e8b2dceafe479ef9ae78710490cfa9e334701e09943f5781ff0cc65bb"
+    },
+    {
+      "path": "controls/original-as-rebuilt/config.json",
+      "bytes": 7268,
+      "sha256": "1b7451212e958cc229c2a99d1425cfacde223c4afacdbdca5ac322a7d29b849e"
+    },
+    {
+      "path": "controls/original-as-rebuilt/execute-study.stderr.txt",
+      "bytes": 202,
+      "sha256": "7b3df31b2aee97fdbd611d5c0e551922687ce77b57dd14151ed44e13b18eb092"
+    },
+    {
+      "path": "controls/original-as-rebuilt/execute-study.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/other-minus-one/compile-actual-source-fault.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/other-minus-one/compile-actual-source-fault.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/other-minus-one/execution/config.json",
+      "bytes": 7325,
+      "sha256": "f9dacfe9d8d6b165bb86c969ab5263939b097963d548ac18b1ebee58df5f1691"
+    },
+    {
+      "path": "controls/other-minus-one/execution/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/other-minus-one/execution/execute-study.stdout.txt",
+      "bytes": 94,
+      "sha256": "b6a4beb4bfd21760f4d5aa121ce530e3b48f03b5f8a7a81ee3ffe27f34242744"
+    },
+    {
+      "path": "controls/other-minus-one/execution/parity.json",
+      "bytes": 849713,
+      "sha256": "9b84e92262b6a2488eb8afcd0fb8e322d2418906c35c688b573dac33d0be8da3"
+    },
+    {
+      "path": "controls/other-minus-one/hostclasses/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 823,
+      "sha256": "279c14a40eed3533e902791bd9a82f9b39a6638eb540fc6d0d5d0ebca55ab0b9"
+    },
+    {
+      "path": "controls/other-minus-one/source/recovered/ui/DayTriggerValueMethods.java",
+      "bytes": 652,
+      "sha256": "ba08a0182e76147073b89bc8ffd5bdb5bc735857942162f212a52d525af1979b"
+    },
+    {
+      "path": "controls/parse-string/compile-actual-source-fault.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/parse-string/compile-actual-source-fault.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/parse-string/execution/config.json",
+      "bytes": 7323,
+      "sha256": "7d3f3345f9d6df1981d98b4afd9427c8b324d6f3929e6714616af2bec3a667e2"
+    },
+    {
+      "path": "controls/parse-string/execution/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls/parse-string/execution/execute-study.stdout.txt",
+      "bytes": 94,
+      "sha256": "886bd4a7b5a46a231f065d9d084578b6ac0f49fa0dbc98bf3a459d262d26098a"
+    },
+    {
+      "path": "controls/parse-string/execution/parity.json",
+      "bytes": 849756,
+      "sha256": "8939930e902c078716e28c7a047194d96b6fae497e4be7ac5da607b1d8d70da9"
+    },
+    {
+      "path": "controls/parse-string/hostclasses/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 1035,
+      "sha256": "3e27dcc9757ea5a5ebf4317afdae14e72d034e92b15d517e479487c8cc3c57aa"
+    },
+    {
+      "path": "controls/parse-string/source/recovered/ui/DayTriggerValueMethods.java",
+      "bytes": 774,
+      "sha256": "a86df458c763bbbf1940d69e416161028b721bfa0b69da4229d29907b34a31c2"
+    },
+    {
+      "path": "controls/wrong-loaded-helper/config.json",
+      "bytes": 7294,
+      "sha256": "84b2c10769a63c42fcb9b4fa16c313c54ab3ef49964a22591f5bfc409f6e1bce"
+    },
+    {
+      "path": "controls/wrong-loaded-helper/execute-study.stderr.txt",
+      "bytes": 268,
+      "sha256": "2fb363ca5190924c12070d635426815dec1b93df1d5f278f9968de48cb6a2fcb"
+    },
+    {
+      "path": "controls/wrong-loaded-helper/execute-study.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "external-input-identities.json",
+      "bytes": 1461,
+      "sha256": "ef56e2fba2d921f43890c9223a2d477aa58e66baa3bea50e8a5172e1a4c8d159"
+    },
+    {
+      "path": "fault-catalog.json",
+      "bytes": 3287,
+      "sha256": "ab60869d3c46f538c9accac8eeb2607e71cdc89190262049c574f7f7d15ab565"
+    },
+    {
+      "path": "input-identities-before.json",
+      "bytes": 2444,
+      "sha256": "337060878a9eb9ab40ea3a3b5aa6c081ccc619df9b04a2208a14e02095fbceec"
+    },
+    {
+      "path": "positive/config.json",
+      "bytes": 7294,
+      "sha256": "fdf5f3a4076746bc18840e8bfeb0e079e0d93272a30bb0b888dcc26510229c70"
+    },
+    {
+      "path": "positive/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "positive/execute-study.stdout.txt",
+      "bytes": 93,
+      "sha256": "8a8b5358d5b1d5cec7d9df3dfbc048b439bf542c127509fa93fc345ce0c7c316"
+    },
+    {
+      "path": "positive/parity.json",
+      "bytes": 849472,
+      "sha256": "54b2b242a8d7650c64523fb446ebbf37cdaa43e8ef6339c120659ec28d561bae"
+    },
+    {
+      "path": "positive-pipeline/assemble-target.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "positive-pipeline/assemble-target.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "positive-pipeline/d8/classes.dex",
+      "bytes": 1116,
+      "sha256": "63b80e2a325efeac446cb02c2d2a8f9c3a97abd5dd312a1a3c856330cf5037df"
+    },
+    {
+      "path": "positive-pipeline/d8-one-helper.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "positive-pipeline/d8-one-helper.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "positive-pipeline/disassemble-helper.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "positive-pipeline/disassemble-helper.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "positive-pipeline/helper-smali/recovered/ui/DayTriggerValueMethods.smali",
+      "bytes": 1349,
+      "sha256": "49ee2b0bb666f7edf6e3236725a5f2a7a90b180d5d2ac94d93cff5ebfc11f550"
+    },
+    {
+      "path": "positive-pipeline/inputs.jar",
+      "bytes": 1003,
+      "sha256": "674785d1158c3e0966ff9e9e72fce0f767261d1104b3e7ed9e704d69f8faf217"
+    },
+    {
+      "path": "positive-pipeline/method-body-binding.json",
+      "bytes": 1700,
+      "sha256": "e348e3e76755c60af8710868cdfd1dbbf721d77448ab27d829adc8a31c174631"
+    },
+    {
+      "path": "positive-pipeline/rebuilt-day-trigger.dex",
+      "bytes": 18452,
+      "sha256": "867e137f65908d8360f307cdd0f23b3f910e5606d6b5916f876e85186b813b47"
+    },
+    {
+      "path": "positive-pipeline/relocated/recovered/ui/DayTriggerValueMethods.class",
+      "bytes": 823,
+      "sha256": "f527fe58f65ff1a079c920d711e25e1bdfb13421fcea7557c3ad653cab401441"
+    },
+    {
+      "path": "positive-pipeline/target-smali/DayTrigger.smali",
+      "bytes": 102330,
+      "sha256": "2f16af3d680f61b6cbad0677767fcce9e3255762b8482e18db33e79e71ee69ad"
+    },
+    {
+      "path": "positive-restored/config.json",
+      "bytes": 7294,
+      "sha256": "fdf5f3a4076746bc18840e8bfeb0e079e0d93272a30bb0b888dcc26510229c70"
+    },
+    {
+      "path": "positive-restored/execute-study.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "positive-restored/execute-study.stdout.txt",
+      "bytes": 93,
+      "sha256": "8a8b5358d5b1d5cec7d9df3dfbc048b439bf542c127509fa93fc345ce0c7c316"
+    },
+    {
+      "path": "positive-restored/parity.json",
+      "bytes": 849472,
+      "sha256": "54b2b242a8d7650c64523fb446ebbf37cdaa43e8ef6339c120659ec28d561bae"
+    },
+    {
+      "path": "proposed-method-entry.json",
+      "bytes": 332,
+      "sha256": "5075b04163b30761d1be4086bcf99bd34ce231854d8c8321c3f14fbcee423998"
+    },
+    {
+      "path": "result.json",
+      "bytes": 77905,
+      "sha256": "e7f242e848e8c3917485676684eb6c9ab1b96936f3978ef53a1d41e1d4883c57"
+    },
+    {
+      "path": "run_day_dex_controls.py",
+      "bytes": 22374,
+      "sha256": "e4ff8d3c1925ef967ed28108fee29cc361a4e52c63fb5428d124ffc28815fd69"
+    },
+    {
+      "path": "run_day_study.py",
+      "bytes": 8678,
+      "sha256": "917d739546feed6e3e4c0e3cac5c7e8fee6a735957066dfb5afba5e06ffe4596"
+    }
+  ],
+  "result": {
+    "bytes": 77905,
+    "sha256": "e7f242e848e8c3917485676684eb6c9ab1b96936f3978ef53a1d41e1d4883c57"
+  },
+  "activeRegistryChanged": false,
+  "apkChanged": false
+}

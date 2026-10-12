@@ -1,0 +1,35 @@
+--- checkpoint07/tests/java/VideoParityCases.java
++++ checkpoint13/tests/java/VideoParityCases.java
+@@ -320,5 +320,31 @@
+         check("video-file-length-rereads-captured-owner-file",()->{Object[] args=healthy.get();Fixture f=current;VideoControl.mutateAt=exists;VideoControl.mutation=()->f.owner.t=f.otherFile;return args;},ownerExpected(8192,0,256*MB));
+         check("video-file-length-keeps-captured-owner",()->{Object[] args=healthy.get();Fixture f=current;VideoControl.mutateAt=exists;VideoControl.mutation=()->f.self.this$0=f.other;return args;},expected("owner","other","returned","suspended","label",3));
+     }
+-    static void run(){entryCases();ordinaryCases();faultCases();mutationCases();numericContracts();expandedResumes();nestedFailures();capturedOwnerContracts();}
++    /** The label-2 catch has its own retry-delay copy in the compiled body. */
++    static void labelTwoRetryDelayCases(){
++        for(int response=0;response<7;response++){
++            final int r=response;
++            JsonObject contract=expected("label",3,"saved0",null,"saved1",null,
++                "delayCount",1,"dispatchCount",0,"callbackCount",0,"recording",false,
++                "equalsCalls",0,"boundaryCalls",5,
++                "returnedUnitIdentity",r!=1&&r!=3&&r!=4,"returnedSuspendedIdentity",r==1,
++                "resultKind",r==3||r==4?"throw":"return");
++            JsonObject state=contract.getAsJsonObject("videoState");
++            JsonArray messages=new JsonArray();
++            JsonObject firstMessage=new JsonObject();firstMessage.addProperty("identity","error0");firstMessage.addProperty("reads",1);messages.add(firstMessage);
++            if(r==3){JsonObject secondMessage=new JsonObject();secondMessage.addProperty("identity","error1");secondMessage.addProperty("reads",0);messages.add(secondMessage);}
++            state.add("exceptionMessageReads",messages);
++            if(r==3||r==4){
++                contract.addProperty("exception",(r==3?ObservedFailure.class:AssertionError.class).getName());
++                state.addProperty("escapedExternalIdentity",true);state.addProperty("escaped","error1");
++                state.addProperty("vmGeneratedEscapedMessageExcluded",false);
++                state.addProperty("exceptionMessage",r==3?"scripted checked failure":"scripted Error");
++            }else state.addProperty("returned",r==1?"suspended":"unit");
++            check("video-label-two-retry-delay:"+r,()->{
++                Fixture f=new Fixture(2,0);f.input=new g3d(f.observed("label2 resumed failure"));
++                VideoControl.delayResults.add(f.response(r));BaseVideoRecordingService.B=false;return f.args();
++            },contract);
++        }
++    }
++    static void run(){entryCases();ordinaryCases();faultCases();mutationCases();numericContracts();expandedResumes();nestedFailures();capturedOwnerContracts();labelTwoRetryDelayCases();}
+ }
