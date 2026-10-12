@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "scope": "Synthetic host controls only; no ADB, emulator, Java, or Android.",
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "/dev/shm/ink-indicator-fixed-sampling-01/source/tools/indicator_sampling",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "cwd": "/dev/shm/ink-indicator-fixed-sampling-01",
+  "selected_environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "/dev/shm/ink-indicator-fixed-sampling-01/tmp",
+    "INDICATOR_PARENTS": "/dev/shm/ink-indicator-fixed-sampling-01/parent-inputs",
+    "INDICATOR_HOST_EVIDENCE": "/dev/shm/ink-indicator-fixed-sampling-01/reports/attempt-02/host-evidence"
+  },
+  "timeout_seconds": 900,
+  "started_unix_ns": 1791806074968583686,
+  "started_monotonic_ns": 43795763247398,
+  "android_executed": false
+}

@@ -1,0 +1,25 @@
+# Fixed indicator sampling: closed synthetic evidence and test correction
+
+This inactive checkpoint contains the final sixteen proposed diagnostic files, the complete closed synthetic eight-slot execution, all forty post-input frames and all ninety-two predetermined comparisons, the literal failed full-host result, and a focused correction of its sole test assertion. No application source, APK, active workflow, or Android device was changed. No new runtime parity is claimed.
+
+## Actual host outcome
+
+`reports/attempt-02/` retains every file from the full unittest discovery invocation. It ran **41 tests in 851.940 seconds** (852.341924428 seconds including the wrapper) within its unchanged 900-second limit. Forty tests passed. One test failed because its regular expression expected `Local APK`, while the production guard correctly rejected the altered input with `Slot local APK read differs from its fixed input`. The literal result remains **FAILED**, with no timeout and no other test error. The source and all sixteen parent inputs were unchanged across that invocation.
+
+The actual synthetic Recorder path completed all eight fixed-order slots, forty post-input PNG/XML frames, forty full indicator arrays and all ninety-two comparisons. Its independent literal replay test passed. Each predetermined synthetic pair deliberately has one differing RGBA pixel and unequal canonical XML; none is relabeled as equal. The changed pixel is outside the retained historical indicator coordinate union, so the full-frame records demonstrate that the diagnostic retains differences outside that diagnostic region too. This is a simulated executor/clock with marker APK inputs and real parent-policy code. It is not an Android capture or an application behavior result.
+
+The final edit changes exactly one assertion string in `test_indicator_sampling.py`. `reports/focused-03/` executes that corrected test body against the exact closed Recorder-produced baseline and unchanged verifier: one test passed. Its wrapper inventories the baseline and final source before and after. It does not repeat all forty-one tests, create a new device trace, or claim a fresh source-preparation result. The future hosted workflow still runs full unittest discovery. The focused test teardown's inherited relative baseline annotation is preserved literally; `evidence-reference-map.json` maps it to the complete baseline included here.
+
+## Source and workflow binding
+
+Only the test file and its two generated bindings differ from the previous implemented checkpoint: `runtime-files.json` and the workflow's test metadata entry. `source-delta.patch` and `source-delta.json` show the complete difference; all recorder, verifier, preparation, protocol, radio helper, XML fixtures, AAPT2 and application pins are unchanged. The workflow's timeouts, order, inputs, capture count and comparison rules are unchanged.
+
+The first read-only final-binding checker wrongly assumed that only the test SHA changed in the workflow metadata, forgetting its byte count. Its failed assumption and exact checker source are retained under `reports/final-binding-04/`; the original tool stderr was not separately captured. The corrected checker verifies replacement of the complete exact test metadata entry and otherwise identical workflow bytes. Its passed result, source, raw streams and execution receipt are retained under `reports/final-binding-05/` and the adjacent files.
+
+The first freezer invocation stopped before creating its destination because it compared two equal path inventories in different list orders: the required manifest appends its runtime manifest last, while the filesystem inventory sorts all paths. `reports/freeze-06/` retains that failed freezer and the observed traceback. The corrected freezer sorts the complete required inventory by its exact path; all sixteen required byte identities are unchanged.
+
+The earlier `d5557364…` checkpoint remains unchanged. It preserves the first fixture-import error and correction plus the closed offline workflow validation: twelve retained shell/help/owned-cleanup commands, complete sixteen-file own inventory, all forty fetched parent/part identities, and read-only full ZIP/CRC/AAPT2 checks of the exact original and 5f635e16… candidate. `parent-binding.json` gives that capsule and offline-result identities. The final source changes do not alter those application or parent inputs. The separately frozen `fccc817b…` design and `effbce44…` incomplete draft remain historical inputs.
+
+## Review and publication
+
+`proposed-source-files.json` lists all sixteen proposed paths with exact bytes, SHA256 and Git mode. They are reviewable proposed files, and `active_files` remains empty in this checkpoint. Activation and actual Android execution require the separate closed source/workflow review. All copied evidence preserves its original serialized timestamps, file identities and raw bytes; extracted copies do not claim to retain the original host's inode or ctime values.

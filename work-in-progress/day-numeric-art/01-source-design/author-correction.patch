@@ -1,0 +1,52 @@
+--- author_probe.py
++++ author_probe_02.py
+@@ -9,7 +9,7 @@
+ import stat
+ 
+ BASE = Path('/dev/shm/macrodroid-day-numeric-art')
+-OUT = BASE / 'source-draft-01'
++OUT = BASE / 'source-draft-02'
+ NUMERIC = Path('/dev/shm/macrodroid-transfer-space-20261012/numeric-source-promotion-proposal/proposed/project')
+ PARENT = Path('/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9')
+ 
+@@ -62,7 +62,7 @@
+     static final String INVENTORY_SHA256 = "e083bc1996c5c7191bffe837fc0f30e254848a4754676ba0a8a119d23e8f6e79";
+     static String name(Object[] input) { return (String) input[0]; }
+     static String kind(Object[] input) { return (String) input[1]; }
+-    static long bits(Object[] input) { return ((Long) input[2]).longValue(); }
++    static long bits(Object[] input) { return ((Number) input[2]).longValue(); }
+     static String text(Object[] input) { return (String) input[3]; }
+     static void require(boolean condition, String message) {
+         if (!condition) throw new IllegalStateException(message);
+@@ -224,6 +224,9 @@
+     cases = cases.replace('INPUT_INVENTORY_SHA256', 'INVENTORY_SHA256')
+     assert 'Input::' not in cases and 'new Input' not in cases
+     OUT.mkdir(exist_ok=False)
++    shutil.copytree(BASE / 'source-draft-01', OUT / 'prior-authoring-attempt-01')
++    shutil.copyfile(BASE / 'author-correction.patch', OUT / 'author-correction.patch')
++    shutil.copyfile(BASE / 'author-correction.json', OUT / 'author-correction.json')
+     shutil.copyfile(__file__, OUT / 'author_probe.py')
+     source = OUT / 'source/recovered/probe/DayNumericMethodProbe.java'
+     source.parent.mkdir(parents=True)
+@@ -242,7 +245,8 @@
+     snapshot_path = PARENT / 'reports/release-input-snapshot.json'
+     snapshot = json.loads(snapshot_path.read_bytes())
+     assert identity(snapshot_path)['sha256'] == 'ca3bed290f18a378c7a3d6cc70d924c8d6ec85481e236b4e7561c31fedafdfbe'
+-    recorded = {row['path']: row for row in snapshot['entries']}
++    recorded = snapshot['entries']
++    assert type(recorded) is dict and len(recorded) == 81291
+     selections = []
+     patterns = ['DayTrigger_*.smali', 'VariableValue_*.smali', 'VariableValue$DictionaryEntry_*.smali',
+         'VariableValue$IntegerValue_*.smali', 'VariableValue$DecimalValue_*.smali', 'VariableValue$StringValue_*.smali',
+@@ -251,9 +255,9 @@
+         matches = list((PARENT / 'source/smali/classes3').glob('*/' + pattern)); assert len(matches) == 1
+         path = matches[0]; relative = path.relative_to(PARENT).as_posix()
+         actual = identity(path)
+-        assert {k: actual[k] for k in ('bytes', 'sha256')} == {k: recorded[relative][k] for k in ('bytes', 'sha256')}
++        assert {k: actual[k] for k in ('bytes', 'sha256')} == {'bytes': recorded[relative]['size'], 'sha256': recorded[relative]['sha256']}
+         copy(path, 'inputs/original-smali/' + path.name)
+-        selections.append(recorded[relative])
++        selections.append({'path': relative, **recorded[relative]})
+     (OUT / 'baseline-source-rows.json').write_text(json.dumps(selections, indent=2) + '\n')
+     (OUT / 'input-identities.json').write_text(json.dumps(copied, indent=2) + '\n')
+     protocol = {'schema': 1, 'status': 'INACTIVE_SOURCE_DRAFT_NOT_COMPILED_OR_RUN',
