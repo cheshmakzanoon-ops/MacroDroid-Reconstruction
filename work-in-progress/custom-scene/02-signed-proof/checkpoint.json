@@ -1,0 +1,689 @@
+{
+  "status": "SIGNED_THREE_PATH_AND_ALL_22_CONTROLS_PASSED",
+  "frozen_at_utc": "2026-10-12T01:39:55.023761+00:00",
+  "scope": "Isolated scene candidate; bounded original/JVM/rebuilt body comparison and structural APK proof. No Android scene or whole-application parity claim. Parent combined runtime acceptance is separate.",
+  "method": "Lcom/arlosoft/macrodroid/action/CustomSceneAction;->W(ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V",
+  "recovery_source": "source/java/recovered/ui/CustomSceneMethods.java",
+  "original_smali": "source/smali/classes3/07/CustomSceneAction_07d523cc90d06db2.smali",
+  "original_method_sha256": "ce0e77c600d3f6fc6a956b507133969f4f8250b8b2d73171b0d481a496d77bbb",
+  "original_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+  "registered_bodies": 1239,
+  "registered_classes": 602,
+  "added_bodies": 1,
+  "ui_methods": 7,
+  "scene_cases": 4070,
+  "ui_cases": 15423,
+  "ui_independent_expected_result_checks": 13555,
+  "all_suite_cases": 185738,
+  "suite_cases": {
+    "legacy": 95262,
+    "core": 34753,
+    "environment": 30684,
+    "engine": 9616,
+    "ui": 15423
+  },
+  "paths": 3,
+  "failed_cases": 0,
+  "unsupported_executions": 0,
+  "exact_method_key_partition_verified": true,
+  "scene_coverage": {
+    "instructions": 405,
+    "visited": 405,
+    "unvisitedOffsets": [],
+    "conditionalEdges": 40,
+    "conditionalEdgesVisited": 40,
+    "unvisitedConditionalEdges": []
+  },
+  "ui_instructions_visited": 968,
+  "coverage_fault_scope": {
+    "injected_returning_lateinit_boundary_cases": 8,
+    "normally_throws": "kotlin.UninitializedPropertyAccessException",
+    "purpose": "Exercise original defensive throw-null instructions only; does not assert the original guard returns."
+  },
+  "exception_comparison": {
+    "compared": [
+      "exception class",
+      "escape/catch behavior",
+      "call order",
+      "partial state and construction effects",
+      "exact injected exception identity",
+      "exact injected exception messages, including injected NPE and CCE",
+      "default uninitialized-property exception message"
+    ],
+    "excluded": "Only VM-generated null/cast exception message wording; no injected message exclusion.",
+    "initial_cce_message_diagnostics": "reports/scene-first-run-vm-message-diagnostics.json"
+  },
+  "python_unit_tests": 161,
+  "static_proof": {
+    "pass": true,
+    "methods_registered": 1239,
+    "constant_methods_proven": 1119,
+    "member_references_checked": 574,
+    "app_members_resolved": 376,
+    "new_external_refs": [],
+    "errors": [],
+    "android_executed": false
+  },
+  "linkage_proof": {
+    "pass": true,
+    "registered_methods": 1239,
+    "invocations_seen": 1441,
+    "fields_seen": 333,
+    "original_invocations_checked": 536,
+    "original_fields_checked": 321,
+    "external_or_unresolved": 917,
+    "errors": [],
+    "android_runtime_executed": false,
+    "scope": "Check migrated invocation kinds and private/static accesses against original declarations.\n\nThis is a bounded static check, NOT the ART verifier. It does not prove Android API\navailability, protected/package access, receiver dataflow or classloader behavior.\nThe separate validate_migration.py checks signatures and external-reference provenance."
+  },
+  "roundtrip": {
+    "pass": true,
+    "classes_compared": 71267,
+    "methods_compared": 349972,
+    "changed_bodies": 1239,
+    "changed_classes": 602,
+    "unexpected_changes": 0,
+    "baseline_source_mismatches": 0,
+    "altered_opaque_payload": 0,
+    "alignment_failures": 0
+  },
+  "negative_controls": {
+    "pass": true,
+    "controls": [
+      {
+        "mutation": "cast-before-subtract",
+        "pass": true,
+        "failedCases": 112,
+        "requiredCase": "touch-numeric:0.9:1:7",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "parcel-nonzero-boolean",
+        "pass": true,
+        "failedCases": 256,
+        "requiredCase": "parcel-read:1:1",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "parcel-field-order",
+        "pass": true,
+        "failedCases": 1952,
+        "requiredCase": "parcel-write:1:0:0",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "sms-catch-must-not-swallow-error",
+        "pass": true,
+        "failedCases": 72,
+        "requiredCase": "provider:1:1:2:true",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "sound-generic-token",
+        "pass": true,
+        "failedCases": 27,
+        "requiredCase": "sound:4:0",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "block-toggle-snapshot",
+        "pass": true,
+        "failedCases": 34,
+        "requiredCase": "block:2:2:1:false:true",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "block-option-must-be-reread",
+        "pass": true,
+        "failedCases": 31,
+        "requiredCase": "block-option-after-stop:1:0:0",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "block-trigger-must-be-reread",
+        "pass": true,
+        "failedCases": 926,
+        "requiredCase": "block:0:9:0:false:true",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "block-width-payload",
+        "pass": true,
+        "failedCases": 420,
+        "requiredCase": "block:0:2:0:false:true",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "block-hidden-color-sentinel",
+        "pass": true,
+        "failedCases": 159,
+        "requiredCase": "block:0:2:0:true:false",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "block-catch-must-include-checked-exception",
+        "pass": true,
+        "failedCases": 9,
+        "requiredCase": "block-fault:accessibility:12:4",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "block-catch-must-not-swallow-error",
+        "pass": true,
+        "failedCases": 41,
+        "requiredCase": "block-fault:accessibility:12:3",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "scene-permission-warning-falls-through",
+        "pass": true,
+        "failedCases": 549,
+        "requiredCase": "scene:2:2:false:false:0:true:0",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "scene-accessibility-description-key",
+        "pass": true,
+        "failedCases": 619,
+        "requiredCase": "scene:1:2:true:true:0:true:0",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "scene-dialog-runnable-discriminator",
+        "pass": true,
+        "failedCases": 144,
+        "requiredCase": "scene:2:2:true:true:1:true:0",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "scene-destroyed-activity-is-not-reused",
+        "pass": true,
+        "failedCases": 247,
+        "requiredCase": "scene:2:2:true:true:3:true:0",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "scene-clear-event-precedes-launch",
+        "pass": true,
+        "failedCases": 862,
+        "requiredCase": "scene:3:2:true:true:0:true:0",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "scene-long-item-identifier",
+        "pass": true,
+        "failedCases": 609,
+        "requiredCase": "scene:1:2:true:true:0:true:0",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "scene-description-reread-after-context",
+        "pass": true,
+        "failedCases": 3,
+        "requiredCase": "scene-description-after-context:1",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "scene-catch-includes-checked-exception",
+        "pass": true,
+        "failedCases": 13,
+        "requiredCase": "scene-fault:accessibility:22:4",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "scene-catch-must-not-swallow-error",
+        "pass": true,
+        "failedCases": 61,
+        "requiredCase": "scene-fault:accessibility:22:3",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "scene-description-key-is-read",
+        "pass": true,
+        "failedCases": 2,
+        "requiredCase": "scene-dynamic-key-bus:3:0:false",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      }
+    ],
+    "positiveRestorationPassed": true,
+    "restorationCases": 15423,
+    "androidRuntime": false,
+    "sourceFixtureAndApkUnchanged": true
+  },
+  "reference_marker_inventory": {
+    "reference_java_files": 1893,
+    "failed_decompilation_markers": 42,
+    "markers_with_registered_replacements": 18,
+    "markers_without_registered_replacements": 24,
+    "reference_tree_is_compilable_application": false
+  },
+  "apk": {
+    "path": "dist/MacroDroid-5.67.8-v9-hybrid.apk",
+    "bytes": 94683342,
+    "sha256": "be1138a5cb72c5f79efaa1490b4b9c74ccb637fbb6d0975f6680da48435c50ce"
+  },
+  "fixture": {
+    "path": "tests/fixtures/original-methods.dex",
+    "bytes": 520564,
+    "sha256": "e2309e0e26b73981349840d93f8ff31f805c9c43c0cdddff368c6f726381aae1"
+  },
+  "assembly": {
+    "source_dex_partitions": 9,
+    "original_apk_build_input": false,
+    "original_dex_build_input": false,
+    "all_rebuilt_dex_checked_against_signed_apk": true,
+    "helpers_or_test_stubs_added_to_apk": false
+  },
+  "merge_boundaries": {
+    "changed_source_files": 40,
+    "source_only_checkpoint": "../checkpoints/02-signed-proof",
+    "baseline_hash_manifest_sha256": "a9ed06c2f0aae5c8d7153fb8c1667df03640ee90ab4f791e2ab2b7e4b3db66ba",
+    "build.py": "Contains only the same strict compile_java cleanup hunk already owned/applied by root; retain current root version.",
+    "tests/test_v9.py": "Merge only UI method-count 6 to 7 and matching test-name change; retain parent runtime tests.",
+    "tests/test_build.py": "Merge only registry/provenance body-count 1238 to 1239; retain parent changes.",
+    "android_acceptance.py": "Unchanged from isolation baseline; never copy over current.",
+    "android_compare.py": "Unchanged from isolation baseline; never copy over current.",
+    "scene_executable_source_frozen": true,
+    "current_and_restored_modified_by_scene_work": false
+  },
+  "files": [
+    {
+      "path": "SCENE_RECOVERY.md",
+      "bytes": 13583,
+      "sha256": "b38e23a46036d7559b0912abf1f8afc20ab5541b77ee26379bcec584161999a4",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "UI_RECOVERY.md",
+      "bytes": 11863,
+      "sha256": "c8c9d810d03f18fa6f5c69fa5a252ea2c357d69686bba0758a282cedc7113134",
+      "baseline_sha256": "41149a673db633f6ae653d0155a4de68d37bc54eb402a3faf199c516f549cd45",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "build.py",
+      "bytes": 18602,
+      "sha256": "64eefa3d0b04d363eb497cff75af3417d3701b0446fcbc90116dbe155f92b17a",
+      "baseline_sha256": "ba7d53ff26f48fbc7f9e99000959ea36d0affa7ace529a0a84f602962c6e0cba",
+      "change": "modified",
+      "merge_policy": "parent_owned_strict_cleanup_hunk_only_keep_current_build_fixes"
+    },
+    {
+      "path": "source/java-method-map.json",
+      "bytes": 777735,
+      "sha256": "223f967c5ec6cccc4002eca2536d4b2031ce56b8000a5266ca8db4d96f373770",
+      "baseline_sha256": "7a49b2fd1d841c2e692bb9bc3f76091f9d242a156e4cece7cf60253952441c3a",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "source/java/recovered/ui/CustomSceneMethods.java",
+      "bytes": 11285,
+      "sha256": "d90477692f8e5874e8993a2db06a262ee2ce07d5d72b0052ffb9e2c4a92419d4",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "source/ui-methods.json",
+      "bytes": 3144,
+      "sha256": "ff14f7c862b9bf5b44ace976bd8c3a9d9ac5d19b2c26a1f0b4de7134d9279c3a",
+      "baseline_sha256": "0156995bd0ffe836721d0c3be0fdd2fbc00e437cc2828eafc5301102e836eb6f",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/android/app/Activity.java",
+      "bytes": 731,
+      "sha256": "14dc4f7a0a9340247b8e4b0fc49a7588022f0a96e9d6342ca8f53072f1109e49",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/android/content/Context.java",
+      "bytes": 1982,
+      "sha256": "8115653efc715fe5d9f75283eb50d165192f74fcecc89234e948a8af1f57a5de",
+      "baseline_sha256": "90cf802d0ff83c0117b447f47bbd7e1652415bc250d1ec9e93ca94a2f411a4b0",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/android/content/Intent.java",
+      "bytes": 2511,
+      "sha256": "e354cb7e09d6f77cbe2d6354d2b1e1de9101acbbd88410c1d88a0fd024fd2c36",
+      "baseline_sha256": "7763f0a284ae39369ceafc676997d367aca3abc83dffa9de1cf71df0ddb32592",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/action/CustomSceneAction.java",
+      "bytes": 1763,
+      "sha256": "6593a855abb9eee58c5b4d23e16596cdae167804829d8a9db3473d939fb13a11",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/actionblock/data/ActionBlock.java",
+      "bytes": 640,
+      "sha256": "882360a5a9477cc4069c01f8e63c7852482c02e4b8ca66d1efcb4ce60959f5a3",
+      "baseline_sha256": "a037a12fd086cbe9fef5d9b8de0efc658c3299945a58a8e2bbba92d17e9ae632",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/app/MacroDroidApplication.java",
+      "bytes": 469,
+      "sha256": "a47a62190c0b393c0cf40e4d40f0ca7c1076050c0251a1b1af0939af312a9d01",
+      "baseline_sha256": "0a248e8ffa32565e660f5e0b11c137923ed4b91766303f6b5873d1d57231ea4a",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/common/SelectableItem.java",
+      "bytes": 2893,
+      "sha256": "7c0a27ebc83d25348710d42c2a0d912439f87c788d9c9c2062902188df474a6f",
+      "baseline_sha256": "308b38e55da1ee0f706fc4154c508d2b697dd578dc5d0f6c040a30f78809d5a2",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/data/ResumeMacroInfo.java",
+      "bytes": 503,
+      "sha256": "b0551682b2de71bbcaddbe0770cc0a0fcfd9684a42b40127321a9ba8bb032562",
+      "baseline_sha256": "91987a34a285d6426ec4b0cfeea60de132f1b517486d6ff80df65085231624ab",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/events/ClearSceneByExactNameEvent.java",
+      "bytes": 428,
+      "sha256": "19fb70907d897cb305e78c0883505720d75cfa993280598a58caef699ca65e7d",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/scene/data/SceneConfig.java",
+      "bytes": 1057,
+      "sha256": "3505aa80386a46897c02fc76519dfc9cdf4c588e0545d7123b3f3dbfcdd6c35b",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/scene/data/SceneDescription.java",
+      "bytes": 757,
+      "sha256": "2f339229a8188df68843231c09d5886347bf0543ec7a5975c28d2fba046de34a",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/scene/data/SceneDisplayOption.java",
+      "bytes": 806,
+      "sha256": "a59c3852b3c10906e66efb90d2da4b9d3c29d95316ff0b8fb2d4163e099f00b7",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/scene/display/SceneBaseActivity.java",
+      "bytes": 223,
+      "sha256": "5b7ceebc30e90bd992022e86774004e1ed1369dabb42e08669b31736cffba1e7",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/scene/display/SceneDialogActivity.java",
+      "bytes": 175,
+      "sha256": "2a0199cfdb4ff15eaafeae3a0b0d74cd12ddefdd1d1c54ebe14c5bb4141c7dec",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/scene/display/SceneDisplayActivity.java",
+      "bytes": 276,
+      "sha256": "1a12253e15c2b0cc3e0c35a726901cb96455b4fe79bc7ad76f81e7c2bec5d906",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/scene/display/SceneOverlayDisplayService.java",
+      "bytes": 153,
+      "sha256": "013b085a2e9935ecb4cb205315c9a7e36fd41c6f93f62463c056a019a65e1f4d",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/triggers/TriggerContextInfo.java",
+      "bytes": 458,
+      "sha256": "b85d0d55d6f031b5aba8ab45d8dd2d54623f49e01be5c90053dfbf844f3b5138",
+      "baseline_sha256": "0c5527b04d1d3a5928d22a5a1460825f74174c9f581006c952a4c467d68947da",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/defpackage/SceneControl.java",
+      "bytes": 2500,
+      "sha256": "5215d01137b22a10f14c3b45f935315eb52172bc810806c2eb675e022d38b7c5",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/defpackage/aj5.java",
+      "bytes": 262,
+      "sha256": "450d771e4b090a0aa9b71a59bb79f14aa1052ef316039c86118e97e5c702ecc6",
+      "baseline_sha256": "40eb95f5f9aca7b2cb372296f2fe630d38c511e30ea429344398e030a7dee2a9",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/defpackage/bl5.java",
+      "bytes": 268,
+      "sha256": "20fcf3a2de4429cdd27bbf1033574a85705bbe1912494f1a34d41a479dd81e4b",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/defpackage/cj5.java",
+      "bytes": 196,
+      "sha256": "de7b58c3191785fb82f9ee3fcd4951ac1db2940790fd105a5da76a9b05ac33b8",
+      "baseline_sha256": "ce196103feb5cccbb684deda3c6a5bf060e1340a0a3b863200c11909f3b61b94",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/defpackage/eld.java",
+      "bytes": 1198,
+      "sha256": "41f01512555bef99ec1e8c33c649440b73067709fa602606785f9c7ce4690557",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/defpackage/j68.java",
+      "bytes": 434,
+      "sha256": "79a65e353c12ef422687322987847719eed9b62c79c73be5ab49c86e105bfea6",
+      "baseline_sha256": "eff59f01d71b457bfd48f82e7febf07f4d373dcf307d0eb31943bb32e49041e1",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/defpackage/kjf.java",
+      "bytes": 911,
+      "sha256": "de498f79a8a29bc773ea4293314823dcc876169269da17f5203895230c2ef978",
+      "baseline_sha256": "3e0582ef67599a376f5da7b6b4a49cc6b23d5c85c4409841ea6d52c9eec3e648",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/defpackage/lob.java",
+      "bytes": 593,
+      "sha256": "5abad9129add8048ff2740df60d53ea31147b3b1fe179e36d0ca51f4c10f7290",
+      "baseline_sha256": "86de61a3a83023b78c17828830096545db782c89a74dc268ba35bec2fe342d96",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/j$/util/concurrent/ConcurrentHashMap.java",
+      "bytes": 362,
+      "sha256": "3fb9a59d323b0128d389c5a7a9ea5c2a8584293d3e0f7e2d04bdb2386315a046",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "test-support/java/kotlin/UninitializedPropertyAccessException.java",
+      "bytes": 179,
+      "sha256": "feade08ce50102a926def01303ad8dab4b773ecd1e2ea8af2f448365ee878d77",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "tests/fixtures/original-methods.dex",
+      "bytes": 520564,
+      "sha256": "e2309e0e26b73981349840d93f8ff31f805c9c43c0cdddff368c6f726381aae1",
+      "baseline_sha256": "4a92faa0db690c1cc963e4d3a574a1657299156750e26ecd67fe92bded10c52c",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "tests/fixtures/provenance.json",
+      "bytes": 508,
+      "sha256": "8cf4a88ab5aa9c2d3d0d05a436ce778f721e25b1244560ea449d07032087a086",
+      "baseline_sha256": "7aecdba3ad75b01951bad3cfe7a52baebbc738b4e805088e714a7d42982f5764",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "tests/java/SceneParityCases.java",
+      "bytes": 27356,
+      "sha256": "00ffb41121ba75cb8c327c98b515490177feb6a1968cc9b50e4ff63217e0421f",
+      "baseline_sha256": null,
+      "change": "added",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "tests/java/UiParityTests.java",
+      "bytes": 44196,
+      "sha256": "33f567abdb564ac3beb6d9ed9577b6418235ae319df2cdc273c7e83ac0a4eec1",
+      "baseline_sha256": "d4f26dd10ffe7447cd2b06203bfdc65f1057c8c6d5fbe5fe1c27778f7d243aa6",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    },
+    {
+      "path": "tests/test_build.py",
+      "bytes": 10201,
+      "sha256": "935b62a1083d7680fb0d0f95fd4189bd4eb43221626d5a32a75fb5b377d6980b",
+      "baseline_sha256": "0c8f7f847989218a8f253312570c7c727519d3d6bff12dee9860382ed826b559",
+      "change": "modified",
+      "merge_policy": "merge_scene_registry_count_assertions_only_preserve_parent_runtime_tests"
+    },
+    {
+      "path": "tests/test_v9.py",
+      "bytes": 15089,
+      "sha256": "c813c51b9cd32aacf3a8c2b4113a23a5856b1af7b9a873b9c50c3dda93d2aaaa",
+      "baseline_sha256": "00bde27d7230bb22593fcca19ef0b1c16684e9b396f93bd8643e8afb6aec31a1",
+      "change": "modified",
+      "merge_policy": "merge_scene_registry_count_assertions_only_preserve_parent_runtime_tests"
+    },
+    {
+      "path": "ui_negative_control.py",
+      "bytes": 8593,
+      "sha256": "ded9625c100e3ce90cc50d0d270b20b9f6baaa9b8364cd16b7ace1006102345e",
+      "baseline_sha256": "dd5f765ea4e4df4ae7d5bbc754cd822d32e4441aaa5a20705c7024a904e3bf47",
+      "change": "modified",
+      "merge_policy": "copy_if_current_matches_baseline_or_merge_deliberately"
+    }
+  ],
+  "evidence_report": {
+    "path": "reports/custom-scene-recovery.json",
+    "bytes": 50972,
+    "sha256": "af93a0dcd336f724a95339f55096f87e2663495d0ec8744e287ac9d92b002be7"
+  },
+  "evidence_bundle": {
+    "path": "checkpoints/02-signed-proof-evidence.tar.gz",
+    "bytes": 5762957,
+    "sha256": "026a8e8943c18b30d669effccc9d929192a0189f1f8e3dc2829a699f426bae8c"
+  },
+  "evidence_file_count": 135,
+  "files_sha256": "ce53665bdc0b2604d41eadbe19444c6553d1268ce6a6ac024c97b77f0f285c04"
+}
