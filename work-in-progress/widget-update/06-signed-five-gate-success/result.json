@@ -1,0 +1,257 @@
+{
+  "status": "SIGNED_WIDGET_FIVE_GATES_PASSED",
+  "passed": true,
+  "started_utc": "2026-10-12T04:34:23.164207+00:00",
+  "project": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+  "preparation": {
+    "path": "/workspace/scratch/4130730d15aa/widget-recovery/reports/signed-integration-06-runtime-policy/preparation.json",
+    "bytes": 20173,
+    "sha256": "8caa66f4d04f5082109aee84c8ee7f5a93589badebe14a916db299535ed28462"
+  },
+  "commands": [
+    {
+      "label": "hybrid-build",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "build.py",
+        "build",
+        "--variant",
+        "hybrid"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:34:58.954839+00:00",
+      "timeout_seconds": 1200,
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:36:59.875330+00:00",
+      "elapsed_seconds": 120.920621,
+      "log": {
+        "path": "hybrid-build.log",
+        "bytes": 571,
+        "sha256": "1ec631b31fbc3f909b31ac494b1ae0d96d662ee8a14d5a1c4b1cee983b8ff6be"
+      },
+      "passed": true
+    },
+    {
+      "label": "hybrid-code",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "build.py",
+        "verify",
+        "--variant",
+        "hybrid"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:36:59.882260+00:00",
+      "timeout_seconds": 1200,
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:39:08.454427+00:00",
+      "elapsed_seconds": 128.572182,
+      "log": {
+        "path": "hybrid-code.log",
+        "bytes": 511,
+        "sha256": "919faa2b440d18be798db9a7b5b569f4bc240938369d2cb827f5f2ff88b900fd"
+      },
+      "passed": true
+    },
+    {
+      "label": "hybrid-resources",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "resource_verify.py",
+        "--variant",
+        "hybrid"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:39:08.456759+00:00",
+      "timeout_seconds": 1200,
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:39:50.861895+00:00",
+      "elapsed_seconds": 42.405287,
+      "log": {
+        "path": "hybrid-resources.log",
+        "bytes": 196,
+        "sha256": "2e2ff318fe5d66a0ceed93d6403fea4f3865b3b206cdb92cbf6dd73de22a7fdb"
+      },
+      "passed": true
+    },
+    {
+      "label": "three-path-host-tests",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "test.py",
+        "--three-way"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:39:50.870622+00:00",
+      "timeout_seconds": 1200,
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:45:38.560986+00:00",
+      "elapsed_seconds": 347.690606,
+      "log": {
+        "path": "three-path-host-tests.log",
+        "bytes": 759,
+        "sha256": "49f2f472dd58ecdece4c18aee3fc4b52888a9cc6a3b52b388e236a4145a90d37"
+      },
+      "passed": true
+    },
+    {
+      "label": "final-input-integrity",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "release_integrity.py",
+        "verify"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:45:38.577474+00:00",
+      "timeout_seconds": 1200,
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:46:06.844028+00:00",
+      "elapsed_seconds": 28.26663,
+      "log": {
+        "path": "final-input-integrity.log",
+        "bytes": 304,
+        "sha256": "aecd9732f6feb33811306b318eb420252862d234f94913b1452e8b1bdced15cf"
+      },
+      "passed": true
+    }
+  ],
+  "scope": "Five planned host and signed-artifact gates; no full acceptance or Android feature claim",
+  "source_input_snapshot_sha256": "00634710968ddf2fcd7400699ea3c1bb179209ff13e8062d28e64dc098fd7c99",
+  "source_input_files": 81266,
+  "inputs_verified_before_commands": true,
+  "fresh_reports": {
+    "hybrid-build.json": {
+      "bytes": 279,
+      "sha256": "f591619c2282c3f828f8a68da0e03fa49989470a551ef6df4d05f1d2970bc7fe"
+    },
+    "hybrid-roundtrip.json": {
+      "bytes": 183693,
+      "sha256": "38684e5c3754b26271938dab7b1d1533fd927f36ccac5ec2cf3b2a9495ea1362"
+    },
+    "hybrid-resource-parity.json": {
+      "bytes": 15626,
+      "sha256": "41e622b1389e230332f6ae0158ff799bba8beb25e224eae8ff62850f35835501"
+    },
+    "java-integration.json": {
+      "bytes": 321641,
+      "sha256": "b935f965e647389f8acdcf7f38d46c21246e165cd91c63578505222bb2912ccd"
+    },
+    "migration-static-proof.json": {
+      "bytes": 1390,
+      "sha256": "912467301ae19a338d13a573af1d7640a4d858487dfa5a3c141503b5f8221b23"
+    },
+    "migration-linkage-check.json": {
+      "bytes": 1791,
+      "sha256": "212ac53e797f2e2fa3a50792585c19d4197f7403dda2b9c5a6a031397a3740b6"
+    },
+    "java-all-path-parity.json": {
+      "bytes": 646,
+      "sha256": "e568d34871df727da6fb07591497e43cc337545e0e620821f90ff2f85346d25d"
+    },
+    "java-ui-three-path-parity.json": {
+      "bytes": 7515,
+      "sha256": "7d0d58cd5a473bf5e6431c239a31a4da88728a23e5334b3cd143f12a8a17a46b"
+    },
+    "java-three-path-parity.json": {
+      "bytes": 112301,
+      "sha256": "c57da0d599d5dc09d338513b271cb8b7c803f1445e54a0baa3944da6d50a76f7"
+    },
+    "java-core-three-path-parity.json": {
+      "bytes": 5327,
+      "sha256": "e8c551c6ed71e995c03a9d299bf795f70edcb4eeb0bc9a05578631a3e8417eb3"
+    },
+    "java-environment-three-path-parity.json": {
+      "bytes": 7210,
+      "sha256": "33f45f68e9ebaab3dcc957af972d02e092248b961ded601fc638bdfece46b7fe"
+    },
+    "java-engine-three-path-parity.json": {
+      "bytes": 7033,
+      "sha256": "04e774227d7c8f09f1bd3ec5c60cd390b47d06f5d971789bdfa53b6c551f2d22"
+    },
+    "oracle-semantics.json": {
+      "bytes": 406,
+      "sha256": "4114dc8bee417402fb1064b92d43891c257890b4f9663766b00bd071b339a57f"
+    },
+    "engine-oracle-semantics.json": {
+      "bytes": 313,
+      "sha256": "efc253aea23a98a5549623021127861b67e032b143639974d7661fd6a29e55be"
+    },
+    "ui-oracle-semantics.json": {
+      "bytes": 176,
+      "sha256": "a33dc35354c849da5cd91038342eee424375d8f1176ffc02ee17fd36a6d2b1f9"
+    },
+    "constructor-oracle-conformance.json": {
+      "bytes": 1132,
+      "sha256": "7eef8e090f3da731e03613b15dbefc4b34b204e3878ffcfaa25b95ad094b5b5f"
+    },
+    "widget-bitwise-oracle-conformance.json": {
+      "bytes": 541,
+      "sha256": "9622fab805a5a6b1e6ddbf6fab6c947cecfae36fb98df4fee66d5fdeac390975"
+    },
+    "python-unit-tests.log": {
+      "bytes": 32226,
+      "sha256": "51c4da9a74bcab57fcd6ae2589523c04fd27c3c955e92552046b545c8cc5653c"
+    },
+    "ui-runtime-policy.json": {
+      "bytes": 917,
+      "sha256": "fa75f3133c50e608301d129bc2a5a261b46a530bf50e21613d23f73578a045e2"
+    },
+    "ui-runtime-policy.log": {
+      "bytes": 61755,
+      "sha256": "fd842095826d9efe31d195d21ea8be1bdb674c3c81b6673352c480112d6910be"
+    }
+  },
+  "inputs_verified_after_commands": true,
+  "apk": {
+    "path": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9/dist/MacroDroid-5.67.8-v9-hybrid.apk",
+    "bytes": 94683439,
+    "sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f"
+  },
+  "cases": 191133,
+  "registered_methods": 1241,
+  "paths": 3,
+  "python_tests": 265,
+  "constructor_owner_correction": {
+    "target": "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;",
+    "method": "m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;",
+    "allocated_type": "Lzhh;",
+    "original_owner": "Lrff;",
+    "constructor": "<init>(ILm73;)V",
+    "occurrences": 1,
+    "original_method_sha256": "a1dd490bbfd6837fa72e6bf8ae4c75736612989fcba050fe2f0582aa03640e34",
+    "allocated_class_sha256": "fe51b6738e7edf90f8efe8ffdc98ae23dfe005620e0aaba28623c1dd84577f2e",
+    "owner_class_sha256": "cec933deb27e19e3d2dad93566d59b7730a2f31c9acdfd8a81462c71c32b946a",
+    "compiled_before_sha256": "1fc879b652b309696ddf3335e4a3c0f719de55c76a6d8fc2f9fe3815e0e5d7b6",
+    "compiled_after_sha256": "ad22a00bf96c9c4b38a23a32b75391aee4d60c59b052beb433b3cc5c92332216",
+    "owner_references_changed": 1,
+    "allocation_types_changed": 0,
+    "constructors_added": 0,
+    "android_verifier_executed": false,
+    "source_domain": "main",
+    "target_class_sha256": "3ad59b363eaf1f1816d31a951867dcbf202702152148f6404d3426a8ed68818d",
+    "target_class_declaration_verified": true
+  },
+  "compiled_evidence": [
+    {
+      "path": "compiled-helper.smali",
+      "bytes": 14317,
+      "sha256": "b8c07dffbefbc29ea4fd892473080920dbc124e97a7d288b81f0ab82205aca84"
+    },
+    {
+      "path": "preserved-widget-class.smali",
+      "bytes": 73744,
+      "sha256": "3ad59b363eaf1f1816d31a951867dcbf202702152148f6404d3426a8ed68818d"
+    },
+    {
+      "path": "signed-widget-class.smali",
+      "bytes": 72909,
+      "sha256": "d15328770841c2f2e03296f8de93ac900fccb93233e88e6edc4d9056ca026161"
+    }
+  ],
+  "finished_utc": "2026-10-12T04:46:23.682367+00:00"
+}
