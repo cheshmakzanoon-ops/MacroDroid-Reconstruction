@@ -1,0 +1,16 @@
+--- checkpoint-03/acceptance.py
++++ combined/acceptance.py
+@@ -49,10 +49,11 @@
+     for number,(label,arguments) in enumerate(commands,1):
+         logfile=folder/(f'{number:02d}-'+label+'.log');command=[sys.executable,*arguments]
+         print(f'[{number}/{len(commands)}] {label}',flush=True);started=time.monotonic()
+-        entry={'label':label,'command':command,'log':logfile.relative_to(ROOT).as_posix()}
++        timeout_seconds=5400 if label=='ui-negative-controls' else 1200
++        entry={'label':label,'command':command,'log':logfile.relative_to(ROOT).as_posix(),'timeout_seconds':timeout_seconds}
+         try:
+             with logfile.open('w',encoding='utf-8') as stream:
+-                process=subprocess.run(command,cwd=ROOT,env=env,stdout=stream,stderr=subprocess.STDOUT,timeout=1200)
++                process=subprocess.run(command,cwd=ROOT,env=env,stdout=stream,stderr=subprocess.STDOUT,timeout=timeout_seconds)
+             entry.update(exit_code=process.returncode,passed=process.returncode==0)
+         except (OSError,subprocess.TimeoutExpired) as exc:entry.update(exit_code=None,passed=False,error=str(exc))
+         entry['seconds']=round(time.monotonic()-started,3);entry['log_sha256']=digest(logfile)

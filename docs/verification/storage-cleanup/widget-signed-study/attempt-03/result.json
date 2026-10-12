@@ -1,0 +1,19 @@
+{
+  "status": "RETIREMENT_DIAGNOSTIC_FAILED_BEFORE_DELETION",
+  "files_deleted": 0,
+  "script_sha256": "19e7e1b7eddd3e5f12b14373b6028f14285a8b90f285b4fdc0291c3a923dad6f",
+  "error": "FileNotFoundError: [Errno 2] No such file or directory: '/proc/2/status'",
+  "observed_namespace_diagnostic": {
+    "getpid": 5,
+    "getppid": 2,
+    "proc_self": "/proc/76376",
+    "proc_pid": 76376,
+    "proc_parent": 76373,
+    "NSpid": [
+      76376,
+      5
+    ]
+  },
+  "cause": "Python reports the inner PID namespace while the mounted procfs exposes outer PIDs. Comparing os.getpid() with numeric procfs directories did not exclude this script.",
+  "correction": "Use the observed /proc/self resolved identity for self and its procfs PPid, preserving all other process guards."
+}

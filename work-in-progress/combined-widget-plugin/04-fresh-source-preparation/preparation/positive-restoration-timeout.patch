@@ -1,0 +1,17 @@
+--- checkpoint-03/ui_negative_control.py
++++ combined/ui_negative_control.py
+@@ -255,8 +255,12 @@
+             if not passed:raise RuntimeError('Deliberate fault not correctly detected: '+json.dumps(row))
+             print(name+': DETECTED',flush=True)
+         positive=build.REPORTS/'ui-positive-restoration.json';positive.unlink(missing_ok=True)
+-        build.run([policy['java_executable'],*ui_runtime_policy.JVM_FLAGS,'-Xmx1000m','-Dui.report='+str(positive),
+-                   '-cp',cp,'UiParityTests',build.ROOT,build.WORK/'hybrid'],'ui-positive-restoration.log')
++        command=[policy['java_executable'],*ui_runtime_policy.JVM_FLAGS,'-Xmx1000m','-Dui.report='+str(positive),
++                 '-cp',cp,'UiParityTests',str(build.ROOT),str(build.WORK/'hybrid')]
++        with (build.REPORTS/'ui-positive-restoration.log').open('w') as stream:
++            stream.write('COMMAND: '+json.dumps(command)+'\n');stream.flush()
++            code=subprocess.run(command,cwd=build.ROOT,stdout=stream,stderr=subprocess.STDOUT,timeout=300).returncode
++        if code!=0:raise RuntimeError('Positive restoration exited unsuccessfully: '+str(code))
+         good=json.loads(positive.read_text())
+         if good!=reference_raw or not all(sha(p)==value for p,value in pins.items()):
+             raise RuntimeError('Exact positive restoration not confirmed')
