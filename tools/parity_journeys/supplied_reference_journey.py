@@ -11,6 +11,7 @@ import copy
 import json
 from pathlib import Path
 import editor_journey as runner
+from robust_capture import EvidenceRecorder
 
 PLAN_PATH = Path(__file__).with_name('editor-plan.json')
 
@@ -32,11 +33,14 @@ def load_plan():
 def configured_plan():
     plan = load_plan()
     previous = runner.PLAN
+    previous_recorder = runner.Recorder
     try:
         runner.PLAN = plan
+        runner.Recorder = EvidenceRecorder
         yield plan
     finally:
         runner.PLAN = previous
+        runner.Recorder = previous_recorder
 
 
 def main():

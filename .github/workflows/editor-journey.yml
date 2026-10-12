@@ -45,7 +45,8 @@ jobs:
           sudo setfacl -m "u:$(id -un):rw" /dev/kvm
           python3 -u tools/android/android_runtime_service.py --tooling "$RUNNER_TEMP/macrodroid-tooling" --evidence ci-editor/environment --acceleration on > ci-editor/service.log 2>&1 &
           service=$!
-          trap 'mkdir -p ci-editor/environment/queue; touch ci-editor/environment/queue/STOP; wait "$service" || true' EXIT
+          export PATH="$RUNNER_TEMP/macrodroid-tooling/android/platform-tools:$PATH"
+          trap 'timeout 30s adb -s emulator-5560 logcat -d -b crash -v threadtime > ci-editor/crash.log 2>&1 || true; mkdir -p ci-editor/environment/queue; touch ci-editor/environment/queue/STOP; wait "$service" || true' EXIT
           python3 tools/android/wait_android_ready.py --evidence ci-editor/environment --timeout 900
           python3 tools/android/runtime_job.py --queue ci-editor/environment/queue --timeout 240 -- python3 "$GITHUB_WORKSPACE/tools/android/configure_capture_device.py" --serial emulator-5560 --output "$GITHUB_WORKSPACE/ci-editor/device" --demo-clock 1200 --disable-animations
           python3 tools/android/runtime_job.py --queue ci-editor/environment/queue --timeout 2400 -- python3 "$GITHUB_WORKSPACE/tools/parity_journeys/supplied_reference_journey.py" --source "$GITHUB_WORKSPACE/workspace/MacroDroid_v9" --original "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-original.apk" --candidate "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-current-hybrid.apk" --output "$GITHUB_WORKSPACE/ci-editor/journey" --serial emulator-5560 --accept-package-data-removal
@@ -59,6 +60,7 @@ jobs:
           path: |
             ci-editor/host-tests.log
             ci-editor/service.log
+            ci-editor/crash.log
             ci-editor/device/
             ci-editor/journey/
             ci-editor/environment/runtime-status.json
