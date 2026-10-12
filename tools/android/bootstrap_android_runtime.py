@@ -17,6 +17,7 @@ import shutil
 import stat
 import subprocess
 import tarfile
+import time
 import zipfile
 
 
@@ -49,6 +50,42 @@ def safe_zip_extract(archive: Path, destination: Path) -> None:
                 target.chmod(mode & 0o777)
 
 
+def download_verified(package: dict, archive: Path) -> None:
+    """Retry interrupted GETs, never accept partial or unverified archive bytes.
+
+    Explicit HTTP/1.1 avoids the observed HTTP/2 stream-92 failure. Each retry
+    starts a new file; certificate/HTTP failures and integrity errors fail closed.
+    """
+    if not package['url'].startswith('https://'):
+        raise ValueError('Pinned downloads must use HTTPS')
+    partial = archive.with_suffix(archive.suffix + '.partial')
+    transient = {5, 6, 7, 18, 28, 35, 52, 55, 56, 92}
+    try:
+        for attempt in range(1, 4):
+            partial.unlink(missing_ok=True)
+            command = ['curl', '-fL', '--http1.1', '--proto', '=https',
+                       '--proto-redir', '=https', '--connect-timeout', '10',
+                       '--max-time', '600', '--speed-limit', '1024', '--speed-time', '30',
+                       '-sS', package['url'], '-o', str(partial)]
+            print('Download attempt', attempt, 'of 3:', package['id'], flush=True)
+            try:
+                subprocess.run(command, check=True, timeout=625)
+            except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as error:
+                retryable = isinstance(error, subprocess.TimeoutExpired) or error.returncode in transient
+                if not retryable or attempt == 3:
+                    raise
+                time.sleep(attempt * 2)
+                continue
+            with partial.open('rb') as stream:
+                digest = hashlib.file_digest(stream, package['checksum_algorithm']).hexdigest()
+            if partial.stat().st_size != package['download_bytes'] or digest != package['checksum']:
+                raise ValueError('Downloaded bytes do not match the package pin: ' + package['id'])
+            partial.replace(archive)
+            return
+    finally:
+        partial.unlink(missing_ok=True)
+
+
 def install(package: dict, root: Path, downloads: Path) -> None:
     if installed(package, root):
         print('Reuse', package['id'], package['version'], flush=True)
@@ -56,12 +93,7 @@ def install(package: dict, root: Path, downloads: Path) -> None:
     archive = downloads / package['filename']
     downloads.mkdir(parents=True, exist_ok=True)
     if not archive.exists():
-        partial = archive.with_suffix(archive.suffix + '.partial')
-        print('Download', package['id'], package['download_bytes'], 'bytes', flush=True)
-        subprocess.run(['curl', '-fL', '--connect-timeout', '5', '--max-time', '600',
-                        '--retry', '1', '-sS', package['url'], '-o', str(partial)],
-                       check=True, timeout=625)
-        partial.replace(archive)
+        download_verified(package, archive)
     with archive.open('rb') as stream:
         digest = hashlib.file_digest(stream, package['checksum_algorithm']).hexdigest()
     if archive.stat().st_size != package['download_bytes'] or digest != package['checksum']:
