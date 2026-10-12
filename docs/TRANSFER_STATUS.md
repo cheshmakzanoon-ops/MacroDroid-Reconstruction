@@ -120,10 +120,13 @@ checkpoints. All four plugin checkpoints retain inactive registries. The materia
 preserving unfinished work does not adopt it as active application source.
 
 The inactive constructor-owner prototype and its exact original/Java/D8 outputs
-are preserved under `work-in-progress/constructor-owner/`; all 20 focused host
-regressions and the standalone DEX roundtrip passed, while Android proof remains
-pending. The generated-directory cleanup proposal and subsequent local failed
-acceptance are retained under `work-in-progress/staging-cleanup/`. Both were
+are preserved under `work-in-progress/constructor-owner/`. Initial checkpoint 01
+passed 20 focused host regressions and the standalone DEX roundtrip. Reviewed
+pipeline checkpoint 02 preserves 102 files, 31 passing regressions, the repeated
+D8 proof and unchanged/static/linkage checks for 1,239 existing methods. Android
+proof and active integration remain pending. The generated-directory cleanup proposal and subsequent local failed
+acceptance are retained under `work-in-progress/staging-cleanup/`. The initial constructor and staging-failure checkpoints were
 published at `56327dd3ddd04c78ebf461cdf810e209fd571f10` without changing active
-application inputs. Their frozen reports retain their actual failure and pending
+application inputs; subsequent checkpoint directories retain their own frozen
+manifests. Their frozen reports retain their actual failure and pending
 scopes even though the separate clean hosted checkpoint succeeded.
