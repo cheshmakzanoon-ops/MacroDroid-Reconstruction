@@ -1,0 +1,262 @@
+{
+  "schema": 1,
+  "status": "OBSERVED_NOTIFICATION_BOUNDARY",
+  "started_monotonic": 376.907878073,
+  "commands": {
+    "pid_first": {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:01:10.309644+00:00",
+      "started_monotonic": 376.907896046,
+      "finished_monotonic": 376.923544251,
+      "timeout_seconds": 29.999992506000012,
+      "stdout": {
+        "path": "command-00235.stdout",
+        "bytes": 5,
+        "sha256": "a0c9f2dae177d1500d7eff5649d81b97552a58525fb8b9c08f6db7430f52b285"
+      },
+      "stderr": {
+        "path": "command-00235.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "process_list_first": {
+      "argv": [
+        "shell",
+        "ps -A -o PID,NAME"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:01:10.325602+00:00",
+      "started_monotonic": 376.923852818,
+      "finished_monotonic": 376.943337616,
+      "timeout_seconds": 29.984037228000034,
+      "stdout": {
+        "path": "command-00236.stdout",
+        "bytes": 9811,
+        "sha256": "67319445c669e31ca4b68e7a11bb68db92283e30bb47f3400095387e5631b9ae"
+      },
+      "stderr": {
+        "path": "command-00236.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "installed_path": {
+      "argv": [
+        "shell",
+        "pm path com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:01:10.345341+00:00",
+      "started_monotonic": 376.943592612,
+      "finished_monotonic": 376.961800373,
+      "timeout_seconds": 29.964297192999993,
+      "stdout": {
+        "path": "command-00237.stdout",
+        "bytes": 103,
+        "sha256": "d18a87f9f4149541c0781d4262ee44227a84b01b60b4361eb1c41034628fb9c8"
+      },
+      "stderr": {
+        "path": "command-00237.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "installed_checksum": {
+      "argv": [
+        "shell",
+        "sha256sum '/data/app/~~MwfTkH50v_0duiLQTaRUuA==/com.arlosoft.macrodroid-j0f9WvtSxt_PKhoOiou_gg==/base.apk'"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:01:10.364154+00:00",
+      "started_monotonic": 376.962406745,
+      "finished_monotonic": 377.21868085,
+      "timeout_seconds": 29.945482508999987,
+      "stdout": {
+        "path": "command-00238.stdout",
+        "bytes": 161,
+        "sha256": "80ac43e3e9a4b468b55c4c8c4ca7bc8f89748d695f7db3d240f5aa156ec8a205"
+      },
+      "stderr": {
+        "path": "command-00238.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "foreground": {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:01:10.620681+00:00",
+      "started_monotonic": 377.218933031,
+      "finished_monotonic": 377.234484779,
+      "timeout_seconds": 29.68895653300001,
+      "stdout": {
+        "path": "command-00239.stdout",
+        "bytes": 31332,
+        "sha256": "e331012497381e9df2676213f0f93f9b4cbe586e981a3e3f850f9c635d050f52"
+      },
+      "stderr": {
+        "path": "command-00239.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "process_list_final": {
+      "argv": [
+        "shell",
+        "ps -A -o PID,NAME"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:01:10.636468+00:00",
+      "started_monotonic": 377.234719928,
+      "finished_monotonic": 377.252955213,
+      "timeout_seconds": 29.673169024999993,
+      "stdout": {
+        "path": "command-00240.stdout",
+        "bytes": 9819,
+        "sha256": "5b9f07ec56c16faa1a026a6bdc81f65fd581f101d1380d1e352c091bc452a5d3"
+      },
+      "stderr": {
+        "path": "command-00240.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "pid_final": {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:01:10.654982+00:00",
+      "started_monotonic": 377.253234675,
+      "finished_monotonic": 377.267380485,
+      "timeout_seconds": 29.654653656999983,
+      "stdout": {
+        "path": "command-00241.stdout",
+        "bytes": 5,
+        "sha256": "a0c9f2dae177d1500d7eff5649d81b97552a58525fb8b9c08f6db7430f52b285"
+      },
+      "stderr": {
+        "path": "command-00241.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  "after_diagnostics": {
+    "processes": {
+      "argv": [
+        "shell",
+        "dumpsys activity processes com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:01:10.669334+00:00",
+      "started_monotonic": 377.267586851,
+      "finished_monotonic": 377.281380552,
+      "timeout_seconds": 10,
+      "stdout": {
+        "path": "command-00242.stdout",
+        "bytes": 14395,
+        "sha256": "2fc30d90be1b1d14c14ee5ac6b3c9f6f3530e9dbb146ab279d46238e53635df6"
+      },
+      "stderr": {
+        "path": "command-00242.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "crash": {
+      "argv": [
+        "shell",
+        "logcat -d -b crash -v threadtime"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T05:01:10.683322+00:00",
+      "started_monotonic": 377.281574544,
+      "finished_monotonic": 377.294588479,
+      "timeout_seconds": 10,
+      "stdout": {
+        "path": "command-00243.stdout",
+        "bytes": 1397,
+        "sha256": "f33ddae2ad219ea4a9b8eba1adb36830573a5af6c6cc32c013735da7a5e5ae89"
+      },
+      "stderr": {
+        "path": "command-00243.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  "old_pid": "3934",
+  "new_pid": "5382",
+  "finished_monotonic": 377.313777031,
+  "outcome": {
+    "pid_replaced": true,
+    "old_pid_absent_in_both_lists": true,
+    "component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity",
+    "installed_apk_identity_verified": true,
+    "cause": "RECORDED_JAVA_FATAL_EXCEPTION",
+    "crash_observation": {
+      "status": "NEW_OBSERVED_FRAGMENT_FATAL_EXCEPTION",
+      "count": 1,
+      "exception_type": "java.lang.IllegalStateException",
+      "message_pattern": "Fragment LB{hex instance} not attached to Activity",
+      "stack": [
+        "at android.app.Fragment.getResources(Fragment.java:785)",
+        "at com.zx.lbua80.onShow(Unknown Source:22)",
+        "at android.app.Dialog$ListenersHandler.handleMessage(Dialog.java:1500)",
+        "at android.os.Handler.dispatchMessage(Handler.java:107)",
+        "at android.os.Looper.loopOnce(Looper.java:232)",
+        "at android.os.Looper.loop(Looper.java:317)",
+        "at android.app.ActivityThread.main(ActivityThread.java:8705)",
+        "at java.lang.reflect.Method.invoke(Native Method)",
+        "at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)",
+        "at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)"
+      ]
+    }
+  },
+  "crash_observation": {
+    "classification": {
+      "status": "NEW_OBSERVED_FRAGMENT_FATAL_EXCEPTION",
+      "count": 1,
+      "exception_type": "java.lang.IllegalStateException",
+      "message_pattern": "Fragment LB{hex instance} not attached to Activity",
+      "stack": [
+        "at android.app.Fragment.getResources(Fragment.java:785)",
+        "at com.zx.lbua80.onShow(Unknown Source:22)",
+        "at android.app.Dialog$ListenersHandler.handleMessage(Dialog.java:1500)",
+        "at android.os.Handler.dispatchMessage(Handler.java:107)",
+        "at android.os.Looper.loopOnce(Looper.java:232)",
+        "at android.os.Looper.loop(Looper.java:317)",
+        "at android.app.ActivityThread.main(ActivityThread.java:8705)",
+        "at java.lang.reflect.Method.invoke(Native Method)",
+        "at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)",
+        "at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)"
+      ]
+    },
+    "new_fatal_blocks": [
+      {
+        "literal_header": "10-12 05:01:01.987  3934  3934 E AndroidRuntime: FATAL EXCEPTION: main\n",
+        "literal_exception": "java.lang.IllegalStateException: Fragment LB{693f793} not attached to Activity",
+        "literal_block": "10-12 05:01:01.987  3934  3934 E AndroidRuntime: FATAL EXCEPTION: main\n10-12 05:01:01.987  3934  3934 E AndroidRuntime: Process: com.arlosoft.macrodroid, PID: 3934\n10-12 05:01:01.987  3934  3934 E AndroidRuntime: java.lang.IllegalStateException: Fragment LB{693f793} not attached to Activity\n10-12 05:01:01.987  3934  3934 E AndroidRuntime: \tat android.app.Fragment.getResources(Fragment.java:785)\n10-12 05:01:01.987  3934  3934 E AndroidRuntime: \tat com.zx.lbua80.onShow(Unknown Source:22)\n10-12 05:01:01.987  3934  3934 E AndroidRuntime: \tat android.app.Dialog$ListenersHandler.handleMessage(Dialog.java:1500)\n10-12 05:01:01.987  3934  3934 E AndroidRuntime: \tat android.os.Handler.dispatchMessage(Handler.java:107)\n10-12 05:01:01.987  3934  3934 E AndroidRuntime: \tat android.os.Looper.loopOnce(Looper.java:232)\n10-12 05:01:01.987  3934  3934 E AndroidRuntime: \tat android.os.Looper.loop(Looper.java:317)\n10-12 05:01:01.987  3934  3934 E AndroidRuntime: \tat android.app.ActivityThread.main(ActivityThread.java:8705)\n10-12 05:01:01.987  3934  3934 E AndroidRuntime: \tat java.lang.reflect.Method.invoke(Native Method)\n10-12 05:01:01.987  3934  3934 E AndroidRuntime: \tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)\n10-12 05:01:01.987  3934  3934 E AndroidRuntime: \tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)\n"
+      }
+    ]
+  }
+}

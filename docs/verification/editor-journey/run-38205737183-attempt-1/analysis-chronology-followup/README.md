@@ -1,0 +1,5 @@
+# Extra chronology checks on the unchanged ten-screen failure
+
+A subsequent synthetic review found missing cross-transition chronology and accepted-ledger uniqueness guards in the shared observed policy. The historical pinned-policy replay in `../analysis/` remains unchanged and does not itself establish those missing checks. This separate direct audit verifies the actual immutable run38205737183 evidence: all38 selected acquisition ledgers are distinct, all456 raw frame artifact paths across76 observations are distinct, and every one of18 result acquisitions begins after its input finishes. Each fresh pre-input acquisition also begins after the prior selected observation finishes.
+
+`chronology-audit.json` records all raw monotonic bounds; `audit_capture_chronology.py` first verifies the exact journey SHA and every referenced artifact hash before checking them. It neither edits nor repairs the archived comparator. The real ten-screen outcome remains JOURNEY_DIFFERENCE with26 TRIGGERS pixels and the known paired fatal exception; no Android actions were performed by this audit.

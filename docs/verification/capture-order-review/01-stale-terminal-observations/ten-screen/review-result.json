@@ -1,0 +1,25 @@
+{
+  "status": "STALE_POST_INPUT_TERMINAL_FALSE_POSITIVE_REPRODUCED",
+  "frozen_source_checkpoint_sha256": "4e3d1ec8d3eec36d6db4685fef8d827c84b4c38e2c550e4a9896fba46eb90f92",
+  "source_files_verified": 81,
+  "baseline_accepted": true,
+  "mutated_comparator_accepted": true,
+  "original_terminal_artifacts_removed": 26,
+  "chronology": [
+    {
+      "label": "original",
+      "reused_observation_finished": 1045.8,
+      "terminal_input_started": 1048.8999999999999,
+      "terminal_input_finished": 1048.9499999999998
+    },
+    {
+      "label": "candidate",
+      "reused_observation_finished": 2045.8,
+      "terminal_input_started": 2048.9,
+      "terminal_input_finished": 2048.9500000000003
+    }
+  ],
+  "android_executed": false,
+  "active_source_modified": false,
+  "reason": "Both terminal frames and acquisition ledgers are reused from before the final OK tap. The comparator does not require unique capture use or a post-input observation timestamp."
+}
