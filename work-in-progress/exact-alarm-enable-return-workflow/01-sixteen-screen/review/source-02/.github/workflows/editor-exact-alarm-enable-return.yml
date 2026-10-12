@@ -1,0 +1,181 @@
+name: Independent exact-alarm sixteen-screen comparison with bounded notification readiness
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/editor-exact-alarm-enable-return.yml'
+      - 'work-in-progress/exact-alarm-enable-return-workflow/01-sixteen-screen/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: editor-exact-alarm-enable-return-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  editor-exact-alarm-enable-return:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out the exact reviewed inputs
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+
+      - name: Verify both source archive parts, assemble and copy the frozen sixteen-screen source
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          pins = {
+              'work-in-progress/exact-alarm-enable-return-workflow/01-sixteen-screen/prepare_trigger_journey.py': 'd0a421e7e106a3a5a4cd68068def7a305c4b3b491669ecfd878e021396b9b4f3',
+              'work-in-progress/exact-alarm-enable-return-workflow/01-sixteen-screen/verify_trigger_journey.py': '13eb0cd1ef23b9d20ee258282cc1e8fbef255f7462bfdc783f87c2a084e850ce',
+          }
+          for name, expected in pins.items():
+              path = Path(name)
+              if path.is_symlink() or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+                  raise RuntimeError('Reviewed diagnostic helper changed: ' + name)
+          PY
+          python3 work-in-progress/exact-alarm-enable-return-workflow/01-sixteen-screen/prepare_trigger_journey.py --root "$GITHUB_WORKSPACE" --output ci-exact-alarm-enable-return
+
+      - name: Run the frozen capture, animation and downloader host controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B -m unittest discover -s tools/android -p 'test_download_retry.py' -v 2>&1 | tee ci-exact-alarm-enable-return/download-tests.log
+          python3 -B -m unittest discover -s ci-exact-alarm-enable-return/reviewed-source/tools/parity_journeys -p 'test_*.py' -v 2>&1 | tee ci-exact-alarm-enable-return/journey-host-tests.log
+          python3 -B -m unittest discover -s work-in-progress/trigger-category/07-zero-animation-source -p 'test_enable_still_animations.py' -v 2>&1 | tee ci-exact-alarm-enable-return/animation-host-tests.log
+
+      - name: Inspect both exact APKs using the preserved AAPT2 tool
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/materialize_v9.py --without-overlay 2>&1 | tee ci-exact-alarm-enable-return/materialize-toolchain.log
+          python3 scripts/assemble_artifact.py vendor/original/manifest.json 2>&1 | tee ci-exact-alarm-enable-return/materialize-original.log
+          python3 scripts/assemble_artifact.py work-in-progress/day-trigger-numeric/10-hosted-accepted-artifact/manifest.json 2>&1 | tee ci-exact-alarm-enable-return/materialize-candidate.log
+          python3 work-in-progress/exact-alarm-enable-return-workflow/01-sixteen-screen/prepare_trigger_journey.py --root "$GITHUB_WORKSPACE" --output ci-exact-alarm-enable-return --materialized 2>&1 | tee ci-exact-alarm-enable-return/apk-preflight.log
+
+      - name: Install the pinned disposable runtime and preserve toolchain identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          if test -e "$RUNNER_TEMP/macrodroid-exact-alarm-enable-return-tooling"; then
+            echo 'Refusing to reuse an existing Day/Time readiness runtime directory' | tee ci-exact-alarm-enable-return/bootstrap.log
+            exit 1
+          fi
+          python3 tools/android/bootstrap_android_runtime.py --root "$RUNNER_TEMP/macrodroid-exact-alarm-enable-return-tooling" --create-avd 2>&1 | tee ci-exact-alarm-enable-return/bootstrap.log
+          python3 - <<'PY' 2>&1 | tee ci-exact-alarm-enable-return/toolchain-metadata.log
+          import hashlib, json, os
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP']) / 'macrodroid-exact-alarm-enable-return-tooling'
+          output = Path('ci-exact-alarm-enable-return/toolchain')
+          output.mkdir()
+          metadata = ['jdk21/release', 'android/platform-tools/source.properties',
+              'android/emulator/source.properties',
+              'android/system-images/android-35/google_apis/x86_64/source.properties',
+              'android/system-images/android-35/google_apis/x86_64/build.prop',
+              'android-user/avd/MacroDroid_API35_Disposable.ini',
+              'android-user/avd/MacroDroid_API35_Disposable.avd/config.ini']
+          binaries = ['jdk21/bin/java', 'jdk21/bin/javac', 'android/platform-tools/adb',
+              'android/emulator/emulator', 'android/emulator/qemu/linux-x86_64/qemu-system-x86_64-headless']
+          rows = []
+          for name in metadata + binaries:
+              path = root / name
+              with path.open('rb') as stream:
+                  digest = hashlib.file_digest(stream, 'sha256').hexdigest()
+              rows.append({'path': name, 'bytes': path.stat().st_size, 'sha256': digest})
+              if name in metadata:
+                  target = output / name
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  target.write_bytes(path.read_bytes())
+          (output / 'installed-inputs.json').write_text(json.dumps(rows, indent=2) + '\n')
+          print(json.dumps(rows, indent=2))
+          PY
+
+      - name: Observe the sixteen declared screens with bounded notification readiness
+        shell: bash
+        run: |
+          set -euo pipefail
+          exec > >(tee ci-exact-alarm-enable-return/runtime-driver.log) 2>&1
+          if ! test -c /dev/kvm; then
+            echo 'The disposable KVM device is unavailable'
+            exit 1
+          fi
+          sudo setfacl -m "u:$(id -un):rw" /dev/kvm
+          mkdir ci-exact-alarm-enable-return/environment
+          python3 -u tools/android/android_runtime_service.py \
+            --tooling "$RUNNER_TEMP/macrodroid-exact-alarm-enable-return-tooling" \
+            --evidence ci-exact-alarm-enable-return/environment \
+            --avd MacroDroid_API35_Disposable --port 5560 --acceleration on \
+            > ci-exact-alarm-enable-return/service.log 2>&1 &
+          trigger_service_pid=$!
+          cleanup_trigger_runtime() {
+            trigger_step_status=$?
+            trap - EXIT INT TERM
+            set +e
+            timeout 30s "$RUNNER_TEMP/macrodroid-exact-alarm-enable-return-tooling/android/platform-tools/adb" \
+              -s emulator-5560 logcat -d -b crash -b events -v threadtime \
+              > ci-exact-alarm-enable-return/lifecycle.log 2>&1
+            trigger_logcat_status=$?
+            mkdir -p ci-exact-alarm-enable-return/environment/queue
+            touch ci-exact-alarm-enable-return/environment/queue/STOP
+            trigger_stop_status=$?
+            timeout 60s tail --pid="$trigger_service_pid" -f /dev/null
+            trigger_wait_status=$?
+            trigger_service_status=unobserved
+            if test "$trigger_wait_status" -eq 0; then
+              wait "$trigger_service_pid"
+              trigger_service_status=$?
+            fi
+            python3 - "$trigger_step_status" "$trigger_logcat_status" "$trigger_stop_status" \
+              "$trigger_wait_status" "$trigger_service_status" <<'PY'
+          import json, sys
+          from pathlib import Path
+          names = ['journey_step_exit_code', 'diagnostic_logcat_exit_code', 'owned_stop_marker_exit_code',
+                   'bounded_service_wait_exit_code', 'owned_service_exit_code']
+          result = dict(zip(names, sys.argv[1:]))
+          result['scope'] = 'STOP is written only to this job\'s newly created service queue; no unrelated device or process is stopped.'
+          result['service_cleanup_confirmed'] = sys.argv[3:] == ['0', '0', '0']
+          Path('ci-exact-alarm-enable-return/runtime-cleanup.json').write_text(json.dumps(result, indent=2) + '\n')
+          print(json.dumps(result, indent=2))
+          PY
+            trigger_cleanup_record_status=$?
+            if test "$trigger_step_status" -eq 0 && { test "$trigger_stop_status" -ne 0 || test "$trigger_wait_status" -ne 0 || test "$trigger_service_status" != 0 || test "$trigger_cleanup_record_status" -ne 0; }; then
+              trigger_step_status=1
+            fi
+            exit "$trigger_step_status"
+          }
+          trap cleanup_trigger_runtime EXIT
+          trap 'exit 130' INT
+          trap 'exit 143' TERM
+          printf '%s\n' "$trigger_service_pid" > ci-exact-alarm-enable-return/owned-service-pid.txt
+          python3 tools/android/wait_android_ready.py --evidence ci-exact-alarm-enable-return/environment --timeout 900 \
+            2>&1 | tee ci-exact-alarm-enable-return/readiness.log
+          python3 tools/android/runtime_job.py --queue ci-exact-alarm-enable-return/environment/queue   --id exact-alarm-enable-return-radio-clock --timeout 240 --   python3 "$GITHUB_WORKSPACE/tools/android/configure_capture_device.py"     --adb "$RUNNER_TEMP/macrodroid-exact-alarm-enable-return-tooling/android/platform-tools/adb"     --serial emulator-5560 --output "$GITHUB_WORKSPACE/ci-exact-alarm-enable-return/device" --demo-clock 1200   2>&1 | tee ci-exact-alarm-enable-return/device-job.log
+          python3 tools/android/runtime_job.py --queue ci-exact-alarm-enable-return/environment/queue   --id exact-alarm-enable-return-settings --timeout 360 --   python3 "$GITHUB_WORKSPACE/work-in-progress/trigger-category/07-zero-animation-source/enable_still_animations.py"     --adb "$RUNNER_TEMP/macrodroid-exact-alarm-enable-return-tooling/android/platform-tools/adb"     --serial emulator-5560 --output "$GITHUB_WORKSPACE/ci-exact-alarm-enable-return/animation-settings"   2>&1 | tee ci-exact-alarm-enable-return/animation-job.log
+          python3 tools/android/runtime_job.py --queue ci-exact-alarm-enable-return/environment/queue   --id exact-alarm-enable-return-sixteen-screen --timeout 2400 --   python3 "$GITHUB_WORKSPACE/ci-exact-alarm-enable-return/reviewed-source/tools/parity_journeys/exact_alarm_enable_return.py"     --source "$GITHUB_WORKSPACE/ci-exact-alarm-enable-return/reviewed-source/project"     --original "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-original.apk"     --candidate "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-day-numeric-0762aad9.apk"     --output "$GITHUB_WORKSPACE/ci-exact-alarm-enable-return/journey" --serial emulator-5560     --accept-package-data-removal --observe-denial-handoff --settle-full-frames --observe-notification-readiness   2>&1 | tee ci-exact-alarm-enable-return/journey-job.log
+
+      - name: Recheck raw readiness, animation settings, ordered captures and exact pixels
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ci-exact-alarm-enable-return
+          python3 work-in-progress/exact-alarm-enable-return-workflow/01-sixteen-screen/verify_trigger_journey.py --root "$GITHUB_WORKSPACE" --output ci-exact-alarm-enable-return 2>&1 | tee ci-exact-alarm-enable-return/independent-comparison.log
+
+      - name: Preserve the complete owned diagnostic evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: editor-exact-alarm-enable-return-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          path: ci-exact-alarm-enable-return/
+          include-hidden-files: true

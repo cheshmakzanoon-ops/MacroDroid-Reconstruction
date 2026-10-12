@@ -1,0 +1,15 @@
+{
+  "scope": "Root evidence-reader correction only; no source/workflow/test or raw evidence change",
+  "prior_failure": "The root reviewer incorrectly assumed all immutable read references used fc825ede. The closed index and reader use the earlier 48ddc442 publication for the candidate manifest and its 12 parts.",
+  "observed_git_read_counts": {
+    "fc825ede39a40249e33c8ba75b93128a98bd5e3c": 189,
+    "48ddc442c61e383c4368606cb31984f15d03bb1f": 13
+  },
+  "correction": "Require the exact 48ddc442 revision only for the fixed candidate publication prefix; retain fc825ede for every other role. All byte, mode, source, execution and result checks remain unchanged.",
+  "old_author_sha256": "05350215294f93404014322ce31e0455830adc33f6447ca60b8a32eef9025e9e",
+  "new_author_sha256": "a53bf706f9b380a5bae3c6570bf376447e784568591ab36979d5a70d2603e83c",
+  "retained_prior_capsule_sha256": "9bd57be10ae41fa4acf58c435a5b7a158dc50b7848d4a8094e21cb26effc395f",
+  "android_executed": false,
+  "host_suite_executed": false,
+  "production_source_changed": false
+}

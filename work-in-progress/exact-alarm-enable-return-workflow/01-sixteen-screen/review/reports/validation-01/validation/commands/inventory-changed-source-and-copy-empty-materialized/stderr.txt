@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/dev/shm/settings-enable-return-workflow-01/source-02/prepare_trigger_journey.py", line 385, in <module>
+    main()
+  File "/dev/shm/settings-enable-return-workflow-01/source-02/prepare_trigger_journey.py", line 381, in main
+    print(json.dumps(function(args.root.resolve(), args.output.resolve()), indent=2))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/settings-enable-return-workflow-01/source-02/prepare_trigger_journey.py", line 343, in materialized
+    verify_prepared_inputs(root, output, initial)
+  File "/dev/shm/settings-enable-return-workflow-01/source-02/prepare_trigger_journey.py", line 280, in verify_prepared_inputs
+    expected = expected_inputs(root)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/settings-enable-return-workflow-01/source-02/prepare_trigger_journey.py", line 232, in expected_inputs
+    add(name, digest)
+  File "/dev/shm/settings-enable-return-workflow-01/source-02/prepare_trigger_journey.py", line 224, in add
+    raise ValueError('Pinned input changed: ' + name)
+ValueError: Pinned input changed: tools/android/bootstrap_android_runtime.py

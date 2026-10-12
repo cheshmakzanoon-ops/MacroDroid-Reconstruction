@@ -1,0 +1,32 @@
+--- failed-review-01/executed-reviewer.py
++++ review-02/executed-reviewer.py
+@@ -15,7 +15,7 @@
+ ROOT = Path('/dev/shm/macrodroid-settings-final-root-review')
+ A = Path('/dev/shm/settings-enable-return-workflow-01/checkpoints/01-multipart-workflow-and-offline-validation')
+ B = A.parent / '02-content-reference-verification'
+-OUT = ROOT / 'review-01'
++OUT = ROOT / 'review-02'
+ EXPECTED = [('workflow', A, 142204, '5f64e5e87270fd1f2e5203bdc54559c50c4920102451f9761c58c2f269b72cfa', 602),
+             ('reader', B, 3041, '819ce0d2b72ea9e1179ac87cc30613c72e10efb8f6eac45621ed0fe02cead92b', 12)]
+ PARENT = 'fc825ede39a40249e33c8ba75b93128a98bd5e3c'
+@@ -71,6 +71,11 @@
+ def main():
+     OUT.mkdir(parents=True, exist_ok=False)
+     copy(Path(__file__), 'executed-reviewer.py')
++    for prior in sorted((ROOT/'review-01').rglob('*')):
++        if prior.is_file(): copy(prior, 'retained-root-review-attempt-01/'+prior.relative_to(ROOT/'review-01').as_posix())
++    copy(ROOT/'correct_review_parent_binding.py', 'correction-author.py')
++    copy(ROOT/'review-parent-correction.patch', 'review-parent-correction.patch')
++    copy(ROOT/'review-parent-correction.json', 'review-parent-correction.json')
+     report = dict(status='REVIEWING_CLOSED_SETTINGS_WORKFLOW', passed=False,
+                   started_utc=datetime.now(timezone.utc).isoformat(), android_executed=False,
+                   application_build_executed=False, host_suite_reexecuted=False,
+@@ -178,7 +183,7 @@
+              and reader['checkpoint']==dict(bytes=142204,sha256=EXPECTED[0][3]), 'Exact closed successful reader binding')
+         reads={}
+         for r in reader['git_reads']:
+-            need(r['commit']==PARENT and r['exit_code']==0 and r['timeout_seconds']==30
++            need(r['commit']==('48ddc442c61e383c4368606cb31984f15d03bb1f' if r['path'].startswith('work-in-progress/day-trigger-numeric/10-hosted-accepted-artifact/') else PARENT) and r['exit_code']==0 and r['timeout_seconds']==30
+                  and r['stderr']==digest(b''), 'Bounded successful immutable Git read receipt')
+             key=(r['commit'],r['path'])
+             if key in reads: need(reads[key]==r['stdout'], 'Repeated immutable Git read identity')

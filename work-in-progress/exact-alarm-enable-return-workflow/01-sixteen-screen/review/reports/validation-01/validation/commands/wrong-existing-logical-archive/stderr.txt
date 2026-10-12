@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/dev/shm/settings-enable-return-workflow-01/reports/validation-01/validation/input-faults/wrong-existing-logical-archive/work-in-progress/exact-alarm-enable-return-workflow/01-sixteen-screen/prepare_trigger_journey.py", line 385, in <module>
+    main()
+  File "/dev/shm/settings-enable-return-workflow-01/reports/validation-01/validation/input-faults/wrong-existing-logical-archive/work-in-progress/exact-alarm-enable-return-workflow/01-sixteen-screen/prepare_trigger_journey.py", line 381, in main
+    print(json.dumps(function(args.root.resolve(), args.output.resolve()), indent=2))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/settings-enable-return-workflow-01/reports/validation-01/validation/input-faults/wrong-existing-logical-archive/work-in-progress/exact-alarm-enable-return-workflow/01-sixteen-screen/prepare_trigger_journey.py", line 320, in prepare
+    prepare_guard_archive(root, output, report['guard_archive_preparation'])
+  File "/dev/shm/settings-enable-return-workflow-01/reports/validation-01/validation/input-faults/wrong-existing-logical-archive/work-in-progress/exact-alarm-enable-return-workflow/01-sixteen-screen/prepare_trigger_journey.py", line 172, in prepare_guard_archive
+    receipt['verified'] = verify_guard_archive(root)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/settings-enable-return-workflow-01/reports/validation-01/validation/input-faults/wrong-existing-logical-archive/work-in-progress/exact-alarm-enable-return-workflow/01-sixteen-screen/prepare_trigger_journey.py", line 127, in verify_guard_archive
+    raise ValueError('Existing logical guard archive differs; refusing replacement')
+ValueError: Existing logical guard archive differs; refusing replacement

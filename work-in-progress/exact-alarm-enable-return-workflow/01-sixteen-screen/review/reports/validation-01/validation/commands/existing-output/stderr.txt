@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/dev/shm/settings-enable-return-workflow-01/reports/validation-01/validation/private-inputs/work-in-progress/exact-alarm-enable-return-workflow/01-sixteen-screen/prepare_trigger_journey.py", line 385, in <module>
+    main()
+  File "/dev/shm/settings-enable-return-workflow-01/reports/validation-01/validation/private-inputs/work-in-progress/exact-alarm-enable-return-workflow/01-sixteen-screen/prepare_trigger_journey.py", line 381, in main
+    print(json.dumps(function(args.root.resolve(), args.output.resolve()), indent=2))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/settings-enable-return-workflow-01/reports/validation-01/validation/private-inputs/work-in-progress/exact-alarm-enable-return-workflow/01-sixteen-screen/prepare_trigger_journey.py", line 301, in prepare
+    output.mkdir(parents=True, exist_ok=False)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileExistsError: [Errno 17] File exists: '/dev/shm/settings-enable-return-workflow-01/reports/validation-01/validation/private-inputs/ci-exact-alarm-enable-return'

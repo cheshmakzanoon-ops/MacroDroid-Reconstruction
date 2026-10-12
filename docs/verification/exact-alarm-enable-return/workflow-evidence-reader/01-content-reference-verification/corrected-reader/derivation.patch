@@ -1,0 +1,26 @@
+--- frozen-01/verify_frozen_evidence.py
++++ reader-02/verify_frozen_evidence.py
+@@ -101,9 +101,9 @@
+                 if local.get(safe_name(reference['path'])) != expected:
+                     raise ValueError('Indexed locally retained bytes differ: ' + row['path'])
+             elif reference['kind'] == 'git_blob':
+-                key = (reference['commit'], reference['path'])
++                key = ('git_blob', reference['commit'], reference['path'])
+                 if key not in byte_cache:
+-                    raw = git(*key)
++                    raw = git(*key[1:])
+                     byte_cache[key] = digest(raw)
+                     actual_oid = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+                     if actual_oid != reference['git_blob_sha1']:
+@@ -112,9 +112,9 @@
+                     raise ValueError('Referenced immutable Git bytes differ')
+                 external_seen.add(key)
+             elif reference['kind'] == 'multipart_manifest':
+-                key = (reference['commit'], reference['path'])
++                key = ('multipart_manifest', reference['commit'], reference['path'])
+                 if key not in byte_cache:
+-                    manifest_raw = git(*key)
++                    manifest_raw = git(*key[1:])
+                     if (hashlib.sha256(manifest_raw).hexdigest() != reference['manifest_sha256']
+                             or 'manifest_bytes' in reference and len(manifest_raw) != reference['manifest_bytes']):
+                         raise ValueError('Referenced multipart manifest changed')

@@ -1,0 +1,15 @@
+{
+  "label": "packaged-host-controls-0",
+  "argv": [
+    "bash",
+    "-o",
+    "pipefail",
+    "-c",
+    "python3 -B -m unittest discover -s tools/android -p 'test_download_retry.py' -v 2>&1 | tee ci-exact-alarm-enable-return/download-tests.log"
+  ],
+  "cwd": "/dev/shm/settings-enable-return-workflow-01/reports/validation-01/validation/private-inputs",
+  "exit_code": 0,
+  "timed_out": false,
+  "seconds": 7.225171,
+  "android_executed": false
+}

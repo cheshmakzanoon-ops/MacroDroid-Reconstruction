@@ -1,0 +1,42 @@
+--- attempt-01/preparer.py
++++ attempt-02/preparer.py
+@@ -16,7 +16,7 @@
+ GIT = ['git', '--git-dir=' + str(ROOT / 'verification.git')]
+ PACKAGE = 'work-in-progress/indicator-fixed-sampling/04-closed-synthetic-and-test-correction'
+ LOCAL = Path('/dev/shm/ink-indicator-fixed-sampling-01/checkpoints/03-closed-synthetic-test-correction')
+-EXPORT = ROOT / 'indicator-fixed-sampling-activation-export'
++EXPORT = ROOT / 'indicator-fixed-sampling-activation-export-02'
+ IMPLEMENTATION_COMMIT = '78d8a01d2e02d2fbfc4d1f20da644dcfd2f8ea1c'
+ EXPECTED = {
+  '.github/workflows/indicator-fixed-sampling.yml',
+@@ -121,8 +121,28 @@
+ assert next(row['sha256'] for row in bindings if row['path'].startswith('.github/')) == '64bcf452be163872aca494294c0e57117d7e15436c21cbc0f13c80ce539c1aeb'
+ assert next(row['mode'] for row in bindings if row['path'].endswith('/aapt2')) == '100755'
+ pins = fetched(PACKAGE + '/source/tools/indicator_sampling/pins.json')
+-assert b'5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182' in pins
+-assert b'0762aad956193ef305afc47b4cbe68e6239c94f72732556e650d701b4a288afd' not in pins
++pin_object = json.loads(pins)
++assert pin_object['parent_commit'] == '6331410cfd2391389270564803623079e8355ad8'
++parent_rows = {row['path']: row for row in pin_object['parents']}
++assert len(parent_rows) == len(pin_object['parents']) == 16
++
++def pinned_manifest(name, expected_digest):
++    row = parent_rows[name]
++    assert row['sha256'] == expected_digest and git_mode(row['mode']) == '100644'
++    raw = git('show', pin_object['parent_commit'] + ':' + name)
++    assert len(raw) == row['bytes'] and sha(raw) == expected_digest
++    assert fetched(name) == raw
++    return json.loads(raw)
++
++diagnostic_manifest = pinned_manifest(
++    'work-in-progress/combined-recovery/05-full-acceptance/apk/manifest.json',
++    '459960a6afc81fc0119cd66f3a9f6be823f7947ae90cd74c902d1a8a1e010afc')
++original_manifest = pinned_manifest('vendor/original/manifest.json',
++    'b2f12b669ac0e937198216458410aaab03da6682659d6d922c730a175b77d684')
++assert diagnostic_manifest['sha256'] == '5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182'
++assert diagnostic_manifest['size_bytes'] == 94683119
++assert original_manifest['size_bytes'] == 95725918
++assert json.loads(fetched('artifacts/current/manifest.json'))['sha256'] == '0762aad956193ef305afc47b4cbe68e6239c94f72732556e650d701b4a288afd'
+ receipt_raw = args.receipt.read_bytes()
+ receipt = json.loads(receipt_raw)
+ assert receipt['commit'] == args.parent and receipt['git_mode_size_sha1_sha256_verified'] is True

@@ -1,0 +1,137 @@
+GUARD_ARCHIVE = GUARD + '/evidence.tar.gz'
+GUARD_LAYOUT = GUARD + '/archive-layout'
+GUARD_ARCHIVE_ID = {'bytes': 13014001, 'sha256': '51749196bbc80e9ac82beb4821cb15253c7d94122b628f7ecfd624cc398d6755'}
+GUARD_INVENTORY_ID = {'bytes': 83303, 'sha256': 'ca355e5096b4f928196a311e7cd35bc257a250185fae1249be7eda33f8780395'}
+GUARD_TRANSPORT = [
+    (GUARD_LAYOUT + '/manifest.json', 1549, '8be9e7dab79ccad82db4b98e33e8418044a372a456e45907bcec0f134bce6310'),
+    (GUARD_LAYOUT + '/parts/evidence.0001.part', 8388608, '550db03854608f0c565e9dd891b37fb6784338f175cfb9b329edddf2965988e6'),
+    (GUARD_LAYOUT + '/parts/evidence.0002.part', 4625393, 'b72fddce277db14a84ee83c1f9cd43fe00939c24e6a56fd31c58fcfa293baf1c'),
+]
+PINS.update({name: digest for name, _, digest in GUARD_TRANSPORT})
+
+
+def guard_transport(root):
+    """Verify both fixed parts on every entry, including an existing archive."""
+    checkpoint = checked_file(root, GUARD + '/checkpoint.json')
+    if identity(checkpoint) != {'bytes': 39880, 'sha256': PINS[GUARD + '/checkpoint.json']}:
+        raise ValueError('Pinned source checkpoint changed before archive preparation')
+    rows = []
+    combined = hashlib.sha256()
+    total = 0
+    for index, (name, size, digest) in enumerate(GUARD_TRANSPORT):
+        path = checked_file(root, name)
+        if stat.S_IMODE(path.stat().st_mode) != 0o644:
+            raise ValueError('Pinned archive transport mode changed: ' + name)
+        actual = hashlib.sha256()
+        count = 0
+        with path.open('rb') as stream:
+            while chunk := stream.read(1024 * 1024):
+                actual.update(chunk)
+                count += len(chunk)
+                if index:
+                    combined.update(chunk)
+                    total += len(chunk)
+        if (count, actual.hexdigest()) != (size, digest):
+            raise ValueError('Pinned archive transport changed: ' + name)
+        rows.append({'path': name, 'bytes': count, 'sha256': digest, 'mode': 0o644})
+    if {'bytes': total, 'sha256': combined.hexdigest()} != GUARD_ARCHIVE_ID:
+        raise ValueError('Fixed archive part concatenation differs')
+    manifest = json.loads(checked_file(root, GUARD_TRANSPORT[0][0]).read_bytes())
+    if (manifest['format'] != 'macrodroid-multipart-artifact' or manifest['format_version'] != 1
+            or manifest['filename'] != 'evidence.tar.gz' or manifest['mode'] != '100644'
+            or {'bytes': manifest['size_bytes'], 'sha256': manifest['sha256']} != GUARD_ARCHIVE_ID
+            or manifest['logical_repository_path'] != GUARD_ARCHIVE
+            or manifest['source_checkpoint'] != {'path': GUARD + '/checkpoint.json',
+                'bytes': 39880, 'sha256': PINS[GUARD + '/checkpoint.json']}
+            or [(row['path'], row['size_bytes'], row['sha256'], row['mode']) for row in manifest['parts']]
+                != [(name, size, digest, '100644') for name, size, digest in GUARD_TRANSPORT[1:]]):
+        raise ValueError('Pinned archive manifest structure differs')
+    return {'manifest': rows[0], 'parts': rows[1:], 'concatenated': dict(GUARD_ARCHIVE_ID),
+            'source_checkpoint': {'path': GUARD + '/checkpoint.json', **identity(checkpoint)}}
+
+
+def verify_guard_archive(root):
+    """Read the exact logical archive and all 353 independently pinned members."""
+    transport = guard_transport(root)
+    archive = checked_file(root, GUARD_ARCHIVE)
+    if (identity(archive) != GUARD_ARCHIVE_ID or stat.S_IMODE(archive.stat().st_mode) != 0o644):
+        raise ValueError('Existing logical guard archive differs; refusing replacement')
+    inventory_path = checked_file(root, GUARD + '/evidence-inventory.json')
+    if identity(inventory_path) != GUARD_INVENTORY_ID:
+        raise ValueError('Pinned guard archive member inventory changed')
+    expected = json.loads(inventory_path.read_bytes())
+    if (type(expected) is not list or len(expected) != 353
+            or any(type(row) is not dict or set(row) != {'path', 'bytes', 'sha256', 'mode'} for row in expected)
+            or len({row['path'] for row in expected}) != 353):
+        raise ValueError('Guard archive member inventory is incomplete')
+    observed = []
+    with tarfile.open(archive, 'r|gz') as stream:
+        for member in stream:
+            index = len(observed)
+            if index >= len(expected):
+                raise ValueError('Extra guard archive member')
+            row = expected[index]
+            name = PurePosixPath(member.name)
+            if (not member.isfile() or member.name != row['path'] or name.is_absolute()
+                    or '..' in name.parts or name.as_posix() != member.name
+                    or member.size != row['bytes'] or member.mode != row['mode']):
+                raise ValueError('Guard archive member identity changed: ' + member.name)
+            payload = stream.extractfile(member)
+            if payload is None:
+                raise ValueError('Missing regular guard archive member: ' + member.name)
+            with payload:
+                digest = hashlib.file_digest(payload, 'sha256').hexdigest()
+            if digest != row['sha256']:
+                raise ValueError('Guard archive member bytes changed: ' + member.name)
+            observed.append(row)
+    if observed != expected:
+        raise ValueError('Missing guard archive member')
+    return {**transport, 'logical_archive': {'path': GUARD_ARCHIVE, **GUARD_ARCHIVE_ID, 'mode': 0o644},
+            'member_inventory': {'path': GUARD + '/evidence-inventory.json', **GUARD_INVENTORY_ID},
+            'verified_members': len(observed)}
+
+
+def prepare_guard_archive(root, output, receipt):
+    """Create only a missing logical file from the fixed, already verified parts."""
+    receipt.update(status='VERIFYING_SOURCE_ARCHIVE_TRANSPORT', android_executed=False,
+                   logical_archive=GUARD_ARCHIVE, started_utc=datetime.now(timezone.utc).isoformat())
+    receipt['transport_before'] = guard_transport(root)
+    archive = root / GUARD_ARCHIVE
+    receipt['logical_archive_existed'] = archive.exists() or archive.is_symlink()
+    if receipt['logical_archive_existed']:
+        receipt['action'] = 'VERIFIED_EXISTING_LOGICAL_ARCHIVE'
+        receipt['verified'] = verify_guard_archive(root)
+    else:
+        temporary = output / 'source03-logical-archive.tmp'
+        receipt['temporary_path'] = str(temporary.relative_to(output))
+        receipt['action'] = 'ASSEMBLED_MISSING_LOGICAL_ARCHIVE'
+        with temporary.open('xb') as target:
+            for name, size, digest in GUARD_TRANSPORT[1:]:
+                part = checked_file(root, name)
+                observed = hashlib.sha256()
+                length = 0
+                with part.open('rb') as source:
+                    while chunk := source.read(1024 * 1024):
+                        target.write(chunk)
+                        observed.update(chunk)
+                        length += len(chunk)
+                if (length, observed.hexdigest()) != (size, digest):
+                    raise ValueError('Archive part changed during assembly: ' + name)
+            target.flush()
+            os.fchmod(target.fileno(), 0o644)
+            os.fsync(target.fileno())
+        if identity(temporary) != GUARD_ARCHIVE_ID:
+            raise ValueError('Assembled logical guard archive differs')
+        if guard_transport(root) != receipt['transport_before']:
+            raise ValueError('Archive transport changed during assembly')
+        # Exclusive hard-link creation cannot replace a concurrently created file.
+        os.link(temporary, archive)
+        temporary.unlink()
+        receipt['verified'] = verify_guard_archive(root)
+    receipt['transport_after'] = guard_transport(root)
+    if receipt['transport_before'] != receipt['transport_after']:
+        raise ValueError('Archive transport changed during preparation')
+    receipt.update(status='EXACT_SOURCE_ARCHIVE_READY',
+                   finished_utc=datetime.now(timezone.utc).isoformat())
+
+
