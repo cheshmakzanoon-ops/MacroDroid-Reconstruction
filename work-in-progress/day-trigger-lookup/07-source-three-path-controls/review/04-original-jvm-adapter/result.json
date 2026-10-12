@@ -1,0 +1,179 @@
+{
+  "status": "LOOKUP_UI_ADAPTER_ORIGINAL_JVM_AND_FIXTURE_PASSED",
+  "passed": true,
+  "started_utc": "2026-10-12T09:57:30.438434+00:00",
+  "commands": [
+    {
+      "name": "compile-helper-and-shared-host",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses",
+        "-d",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/04-original-jvm-adapter/hostclasses",
+        "/dev/shm/macrodroid-day-lookup-integration/stage-02/project/test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+        "/dev/shm/macrodroid-day-lookup-integration/stage-02/project/source/java/recovered/ui/DayTriggerLookupMethods.java",
+        "/dev/shm/macrodroid-day-lookup-integration/stage-02/project/source/java/recovered/ui/DayTriggerValueMethods.java"
+      ],
+      "returncode": 0,
+      "started_utc": "2026-10-12T09:57:30.773590+00:00",
+      "duration_seconds": 1.596523246000288,
+      "timeout_seconds": 90,
+      "stdout": {
+        "path": "compile-helper-and-shared-host.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compile-helper-and-shared-host.stderr.log",
+        "bytes": 268,
+        "sha256": "312e9bd919c699a2f8409f70240177012720c94095f0f4374d44152defc50f7e"
+      }
+    },
+    {
+      "name": "compile-oracle-adapter-and-selector",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/dev/shm/macrodroid-day-lookup-integration/reports/04-original-jvm-adapter/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+        "-d",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/04-original-jvm-adapter/harnessclasses",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tests/java/BytecodeOracle.java",
+        "/dev/shm/macrodroid-day-lookup-integration/stage-02/project/tests/java/UiParityTests.java",
+        "/dev/shm/macrodroid-day-lookup-integration/stage-02/project/tests/java/DayTriggerParityCases.java",
+        "/dev/shm/macrodroid-day-lookup-integration/stage-02/project/tests/java/DayLookupParityCases.java",
+        "/dev/shm/macrodroid-day-lookup-integration/stage-02/project/tools/src/ExtractOracle.java",
+        "/dev/shm/macrodroid-day-lookup-integration/LookupAdapterProbe.java",
+        "/dev/shm/macrodroid-day-lookup-integration/CompareOriginalFixture.java"
+      ],
+      "returncode": 0,
+      "started_utc": "2026-10-12T09:57:32.372343+00:00",
+      "duration_seconds": 4.914694475999568,
+      "timeout_seconds": 90,
+      "stdout": {
+        "path": "compile-oracle-adapter-and-selector.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compile-oracle-adapter-and-selector.stderr.log",
+        "bytes": 184,
+        "sha256": "ed881777372fb12d9f24a912410d4e903c028d8451ea067d6828ae0ada848897"
+      }
+    },
+    {
+      "name": "extract-original-fixture",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xverify:all",
+        "-Xmx768m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/dev/shm/macrodroid-day-lookup-integration/reports/04-original-jvm-adapter/hostclasses:/dev/shm/macrodroid-day-lookup-integration/reports/04-original-jvm-adapter/harnessclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+        "ExtractOracle",
+        "/dev/shm/macrodroid-day-lookup-integration/stage-02/project",
+        "/workspace/scratch/4130730d15aa/recovered/automation android app"
+      ],
+      "returncode": 0,
+      "started_utc": "2026-10-12T09:57:37.288531+00:00",
+      "duration_seconds": 6.722603671994875,
+      "timeout_seconds": 90,
+      "stdout": {
+        "path": "extract-original-fixture.stdout.log",
+        "bytes": 84,
+        "sha256": "c7aa250d2fb2ceb65e0275eb64a130d0e9411b09a605d3b65a5f2602ca7662ce"
+      },
+      "stderr": {
+        "path": "extract-original-fixture.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "recreate-prior-1246-fixture",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xverify:all",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/dev/shm/macrodroid-day-lookup-integration/reports/04-original-jvm-adapter/hostclasses:/dev/shm/macrodroid-day-lookup-integration/reports/04-original-jvm-adapter/harnessclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+        "CompareOriginalFixture",
+        "/dev/shm/macrodroid-day-lookup-integration/stage-02/baseline/tests/fixtures/original-methods.dex",
+        "/dev/shm/macrodroid-day-lookup-integration/stage-02/project/tests/fixtures/original-methods.dex",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/04-original-jvm-adapter/recreated-numeric-fixture.dex",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/04-original-jvm-adapter/fixture-invariance.json"
+      ],
+      "returncode": 0,
+      "started_utc": "2026-10-12T09:57:44.011654+00:00",
+      "duration_seconds": 3.7521938050049357,
+      "timeout_seconds": 90,
+      "stdout": {
+        "path": "recreate-prior-1246-fixture.stdout.log",
+        "bytes": 101,
+        "sha256": "6ceb7f2d0102ce516581e102db39f39e3edd93f5b97541cab564045c8d7d0641"
+      },
+      "stderr": {
+        "path": "recreate-prior-1246-fixture.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-371-original-jvm-adapter",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xverify:all",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/dev/shm/macrodroid-day-lookup-integration/reports/04-original-jvm-adapter/hostclasses:/dev/shm/macrodroid-day-lookup-integration/reports/04-original-jvm-adapter/harnessclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+        "LookupAdapterProbe",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/04-original-jvm-adapter/config.json",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/04-original-jvm-adapter/adapter-parity.json"
+      ],
+      "returncode": 0,
+      "started_utc": "2026-10-12T09:57:47.772665+00:00",
+      "duration_seconds": 10.26013579100254,
+      "timeout_seconds": 90,
+      "stdout": {
+        "path": "execute-371-original-jvm-adapter.stdout.log",
+        "bytes": 52,
+        "sha256": "176c2378ffe59846650a743c6dc9b50ae0a23dc53444d306eff38b62544b4fa4"
+      },
+      "stderr": {
+        "path": "execute-371-original-jvm-adapter.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "full_source_copy": false,
+  "full_build": false,
+  "signed_primary_verified": false,
+  "androidRuntime": false,
+  "active_source_changed": false,
+  "original_jvm_cases": 371,
+  "mismatches": 0,
+  "unsupported": 0,
+  "independent_expected_checks": 371,
+  "original_instructions": 26,
+  "original_conditional_edges": 4,
+  "fixture_registered_methods": 1244,
+  "fixture_uncredited_dependencies": 5,
+  "fixture_methods": 1249,
+  "fixture_classes": 607,
+  "all_prior_1246_fixture_bytes_recreated": true,
+  "numeric_helper_class_unchanged": true,
+  "lookup_helper_class": {
+    "bytes": 991,
+    "sha256": "df4383e951f3e897f58adc33f27847198f52cd455ccc5a9b22eb70712f66e082"
+  },
+  "lookup_helper_source": {
+    "bytes": 567,
+    "sha256": "020256ed2d78740183aa9ac8d92e8c775db0d4fc647dfc12f1bea0a6881243e5"
+  },
+  "source_and_external_inputs_unchanged": true,
+  "full_ui_101_controls_and_signed_proof_pending": true,
+  "finished_utc": "2026-10-12T09:57:58.436106+00:00"
+}

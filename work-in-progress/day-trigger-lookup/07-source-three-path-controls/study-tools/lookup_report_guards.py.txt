@@ -1,0 +1,166 @@
+INPUT_FIELDS = ('case', 'keysUtf16Hex', 'queryUtf16Hex', 'mode', 'nullEntryIndex', 'injectedFaultAt',
+                'injectedFaultType', 'expectedReturnIndex', 'expectedExceptionClass', 'expectedEvents',
+                'exceptionComparisonScope')
+VM_NULL_CASES = frozenset({'dictionary-null', 'entries-null', 'iterator-null', 'null-first-entry',
+                         'null-query-and-null-key', 'null-query-nonempty', 'null-second-entry'})
+
+
+def same_inputs(a: dict, b: dict) -> bool:
+    return {key: a[key] for key in INPUT_FIELDS} == {key: b[key] for key in INPUT_FIELDS}
+
+
+def validate_report_identity(report: dict) -> None:
+    require_counts(report, {'schema': 1, 'cases': 371, 'executionPaths': 3,
+                           'primaryRecoveredMethods': 1, 'originalDependencyMethods': 2},
+                   'Lookup report count or schema differs')
+    require(report.get('primaryMethod') == METHOD and report.get('androidRuntime') is False
+            and report.get('dependencyKeys') == sorted(GETTERS)
+            and report.get('generatedNullMessageCases') == sorted(VM_NULL_CASES)
+            and report.get('inputInventorySha256') == catalog.LOOKUP_INPUT_INVENTORY_SHA256,
+            'Lookup report method, dependency or exception scope identity differs')
+
+
+def validate_positive_coverage(coverage: dict, count: int) -> None:
+    require(type(count) is int and count in {26, 23}, 'Unknown lookup coverage count')
+    methods = coverage.get('methods')
+    require(isinstance(methods, list) and len(methods) == 3
+            and all(isinstance(row, dict) for row in methods)
+            and [row.get('key') for row in methods] == sorted({METHOD, *GETTERS}),
+            'Lookup coverage method/dependency inventory differs')
+    instructions = edges = 0
+    for row in methods:
+        primary = row['key'] == METHOD
+        require(row.get('primaryRecovery') is primary, 'Lookup getter was given recovery credit')
+        offsets, branches = row.get('requiredOffsets'), row.get('requiredEdges')
+        require(isinstance(offsets, list) and offsets
+                and all(type(offset) is int and offset >= 0 for offset in offsets)
+                and offsets == sorted(set(offsets)), 'Malformed lookup instruction offsets')
+        require(isinstance(branches, list) and all(isinstance(edge, str) for edge in branches)
+                and branches == sorted(set(branches)), 'Malformed lookup conditional edges')
+        for edge in branches:
+            parts = edge.split(':')
+            require(len(parts) == 2 and all(part.isdecimal() for part in parts)
+                    and all(int(part) in offsets for part in parts), 'Lookup branch edge names another instruction')
+        wanted = count - 5 if primary else 3 if 'DictionaryEntry;' in row['key'] else 2
+        require_counts(row, {'instructionCount': wanted, 'exceptionRegions': 0}, 'Lookup method coverage count differs')
+        require(len(offsets) == wanted and len(branches) == (4 if primary else 0)
+                and row.get('executedOffsets') == offsets and row.get('executedEdges') == branches
+                and row.get('missingOffsets') == [] and row.get('missingEdges') == [],
+                'Incomplete lookup method instruction/edge coverage')
+        instructions += len(offsets); edges += len(branches)
+    require(instructions == count and edges == 4, 'Lookup coverage totals differ from method rows')
+    require_counts(coverage, {'instructionCount': instructions, 'executedInstructionCount': instructions,
+                              'requiredBranchEdges': edges, 'executedBranchEdges': edges},
+                   'Lookup coverage summary differs from method rows')
+    require(coverage.get('allInstructionsAndEdgesExecuted') is True, 'Incomplete lookup coverage flag')
+
+
+def validate_raw_observation(observed: dict) -> None:
+    require(isinstance(observed, dict)
+            and set(observed) == {'returnIndex', 'exceptionClass', 'rawMessage', 'injectedExceptionIdentity', 'events', 'unsupported'}
+            and (observed['returnIndex'] is None or type(observed['returnIndex']) is int)
+            and (observed['exceptionClass'] is None or isinstance(observed['exceptionClass'], str))
+            and (observed['rawMessage'] is None or isinstance(observed['rawMessage'], str))
+            and type(observed['injectedExceptionIdentity']) is bool and type(observed['unsupported']) is bool
+            and isinstance(observed['events'], list) and all(isinstance(event, str) for event in observed['events']),
+            'Malformed raw lookup outcome')
+
+
+def is_vm_null_case(row: dict) -> bool:
+    return row['case'] in VM_NULL_CASES and row['injectedFaultAt'] is None and row['expectedExceptionClass'] == 'java.lang.NullPointerException'
+
+
+def matches_expected(row: dict, observed: dict) -> bool:
+    if observed['unsupported'] or observed['events'] != row['expectedEvents']:
+        return False
+    exception = row['expectedExceptionClass']
+    if exception is None:
+        return (observed['exceptionClass'] is None and observed['returnIndex'] == row['expectedReturnIndex']
+                and not observed['injectedExceptionIdentity'] and observed['rawMessage'] is None)
+    if observed['returnIndex'] is not None or observed['exceptionClass'] != exception:
+        return False
+    if row['injectedFaultAt'] is not None:
+        return observed['injectedExceptionIdentity'] and observed['rawMessage'] == 'EXACT_INJECTED_LOOKUP_FAULT:' + row['case']
+    return is_vm_null_case(row) and not observed['injectedExceptionIdentity']
+
+
+def validate_observer_controls(report: dict, inputs: list[dict]) -> None:
+    """These five altered records earn no application execution or coverage credit."""
+    selected = [row for row in inputs if row['case'] == 'injected-iterator-npe']
+    require(len(selected) == 1, 'Lookup observer control input is absent or duplicated')
+    control = report.get('observerRecordControls')
+    require(isinstance(control, dict) and set(control) == {'case', 'positiveAccepted', 'changedRecordsRejected',
+            'applicationExecutions', 'applicationCoverageCredit', 'positive', 'rejectedRecords'}
+            and control.get('case') == selected[0]['case'] and control.get('positiveAccepted') is True,
+            'Lookup observer control identity differs')
+    require_counts(control, {'changedRecordsRejected': 5, 'applicationExecutions': 0, 'applicationCoverageCredit': 0},
+                   'Lookup observer controls received application credit or wrong count')
+    positive = control['positive']; validate_raw_observation(positive)
+    require(matches_expected(selected[0], positive), 'Lookup observer positive rejected')
+    faults = control.get('rejectedRecords')
+    require(isinstance(faults, list) and len(faults) == 5, 'Lookup observer fault inventory differs')
+    expected = []
+    for key, value in [('rawMessage', 'CHANGED_INJECTED_MESSAGE'), ('injectedExceptionIdentity', False),
+                       ('events', []), ('returnIndex', 0), ('unsupported', True)]:
+        altered = copy.deepcopy(positive); altered[key] = value; expected.append(altered)
+    require(faults == expected, 'Lookup observer fault records differ from their exact controls')
+    for fault in faults:
+        validate_raw_observation(fault)
+        require(not matches_expected(selected[0], fault) and fault != positive, 'Lookup observer accepted a changed injected fault')
+
+
+def validate_observations(report: dict) -> list[str]:
+    """Bind all UTF-16 inputs/expectations, then recompute outcomes from raw records."""
+    rows = report.get('observations')
+    require(isinstance(rows, list) and len(rows) == 371
+            and all(isinstance(row, dict) and set(row) == set(INPUT_FIELDS) | {'original', 'java', 'rebuilt',
+                'sameScopedOutcome', 'allPathsMatchIndependentExpected'} for row in rows),
+            'Missing or malformed lookup observation inventory')
+    inputs = [{key: row[key] for key in INPUT_FIELDS} for row in rows]
+    digest = hashlib.sha256(json.dumps(inputs, separators=(',', ':'), ensure_ascii=False).encode()).hexdigest()
+    require(digest == catalog.LOOKUP_INPUT_INVENTORY_SHA256, 'Lookup input identities or pinned independent expectations changed')
+    require({row['case'] for row in rows if row['injectedFaultAt'] is None
+             and row['expectedExceptionClass'] == 'java.lang.NullPointerException'} == VM_NULL_CASES,
+            'Lookup generated-null exception scope changed')
+    validate_observer_controls(report, inputs)
+    failures, unsupported, wrong_expected = [], 0, 0
+    for row in rows:
+        observations = [row[path] for path in ('original', 'java', 'rebuilt')]
+        for observed in observations: validate_raw_observation(observed)
+        correct = [matches_expected(row, observed) for observed in observations]
+        same = all(correct) if is_vm_null_case(row) else observations[0] == observations[1] == observations[2]
+        right = all(correct)
+        require(row.get('sameScopedOutcome') is same and row.get('allPathsMatchIndependentExpected') is right,
+                'Lookup outcome flags disagree with raw observations')
+        if not same or not right: failures.append('day-lookup:' + row['case'])
+        unsupported += sum(observed['unsupported'] for observed in observations)
+        wrong_expected += not right
+    require(report.get('mismatches') == failures, 'Lookup summary labels differ from all recorded cases')
+    require_counts(report, {'mismatchCount': len(failures), 'unsupportedCount': unsupported,
+                           'independentExpectedChecks': 371, 'independentExpectedFailures': wrong_expected},
+                   'Lookup summary differs from all recorded cases')
+    return failures
+
+
+def validate_positive(report: dict) -> None:
+    validate_report_identity(report)
+    require(validate_observations(report) == [], 'Positive lookup raw outcomes contain a failure')
+    require(report.get('passed') is True, 'Incomplete positive lookup three-path report')
+    for key, count in [('originalCoverage', 26), ('rebuiltCoverage', 23)]:
+        validate_positive_coverage(report.get(key, {}), count)
+
+
+def validate_fault(positive: dict, fault: dict, required: list[str], expected_count: int, changed_path: str) -> None:
+    validate_report_identity(fault)
+    require(type(expected_count) is int and expected_count > 0 and len(validate_observations(fault)) == expected_count,
+            'Lookup fault raw outcome count differs')
+    require(changed_path in {'java', 'rebuilt'}, 'Invalid lookup changed path')
+    require(fault.get('passed') is False and fault.get('unsupportedCount') == 0
+            and set(required).issubset(fault.get('mismatches', [])), 'Lookup fault lacks its required measured failures')
+    old, changed = positive['observations'], fault.get('observations', [])
+    require(len(old) == len(changed) == 371, 'Lookup fault changed case count')
+    stable_paths = {'original', 'java', 'rebuilt'} - {changed_path}
+    for a, b in zip(old, changed):
+        require(same_inputs(a, b) and all(a[path] == b[path] for path in stable_paths), 'Lookup fault changed an independent input/path')
+    require(fault.get('originalCoverage') == positive['originalCoverage'], 'Lookup fault changed original instruction coverage')
+    require(fault.get('observerRecordControls') == positive['observerRecordControls'], 'Lookup fault changed observer controls')

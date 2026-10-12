@@ -1,0 +1,96 @@
+    static final String KEY = PRIMARY;
+    static final String INPUT_INVENTORY_SHA256 = "@INVENTORY_SHA@";
+    static final Set<String> VM_NULL_CASES = Set.of(@VM_NULL_CASES@);
+    static final Gson JSON = new GsonBuilder().serializeNulls().disableHtmlEscaping().create();
+    static State current;
+    static final JsonArray rawObservations = new JsonArray();
+
+    static boolean isVmNullCase(Input input) {
+        return VM_NULL_CASES.contains(input.name()) && input.faultAt() == null
+            && "java.lang.NullPointerException".equals(input.expectedException());
+    }
+    static String inputInventorySha256(List<Input> inputs) {
+        JsonArray rows = new JsonArray(); for (Input input : inputs) rows.add(inputEvidence(input));
+        try { return sha(JSON.toJson(rows).getBytes(java.nio.charset.StandardCharsets.UTF_8)); }
+        catch (Exception error) { throw new AssertionError(error); }
+    }
+    static List<Input> pinnedCases() {
+        List<Input> inputs = cases();
+        require(inputs.size() == 371 && inputInventorySha256(inputs).equals(INPUT_INVENTORY_SHA256), "Lookup case inventory changed");
+        Set<String> nullCases = new TreeSet<>();
+        for (Input input : inputs) if (input.faultAt() == null && "java.lang.NullPointerException".equals(input.expectedException())) nullCases.add(input.name());
+        require(nullCases.equals(VM_NULL_CASES), "Lookup generated-null-message scope changed");
+        return inputs;
+    }
+    static Set<String> loadDependencies(Path root, Set<String> registeredKeys) throws Exception {
+        Set<String> selected = DayTriggerParityCases.validatedDependencies(root, registeredKeys).get(KEY);
+        require(GETTERS.equals(selected), "Exactly the two lookup getters are required");
+        return selected;
+    }
+    static void recordReturn(Object returned, JsonObject result) {
+        require(current != null, "Lookup return without current input");
+        current.returned = returned;
+        result.addProperty("value", current.identityIndex(returned));
+    }
+    static void recordException(Throwable error) {
+        require(current != null, "Lookup exception without current input");
+        current.escaped = error;
+    }
+    static Observed uiObserved() {
+        require(current != null, "Lookup observation without current input");
+        if (current.escaped != null) {
+            Throwable error = current.escaped;
+            return new Observed(null, error.getClass().getName(), error.getMessage(), error == current.fault,
+                List.copyOf(current.events), error instanceof BytecodeOracle.Unsupported);
+        }
+        int index = current.identityIndex(current.returned);
+        return new Observed(index, null, null, false, List.copyOf(current.events), index == -2);
+    }
+    static JsonObject comparedObservation(Input input, Observed output) {
+        JsonObject compared = JSON.toJsonTree(output).getAsJsonObject();
+        if (isVmNullCase(input)) compared.remove("rawMessage");
+        return compared;
+    }
+    static void observeUi(String path, JsonObject result) {
+        Observed output = uiObserved(); Input input = current.input;
+        JsonObject raw = inputEvidence(input); raw.addProperty("path", path); raw.add("observed", JSON.toJsonTree(output));
+        rawObservations.add(raw);
+        result.add("lookupState", comparedObservation(input, output));
+        result.addProperty("lookupExpectedObservation", matchesExpected(input, output));
+        if (output.unsupported() && !result.has("unsupported")) {
+            UiParityTests.unsupported++;
+            result.addProperty("unsupported", "Lookup returned a foreign entry or unsupported observation");
+        }
+    }
+    static void run() {
+        for (Input input : pinnedCases()) {
+            java.util.function.Supplier<Object[]> make = () -> {
+                current = new State(input); return new Object[]{current.dictionary, input.query()};
+            };
+            JsonObject expected = new JsonObject(); expected.addProperty("lookupExpectedObservation", true);
+            if (input.expectedException() == null) expected.addProperty("value", input.expectedIndex());
+            else expected.addProperty("exception", input.expectedException());
+            UiParityTests.check(KEY, "day-lookup:" + input.name(), make, UiParityTests.UNKNOWN, false, expected);
+        }
+    }
+    static boolean addReport(JsonObject report, BytecodeOracle original, BytecodeOracle rebuilt) {
+        JsonObject old = coverage(original, ALL), fresh = rebuilt == null ? null : coverage(rebuilt, ALL);
+        report.addProperty("dayLookupRecoveredMethods", 1);
+        report.addProperty("dayLookupOriginalDependencyMethods", GETTERS.size());
+        report.add("dayLookupOriginalDependencyKeys", JSON.toJsonTree(new TreeSet<>(GETTERS)));
+        report.addProperty("dayLookupInputInventorySha256", inputInventorySha256(pinnedCases()));
+        report.add("dayLookupOriginalCoverage", old);
+        if (fresh != null) report.add("dayLookupRebuiltCoverage", fresh);
+        report.add("dayLookupRawObservations", rawObservations);
+        report.add("dayLookupObserverRecordControls", observerControls(pinnedCases()));
+        report.add("dayLookupGeneratedNullMessageCases", JSON.toJsonTree(new TreeSet<>(VM_NULL_CASES)));
+        report.addProperty("dayLookupExceptionComparisonScope", "Only the seven exact declared VM-null cases exclude generated message text. Raw observations are retained; injected messages and exception object identity compare exactly.");
+        report.addProperty("dayLookupRuntimeScope", "Pinned host String.equalsIgnoreCase over the declared typed-list UTF-16 inputs; no ART, exhaustive Unicode, erased-list, calendar, persistence or lifecycle claim.");
+        boolean passed = old.get("allInstructionsAndEdgesExecuted").getAsBoolean()
+            && old.get("instructionCount").getAsInt() == 26 && old.get("requiredBranchEdges").getAsInt() == 4
+            && (fresh == null || (fresh.get("allInstructionsAndEdgesExecuted").getAsBoolean()
+                && fresh.get("instructionCount").getAsInt() == 23 && fresh.get("requiredBranchEdges").getAsInt() == 4));
+        report.addProperty("dayLookupInstructionAndConditionalCoverage", passed);
+        return passed;
+    }
+}

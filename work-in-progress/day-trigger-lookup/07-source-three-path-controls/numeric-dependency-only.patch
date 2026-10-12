@@ -1,0 +1,55 @@
+--- numeric19/day_numeric_dex_controls.py
++++ lookup-overlay/day_numeric_dex_controls.py
+@@ -32,7 +32,7 @@
+ # InnerClasses metadata differs from the standalone study; method bytes are exact.
+ HELPER_CLASS_SHA256 = '2f8b2d3769749301442dae35aca9fda5314eb1f17d59ea6310bd50be62596211'
+ DEPENDENCY_PATH = 'tests/fixtures/original-dependencies.json'
+-DEPENDENCY_SHA256 = 'e30552cc8ba0520bbee3a993298cb0bcaa973a9d4633649e80362d35b3eda631'
++DEPENDENCY_SHA256 = '159061ce552e3364c113f28e72e5a4c1bc091a21153d0d5e0a793d2f773b0229'
+ ORIGINAL_METHOD_SHA256 = '8383c90ebe3d35afa63d52cf92cd4c92b54ed4525ca0d8a31a29fe603f9eef21'
+ GETTERS = {
+     'Lcom/arlosoft/macrodroid/variables/VariableValue$DecimalValue;->getDecimalValue()D': '89c5a3751f7de7f7bdfaddba05f28651eb8b0b78413e4263e05c9dc795acf7ae',
+@@ -65,19 +65,35 @@
+     path.write_text(json.dumps(value, indent=2) + '\n')
+ 
+ 
+-def validate_dependencies(root: Path, registry: list[dict]) -> set[str]:
+-    """Require the exact uncredited getters and a unique registered numeric consumer."""
++LOOKUP_METHOD = 'Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;'
++LOOKUP_GETTERS = {'Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;->getEntries()Ljava/util/List;': 'f3959381d2067a3611069ac45c01a34078ef9e718f9c4906f74bb545da48be0e', 'Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;->getKey()Ljava/lang/String;': '41c4ec0e7f0ec7f3b6638765a92670cdbae7c839b794b8f3de9ba1c2b431b1a3'}
++
++
++def validate_dependency_declaration(root: Path, registry: list[dict]) -> dict[str, set[str]]:
++    """Validate the exact global declaration before exposing either consumer partition."""
+     require(sha(root / DEPENDENCY_PATH) == DEPENDENCY_SHA256, 'Original numeric dependency bytes changed')
+     keys = [row['target'] + '->' + row['method'] for row in registry]
+-    require(len(set(keys)) == len(keys) and keys.count(METHOD) == 1, 'Numeric consumer is absent or duplicated')
++    require(len(set(keys)) == len(keys) and keys.count(METHOD) == 1 and keys.count(LOOKUP_METHOD) == 1,
++            'Numeric or lookup consumer is absent or duplicated')
+     data = json.loads((root / DEPENDENCY_PATH).read_text())
+-    observed = {}
++    require(set(data) == {'schema', 'purpose', 'dependencies'} and type(data['schema']) is int and data['schema'] == 1
++            and isinstance(data['dependencies'], list), 'Invalid original dependency declaration')
++    observed = {METHOD: {}, LOOKUP_METHOD: {}}
++    all_keys = set()
+     for row in data['dependencies']:
++        require(isinstance(row, dict) and set(row) == {'consumer', 'target', 'method', 'original_method_sha256'},
++                'Invalid original dependency fields')
+         key = row['target'] + '->' + row['method']
+-        require(row['consumer'] == METHOD and key not in keys and key not in observed, 'Original dependency credited, duplicated or misbound')
+-        observed[key] = row['original_method_sha256']
+-    require(observed == GETTERS, 'Original numeric getter selection changed')
+-    return set(observed)
++        require(row['consumer'] in observed and key not in keys and key not in all_keys,
++                'Original dependency credited, duplicated or misbound')
++        all_keys.add(key); observed[row['consumer']][key] = row['original_method_sha256']
++    require(observed == {METHOD: GETTERS, LOOKUP_METHOD: LOOKUP_GETTERS}, 'Original numeric or lookup getter selection changed')
++    return {consumer: set(rows) for consumer, rows in observed.items()}
++
++
++def validate_dependencies(root: Path, registry: list[dict]) -> set[str]:
++    """Retain the exact three-getter numeric partition of the validated declaration."""
++    return validate_dependency_declaration(root, registry)[METHOD]
+ 
+ 
+ def target_entry(root: Path) -> dict:

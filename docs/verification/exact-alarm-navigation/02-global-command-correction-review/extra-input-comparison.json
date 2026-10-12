@@ -1,0 +1,141 @@
+{
+  "status": "REJECTED",
+  "journey_equal": false,
+  "full_runtime_1_to_1_established": false,
+  "scope": "Fresh install, notification denial, home and empty-editor catalog navigation only",
+  "screens": [],
+  "masks_used": false,
+  "android_runtime_executed": false,
+  "macros_executed": false,
+  "macros_saved": false,
+  "notification_readiness_observations": [
+    {
+      "label": "original",
+      "observations": 5,
+      "states": [
+        "MAIN_PID_ABSENT",
+        "HOME_WITH_SAME_PID",
+        "HOME_WITH_SAME_PID",
+        "HOME_WITH_SAME_PID",
+        "HOME_WITH_SAME_PID"
+      ],
+      "old_pid": "31",
+      "ready_pid": "41",
+      "accepted_sequence": [
+        1,
+        4
+      ],
+      "lifecycle_observations_only": true
+    },
+    {
+      "label": "candidate",
+      "observations": 5,
+      "states": [
+        "MAIN_PID_ABSENT",
+        "HOME_WITH_SAME_PID",
+        "HOME_WITH_SAME_PID",
+        "HOME_WITH_SAME_PID",
+        "HOME_WITH_SAME_PID"
+      ],
+      "old_pid": "51",
+      "ready_pid": "61",
+      "accepted_sequence": [
+        1,
+        4
+      ],
+      "lifecycle_observations_only": true
+    }
+  ],
+  "notification_readiness_policy": {
+    "schema": 1,
+    "plan_sha256": "4133e9410db84ac5636ece780b67331bf139afaa2de6b5c110c5ef5679fda85c",
+    "after": "notification-request",
+    "before": "reference-promotion",
+    "action": {
+      "resource-id": "com.android.permissioncontroller:id/permission_deny_button"
+    },
+    "max_observations": 16,
+    "max_seconds": 10,
+    "post_input_wait_seconds": 2,
+    "observation_gap_seconds": 0.25,
+    "minimum_ready_observations": 2,
+    "minimum_ready_span_seconds": 1.05,
+    "ready_span_start": "first_ready_pidof_command_started_monotonic",
+    "ready_span_finish": "last_ready_pidof_command_finished_monotonic",
+    "ready_component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity",
+    "other_allowed_component": "com.google.android.permissioncontroller/com.android.permissioncontroller.permission.ui.GrantPermissionsActivity",
+    "commands": [
+      [
+        "pidof",
+        "com.arlosoft.macrodroid"
+      ],
+      [
+        "dumpsys",
+        "activity",
+        "activities"
+      ],
+      [
+        "pidof",
+        "com.arlosoft.macrodroid"
+      ]
+    ],
+    "first_eligible_contiguous_sequence": true,
+    "frames_or_continuity_credit": false,
+    "app_restart_performed": false
+  },
+  "exact_alarm_navigation_policy": {
+    "schema": 1,
+    "plan_sha256": "4133e9410db84ac5636ece780b67331bf139afaa2de6b5c110c5ef5679fda85c",
+    "dialog_contract_sha256": "e7401a3b2864b15b683efd644ebd10d6793a04b76fe83a3a4e9feb2752ada668",
+    "canonical_dialog_panel_sha256": "f1702bd247b1f68e54edc1d94ba928eab7a3d50cceeda8f4f9c39a8c6d272aa7",
+    "from": "after-day-time-trigger",
+    "from_component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.selectableitemlist.AddTriggerActivity",
+    "action": {
+      "resource-id": "android:id/button1",
+      "text": "OK"
+    },
+    "observed_center": [
+      560,
+      809
+    ],
+    "full_image_size": [
+      720,
+      1280
+    ],
+    "to": "after-exact-alarm-ok",
+    "terminal_owner": "com.android.settings",
+    "terminal_component_class_assumed": false,
+    "terminal_xml_acquisition_numbers": [
+      1,
+      2,
+      3
+    ],
+    "terminal_full_frame_numbers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "main_app_pid_continuity_required": true,
+    "new_inputs": 1,
+    "settings_inputs": 0,
+    "permission_granted": false,
+    "trigger_configuration_confirmed": false,
+    "global_command_contract": {
+      "schema": 1,
+      "planned_inputs_per_run": 13,
+      "setup_mutations_per_run": [
+        "uninstall",
+        "install",
+        "launch"
+      ],
+      "state_changing_commands_must_match_declared_roles_in_order": true,
+      "other_commands_use_exact_recorder_evidence_grammar": true,
+      "shell_argv_must_be_canonical": true,
+      "command_stream_paths_and_inodes_are_unique": true
+    }
+  },
+  "reason": "Unbound, missing or reordered exact-alarm global input or setup mutation"
+}

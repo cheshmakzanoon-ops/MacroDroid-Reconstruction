@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/dev/shm/macrodroid-day-lookup-integration/run_adapter_probe.py", line 79, in main
+    run('recreate-prior-1246-fixture', [JDK/'java','-Xverify:all','-Xmx512m','-cp',cp,'CompareOriginalFixture',
+  File "/dev/shm/macrodroid-day-lookup-integration/run_adapter_probe.py", line 49, in run
+    assert code == 0, name + ': ' + stderr.read_text(errors='replace')[-5000:]
+           ^^^^^^^^^
+AssertionError: recreate-prior-1246-fixture: Exception in thread "main" java.lang.AssertionError: Original fixture invariance or count separation failed
+	at CompareOriginalFixture.main(CompareOriginalFixture.java:35)
+
