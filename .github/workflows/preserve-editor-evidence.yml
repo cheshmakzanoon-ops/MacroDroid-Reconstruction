@@ -1,0 +1,65 @@
+name: Commit editor journey evidence
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/preserve-editor-evidence.yml'
+      - 'tools/evidence_archive/**'
+  workflow_run:
+    workflows: [Android editor journey comparison]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: Completed main-branch editor run ID
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: editor-evidence-publisher
+  cancel-in-progress: false
+
+jobs:
+  preserve:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - name: Check out trusted main, not the triggering artifact source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: Test the bounded archive importer
+        run: python3 -m unittest discover -s tools/evidence_archive -p 'test_*.py' -v
+      - name: Download and verify the exact completed run artifact as data
+        id: archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_RUN: ${{ github.event.workflow_run.id || inputs.run_id || '38197987986' }}
+        run: python3 tools/evidence_archive/archive_editor_run.py --run-id "$TARGET_RUN"
+      - name: Commit evidence to main without replacing concurrent development
+        env:
+          ARCHIVE_PATH: ${{ steps.archive.outputs.archive_path }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$ARCHIVE_PATH" =~ ^docs/verification/editor-journey/run-[0-9]+-attempt-[0-9]+$ ]]
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -c core.hooksPath=/dev/null add -f -- "$ARCHIVE_PATH"
+          git diff --cached --quiet && exit 0
+          git -c core.hooksPath=/dev/null commit -m "docs: preserve exact editor journey evidence $ARCHIVE_PATH"
+          for attempt in 1 2 3 4; do
+            if git -c core.hooksPath=/dev/null push origin HEAD:main; then exit 0; fi
+            git -c core.hooksPath=/dev/null pull --rebase origin main
+          done
+          exit 1
