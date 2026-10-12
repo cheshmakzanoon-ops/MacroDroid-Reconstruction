@@ -1,0 +1,1 @@
+package com.arlosoft.macrodroid.action;public class GotoAction extends Action {public String destination="target";public String W(){defpackage.CoreTrace.add(testId+".destination");return destination;}}

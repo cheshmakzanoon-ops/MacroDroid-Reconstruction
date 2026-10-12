@@ -1,0 +1,1 @@
+package com.arlosoft.macrodroid.action;public class IterateDictionaryAction extends LoopAction {public int dictionaryRemaining=2;public void X0(){defpackage.CoreTrace.add(testId+".dictionaryReset");}public boolean Y0(com.arlosoft.macrodroid.triggers.TriggerContextInfo c){defpackage.CoreTrace.add(testId+".dictionaryNext:"+dictionaryRemaining);return dictionaryRemaining-->0;}}

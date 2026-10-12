@@ -1,0 +1,1 @@
+package com.arlosoft.macrodroid.action;public class CancelActiveMacroAction extends Action {public long target;public boolean others;public long U(){defpackage.CoreTrace.add(testId+".target");return target;}public boolean T(){defpackage.CoreTrace.add(testId+".others");return others;}}

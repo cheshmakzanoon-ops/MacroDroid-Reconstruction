@@ -1,0 +1,1 @@
+package android.os;public class Handler {public Handler(Looper l){defpackage.CoreTrace.add("handler.new");}public boolean post(Runnable r){defpackage.CoreTrace.add("handler.post");if(defpackage.EngineRuntime.handlerRuns)r.run();return true;}}

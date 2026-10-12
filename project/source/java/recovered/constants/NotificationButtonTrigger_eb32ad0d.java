@@ -1,0 +1,7 @@
+package recovered.constants;
+/** Recovered constant/no-op methods. Object bridge parameters are unused and never alter the target API. */
+public final class NotificationButtonTrigger_eb32ad0d {
+    private NotificationButtonTrigger_eb32ad0d() {}
+    /** Original: a0()V */
+    public static void a0_725ba127(Object a0) { return; }
+}

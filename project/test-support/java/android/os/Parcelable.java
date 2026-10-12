@@ -1,0 +1,5 @@
+package android.os;
+public interface Parcelable {
+    int describeContents(); void writeToParcel(Parcel out, int flags);
+    interface Creator<T> { T createFromParcel(Parcel in); T[] newArray(int size); }
+}

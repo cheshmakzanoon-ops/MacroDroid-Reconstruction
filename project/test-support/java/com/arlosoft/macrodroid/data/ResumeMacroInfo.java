@@ -1,0 +1,1 @@
+package com.arlosoft.macrodroid.data;public class ResumeMacroInfo {public long a;public int b=-1,i;public com.arlosoft.macrodroid.triggers.TriggerContextInfo c;public boolean d;public java.util.Stack e=new java.util.Stack();public ResumeMacroInfo f;}

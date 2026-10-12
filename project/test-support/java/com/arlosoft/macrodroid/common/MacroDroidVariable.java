@@ -1,0 +1,1 @@
+package com.arlosoft.macrodroid.common;public class MacroDroidVariable {public String name="delay";public Double number;public String D(){defpackage.CoreTrace.add("variable.name");return name;}public Double G(com.arlosoft.macrodroid.variables.DictionaryKeys k){defpackage.CoreTrace.add("variable.number");return number;}}

@@ -1,0 +1,1 @@
+package defpackage;public interface ud1 {void invokeAction(com.arlosoft.macrodroid.triggers.TriggerContextInfo c,int p,boolean f,java.util.Stack s,com.arlosoft.macrodroid.data.ResumeMacroInfo r,boolean x);}

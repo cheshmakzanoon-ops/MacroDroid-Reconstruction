@@ -1,0 +1,463 @@
+import com.google.gson.*;
+import java.nio.file.*;
+import java.lang.reflect.*;
+import java.util.*;
+import java.util.function.Supplier;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.view.*;
+import android.animation.*;
+import android.content.Context;
+import android.content.Intent;
+import com.arlosoft.macrodroid.action.BlockTouchesAction;
+import com.arlosoft.macrodroid.action.services.BlockTouchesService;
+import com.arlosoft.macrodroid.triggers.DeviceUnlockedTrigger;
+import com.arlosoft.macrodroid.triggers.ScreenOnOffTrigger;
+import com.arlosoft.macrodroid.triggers.Trigger;
+import com.arlosoft.macrodroid.triggers.TriggerContextInfo;
+import com.arlosoft.macrodroid.triggers.services.MacroDroidAccessibilityServiceJellyBean;
+import com.arlosoft.macrodroid.variables.VariableWithDictionaryKeys;
+import com.arlosoft.macrodroid.macro.Macro;
+import com.arlosoft.macrodroid.common.Contact;
+import com.arlosoft.macrodroid.triggers.IncomingSMSTrigger;
+import com.arlosoft.macrodroid.widget.DragLinearLayout;
+import com.arlosoft.macrodroid.scene.components.SceneTextConfig;
+import com.arlosoft.macrodroid.scene.data.*;
+import defpackage.*;
+
+/** Original/Java/rebuilt comparison with explicit host-only UI and Parcel boundaries.
+ * No Android rendering, contact-provider access, or real Parcel implementation is used.
+ */
+public final class UiParityTests {
+    static final Gson G = new GsonBuilder().setPrettyPrinting().create();
+    static final Object UNKNOWN = new Object();
+    static final String PREFIX="Lcom/arlosoft/macrodroid/";
+    static final String TOUCH=PREFIX+"widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z";
+    static final String SOUND=PREFIX+"action/PlaySoundAction;->Z(Ljava/lang/String;)Z";
+    static final String SMS=PREFIX+"triggers/IncomingSMSTrigger;->isValid()Z";
+    static final String READ=PREFIX+"scene/components/SceneTextConfig$a;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;";
+    static final String WRITE=PREFIX+"scene/components/SceneTextConfig;->writeToParcel(Landroid/os/Parcel;I)V";
+    static final String BLOCK=PREFIX+"action/BlockTouchesAction;->invokeAction(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)V";
+    static final String[] FIELDS={"text","textColor","textColorVariable","textSize","isBold","isItalic","textAlignment","enableSelection","htmlFormatting","visibilityVariable","enabledVariable","maxLinesEnabled","maxLines","autoSizeText","fontFamily","enableAutoRefresh","padding","buttonClickConfig","closeSceneOnPress","variableToUpdate","variableUpdateValue"};
+    static final int[] BOOLS={4,5,7,8,11,13,15,18};
+    static final int[] OBJECTS={2,6,9,10,17,19,20};
+    static final Map<String,JsonObject> registry=new TreeMap<>();
+    static final Map<String,Integer> counts=new TreeMap<>();
+    static final List<JsonObject> failures=new ArrayList<>();
+    static final Set<String> failedLabels=new TreeSet<>();
+    static BytecodeOracle original, rebuilt;
+    static int cases, mismatches, unsupported, expectedChecks, expectedFailures;
+
+    static JsonElement canonical(Object value) {
+        if(value==null)return JsonNull.INSTANCE;
+        if(value instanceof Intent) {
+            Intent intent=(Intent)value;JsonObject out=new JsonObject();out.addProperty("id",intent.id);
+            out.addProperty("context",intent.context==null?null:intent.context.testContextId);
+            out.addProperty("target",intent.target==null?null:intent.target.getName());out.addProperty("action",intent.action);
+            JsonArray extras=new JsonArray();for(Map.Entry<String,Object> e:intent.extras.entrySet()) {
+                JsonObject extra=new JsonObject();extra.addProperty("name",e.getKey());Object v=e.getValue();
+                extra.addProperty("type",v instanceof Float?"float":"int");
+                extra.add("value",v instanceof Float?new JsonPrimitive(Integer.toHexString(Float.floatToRawIntBits((Float)v))):canonical(v));extras.add(extra);
+            }
+            out.add("extras",extras);return out;
+        }
+        if(value instanceof SceneTextConfig) {
+            JsonObject out=new JsonObject();
+            for(String name:FIELDS)try {out.add(name,canonical(SceneTextConfig.class.getField(name).get(value)));}
+            catch(ReflectiveOperationException e){throw new IllegalStateException(e);}
+            return out;
+        }
+        if(value instanceof Parcelable) {
+            JsonObject out=new JsonObject();out.addProperty("type",value.getClass().getName());
+            try{out.add("id",canonical(value.getClass().getField("id").get(value)));}
+            catch(ReflectiveOperationException e){throw new IllegalStateException(e);}
+            return out;
+        }
+        if(value instanceof List) {JsonArray out=new JsonArray();for(Object x:(List<?>)value)out.add(canonical(x));return out;}
+        if(value instanceof Float)return new JsonPrimitive("float:"+Integer.toHexString(Float.floatToIntBits((Float)value)));
+        return G.toJsonTree(value);
+    }
+    static Object call(String key,String path,Object[] args)throws Throwable {
+        if(path.equals("original"))return original.invoke(key,args);
+        if(path.equals("rebuilt"))return rebuilt.invoke(key,args);
+        JsonObject entry=registry.get(key);
+        String descriptor=entry.get("helper_method").getAsString()+"("+(entry.get("instance").getAsBoolean()?entry.get("target").getAsString():"")+entry.get("method").getAsString().split("\\(",2)[1];
+        List<String> names=ParityTests.types(descriptor);Class<?>[] types=new Class<?>[names.size()];
+        for(int i=0;i<types.length;i++)types[i]=BytecodeOracle.type(names.get(i));
+        try{return BytecodeOracle.type(entry.get("helper").getAsString()).getDeclaredMethod(entry.get("helper_method").getAsString(),types).invoke(null,args);}
+        catch(InvocationTargetException e){throw e.getCause();}
+    }
+    static JsonObject outcome(String key,String path,Supplier<Object[]> make,boolean serializeAgain) {
+        EngineRuntime.active=false;UiTrace.reset();CoreTrace.reset();TouchControl.reset();
+        Object[] args=make.get();UiTrace.calls.clear();CoreTrace.calls.clear();
+        JsonObject result=new JsonObject();
+        try {
+            Object value=call(key,path,args); result.add("value",canonical(value));
+            if(value instanceof SceneTextConfig && args.length>1 && args[1] instanceof Parcel) {
+                JsonArray identities=new JsonArray();Parcel in=(Parcel)args[1];
+                for(int index:OBJECTS)identities.add(SceneTextConfig.class.getField(FIELDS[index]).get(value)==in.tokens.get(index));
+                result.add("nestedIdentityPreserved",identities);
+                if(serializeAgain) {
+                    Parcel out=new Parcel();call(WRITE,path,new Object[]{value,out,17});
+                    result.add("rewrittenTokens",canonical(out.tokens));result.add("rewriteOperations",canonical(out.operations));
+                    Object reread=call(READ,path,new Object[]{new SceneTextConfig.a(),out});result.add("reread",canonical(reread));
+                }
+            }
+        } catch(Throwable e) {
+            result.addProperty("exception",e.getClass().getName());
+            boolean supported=e instanceof NullPointerException || e instanceof ClassCastException || e instanceof IndexOutOfBoundsException || e instanceof IllegalStateException || e instanceof SecurityException || e instanceof AssertionError || e instanceof java.io.IOException;
+            if(e instanceof BytecodeOracle.Unsupported || !supported) {unsupported++;result.addProperty("unsupported",e.toString());}
+        }
+        result.add("calls",canonical(UiTrace.calls));result.add("coreCalls",canonical(CoreTrace.calls));
+        for(Object arg:args)if(arg instanceof Parcel) {
+            Parcel parcel=(Parcel)arg;JsonObject p=new JsonObject();p.add("tokens",canonical(parcel.tokens));p.add("operations",canonical(parcel.operations));p.addProperty("position",parcel.position);result.add("parcel",p);
+        }
+        if(args.length>0&&args[0] instanceof IncomingSMSTrigger) {
+            IncomingSMSTrigger sms=(IncomingSMSTrigger)args[0];result.addProperty("lastValidCheck",sms.lastValidCheck);
+            if(sms.context!=null&&sms.context.resolver!=null&&sms.context.resolver.queryCursor instanceof UiCursor)result.addProperty("cursorClosed",((UiCursor)sms.context.resolver.queryCursor).closed);
+        }
+        if(args.length>0&&args[0] instanceof DragLinearLayout) {
+            DragLinearLayout self=(DragLinearLayout)args[0];JsonObject state=new JsonObject();
+            state.addProperty("anchor",self.g);state.addProperty("pointer",self.h);state.addProperty("transitionPresent",self.transition!=null);state.addProperty("savedTransition",self.c!=null);state.addProperty("disallow",self.disallow);state.add("distance",canonical(self.distance));state.addProperty("finishes",self.finishes);
+            if(self.e!=null){state.addProperty("ready",self.e.g);state.addProperty("dragging",self.e.h);state.addProperty("resets",self.e.resets);if(self.e.i instanceof View)state.addProperty("visibility",((View)self.e.i).visibility);}
+            result.add("dragState",state);
+        }
+        if(key.equals(BLOCK)) {
+            JsonObject state=new JsonObject();
+            state.addProperty("overlayBlocking",BlockTouchesService.j);state.addProperty("accessibilityBlocking",MacroDroidAccessibilityServiceJellyBean.v);
+            state.addProperty("overlayCompanionPresent",BlockTouchesService.i!=null);state.addProperty("accessibilityCompanionPresent",MacroDroidAccessibilityServiceJellyBean.u!=null);
+            state.addProperty("unblockCalls",TouchControl.unblockCalls);state.addProperty("startCount",TouchControl.starts.size());state.addProperty("stopCount",TouchControl.stops.size());
+            state.add("intents",canonical(TouchControl.intents));state.add("started",canonical(TouchControl.starts));state.add("stopped",canonical(TouchControl.stops));
+            state.addProperty("boundaryCalls",TouchControl.boundaryCalls);state.addProperty("colorCalls",com.arlosoft.macrodroid.variables.a.colorCalls);
+            state.addProperty("logCalls",TouchControl.logCalls);if(TouchControl.logCalls>0){state.addProperty("loggedFailureIdentity",TouchControl.loggedFailure==TouchControl.failure);state.addProperty("loggedPrefix",TouchControl.loggedPrefix);}
+            state.addProperty("triggerReads",args[1] instanceof TouchInfo?((TouchInfo)args[1]).reads:0);
+            if(args[0]!=null) {
+                BlockTouchesAction self=(BlockTouchesAction)args[0];state.addProperty("option",self.option);state.addProperty("contextReads",self.contextReads);state.addProperty("macroReads",self.macroReads);
+                state.addProperty("configuredColor",self.bgColor);state.addProperty("showArea",self.showBlockedArea);state.addProperty("usesAccessibility",self.useAccessibilityService);
+                state.add("geometry",canonical(Arrays.asList(self.xPosition,self.yPosition,self.width,self.height)));
+                if(com.arlosoft.macrodroid.variables.a.colorCalls>0) {
+                    state.addProperty("colorMacroIdentity",com.arlosoft.macrodroid.variables.a.lastMacro==self.macro);
+                    state.addProperty("colorVariableIdentity",com.arlosoft.macrodroid.variables.a.lastVariable==self.bgColorVariable);
+                    state.addProperty("colorInfoIdentity",com.arlosoft.macrodroid.variables.a.lastInfo==args[1]);
+                    state.addProperty("resolvedBaseColor",com.arlosoft.macrodroid.variables.a.lastBaseColor);
+                }
+            }
+            result.add("blockState",state);
+        }
+        return result;
+    }
+    static void check(String key,String label,Supplier<Object[]> make,Object expected) {check(key,label,make,expected,false);}
+    static void check(String key,String label,Supplier<Object[]> make,Object expected,boolean again) {
+        check(key,label,make,expected,again,null);
+    }
+    static boolean contains(JsonElement actual,JsonElement expected) {
+        if(expected.isJsonObject()) {
+            if(actual==null||!actual.isJsonObject())return false;
+            for(Map.Entry<String,JsonElement> e:expected.getAsJsonObject().entrySet())if(!contains(actual.getAsJsonObject().get(e.getKey()),e.getValue()))return false;
+            return true;
+        }
+        return expected.equals(actual);
+    }
+    static void check(String key,String label,Supplier<Object[]> make,Object expected,boolean again,JsonObject expectedObservation) {
+        cases++;counts.merge(key,1,Integer::sum);
+        JsonObject a=outcome(key,"original",make,again), b=outcome(key,"java",make,again), c=rebuilt==null?null:outcome(key,"rebuilt",make,again);
+        boolean wrongExpected=false;
+        if(expected!=UNKNOWN){expectedChecks++;wrongExpected=!a.has("value")||!a.get("value").equals(canonical(expected));if(wrongExpected)expectedFailures++;}
+        if(expectedObservation!=null){expectedChecks++;boolean bad=!contains(a,expectedObservation);if(bad)expectedFailures++;wrongExpected|=bad;}
+        if(wrongExpected||!a.equals(b)||(c!=null&&!a.equals(c))||a.has("unsupported")||b.has("unsupported")||(c!=null&&c.has("unsupported"))) {
+            mismatches++;failedLabels.add(label);if(failures.size()<80){JsonObject failure=new JsonObject();failure.addProperty("method",key);failure.addProperty("case",label);failure.add("original",a);failure.add("java",b);if(c!=null)failure.add("rebuilt",c);if(expected!=UNKNOWN)failure.add("expected",canonical(expected));if(expectedObservation!=null)failure.add("expectedObservation",expectedObservation);failures.add(failure);}
+        }
+    }
+    static void sound() {
+        List<String> inputs=new ArrayList<>(Arrays.asList(null,"","[Stop Existing Sound]","[Localized stop]","[]","[", "]","[foo]"," [foo]","[foo] ","[\n]","Stop Existing Sound","\u200b[foo]","[\u0000]"));
+        Random rng=new Random(9041);String alphabet="[]abc \n\u00e9\u200b\ud800";
+        for(int n=0;n<240;n++){StringBuilder s=new StringBuilder();for(int i=rng.nextInt(20);i>0;i--)s.append(alphabet.charAt(rng.nextInt(alphabet.length())));inputs.add(s.toString());}
+        for(String text:inputs)for(int failure=0;failure<5;failure++) {
+            final int f=failure;
+            String resource=f==4?null:"[Localized stop]";
+            Object expected=f==3&&text!=null&&!text.isEmpty()&&!text.equals("[Stop Existing Sound]")?UNKNOWN:
+                text!=null&&!text.isEmpty()&&(text.equals("[Stop Existing Sound]")||(f==0&&text.equals(resource))||(text.startsWith("[")&&text.endsWith("]")));
+            check(SOUND,"sound:"+inputs.indexOf(text)+":"+f,()->{UiTrace.resource=resource;UiTrace.resourceFailure=f==1?new IllegalStateException("fixture resource"):f==2?new SecurityException("fixture resource"):f==3?new AssertionError("fixture resource"):null;return new Object[]{text};},expected);
+        }
+        check(SOUND,"sound-localized-non-bracket",()->{UiTrace.resource="Arrêter";return new Object[]{"Arrêter"};},true);
+    }
+    static Object[] sms(int option,int contact,int fromCount,int groupKind,int cursorCount,int failure,boolean previous) {
+        IncomingSMSTrigger s=new IncomingSMSTrigger();s.testId="sms";s.m_option=option;s.lastValidCheck=previous;
+        if(contact>0){s.m_smsFrom=new Contact();s.m_smsFrom.name=contact==1?"Select_Contact":contact==2?"Person":null;if(contact==4)s.m_smsFrom.failure=new IllegalStateException("fixture contact");}
+        if(fromCount<0)s.m_smsFromList=null;else for(int i=0;i<fromCount;i++)s.m_smsFromList.add(new Contact());
+        if(groupKind<0)s.m_groupIdList=null;
+        else if(groupKind==1)s.m_groupIdList.add("31");
+        else if(groupKind==2){s.m_groupIdList.add("31");s.m_groupIdList.add("32");}
+        else if(groupKind==3)s.m_groupIdList.add(null);
+        else if(groupKind==4)s.m_groupIdList.add(55);
+        else if(groupKind==5)s.m_groupIdList.add("group'quoted");
+        UiCursor cursor=(UiCursor)s.context.resolver.queryCursor;cursor.count=cursorCount;
+        if(failure==1)s.context.resolver.queryFailure=new SecurityException("fixture contacts permission");
+        if(failure==2)s.context.resolver.queryFailure=new AssertionError("fixture provider error");
+        if(failure==3)s.context.resolver.queryCursor=null;
+        if(failure==4)cursor.failure=new IllegalStateException("fixture cursor");
+        if(failure==5)cursor.failure=new AssertionError("fixture cursor error");
+        if(failure==6)s.context=null;
+        if(failure==7)s.context.resolver=null;
+        return new Object[]{s};
+    }
+    static void sms() {
+        for(int option:new int[]{Integer.MIN_VALUE,-1,0,1,2,99})for(int contact=0;contact<5;contact++)for(int from=-1;from<3;from++)for(int groups=-1;groups<6;groups++)for(boolean previous:new boolean[]{false,true}) {
+            final int c=contact,n=from,g=groups;Object expected=UNKNOWN;
+            if(option>1)expected=true;
+            else if(option<=0&&contact==0&&from>=0)expected=from>0;
+            else if(option<=0&&contact==1)expected=false;
+            else if(option<=0&&contact==2)expected=true;
+            else if(option==1&&groups==0)expected=false;
+            else if(option==1&&groups>=1&&groups!=4)expected=true;
+            check(SMS,"sms:"+option+":"+c+":"+n+":"+g+":"+previous,()->sms(option,c,n,g,1,0,previous),expected);
+        }
+        for(int groups:new int[]{1,3,4,5})for(int count:new int[]{Integer.MIN_VALUE,-1,0,1,2,Integer.MAX_VALUE})for(int failure=0;failure<8;failure++)for(boolean previous:new boolean[]{false,true}) {
+            final int f=failure;Object expected=(groups==4||f==2||f==5)?UNKNOWN:f==0?count>0:false;
+            check(SMS,"provider:"+groups+":"+count+":"+f+":"+previous,()->sms(1,0,0,groups,count,f,previous),expected);
+        }
+        check(SMS,"sms-null-self",()->new Object[]{null},UNKNOWN);
+    }
+    static Object[] drag(int action,int flags,int active,int anchor,float y,int fault) {
+        DragLinearLayout self=new DragLinearLayout();self.g=anchor;self.h=active;self.e.g=(flags&1)!=0;self.e.h=(flags&2)!=0;
+        if((flags&4)!=0)self.transition=new LayoutTransition();
+        if((flags&8)!=0)self.e.k=new ValueAnimator();
+        MotionEvent event=new MotionEvent();event.action=action;event.ids=new int[]{7,11};event.ys=new float[]{y,-y};event.actionIndex=0;
+        switch(fault){case 1:self.e=null;break;case 2:self.e.k="wrong animator";break;case 3:self.e.i="wrong view";break;case 4:self.e.i=null;break;case 5:self.failAt="get";break;case 6:self.failAt="set";break;case 7:self.failAt="disallow";break;case 8:self.movementFailure=new IllegalStateException("fixture move");break;case 9:self.finishFailure=new IllegalStateException("fixture finish");break;case 10:self.e.resetFailure=new IllegalStateException("fixture reset");break;case 11:event.actionIndex=-1;break;case 12:event=null;break;case 13:self=null;break;case 14:((View)self.e.i).visibilityFailure=new IllegalStateException("fixture visibility");break;}
+        return new Object[]{self,event};
+    }
+    static void touch() {
+        for(int action:new int[]{-1,0,1,2,3,4,5,6,7,255})for(int flags=0;flags<16;flags++)for(int active:new int[]{-1,7,11,44}) {
+            final int f=flags;Object expected=UNKNOWN;
+            if(action==0)expected=(flags&1)!=0&&(flags&8)==0;
+            else if(action==1||action==3)expected=true;
+            else if(action==6)expected=active==7;
+            else if(action==2){if((flags&2)==0||active==-1)expected=false;else if(active==7||active==11)expected=true;}
+            else expected=false;
+            check(TOUCH,"touch:"+action+":"+f+":"+active,()->drag(action,f,active,3,10.5f,0),expected);
+        }
+        float[] ys={Float.NaN,Float.POSITIVE_INFINITY,Float.NEGATIVE_INFINITY,Float.MAX_VALUE,-Float.MAX_VALUE,-0f,0f,Float.MIN_VALUE,-Float.MIN_VALUE,0.9f,-0.9f,2147483648f,-2147483648f};
+        for(float y:ys)for(int anchor:new int[]{Integer.MIN_VALUE,-20,-1,0,1,20,Integer.MAX_VALUE})for(int active:new int[]{7,11})check(TOUCH,"touch-numeric:"+y+":"+anchor+":"+active,()->drag(2,3,active,anchor,y,0),true);
+        for(int action:new int[]{0,1,2,3,4,6})for(int flags=0;flags<8;flags++)for(int fault=1;fault<15;fault++) {
+            final int f=flags,error=fault;check(TOUCH,"touch-failure:"+action+":"+f+":"+error,()->drag(action,f,7,3,5.5f,error),UNKNOWN);
+        }
+    }
+    static List<Object> tokens(int bits,int variant) {
+        String text=variant==1?"\u0645\u062a\u0646\n<em>\ud83c\udfb5</em>":variant==2?"":variant==3?null:"Scene";
+        List<Object> out=new ArrayList<>(Arrays.asList(text,variant==1?Integer.MIN_VALUE:0xff314159,new SceneVariableData("text-color"),variant==3?null:"18",0,0,new SceneAlignment("center"),0,0,new SceneVariableData("visibility"),new SceneVariableData("enabled"),0,"2",0,"serif",0,"8,4",new ButtonClickConfig("click"),0,new SceneVariableData("output"),new SceneVariableUpdateValue("value")));
+        for(int n=0;n<BOOLS.length;n++)out.set(BOOLS[n],(bits&(1<<n))==0?0:variant==1?-7:variant==2?Integer.MIN_VALUE:1);
+        if(variant==2)for(int n:OBJECTS)out.set(n,null);
+        return out;
+    }
+    static SceneTextConfig model(List<Object> t) {
+        return new SceneTextConfig((String)t.get(0),(Integer)t.get(1),(SceneVariableData)t.get(2),(String)t.get(3),(Integer)t.get(4)!=0,(Integer)t.get(5)!=0,(SceneAlignment)t.get(6),(Integer)t.get(7)!=0,(Integer)t.get(8)!=0,(SceneVariableData)t.get(9),(SceneVariableData)t.get(10),(Integer)t.get(11)!=0,(String)t.get(12),(Integer)t.get(13)!=0,(String)t.get(14),(Integer)t.get(15)!=0,(String)t.get(16),(ButtonClickConfig)t.get(17),(Integer)t.get(18)!=0,(SceneVariableData)t.get(19),(SceneVariableUpdateValue)t.get(20));
+    }
+    static Object[] read(int bits,int variant,int failAt,int cut,int wrongType) {
+        Parcel parcel=new Parcel();parcel.tokens.addAll(tokens(bits,variant));parcel.failAt=failAt;
+        if(cut>=0)parcel.tokens.subList(cut,parcel.tokens.size()).clear();
+        if(wrongType>=0)parcel.tokens.set(wrongType,new ButtonClickConfig("wrong"));
+        return new Object[]{new SceneTextConfig.a(),parcel};
+    }
+    static Object[] write(int bits,int variant,int flags,int failure) {
+        SceneTextConfig self=model(tokens(bits,variant));Parcel parcel=new Parcel();parcel.failAt=failure;
+        return new Object[]{self,parcel,flags};
+    }
+    static void parcel() {
+        for(int bits=0;bits<256;bits++)for(int variant=0;variant<3;variant++) {
+            final int b=bits,v=variant;SceneTextConfig expected=model(tokens(bits,variant));
+            check(READ,"parcel-read:"+b+":"+v,()->read(b,v,-1,-1,-1),expected,true);
+            for(int flags:new int[]{0,1,-1,17})check(WRITE,"parcel-write:"+b+":"+v+":"+flags,()->write(b,v,flags,-1),null);
+        }
+        for(int index=0;index<21;index++)for(int bits:new int[]{0,85,170,255}) {
+            final int i=index;
+            check(READ,"parcel-read-throws:"+bits+":"+i,()->read(bits,0,i,-1,-1),UNKNOWN);
+            check(READ,"parcel-truncated:"+bits+":"+i,()->read(bits,0,-1,i,-1),UNKNOWN);
+            check(WRITE,"parcel-write-throws:"+bits+":"+i,()->write(bits,0,91,i),UNKNOWN);
+        }
+        for(int i:OBJECTS)if(i!=17)check(READ,"parcel-wrong-type:"+i,()->read(0,0,-1,-1,i),UNKNOWN);
+        check(READ,"parcel-null-required-fields",()->read(0,3,-1,-1,-1),UNKNOWN);
+        check(READ,"parcel-null-reader-self",()->{Object[] a=read(255,0,-1,-1,-1);a[0]=null;return a;},model(tokens(255,0)));
+        check(READ,"parcel-null",()->new Object[]{new SceneTextConfig.a(),null},UNKNOWN);
+        check(WRITE,"parcel-write-null",()->new Object[]{model(tokens(0,0)),null,0},UNKNOWN);
+        check(WRITE,"parcel-write-null-self",()->new Object[]{null,new Parcel(),0},UNKNOWN);
+    }
+    public static final class TouchInfo extends TriggerContextInfo {
+        Trigger[] values;int reads;
+        TouchInfo(Trigger... values){this.values=values;}
+        @Override public Trigger getTrigger(){TouchControl.hit("block.trigger:"+reads);int index=reads++;return values[Math.min(index,values.length-1)];}
+    }
+    static final String OVERLAY="com.arlosoft.macrodroid.action.services.BlockTouchesService";
+    static final String ACCESSIBILITY="com.arlosoft.macrodroid.triggers.services.MacroDroidAccessibilityServiceJellyBean";
+    static final String BLOCK_ACTION="com.arlosoft.macrodroid.triggers.services.BLOCK_SCREEN_TOUCHES";
+    static final float[] GEOMETRY={12.25f,-8.5f,62.5f,43.75f};
+    static final int BASE_COLOR=0x81234567,RESOLVED_COLOR=0xff102030;
+    static Object[] block(int option,int kind,int flags,boolean accessibility,boolean show) {
+        BlockTouchesAction self=new BlockTouchesAction();self.testId="block";self.option=option;self.bgColor=BASE_COLOR;
+        self.bgColorVariable=new VariableWithDictionaryKeys();self.macro=new Macro();self.useAccessibilityService=accessibility;self.showBlockedArea=show;
+        self.xPosition=GEOMETRY[0];self.yPosition=GEOMETRY[1];self.width=GEOMETRY[2];self.height=GEOMETRY[3];
+        BlockTouchesService.j=(flags&1)!=0;MacroDroidAccessibilityServiceJellyBean.v=(flags&2)!=0;
+        UiTrace.resource="Touch action blocked by trigger";
+        Trigger normal=new Trigger();DeviceUnlockedTrigger unlocked=new DeviceUnlockedTrigger();
+        ScreenOnOffTrigger off=new ScreenOnOffTrigger(),on=new ScreenOnOffTrigger();on.screenOn=true;
+        TouchInfo info;
+        switch(kind) {
+            case 0:info=null;break;case 1:info=new TouchInfo((Trigger)null);break;case 2:info=new TouchInfo(normal);break;
+            case 3:info=new TouchInfo(unlocked);break;case 4:info=new TouchInfo(off);break;case 5:info=new TouchInfo(on);break;
+            case 6:info=new TouchInfo(normal,on,on);break;case 7:info=new TouchInfo(normal,off,null);break;
+            case 8:info=new TouchInfo(normal,off,normal);break;case 9:info=new TouchInfo(on,normal);break;
+            case 10:info=new TouchInfo(normal,on,off);break;case 11:info=new TouchInfo(null,unlocked);break;
+            default:throw new IllegalArgumentException("trigger fixture");
+        }
+        return new Object[]{self,info};
+    }
+    static JsonObject expectedIntent(int id,String context,String target,String action,int color,float[] geometry) {
+        JsonObject result=new JsonObject();result.addProperty("id",id);result.addProperty("context",context);result.addProperty("target",target);result.add("action",canonical(action));
+        JsonArray extras=new JsonArray();String[] names={"x","y","width","height"};
+        if(geometry!=null)for(int i=0;i<names.length;i++){JsonObject e=new JsonObject();e.addProperty("name",names[i]);e.addProperty("type","float");e.addProperty("value",Integer.toHexString(Float.floatToRawIntBits(geometry[i])));extras.add(e);}
+        if(id==1){JsonObject e=new JsonObject();e.addProperty("name","blocking_color");e.addProperty("type","int");e.addProperty("value",color);extras.add(e);}
+        result.add("extras",extras);return result;
+    }
+    static JsonObject expectedBlock(int option,int kind,int flags,boolean accessibility,boolean show) {
+        return expectedBlock(option,kind,flags,accessibility,show,RESOLVED_COLOR,option);
+    }
+    static JsonObject expectedBlock(int option,int kind,int flags,boolean accessibility,boolean show,int color,int triggerOption) {
+        boolean inspect=triggerOption==0||triggerOption==2;
+        boolean rejected=inspect&&(kind==3||kind==5||kind==6),invalid=inspect&&(kind==7||kind==8);
+        int reads=!inspect||kind==0?0:kind==3?1:kind==4||kind==5||kind==6||kind==7||kind==8||kind==10?3:2;
+        boolean enable=!rejected&&!invalid&&(option==0||option==2&&flags==0);
+        JsonObject result=new JsonObject(),state=new JsonObject();result.add("blockState",state);
+        if(invalid)result.addProperty("exception",kind==7?"java.lang.NullPointerException":"java.lang.ClassCastException");else result.add("value",JsonNull.INSTANCE);
+        state.addProperty("overlayBlocking",rejected||invalid?(flags&1)!=0:enable&&!accessibility);
+        state.addProperty("accessibilityBlocking",rejected||invalid?(flags&2)!=0:enable&&accessibility);
+        state.addProperty("startCount",enable?1:0);state.addProperty("stopCount",rejected||invalid?0:1);
+        state.addProperty("unblockCalls",rejected||invalid||enable&&accessibility?0:1);
+        state.addProperty("macroReads",enable?1:0);state.addProperty("colorCalls",enable?1:0);
+        state.addProperty("contextReads",rejected||invalid?0:enable&&!accessibility?4:3);state.addProperty("triggerReads",reads);
+        JsonArray intents=new JsonArray(),starts=new JsonArray(),stops=new JsonArray();
+        if(!rejected&&!invalid){JsonObject stop=expectedIntent(0,"context",OVERLAY,null,0,null);intents.add(stop);stops.add(stop);}
+        if(enable){JsonObject start=expectedIntent(1,"context",accessibility?ACCESSIBILITY:OVERLAY,accessibility?BLOCK_ACTION:null,show?color:-1,accessibility?null:GEOMETRY);intents.add(start);starts.add(start);}
+        state.add("intents",intents);state.add("started",starts);state.add("stopped",stops);
+        if(enable){state.addProperty("colorMacroIdentity",true);state.addProperty("colorVariableIdentity",true);state.addProperty("colorInfoIdentity",true);}
+        return result;
+    }
+    static JsonObject exceptionExpected(Class<?> type){JsonObject e=new JsonObject();e.addProperty("exception",type.getName());return e;}
+    static void checkBlock(String label,Supplier<Object[]> make,JsonObject expected){check(BLOCK,label,make,UNKNOWN,false,expected);}
+    static void blockCombinations() {
+        for(int option:new int[]{Integer.MIN_VALUE,-1,0,1,2,3,Integer.MAX_VALUE})for(int kind=0;kind<12;kind++)for(int flags=0;flags<4;flags++)for(boolean accessibility:new boolean[]{false,true})for(boolean show:new boolean[]{false,true}) {
+            final int k=kind,f=flags;
+            checkBlock("block:"+option+":"+k+":"+f+":"+accessibility+":"+show,()->block(option,k,f,accessibility,show),expectedBlock(option,k,f,accessibility,show));
+        }
+        for(int color:new int[]{Integer.MIN_VALUE,-1,0,1,Integer.MAX_VALUE,0x00abcdef,0xff987654})for(boolean accessibility:new boolean[]{false,true})for(boolean show:new boolean[]{false,true})for(int nulls=0;nulls<8;nulls++)for(boolean resolved:new boolean[]{false,true}) {
+            final int n=nulls;
+            checkBlock("block-color:"+color+":"+accessibility+":"+show+":"+n+":"+resolved,()->{
+                Object[] args=block(0,(n&4)==0?2:0,0,accessibility,show);BlockTouchesAction self=(BlockTouchesAction)args[0];self.bgColor=color;
+                if((n&1)!=0)self.bgColorVariable=null;if((n&2)!=0)self.macro=null;
+                TouchControl.resolveColor=resolved;TouchControl.resolvedColor=color;return args;
+            },expectedBlock(0,(n&4)==0?2:0,0,accessibility,show,color,0));
+        }
+        int[] bits={0,0x80000000,1,0x80000001,0x7f800000,0xff800000,0x7f7fffff,0xff7fffff,0x7fc00001,0xffc00001,0x7f800001,0xff800001,0x3f000000,0xbf000000};
+        for(int index=0;index<4;index++)for(int raw:bits) {
+            final int i=index;float[] coordinates=GEOMETRY.clone();coordinates[i]=Float.intBitsToFloat(raw);
+            JsonObject expected=expectedBlock(0,0,0,false,true);JsonObject state=expected.getAsJsonObject("blockState");
+            JsonObject start=expectedIntent(1,"context",OVERLAY,null,RESOLVED_COLOR,coordinates);
+            state.getAsJsonArray("intents").set(1,start);state.getAsJsonArray("started").set(0,start);
+            checkBlock("block-float:"+i+":"+Integer.toHexString(raw),()->{Object[] args=block(0,0,0,false,true);BlockTouchesAction s=(BlockTouchesAction)args[0];s.xPosition=coordinates[0];s.yPosition=coordinates[1];s.width=coordinates[2];s.height=coordinates[3];return args;},expected);
+        }
+        for(boolean stopResult:new boolean[]{false,true})for(boolean startNull:new boolean[]{false,true})checkBlock("block-ignored-service-results:"+stopResult+":"+startNull,()->{Object[] args=block(0,2,0,false,true);TouchControl.stopResult=stopResult;TouchControl.startReturnsNull=startNull;return args;},expectedBlock(0,2,0,false,true));
+        checkBlock("block-null-self",()->new Object[]{null,null},exceptionExpected(NullPointerException.class));
+    }
+    static List<String> blockBoundaries(Supplier<Object[]> make) {
+        JsonObject result=outcome(BLOCK,"original",make,false);
+        if(result.has("exception")||result.has("unsupported"))throw new AssertionError("Invalid clean boundary discovery "+result);
+        return new ArrayList<>(TouchControl.boundaries);
+    }
+    static int boundary(List<String> calls,String prefix) {
+        for(int i=0;i<calls.size();i++)if(calls.get(i).startsWith(prefix))return i;
+        throw new AssertionError("Missing boundary "+prefix+" in "+calls);
+    }
+    static Throwable blockFailure(int kind) {
+        switch(kind){case 0:return new NullPointerException("fixture boundary");case 1:return new IllegalStateException("fixture boundary");case 2:return new SecurityException("fixture boundary");case 3:return new AssertionError("fixture boundary");default:return new java.io.IOException("fixture boundary");}
+    }
+    static void blockFailures() {
+        int[][] profiles={{0,2,0,0,1},{0,2,0,1,1},{1,3,3,1,0},{2,2,3,0,1},{0,3,0,0,1},{0,5,0,1,1},{0,4,0,0,1},{2,0,0,1,0}};
+        String[] names={"overlay","accessibility","disable","toggle-off","unlocked","screen-on","screen-off","toggle-on"};
+        for(int p=0;p<profiles.length;p++) {
+            int[] profile=profiles[p];final String name=names[p];Supplier<Object[]> make=()->block(profile[0],profile[1],profile[2],profile[3]!=0,profile[4]!=0);
+            List<String> calls=blockBoundaries(make);
+            for(int at=0;at<calls.size();at++)for(int failure=0;failure<5;failure++) {
+                final int n=at,f=failure;String call=calls.get(at);
+                boolean caught=(p==1||p==7)&&f!=3&&(call.startsWith("intent.new:1:")||call.startsWith("intent.action:1:")||call.startsWith("intent.int:1:")||call.startsWith("service.start:"));
+                JsonObject expected=caught?new JsonObject():exceptionExpected(blockFailure(f).getClass());if(caught)expected.add("value",JsonNull.INSTANCE);
+                checkBlock("block-fault:"+name+":"+n+":"+f,()->{Object[] args=make.get();TouchControl.failAt=n;TouchControl.failure=blockFailure(f);return args;},expected);
+            }
+        }
+        for(int kind:new int[]{3,5})for(int failure=0;failure<4;failure++) {
+            final int f=failure;checkBlock("block-resource-fault:"+kind+":"+f,()->{Object[] args=block(0,kind,3,true,true);if(f==0)UiTrace.resource=null;else UiTrace.resourceFailure=blockFailure(f);return args;},exceptionExpected(f==0?NullPointerException.class:blockFailure(f).getClass()));
+        }
+        for(int option:new int[]{0,1,2})for(int flags:new int[]{0,1,2,3})for(boolean accessibility:new boolean[]{false,true})for(int companion=0;companion<2;companion++) {
+            final int c=companion;checkBlock("block-null-companion:"+option+":"+flags+":"+accessibility+":"+c,()->{Object[] args=block(option,2,flags,accessibility,true);if(c==0)BlockTouchesService.i=null;else MacroDroidAccessibilityServiceJellyBean.u=null;return args;},exceptionExpected(NullPointerException.class));
+        }
+        for(int option:new int[]{0,2})for(int companion=0;companion<2;companion++) {
+            final int c=companion;checkBlock("block-reject-before-companion:"+option+":"+c,()->{Object[] args=block(option,3,3,true,true);if(c==0)BlockTouchesService.i=null;else MacroDroidAccessibilityServiceJellyBean.u=null;return args;},expectedBlock(option,3,3,true,true));
+        }
+        for(boolean accessibility:new boolean[]{false,true})for(int nullAt=0;nullAt<5;nullAt++) {
+            final int at=nullAt;
+            JsonObject expected=nullAt<(accessibility?3:4)?exceptionExpected(NullPointerException.class):new JsonObject();if(nullAt>=(accessibility?3:4))expected.add("value",JsonNull.INSTANCE);
+            checkBlock("block-context-sequence:"+accessibility+":"+at,()->{Object[] args=block(0,2,0,accessibility,true);BlockTouchesAction self=(BlockTouchesAction)args[0];self.contextSequence=new Context[5];for(int i=0;i<5;i++){Context c=new Context();c.testContextId="context"+i;self.contextSequence[i]=i==at?null:c;}return args;},expected);
+        }
+        Supplier<Object[]> access=()->block(0,2,0,true,true);int start=boundary(blockBoundaries(access),"service.start:");
+        checkBlock("block-error-logger-fails",()->{Object[] args=access.get();TouchControl.failAt=start;TouchControl.failure=new java.io.IOException("fixture start");TouchControl.mutateAt=start+1;TouchControl.mutation=()->{throw new AssertionError("fixture logger");};return args;},exceptionExpected(AssertionError.class));
+    }
+    static void blockDependencyChanges() {
+        for(int option:new int[]{-1,0,1,2})for(int next:new int[]{-1,0,1,2,3})for(int flags=0;flags<4;flags++) {
+            final int f=flags;Supplier<Object[]> make=()->block(option,2,f,false,true);int stop=boundary(blockBoundaries(make),"service.stop:");
+            checkBlock("block-option-after-stop:"+option+":"+next+":"+f,()->{Object[] args=make.get();BlockTouchesAction self=(BlockTouchesAction)args[0];TouchControl.mutateAt=stop;TouchControl.mutation=()->self.option=next;return args;},expectedBlock(next,2,f,false,true,RESOLVED_COLOR,option));
+        }
+        for(boolean accessibility:new boolean[]{false,true})for(int where=0;where<3;where++) {
+            final int w=where;Supplier<Object[]> make=()->block(0,2,0,accessibility,true);List<String> calls=blockBoundaries(make);
+            int at=boundary(calls,w==0?"color.resolve:":w==1?"block.context:2":"intent.new:1:");
+            checkBlock("block-dynamic-config:"+accessibility+":"+w,()->{Object[] args=make.get();BlockTouchesAction self=(BlockTouchesAction)args[0];TouchControl.mutateAt=at;TouchControl.mutation=()->{self.useAccessibilityService=!accessibility;self.showBlockedArea=false;self.bgColor=21;self.xPosition=-99;self.yPosition=33;self.width=14;self.height=17;};return args;},null);
+        }
+        for(boolean accessibility:new boolean[]{false,true})for(boolean initialNull:new boolean[]{false,true}) {
+            Supplier<Object[]> make=()->block(0,2,1,accessibility,true);int at=boundary(blockBoundaries(make),"block.context:2");
+            JsonObject expected=initialNull?exceptionExpected(NullPointerException.class):new JsonObject();if(!initialNull)expected.add("value",JsonNull.INSTANCE);
+            checkBlock("block-companion-captured-before-context:"+accessibility+":"+initialNull,()->{Object[] args=make.get();if(initialNull)MacroDroidAccessibilityServiceJellyBean.u=null;TouchControl.mutateAt=at;TouchControl.mutation=()->MacroDroidAccessibilityServiceJellyBean.u=initialNull?new MacroDroidAccessibilityServiceJellyBean.a():null;return args;},expected);
+        }
+        Supplier<Object[]> overlay=()->block(0,2,0,false,true);int macro=boundary(blockBoundaries(overlay),"block.macro");
+        checkBlock("block-color-arguments-after-macro",()->{Object[] args=overlay.get();BlockTouchesAction self=(BlockTouchesAction)args[0];TouchControl.resolveColor=false;TouchControl.mutateAt=macro;TouchControl.mutation=()->{self.macro=new Macro();self.macro.testId="replacement-macro";self.bgColor=371;self.bgColorVariable=new VariableWithDictionaryKeys();self.bgColorVariable.testId="replacement-variable";};return args;},expectedBlock(0,2,0,false,true,371,0));
+    }
+    static void blockTouches(){blockCombinations();blockFailures();blockDependencyChanges();}
+    public static void main(String[] args)throws Exception {
+        Path root=Paths.get(args[0]);
+        for(JsonElement element:JsonParser.parseString(Files.readString(root.resolve("source/ui-methods.json"))).getAsJsonArray()) {JsonObject entry=element.getAsJsonObject();registry.put(entry.get("target").getAsString()+"->"+entry.get("method").getAsString(),entry);}
+        original=new BytecodeOracle(root.resolve("tests/fixtures/original-methods.dex"),registry.keySet());
+        if(original.methods.size()!=registry.size())throw new IllegalStateException("Original UI fixture incomplete");
+        if(args.length>1) {rebuilt=new BytecodeOracle();try(var stream=Files.list(Paths.get(args[1]))) {for(Path path:stream.filter(p->p.toString().endsWith(".dex")).toList())rebuilt.add(path,registry.keySet());}if(rebuilt.methods.size()!=registry.size())throw new IllegalStateException("Rebuilt UI methods incomplete");}
+        sound();sms();touch();parcel();blockTouches();
+        JsonObject report=new JsonObject();report.addProperty("passed",mismatches==0&&unsupported==0&&counts.keySet().equals(registry.keySet()));report.addProperty("cases",cases);report.addProperty("failedCases",mismatches);report.addProperty("unsupportedExecutions",unsupported);report.addProperty("independentExpectedResultChecks",expectedChecks);report.addProperty("expectedResultFailures",expectedFailures);report.addProperty("methodsCovered",counts.size());report.add("methodKeys",G.toJsonTree(counts.keySet()));report.addProperty("paths",rebuilt==null?2:3);report.addProperty("androidRuntime",false);report.add("methods",G.toJsonTree(counts));report.add("failures",G.toJsonTree(failures));report.add("failedCaseLabels",G.toJsonTree(failedLabels));
+        JsonObject coverage=new JsonObject();boolean blockBranchesCovered=false;
+        for(String key:registry.keySet()) {
+            JsonObject c=new JsonObject();Set<Integer> visited=original.executed.getOrDefault(key,Collections.emptySet());
+            Set<String> edges=original.branchEdges.getOrDefault(key,Collections.emptySet());
+            List<Integer> unseen=new ArrayList<>();List<String> missingEdges=new ArrayList<>();int offset=0,total=0,possibleEdges=0;
+            for(var insn:original.methods.get(key).getImplementation().getInstructions()) {
+                if(!visited.contains(offset))unseen.add(offset);
+                if(insn.getOpcode().name().startsWith("IF_")) {
+                    possibleEdges+=2;
+                    int jump=offset+((com.android.tools.smali.dexlib2.iface.instruction.OffsetInstruction)insn).getCodeOffset();
+                    for(int to:new int[]{offset+insn.getCodeUnits(),jump})if(!edges.contains(offset+":"+to))missingEdges.add(offset+":"+to);
+                }
+                offset+=insn.getCodeUnits();total++;
+            }
+            c.addProperty("instructions",total);c.addProperty("visited",visited.size());c.add("unvisitedOffsets",G.toJsonTree(unseen));
+            c.addProperty("conditionalEdges",possibleEdges);c.addProperty("conditionalEdgesVisited",possibleEdges-missingEdges.size());c.add("unvisitedConditionalEdges",G.toJsonTree(missingEdges));coverage.add(key,c);
+            if(key.equals(BLOCK))blockBranchesCovered=unseen.isEmpty()&&missingEdges.isEmpty();
+        }
+        report.add("instructionCoverage",coverage);report.addProperty("blockTouchesInstructionAndConditionalCoverage",blockBranchesCovered);
+        if(!blockBranchesCovered)report.addProperty("passed",false);
+        Path reportPath=System.getProperty("ui.report")==null?root.resolve("reports/java-ui-"+(rebuilt==null?"two":"three")+"-path-parity.json"):Paths.get(System.getProperty("ui.report"));
+        Files.writeString(reportPath,G.toJson(report));
+        System.out.println("UI cases="+cases+" methods="+counts.size()+" mismatches="+mismatches+" unsupported="+unsupported+" expected="+expectedChecks);
+        if(!report.get("passed").getAsBoolean())System.exit(2);
+    }
+}

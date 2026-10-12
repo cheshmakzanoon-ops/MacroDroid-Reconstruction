@@ -1,0 +1,1 @@
+package com.arlosoft.macrodroid.action.textmanipulation; public class SubstringManipulation extends TextManipulation { public int getName(){return com.arlosoft.macrodroid.R.string.text_manipulation_substring;} }

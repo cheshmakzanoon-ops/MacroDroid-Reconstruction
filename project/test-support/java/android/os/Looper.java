@@ -1,0 +1,1 @@
+package android.os;public class Looper {private static final Looper MAIN=new Looper(),OTHER=new Looper();public static Looper getMainLooper(){defpackage.CoreTrace.add("looper.main");return MAIN;}public static Looper myLooper(){defpackage.CoreTrace.add("looper.current");return defpackage.EngineRuntime.mainThread?MAIN:OTHER;}}

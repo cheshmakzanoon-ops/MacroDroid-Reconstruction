@@ -1,0 +1,1 @@
+package defpackage; public class w63 {public static int checkSelfPermission(android.content.Context context,String permission){CoreTrace.add("permission:"+permission);return EnvironmentControl.permission;}}

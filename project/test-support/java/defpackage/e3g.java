@@ -1,0 +1,1 @@
+package defpackage;public class e3g {public static int b;public static e3g a(android.content.Context c,int i,int d){CoreTrace.add("toast.new:"+i+":"+d);return new e3g();}public static e3g b(android.content.Context c,CharSequence s,int d){CoreTrace.add("toast.text:"+s+":"+d);return new e3g();}public void show(){CoreTrace.add("toast.show");}}

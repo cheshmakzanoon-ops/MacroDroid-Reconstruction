@@ -1,0 +1,1 @@
+package defpackage; public class vdg { public static String h0(String s){return recovered.strings.LegacyStrings.decodeEscapedNewlines(s);} public static String u0(String s){return recovered.strings.LegacyStrings.removeDirectionMarks(s);} }
