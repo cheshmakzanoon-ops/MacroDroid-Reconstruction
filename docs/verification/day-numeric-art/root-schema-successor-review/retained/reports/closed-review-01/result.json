@@ -1,0 +1,261 @@
+{
+  "schema": 1,
+  "started_utc": "2026-10-12T12:46:03.471547+00:00",
+  "passed": true,
+  "android_executed": false,
+  "application_build_executed": false,
+  "old_41_suite_rerun": false,
+  "reviewed_full_suite_scope": "Previously closed 41 controls on exact old wrapper",
+  "capsules": [
+    {
+      "root": "/dev/shm/macrodroid-day-numeric-art/wrapper-draft-01",
+      "checkpoint_sha256": "6ca4711b330c64f72c0df716e4a8c407360297a9bbc09e634bd88feb295a6dd6",
+      "payloads": 20
+    },
+    {
+      "root": "/dev/shm/macrodroid-day-numeric-art/checkpoints/04-wrapper-host-controls",
+      "checkpoint_sha256": "14bd536aa8af2e8458d8c3b1d45de6c770e55ce4e7f0f5e152a70bc6ed79e0bb",
+      "payloads": 26
+    }
+  ],
+  "complete_old_archive": {
+    "members": 7629,
+    "bytes": 96481154,
+    "all_archived_and_raw_bytes_match": true
+  },
+  "named_controls": {
+    "old_parent": 31,
+    "old_added": 10,
+    "old_log_actual": 41,
+    "final_names": 42,
+    "old_41_bodies_unchanged": true,
+    "old_named_passes": [
+      "test_all_1291_input_rows_and_independent_expected_values_are_bound",
+      "test_avd_identity_and_protocol_faults_stop_before_guest_mutation",
+      "test_avd_nonzero_exit_and_diagnostics_stop_before_guest_mutation",
+      "test_captured_crlf_avd_passes_both_stages_without_rewriting_bytes",
+      "test_changed_dex_rejected_before_any_android_command",
+      "test_changed_rehashed_case_value_still_fails_independent_evidence_recheck",
+      "test_cleanup_failure_preserves_cases_and_fails_overall",
+      "test_complete_simulated_success_cannot_be_claimed_as_android",
+      "test_corpus_exception_policy_and_scope_are_mandatory_provenance_fields",
+      "test_device_file_or_binary_change_preserves_cases_but_fails_binding",
+      "test_device_not_booted_or_pinned_stops_before_mutation",
+      "test_diagnostics_stay_separate_from_observed_semantic_success",
+      "test_duplicate_reordered_omitted_and_unterminated_case_rows_are_rejected",
+      "test_every_case_wire_field_and_numeric_lexeme_is_required",
+      "test_every_command_output_is_hashed_and_semantically_rechecked",
+      "test_exact_case_predicate_rejects_bool_returncode_and_retains_partial",
+      "test_failed_candidate_push_never_executes",
+      "test_failed_mkdir_never_removes_unowned_directory",
+      "test_fixed_120_second_guest_has_no_case_selection_or_inventory_argument",
+      "test_host_inventory_branch_is_never_android_runtime_evidence",
+      "test_incomplete_or_noncanonical_exception_message_encoding_is_rejected",
+      "test_invalid_timeouts_rejected_before_adb",
+      "test_late_verifier_or_classpath_override_is_rejected",
+      "test_local_hash_race_is_detected",
+      "test_local_input_change_is_a_failed_postcheck",
+      "test_missing_or_extra_candidate_case_output_is_rejected",
+      "test_null_entry_exception_messages_are_lossless_and_not_required_identical",
+      "test_only_null_entry_may_report_exact_npe_class",
+      "test_original_failure_stops_candidate_even_with_success_stdout",
+      "test_physical_serial_and_other_avd_rejected_before_adb",
+      "test_readonly_mode_is_required",
+      "test_real_compiled_dex_and_exact_provenance",
+      "test_rehashed_avd_identity_and_protocol_faults_fail_evidence_recheck",
+      "test_result_rejects_modified_flags_classpath_origin_and_scope",
+      "test_reusing_nonempty_output_is_rejected_without_overwriting",
+      "test_timeout_preserves_prefix_stderr_and_after_identities",
+      "test_unavailable_device_and_wrong_observed_avd_stop_before_mutation",
+      "test_unexpected_silent_command_output_is_preserved_and_fails",
+      "test_wrong_candidate_and_provenance_are_rejected",
+      "test_wrong_device_input_hashes_stop_before_execution_and_cleanup",
+      "test_wrong_original_stops_before_adb"
+    ]
+  },
+  "both_parent_patches_reproduced_exactly": true,
+  "literal_closed_positive_reviews": [
+    {
+      "folder": "/dev/shm/macrodroid-day-numeric-art/wrapper-controls-01/host-evidence/test_complete_simulated_success_cannot_be_claimed_as_android/result",
+      "commands": 60,
+      "raw_streams": 120,
+      "observations": {
+        "original": {
+          "case_count": 1291,
+          "raw_exception_records": [
+            {
+              "index": 1281,
+              "case": "null-entry",
+              "class": "java.lang.NullPointerException",
+              "raw_message_encoding": "null",
+              "raw_line_hex": "4441595f4e554d455249435f4152545f434153450931323831096e756c6c2d656e747279096e756c6c2d656e747279093030303030303030303030303030303009657863657074696f6e096a6176612e6c616e672e4e756c6c506f696e746572457863657074696f6e096e756c6c"
+            }
+          ]
+        },
+        "candidate": {
+          "case_count": 1291,
+          "raw_exception_records": [
+            {
+              "index": 1281,
+              "case": "null-entry",
+              "class": "java.lang.NullPointerException",
+              "raw_message_encoding": "null",
+              "raw_line_hex": "4441595f4e554d455249435f4152545f434153450931323831096e756c6c2d656e747279096e756c6c2d656e747279093030303030303030303030303030303009657863657074696f6e096a6176612e6c616e672e4e756c6c506f696e746572457863657074696f6e096e756c6c"
+            }
+          ]
+        }
+      },
+      "android_executed": false
+    },
+    {
+      "folder": "/dev/shm/macrodroid-day-numeric-art/wrapper-controls-01/host-evidence/test_null_entry_exception_messages_are_lossless_and_not_required_identical/result",
+      "commands": 60,
+      "raw_streams": 120,
+      "observations": {
+        "original": {
+          "case_count": 1291,
+          "raw_exception_records": [
+            {
+              "index": 1281,
+              "case": "null-entry",
+              "class": "java.lang.NullPointerException",
+              "raw_message_encoding": "null",
+              "raw_line_hex": "4441595f4e554d455249435f4152545f434153450931323831096e756c6c2d656e747279096e756c6c2d656e747279093030303030303030303030303030303009657863657074696f6e096a6176612e6c616e672e4e756c6c506f696e746572457863657074696f6e096e756c6c"
+            }
+          ]
+        },
+        "candidate": {
+          "case_count": 1291,
+          "raw_exception_records": [
+            {
+              "index": 1281,
+              "case": "null-entry",
+              "class": "java.lang.NullPointerException",
+              "raw_message_encoding": "utf16:00000009d800dc00ffff",
+              "raw_line_hex": "4441595f4e554d455249435f4152545f434153450931323831096e756c6c2d656e747279096e756c6c2d656e747279093030303030303030303030303030303009657863657074696f6e096a6176612e6c616e672e4e756c6c506f696e746572457863657074696f6e0975746631363a3030303030303039643830306463303066666666"
+            }
+          ]
+        }
+      },
+      "android_executed": false
+    },
+    {
+      "folder": "/dev/shm/macrodroid-day-numeric-art-schema-02/reports/focused-01/host-evidence/test_literal_integer_schema_is_required_for_provenance_and_result_replay/result",
+      "commands": 60,
+      "raw_streams": 120,
+      "observations": {
+        "original": {
+          "case_count": 1291,
+          "raw_exception_records": [
+            {
+              "index": 1281,
+              "case": "null-entry",
+              "class": "java.lang.NullPointerException",
+              "raw_message_encoding": "null",
+              "raw_line_hex": "4441595f4e554d455249435f4152545f434153450931323831096e756c6c2d656e747279096e756c6c2d656e747279093030303030303030303030303030303009657863657074696f6e096a6176612e6c616e672e4e756c6c506f696e746572457863657074696f6e096e756c6c"
+            }
+          ]
+        },
+        "candidate": {
+          "case_count": 1291,
+          "raw_exception_records": [
+            {
+              "index": 1281,
+              "case": "null-entry",
+              "class": "java.lang.NullPointerException",
+              "raw_message_encoding": "null",
+              "raw_line_hex": "4441595f4e554d455249435f4152545f434153450931323831096e756c6c2d656e747279096e756c6c2d656e747279093030303030303030303030303030303009657863657074696f6e096a6176612e6c616e672e4e756c6c506f696e746572457863657074696f6e096e756c6c"
+            }
+          ]
+        }
+      },
+      "android_executed": false
+    }
+  ],
+  "independent_fraction_expected_values": {
+    "cases": 1291,
+    "kinds": {
+      "integer": 547,
+      "decimal": 734,
+      "null-entry": 1,
+      "null-value": 1,
+      "string": 4,
+      "boolean": 2,
+      "dictionary": 1,
+      "nested-entry": 1
+    },
+    "all_match_frozen_expectations": true
+  },
+  "actual_input_and_41_control_commands": [
+    {
+      "label": "actual-input-preflight",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/dev/shm/macrodroid-day-numeric-art/wrapper-controls-01/executed-validator.py",
+        "--preflight",
+        "/dev/shm/macrodroid-day-numeric-art/wrapper-controls-01/executed-source",
+        "/dev/shm/macrodroid-day-numeric-art/wrapper-controls-01/actual-input-preflight.json"
+      ],
+      "cwd": "/dev/shm/macrodroid-day-numeric-art/wrapper-controls-01",
+      "timeout_seconds": 120,
+      "started_utc": "2026-10-12T12:34:58.958814+00:00",
+      "timed_out": false,
+      "returncode": 0,
+      "seconds": 2.4929570029999013,
+      "finished_utc": "2026-10-12T12:35:01.452128+00:00",
+      "stdout": {
+        "bytes": 96,
+        "sha256": "04a3e6d8b5b5e7040afcc9d7e4c28ac10fdc4ba6b78a6bcb86514b17ba83107e",
+        "mode": 420
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": 420
+      }
+    },
+    {
+      "label": "all-41-host-controls",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/dev/shm/macrodroid-day-numeric-art/wrapper-controls-01/executed-source",
+        "-p",
+        "test_android_day_numeric_method_probe.py",
+        "-v"
+      ],
+      "cwd": "/dev/shm/macrodroid-day-numeric-art/wrapper-controls-01",
+      "timeout_seconds": 240,
+      "started_utc": "2026-10-12T12:35:01.480577+00:00",
+      "timed_out": false,
+      "returncode": 0,
+      "seconds": 25.9565101900007,
+      "finished_utc": "2026-10-12T12:35:27.437299+00:00",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": 420
+      },
+      "stderr": {
+        "bytes": 7684,
+        "sha256": "c77f9a3994da687b8a060d63a356fd27be98da48dfd6860d873877f3ced5e048",
+        "mode": 420
+      }
+    }
+  ],
+  "focused_new_control": {
+    "named_tests": 1,
+    "unittest_seconds": 0.898,
+    "outer_command_seconds": 8.17885059499531,
+    "passed": true,
+    "full_42_suite_executed": false
+  },
+  "status": "CLOSED_SOURCE_ARCHIVE_AND_LITERAL_SIMULATED_RECORD_REVIEW",
+  "all_reviewed_inputs_unchanged": true,
+  "finished_utc": "2026-10-12T12:46:49.599070+00:00"
+}

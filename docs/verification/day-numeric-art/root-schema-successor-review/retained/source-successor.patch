@@ -1,0 +1,71 @@
+--- before/android_day_numeric_method_probe.py
++++ source/android_day_numeric_method_probe.py
+@@ -170,7 +170,8 @@
+ 
+ 
+ def validate_provenance(info: dict) -> None:
+-    if (not isinstance(info, dict) or info.get('schema_version') != 2 or
++    if (not isinstance(info, dict) or type(info.get('schema_version')) is not int or
++            info.get('schema_version') != 2 or
+             info.get('main_class') != MAIN_CLASS or info.get('scope') != PROBE_SCOPE or
+             info.get('target_method') != TARGET or info.get('original_method_sha256') != ORIGINAL_METHOD_SHA256 or
+             info.get('candidate_helper_sha256') != HELPER_SHA256 or
+@@ -485,7 +486,8 @@
+         if report.get('execution_backend') != ('simulated-host-control' if simulated else 'adb-android-runtime'):
+             raise ProbeError('Unknown execution backend')
+         expected_status = 'SIMULATED_NUMERIC_CASES_PASSED' if simulated else 'ART_NUMERIC_CASES_VERIFIED'
+-        if (report.get('schema_version') != 2 or report.get('scope') != PROBE_SCOPE or
++        if (type(report.get('schema_version')) is not int or
++                report.get('schema_version') != 2 or report.get('scope') != PROBE_SCOPE or
+                 report.get('status') != expected_status or report.get('serial') != serial or
+                 not re.fullmatch(r'emulator-[0-9]+', serial) or report.get('expected_avd') != DEFAULT_AVD or
+                 report.get('verification_mode') != '-Xverify:all' or report.get('target_method') != TARGET or
+--- before/test_android_day_numeric_method_probe.py
++++ source/test_android_day_numeric_method_probe.py
+@@ -680,5 +680,46 @@
+                 probe.validate_provenance({**original, key: value})
+ 
+ 
++    def test_literal_integer_schema_is_required_for_provenance_and_result_replay(self):
++        code, report, simulator = self.execute()
++        self.assertEqual(code, 0, report.get('evidence_error'))
++        self.assertEqual(simulator.executions, ['original', 'candidate'])
++        self.assertEqual(len(report['commands']), 60)
++        self.assertFalse(report['android_runtime_executed'])
++        positive = copy.deepcopy(report)
++        observations = []
++        for label, version in [('integer-two', 2), ('float-two', 2.0),
++                               ('string-two', '2'), ('boolean-true', True),
++                               ('boolean-false', False)]:
++            with self.subTest(label=label):
++                changed_provenance = copy.deepcopy(self.inputs['provenance']['content'])
++                changed_provenance['schema_version'] = version
++                changed_report = copy.deepcopy(report)
++                changed_report['schema_version'] = version
++                row = {'label': label, 'schema_value': version,
++                       'python_type': type(version).__name__}
++                if type(version) is int:
++                    probe.validate_provenance(changed_provenance)
++                    self.assertTrue(probe.verify_result(self.args.output, changed_report,
++                        serial=self.args.serial, allow_simulated=True))
++                    row.update(provenance_accepted=True, report_replay_accepted=True)
++                else:
++                    with self.assertRaisesRegex(probe.ProbeError, 'frozen 1291-case') as first:
++                        probe.validate_provenance(changed_provenance)
++                    with self.assertRaisesRegex(probe.ProbeError, 'exact scope') as second:
++                        probe.verify_result(self.args.output, changed_report,
++                            serial=self.args.serial, allow_simulated=True)
++                    row.update(provenance_accepted=False, report_replay_accepted=False,
++                               provenance_error=str(first.exception), report_error=str(second.exception))
++                observations.append(row)
++                (self.args.output / 'schema-observations.json').write_text(json.dumps({
++                    'scope': 'Explicit simulated positive and schema-only host controls',
++                    'android_executed': False, 'observations': observations}, indent=2) + '\n')
++        self.assertEqual(report, positive)
++        self.assertTrue(probe.verify_result(self.args.output, report,
++            serial=self.args.serial, allow_simulated=True))
++        self.assertFalse(report['numeric_cases_on_art_verified'])
++
++
+ if __name__ == '__main__':
+     unittest.main()

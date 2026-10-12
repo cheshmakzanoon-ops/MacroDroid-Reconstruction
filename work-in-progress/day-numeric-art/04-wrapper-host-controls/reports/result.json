@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "started_utc": "2026-10-12T12:34:58.958609+00:00",
+  "passed": true,
+  "commands": [
+    {
+      "label": "actual-input-preflight",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/dev/shm/macrodroid-day-numeric-art/wrapper-controls-01/executed-validator.py",
+        "--preflight",
+        "/dev/shm/macrodroid-day-numeric-art/wrapper-controls-01/executed-source",
+        "/dev/shm/macrodroid-day-numeric-art/wrapper-controls-01/actual-input-preflight.json"
+      ],
+      "cwd": "/dev/shm/macrodroid-day-numeric-art/wrapper-controls-01",
+      "timeout_seconds": 120,
+      "started_utc": "2026-10-12T12:34:58.958814+00:00",
+      "timed_out": false,
+      "returncode": 0,
+      "seconds": 2.4929570029999013,
+      "finished_utc": "2026-10-12T12:35:01.452128+00:00",
+      "stdout": {
+        "bytes": 96,
+        "sha256": "04a3e6d8b5b5e7040afcc9d7e4c28ac10fdc4ba6b78a6bcb86514b17ba83107e",
+        "mode": 420
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": 420
+      }
+    },
+    {
+      "label": "all-41-host-controls",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/dev/shm/macrodroid-day-numeric-art/wrapper-controls-01/executed-source",
+        "-p",
+        "test_android_day_numeric_method_probe.py",
+        "-v"
+      ],
+      "cwd": "/dev/shm/macrodroid-day-numeric-art/wrapper-controls-01",
+      "timeout_seconds": 240,
+      "started_utc": "2026-10-12T12:35:01.480577+00:00",
+      "timed_out": false,
+      "returncode": 0,
+      "seconds": 25.9565101900007,
+      "finished_utc": "2026-10-12T12:35:27.437299+00:00",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": 420
+      },
+      "stderr": {
+        "bytes": 7684,
+        "sha256": "c77f9a3994da687b8a060d63a356fd27be98da48dfd6860d873877f3ced5e048",
+        "mode": 420
+      }
+    }
+  ],
+  "android_executed": false,
+  "app_build_executed": false,
+  "test_backend": "explicit-simulated-ADB-host-controls",
+  "actual_named_test_count": 41,
+  "unittest_summary": "Ran 41 tests in 25.433s",
+  "status": "ACTUAL_INPUT_PREFLIGHT_AND_41_SIMULATED_HOST_CONTROLS_PASSED",
+  "all_read_inputs_unchanged": true,
+  "finished_utc": "2026-10-12T12:35:27.884833+00:00"
+}

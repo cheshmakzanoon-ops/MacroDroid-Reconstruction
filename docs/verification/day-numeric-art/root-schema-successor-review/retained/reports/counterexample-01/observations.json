@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "status": "OLD_SCHEMA_FLOAT_ACCEPTANCE_REPRODUCED",
+  "counterexample_reproduced": true,
+  "literal_integer_schema_contract_passed": false,
+  "scope": "Read-only old-policy validation/replay of closed simulated evidence; no new ADB run",
+  "source_sha256": "cc8b400f419ae9dc47677bcc9c71257440d46c8278ab32dd5a759378a45e7c96",
+  "original_positive": "/dev/shm/macrodroid-day-numeric-art/wrapper-controls-01/host-evidence/test_complete_simulated_success_cannot_be_claimed_as_android/result",
+  "observations": [
+    {
+      "label": "integer-two",
+      "schema_value": 2,
+      "python_type": "int",
+      "provenance": {
+        "accepted": true,
+        "return_value": null,
+        "error_type": null,
+        "error": null
+      },
+      "report_replay": {
+        "accepted": true,
+        "return_value": true,
+        "error_type": null,
+        "error": null
+      }
+    },
+    {
+      "label": "float-two",
+      "schema_value": 2.0,
+      "python_type": "float",
+      "provenance": {
+        "accepted": true,
+        "return_value": null,
+        "error_type": null,
+        "error": null
+      },
+      "report_replay": {
+        "accepted": true,
+        "return_value": true,
+        "error_type": null,
+        "error": null
+      }
+    },
+    {
+      "label": "string-two",
+      "schema_value": "2",
+      "python_type": "str",
+      "provenance": {
+        "accepted": false,
+        "return_value": null,
+        "error_type": "ProbeError",
+        "error": "Probe provenance does not describe the frozen 1291-case preparation"
+      },
+      "report_replay": {
+        "accepted": false,
+        "return_value": null,
+        "error_type": "ProbeError",
+        "error": "A complete bounded result with its exact scope is required"
+      }
+    },
+    {
+      "label": "boolean-true",
+      "schema_value": true,
+      "python_type": "bool",
+      "provenance": {
+        "accepted": false,
+        "return_value": null,
+        "error_type": "ProbeError",
+        "error": "Probe provenance does not describe the frozen 1291-case preparation"
+      },
+      "report_replay": {
+        "accepted": false,
+        "return_value": null,
+        "error_type": "ProbeError",
+        "error": "A complete bounded result with its exact scope is required"
+      }
+    },
+    {
+      "label": "boolean-false",
+      "schema_value": false,
+      "python_type": "bool",
+      "provenance": {
+        "accepted": false,
+        "return_value": null,
+        "error_type": "ProbeError",
+        "error": "Probe provenance does not describe the frozen 1291-case preparation"
+      },
+      "report_replay": {
+        "accepted": false,
+        "return_value": null,
+        "error_type": "ProbeError",
+        "error": "A complete bounded result with its exact scope is required"
+      }
+    }
+  ],
+  "android_executed": false,
+  "adb_executed": false,
+  "application_build_executed": false,
+  "full_suite_executed": false
+}

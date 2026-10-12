@@ -1,0 +1,11 @@
+--- source-01/.github/workflows/day-numeric-method-probe.yml
++++ source-02/.github/workflows/day-numeric-method-probe.yml
+@@ -216,7 +216,7 @@
+             2>&1 | tee ci-day-numeric-art/readiness.log
+           python3 parent-inputs/tools/android/runtime_job.py --queue ci-day-numeric-art/environment/queue \
+             --id day-numeric-method-art --timeout 720 -- \
+-            python3 "$GITHUB_WORKSPACE/tools/day_numeric_art/android_numeric_method_probe.py" \
++            python3 "$GITHUB_WORKSPACE/tools/day_numeric_art/android_day_numeric_method_probe.py" \
+               --adb "$RUNNER_TEMP/macrodroid-numeric-art-tooling/android/platform-tools/adb" \
+               --serial emulator-5560 --avd MacroDroid_API35_Disposable \
+               --original "$GITHUB_WORKSPACE/parent-inputs/workspace/artifacts/MacroDroid-5.67.8-original.apk" \

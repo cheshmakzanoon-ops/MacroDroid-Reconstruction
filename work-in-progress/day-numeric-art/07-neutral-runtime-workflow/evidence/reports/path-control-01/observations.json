@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "tests_run": 1,
+  "observations": [
+    {
+      "label": "corrected-workflow-positive",
+      "accepted": true,
+      "workflow_sha256": "f5f37bab137d67bb9499f6e44749139213108814ff88636c864065ce45b23368",
+      "queued_script": "$GITHUB_WORKSPACE/tools/day_numeric_art/android_day_numeric_method_probe.py",
+      "pinned_role": "tools/day_numeric_art/android_day_numeric_method_probe.py",
+      "wrapper_sha256": "d406859fc2da0680cf1565c7c75740315c9fbd46cc68f933d12bd6e088356ea0",
+      "queued_child_argv": [
+        "python3",
+        "$GITHUB_WORKSPACE/tools/day_numeric_art/android_day_numeric_method_probe.py",
+        "--adb",
+        "$RUNNER_TEMP/macrodroid-numeric-art-tooling/android/platform-tools/adb",
+        "--serial",
+        "emulator-5560",
+        "--avd",
+        "MacroDroid_API35_Disposable",
+        "--original",
+        "$GITHUB_WORKSPACE/parent-inputs/workspace/artifacts/MacroDroid-5.67.8-original.apk",
+        "--candidate",
+        "$GITHUB_WORKSPACE/parent-inputs/workspace/artifacts/MacroDroid-5.67.8-day-numeric-0762aad9.apk",
+        "--probe",
+        "$GITHUB_WORKSPACE/tools/day_numeric_art/probes/day-numeric-method-probe.dex",
+        "--provenance",
+        "$GITHUB_WORKSPACE/tools/day_numeric_art/probes/day-numeric-method-probe.json",
+        "--output",
+        "$GITHUB_WORKSPACE/ci-day-numeric-art/probe",
+        "--timeout",
+        "120"
+      ],
+      "application_code_executed": false,
+      "android_executed": false
+    },
+    {
+      "label": "retained-old-spelling",
+      "rejected": true,
+      "reason": "Queued Python script differs from the pinned executable wrapper role: $GITHUB_WORKSPACE/tools/day_numeric_art/android_numeric_method_probe.py",
+      "workflow_sha256": "ac001726f95a7e055d888e0ccc16ce5354c4832c75e6259019adfa41b9b39127"
+    },
+    {
+      "label": "corrected-workflow-restored",
+      "accepted": true,
+      "workflow_sha256": "f5f37bab137d67bb9499f6e44749139213108814ff88636c864065ce45b23368",
+      "queued_script": "$GITHUB_WORKSPACE/tools/day_numeric_art/android_day_numeric_method_probe.py",
+      "pinned_role": "tools/day_numeric_art/android_day_numeric_method_probe.py",
+      "wrapper_sha256": "d406859fc2da0680cf1565c7c75740315c9fbd46cc68f933d12bd6e088356ea0",
+      "queued_child_argv": [
+        "python3",
+        "$GITHUB_WORKSPACE/tools/day_numeric_art/android_day_numeric_method_probe.py",
+        "--adb",
+        "$RUNNER_TEMP/macrodroid-numeric-art-tooling/android/platform-tools/adb",
+        "--serial",
+        "emulator-5560",
+        "--avd",
+        "MacroDroid_API35_Disposable",
+        "--original",
+        "$GITHUB_WORKSPACE/parent-inputs/workspace/artifacts/MacroDroid-5.67.8-original.apk",
+        "--candidate",
+        "$GITHUB_WORKSPACE/parent-inputs/workspace/artifacts/MacroDroid-5.67.8-day-numeric-0762aad9.apk",
+        "--probe",
+        "$GITHUB_WORKSPACE/tools/day_numeric_art/probes/day-numeric-method-probe.dex",
+        "--provenance",
+        "$GITHUB_WORKSPACE/tools/day_numeric_art/probes/day-numeric-method-probe.json",
+        "--output",
+        "$GITHUB_WORKSPACE/ci-day-numeric-art/probe",
+        "--timeout",
+        "120"
+      ],
+      "application_code_executed": false,
+      "android_executed": false
+    }
+  ],
+  "scope": "Static queued Python path to pinned source identity only.",
+  "probe_code_executed": false,
+  "android_executed": false,
+  "application_build_executed": false
+}

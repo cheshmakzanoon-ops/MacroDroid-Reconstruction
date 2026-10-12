@@ -1,0 +1,28 @@
+{
+  "status": "EXACT_TWO_SCHEMA_GUARDS_AND_ONE_ADDED_TEST",
+  "changed_source_paths": [
+    "android_day_numeric_method_probe.py",
+    "test_android_day_numeric_method_probe.py"
+  ],
+  "unchanged_source_paths": 7,
+  "wrapper_ast_exact_after_removing_only_two_guards": true,
+  "guards": [
+    {
+      "function": "validate_provenance",
+      "added_guard": "Compare(left=Call(func=Name(id='type', ctx=Load()), args=[Call(func=Attribute(value=Name(id='info', ctx=Load()), attr='get', ctx=Load()), args=[Constant(value='schema_version')], keywords=[])], keywords=[]), ops=[IsNot()], comparators=[Name(id='int', ctx=Load())])",
+      "occurrences": 1
+    },
+    {
+      "function": "verify_result",
+      "added_guard": "Compare(left=Call(func=Name(id='type', ctx=Load()), args=[Call(func=Attribute(value=Name(id='report', ctx=Load()), attr='get', ctx=Load()), args=[Constant(value='schema_version')], keywords=[])], keywords=[]), ops=[IsNot()], comparators=[Name(id='int', ctx=Load())])",
+      "occurrences": 1
+    }
+  ],
+  "parent_named_test_bodies_unchanged": 41,
+  "final_named_test_count": 42,
+  "added_test_names": [
+    "test_literal_integer_schema_is_required_for_provenance_and_result_replay"
+  ],
+  "build_executed": false,
+  "android_executed": false
+}
