@@ -1,0 +1,69 @@
+{"state": "waiting_for_service", "updated_utc": null, "adb_error": ""}
+{"state": "booting", "updated_utc": "2026-10-12T05:50:43Z", "adb_error": ""}
+{
+  "started_utc": "2026-10-12T05:50:23Z",
+  "state": "ready",
+  "serial": "emulator-5560",
+  "adb_path": "/home/runner/work/_temp/macrodroid-widget-tooling/android/platform-tools/adb",
+  "command": [
+    "/home/runner/work/_temp/macrodroid-widget-tooling/android/emulator/emulator",
+    "-avd",
+    "MacroDroid_API35_Disposable",
+    "-port",
+    "5560",
+    "-no-window",
+    "-no-audio",
+    "-no-boot-anim",
+    "-no-snapshot",
+    "-accel",
+    "on",
+    "-gpu",
+    "swiftshader",
+    "-cores",
+    "2",
+    "-memory",
+    "3072",
+    "-camera-back",
+    "none",
+    "-camera-front",
+    "none"
+  ],
+  "queue_path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-widget-method/environment/queue",
+  "avd": "MacroDroid_API35_Disposable",
+  "ram_mb": 3072,
+  "virtual_cores": 2,
+  "acceleration": "on",
+  "updated_utc": "2026-10-12T05:51:04Z",
+  "properties": {
+    "sys.boot_completed": "1",
+    "dev.bootcomplete": "1",
+    "ro.build.version.sdk": "35",
+    "ro.build.version.release": "15",
+    "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.product.cpu.abilist": "x86_64,arm64-v8a",
+    "ro.product.cpu.abilist64": "x86_64,arm64-v8a",
+    "ro.dalvik.vm.native.bridge": "libndk_translation.so",
+    "ro.enable.native.bridge.exec": "1",
+    "ro.ndk_translation.version": "0.2.3",
+    "ro.berberis.version": "0.2.3"
+  },
+  "adb_exit_code": 0,
+  "adb_error": ""
+}
+{
+  "status": "ART_WIDGET_CASES_VERIFIED",
+  "output": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-widget-method/probe",
+  "both_semantic_case_sets_passed": true,
+  "strict_diagnostics_passed": true,
+  "cleanup_complete": true
+}
+{
+  "probe_step_exit_code": "0",
+  "diagnostic_logcat_exit_code": "0",
+  "owned_stop_marker_exit_code": "0",
+  "bounded_service_wait_exit_code": "0",
+  "owned_service_exit_code": "0",
+  "scope": "STOP is written only to this job's newly created service queue; no unrelated device or process is stopped.",
+  "service_cleanup_confirmed": true
+}

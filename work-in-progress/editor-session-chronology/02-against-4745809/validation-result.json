@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "status": "HOST_VALIDATED_INACTIVE_SESSION_CHRONOLOGY_OVERLAY",
+  "baseline_commit": "47458097056fd023bad8b47b6464978b0d02e85c",
+  "changed_files": [
+    {
+      "baseline_sha256": "29e2b9bb9f6fa83f982a9b515c487a300993bacfe5caf9df0b456ef526bff808",
+      "bytes": 5631,
+      "path": "tools/parity_journeys/POST_ONBOARDING.md",
+      "proposed_sha256": "ca6186d39fbf84704ae83bf8a8f2bbfe48c3c6f6869566b1dce281139c6c4ecf"
+    },
+    {
+      "baseline_sha256": "1191dedd5d233b14ad89c4978ef7f8c52ee2d0c47cc8650d21f79685f8a1b7d2",
+      "bytes": 16983,
+      "path": "tools/parity_journeys/post_onboarding.py",
+      "proposed_sha256": "da3bd4da63d5077da23cfef65adc30215ed88e62a2becd43fd7e149ff616c3c9"
+    },
+    {
+      "baseline_sha256": "fcfe6f3e68b0ce0b6f0863ee231be5244732704fe6e745fbb61465b9801c40b8",
+      "bytes": 20348,
+      "path": "tools/parity_journeys/test_post_onboarding.py",
+      "proposed_sha256": "26adb51f346064d932b5a3042c284cc22406455f2620f822432219393e364604"
+    }
+  ],
+  "retained_external_paths_byte_identical": [
+    "tools/parity_journeys/session_evidence.py",
+    "tools/parity_journeys/test_session_evidence.py",
+    "tools/parity_journeys/recheck_guard_regressions.py",
+    "tools/parity_journeys/SESSION_EVIDENCE.md"
+  ],
+  "host_gates": [
+    {
+      "log": "external474-ledger-tests.log",
+      "tests": 12,
+      "individual_success_lines": 12,
+      "seconds": 4.989,
+      "sha256": "bd2a8664295cb8b83b3aa63f329c19b9697eff96e055cb60877f09837366a692",
+      "observed_exit_code": 0
+    },
+    {
+      "log": "external474-chronology-focused.log",
+      "tests": 26,
+      "individual_success_lines": 26,
+      "seconds": 19.208,
+      "sha256": "7bb0d8b897cbfb56d4ebdefe25e40cbc5f634eaff61ade47b19bcdc9751164d4",
+      "observed_exit_code": 0
+    },
+    {
+      "log": "external474-retained-ledger-focused.log",
+      "tests": 12,
+      "individual_success_lines": 12,
+      "seconds": 3.462,
+      "sha256": "9f8fa9cca888d52b4c14c14413ca609c30ab4cacb4dda1f23d2b5bb78e767f92",
+      "observed_exit_code": 0
+    },
+    {
+      "log": "external474-integration-tests.log",
+      "tests": 119,
+      "individual_success_lines": 119,
+      "seconds": 50.261,
+      "sha256": "276979667bf50298f125b0a6b67c2b352ac4e525bc6b294b78c01737813cdd25",
+      "observed_exit_code": 0
+    }
+  ],
+  "full_discovery_tests": 119,
+  "new_session_tests": 14,
+  "distinct_file_false_positive_cases_rejected": 4,
+  "wrong_apk_control_rejected_by_both": true,
+  "runtime_review": [
+    {
+      "run_id": 38206460588,
+      "external474_status": "EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY",
+      "proposed_status": "REJECTED",
+      "proposed_reason": "'session_observation'",
+      "partial_or_scoped_full_pixel_vector": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_and_all_members_verified": true
+    },
+    {
+      "run_id": 38208764356,
+      "external474_status": "REJECTED",
+      "proposed_status": "REJECTED",
+      "proposed_reason": "Incomplete run or changed environment",
+      "partial_or_scoped_full_pixel_vector": [
+        0,
+        26,
+        0,
+        0,
+        0
+      ],
+      "source_and_all_members_verified": true
+    }
+  ],
+  "new_android_execution_performed": false,
+  "new_chronology_runtime_gate": "PENDING_FRESH_CAPTURE",
+  "active_repository_modified": false
+}

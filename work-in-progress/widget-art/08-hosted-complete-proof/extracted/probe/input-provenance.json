@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "main_class": "recovered.probe.WidgetMethodProbe",
+  "probe": {
+    "path": "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/widget-method-probe.dex",
+    "bytes": 7580,
+    "sha256": "79bd3b46e71253b17ec75099cce3611df1735b8f74e8bdcb61c61e5a37ae1a07",
+    "runtime_class_count": 1,
+    "runtime_class": "Lrecovered/probe/WidgetMethodProbe;",
+    "android_or_application_host_stub_definitions": 0,
+    "direct_android_or_application_type_references": 0,
+    "compiler_metadata_type_references": [
+      "Ldalvik/annotation/Signature;",
+      "Ldalvik/annotation/Throws;"
+    ],
+    "typed_references": [
+      "Ldalvik/annotation/Signature;",
+      "Ldalvik/annotation/Throws;",
+      "Ljava/io/PrintStream;",
+      "Ljava/lang/AssertionError;",
+      "Ljava/lang/Class;",
+      "Ljava/lang/ClassCastException;",
+      "Ljava/lang/ClassLoader;",
+      "Ljava/lang/Exception;",
+      "Ljava/lang/IllegalStateException;",
+      "Ljava/lang/Integer;",
+      "Ljava/lang/NullPointerException;",
+      "Ljava/lang/Object;",
+      "Ljava/lang/String;",
+      "Ljava/lang/StringBuilder;",
+      "Ljava/lang/System;",
+      "Ljava/lang/Throwable;",
+      "Ljava/lang/reflect/Constructor;",
+      "Ljava/lang/reflect/Field;",
+      "Ljava/lang/reflect/InvocationTargetException;",
+      "Ljava/lang/reflect/Method;",
+      "Ljava/util/Collections;",
+      "Ljava/util/Iterator;",
+      "Ljava/util/List;",
+      "Lrecovered/probe/WidgetMethodProbe;"
+    ]
+  },
+  "apks": {
+    "original": {
+      "path": "/workspace/scratch/4130730d15aa/recovered/automation android app",
+      "bytes": 95725918,
+      "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+    },
+    "candidate": {
+      "path": "/tmp/macrodroid-widget-art-inputs-t0vfcjt_/candidate.apk",
+      "bytes": 94683439,
+      "sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f"
+    }
+  },
+  "target_method": "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;",
+  "original_method_sha256": "a1dd490bbfd6837fa72e6bf8ae4c75736612989fcba050fe2f0582aa03640e34",
+  "candidate_helper_sha256": "dbcb1a98d25ae4637531644da37d24f6e1bc494f941d4212da03c360fe315d79",
+  "runtime_cases": [
+    "fresh-empty-unit-identity",
+    "reused-label-zero-empty",
+    "resumed-label-two-empty",
+    "invalid-label-exact-exception",
+    "label-two-dead-cast-L7",
+    "label-two-dead-cast-L4",
+    "label-two-dead-cast-L1",
+    "null-list-exception-type"
+  ],
+  "expected_stdout_lines": [
+    "WIDGET_ART_CASE_OK fresh-empty-unit-identity",
+    "WIDGET_ART_CASE_OK reused-label-zero-empty",
+    "WIDGET_ART_CASE_OK resumed-label-two-empty",
+    "WIDGET_ART_CASE_OK invalid-label-exact-exception",
+    "WIDGET_ART_CASE_OK label-two-dead-cast-L7",
+    "WIDGET_ART_CASE_OK label-two-dead-cast-L4",
+    "WIDGET_ART_CASE_OK label-two-dead-cast-L1",
+    "WIDGET_ART_CASE_OK null-list-exception-type",
+    "WIDGET_METHOD_ART_OK cases=8"
+  ],
+  "scope": "Eight service-free entry/restoration/type-check paths using real APK classes; no nonempty-widget or rendering-path claim",
+  "android_runtime_executed_during_preparation": false
+}

@@ -1,0 +1,286 @@
+{
+  "started_utc": "2026-10-12T05:53:00.985398+00:00",
+  "passed": true,
+  "scope": "Read-only verification of the complete fresh eight-case original/candidate Widget ART artifact.",
+  "verification_executed_android_commands": false,
+  "historical_failed_job_relabelled": false,
+  "full_runtime_1_to_1_established": false,
+  "nonempty_widget_behavior_verified": false,
+  "widget_rendering_verified": false,
+  "archive": {
+    "path": "/workspace/scratch/4130730d15aa/widget-art-probe/hosted-run-38209599059/artifact.zip",
+    "bytes": 4780068,
+    "sha256": "ad8b7f1e9e6ecc34c2b32199da0c7d777298a9a2cf8a89a464eff5779d2d1cc5"
+  },
+  "archive_member_count_verified": 7214,
+  "fresh_output_tree_matches_reviewed_owned_scope": true,
+  "unexpected_or_credential_shaped_artifact_paths": [],
+  "status": "FRESH_ART_EIGHT_CASE_COMPARISON_AND_COMPLETE_EVIDENCE_VERIFIED",
+  "run_id": 38209599059,
+  "job_id": 114680586735,
+  "commit": "dbbb89cf4ca65edd3d2c2b96151dadf41aaec514",
+  "actual_android_runtime_executed": true,
+  "both_eight_case_sets_passed": true,
+  "exact_stdout_equal": true,
+  "strict_guest_diagnostics_passed": true,
+  "initial_and_final_avd_crlf_checks_passed": true,
+  "command_count_verified": 60,
+  "raw_command_streams_verified": 120,
+  "input_preflight_files_verified": 19,
+  "hidden_workflow_copy_in_original_downloaded_zip": true,
+  "historical_missing_workflow_copy_patched": false,
+  "reviewed_policy_sha256": "4738616dd655fd74832b501b95390ae744c7c6050fbb3d16f17bf78300aec541",
+  "original_actual_report": {
+    "path": "/workspace/scratch/4130730d15aa/widget-art-probe/hosted-run-38209599059/extracted/probe/probe-result.json",
+    "bytes": 74837,
+    "sha256": "4ce03e43831cb601ed4d095cf9855d64b4a8282d292d95a5b324af058557316b"
+  },
+  "executions": {
+    "original": {
+      "guest_argv": [
+        "/system/bin/timeout",
+        "-s",
+        "KILL",
+        "120",
+        "/system/bin/app_process64",
+        "-Xverify:all",
+        "-cp",
+        "/data/local/tmp/md-widget-method-7740f91572a64a568752d708e67d1de9/widget-method-probe.dex:/data/local/tmp/md-widget-method-7740f91572a64a568752d708e67d1de9/original.apk",
+        "/data/local/tmp/md-widget-method-7740f91572a64a568752d708e67d1de9",
+        "recovered.probe.WidgetMethodProbe"
+      ],
+      "returncode": 0,
+      "seconds": 2.264,
+      "host_timeout_seconds": 150,
+      "stdout": {
+        "path": "/workspace/scratch/4130730d15aa/widget-art-probe/hosted-run-38209599059/extracted/probe/036-execute-original.stdout.txt",
+        "bytes": 379,
+        "sha256": "5fefb35053ba679c1f0aecdac3c93094023d348310537ba2b2b11653cce9efd7"
+      },
+      "stderr": {
+        "path": "/workspace/scratch/4130730d15aa/widget-art-probe/hosted-run-38209599059/extracted/probe/036-execute-original.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cases": [
+        "fresh-empty-unit-identity",
+        "reused-label-zero-empty",
+        "resumed-label-two-empty",
+        "invalid-label-exact-exception",
+        "label-two-dead-cast-L7",
+        "label-two-dead-cast-L4",
+        "label-two-dead-cast-L1",
+        "null-list-exception-type"
+      ]
+    },
+    "candidate": {
+      "guest_argv": [
+        "/system/bin/timeout",
+        "-s",
+        "KILL",
+        "120",
+        "/system/bin/app_process64",
+        "-Xverify:all",
+        "-cp",
+        "/data/local/tmp/md-widget-method-7740f91572a64a568752d708e67d1de9/widget-method-probe.dex:/data/local/tmp/md-widget-method-7740f91572a64a568752d708e67d1de9/candidate.apk",
+        "/data/local/tmp/md-widget-method-7740f91572a64a568752d708e67d1de9",
+        "recovered.probe.WidgetMethodProbe"
+      ],
+      "returncode": 0,
+      "seconds": 1.935,
+      "host_timeout_seconds": 150,
+      "stdout": {
+        "path": "/workspace/scratch/4130730d15aa/widget-art-probe/hosted-run-38209599059/extracted/probe/045-execute-candidate.stdout.txt",
+        "bytes": 379,
+        "sha256": "5fefb35053ba679c1f0aecdac3c93094023d348310537ba2b2b11653cce9efd7"
+      },
+      "stderr": {
+        "path": "/workspace/scratch/4130730d15aa/widget-art-probe/hosted-run-38209599059/extracted/probe/045-execute-candidate.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cases": [
+        "fresh-empty-unit-identity",
+        "reused-label-zero-empty",
+        "resumed-label-two-empty",
+        "invalid-label-exact-exception",
+        "label-two-dead-cast-L7",
+        "label-two-dead-cast-L4",
+        "label-two-dead-cast-L1",
+        "null-list-exception-type"
+      ]
+    }
+  },
+  "apk_and_probe_inputs": {
+    "probe": {
+      "path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/work-in-progress/widget-art/04-avd-parser-fix/probes/widget-method-probe.dex",
+      "bytes": 7580,
+      "sha256": "79bd3b46e71253b17ec75099cce3611df1735b8f74e8bdcb61c61e5a37ae1a07",
+      "runtime_class_count": 1,
+      "runtime_class": "Lrecovered/probe/WidgetMethodProbe;",
+      "android_or_application_host_stub_definitions": 0,
+      "direct_android_or_application_type_references": 0,
+      "type_references": [
+        "I",
+        "Ldalvik/annotation/Signature;",
+        "Ldalvik/annotation/Throws;",
+        "Ljava/io/PrintStream;",
+        "Ljava/lang/AssertionError;",
+        "Ljava/lang/Class;",
+        "Ljava/lang/ClassCastException;",
+        "Ljava/lang/ClassLoader;",
+        "Ljava/lang/Exception;",
+        "Ljava/lang/IllegalStateException;",
+        "Ljava/lang/Integer;",
+        "Ljava/lang/NullPointerException;",
+        "Ljava/lang/Object;",
+        "Ljava/lang/String;",
+        "Ljava/lang/StringBuilder;",
+        "Ljava/lang/System;",
+        "Ljava/lang/Throwable;",
+        "Ljava/lang/reflect/Constructor;",
+        "Ljava/lang/reflect/Field;",
+        "Ljava/lang/reflect/InvocationTargetException;",
+        "Ljava/lang/reflect/Method;",
+        "Ljava/util/Collections;",
+        "Ljava/util/Iterator;",
+        "Ljava/util/List;",
+        "Lrecovered/probe/WidgetMethodProbe;",
+        "V",
+        "Z",
+        "[I",
+        "[Ljava/lang/Class;",
+        "[Ljava/lang/Object;",
+        "[Ljava/lang/String;"
+      ]
+    },
+    "original": {
+      "path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-original.apk",
+      "bytes": 95725918,
+      "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+    },
+    "candidate": {
+      "path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-widget-update-06.apk",
+      "bytes": 94683439,
+      "sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f"
+    },
+    "provenance": {
+      "path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/work-in-progress/widget-art/04-avd-parser-fix/probes/widget-method-probe.json",
+      "bytes": 3225,
+      "sha256": "31e7ebb8bebaa12210d1486b87b864e9ed7cf9771dde4488ffe435dd4e434901",
+      "content": {
+        "schema_version": 1,
+        "main_class": "recovered.probe.WidgetMethodProbe",
+        "probe": {
+          "path": "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/widget-method-probe.dex",
+          "bytes": 7580,
+          "sha256": "79bd3b46e71253b17ec75099cce3611df1735b8f74e8bdcb61c61e5a37ae1a07",
+          "runtime_class_count": 1,
+          "runtime_class": "Lrecovered/probe/WidgetMethodProbe;",
+          "android_or_application_host_stub_definitions": 0,
+          "direct_android_or_application_type_references": 0,
+          "compiler_metadata_type_references": [
+            "Ldalvik/annotation/Signature;",
+            "Ldalvik/annotation/Throws;"
+          ],
+          "typed_references": [
+            "Ldalvik/annotation/Signature;",
+            "Ldalvik/annotation/Throws;",
+            "Ljava/io/PrintStream;",
+            "Ljava/lang/AssertionError;",
+            "Ljava/lang/Class;",
+            "Ljava/lang/ClassCastException;",
+            "Ljava/lang/ClassLoader;",
+            "Ljava/lang/Exception;",
+            "Ljava/lang/IllegalStateException;",
+            "Ljava/lang/Integer;",
+            "Ljava/lang/NullPointerException;",
+            "Ljava/lang/Object;",
+            "Ljava/lang/String;",
+            "Ljava/lang/StringBuilder;",
+            "Ljava/lang/System;",
+            "Ljava/lang/Throwable;",
+            "Ljava/lang/reflect/Constructor;",
+            "Ljava/lang/reflect/Field;",
+            "Ljava/lang/reflect/InvocationTargetException;",
+            "Ljava/lang/reflect/Method;",
+            "Ljava/util/Collections;",
+            "Ljava/util/Iterator;",
+            "Ljava/util/List;",
+            "Lrecovered/probe/WidgetMethodProbe;"
+          ]
+        },
+        "apks": {
+          "original": {
+            "path": "/workspace/scratch/4130730d15aa/recovered/automation android app",
+            "bytes": 95725918,
+            "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+          },
+          "candidate": {
+            "path": "/tmp/macrodroid-widget-art-inputs-t0vfcjt_/candidate.apk",
+            "bytes": 94683439,
+            "sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f"
+          }
+        },
+        "target_method": "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;",
+        "original_method_sha256": "a1dd490bbfd6837fa72e6bf8ae4c75736612989fcba050fe2f0582aa03640e34",
+        "candidate_helper_sha256": "dbcb1a98d25ae4637531644da37d24f6e1bc494f941d4212da03c360fe315d79",
+        "runtime_cases": [
+          "fresh-empty-unit-identity",
+          "reused-label-zero-empty",
+          "resumed-label-two-empty",
+          "invalid-label-exact-exception",
+          "label-two-dead-cast-L7",
+          "label-two-dead-cast-L4",
+          "label-two-dead-cast-L1",
+          "null-list-exception-type"
+        ],
+        "expected_stdout_lines": [
+          "WIDGET_ART_CASE_OK fresh-empty-unit-identity",
+          "WIDGET_ART_CASE_OK reused-label-zero-empty",
+          "WIDGET_ART_CASE_OK resumed-label-two-empty",
+          "WIDGET_ART_CASE_OK invalid-label-exact-exception",
+          "WIDGET_ART_CASE_OK label-two-dead-cast-L7",
+          "WIDGET_ART_CASE_OK label-two-dead-cast-L4",
+          "WIDGET_ART_CASE_OK label-two-dead-cast-L1",
+          "WIDGET_ART_CASE_OK null-list-exception-type",
+          "WIDGET_METHOD_ART_OK cases=8"
+        ],
+        "scope": "Eight service-free entry/restoration/type-check paths using real APK classes; no nonempty-widget or rendering-path claim",
+        "android_runtime_executed_during_preparation": false
+      }
+    }
+  },
+  "binary_identities": {
+    "app-process": {
+      "path": "/system/bin/app_process64",
+      "sha256": "fa2d6ccaff829790163035d6e50d52137ad7eeb19a1e35a7249a8cae9b68ecb6"
+    },
+    "guest-timeout": {
+      "path": "/system/bin/timeout",
+      "sha256": "d3904ad603529c6d6e939dc03ef77a49feb52da257ede510641e31e01d4b4602"
+    }
+  },
+  "device_environment": {
+    "ro.kernel.qemu": "1",
+    "sys.boot_completed": "1",
+    "ro.build.version.sdk": "35",
+    "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.product.cpu.abilist": "x86_64,arm64-v8a",
+    "ro.dalvik.vm.native.bridge": "libndk_translation.so",
+    "dalvik.vm.extra-opts": ""
+  },
+  "before_after_device_input_identities_equal": true,
+  "guest_owned_cleanup_complete": true,
+  "service_cleanup": {
+    "probe_step_exit_code": "0",
+    "diagnostic_logcat_exit_code": "0",
+    "owned_stop_marker_exit_code": "0",
+    "bounded_service_wait_exit_code": "0",
+    "owned_service_exit_code": "0",
+    "scope": "STOP is written only to this job's newly created service queue; no unrelated device or process is stopped.",
+    "service_cleanup_confirmed": true
+  },
+  "finished_utc": "2026-10-12T05:53:03.213053+00:00"
+}

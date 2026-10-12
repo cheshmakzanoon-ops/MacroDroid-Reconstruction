@@ -1,0 +1,478 @@
+{
+  "schema": 1,
+  "reviewed_commit": "934c6543dce0897975f52457717b3a70bd27ce00",
+  "peer_frozen_checkpoint": {
+    "path": "/workspace/scratch/4130730d15aa/editor-session-review/checkpoints/01-read-only-guard-gaps/checkpoint.json",
+    "bytes": 6191,
+    "sha256": "6d60482fda212c3cd1d0d8f7aeefa0db138ca94e426de25aae80900d39233ad6"
+  },
+  "all_input_hashes_verified": true,
+  "positive_baseline": {
+    "schema": 1,
+    "status": "EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY",
+    "editor_session_equal": true,
+    "scope": "Observed home through empty-editor catalog navigation, AFTER onboarding only",
+    "scope_start": "home",
+    "scope_end": "editor-after-constraint-back",
+    "startup_parity_established": false,
+    "full_runtime_1_to_1_established": false,
+    "masks_used": false,
+    "macros_saved": false,
+    "macros_executed": false,
+    "screens": [
+      {
+        "name": "home",
+        "equal": true,
+        "changed_pixels": 0,
+        "hierarchy_equal": true,
+        "same_size": true,
+        "color_metadata_equal": true
+      },
+      {
+        "name": "empty-editor",
+        "equal": true,
+        "changed_pixels": 0,
+        "hierarchy_equal": true,
+        "same_size": true,
+        "color_metadata_equal": true
+      },
+      {
+        "name": "trigger-favourites-tip",
+        "equal": true,
+        "changed_pixels": 0,
+        "hierarchy_equal": true,
+        "same_size": true,
+        "color_metadata_equal": true
+      },
+      {
+        "name": "editor-after-favourites-tip",
+        "equal": true,
+        "changed_pixels": 0,
+        "hierarchy_equal": true,
+        "same_size": true,
+        "color_metadata_equal": true
+      },
+      {
+        "name": "trigger-catalog",
+        "equal": true,
+        "changed_pixels": 0,
+        "hierarchy_equal": true,
+        "same_size": true,
+        "color_metadata_equal": true
+      },
+      {
+        "name": "editor-after-trigger-back",
+        "equal": true,
+        "changed_pixels": 0,
+        "hierarchy_equal": true,
+        "same_size": true,
+        "color_metadata_equal": true
+      },
+      {
+        "name": "action-catalog",
+        "equal": true,
+        "changed_pixels": 0,
+        "hierarchy_equal": true,
+        "same_size": true,
+        "color_metadata_equal": true
+      },
+      {
+        "name": "editor-after-action-back",
+        "equal": true,
+        "changed_pixels": 0,
+        "hierarchy_equal": true,
+        "same_size": true,
+        "color_metadata_equal": true
+      },
+      {
+        "name": "constraint-catalog",
+        "equal": true,
+        "changed_pixels": 0,
+        "hierarchy_equal": true,
+        "same_size": true,
+        "color_metadata_equal": true
+      },
+      {
+        "name": "editor-after-constraint-back",
+        "equal": true,
+        "changed_pixels": 0,
+        "hierarchy_equal": true,
+        "same_size": true,
+        "color_metadata_equal": true
+      }
+    ],
+    "apk_sha256": [
+      "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+      "2222222222222222222222222222222222222222222222222222222222222222"
+    ]
+  },
+  "cases": [
+    {
+      "name": "endpoint-identity-reuse",
+      "report": {
+        "bytes": 145476,
+        "sha256": "d38aad2ed4c17f22aced90a481b87e9a447572043fecac4a154e860f04505592"
+      },
+      "peer_result": {
+        "bytes": 2501,
+        "sha256": "7e0d14c12e6692188312448c1cb716ed8f269fc0732efe3d9ebd9b51b4cfa795"
+      },
+      "reproduced_result": {
+        "schema": 1,
+        "status": "EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY",
+        "editor_session_equal": true,
+        "scope": "Observed home through empty-editor catalog navigation, AFTER onboarding only",
+        "scope_start": "home",
+        "scope_end": "editor-after-constraint-back",
+        "startup_parity_established": false,
+        "full_runtime_1_to_1_established": false,
+        "masks_used": false,
+        "macros_saved": false,
+        "macros_executed": false,
+        "screens": [
+          {
+            "name": "home",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "empty-editor",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "trigger-favourites-tip",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "editor-after-favourites-tip",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "trigger-catalog",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "editor-after-trigger-back",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "action-catalog",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "editor-after-action-back",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "constraint-catalog",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "editor-after-constraint-back",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          }
+        ],
+        "apk_sha256": [
+          "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+          "2222222222222222222222222222222222222222222222222222222222222222"
+        ]
+      },
+      "replayed_exactly": true,
+      "false_positive": true
+    },
+    {
+      "name": "preinput-evidence-reuse",
+      "report": {
+        "bytes": 145474,
+        "sha256": "c2caf20f473e717a1552d5fa8361cb7b346dca95643ca0d737ade3f44f5b5984"
+      },
+      "peer_result": {
+        "bytes": 2501,
+        "sha256": "7e0d14c12e6692188312448c1cb716ed8f269fc0732efe3d9ebd9b51b4cfa795"
+      },
+      "reproduced_result": {
+        "schema": 1,
+        "status": "EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY",
+        "editor_session_equal": true,
+        "scope": "Observed home through empty-editor catalog navigation, AFTER onboarding only",
+        "scope_start": "home",
+        "scope_end": "editor-after-constraint-back",
+        "startup_parity_established": false,
+        "full_runtime_1_to_1_established": false,
+        "masks_used": false,
+        "macros_saved": false,
+        "macros_executed": false,
+        "screens": [
+          {
+            "name": "home",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "empty-editor",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "trigger-favourites-tip",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "editor-after-favourites-tip",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "trigger-catalog",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "editor-after-trigger-back",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "action-catalog",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "editor-after-action-back",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "constraint-catalog",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "editor-after-constraint-back",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          }
+        ],
+        "apk_sha256": [
+          "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+          "2222222222222222222222222222222222222222222222222222222222222222"
+        ]
+      },
+      "replayed_exactly": true,
+      "false_positive": true
+    },
+    {
+      "name": "preinput-resolved-alias-reuse",
+      "report": {
+        "bytes": 145454,
+        "sha256": "8d4e05761cbe331ef05a9170ec431dd380f4eb4ffa878b9e121a0dc61463c169"
+      },
+      "peer_result": {
+        "bytes": 2501,
+        "sha256": "7e0d14c12e6692188312448c1cb716ed8f269fc0732efe3d9ebd9b51b4cfa795"
+      },
+      "reproduced_result": {
+        "schema": 1,
+        "status": "EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY",
+        "editor_session_equal": true,
+        "scope": "Observed home through empty-editor catalog navigation, AFTER onboarding only",
+        "scope_start": "home",
+        "scope_end": "editor-after-constraint-back",
+        "startup_parity_established": false,
+        "full_runtime_1_to_1_established": false,
+        "masks_used": false,
+        "macros_saved": false,
+        "macros_executed": false,
+        "screens": [
+          {
+            "name": "home",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "empty-editor",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "trigger-favourites-tip",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "editor-after-favourites-tip",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "trigger-catalog",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "editor-after-trigger-back",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "action-catalog",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "editor-after-action-back",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "constraint-catalog",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          },
+          {
+            "name": "editor-after-constraint-back",
+            "equal": true,
+            "changed_pixels": 0,
+            "hierarchy_equal": true,
+            "same_size": true,
+            "color_metadata_equal": true
+          }
+        ],
+        "apk_sha256": [
+          "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+          "2222222222222222222222222222222222222222222222222222222222222222"
+        ]
+      },
+      "replayed_exactly": true,
+      "false_positive": true
+    },
+    {
+      "name": "wrong-endpoint-digest-control",
+      "report": {
+        "bytes": 145490,
+        "sha256": "cbdf243e9de921e14390e4ded6b9011c6f0b57273a6569b6e29c52732dc48ef4"
+      },
+      "peer_result": {
+        "bytes": 482,
+        "sha256": "9bc7ccea661e97a45d72913f48e291dfd9adb8fbc05a3e5ee5b5f0d2380e77f5"
+      },
+      "reproduced_result": {
+        "schema": 1,
+        "status": "REJECTED",
+        "editor_session_equal": false,
+        "scope": "Observed home through empty-editor catalog navigation, AFTER onboarding only",
+        "scope_start": "home",
+        "scope_end": "editor-after-constraint-back",
+        "startup_parity_established": false,
+        "full_runtime_1_to_1_established": false,
+        "masks_used": false,
+        "macros_saved": false,
+        "macros_executed": false,
+        "screens": [],
+        "reason": "Session endpoint APK differs from the intended input"
+      },
+      "replayed_exactly": true,
+      "false_positive": false
+    }
+  ],
+  "android_executed": false,
+  "active_files_modified": false,
+  "full_runtime_1_to_1_established": false
+}

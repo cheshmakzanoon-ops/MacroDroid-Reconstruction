@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "status": "FOUR_DISTINCT_FILE_GAPS_REPRODUCED_AND_REJECTED",
+  "baseline_commit": "47458097056fd023bad8b47b6464978b0d02e85c",
+  "baseline_source": {
+    "bytes": 13226,
+    "sha256": "1191dedd5d233b14ad89c4978ef7f8c52ee2d0c47cc8650d21f79685f8a1b7d2"
+  },
+  "proposed_sources": {
+    "post_onboarding.py": {
+      "bytes": 16983,
+      "sha256": "da3bd4da63d5077da23cfef65adc30215ed88e62a2becd43fd7e149ff616c3c9"
+    },
+    "test_post_onboarding.py": {
+      "bytes": 20348,
+      "sha256": "26adb51f346064d932b5a3042c284cc22406455f2620f822432219393e364604"
+    },
+    "session_evidence.py": {
+      "bytes": 3692,
+      "sha256": "b092700f6caa5db41919d878a18208a692bf9b6566c447d1bfddcd914dbadda8"
+    },
+    "test_session_evidence.py": {
+      "bytes": 5844,
+      "sha256": "efde20d3eff026ae90e3fc27de1ae27a0a4572ae20d86cb58af18acdaab2c404"
+    }
+  },
+  "cases": [
+    {
+      "name": "final-identity-before-final-input",
+      "baseline_external474_accepted": true,
+      "baseline_proposed_accepted": true,
+      "external474_after": "EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY",
+      "external474_after_equal": true,
+      "proposed_after": "REJECTED",
+      "proposed_reason": "Session endpoint command precedes its captured observation",
+      "distinct_observation_files_verified": 294,
+      "synthetic_artifact_archive": {
+        "bytes": 105454,
+        "sha256": "84a12f586dd6b5e5d0fa81ddb78e20d4ca96f887ba3c69278cbf3773b8e8da26"
+      },
+      "synthetic_artifact_members": 578
+    },
+    {
+      "name": "distinct-final-capture-before-final-input",
+      "baseline_external474_accepted": true,
+      "baseline_proposed_accepted": true,
+      "external474_after": "EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY",
+      "external474_after_equal": true,
+      "proposed_after": "REJECTED",
+      "proposed_reason": "Session result capture began before its input finished",
+      "distinct_observation_files_verified": 294,
+      "synthetic_artifact_archive": {
+        "bytes": 105454,
+        "sha256": "84a12f586dd6b5e5d0fa81ddb78e20d4ca96f887ba3c69278cbf3773b8e8da26"
+      },
+      "synthetic_artifact_members": 578
+    },
+    {
+      "name": "later-input-before-earlier-input",
+      "baseline_external474_accepted": true,
+      "baseline_proposed_accepted": true,
+      "external474_after": "EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY",
+      "external474_after_equal": true,
+      "proposed_after": "REJECTED",
+      "proposed_reason": "Session input acquisition precedes the previous boundary or input",
+      "distinct_observation_files_verified": 294,
+      "synthetic_artifact_archive": {
+        "bytes": 105454,
+        "sha256": "84a12f586dd6b5e5d0fa81ddb78e20d4ca96f887ba3c69278cbf3773b8e8da26"
+      },
+      "synthetic_artifact_members": 578
+    },
+    {
+      "name": "final-endpoint-component-changed",
+      "baseline_external474_accepted": true,
+      "baseline_proposed_accepted": true,
+      "external474_after": "EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY",
+      "external474_after_equal": true,
+      "proposed_after": "REJECTED",
+      "proposed_reason": "Session endpoint differs from its captured foreground component",
+      "distinct_observation_files_verified": 294,
+      "synthetic_artifact_archive": {
+        "bytes": 105669,
+        "sha256": "28d57c2c5422d900db5399f6cc60af1d4e976c4a216add3414a4dd0109d90825"
+      },
+      "synthetic_artifact_members": 579
+    },
+    {
+      "name": "wrong-installed-hash-control",
+      "baseline_external474_accepted": true,
+      "baseline_proposed_accepted": true,
+      "external474_after": "REJECTED",
+      "external474_after_equal": false,
+      "proposed_after": "REJECTED",
+      "proposed_reason": "Session endpoint APK differs from the intended input",
+      "distinct_observation_files_verified": 294,
+      "synthetic_artifact_archive": {
+        "bytes": 105622,
+        "sha256": "61f5145fa035d811026ca4e9a07d4d7031839000131c6cac8a106273d5d67f7b"
+      },
+      "synthetic_artifact_members": 579
+    }
+  ],
+  "android_executed": false,
+  "active_repository_modified": false,
+  "file_identity_ledger_relaxed": false,
+  "full_runtime_1_to_1_established": false,
+  "scope": "Synthetic recorded-evidence checks; distinct files alone do not establish chronology or endpoint component continuity."
+}

@@ -1,0 +1,46 @@
+{
+  "checkpoint_sha256": "8aa91588f809c8dc7bfbf88aaf6d96a130fd72502f10076e94043c6e23dc23af",
+  "exact_source_files_verified": 93,
+  "prior_two_terminal_false_positives_rejected": true,
+  "android_executed": false,
+  "active_or_frozen_source_modified": false,
+  "results": [
+    {
+      "length": 10,
+      "fault": "stale-terminal",
+      "baseline_accepted": true,
+      "mutated_accepted": false,
+      "status": "REJECTED",
+      "reason": "Accepted acquisition ledger reused by another observation",
+      "full_runtime_1_to_1_established": false
+    },
+    {
+      "length": 12,
+      "fault": "stale-terminal",
+      "baseline_accepted": true,
+      "mutated_accepted": false,
+      "status": "REJECTED",
+      "reason": "Accepted acquisition ledger reused by another observation",
+      "full_runtime_1_to_1_established": false
+    },
+    {
+      "length": 10,
+      "fault": "hardlink-preinput",
+      "baseline_accepted": true,
+      "mutated_accepted": true,
+      "status": "EXACT_OBSERVED_DIALOG_JOURNEY_MATCH_ONLY",
+      "reason": null,
+      "full_runtime_1_to_1_established": false
+    },
+    {
+      "length": 12,
+      "fault": "hardlink-preinput",
+      "baseline_accepted": true,
+      "mutated_accepted": true,
+      "status": "EXACT_TRIGGER_CATEGORY_OBSERVATION_ONLY",
+      "reason": null,
+      "full_runtime_1_to_1_established": false
+    }
+  ],
+  "hardlink_metadata_required_for_hardlink_replay": true
+}

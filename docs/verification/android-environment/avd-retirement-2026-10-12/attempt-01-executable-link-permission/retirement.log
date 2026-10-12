@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/tooling-validation/avd-retirement-2026-10-12/retire_closed_avd.py", line 174, in <module>
+    main()
+  File "/workspace/scratch/4130730d15aa/tooling-validation/avd-retirement-2026-10-12/retire_closed_avd.py", line 121, in main
+    first_guard = proc_guard()
+                  ^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/tooling-validation/avd-retirement-2026-10-12/retire_closed_avd.py", line 50, in proc_guard
+    executable = os.readlink(directory / 'exe')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/proc/1/exe'

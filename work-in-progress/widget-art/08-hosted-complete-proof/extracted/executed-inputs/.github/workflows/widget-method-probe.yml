@@ -1,0 +1,229 @@
+name: Independent original and candidate Widget ART method probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/widget-method-probe.yml'
+      - 'work-in-progress/widget-art/04-avd-parser-fix/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: widget-method-probe-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  widget-method-probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out the exact reviewed inputs
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+
+      - name: Verify the frozen probe, runtime tools and two APK manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir ci-widget-method
+          python3 - <<'PY' 2>&1 | tee ci-widget-method/input-preflight.log
+          import hashlib, json, os
+          from pathlib import Path, PurePosixPath
+          root = Path(os.environ['GITHUB_WORKSPACE']).resolve()
+          output = Path('ci-widget-method')
+          probe = 'work-in-progress/widget-art/04-avd-parser-fix'
+          pins = {
+              'scripts/assemble_artifact.py': 'f85a570f864ec2481dd75783b82006129755194c941b54e193c893b7ee17e97c',
+              'tools/android/bootstrap_android_runtime.py': '8ae2a365cc5ec5109c76967642d6ee7f6655df96287cf8feb3355444e14e4e36',
+              'tools/android/android-toolchain-pins.json': '3ce2078cb52f540fd86ffdccf8577535662fee1c5274f13bcf01d8d15e3bd8b2',
+              'tools/android/android_runtime_service.py': '3ac1047b8ff41aba79d1ef335e8eed260067d696460bf8322195631f09dfec57',
+              'tools/android/runtime_job.py': '7babd7ebcc35e531b6b0fea9167b3436ff738e43bf0f869b44534573cb849bc8',
+              'tools/android/wait_android_ready.py': '72cb3bcd56df72cd901ee724c48a44b0254235e1d7cdda6c991b985e572f34af',
+              'tools/android/test_download_retry.py': 'bd5d871951fbf1e5f7aa3093c8c155b1c599d84ae008b90e1eda53bf3a60948a',
+              'vendor/original/manifest.json': 'b2f12b669ac0e937198216458410aaab03da6682659d6d922c730a175b77d684',
+              'work-in-progress/widget-update/06-initial-signed-failure/apk/manifest.json': 'e0735120e642c1f0ca849a52c3f0f5127c93313457e39d854fad480bc8ef112c',
+              probe + '/checkpoint.json': '3f1126ec9ee00af1f8b2ca3bcbdb36cbfee1545b229a5cb29705d7bfee3e35dc',
+          }
+          report = {'scope': 'Exact prepared inputs only; no Android execution in preflight',
+                    'github_sha': os.environ.get('GITHUB_SHA'), 'passed': False, 'files': []}
+          def verify(name, expected, expected_bytes=None):
+              rel = PurePosixPath(name)
+              if rel.is_absolute() or '..' in rel.parts or '\\' in name:
+                  raise RuntimeError('Unsafe pinned input path')
+              path = root / name
+              if path.is_symlink() or not path.is_file() or not path.resolve().is_relative_to(root):
+                  raise RuntimeError('Missing or unsafe pinned file: ' + name)
+              data = path.read_bytes()
+              actual = hashlib.sha256(data).hexdigest()
+              item = {'path': name, 'bytes': len(data), 'sha256': actual, 'expected_sha256': expected}
+              report['files'].append(item)
+              if actual != expected or expected_bytes is not None and len(data) != expected_bytes:
+                  raise RuntimeError('Pinned input identity changed: ' + name)
+              target = output / 'executed-inputs' / name
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_bytes(data)
+          try:
+              for name, expected in pins.items():
+                  verify(name, expected)
+              checkpoint = json.loads((root / probe / 'checkpoint.json').read_text())
+              if len(checkpoint['files']) != 8 or len({x['path'] for x in checkpoint['files']}) != 8:
+                  raise RuntimeError('Reviewed 8-file corrected probe package required')
+              for item in checkpoint['files']:
+                  verify(probe + '/' + item['path'], item['sha256'], item['bytes'])
+              expected_apks = {
+                  'vendor/original/manifest.json': ('MacroDroid-5.67.8-original.apk', 95725918, '84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800'),
+                  'work-in-progress/widget-update/06-initial-signed-failure/apk/manifest.json': ('MacroDroid-5.67.8-widget-update-06.apk', 94683439, 'b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f'),
+              }
+              for name, expected in expected_apks.items():
+                  value = json.loads((root / name).read_text())
+                  if (value['filename'], value['size_bytes'], value['sha256']) != expected:
+                      raise RuntimeError('Wrong original or inactive Widget artifact')
+              workflow = root / '.github/workflows/widget-method-probe.yml'
+              verify('.github/workflows/widget-method-probe.yml', hashlib.sha256(workflow.read_bytes()).hexdigest())
+              report['passed'] = True
+          except Exception as error:
+              report['error'] = type(error).__name__ + ': ' + str(error)
+              raise
+          finally:
+              (output / 'input-preflight.json').write_text(json.dumps(report, indent=2) + '\n')
+              print(json.dumps(report, indent=2))
+          PY
+
+      - name: Run the current downloader controls and all 31 packaged wrapper controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tools/android -p 'test_download_retry.py' -v 2>&1 | tee ci-widget-method/download-tests.log
+          export WIDGET_PROBE_CONTROL_EVIDENCE="$GITHUB_WORKSPACE/ci-widget-method/host-control-evidence"
+          python3 -m unittest discover -s work-in-progress/widget-art/04-avd-parser-fix -p 'test_android_widget_method_probe.py' -v 2>&1 | tee ci-widget-method/wrapper-tests.log
+
+      - name: Materialize only the original and inactive Widget APKs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/assemble_artifact.py vendor/original/manifest.json 2>&1 | tee ci-widget-method/materialize-original.log
+          python3 scripts/assemble_artifact.py work-in-progress/widget-update/06-initial-signed-failure/apk/manifest.json 2>&1 | tee ci-widget-method/materialize-widget.log
+
+      - name: Install the checksum-pinned disposable Android runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          if test -e "$RUNNER_TEMP/macrodroid-widget-tooling"; then
+            echo 'Refusing to reuse an existing Widget runtime directory' | tee ci-widget-method/bootstrap.log
+            exit 1
+          fi
+          python3 tools/android/bootstrap_android_runtime.py --root "$RUNNER_TEMP/macrodroid-widget-tooling" --create-avd 2>&1 | tee ci-widget-method/bootstrap.log
+          python3 - <<'PY' 2>&1 | tee ci-widget-method/toolchain-metadata.log
+          import hashlib, json, os
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP']) / 'macrodroid-widget-tooling'
+          output = Path('ci-widget-method/toolchain')
+          output.mkdir()
+          metadata = ['jdk21/release', 'android/platform-tools/source.properties',
+              'android/emulator/source.properties',
+              'android/system-images/android-35/google_apis/x86_64/source.properties',
+              'android/system-images/android-35/google_apis/x86_64/build.prop',
+              'android-user/avd/MacroDroid_API35_Disposable.ini',
+              'android-user/avd/MacroDroid_API35_Disposable.avd/config.ini']
+          binaries = ['jdk21/bin/java', 'jdk21/bin/javac', 'android/platform-tools/adb',
+              'android/emulator/emulator', 'android/emulator/qemu/linux-x86_64/qemu-system-x86_64-headless']
+          rows = []
+          for name in metadata + binaries:
+              path = root / name
+              with path.open('rb') as stream:
+                  digest = hashlib.file_digest(stream, 'sha256').hexdigest()
+              rows.append({'path': name, 'bytes': path.stat().st_size, 'sha256': digest})
+              if name in metadata:
+                  target = output / name
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  target.write_bytes(path.read_bytes())
+          (output / 'installed-inputs.json').write_text(json.dumps(rows, indent=2) + '\n')
+          print(json.dumps(rows, indent=2))
+          PY
+
+      - name: Run both exact APKs through the independent Widget method probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          exec > >(tee ci-widget-method/runtime-driver.log) 2>&1
+          if ! test -c /dev/kvm; then
+            echo 'The disposable KVM device is unavailable'
+            exit 1
+          fi
+          sudo setfacl -m "u:$(id -un):rw" /dev/kvm
+          mkdir ci-widget-method/environment
+          python3 -u tools/android/android_runtime_service.py \
+            --tooling "$RUNNER_TEMP/macrodroid-widget-tooling" \
+            --evidence ci-widget-method/environment \
+            --avd MacroDroid_API35_Disposable --port 5560 --acceleration on \
+            > ci-widget-method/service.log 2>&1 &
+          widget_service_pid=$!
+          cleanup_widget_runtime() {
+            widget_step_status=$?
+            trap - EXIT INT TERM
+            set +e
+            timeout 30s "$RUNNER_TEMP/macrodroid-widget-tooling/android/platform-tools/adb" \
+              -s emulator-5560 logcat -d -b crash -b events -v threadtime \
+              > ci-widget-method/lifecycle.log 2>&1
+            widget_logcat_status=$?
+            mkdir -p ci-widget-method/environment/queue
+            touch ci-widget-method/environment/queue/STOP
+            widget_stop_status=$?
+            timeout 60s tail --pid="$widget_service_pid" -f /dev/null
+            widget_wait_status=$?
+            widget_service_status=unobserved
+            if test "$widget_wait_status" -eq 0; then
+              wait "$widget_service_pid"
+              widget_service_status=$?
+            fi
+            python3 - "$widget_step_status" "$widget_logcat_status" "$widget_stop_status" \
+              "$widget_wait_status" "$widget_service_status" <<'PY'
+          import json, sys
+          from pathlib import Path
+          names = ['probe_step_exit_code', 'diagnostic_logcat_exit_code', 'owned_stop_marker_exit_code',
+                   'bounded_service_wait_exit_code', 'owned_service_exit_code']
+          result = dict(zip(names, sys.argv[1:]))
+          result['scope'] = 'STOP is written only to this job\'s newly created service queue; no unrelated device or process is stopped.'
+          result['service_cleanup_confirmed'] = sys.argv[3:] == ['0', '0', '0']
+          Path('ci-widget-method/runtime-cleanup.json').write_text(json.dumps(result, indent=2) + '\n')
+          print(json.dumps(result, indent=2))
+          PY
+            widget_cleanup_record_status=$?
+            if test "$widget_step_status" -eq 0 && { test "$widget_stop_status" -ne 0 || test "$widget_wait_status" -ne 0 || test "$widget_service_status" != 0 || test "$widget_cleanup_record_status" -ne 0; }; then
+              widget_step_status=1
+            fi
+            exit "$widget_step_status"
+          }
+          trap cleanup_widget_runtime EXIT
+          trap 'exit 130' INT
+          trap 'exit 143' TERM
+          printf '%s\n' "$widget_service_pid" > ci-widget-method/owned-service-pid.txt
+          python3 tools/android/wait_android_ready.py --evidence ci-widget-method/environment --timeout 900 \
+            2>&1 | tee ci-widget-method/readiness.log
+          python3 tools/android/runtime_job.py --queue ci-widget-method/environment/queue \
+            --id widget-method-art --timeout 720 -- \
+            python3 "$GITHUB_WORKSPACE/work-in-progress/widget-art/04-avd-parser-fix/android_widget_method_probe.py" \
+              --adb "$RUNNER_TEMP/macrodroid-widget-tooling/android/platform-tools/adb" \
+              --serial emulator-5560 --avd MacroDroid_API35_Disposable \
+              --original "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-original.apk" \
+              --candidate "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-widget-update-06.apk" \
+              --probe "$GITHUB_WORKSPACE/work-in-progress/widget-art/04-avd-parser-fix/probes/widget-method-probe.dex" \
+              --provenance "$GITHUB_WORKSPACE/work-in-progress/widget-art/04-avd-parser-fix/probes/widget-method-probe.json" \
+              --output "$GITHUB_WORKSPACE/ci-widget-method/probe" --timeout 120 \
+            2>&1 | tee ci-widget-method/runtime-job.log
+
+      - name: Preserve complete probe, toolchain, host-control and environment evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: widget-method-probe-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          path: ci-widget-method/
+          include-hidden-files: true

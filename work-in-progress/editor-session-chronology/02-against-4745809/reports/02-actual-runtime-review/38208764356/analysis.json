@@ -1,0 +1,483 @@
+{
+  "run_id": 38208764356,
+  "head_sha": "47458097056fd023bad8b47b6464978b0d02e85c",
+  "workflow_conclusion": "failure",
+  "archive_repository_path": "docs/verification/editor-journey/run-38208764356-attempt-1/evidence.zip",
+  "archive": {
+    "bytes": 7835649,
+    "sha256": "a1ab0fe1f622e591eba1d41b80297b9593abcad76963ef5c46097a499aa1c72f"
+  },
+  "verified_member_count": 1408,
+  "verified_member_bytes": 14374352,
+  "journey": {
+    "bytes": 434475,
+    "sha256": "85e2eb9802e37423e5881a909fce08ee5725aa6c1ce94ec743687fbda463f223"
+  },
+  "runs": [
+    {
+      "label": "original",
+      "status": "FAILED",
+      "current_step": "reference-promotion",
+      "reason": "Device command failed: ['pidof', 'com.arlosoft.macrodroid']",
+      "screen_names": [
+        "intro-1",
+        "intro-2",
+        "intro-3",
+        "intro-4",
+        "notification-request"
+      ],
+      "transition_targets": [
+        "intro-2",
+        "intro-3",
+        "intro-4",
+        "notification-request",
+        "reference-promotion"
+      ],
+      "environment_after_present": false,
+      "session_observation_count": 0
+    },
+    {
+      "label": "candidate",
+      "status": "COMPLETE",
+      "current_step": "editor-after-constraint-back",
+      "reason": null,
+      "screen_names": [
+        "intro-1",
+        "intro-2",
+        "intro-3",
+        "intro-4",
+        "notification-request",
+        "reference-promotion",
+        "home",
+        "empty-editor",
+        "trigger-favourites-tip",
+        "editor-after-favourites-tip",
+        "trigger-catalog",
+        "editor-after-trigger-back",
+        "action-catalog",
+        "editor-after-action-back",
+        "constraint-catalog",
+        "editor-after-constraint-back"
+      ],
+      "transition_targets": [
+        "intro-2",
+        "intro-3",
+        "intro-4",
+        "notification-request",
+        "reference-promotion",
+        "home",
+        "empty-editor",
+        "trigger-favourites-tip",
+        "editor-after-favourites-tip",
+        "trigger-catalog",
+        "editor-after-trigger-back",
+        "action-catalog",
+        "editor-after-action-back",
+        "constraint-catalog",
+        "editor-after-constraint-back"
+      ],
+      "environment_after_present": true,
+      "session_observation_count": 0
+    }
+  ],
+  "historical_session_result": {
+    "schema": 2,
+    "status": "REJECTED",
+    "editor_session_equal": false,
+    "scope": "Observed home through empty-editor catalog navigation, AFTER onboarding only",
+    "scope_start": "home",
+    "scope_end": "editor-after-constraint-back",
+    "startup_parity_established": false,
+    "full_runtime_1_to_1_established": false,
+    "masks_used": false,
+    "macros_saved": false,
+    "macros_executed": false,
+    "screens": [],
+    "reason": "Incomplete run or changed environment"
+  },
+  "unchanged_continuous_startup_result": {
+    "status": "REJECTED",
+    "journey_equal": false,
+    "full_runtime_1_to_1_established": false,
+    "scope": "Fresh install, notification denial, home and empty-editor catalog navigation only",
+    "screens": [],
+    "masks_used": false,
+    "android_runtime_executed": false,
+    "macros_executed": false,
+    "macros_saved": false,
+    "reason": "Incomplete run or changed environment"
+  },
+  "replays": {
+    "external474": {
+      "schema": 2,
+      "status": "REJECTED",
+      "editor_session_equal": false,
+      "scope": "Observed home through empty-editor catalog navigation, AFTER onboarding only",
+      "scope_start": "home",
+      "scope_end": "editor-after-constraint-back",
+      "startup_parity_established": false,
+      "full_runtime_1_to_1_established": false,
+      "masks_used": false,
+      "macros_saved": false,
+      "macros_executed": false,
+      "screens": [],
+      "reason": "Incomplete run or changed environment"
+    },
+    "proposed": {
+      "schema": 3,
+      "status": "REJECTED",
+      "editor_session_equal": false,
+      "evidence_policy": "Ordered captures, inputs and endpoints with the retained external session evidence ledger",
+      "scope": "Observed home through empty-editor catalog navigation, AFTER onboarding only",
+      "scope_start": "home",
+      "scope_end": "editor-after-constraint-back",
+      "startup_parity_established": false,
+      "full_runtime_1_to_1_established": false,
+      "masks_used": false,
+      "macros_saved": false,
+      "macros_executed": false,
+      "screens": [],
+      "reason": "Incomplete run or changed environment"
+    }
+  },
+  "independent_full_frame_pairs": [
+    {
+      "name": "intro-1",
+      "changed_full_rgba_pixels": 0,
+      "full_xml_bytes_equal": true,
+      "original": {
+        "pid_first": {
+          "path": "original-intro-1-acquisition-1-pid-first.txt",
+          "bytes": 5,
+          "sha256": "3830ce403d6f7f93776df43198ebf1695c028bea4462c0510a6099d325d6780a"
+        },
+        "foreground": {
+          "path": "original-intro-1-acquisition-1-foreground.txt",
+          "bytes": 30604,
+          "sha256": "d662ae2c8380f9ac0485cb3a64ce8a579949bf7574cce942495749c1be266732"
+        },
+        "hierarchy": {
+          "path": "original-intro-1-acquisition-1.xml",
+          "bytes": 5939,
+          "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+        },
+        "screenshot": {
+          "path": "original-intro-1-acquisition-1.png",
+          "bytes": 83895,
+          "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+        },
+        "pid_final": {
+          "path": "original-intro-1-acquisition-1-pid-final.txt",
+          "bytes": 5,
+          "sha256": "3830ce403d6f7f93776df43198ebf1695c028bea4462c0510a6099d325d6780a"
+        }
+      },
+      "candidate": {
+        "pid_first": {
+          "path": "candidate-intro-1-acquisition-1-pid-first.txt",
+          "bytes": 5,
+          "sha256": "88e63a9aee784d8714423ebd30cb103c9464902c514ee9c99ab063f8c4a67529"
+        },
+        "foreground": {
+          "path": "candidate-intro-1-acquisition-1-foreground.txt",
+          "bytes": 31370,
+          "sha256": "a44fb37c8ec6e0a483adf4043a8c6c46a60083982111ee8ad2dc4629c4e740d2"
+        },
+        "hierarchy": {
+          "path": "candidate-intro-1-acquisition-1.xml",
+          "bytes": 5939,
+          "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+        },
+        "screenshot": {
+          "path": "candidate-intro-1-acquisition-1.png",
+          "bytes": 83895,
+          "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+        },
+        "pid_final": {
+          "path": "candidate-intro-1-acquisition-1-pid-final.txt",
+          "bytes": 5,
+          "sha256": "88e63a9aee784d8714423ebd30cb103c9464902c514ee9c99ab063f8c4a67529"
+        }
+      }
+    },
+    {
+      "name": "intro-2",
+      "changed_full_rgba_pixels": 26,
+      "full_xml_bytes_equal": true,
+      "original": {
+        "pid_first": {
+          "path": "original-intro-2-acquisition-1-pid-first.txt",
+          "bytes": 5,
+          "sha256": "3830ce403d6f7f93776df43198ebf1695c028bea4462c0510a6099d325d6780a"
+        },
+        "foreground": {
+          "path": "original-intro-2-acquisition-1-foreground.txt",
+          "bytes": 30869,
+          "sha256": "f9dd63cf9507c19e61e2f01ba710edaf4018de79e6d7e6b80d72b12ea8d83092"
+        },
+        "hierarchy": {
+          "path": "original-intro-2-acquisition-1.xml",
+          "bytes": 6689,
+          "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+        },
+        "screenshot": {
+          "path": "original-intro-2-acquisition-1.png",
+          "bytes": 75316,
+          "sha256": "6e98d2ba0e7d3bd76b15f3e9f6de6ab698f763caa6d89f43672d00a75067a845"
+        },
+        "pid_final": {
+          "path": "original-intro-2-acquisition-1-pid-final.txt",
+          "bytes": 5,
+          "sha256": "3830ce403d6f7f93776df43198ebf1695c028bea4462c0510a6099d325d6780a"
+        }
+      },
+      "candidate": {
+        "pid_first": {
+          "path": "candidate-intro-2-acquisition-1-pid-first.txt",
+          "bytes": 5,
+          "sha256": "88e63a9aee784d8714423ebd30cb103c9464902c514ee9c99ab063f8c4a67529"
+        },
+        "foreground": {
+          "path": "candidate-intro-2-acquisition-1-foreground.txt",
+          "bytes": 31374,
+          "sha256": "c7183c535260b6e8b3a505ba0773b4a59137256e4bdb7b2bb60fca5a1d9b114c"
+        },
+        "hierarchy": {
+          "path": "candidate-intro-2-acquisition-1.xml",
+          "bytes": 6689,
+          "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+        },
+        "screenshot": {
+          "path": "candidate-intro-2-acquisition-1.png",
+          "bytes": 75367,
+          "sha256": "d3dd1a3b8560b47569be67cac2bc98c37ec4f453dd520af6f48224c53d94c65b"
+        },
+        "pid_final": {
+          "path": "candidate-intro-2-acquisition-1-pid-final.txt",
+          "bytes": 5,
+          "sha256": "88e63a9aee784d8714423ebd30cb103c9464902c514ee9c99ab063f8c4a67529"
+        }
+      }
+    },
+    {
+      "name": "intro-3",
+      "changed_full_rgba_pixels": 0,
+      "full_xml_bytes_equal": true,
+      "original": {
+        "pid_first": {
+          "path": "original-intro-3-acquisition-1-pid-first.txt",
+          "bytes": 5,
+          "sha256": "3830ce403d6f7f93776df43198ebf1695c028bea4462c0510a6099d325d6780a"
+        },
+        "foreground": {
+          "path": "original-intro-3-acquisition-1-foreground.txt",
+          "bytes": 31128,
+          "sha256": "73460bd1ecd8c2c30ad91d86fa0cd324de2a0b4dea739047d34dfcc85b04f71e"
+        },
+        "hierarchy": {
+          "path": "original-intro-3-acquisition-1.xml",
+          "bytes": 6685,
+          "sha256": "0d213e7057f57c885997ea2da8840c982d8f1e6b7a266adadb1c33ff894f9fe9"
+        },
+        "screenshot": {
+          "path": "original-intro-3-acquisition-1.png",
+          "bytes": 79359,
+          "sha256": "b3410bed78ab5591cc3ed8797eb7e62d050f1aae4ce64d8762981f73bfe839f8"
+        },
+        "pid_final": {
+          "path": "original-intro-3-acquisition-1-pid-final.txt",
+          "bytes": 5,
+          "sha256": "3830ce403d6f7f93776df43198ebf1695c028bea4462c0510a6099d325d6780a"
+        }
+      },
+      "candidate": {
+        "pid_first": {
+          "path": "candidate-intro-3-acquisition-1-pid-first.txt",
+          "bytes": 5,
+          "sha256": "88e63a9aee784d8714423ebd30cb103c9464902c514ee9c99ab063f8c4a67529"
+        },
+        "foreground": {
+          "path": "candidate-intro-3-acquisition-1-foreground.txt",
+          "bytes": 31371,
+          "sha256": "e057c73fae3b92cc40799362ab715892a0760f74ba6bc60decd1390e7d761274"
+        },
+        "hierarchy": {
+          "path": "candidate-intro-3-acquisition-1.xml",
+          "bytes": 6685,
+          "sha256": "0d213e7057f57c885997ea2da8840c982d8f1e6b7a266adadb1c33ff894f9fe9"
+        },
+        "screenshot": {
+          "path": "candidate-intro-3-acquisition-1.png",
+          "bytes": 79359,
+          "sha256": "b3410bed78ab5591cc3ed8797eb7e62d050f1aae4ce64d8762981f73bfe839f8"
+        },
+        "pid_final": {
+          "path": "candidate-intro-3-acquisition-1-pid-final.txt",
+          "bytes": 5,
+          "sha256": "88e63a9aee784d8714423ebd30cb103c9464902c514ee9c99ab063f8c4a67529"
+        }
+      }
+    },
+    {
+      "name": "intro-4",
+      "changed_full_rgba_pixels": 0,
+      "full_xml_bytes_equal": true,
+      "original": {
+        "pid_first": {
+          "path": "original-intro-4-acquisition-1-pid-first.txt",
+          "bytes": 5,
+          "sha256": "3830ce403d6f7f93776df43198ebf1695c028bea4462c0510a6099d325d6780a"
+        },
+        "foreground": {
+          "path": "original-intro-4-acquisition-1-foreground.txt",
+          "bytes": 31386,
+          "sha256": "f26f7e08add9ed5c2d9470d2f9007f2d1024d1e1807c9b1ae03eb78f9c13d9fd"
+        },
+        "hierarchy": {
+          "path": "original-intro-4-acquisition-1.xml",
+          "bytes": 6682,
+          "sha256": "f05632a504ab0a6aab8608de15b95bc4f41f2bb9212879026f14927bea5af89b"
+        },
+        "screenshot": {
+          "path": "original-intro-4-acquisition-1.png",
+          "bytes": 70512,
+          "sha256": "35c1bea0a4aa3cdadbb47903c5fea87f980d5b99bb0ff97322deb845b5b25971"
+        },
+        "pid_final": {
+          "path": "original-intro-4-acquisition-1-pid-final.txt",
+          "bytes": 5,
+          "sha256": "3830ce403d6f7f93776df43198ebf1695c028bea4462c0510a6099d325d6780a"
+        }
+      },
+      "candidate": {
+        "pid_first": {
+          "path": "candidate-intro-4-acquisition-1-pid-first.txt",
+          "bytes": 5,
+          "sha256": "88e63a9aee784d8714423ebd30cb103c9464902c514ee9c99ab063f8c4a67529"
+        },
+        "foreground": {
+          "path": "candidate-intro-4-acquisition-1-foreground.txt",
+          "bytes": 31372,
+          "sha256": "930e0163259014867a62664b0a8734a5bc2e48acfbfab30877daa0bae50d1f03"
+        },
+        "hierarchy": {
+          "path": "candidate-intro-4-acquisition-1.xml",
+          "bytes": 6682,
+          "sha256": "f05632a504ab0a6aab8608de15b95bc4f41f2bb9212879026f14927bea5af89b"
+        },
+        "screenshot": {
+          "path": "candidate-intro-4-acquisition-1.png",
+          "bytes": 70512,
+          "sha256": "35c1bea0a4aa3cdadbb47903c5fea87f980d5b99bb0ff97322deb845b5b25971"
+        },
+        "pid_final": {
+          "path": "candidate-intro-4-acquisition-1-pid-final.txt",
+          "bytes": 5,
+          "sha256": "88e63a9aee784d8714423ebd30cb103c9464902c514ee9c99ab063f8c4a67529"
+        }
+      }
+    },
+    {
+      "name": "notification-request",
+      "changed_full_rgba_pixels": 0,
+      "full_xml_bytes_equal": true,
+      "original": {
+        "pid_first": {
+          "path": "original-notification-request-acquisition-1-pid-first.txt",
+          "bytes": 5,
+          "sha256": "3830ce403d6f7f93776df43198ebf1695c028bea4462c0510a6099d325d6780a"
+        },
+        "foreground": {
+          "path": "original-notification-request-acquisition-1-foreground.txt",
+          "bytes": 42172,
+          "sha256": "6a28ae2151696a5e2b58869dfc55923bc317225f90eaa2b74f97e36f44bd55fb"
+        },
+        "hierarchy": {
+          "path": "original-notification-request-acquisition-1.xml",
+          "bytes": 5071,
+          "sha256": "e76b1770090c9aa8d0c3458c9664bbb3d50e020f62585183fcd6fd085bc39772"
+        },
+        "screenshot": {
+          "path": "original-notification-request-acquisition-1.png",
+          "bytes": 70017,
+          "sha256": "9142bae1c48456abcb24bf3aab61231fa1d2578baed37d19161c77d4a9ae1a1a"
+        },
+        "pid_final": {
+          "path": "original-notification-request-acquisition-1-pid-final.txt",
+          "bytes": 5,
+          "sha256": "3830ce403d6f7f93776df43198ebf1695c028bea4462c0510a6099d325d6780a"
+        }
+      },
+      "candidate": {
+        "pid_first": {
+          "path": "candidate-notification-request-acquisition-1-pid-first.txt",
+          "bytes": 5,
+          "sha256": "88e63a9aee784d8714423ebd30cb103c9464902c514ee9c99ab063f8c4a67529"
+        },
+        "foreground": {
+          "path": "candidate-notification-request-acquisition-1-foreground.txt",
+          "bytes": 42193,
+          "sha256": "13f07e4b4c8d0301307bb1421e5cb9f6c03838a7141d9fab68621d2464cafab0"
+        },
+        "hierarchy": {
+          "path": "candidate-notification-request-acquisition-1.xml",
+          "bytes": 5071,
+          "sha256": "e76b1770090c9aa8d0c3458c9664bbb3d50e020f62585183fcd6fd085bc39772"
+        },
+        "screenshot": {
+          "path": "candidate-notification-request-acquisition-1.png",
+          "bytes": 70017,
+          "sha256": "9142bae1c48456abcb24bf3aab61231fa1d2578baed37d19161c77d4a9ae1a1a"
+        },
+        "pid_final": {
+          "path": "candidate-notification-request-acquisition-1-pid-final.txt",
+          "bytes": 5,
+          "sha256": "88e63a9aee784d8714423ebd30cb103c9464902c514ee9c99ab063f8c4a67529"
+        }
+      }
+    }
+  ],
+  "failed_pid_commands": [
+    {
+      "command": {
+        "argv": [
+          "shell",
+          "pidof com.arlosoft.macrodroid"
+        ],
+        "returncode": 1,
+        "timed_out": false,
+        "started_utc": "2026-10-12T05:42:08.794838+00:00",
+        "started_monotonic": 295.867100431,
+        "finished_monotonic": 295.919517827,
+        "timeout_seconds": 120,
+        "stdout": {
+          "path": "command-00127.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "command-00127.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "stdout_empty": true,
+      "stderr_empty": true
+    }
+  ],
+  "preserved_logs": [
+    {
+      "path": "ci-editor/lifecycle.log",
+      "bytes": 468163,
+      "sha256": "606eaa88138b9d49b41a564b88ca30c80b1fdaa79e4da15354bfd326da399484"
+    },
+    {
+      "path": "ci-editor/host-tests.log",
+      "bytes": 16847,
+      "sha256": "c3ccfee34a154aeb54d4df942765364dd67bb600ddf2c2ea55d4055e6fc606f1"
+    }
+  ],
+  "new_android_execution_performed": false,
+  "new_chronology_policy_passed": false,
+  "full_runtime_1_to_1_established": false
+}

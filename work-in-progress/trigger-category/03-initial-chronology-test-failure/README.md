@@ -1,0 +1,7 @@
+# Inactive Date/Time trigger observation
+
+The new capture chronology and unique-artifact guard rejected the two stale-terminal cases and passed the genuine ten/twelve synthetic sequences. The full 117-test host run reported one failure and one follow-on error: the unsafe parent-path alias was already rejected by the earlier confinement guard, while the test incorrectly expected the later global-reuse error message; that assertion prevented an in-loop context cleanup and caused the following subtest to enter a nested adapter context. These are preserved test-harness failures. All other tests passed, with no source changes during execution and no Android run. The subsequent checkpoint will correct the assertion/cleanup while keeping the exact production chronology guard unchanged.
+
+The proposal adds one observed trigger-add tap and one observed Date/Time category tap after the existing ten-screen sequence. It stops on the next app surface without selecting a trigger or saving or executing a macro. Full-frame, process, APK, artifact and freshness checks remain required. No Android run or active workflow change is included in this checkpoint.
+
+For private replay, copy `replay-source/` into a new directory and copy the two historical `docs/verification/editor-journey/.../evidence.zip` dependencies from the repository. Their exact paths and checksums are recorded in `preparation.json` and `reports/inputs-before.json`. Run `python3 -B -m unittest discover -s tools/parity_journeys -p "test_*.py" -v` there.

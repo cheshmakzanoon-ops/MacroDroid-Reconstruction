@@ -1,0 +1,179 @@
+{
+  "status": "ORIGINAL_JVM_GATE_FAILED",
+  "started_utc": "2026-10-12T06:00:45.937503+00:00",
+  "scope": "Original/JVM one-method proof only, reusing byte-verified compiled host inputs; no APK build or Android execution.",
+  "project_read_only": "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9",
+  "private_work": "/tmp/macrodroid-video-study-64hrjm0w",
+  "registered": false,
+  "android_executed": false,
+  "rebuilt_dex_compared": false,
+  "commands": [
+    {
+      "label": "compile-extractor",
+      "argv": [
+        "javac",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "-d",
+        "/tmp/macrodroid-video-study-64hrjm0w/toolclasses",
+        "/tmp/macrodroid-video-study-64hrjm0w/inputs/tools/src/ExtractOracle.java"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 300,
+      "seconds": 2.438468,
+      "stdout": {
+        "path": "compile-extractor.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compile-extractor.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "compile-harness",
+      "argv": [
+        "javac",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-host-23wavrcl/classes",
+        "-d",
+        "/tmp/macrodroid-video-study-64hrjm0w/harnessclasses",
+        "/tmp/macrodroid-video-study-64hrjm0w/inputs/tests/java/BytecodeOracle.java",
+        "/tmp/macrodroid-video-study-64hrjm0w/inputs/tests/java/ParityTests.java",
+        "/tmp/macrodroid-video-study-64hrjm0w/inputs/tests/java/UiParityTests.java",
+        "/tmp/macrodroid-video-study-64hrjm0w/inputs/tests/java/SceneParityCases.java",
+        "/tmp/macrodroid-video-study-64hrjm0w/inputs/tests/java/PluginParityCases.java",
+        "/tmp/macrodroid-video-study-64hrjm0w/inputs/tests/java/PluginUploadParityCases.java",
+        "/tmp/macrodroid-video-study-64hrjm0w/inputs/tests/java/WidgetParityCases.java",
+        "/tmp/macrodroid-video-study-64hrjm0w/inputs/tests/java/VideoParityCases.java",
+        "/tmp/macrodroid-video-study-64hrjm0w/inputs/tests/java/VideoParityStudy.java"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 300,
+      "seconds": 4.190843,
+      "stdout": {
+        "path": "compile-harness.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compile-harness.stderr.txt",
+        "sha256": "2b7a4a3582609b9266064d9fa8b71c938ae538ccc43bfcff7c60d72683e9c1b3"
+      }
+    },
+    {
+      "label": "extract-original",
+      "argv": [
+        "java",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-study-64hrjm0w/toolclasses",
+        "ExtractOracle",
+        "/tmp/macrodroid-video-study-64hrjm0w/fixture-project",
+        "/workspace/scratch/4130730d15aa/recovered/automation android app"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 300,
+      "seconds": 2.501056,
+      "stdout": {
+        "path": "extract-original.stdout.txt",
+        "sha256": "1af734a99250876685484357dccf26e45ded0120047a3659d7aebaddfb3c4961"
+      },
+      "stderr": {
+        "path": "extract-original.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "original-jvm",
+      "argv": [
+        "java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-study-64hrjm0w/harnessclasses:/tmp/macrodroid-video-host-23wavrcl/classes",
+        "VideoParityStudy",
+        "/tmp/macrodroid-video-study-64hrjm0w/inputs/proposed-method-entry.json",
+        "/tmp/macrodroid-video-study-64hrjm0w/fixture-project/tests/fixtures/original-methods.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/original-jvm-03-initial/parity.json"
+      ],
+      "returncode": 2,
+      "timeout_seconds": 300,
+      "seconds": 3.049327,
+      "stdout": {
+        "path": "original-jvm.stdout.txt",
+        "sha256": "d100bd630e685d76cd4f2326a5a6b20d3b29d0d65e8d6544de36f2089a783830"
+      },
+      "stderr": {
+        "path": "original-jvm.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "host_compilation": {
+    "result": "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/draft-compile-02/result.json",
+    "result_sha256": "c8e7d62188712f4bbf5d03e49da9eab7802bac85885e19ecd0542e6136835235",
+    "compiled_classes": 881,
+    "archive_sha256": "2640337a908f4abde2e243231d6f19b6e3de7a90088528cd710884dd2fd9fd71",
+    "every_class_file_byte_verified": true,
+    "every_host_source_unchanged": true
+  },
+  "original_apk": {
+    "path": "/workspace/scratch/4130730d15aa/recovered/automation android app",
+    "bytes": 95725918,
+    "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+  },
+  "tool_jar": {
+    "path": "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+    "bytes": 80076986,
+    "sha256": "354b10af74c09f5d2ab139def4231f0906dc6cc75738b1057e5a8263a412848e"
+  },
+  "original_fixture": {
+    "path": "original-video-monitor.dex",
+    "bytes": 4552,
+    "sha256": "940aee4861d9bd52951ccc835e91a917bb56748b4eaad5deb8a0fa1c7d2c3254"
+  },
+  "passed": false,
+  "parity": {
+    "passed": false,
+    "cases": 1014,
+    "failedCases": 0,
+    "unsupportedExecutions": 0,
+    "independentExpectedResultChecks": 126,
+    "expectedResultFailures": 0,
+    "originalOnlyBoundaryDiscoveryExecutions": 11,
+    "methodsCovered": 1,
+    "methodKeys": [
+      "Lcom/arlosoft/macrodroid/action/services/a;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;"
+    ],
+    "paths": 2,
+    "androidRuntime": false,
+    "rebuiltDexCompared": false,
+    "registeredInActiveProject": false,
+    "instructionCoverage": {
+      "instructions": 262,
+      "visited": 259,
+      "unvisitedOffsets": [
+        232,
+        233,
+        235
+      ],
+      "conditionalEdges": 46,
+      "conditionalEdgesVisited": 46,
+      "unvisitedConditionalEdges": []
+    },
+    "fullInstructionAndConditionalCoverage": false,
+    "hostParentConstructorAdapters": {},
+    "hostParentConstructorAdapterCalls": {},
+    "noConstructorOwnerAdapterUsed": true,
+    "invalidLabelDefensiveReturnUsesOneInjectedReturningBoundary": true,
+    "exceptionMessageScope": "Only VM-generated escaped cast/null wording is excluded with raw messages retained. Injected and external exception identities/messages and all logged text remain exact.",
+    "scope": "Bounded selected original method/JVM comparison with controlled File/storage/logging/coroutine boundaries; no filesystem operation, scheduler, Android service, APK build or Android execution"
+  },
+  "compiled_harness_archive": {
+    "path": "compiled-harness-and-toolclasses.tar.gz",
+    "bytes": 138144,
+    "sha256": "1eae068c6263570e5c960f5c3622f6cc1fab2c20a6f583bba48e5246a0ac9935"
+  },
+  "copied_inputs_unchanged": true,
+  "finished_utc": "2026-10-12T06:00:59.406531+00:00"
+}
