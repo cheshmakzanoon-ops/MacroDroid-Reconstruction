@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "status": "EXACT_READINESS_DEVICE_ARTIFACT_REPLAYED",
+  "analysis_passed": true,
+  "run_id": 38230072388,
+  "artifact_id": 11739145683,
+  "head_sha": "e1ade015f938339479216a1a91518e556902fce8",
+  "started_utc": "2026-10-12T09:44:39.214736+00:00",
+  "new_android_actions": [],
+  "full_runtime_1_to_1_established": false,
+  "crash_free_run_established": false,
+  "masks_or_pixel_tolerance_used": false,
+  "raw_archive": {
+    "bytes": 44543663,
+    "sha256": "c8f0af87e5d91efe2dfc49b8ca76acc1a0943b2a2b8e17ffe279892726d2c80f"
+  },
+  "literal_verifier_reproduced_except_replay_timestamp": true,
+  "exact_captured_comparison_object_reproduced": true,
+  "literal_evidence_valid": true,
+  "literal_status": "DAY_TIME_READINESS_THIRTEEN_SCREEN_DIFFERENCE",
+  "literal_comparison_status": "JOURNEY_DIFFERENCE",
+  "journey_equal": false,
+  "independently_reconstructed_input_copy_roles": 252,
+  "recorded_runs": [
+    {
+      "label": "original",
+      "status": "COMPLETE",
+      "screens": 13,
+      "transitions": 12,
+      "current_step": "after-day-time-trigger",
+      "reason": null
+    },
+    {
+      "label": "candidate",
+      "status": "COMPLETE",
+      "screens": 13,
+      "transitions": 12,
+      "current_step": "after-day-time-trigger",
+      "reason": null
+    }
+  ],
+  "available_paired_screen_count": 13,
+  "diagnostic_rgba_pixel_vector": [
+    0,
+    26,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "accepted_snapshot_ledgers_independently_verified": 50,
+  "capture_ledgers": 50,
+  "recorded_frame_observations": 100,
+  "unique_referenced_journey_artifacts_checked": 2744,
+  "all_raw_commands_retained": 1021,
+  "readiness_phase_count": 2,
+  "host_test_summaries": [
+    {
+      "path": "journey-host-tests.log",
+      "bytes": 28597,
+      "sha256": "bfee47f18e3168796c5587a0611bc060d2eb93b05830befe39e78ad0fafe5603",
+      "tests": 166,
+      "individual_successes": 166,
+      "seconds": 60.098
+    },
+    {
+      "path": "animation-host-tests.log",
+      "bytes": 1867,
+      "sha256": "f70d8311c0bf42d1f0eaa225494cbf67a846867d9ddda88d46201c993a432b05",
+      "tests": 10,
+      "individual_successes": 10,
+      "seconds": 0.191
+    },
+    {
+      "path": "download-tests.log",
+      "bytes": 1174,
+      "sha256": "e41f646603430948b6f8c888892e7e31e35b7b82c4fdcf910f15326a905a8245",
+      "tests": 6,
+      "individual_successes": 6,
+      "seconds": 0.006
+    }
+  ],
+  "source_pins": {
+    ".github/workflows/editor-day-time-readiness.yml": "56808b331ec8995c5ebf82a5a55972dfa75c078233247543a5f526f2f0949930",
+    "work-in-progress/notification-readiness-workflow/01-thirteen-screen/prepare_trigger_journey.py": "7c9bcd22d8a14463766bb053e87d56167581052a9f91d7005e2cd85f7a002195",
+    "work-in-progress/notification-readiness-workflow/01-thirteen-screen/verify_trigger_journey.py": "99f365ff58605f1f768ee9ac1715a1a47f280b4a06a18ad549bd71d03191486c"
+  },
+  "trigger_configuration_confirmed": false,
+  "private_replay_directory_removed": true,
+  "raw_files_verified_before_and_after": 3258,
+  "raw_archive_and_all_files_unchanged": true,
+  "fixed_apks_unchanged": true,
+  "unexecuted_raw_bytecode_omitted_only_from_private_views": [],
+  "private_apk_transport": [
+    {
+      "source": "/workspace/scratch/4130730d15aa/recovered/automation android app",
+      "private_role": "root/workspace/artifacts/MacroDroid-5.67.8-original.apk",
+      "transport": "private-byte-copy",
+      "bytes": 95725918,
+      "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+    },
+    {
+      "source": "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/dist/MacroDroid-5.67.8-v9-hybrid.apk",
+      "private_role": "root/workspace/artifacts/MacroDroid-5.67.8-combined-plugin-widget-hybrid.apk",
+      "transport": "private-byte-copy",
+      "bytes": 94683119,
+      "sha256": "5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182"
+    }
+  ],
+  "finished_utc": "2026-10-12T09:48:01.868196+00:00"
+}

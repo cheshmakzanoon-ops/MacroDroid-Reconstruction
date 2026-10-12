@@ -1,0 +1,71 @@
+--- published/prepare_standard_capsules.py
++++ prepare_closed_runtime_publication.py
+@@ -14,6 +14,7 @@
+ a.tree.mkdir(exist_ok=False)
+ a.export.mkdir(exist_ok=False)
+ names, prefixes, checks, baselines = set(), [], {}, {}
++readme_activated = False
+ 
+ def sha(raw):
+     return hashlib.sha256(raw).hexdigest()
+@@ -26,9 +27,9 @@
+ def git(*args):
+     return subprocess.check_output(['git', '--git-dir=' + str(a.git_dir), *args])
+ 
+-def staged(source, name):
++def staged(source, name, active=False):
+     name = safe(name)
+-    assert name.startswith(('docs/', 'work-in-progress/')) and name not in names
++    assert (name.startswith(('docs/', 'work-in-progress/')) or (active and name == 'README.md')) and name not in names
+     before = source.lstat()
+     assert stat.S_ISREG(before.st_mode) and stat.S_IMODE(before.st_mode) in (0o644, 0o755)
+     target = a.tree / name
+@@ -49,7 +50,13 @@
+     raw = (source / 'checkpoint.json').read_bytes()
+     assert sha(raw) == item['checkpoint_sha256']
+     cp = json.loads(raw)
+-    assert not cp.get('active_files') and not cp.get('active_changes') and not cp.get('android_executed_here')
++    activate = item.get('activate_readme') is True
++    assert not cp.get('active_changes') and not cp.get('android_executed_here')
++    if activate:
++        assert item['checkpoint_sha256'] == '29a2d7983b2672f8880ae7b8d934528413fc356de4b54e92b0dc520ae1c1dad7'
++        assert not readme_activated and len(cp['active_files']) == 1
++    else:
++        assert not cp.get('active_files')
+     assert len(cp['files']) == len({safe(r['path']) for r in cp['files']}) == item['files']
+     for row in cp['files']:
+         path = source / row['path']
+@@ -60,11 +67,24 @@
+             assert type(mode) is int and stat.S_IMODE(path.lstat().st_mode) == mode
+         staged(path, prefix + '/' + row['path'])
+     staged(source / 'checkpoint.json', prefix + '/checkpoint.json')
++    if activate:
++        row = cp['active_files'][0]
++        assert row['path'] == row['source'] == 'README.md' and row['mode'] == '100644'
++        before = git('show', parent + ':README.md')
++        assert row['baseline'] == {'bytes': len(before), 'sha256': sha(before)}
++        assert sha(before) == '3ae619d100d212572703ec51feae2e23fd70e35a8e301e361141e2cee63cc209'
++        raw = (source / row['source']).read_bytes()
++        assert row['candidate'] == {'bytes': len(raw), 'sha256': sha(raw)}
++        assert sha(raw) == '5cb418202d6cf6898e29e61ebb29d3c0971022d62b4c1d9e1209213324074c63'
++        baselines['README.md'] = sha(before)
++        staged(source / row['source'], row['path'], active=True)
++        readme_activated = True
+     prefixes.append(prefix)
+     checks[prefix] = dict(checkpoint_sha256=item['checkpoint_sha256'], files=item['files'],
+                           bytes=sum(r['bytes'] for r in cp['files']), exact_bytes_and_modes_verified=True)
++assert readme_activated
+ ops = cfg['operations_prefix']
+-staged(Path(__file__), ops + '/prepare_standard_capsules.py')
++staged(Path(__file__), ops + '/prepare_closed_runtime_publication.py')
+ staged(a.configuration, ops + '/configuration.json')
+ for row in cfg.get('operations', []):
+     source = Path(row['source'])
+@@ -118,6 +138,6 @@
+ prepared = dict(parent=parent, paths=len(manifest), bytes=sum(r['size_bytes'] for r in manifest),
+                 text_chunks=len(chunks), baselines=baselines, checks=checks,
+                 new_unique_blobs=len({r['git_blob_sha1'] for r in blobs if not r['known']}),
+-                active_source_apk_or_workflow_changed=False)
++                active_source_apk_or_workflow_changed=False, reviewed_root_readme_updated=readme_activated)
+ (a.export / 'preparation.json').write_text(json.dumps(prepared, indent=2) + '\n')
+ print(json.dumps(prepared))

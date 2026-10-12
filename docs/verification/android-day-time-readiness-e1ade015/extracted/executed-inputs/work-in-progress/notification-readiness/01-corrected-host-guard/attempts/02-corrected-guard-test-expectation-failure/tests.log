@@ -1,0 +1,34 @@
+test_absence_then_first_contiguous_home_sequence_is_retained_and_replayed (test_notification_readiness.ReadinessControls.test_absence_then_first_contiguous_home_sequence_is_retained_and_replayed) ... ok
+test_observation_limit_and_time_budget_fail_with_all_attempts_preserved (test_notification_readiness.ReadinessControls.test_observation_limit_and_time_budget_fail_with_all_attempts_preserved) ... ok
+test_permission_missing_second_pid_and_pid_change_reset_ready_sequence (test_notification_readiness.ReadinessControls.test_permission_missing_second_pid_and_pid_change_reset_ready_sequence) ... ok
+test_pid_errors_multivalue_empty_success_stderr_and_timeout_remain_failed (test_notification_readiness.ReadinessControls.test_pid_errors_multivalue_empty_success_stderr_and_timeout_remain_failed) ... ok
+test_post_input_wait_and_exact_boundary_are_required (test_notification_readiness.ReadinessControls.test_post_input_wait_and_exact_boundary_are_required) ... ok
+test_pre_start_timeout_allocation_is_not_inferred_from_a_later_timestamp (test_notification_readiness.ReadinessControls.test_pre_start_timeout_allocation_is_not_inferred_from_a_later_timestamp) ... ok
+test_raw_output_tampering_is_detected_and_rehashed_wrong_output_still_fails (test_notification_readiness.ReadinessControls.test_raw_output_tampering_is_detected_and_rehashed_wrong_output_still_fails) ... ok
+test_rehashed_phase_state_order_deadline_and_first_sequence_mutations_fail (test_notification_readiness.ReadinessControls.test_rehashed_phase_state_order_deadline_and_first_sequence_mutations_fail) ... ok
+test_same_process_home_path_has_no_required_crash_or_restart (test_notification_readiness.ReadinessControls.test_same_process_home_path_has_no_required_crash_or_restart) ... ok
+test_unknown_ambiguous_and_failed_foreground_stop_without_extra_commands (test_notification_readiness.ReadinessControls.test_unknown_ambiguous_and_failed_foreground_stop_without_extra_commands) ... ok
+test_wrapper_duration_cannot_replace_the_raw_pid_command_span (test_notification_readiness.ReadinessControls.test_wrapper_duration_cannot_replace_the_raw_pid_command_span) ... ok
+test_complete_synthetic_pair_requires_readiness_and_keeps_thirteen_screen_scope (test_notification_readiness.ReadinessReportControls.test_complete_synthetic_pair_requires_readiness_and_keeps_thirteen_screen_scope) ... ok
+test_extra_readiness_evidence_outside_the_declared_transition_is_rejected (test_notification_readiness.ReadinessReportControls.test_extra_readiness_evidence_outside_the_declared_transition_is_rejected) ... FAIL
+test_failed_semantic_or_process_frame_still_rejects_the_complete_report (test_notification_readiness.ReadinessReportControls.test_failed_semantic_or_process_frame_still_rejects_the_complete_report) ... ok
+test_missing_denial_input_in_an_otherwise_ordered_ledger_is_rejected (test_notification_readiness.ReadinessReportControls.test_missing_denial_input_in_an_otherwise_ordered_ledger_is_rejected) ... ok
+test_missing_duplicate_changed_or_interleaved_global_command_is_rejected (test_notification_readiness.ReadinessReportControls.test_missing_duplicate_changed_or_interleaved_global_command_is_rejected) ... ok
+test_missing_policy_missing_phase_and_schema_downgrade_fail (test_notification_readiness.ReadinessReportControls.test_missing_policy_missing_phase_and_schema_downgrade_fail) ... ok
+test_moving_a_complete_readiness_block_in_the_global_ledger_is_rejected (test_notification_readiness.ReadinessReportControls.test_moving_a_complete_readiness_block_in_the_global_ledger_is_rejected) ... ok
+test_older_schema_unchanged_and_mixed_new_evidence_rejected (test_notification_readiness.ReadinessReportControls.test_older_schema_unchanged_and_mixed_new_evidence_rejected) ... ok
+test_rehashed_readiness_output_cannot_alias_another_evidence_file (test_notification_readiness.ReadinessReportControls.test_rehashed_readiness_output_cannot_alias_another_evidence_file) ... ok
+test_wrong_boundary_run_pid_and_pre_capture_timing_fail (test_notification_readiness.ReadinessReportControls.test_wrong_boundary_run_pid_and_pre_capture_timing_fail) ... ok
+
+======================================================================
+FAIL: test_extra_readiness_evidence_outside_the_declared_transition_is_rejected (test_notification_readiness.ReadinessReportControls.test_extra_readiness_evidence_outside_the_declared_transition_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/macrodroid-notification-readiness/stage-02/repository/tools/parity_journeys/test_notification_readiness.py", line 358, in test_extra_readiness_evidence_outside_the_declared_transition_is_rejected
+    self.assertIn('misplaced notification readiness evidence', result['reason'])
+AssertionError: 'misplaced notification readiness evidence' not found in 'Selected snapshot differs from its final full-frame observation'
+
+----------------------------------------------------------------------
+Ran 21 tests in 18.163s
+
+FAILED (failures=1)

@@ -24,28 +24,38 @@ and restarts. These measured outcomes retain their separate acceptance scopes.
 
 ## Latest trigger-navigation observations
 
-The [twelve-screen trigger-catalog comparison](docs/verification/android-trigger-category-6331410/)
-completed both runs with the exact active APK and reference APK at animation
-scale zero. All UI hierarchy pairs and eleven complete screenshot pairs match;
-the second introduction screen retains a five-pixel difference. That run remains
-a failed exact comparison.
+The completed [thirteen-screen readiness observation](docs/verification/android-day-time-readiness-e1ade015/)
+at commit `e1ade015` reached all thirteen screens with both fixed APKs. The
+[independent replay](docs/verification/android-day-time-readiness-e1ade015/analysis/)
+reproduced the complete recorded verdict and comparison: all thirteen UI
+hierarchies and twelve full screenshot pairs are byte-identical, while the second
+introduction screen has **26 different pixels**, all inside the observed page
+indicator. The exact comparison therefore remains failed. Both runs reach the
+same exact-alarm permission explanation after the Day/Time trigger tap; neither
+run presses its OK button or confirms a trigger configuration.
 
-The [thirteen-screen Day/Time observation](docs/verification/android-day-time-trigger-e610d98/analysis/)
-then recorded five matching paired screens before the original run failed at the
-notification-result boundary with an absent main PID. The candidate completed
-all thirteen screens and reached an exact-alarm permission explanation. That
-candidate-only terminal observation does not establish a paired match or a
-configured trigger.
+Both bounded notification-readiness phases passed their actual raw command and
+chronology checks before full-frame capture. Both runs also preserve the known
+Fragment exception, replacement process and observed continuation, so a crash-free
+run is not established. The replay verified all 3,258 raw artifact files, 252
+prepared input roles, 50 accepted snapshot ledgers and 100 frame observations.
+All 166 journey, six downloader and ten animation host tests passed in this job.
+No pixel region was masked and no mismatch tolerance was applied.
+
+The earlier [twelve-screen trigger-catalog comparison](docs/verification/android-trigger-category-6331410/)
+completed both runs at animation scale zero with a five-pixel second-introduction
+difference. The earlier [thirteen-screen Day/Time observation](docs/verification/android-day-time-trigger-e610d98/analysis/)
+recorded five matching pairs before the original run failed at the
+notification-result boundary with an absent main PID; only its candidate reached
+all thirteen screens. These historical outcomes remain unchanged.
 
 The [corrected notification-readiness guard](work-in-progress/notification-readiness/01-corrected-host-guard/)
 preserves both initial counterexamples and their corrections. Its 21 focused
-tests pass, and its exact historical replays preserve both device outcomes above.
-The [separate thirteen-screen readiness workflow](work-in-progress/notification-readiness-workflow/01-thirteen-screen/)
-also passed all 166 packaged journey tests, six downloader tests, ten animation
-tests, and 55 actual offline commands with their required outcomes. It adds a
-bounded read-only process/foreground phase before the existing full-frame
-capture. Its fresh Android result must be assessed separately; no historical
-difference, crash, or incomplete run is converted into a pass.
+tests and exact historical replays pass. The
+[separate readiness workflow](work-in-progress/notification-readiness-workflow/01-thirteen-screen/)
+passed its 55 offline validation commands before the completed Android execution
+above. Source acceptance, evidence completeness, process behavior and exact pixel
+equality retain their separately recorded results.
 
 ## Get the working source
 
