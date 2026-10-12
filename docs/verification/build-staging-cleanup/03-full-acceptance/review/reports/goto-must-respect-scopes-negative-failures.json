@@ -1,0 +1,1064 @@
+{
+  "pass": false,
+  "paths": 3,
+  "methodsCovered": 1,
+  "methodKeys": [
+    "Lcom/arlosoft/macrodroid/macro/Macro;->invokeActions(Ljava/util/List;ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V"
+  ],
+  "methodsExpected": 12,
+  "scope": "Original selected DEX / recovered Java / rebuilt DEX, with controlled Android/action/store/clock/thread boundaries; not Android runtime",
+  "selection": "dispatch",
+  "cases": 743,
+  "expectedChecks": 435,
+  "failures": 2,
+  "unsupportedExecutions": 0,
+  "methods": {
+    "Lcom/arlosoft/macrodroid/macro/Macro;->invokeActions(Ljava/util/List;ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V": 743
+  },
+  "examples": [
+    {
+      "case": "goto-cannot-enter-if",
+      "original": {
+        "value": null,
+        "error": null,
+        "trace": [
+          "m.start",
+          "loopGuard.new:0",
+          "debug.check:51",
+          "m.engineEnabled",
+          "goto.macro",
+          "goto.setMacroAction",
+          "m.setContext:context",
+          "goto.constraints:context",
+          "m.logAction:goto:0:context",
+          "goto.destination",
+          "goto.label",
+          "if.label",
+          "target.label",
+          "log.debug:51:Goto: label 'target' is at a different nesting level",
+          "debug.check:51",
+          "m.engineEnabled",
+          "if.macro",
+          "if.setMacroAction",
+          "m.setContext:context",
+          "if.enabled",
+          "if.enabled",
+          "m.logAction:if:1:context",
+          "if.constraintsDetailed:true:context",
+          "target.enabled",
+          "target.enabled",
+          "debug.check:51",
+          "m.engineEnabled",
+          "after.macro",
+          "after.setMacroAction",
+          "m.setContext:context",
+          "after.constraints:context",
+          "m.logAction:after:4:context",
+          "debug.check:51",
+          "after.invokeWithPermission:context",
+          "m.terminate"
+        ],
+        "state": [
+          [
+            [
+              "m",
+              1,
+              1,
+              0,
+              1,
+              false,
+              false,
+              true,
+              "null",
+              "context",
+              false
+            ]
+          ],
+          [
+            [
+              "goto",
+              0,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "if",
+              0,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "target",
+              0,
+              0,
+              true,
+              "null",
+              []
+            ],
+            [
+              "end",
+              0,
+              0,
+              true,
+              "null",
+              []
+            ],
+            [
+              "after",
+              1,
+              0,
+              true,
+              "m",
+              []
+            ]
+          ],
+          "[]",
+          null,
+          [
+            "after"
+          ],
+          [],
+          {},
+          {},
+          true,
+          false,
+          0,
+          1000000000,
+          false
+        ]
+      },
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->invokeActions(Ljava/util/List;ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V",
+      "rebuilt": {
+        "value": null,
+        "error": null,
+        "trace": [
+          "m.start",
+          "loopGuard.new:0",
+          "debug.check:51",
+          "m.engineEnabled",
+          "goto.macro",
+          "goto.setMacroAction",
+          "m.setContext:context",
+          "goto.constraints:context",
+          "m.logAction:goto:0:context",
+          "goto.destination",
+          "goto.label",
+          "if.label",
+          "target.label",
+          "log.debug:51:Goto: label 'target' is at a different nesting level",
+          "debug.check:51",
+          "m.engineEnabled",
+          "if.macro",
+          "if.setMacroAction",
+          "m.setContext:context",
+          "if.enabled",
+          "if.enabled",
+          "m.logAction:if:1:context",
+          "if.constraintsDetailed:true:context",
+          "target.enabled",
+          "target.enabled",
+          "debug.check:51",
+          "m.engineEnabled",
+          "after.macro",
+          "after.setMacroAction",
+          "m.setContext:context",
+          "after.constraints:context",
+          "m.logAction:after:4:context",
+          "debug.check:51",
+          "after.invokeWithPermission:context",
+          "m.terminate"
+        ],
+        "state": [
+          [
+            [
+              "m",
+              1,
+              1,
+              0,
+              1,
+              false,
+              false,
+              true,
+              "null",
+              "context",
+              false
+            ]
+          ],
+          [
+            [
+              "goto",
+              0,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "if",
+              0,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "target",
+              0,
+              0,
+              true,
+              "null",
+              []
+            ],
+            [
+              "end",
+              0,
+              0,
+              true,
+              "null",
+              []
+            ],
+            [
+              "after",
+              1,
+              0,
+              true,
+              "m",
+              []
+            ]
+          ],
+          "[]",
+          null,
+          [
+            "after"
+          ],
+          [],
+          {},
+          {},
+          true,
+          false,
+          0,
+          1000000000,
+          false
+        ]
+      },
+      "java": {
+        "value": null,
+        "error": null,
+        "trace": [
+          "m.start",
+          "loopGuard.new:0",
+          "debug.check:51",
+          "m.engineEnabled",
+          "goto.macro",
+          "goto.setMacroAction",
+          "m.setContext:context",
+          "goto.constraints:context",
+          "m.logAction:goto:0:context",
+          "goto.destination",
+          "goto.label",
+          "if.label",
+          "target.label",
+          "debug.check:51",
+          "m.engineEnabled",
+          "target.macro",
+          "target.setMacroAction",
+          "m.setContext:context",
+          "target.constraints:context",
+          "m.logAction:target:2:context",
+          "debug.check:51",
+          "target.invokeWithPermission:context",
+          "debug.check:51",
+          "m.engineEnabled",
+          "end.macro",
+          "end.setMacroAction",
+          "m.setContext:context",
+          "end.constraints:context",
+          "if.enabled",
+          "debug.check:51",
+          "m.engineEnabled",
+          "after.macro",
+          "after.setMacroAction",
+          "m.setContext:context",
+          "after.constraints:context",
+          "m.logAction:after:4:context",
+          "debug.check:51",
+          "after.invokeWithPermission:context",
+          "m.terminate"
+        ],
+        "state": [
+          [
+            [
+              "m",
+              1,
+              1,
+              0,
+              1,
+              false,
+              false,
+              true,
+              "null",
+              "context",
+              false
+            ]
+          ],
+          [
+            [
+              "goto",
+              0,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "if",
+              0,
+              0,
+              true,
+              "null",
+              []
+            ],
+            [
+              "target",
+              1,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "end",
+              0,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "after",
+              1,
+              0,
+              true,
+              "m",
+              []
+            ]
+          ],
+          "[]",
+          null,
+          [
+            "target",
+            "after"
+          ],
+          [],
+          {},
+          {},
+          true,
+          false,
+          0,
+          1000000000,
+          false
+        ],
+        "expectedFailure": "expected effects [after], got [target, after], error=null"
+      }
+    },
+    {
+      "case": "goto-cannot-cross-else",
+      "original": {
+        "value": null,
+        "error": null,
+        "trace": [
+          "m.start",
+          "loopGuard.new:0",
+          "debug.check:51",
+          "m.engineEnabled",
+          "if.macro",
+          "if.setMacroAction",
+          "m.setContext:context",
+          "if.enabled",
+          "if.enabled",
+          "m.logAction:if:0:context",
+          "if.constraintsDetailed:true:context",
+          "m.detailExcluded",
+          "if.system",
+          "m.guid",
+          "log.info:51:IF CLAUSE TRUE: system:if",
+          "debug.check:51",
+          "m.engineEnabled",
+          "goto.macro",
+          "goto.setMacroAction",
+          "m.setContext:context",
+          "goto.constraints:context",
+          "m.logAction:goto:1:context",
+          "goto.destination",
+          "if.label",
+          "goto.label",
+          "else.label",
+          "target.label",
+          "log.debug:51:Goto: label 'target' is at a different nesting level",
+          "debug.check:51",
+          "m.engineEnabled",
+          "else.macro",
+          "else.setMacroAction",
+          "m.setContext:context",
+          "else.enabled",
+          "if.enabled",
+          "if.enabled",
+          "debug.check:51",
+          "m.engineEnabled",
+          "after.macro",
+          "after.setMacroAction",
+          "m.setContext:context",
+          "after.constraints:context",
+          "m.logAction:after:5:context",
+          "debug.check:51",
+          "after.invokeWithPermission:context",
+          "m.terminate"
+        ],
+        "state": [
+          [
+            [
+              "m",
+              1,
+              1,
+              0,
+              1,
+              false,
+              false,
+              true,
+              "null",
+              "context",
+              false
+            ]
+          ],
+          [
+            [
+              "if",
+              0,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "goto",
+              0,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "else",
+              0,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "target",
+              0,
+              0,
+              true,
+              "null",
+              []
+            ],
+            [
+              "end",
+              0,
+              0,
+              true,
+              "null",
+              []
+            ],
+            [
+              "after",
+              1,
+              0,
+              true,
+              "m",
+              []
+            ]
+          ],
+          "[]",
+          null,
+          [
+            "after"
+          ],
+          [],
+          {},
+          {},
+          true,
+          false,
+          0,
+          1000000000,
+          false
+        ]
+      },
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->invokeActions(Ljava/util/List;ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V",
+      "rebuilt": {
+        "value": null,
+        "error": null,
+        "trace": [
+          "m.start",
+          "loopGuard.new:0",
+          "debug.check:51",
+          "m.engineEnabled",
+          "if.macro",
+          "if.setMacroAction",
+          "m.setContext:context",
+          "if.enabled",
+          "if.enabled",
+          "m.logAction:if:0:context",
+          "if.constraintsDetailed:true:context",
+          "m.detailExcluded",
+          "if.system",
+          "m.guid",
+          "log.info:51:IF CLAUSE TRUE: system:if",
+          "debug.check:51",
+          "m.engineEnabled",
+          "goto.macro",
+          "goto.setMacroAction",
+          "m.setContext:context",
+          "goto.constraints:context",
+          "m.logAction:goto:1:context",
+          "goto.destination",
+          "if.label",
+          "goto.label",
+          "else.label",
+          "target.label",
+          "log.debug:51:Goto: label 'target' is at a different nesting level",
+          "debug.check:51",
+          "m.engineEnabled",
+          "else.macro",
+          "else.setMacroAction",
+          "m.setContext:context",
+          "else.enabled",
+          "if.enabled",
+          "if.enabled",
+          "debug.check:51",
+          "m.engineEnabled",
+          "after.macro",
+          "after.setMacroAction",
+          "m.setContext:context",
+          "after.constraints:context",
+          "m.logAction:after:5:context",
+          "debug.check:51",
+          "after.invokeWithPermission:context",
+          "m.terminate"
+        ],
+        "state": [
+          [
+            [
+              "m",
+              1,
+              1,
+              0,
+              1,
+              false,
+              false,
+              true,
+              "null",
+              "context",
+              false
+            ]
+          ],
+          [
+            [
+              "if",
+              0,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "goto",
+              0,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "else",
+              0,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "target",
+              0,
+              0,
+              true,
+              "null",
+              []
+            ],
+            [
+              "end",
+              0,
+              0,
+              true,
+              "null",
+              []
+            ],
+            [
+              "after",
+              1,
+              0,
+              true,
+              "m",
+              []
+            ]
+          ],
+          "[]",
+          null,
+          [
+            "after"
+          ],
+          [],
+          {},
+          {},
+          true,
+          false,
+          0,
+          1000000000,
+          false
+        ]
+      },
+      "java": {
+        "value": null,
+        "error": null,
+        "trace": [
+          "m.start",
+          "loopGuard.new:0",
+          "debug.check:51",
+          "m.engineEnabled",
+          "if.macro",
+          "if.setMacroAction",
+          "m.setContext:context",
+          "if.enabled",
+          "if.enabled",
+          "m.logAction:if:0:context",
+          "if.constraintsDetailed:true:context",
+          "m.detailExcluded",
+          "if.system",
+          "m.guid",
+          "log.info:51:IF CLAUSE TRUE: system:if",
+          "debug.check:51",
+          "m.engineEnabled",
+          "goto.macro",
+          "goto.setMacroAction",
+          "m.setContext:context",
+          "goto.constraints:context",
+          "m.logAction:goto:1:context",
+          "goto.destination",
+          "if.label",
+          "goto.label",
+          "else.label",
+          "target.label",
+          "debug.check:51",
+          "m.engineEnabled",
+          "target.macro",
+          "target.setMacroAction",
+          "m.setContext:context",
+          "target.constraints:context",
+          "m.logAction:target:3:context",
+          "debug.check:51",
+          "target.invokeWithPermission:context",
+          "debug.check:51",
+          "m.engineEnabled",
+          "end.macro",
+          "end.setMacroAction",
+          "m.setContext:context",
+          "end.constraints:context",
+          "if.enabled",
+          "debug.check:51",
+          "m.engineEnabled",
+          "after.macro",
+          "after.setMacroAction",
+          "m.setContext:context",
+          "after.constraints:context",
+          "m.logAction:after:5:context",
+          "debug.check:51",
+          "after.invokeWithPermission:context",
+          "m.terminate"
+        ],
+        "state": [
+          [
+            [
+              "m",
+              1,
+              1,
+              0,
+              1,
+              false,
+              false,
+              true,
+              "null",
+              "context",
+              false
+            ]
+          ],
+          [
+            [
+              "if",
+              0,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "goto",
+              0,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "else",
+              0,
+              0,
+              true,
+              "null",
+              []
+            ],
+            [
+              "target",
+              1,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "end",
+              0,
+              0,
+              true,
+              "m",
+              []
+            ],
+            [
+              "after",
+              1,
+              0,
+              true,
+              "m",
+              []
+            ]
+          ],
+          "[]",
+          null,
+          [
+            "target",
+            "after"
+          ],
+          [],
+          {},
+          {},
+          true,
+          false,
+          0,
+          1000000000,
+          false
+        ],
+        "expectedFailure": "expected effects [after], got [target, after], error=null"
+      }
+    }
+  ],
+  "failedCaseLabels": [
+    "goto-cannot-enter-if",
+    "goto-cannot-cross-else"
+  ],
+  "agentTransformedClasses": [
+    "recovered/engine/ActionDispatchMethods:3",
+    "recovered/engine/LoopGuardMethods:2"
+  ],
+  "originalCoverage": {
+    "Laq9;->b(ILjava/util/List;)I": {
+      "visited": 25,
+      "branchEdges": 5,
+      "instructions": 30,
+      "unvisitedOffsets": [
+        25,
+        27,
+        42,
+        43,
+        44
+      ]
+    },
+    "Laq9;->c(ILjava/util/List;)I": {
+      "visited": 37,
+      "branchEdges": 13,
+      "instructions": 37,
+      "unvisitedOffsets": []
+    },
+    "Laq9;->d(ILjava/util/List;)I": {
+      "visited": 29,
+      "branchEdges": 8,
+      "instructions": 29,
+      "unvisitedOffsets": []
+    },
+    "Laq9;->e(ILjava/util/List;)I": {
+      "visited": 25,
+      "branchEdges": 6,
+      "instructions": 28,
+      "unvisitedOffsets": [
+        20,
+        22,
+        23
+      ]
+    },
+    "Laq9;->f(ILjava/util/List;)I": {
+      "visited": 41,
+      "branchEdges": 14,
+      "instructions": 41,
+      "unvisitedOffsets": []
+    },
+    "Laq9;->i(ILjava/util/List;)I": {
+      "visited": 23,
+      "branchEdges": 8,
+      "instructions": 23,
+      "unvisitedOffsets": []
+    },
+    "Laq9;->j(ILjava/util/List;)I": {
+      "visited": 23,
+      "branchEdges": 6,
+      "instructions": 26,
+      "unvisitedOffsets": [
+        16,
+        18,
+        19
+      ]
+    },
+    "Laq9;->k(ILjava/util/List;)I": {
+      "visited": 26,
+      "branchEdges": 7,
+      "instructions": 44,
+      "unvisitedOffsets": [
+        17,
+        20,
+        21,
+        22,
+        24,
+        27,
+        28,
+        30,
+        33,
+        34,
+        36,
+        39,
+        40,
+        41,
+        43,
+        44,
+        46,
+        47
+      ]
+    },
+    "Lcom/arlosoft/macrodroid/action/Action$a;->d(Ljava/util/List;)Ljava/util/LinkedHashMap;": {
+      "visited": 86,
+      "branchEdges": 9,
+      "instructions": 86,
+      "unvisitedOffsets": []
+    },
+    "Lcom/arlosoft/macrodroid/action/Action;->computeActionScopes(Ljava/util/List;)Ljava/util/Map;": {
+      "visited": 7,
+      "branchEdges": 0,
+      "instructions": 7,
+      "unvisitedOffsets": []
+    },
+    "Lcom/arlosoft/macrodroid/macro/Macro$b;->a(Lcom/arlosoft/macrodroid/macro/Macro;Lcom/arlosoft/macrodroid/action/LoopAction;)Z": {
+      "visited": 83,
+      "branchEdges": 7,
+      "instructions": 113,
+      "unvisitedOffsets": [
+        160,
+        161,
+        163,
+        164,
+        166,
+        168,
+        170,
+        173,
+        176,
+        177,
+        180,
+        182,
+        185,
+        188,
+        189,
+        192,
+        193,
+        196,
+        199,
+        200,
+        203,
+        204,
+        205,
+        207,
+        209,
+        212,
+        213,
+        214,
+        217,
+        218
+      ]
+    },
+    "Lcom/arlosoft/macrodroid/macro/Macro;->invokeActions(Ljava/util/List;ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V": {
+      "visited": 1131,
+      "branchEdges": 302,
+      "instructions": 1134,
+      "unvisitedOffsets": [
+        1628,
+        1629,
+        1631
+      ]
+    }
+  },
+  "rebuiltCoverage": {
+    "Laq9;->b(ILjava/util/List;)I": {
+      "visited": 17,
+      "branchEdges": 5,
+      "instructions": 21,
+      "unvisitedOffsets": [
+        18,
+        20,
+        33,
+        34
+      ]
+    },
+    "Laq9;->c(ILjava/util/List;)I": {
+      "visited": 29,
+      "branchEdges": 13,
+      "instructions": 29,
+      "unvisitedOffsets": []
+    },
+    "Laq9;->d(ILjava/util/List;)I": {
+      "visited": 21,
+      "branchEdges": 8,
+      "instructions": 21,
+      "unvisitedOffsets": []
+    },
+    "Laq9;->e(ILjava/util/List;)I": {
+      "visited": 19,
+      "branchEdges": 6,
+      "instructions": 21,
+      "unvisitedOffsets": [
+        18,
+        20
+      ]
+    },
+    "Laq9;->f(ILjava/util/List;)I": {
+      "visited": 31,
+      "branchEdges": 14,
+      "instructions": 31,
+      "unvisitedOffsets": []
+    },
+    "Laq9;->i(ILjava/util/List;)I": {
+      "visited": 19,
+      "branchEdges": 8,
+      "instructions": 19,
+      "unvisitedOffsets": []
+    },
+    "Laq9;->j(ILjava/util/List;)I": {
+      "visited": 17,
+      "branchEdges": 6,
+      "instructions": 19,
+      "unvisitedOffsets": [
+        15,
+        17
+      ]
+    },
+    "Laq9;->k(ILjava/util/List;)I": {
+      "visited": 20,
+      "branchEdges": 7,
+      "instructions": 34,
+      "unvisitedOffsets": [
+        15,
+        18,
+        19,
+        21,
+        24,
+        25,
+        27,
+        30,
+        31,
+        33,
+        36,
+        37,
+        39,
+        41
+      ]
+    },
+    "Lcom/arlosoft/macrodroid/action/Action$a;->d(Ljava/util/List;)Ljava/util/LinkedHashMap;": {
+      "visited": 69,
+      "branchEdges": 9,
+      "instructions": 69,
+      "unvisitedOffsets": []
+    },
+    "Lcom/arlosoft/macrodroid/action/Action;->computeActionScopes(Ljava/util/List;)Ljava/util/Map;": {
+      "visited": 5,
+      "branchEdges": 0,
+      "instructions": 5,
+      "unvisitedOffsets": []
+    },
+    "Lcom/arlosoft/macrodroid/macro/Macro$b;->a(Lcom/arlosoft/macrodroid/macro/Macro;Lcom/arlosoft/macrodroid/action/LoopAction;)Z": {
+      "visited": 65,
+      "branchEdges": 7,
+      "instructions": 93,
+      "unvisitedOffsets": [
+        134,
+        136,
+        138,
+        140,
+        142,
+        145,
+        148,
+        149,
+        152,
+        153,
+        155,
+        158,
+        159,
+        162,
+        163,
+        166,
+        167,
+        170,
+        173,
+        174,
+        177,
+        178,
+        180,
+        182,
+        185,
+        186,
+        189,
+        190
+      ]
+    },
+    "Lcom/arlosoft/macrodroid/macro/Macro;->invokeActions(Ljava/util/List;ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V": {
+      "visited": 1108,
+      "branchEdges": 304,
+      "instructions": 1111,
+      "unvisitedOffsets": [
+        1543,
+        1544,
+        1546
+      ]
+    }
+  },
+  "messageExclusions": [
+    "VM-generated NPE and ClassCastException text inside dispatcher error logs; exception types and ordered prefixes retained"
+  ]
+}

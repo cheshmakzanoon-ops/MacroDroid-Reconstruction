@@ -1,0 +1,3664 @@
+{
+  "passed": false,
+  "cases": 34753,
+  "failedCases": 104,
+  "unsupportedExecutions": 0,
+  "independentExpectedResultChecks": 25289,
+  "expectedResultFailures": 0,
+  "methodsCovered": 10,
+  "methodKeys": [
+    "Lcah;->a(Z)D",
+    "Lcom/arlosoft/macrodroid/constraint/LightLevelConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+    "Lcom/arlosoft/macrodroid/constraint/MacroRunningConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+    "Lcom/arlosoft/macrodroid/events/ShowActionBlockTestSummaryEvent;->equals(Ljava/lang/Object;)Z",
+    "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+    "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;Z)Z",
+    "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+    "Lcom/arlosoft/macrodroid/triggers/WeatherTrigger;->x0(I)I",
+    "Lcom/arlosoft/macrodroid/triggers/WeatherTrigger;->z0(Lcom/arlosoft/macrodroid/data/b;Lcom/arlosoft/macrodroid/data/b;)Z",
+    "Lcom/arlosoft/macrodroid/variables/s0;->equals(Ljava/lang/Object;)Z"
+  ],
+  "paths": 3,
+  "androidRuntime": false,
+  "methods": {
+    "Lcah;->a(Z)D": 540,
+    "Lcom/arlosoft/macrodroid/constraint/LightLevelConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": 6084,
+    "Lcom/arlosoft/macrodroid/constraint/MacroRunningConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": 2700,
+    "Lcom/arlosoft/macrodroid/events/ShowActionBlockTestSummaryEvent;->equals(Ljava/lang/Object;)Z": 320,
+    "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": 2997,
+    "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;Z)Z": 2322,
+    "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z": 6960,
+    "Lcom/arlosoft/macrodroid/triggers/WeatherTrigger;->x0(I)I": 1223,
+    "Lcom/arlosoft/macrodroid/triggers/WeatherTrigger;->z0(Lcom/arlosoft/macrodroid/data/b;Lcom/arlosoft/macrodroid/data/b;)Z": 11391,
+    "Lcom/arlosoft/macrodroid/variables/s0;->equals(Ljava/lang/Object;)Z": 216
+  },
+  "expectedInputExceptions": {
+    "java.lang.IllegalStateException": 12,
+    "java.lang.NullPointerException": 2785
+  },
+  "failures": [
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "20:3:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "20:3:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "20:3:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "20:7:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "20:7:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "20:7:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "52:3:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "52:3:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "52:3:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "52:7:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "52:7:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "52:7:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "80:3:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "80:3:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "80:3:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "80:7:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "80:7:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "80:7:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "84:3:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "84:3:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "84:3:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "84:7:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "84:7:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "84:7:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "112:3:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "112:3:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "112:3:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "112:7:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "112:7:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "112:7:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "116:3:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "116:3:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "116:3:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "116:7:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "116:7:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "116:7:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "148:3:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "148:3:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "148:3:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "148:7:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "148:7:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "148:7:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "180:3:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "180:3:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "180:3:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "180:7:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "180:7:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "180:7:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "208:3:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "208:3:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "208:3:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "208:7:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "208:7:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "208:7:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "212:3:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "212:3:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "212:3:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "212:7:0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "212:7:1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z",
+      "case": "212:7:2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "macro.guid",
+          "debug.check:51",
+          "macro.categoryDisabled",
+          "triggerContext.getTrigger",
+          "macro.orMode",
+          "constraint0.setMacro",
+          "constraint0.enabled",
+          "constraint1.setMacro",
+          "constraint1.enabled",
+          "macro.detailExcluded"
+        ],
+        "expansionCalls": [],
+        "assignedToInvokingMacro": [
+          true,
+          true
+        ]
+      },
+      "expected": true
+    }
+  ],
+  "boundedInstructionCoverage": {
+    "Lcah;->a(Z)D": {
+      "originalInstructions": 19,
+      "executedOriginalInstructionOffsets": 19,
+      "observedOriginalBranchEdges": 2
+    },
+    "Lcom/arlosoft/macrodroid/constraint/LightLevelConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": {
+      "originalInstructions": 57,
+      "executedOriginalInstructionOffsets": 57,
+      "observedOriginalBranchEdges": 14
+    },
+    "Lcom/arlosoft/macrodroid/constraint/MacroRunningConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": {
+      "originalInstructions": 153,
+      "executedOriginalInstructionOffsets": 153,
+      "observedOriginalBranchEdges": 32
+    },
+    "Lcom/arlosoft/macrodroid/events/ShowActionBlockTestSummaryEvent;->equals(Ljava/lang/Object;)Z": {
+      "originalInstructions": 33,
+      "executedOriginalInstructionOffsets": 33,
+      "observedOriginalBranchEdges": 10
+    },
+    "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": {
+      "originalInstructions": 20,
+      "executedOriginalInstructionOffsets": 20,
+      "observedOriginalBranchEdges": 6
+    },
+    "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;Z)Z": {
+      "originalInstructions": 4,
+      "executedOriginalInstructionOffsets": 4,
+      "observedOriginalBranchEdges": 0
+    },
+    "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z": {
+      "originalInstructions": 343,
+      "executedOriginalInstructionOffsets": 343,
+      "observedOriginalBranchEdges": 67
+    },
+    "Lcom/arlosoft/macrodroid/triggers/WeatherTrigger;->x0(I)I": {
+      "originalInstructions": 40,
+      "executedOriginalInstructionOffsets": 40,
+      "observedOriginalBranchEdges": 20
+    },
+    "Lcom/arlosoft/macrodroid/triggers/WeatherTrigger;->z0(Lcom/arlosoft/macrodroid/data/b;Lcom/arlosoft/macrodroid/data/b;)Z": {
+      "originalInstructions": 189,
+      "executedOriginalInstructionOffsets": 189,
+      "observedOriginalBranchEdges": 68
+    },
+    "Lcom/arlosoft/macrodroid/variables/s0;->equals(Ljava/lang/Object;)Z": {
+      "originalInstructions": 33,
+      "executedOriginalInstructionOffsets": 33,
+      "observedOriginalBranchEdges": 10
+    }
+  },
+  "scope": "Original selected instructions vs Java vs rebuilt selected instructions. CoreTrace records boundary order/logs and macro assignment effects. Store lookup, pattern matching, context, configuration accessors, debugger state and DictionaryEntry equality are controlled host boundaries. No Android, services, UI, persistence or concurrency proof."
+}

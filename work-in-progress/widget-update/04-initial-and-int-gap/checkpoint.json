@@ -1,0 +1,320 @@
+{
+  "status": "ORIGINAL_JVM_GATE_FAILED_AND_INT_UNSUPPORTED",
+  "frozen_at_utc": "2026-10-12T03:39:55.023948+00:00",
+  "scope": "Inactive exact first-run sources and evidence. Do not merge over later parent helper/oracle. No active registry or APK changes.",
+  "method": "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;",
+  "cases": 1710,
+  "failed_cases": 120,
+  "unsupported_executions": 125,
+  "paths": 2,
+  "coverage": {
+    "instructions": 194,
+    "visited": 136,
+    "unvisitedOffsets": [
+      14,
+      16,
+      17,
+      19,
+      41,
+      43,
+      45,
+      47,
+      49,
+      51,
+      53,
+      55,
+      57,
+      59,
+      61,
+      63,
+      65,
+      67,
+      69,
+      71,
+      73,
+      76,
+      78,
+      79,
+      86,
+      87,
+      89,
+      91,
+      93,
+      95,
+      97,
+      99,
+      101,
+      103,
+      105,
+      107,
+      109,
+      111,
+      113,
+      115,
+      117,
+      119,
+      121,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139
+    ],
+    "conditionalEdges": 20,
+    "conditionalEdgesVisited": 16,
+    "unvisitedConditionalEdges": [
+      "14:16",
+      "14:20",
+      "37:87",
+      "39:41"
+    ]
+  },
+  "original_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+  "fixture": {
+    "path": "original-widget-method.dex",
+    "bytes": 4220,
+    "sha256": "21fa3b34730a902713b14ee8ada375d4fdca3edf481dc3caabcd7bd1d3f22a0a",
+    "source_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+    "classes": 1,
+    "methods": 1,
+    "test_only_not_apk_input": true
+  },
+  "helper_sha256": "ab1829ac48bb32c6348239145cdde915722964b1784fd626cae9d1a8bb250e4c",
+  "oracle_sha256": "482af8ecd9db285e1f88fbf9a5bd934262f4182772e49c9a70f91ea66aaa5bca",
+  "files": [
+    {
+      "path": "source/java/recovered/ui/WidgetUpdateMethods.java",
+      "sha256": "ab1829ac48bb32c6348239145cdde915722964b1784fd626cae9d1a8bb250e4c",
+      "bytes": 5640,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/android/appwidget/AppWidgetManager.java",
+      "sha256": "3cee71a251b807a16a5405cf49f2b762a556049fca93ea0e10ce74a323c15572",
+      "bytes": 653,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/android/appwidget/AppWidgetProviderInfo.java",
+      "sha256": "7eed1d92c615151d1591f8241d973fabfff9477ed33e42076b8746ec8a658266",
+      "bytes": 101,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/widget/custom/WidgetUpdateManager.java",
+      "sha256": "db562037eeeb86ffb4065d85a14108ba3814086a811502bc8980e3f9fa668500",
+      "bytes": 567,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/widget/custom/b.java",
+      "sha256": "27d241cdef2698ad4cc647a804fbf0144b144d19190ac9239054e8fe0f0f18b3",
+      "bytes": 818,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/defpackage/WidgetControl.java",
+      "sha256": "d55189ad8badcfe4d5e20234d3b520d7494ed680fad32ba2b21630d8fdf75b53",
+      "bytes": 4652,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/defpackage/e6d.java",
+      "sha256": "850cf30f1633d3ab8e60a3d574b885f66aaa5b41fce765d1d8e63b4ed56b6615",
+      "bytes": 377,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/defpackage/gy6.java",
+      "sha256": "e5488937cad975c9649ff6f1d78fd2714e2a0602fbd53f15fafe8c673b58bc34",
+      "bytes": 78,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/defpackage/hn9.java",
+      "sha256": "709dd4a483961034fb13e711996893a3286faf0f984b2aa787896d4d0fa55904",
+      "bytes": 309,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/defpackage/jn6.java",
+      "sha256": "52104ff1420b47b7ba141641b8bb0bd3bb4c261f55dcaab0e6a3ec9e85c5e0a5",
+      "bytes": 128,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/defpackage/kjf.java",
+      "sha256": "f3f3e0ecb3c2f4ea8802eb1feeda9f283d5c93aa9a13f8e6e3f20f53ae5d3ccd",
+      "bytes": 948,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/defpackage/mh0.java",
+      "sha256": "58c107092e6b672541e7452bb03446f1fd2877e773b3904468b72d3209d747f5",
+      "bytes": 387,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/defpackage/rff.java",
+      "sha256": "2a31169d848e43960025df4d47904cc8c077aec5fed61b79231ae76311b69e38",
+      "bytes": 493,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/defpackage/rjb.java",
+      "sha256": "992f468722dc60b333e8fc1962c1e0f019fb4a592db5c65a53d599e587599438",
+      "bytes": 699,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/defpackage/rx6.java",
+      "sha256": "ededaad8d858cee88deb5b68a323de97ff7d7777191c49d3824ad7d941abc0bb",
+      "bytes": 630,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/defpackage/u2f.java",
+      "sha256": "608ba40725cb0d25c29834a4e14d6a26307afed56a5924539676ad6b86ff4233",
+      "bytes": 327,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/defpackage/wx6.java",
+      "sha256": "c1f033da84ff2fb581161fef523abe2cc4f4a767cf2145dce8457e2038dc1486",
+      "bytes": 554,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "test-support/java/defpackage/zhh.java",
+      "sha256": "6deced8b64997c4ebc8e10c912c7ca550acd66d963eef5717413c1091d2f95e2",
+      "bytes": 241,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "tests/java/BytecodeOracle.java",
+      "sha256": "482af8ecd9db285e1f88fbf9a5bd934262f4182772e49c9a70f91ea66aaa5bca",
+      "bytes": 25077,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "tests/java/UiParityTests.java",
+      "sha256": "dd5f1097935e52196dde3bf949fe84ff64d1ba14646f88f280d09120cc0390c6",
+      "bytes": 46145,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "tests/java/WidgetParityCases.java",
+      "sha256": "9870bcb88858467703e686c0e578d137dfcc44cd0e3f99af46a767020b2d6ae8",
+      "bytes": 34175,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "tests/java/WidgetParityStudy.java",
+      "sha256": "ce6bd5ecedb88c54e422fae4689b24f156008fa157bad20d723a931c78993d45",
+      "bytes": 4955,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "proposed-method-entry.json",
+      "sha256": "f84cf1ad16a778cd2d72e9a920689389f192cb587afbd7a4fe85d8220b7e165e",
+      "bytes": 633,
+      "source": "exact private input used by the failed study"
+    },
+    {
+      "path": "widget_original_jvm_study.py",
+      "sha256": "69c00836e70b6fe8a811e8e7c34b266ef6569808e4d4d882ef4d7a77e55a4631",
+      "bytes": 11343,
+      "source": "study runner or exact extracted original fixture"
+    },
+    {
+      "path": "tests/fixtures/original-widget-method.dex",
+      "sha256": "21fa3b34730a902713b14ee8ada375d4fdca3edf481dc3caabcd7bd1d3f22a0a",
+      "bytes": 4220,
+      "source": "study runner or exact extracted original fixture"
+    },
+    {
+      "path": "tests/fixtures/widget-provenance.json",
+      "sha256": "33c90acc2137d90fac541d377861031171f29caced168195bd54a746d0f36b2f",
+      "bytes": 298,
+      "source": "measured fixture provenance"
+    },
+    {
+      "path": "WIDGET_HARNESS_INITIAL.md",
+      "sha256": "81c59378a9207b34f22815a4ab0bb34b3d8e9757dbd00b97673a0775fa93a1b9",
+      "bytes": 2542,
+      "source": "scope and measured failure documentation"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "evidence/compile-extractor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/compile-harness.log",
+      "bytes": 169,
+      "sha256": "ea334622d30737691f8b913fd37f2fff7d6c04f207024eb0a7e4a06a67c28e9a"
+    },
+    {
+      "path": "evidence/compile-host.log",
+      "bytes": 110,
+      "sha256": "66bcca1c459c184393ca1ea31a078957c7f00ee39c306aba62c0f924af7bc171"
+    },
+    {
+      "path": "evidence/compiled-host-harness.tar.gz",
+      "bytes": 350140,
+      "sha256": "e2e5b30b028f1f9effb04fe5130dec2ad1206a28a61944ee410cbc4b276a65b7"
+    },
+    {
+      "path": "evidence/extract-original-fixture.log",
+      "bytes": 48,
+      "sha256": "1af734a99250876685484357dccf26e45ded0120047a3659d7aebaddfb3c4961"
+    },
+    {
+      "path": "evidence/inputs.json",
+      "bytes": 372327,
+      "sha256": "080085802e1b4546ae41f0febbe3d56f3dc13e6554eb70732b33fc9fda56fd9b"
+    },
+    {
+      "path": "evidence/original-jvm.log",
+      "bytes": 91,
+      "sha256": "345ba2dc5f4159ae53cf1257b3c60578b057dfaef445da01c54de45bc3ef4cc2"
+    },
+    {
+      "path": "evidence/original-widget-method.dex",
+      "bytes": 4220,
+      "sha256": "21fa3b34730a902713b14ee8ada375d4fdca3edf481dc3caabcd7bd1d3f22a0a"
+    },
+    {
+      "path": "evidence/original-widget-method.smali",
+      "bytes": 14849,
+      "sha256": "a1dd490bbfd6837fa72e6bf8ae4c75736612989fcba050fe2f0582aa03640e34"
+    },
+    {
+      "path": "evidence/parity.json",
+      "bytes": 551128,
+      "sha256": "56f9c39b164ce7e1897bcf6ffb71c3e5e43bc7ee8430f6531f8b875c9a33424b"
+    },
+    {
+      "path": "evidence/study.json",
+      "bytes": 8157,
+      "sha256": "85ff559f7b7b4b1573d5cc03a2296f737db6f9c456a004974aefb18912c907b5"
+    }
+  ],
+  "evidence_bundle": {
+    "path": "/workspace/scratch/4130730d15aa/widget-recovery/checkpoints/04-initial-and-int-gap-evidence.tar.gz",
+    "bytes": 394629,
+    "sha256": "fa7dbfdfcf0717c760298861fdd4056f574c226d420b19172e26d611654a2fb2"
+  }
+}

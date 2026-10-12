@@ -1,0 +1,3033 @@
+{
+  "passed": false,
+  "cases": 30684,
+  "methodsCovered": 15,
+  "methodKeys": [
+    "Lcom/arlosoft/macrodroid/constraint/SunsetSunriseConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+    "Lcom/arlosoft/macrodroid/constraint/SystemSettingConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+    "Lcom/arlosoft/macrodroid/constraint/SystemSettingConstraint;->r0(JLcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+    "Lcom/arlosoft/macrodroid/constraint/SystemSettingConstraint;->t0(Ljava/lang/String;Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+    "Lcom/arlosoft/macrodroid/constraint/WifiConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+    "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+    "Lg9f;->v1(Ljava/lang/String;)Ljava/lang/Long;",
+    "Ln7b;->D(Ljava/math/BigDecimal;Ljava/util/Calendar;)Ljava/util/Calendar;",
+    "Ln7b;->M(Ljava/math/BigDecimal;)Ljava/math/BigDecimal;",
+    "Ln7b;->v(Lsrh;Ljava/util/Calendar;Z)Ljava/math/BigDecimal;",
+    "Ln7b;->z(Ljava/math/BigDecimal;)Ljava/math/BigDecimal;",
+    "Lyih;->a(Ljava/lang/String;Z)Ljava/lang/String;",
+    "Lyih;->b(Ljava/lang/String;ZZ)Ljava/lang/String;",
+    "Lyih;->c(Ljava/lang/String;ZZ)Ljava/lang/String;",
+    "Lyih;->d(Ljava/lang/String;Ljava/lang/String;ZZ)Z"
+  ],
+  "methodsExpected": 15,
+  "integrationMethodsCovered": 3,
+  "failedCases": 160,
+  "unsupportedExecutions": 0,
+  "explicitExpectedChecks": 15536,
+  "expectedFailures": 0,
+  "paths": 3,
+  "androidRuntime": false,
+  "families": {
+    "Lcom/arlosoft/macrodroid/constraint/SunsetSunriseConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": 2362,
+    "Lcom/arlosoft/macrodroid/constraint/SystemSettingConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": 3797,
+    "Lcom/arlosoft/macrodroid/constraint/SystemSettingConstraint;->r0(JLcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": 1944,
+    "Lcom/arlosoft/macrodroid/constraint/SystemSettingConstraint;->t0(Ljava/lang/String;Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": 6804,
+    "Lcom/arlosoft/macrodroid/constraint/WifiConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": 2868,
+    "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": 4806,
+    "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": 128,
+    "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;Z)Z": 128,
+    "Lcom/arlosoft/macrodroid/macro/Macro;->canInvoke(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZZ)Z": 128,
+    "Lg9f;->v1(Ljava/lang/String;)Ljava/lang/Long;": 2436,
+    "Ln7b;->D(Ljava/math/BigDecimal;Ljava/util/Calendar;)Ljava/util/Calendar;": 386,
+    "Ln7b;->M(Ljava/math/BigDecimal;)Ljava/math/BigDecimal;": 16,
+    "Ln7b;->v(Lsrh;Ljava/util/Calendar;Z)Ljava/math/BigDecimal;": 1459,
+    "Ln7b;->z(Ljava/math/BigDecimal;)Ljava/math/BigDecimal;": 16,
+    "Lyih;->a(Ljava/lang/String;Z)Ljava/lang/String;": 126,
+    "Lyih;->b(Ljava/lang/String;ZZ)Ljava/lang/String;": 252,
+    "Lyih;->c(Ljava/lang/String;ZZ)Ljava/lang/String;": 253,
+    "Lyih;->d(Ljava/lang/String;Ljava/lang/String;ZZ)Z": 2775
+  },
+  "exceptionTypes": {
+    "java.lang.ArrayIndexOutOfBoundsException": 72,
+    "java.lang.ClassCastException": 1,
+    "java.lang.IllegalArgumentException": 192,
+    "java.lang.IllegalStateException": 72,
+    "java.lang.NullPointerException": 1684,
+    "java.lang.NumberFormatException": 192,
+    "java.lang.SecurityException": 4,
+    "java.lang.StringIndexOutOfBoundsException": 109
+  },
+  "failures": [
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/-1/-1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/-1/0",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/-1/1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/-1/2",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/-1/3",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/0/-1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/0/0",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/0/1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/0/2",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/0/3",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/1/-1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/1/0",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/1/1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/1/2",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/1/3",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/2/-1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/2/0",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/2/1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/2/2",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/false/true/2/3",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/-1/-1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/-1/0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/-1/1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/-1/2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/-1/3",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/0/-1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/0/0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/0/1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/0/2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/0/3",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/1/-1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/1/0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/1/1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/1/2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/1/3",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/2/-1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/2/0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/2/1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/2/2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 2/29/true/true/2/3",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/-1/-1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/-1/0",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/-1/1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/-1/2",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/-1/3",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/0/-1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/0/0",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/0/1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/0/2",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/0/3",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/1/-1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/1/0",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/1/1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/1/2",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/1/3",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/2/-1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/2/0",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/2/1",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/2/2",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/false/true/2/3",
+      "original": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": false
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/-1/-1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/-1/0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/-1/1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/-1/2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/-1/3",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/0/-1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/0/0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/0/1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/0/2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/0/3",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/1/-1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/1/0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/1/1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/1/2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/1/3",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/2/-1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/2/0",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/2/1",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": false,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/2/2",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z",
+      "case": "hotspot 3/29/true/true/2/3",
+      "original": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "java": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState",
+          "hotspot.clients"
+        ],
+        "expansionCalls": []
+      },
+      "rebuilt": {
+        "value": true,
+        "boundaryOrder": [
+          "item.context",
+          "context.application",
+          "context.service:wifi",
+          "wifi.apState"
+        ],
+        "expansionCalls": []
+      },
+      "expected": true
+    }
+  ],
+  "clockAgentTransformedHostClasses": [
+    "recovered/environment/SolarConstraintMethods:1"
+  ],
+  "originalInstructionCoverage": {
+    "Lcom/arlosoft/macrodroid/constraint/SunsetSunriseConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": {
+      "instructions": 151,
+      "visited": 151,
+      "notVisited": []
+    },
+    "Lcom/arlosoft/macrodroid/constraint/SystemSettingConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": {
+      "instructions": 261,
+      "visited": 261,
+      "notVisited": []
+    },
+    "Lcom/arlosoft/macrodroid/constraint/SystemSettingConstraint;->r0(JLcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": {
+      "instructions": 46,
+      "visited": 46,
+      "notVisited": []
+    },
+    "Lcom/arlosoft/macrodroid/constraint/SystemSettingConstraint;->t0(Ljava/lang/String;Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": {
+      "instructions": 39,
+      "visited": 39,
+      "notVisited": []
+    },
+    "Lcom/arlosoft/macrodroid/constraint/WifiConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": {
+      "instructions": 230,
+      "visited": 226,
+      "notVisited": [
+        205,
+        249,
+        295,
+        342
+      ]
+    },
+    "Lcom/arlosoft/macrodroid/constraint/WifiHotSpotConstraint;->X(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)Z": {
+      "instructions": 112,
+      "visited": 112,
+      "notVisited": []
+    },
+    "Lg9f;->v1(Ljava/lang/String;)Ljava/lang/Long;": {
+      "instructions": 70,
+      "visited": 70,
+      "notVisited": []
+    },
+    "Ln7b;->D(Ljava/math/BigDecimal;Ljava/util/Calendar;)Ljava/util/Calendar;": {
+      "instructions": 85,
+      "visited": 85,
+      "notVisited": []
+    },
+    "Ln7b;->M(Ljava/math/BigDecimal;)Ljava/math/BigDecimal;": {
+      "instructions": 6,
+      "visited": 6,
+      "notVisited": []
+    },
+    "Ln7b;->v(Lsrh;Ljava/util/Calendar;Z)Ljava/math/BigDecimal;": {
+      "instructions": 379,
+      "visited": 375,
+      "notVisited": [
+        575,
+        578,
+        579,
+        582
+      ]
+    },
+    "Ln7b;->z(Ljava/math/BigDecimal;)Ljava/math/BigDecimal;": {
+      "instructions": 10,
+      "visited": 10,
+      "notVisited": []
+    },
+    "Lyih;->a(Ljava/lang/String;Z)Ljava/lang/String;": {
+      "instructions": 37,
+      "visited": 37,
+      "notVisited": []
+    },
+    "Lyih;->b(Ljava/lang/String;ZZ)Ljava/lang/String;": {
+      "instructions": 17,
+      "visited": 17,
+      "notVisited": []
+    },
+    "Lyih;->c(Ljava/lang/String;ZZ)Ljava/lang/String;": {
+      "instructions": 50,
+      "visited": 50,
+      "notVisited": []
+    },
+    "Lyih;->d(Ljava/lang/String;Ljava/lang/String;ZZ)Z": {
+      "instructions": 42,
+      "visited": 42,
+      "notVisited": []
+    }
+  },
+  "limitations": "Host JVM and limited instruction interpreter, not Android/ART. Settings/radio/permission/location/float parser and constructor boundaries are controlled doubles. Clock agent modifies only host-loaded recovered code, not APKs. VM-generated NPE message text in one hotspot case is excluded; exception types and ordered log prefixes are compared. Concurrency, Android library differences and lifecycle not covered."
+}

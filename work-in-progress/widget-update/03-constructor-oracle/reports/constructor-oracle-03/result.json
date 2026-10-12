@@ -1,0 +1,60 @@
+{
+  "scope": "Synthetic host constructor-owner conformance; Android pending",
+  "android_executed": false,
+  "passed": true,
+  "commands": [
+    {
+      "label": "compile",
+      "command": [
+        "javac",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-widget-host-u3aj_pq1/classes:/workspace/scratch/4130730d15aa/widget-recovery/reports/constructor-oracle-03/classes",
+        "-d",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/constructor-oracle-03/classes",
+        "/workspace/scratch/4130730d15aa/widget-recovery/tests/java/BytecodeOracle.java",
+        "/workspace/scratch/4130730d15aa/widget-recovery/tests/java/ConstructorOracleConformance.java"
+      ],
+      "exit_code": 0,
+      "seconds": 3.081,
+      "log": "compile.log",
+      "log_sha256": "01f26c96a438194a92809d7858ac3c41e81b901a8968f5c0ad89813824d92c01"
+    },
+    {
+      "label": "assemble",
+      "command": [
+        "java",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-o",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/constructor-oracle-03/fixture.dex",
+        "/workspace/scratch/4130730d15aa/widget-recovery/tests/fixtures/constructor-owner-opcodes.smali"
+      ],
+      "exit_code": 0,
+      "seconds": 1.43,
+      "log": "assemble.log",
+      "log_sha256": "cc0e4532b4b02182f25fdf4504535f6664c8f66ed008299b7179d50d8697ac4d"
+    },
+    {
+      "label": "execute",
+      "command": [
+        "java",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-widget-host-u3aj_pq1/classes:/workspace/scratch/4130730d15aa/widget-recovery/reports/constructor-oracle-03/classes",
+        "ConstructorOracleConformance",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/constructor-oracle-03/fixture.dex",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/constructor-oracle-03/conformance.json"
+      ],
+      "exit_code": 0,
+      "seconds": 0.488,
+      "log": "execute.log",
+      "log_sha256": "16df1dbfe08bd85c16ad815536c65e6c4cb420cd5311f611a102473292ccd3a2"
+    }
+  ],
+  "cases": 16,
+  "fixture_sha256": "4b5601fd336138a60d4726db1b29fde9a89363839bb73a557aaaf3c7dd8908e2",
+  "oracle_sha256": "482af8ecd9db285e1f88fbf9a5bd934262f4182772e49c9a70f91ea66aaa5bca"
+}

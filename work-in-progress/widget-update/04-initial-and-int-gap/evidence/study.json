@@ -1,0 +1,238 @@
+{
+  "started_at_utc": "2026-10-12T03:34:14.190289+00:00",
+  "status": "ORIGINAL_JVM_GATE_FAILED",
+  "project_read_only": "/workspace/scratch/4130730d15aa/current/MacroDroid_v9",
+  "private_work": "/tmp/macrodroid-widget-study-i_2h51iw",
+  "target_method": "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;",
+  "active_registry_modified": false,
+  "apk_built": false,
+  "android_executed": false,
+  "rebuilt_dex_compared": false,
+  "mutable_hardlinks": false,
+  "commands": [
+    {
+      "label": "compile-host",
+      "argv": [
+        "javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-Xlint:-options",
+        "-d",
+        "/tmp/macrodroid-widget-study-i_2h51iw/hostclasses",
+        "@/tmp/macrodroid-widget-study-i_2h51iw/host-sources.args"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 6.558,
+      "timeout_seconds": 300,
+      "log": "compile-host.log",
+      "log_sha256": "66bcca1c459c184393ca1ea31a078957c7f00ee39c306aba62c0f924af7bc171"
+    },
+    {
+      "label": "compile-extractor",
+      "argv": [
+        "javac",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "-d",
+        "/tmp/macrodroid-widget-study-i_2h51iw/toolclasses",
+        "/tmp/macrodroid-widget-study-i_2h51iw/inputs/tools/src/ExtractOracle.java"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 2.273,
+      "timeout_seconds": 300,
+      "log": "compile-extractor.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "compile-harness",
+      "argv": [
+        "javac",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-widget-study-i_2h51iw/hostclasses",
+        "-d",
+        "/tmp/macrodroid-widget-study-i_2h51iw/harnessclasses",
+        "/tmp/macrodroid-widget-study-i_2h51iw/inputs/tests/java/BytecodeOracle.java",
+        "/tmp/macrodroid-widget-study-i_2h51iw/inputs/tests/java/ParityTests.java",
+        "/tmp/macrodroid-widget-study-i_2h51iw/inputs/tests/java/UiParityTests.java",
+        "/tmp/macrodroid-widget-study-i_2h51iw/inputs/tests/java/SceneParityCases.java",
+        "/tmp/macrodroid-widget-study-i_2h51iw/inputs/tests/java/PluginParityCases.java",
+        "/tmp/macrodroid-widget-study-i_2h51iw/inputs/tests/java/WidgetParityCases.java",
+        "/tmp/macrodroid-widget-study-i_2h51iw/inputs/tests/java/WidgetParityStudy.java"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 4.91,
+      "timeout_seconds": 300,
+      "log": "compile-harness.log",
+      "log_sha256": "ea334622d30737691f8b913fd37f2fff7d6c04f207024eb0a7e4a06a67c28e9a"
+    },
+    {
+      "label": "extract-original-fixture",
+      "argv": [
+        "java",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-widget-study-i_2h51iw/toolclasses",
+        "ExtractOracle",
+        "/tmp/macrodroid-widget-study-i_2h51iw/fixture-project",
+        "/workspace/scratch/4130730d15aa/recovered/automation android app"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 4.2,
+      "timeout_seconds": 300,
+      "log": "extract-original-fixture.log",
+      "log_sha256": "1af734a99250876685484357dccf26e45ded0120047a3659d7aebaddfb3c4961"
+    },
+    {
+      "label": "original-jvm",
+      "argv": [
+        "java",
+        "-Xmx1000m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-widget-study-i_2h51iw/harnessclasses:/tmp/macrodroid-widget-study-i_2h51iw/hostclasses",
+        "WidgetParityStudy",
+        "/tmp/macrodroid-widget-study-i_2h51iw/proposed-method-entry.json",
+        "/tmp/macrodroid-widget-study-i_2h51iw/fixture-project/tests/fixtures/original-methods.dex",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/widget-study-04-initial/parity.json"
+      ],
+      "returncode": 2,
+      "elapsed_seconds": 4.171,
+      "timeout_seconds": 300,
+      "log": "original-jvm.log",
+      "log_sha256": "345ba2dc5f4159ae53cf1257b3c60578b057dfaef445da01c54de45bc3ef4cc2"
+    }
+  ],
+  "original_apk": {
+    "path": "/workspace/scratch/4130730d15aa/recovered/automation android app",
+    "bytes": 95725918,
+    "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+  },
+  "preserved_original": {
+    "path": "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/source/smali/classes/67/WidgetUpdateManager_6791e8994482f6df.smali",
+    "class_sha256": "3ad59b363eaf1f1816d31a951867dcbf202702152148f6404d3426a8ed68818d",
+    "method_sha256": "a1dd490bbfd6837fa72e6bf8ae4c75736612989fcba050fe2f0582aa03640e34"
+  },
+  "tool_jar": {
+    "path": "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+    "bytes": 80076986,
+    "sha256": "354b10af74c09f5d2ab139def4231f0906dc6cc75738b1057e5a8263a412848e"
+  },
+  "host_java_inputs": 802,
+  "overlay_java_inputs": 18,
+  "fixture": {
+    "path": "original-widget-method.dex",
+    "bytes": 4220,
+    "sha256": "21fa3b34730a902713b14ee8ada375d4fdca3edf481dc3caabcd7bd1d3f22a0a",
+    "source_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+    "classes": 1,
+    "methods": 1,
+    "test_only_not_apk_input": true
+  },
+  "parity": {
+    "passed": false,
+    "cases": 1710,
+    "failedCases": 120,
+    "unsupportedExecutions": 125,
+    "independentExpectedResultChecks": 176,
+    "expectedResultFailures": 85,
+    "methodsCovered": 1,
+    "methodKeys": [
+      "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;"
+    ],
+    "paths": 2,
+    "androidRuntime": false,
+    "rebuiltDexCompared": false,
+    "registeredInActiveProject": false,
+    "instructionCoverage": {
+      "instructions": 194,
+      "visited": 136,
+      "unvisitedOffsets": [
+        14,
+        16,
+        17,
+        19,
+        41,
+        43,
+        45,
+        47,
+        49,
+        51,
+        53,
+        55,
+        57,
+        59,
+        61,
+        63,
+        65,
+        67,
+        69,
+        71,
+        73,
+        76,
+        78,
+        79,
+        86,
+        87,
+        89,
+        91,
+        93,
+        95,
+        97,
+        99,
+        101,
+        103,
+        105,
+        107,
+        109,
+        111,
+        113,
+        115,
+        117,
+        119,
+        121,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139
+      ],
+      "conditionalEdges": 20,
+      "conditionalEdgesVisited": 16,
+      "unvisitedConditionalEdges": [
+        "14:16",
+        "14:20",
+        "37:87",
+        "39:41"
+      ]
+    },
+    "fullInstructionAndConditionalCoverage": false,
+    "hostParentConstructorAdapters": {
+      "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;": [
+        "Lzhh;->Lrff;-><init>(ILm73;)V"
+      ]
+    },
+    "hostParentConstructorAdapterCalls": {
+      "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;:Lzhh;->Lrff;-><init>(ILm73;)V": 1958
+    },
+    "constructorScope": "Exact method-scoped DEX owner validation with a compile-only child reflection adapter; not ART verification",
+    "invalidLabelDefensiveReturnUsesOneInjectedReturningBoundary": true,
+    "scope": "Bounded selected original method/JVM comparison; no widget service, rendering, coroutine scheduler, application build or Android execution"
+  },
+  "pass": false,
+  "copied_inputs_unchanged_after_execution": true,
+  "compiled_class_archive": {
+    "path": "compiled-host-harness.tar.gz",
+    "bytes": 350140,
+    "sha256": "e2e5b30b028f1f9effb04fe5130dec2ad1206a28a61944ee410cbc4b276a65b7"
+  },
+  "finished_at_utc": "2026-10-12T03:34:41.528331+00:00"
+}
