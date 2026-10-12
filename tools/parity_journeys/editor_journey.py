@@ -19,6 +19,8 @@ from pathlib import Path
 
 PACKAGE = 'com.arlosoft.macrodroid'
 PERMISSION = 'com.google.android.permissioncontroller'
+SCHEMA = 2
+MAX_PRECONDITION_AGE = 15
 NEXT = {'resource-id': PACKAGE + ':id/button_next'}
 # The Google permission-controller APK retains the AOSP resource namespace.
 DENY = {'resource-id': 'com.android.permissioncontroller:id/permission_deny_button'}
@@ -113,6 +115,11 @@ def evidence_command(folder, record, proof, clean=False, codes=(0,)):
         raise JourneyError('Input command did not complete cleanly')
     return out, err
 
+def artifact_path(folder, record, proof):
+    # Validate the bytes and confinement before comparing normalized identities.
+    proof.artifact(folder, record)
+    return (folder / record['path']).resolve()
+
 class Recorder:
     def __init__(self, folder, serial, proof):
         self.folder, self.serial, self.proof = folder, serial, proof
@@ -188,12 +195,48 @@ def validate_snapshot(folder, shot, proof):
     width, height, pixels = proof.png_pixels(png)
     return canonical(root), width, height, pixels, proof.color_metadata(png)
 
+def capture_transition(recorder, previous, label, name, action, proof):
+    # Acquisition can be slow: the freshness budget includes the entire snapshot.
+    started = time.monotonic()
+    before = recorder.snapshot(label + '-before', previous['owner'])
+    proof.live_pids(proof.artifact(recorder.folder, previous['artifacts']['pid_final']).decode(),
+                    proof.artifact(recorder.folder, before['artifacts']['pid_final']).decode())
+    prior_state = validate_snapshot(recorder.folder, previous, proof)
+    if validate_snapshot(recorder.folder, before, proof)[0] != prior_state[0]:
+        raise JourneyError('UI changed before action')
+    if artifact_path(recorder.folder, before['artifacts']['hierarchy'], proof) == artifact_path(
+            recorder.folder, previous['artifacts']['hierarchy'], proof):
+        raise JourneyError('Reused stale input precondition')
+    argv = ['input', 'keyevent', '4'] if action == 'BACK' else ['input', 'tap', *map(str, target(
+        proof.artifact(recorder.folder, before['artifacts']['hierarchy']), previous['owner'], action,
+        prior_state[1], prior_state[2]))]
+    # These observations occur after the dump, retrieval, screenshot and UI checks.
+    live = {}
+    for key, args in [('pid', ['pidof', PACKAGE]), ('foreground', ['dumpsys', 'activity', 'activities'])]:
+        item, out, err = recorder.shell(args)
+        live[key] = recorder.save(label + '-preinput-' + key + '.txt', out)
+        if type(item['returncode']) is not int or item['returncode'] != 0 or err.strip():
+            raise JourneyError('Immediate input ' + key + ' check failed')
+        if key == 'pid':
+            proof.live_pids(proof.artifact(recorder.folder, before['artifacts']['pid_final']).decode(), out.decode())
+        elif not resumed(out.decode(), previous['owner']):
+            raise JourneyError('Expected activity left the foreground before input')
+    age = time.monotonic() - started
+    if not 0 <= age <= MAX_PRECONDITION_AGE:
+        raise JourneyError('Input precondition expired')
+    cmd, out, err = recorder.shell(argv)
+    transition = {'to': name, 'action': action, 'before': before, 'preinput_artifacts': live,
+                  'precondition_age_seconds': age, 'command': cmd}
+    if cmd['returncode'] or out.strip() or err.strip():
+        raise JourneyError('Input did not complete cleanly')
+    return transition
+
 def compare(folder, report, proof):
     result = {'status': 'REJECTED', 'journey_equal': False, 'full_runtime_1_to_1_established': False,
               'scope': 'Fresh install, notification denial, home and empty-editor catalog navigation only',
               'screens': [], 'masks_used': False, 'android_runtime_executed': False, 'macros_executed': False, 'macros_saved': False}
     try:
-        if report.get('schema') != 1 or report.get('plan_sha256') != fingerprint(PLAN) or report.get('status') != 'RECORDED_NOT_PARITY':
+        if report.get('schema') != SCHEMA or report.get('plan_sha256') != fingerprint(PLAN) or report.get('status') != 'RECORDED_NOT_PARITY':
             raise JourneyError('Unexpected journey schema or plan')
         runs = report['runs']
         if len(runs) != 2 or [r['label'] for r in runs] != ['original', 'candidate']:
@@ -248,11 +291,24 @@ def compare(folder, report, proof):
                     prior = run['screens'][index - 1]
                     if before['owner'] != prior['owner'] or validate_snapshot(folder, before, proof)[0] != collected[-1][0]:
                         raise JourneyError('UI changed immediately before input')
-                    if before['artifacts']['hierarchy']['path'] == prior['artifacts']['hierarchy']['path']:
+                    if artifact_path(folder, before['artifacts']['hierarchy'], proof) == artifact_path(
+                            folder, prior['artifacts']['hierarchy'], proof):
                         raise JourneyError('Reused stale input precondition')
                     proof.live_pids(anchor, proof.artifact(folder, before['artifacts']['pid_final']).decode())
+                    live = transition['preinput_artifacts']
+                    if set(live) != {'pid', 'foreground'} or any(
+                            not item['path'].startswith(run['label'] + '-') for item in live.values()):
+                        raise JourneyError('Incomplete or cross-run immediate input evidence')
+                    observed_paths = {artifact_path(folder, item, proof) for shot in (prior, before)
+                                      for item in shot['artifacts'].values()}
+                    live_paths = {artifact_path(folder, item, proof) for item in live.values()}
+                    if len(live_paths) != 2 or observed_paths.intersection(live_paths):
+                        raise JourneyError('Reused stale immediate input evidence')
+                    proof.live_pids(anchor, proof.artifact(folder, live['pid']).decode())
+                    if not resumed(proof.artifact(folder, live['foreground']).decode(), prior['owner']):
+                        raise JourneyError('Expected activity was not foreground immediately before input')
                     age = transition['precondition_age_seconds']
-                    if type(age) not in (int, float) or not 0 <= age <= 15:
+                    if type(age) not in (int, float) or not 0 <= age <= MAX_PRECONDITION_AGE:
                         raise JourneyError('Expired input precondition')
                     expected = ['input', 'keyevent', '4'] if action == 'BACK' else ['input', 'tap', *map(str, target(
                         proof.artifact(folder, before['artifacts']['hierarchy']), before['owner'], action, collected[-1][1], collected[-1][2]))]
@@ -288,7 +344,7 @@ def main():
     import android_compare as proof
     from android_acceptance import prevalidate_pair
     args.output.mkdir(parents=True, exist_ok=False)
-    report = {'schema': 1, 'plan_sha256': fingerprint(PLAN), 'plan': PLAN, 'runs': [], 'status': 'INCOMPLETE'}
+    report = {'schema': SCHEMA, 'plan_sha256': fingerprint(PLAN), 'plan': PLAN, 'runs': [], 'status': 'INCOMPLETE'}
     def save():
         (args.output / 'journey.json').write_text(json.dumps(report, indent=2) + '\n')
     save()
@@ -331,22 +387,8 @@ def main():
                     run['current_step'] = name
                     if action:
                         previous = run['screens'][-1]
-                        before = recorder.snapshot(entry['label'] + '-' + name + '-before', previous['owner'])
-                        proof.live_pids(proof.artifact(args.output, previous['artifacts']['pid_final']).decode(),
-                                        proof.artifact(args.output, before['artifacts']['pid_final']).decode())
-                        fresh = time.monotonic()
-                        prior_state = validate_snapshot(args.output, previous, proof)
-                        if validate_snapshot(args.output, before, proof)[0] != prior_state[0]:
-                            raise JourneyError('UI changed before action')
-                        argv = ['input', 'keyevent', '4'] if action == 'BACK' else ['input', 'tap', *map(str, target(
-                            proof.artifact(args.output, before['artifacts']['hierarchy']), previous['owner'], action, prior_state[1], prior_state[2]))]
-                        age = time.monotonic() - fresh
-                        if age > 15:
-                            raise JourneyError('Input precondition expired')
-                        cmd, out, err = recorder.shell(argv)
-                        run['transitions'].append({'to': name, 'action': action, 'before': before, 'precondition_age_seconds': age, 'command': cmd})
-                        if cmd['returncode'] or out.strip() or err.strip():
-                            raise JourneyError('Input did not complete cleanly')
+                        run['transitions'].append(capture_transition(
+                            recorder, previous, entry['label'] + '-' + name, name, action, proof))
                         time.sleep(2)
                     shot = recorder.snapshot(entry['label'] + '-' + name, owner)
                     shot['name'] = name

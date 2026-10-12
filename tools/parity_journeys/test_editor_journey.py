@@ -7,6 +7,7 @@ import struct
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 import zlib
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'project'))
@@ -38,7 +39,7 @@ class JourneyTests(unittest.TestCase):
                **{p: 'synthetic' for p in journey.PROPERTIES},
                **{namespace + ':' + name: '0' for namespace, name in journey.SETTINGS}}
         env.update({'ro.build.version.sdk': '35', 'ro.kernel.qemu': '1', 'ro.product.cpu.abilist': 'x86_64,arm64-v8a'})
-        self.report = {'schema': 1, 'status': 'RECORDED_NOT_PARITY', 'plan_sha256': journey.fingerprint(journey.PLAN), 'runs': []}
+        self.report = {'schema': journey.SCHEMA, 'status': 'RECORDED_NOT_PARITY', 'plan_sha256': journey.fingerprint(journey.PLAN), 'runs': []}
         for label, digest in [('original', proof.ORIGINAL_SHA256), ('candidate', '2' * 64)]:
             run = {'label': label, 'status': 'COMPLETE', 'apk_sha256': digest,
                    'environment': env.copy(), 'environment_after': env.copy(), 'screens': [], 'transitions': []}
@@ -55,7 +56,11 @@ class JourneyTests(unittest.TestCase):
                     argv = ['input', 'keyevent', '4'] if action == 'BACK' else ['input', 'tap', '2', '2']
                     command = self.command(label + '-input-' + name, b'')
                     command['argv'] = ['shell', shlex.join(argv)]
+                    live = {'pid': self.put(label + '-preinput-' + name + '-pid', b'31'),
+                            'foreground': self.put(label + '-preinput-' + name + '-foreground',
+                                ('topResumedActivity=' + before['owner'] + '/.Activity\n').encode())}
                     run['transitions'].append({'to': name, 'action': action, 'before': before,
+                                               'preinput_artifacts': live,
                                                'precondition_age_seconds': 0.25, 'command': command})
             self.report['runs'].append(run)
     def tearDown(self):
@@ -92,7 +97,7 @@ class JourneyTests(unittest.TestCase):
                 screen['artifacts']['screenshot'] = old
     def test_structural_faults_fail_closed(self):
         mutations = [
-            lambda r: r.update(schema=2), lambda r: r.update(status='INCOMPLETE'),
+            lambda r: r.update(schema=1), lambda r: r.update(status='INCOMPLETE'),
             lambda r: r.update(plan_sha256='x'), lambda r: r['runs'].pop(),
             lambda r: r['runs'][1].update(status='FAILED'),
             lambda r: r['runs'][1].update(apk_sha256=proof.ORIGINAL_SHA256),
@@ -125,6 +130,43 @@ class JourneyTests(unittest.TestCase):
         a = self.candidate()['screens'][0]['artifacts']['hierarchy']
         (self.root / a['path']).write_bytes(b'changed')
         self.assertIn('changed', self.result()['reason'])
+    def test_normalized_hierarchy_alias_cannot_make_an_old_file_fresh(self):
+        run = self.candidate()
+        prior = run['screens'][0]['artifacts']['hierarchy']
+        data = (self.root / prior['path']).read_bytes()
+        (self.root / 'candidate-snap').mkdir()
+        (self.root / 'candidate-snap/h.xml').write_bytes(data)
+        prior['path'] = 'candidate-snap/h.xml'
+        before = copy.deepcopy(run['screens'][0])
+        before['artifacts']['hierarchy']['path'] = 'candidate-snap/./h.xml'
+        run['transitions'][0]['before'] = before
+        self.assertEqual((self.root / prior['path']).resolve(),
+                         (self.root / before['artifacts']['hierarchy']['path']).resolve())
+        result = self.result()
+        self.assertFalse(result['journey_equal'])
+        self.assertIn('Reused stale input precondition', result['reason'])
+    def test_immediate_input_evidence_is_required(self):
+        self.candidate()['transitions'][0].pop('preinput_artifacts')
+        self.assertFalse(self.result()['journey_equal'])
+    def test_immediate_input_pid_change_is_rejected(self):
+        self.candidate()['transitions'][0]['preinput_artifacts']['pid'] = self.put('candidate-late-pid', b'32')
+        self.assertFalse(self.result()['journey_equal'])
+    def test_immediate_foreground_change_is_rejected(self):
+        self.candidate()['transitions'][0]['preinput_artifacts']['foreground'] = self.put(
+            'candidate-late-foreground', ('topResumedActivity=other/.Activity\nmResumedActivity=' + journey.PACKAGE + '/.Activity\n').encode())
+        self.assertIn('foreground immediately before input', self.result()['reason'])
+    def test_immediate_input_artifact_reuse_is_rejected(self):
+        transition = self.candidate()['transitions'][0]
+        original = copy.deepcopy(transition['preinput_artifacts'])
+        for key, old_key in [('pid', 'pid_final'), ('foreground', 'foreground')]:
+            with self.subTest(artifact=key):
+                transition['preinput_artifacts'] = copy.deepcopy(original)
+                transition['preinput_artifacts'][key] = transition['before']['artifacts'][old_key]
+                self.assertIn('Reused stale immediate input evidence', self.result()['reason'])
+    def test_immediate_input_artifact_hash_is_verified(self):
+        record = self.candidate()['transitions'][0]['preinput_artifacts']['pid']
+        (self.root / record['path']).write_bytes(b'32')
+        self.assertIn('changed', self.result()['reason'])
     def test_wrong_installed_apk_is_rejected(self):
         self.candidate()['installed_checksum']['stdout'] = self.put('candidate-wrong-hash', b'bad  /data/app/test/base.apk\n')
         self.assertFalse(self.result()['journey_equal'])
@@ -155,6 +197,92 @@ class JourneyTests(unittest.TestCase):
     def test_xml_declarations_are_rejected(self):
         with self.assertRaises(journey.JourneyError):
             journey.tree(b'<!DOCTYPE hierarchy><hierarchy/>', journey.PACKAGE)
+
+
+class SyntheticRecorder(journey.Recorder):
+    """Execute the real snapshot/transition logic against a virtual ADB and clock."""
+    def __init__(self, folder, clock, retrieval_delay=0, final_pid=b'31', final_owner=journey.PACKAGE,
+                 final_foreground_delay=0):
+        self.folder, self.proof, self.clock = folder, proof, clock
+        self.retrieval_delay = retrieval_delay
+        self.final_pid, self.final_owner = final_pid, final_owner
+        self.final_foreground_delay = final_foreground_delay
+        self.count = self.pid_reads = self.foreground_reads = 0
+        self.log, self.inputs, self.shell_commands = [], [], []
+    def cmd(self, args, timeout=120):
+        self.count += 1
+        self.clock['now'] += 0.05
+        out = b''
+        if args[0] == 'shell':
+            argv = shlex.split(args[1])
+            self.shell_commands.append(argv)
+            if argv[0] == 'pidof':
+                self.pid_reads += 1
+                out = self.final_pid if self.pid_reads == 3 else b'31'
+            elif argv[0] == 'dumpsys':
+                self.foreground_reads += 1
+                owner = self.final_owner if self.foreground_reads == 2 else journey.PACKAGE
+                if self.foreground_reads == 2:
+                    self.clock['now'] += self.final_foreground_delay
+                out = ('topResumedActivity=' + owner + '/.Activity\n').encode()
+            elif argv[0] == 'input':
+                self.inputs.append(argv)
+            elif argv[0] not in ('uiautomator', 'rm'):
+                raise AssertionError('Unexpected virtual ADB command: ' + str(argv))
+        elif args[:2] == ['exec-out', 'cat']:
+            self.clock['now'] += self.retrieval_delay
+            out = xml(0)
+        elif args == ['exec-out', 'screencap', '-p']:
+            out = png(1)
+        else:
+            raise AssertionError('Unexpected virtual ADB command: ' + str(args))
+        record = {'argv': args, 'returncode': 0,
+                  'stdout': self.save(f'virtual-command-{self.count}-out', out),
+                  'stderr': self.save(f'virtual-command-{self.count}-err', b'')}
+        self.log.append(record)
+        return record, out, b''
+
+
+class RecorderTests(unittest.TestCase):
+    def setUp(self):
+        self.fixture = JourneyTests()
+        self.fixture.setUp()
+        self.addCleanup(self.fixture.tearDown)
+        self.clock = {'now': 0.0}
+        self.previous = self.fixture.candidate()['screens'][0]
+    def capture(self, **kwargs):
+        self.recorder = SyntheticRecorder(self.fixture.root, self.clock, **kwargs)
+        def sleep(seconds):
+            self.clock['now'] += seconds
+        with patch.object(journey.time, 'monotonic', side_effect=lambda: self.clock['now']), \
+                patch.object(journey.time, 'sleep', side_effect=sleep):
+            return journey.capture_transition(self.recorder, self.previous, 'candidate-intro-2',
+                                              'intro-2', journey.NEXT, proof)
+    def test_fresh_capture_checks_pid_and_foreground_immediately_before_input(self):
+        transition = self.capture()
+        self.assertEqual(self.recorder.inputs, [['input', 'tap', '2', '2']])
+        self.assertEqual(self.recorder.shell_commands[-3:], [
+            ['pidof', journey.PACKAGE], ['dumpsys', 'activity', 'activities'], ['input', 'tap', '2', '2']])
+        self.assertGreaterEqual(transition['precondition_age_seconds'], 1.05)
+        self.assertEqual(set(transition['preinput_artifacts']), {'pid', 'foreground'})
+    def test_slow_real_snapshot_retrieval_expires_before_any_input(self):
+        with self.assertRaisesRegex(journey.JourneyError, 'precondition expired'):
+            self.capture(retrieval_delay=20)
+        self.assertEqual(self.recorder.inputs, [])
+        shot = json.loads((self.fixture.root / 'candidate-intro-2-before-snapshot.json').read_text())
+        self.assertGreaterEqual(shot['sample_interval_seconds'], 20)
+    def test_final_check_latency_is_included_in_freshness_budget(self):
+        with self.assertRaisesRegex(journey.JourneyError, 'precondition expired'):
+            self.capture(final_foreground_delay=20)
+        self.assertEqual(self.recorder.inputs, [])
+    def test_pid_restart_after_snapshot_rejects_input(self):
+        with self.assertRaises(ValueError):
+            self.capture(final_pid=b'32')
+        self.assertEqual(self.recorder.inputs, [])
+    def test_foreground_departure_after_snapshot_rejects_input(self):
+        with self.assertRaisesRegex(journey.JourneyError, 'left the foreground'):
+            self.capture(final_owner='other')
+        self.assertEqual(self.recorder.inputs, [])
 
 if __name__ == '__main__':
     unittest.main()

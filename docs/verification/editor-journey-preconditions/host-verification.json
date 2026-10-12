@@ -1,0 +1,204 @@
+{
+  "status": "HOST_REGRESSIONS_PASSED_ANDROID_PENDING",
+  "recorded_utc": "2026-10-12T03:18:07.055322+00:00",
+  "evidence_schema": 2,
+  "android_executed": false,
+  "full_runtime_1_to_1_established": false,
+  "host_tests": {
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/parity_journeys",
+      "-p",
+      "test_*.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests": 23,
+    "seconds": 6.124,
+    "log": "host-tests.log",
+    "log_sha256": "fdf4ed77ec4e1da18a78ab169247f52d02d248ee126d130ae3e46d32aae17006"
+  },
+  "source_files": [
+    {
+      "path": "tools/parity_journeys/editor_journey.py",
+      "bytes": 24975,
+      "sha256": "9d402ee1db9f9fd22ee62882198ef6722f0c150450c6fd53fe5465359ffb201b"
+    },
+    {
+      "path": "tools/parity_journeys/test_editor_journey.py",
+      "bytes": 17573,
+      "sha256": "6e349fdabb35a595ca5ef372ae0c4cbce06991c46bb24b77f9c8c049e0af6e29"
+    }
+  ],
+  "reused_hierarchy_reproduction": {
+    "historical_commit": "383c9ad798a4699b940152794c12f65f97c73493",
+    "historical_source_sha256": "0b415fe156480f6826a0e4624e0e475efe5ba4d5fc8b3053d306dd50e3709e5a",
+    "previous_path": "candidate-snap/h.xml",
+    "precondition_path": "candidate-snap/./h.xml",
+    "same_resolved_file": true,
+    "historical_journey_equal": true,
+    "historical_status": "EXACT_EDITOR_JOURNEY_MATCH_ONLY",
+    "fixed_journey_equal": false,
+    "fixed_status": "REJECTED",
+    "fixed_reason": "Reused stale input precondition"
+  },
+  "recorder_traces": [
+    {
+      "scenario": "fresh",
+      "synthetic": true,
+      "android_executed": false,
+      "outcome": "INPUT_RECORDED",
+      "precondition_age_seconds": 1.2000000000000002,
+      "virtual_elapsed_seconds": 1.2500000000000002,
+      "recorded_input_commands": [
+        [
+          "input",
+          "tap",
+          "2",
+          "2"
+        ]
+      ],
+      "final_shell_commands": [
+        [
+          "pidof",
+          "com.arlosoft.macrodroid"
+        ],
+        [
+          "pidof",
+          "com.arlosoft.macrodroid"
+        ],
+        [
+          "dumpsys",
+          "activity",
+          "activities"
+        ],
+        [
+          "input",
+          "tap",
+          "2",
+          "2"
+        ]
+      ]
+    },
+    {
+      "scenario": "slow_retrieval",
+      "synthetic": true,
+      "android_executed": false,
+      "outcome": "REJECTED",
+      "reason": "Input precondition expired",
+      "virtual_elapsed_seconds": 20.450000000000003,
+      "recorded_input_commands": [],
+      "final_shell_commands": [
+        [
+          "rm",
+          "-f",
+          "/data/local/tmp/md-journey-eb10382318274bc8866dee8fdfe20d46.xml"
+        ],
+        [
+          "pidof",
+          "com.arlosoft.macrodroid"
+        ],
+        [
+          "pidof",
+          "com.arlosoft.macrodroid"
+        ],
+        [
+          "dumpsys",
+          "activity",
+          "activities"
+        ]
+      ]
+    },
+    {
+      "scenario": "slow_final_foreground",
+      "synthetic": true,
+      "android_executed": false,
+      "outcome": "REJECTED",
+      "reason": "Input precondition expired",
+      "virtual_elapsed_seconds": 21.2,
+      "recorded_input_commands": [],
+      "final_shell_commands": [
+        [
+          "rm",
+          "-f",
+          "/data/local/tmp/md-journey-c0a9ec84946e4d328617e58b7e31eae1.xml"
+        ],
+        [
+          "pidof",
+          "com.arlosoft.macrodroid"
+        ],
+        [
+          "pidof",
+          "com.arlosoft.macrodroid"
+        ],
+        [
+          "dumpsys",
+          "activity",
+          "activities"
+        ]
+      ]
+    },
+    {
+      "scenario": "late_pid_restart",
+      "synthetic": true,
+      "android_executed": false,
+      "outcome": "REJECTED",
+      "reason": "App PID changed or lacks two live samples",
+      "virtual_elapsed_seconds": 1.1500000000000001,
+      "recorded_input_commands": [],
+      "final_shell_commands": [
+        [
+          "uiautomator",
+          "dump",
+          "/data/local/tmp/md-journey-dac8657d29f44ae7bd5513cd81837cc2.xml"
+        ],
+        [
+          "rm",
+          "-f",
+          "/data/local/tmp/md-journey-dac8657d29f44ae7bd5513cd81837cc2.xml"
+        ],
+        [
+          "pidof",
+          "com.arlosoft.macrodroid"
+        ],
+        [
+          "pidof",
+          "com.arlosoft.macrodroid"
+        ]
+      ]
+    },
+    {
+      "scenario": "late_foreground_departure",
+      "synthetic": true,
+      "android_executed": false,
+      "outcome": "REJECTED",
+      "reason": "Expected activity left the foreground before input",
+      "virtual_elapsed_seconds": 1.2000000000000002,
+      "recorded_input_commands": [],
+      "final_shell_commands": [
+        [
+          "rm",
+          "-f",
+          "/data/local/tmp/md-journey-00f53effe9654f3c93733be213fa4f30.xml"
+        ],
+        [
+          "pidof",
+          "com.arlosoft.macrodroid"
+        ],
+        [
+          "pidof",
+          "com.arlosoft.macrodroid"
+        ],
+        [
+          "dumpsys",
+          "activity",
+          "activities"
+        ]
+      ]
+    }
+  ]
+}
