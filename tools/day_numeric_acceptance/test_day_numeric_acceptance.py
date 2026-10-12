@@ -5,6 +5,7 @@ Synthetic gate reports below exercise rejection policy only. They are never
 application execution, signed-build, method-parity, or Android evidence.
 """
 import copy
+import shutil
 from datetime import datetime, timezone
 import json
 import os
@@ -27,7 +28,69 @@ class OwnedTemporary(unittest.TestCase):
         self.root = Path(self.temp.name)
 
     def tearDown(self):
+        # Hosted failures retain actual receipts and original metadata even though
+        # an artifact copy cannot preserve the host's inode or ctime.
+        retained = os.environ.get('DAY_NUMERIC_CONTROL_EVIDENCE_ROOT')
+        if retained:
+            output = Path(retained) / self.id()
+            output.mkdir(parents=True, exist_ok=False)
+            rows = []
+            for path in sorted(self.root.rglob('*')):
+                relative = path.relative_to(self.root).as_posix()
+                status = path.lstat()
+                if path.is_symlink():
+                    rows.append({'path': relative, 'type': 'inert-symlink-description',
+                                 'target': os.readlink(path)})
+                elif path.is_file():
+                    destination = output / 'files' / relative
+                    destination.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copyfile(path, destination)
+                    rows.append({'path': relative, 'type': 'regular', **inputs.identity(path),
+                                 'observed_stat': run_acceptance.command_file_stat(status)})
+            values = {}
+            for key, value in vars(self).items():
+                if key.startswith('_') and key != '_control_observations':
+                    continue
+                try:
+                    json.dumps(value, allow_nan=False)
+                except (TypeError, ValueError):
+                    continue
+                values[key] = value
+            inputs.write_json(output / 'observations.json', {
+                'schema': 1, 'test': self.id(), 'original_temporary_root': str(self.root),
+                'scope': 'Tool policy fixtures and declared small Python subprocesses only; no application build or Java parity claim',
+                'metadata_scope': 'Recorded original live stat; copied inode/ctime are not substituted',
+                'values': values, 'files': rows})
         self.temp.cleanup()
+
+    def observed_command(self, prefix, label, **row):
+        """Use real exclusive files; the contents explicitly remain synthetic."""
+        folder = self.root / prefix
+        folder.mkdir(parents=True, exist_ok=True)
+        observed = run_acceptance.CommandStreamEvidence(
+            self.root, folder / (label + '.stdout.log'), folder / (label + '.stderr.log'))
+        with observed as stream:
+            for name in ('stdout', 'stderr'):
+                stream.handles[name].write(('SYNTHETIC COMMAND POLICY ONLY ' + prefix + '/' + label + ':' + name).encode())
+        observed.add_to(row)
+        self.__dict__.setdefault('_control_observations', []).append(copy.deepcopy(row))
+        return row
+
+    @staticmethod
+    def set_flat_clock(row, prefix, value):
+        row[prefix + '_unix_ns'] = value['unix_ns']
+        row[prefix + '_monotonic_ns'] = value['monotonic_ns']
+        row[prefix + '_utc'] = value['utc']
+
+    @staticmethod
+    def changed_clock(value, unix_delta=0, mono_delta=0):
+        changed = copy.deepcopy(value)
+        changed['unix_ns'] += unix_delta
+        changed['monotonic_ns'] += mono_delta
+        seconds, fraction = divmod(changed['unix_ns'], 1_000_000_000)
+        changed['utc'] = datetime.fromtimestamp(seconds, timezone.utc).replace(
+            microsecond=fraction // 1000).isoformat(timespec='microseconds')
+        return changed
 
     def put(self, name, raw=b'original'):
         path = self.root / name
@@ -301,14 +364,14 @@ class ActualProcessControls(OwnedTemporary):
         env = os.environ.copy()
         env.update(PYTHONDONTWRITEBYTECODE='1', TMPDIR=str(self.root))
         return run_acceptance.run_child([sys.executable, '-B', '-c', code], self.root, env,
-                                        self.root / 'stdout.log', self.root / 'stderr.log', timeout)
+                                        self.root / 'actual.stdout.log', self.root / 'actual.stderr.log', timeout)
 
     def test_actual_nonzero_exit_and_both_streams_are_retained(self):
         result = self.execute("import sys; print('stdout evidence'); print('stderr evidence', file=sys.stderr); sys.exit(7)")
         self.assertEqual(7, result['returncode'])
         self.assertFalse(result['timed_out'])
-        self.assertEqual(b'stdout evidence\n', (self.root / 'stdout.log').read_bytes())
-        self.assertEqual(b'stderr evidence\n', (self.root / 'stderr.log').read_bytes())
+        self.assertEqual(b'stdout evidence\n', (self.root / 'actual.stdout.log').read_bytes())
+        self.assertEqual(b'stderr evidence\n', (self.root / 'actual.stderr.log').read_bytes())
 
     def test_actual_zero_exit_is_recorded_without_a_parity_claim(self):
         result = self.execute("print('controlled subprocess')")
@@ -346,9 +409,9 @@ class NumericCommandControls(OwnedTemporary):
         self.java = '/synthetic/jdk/bin/java'
         self.make_report()
 
-    def make_report(self, alias_first_streams=False):
-        self.start = time.time_ns() - 10_000_000
-        self.report = {'started_utc': datetime.now(timezone.utc).isoformat(), 'commands': []}
+    def make_report(self):
+        self.report = {'schema': 2, 'commands': []}
+        self.set_flat_clock(self.report, 'started', run_acceptance.command_clock())
         output = self.root / self.folder
         jar = str(self.root / 'tools/lib/jadx-r2721.4574686-all.jar')
         cp = ':'.join([jar, str(self.root / 'build/java/hostclasses'), str(self.root / 'tools/classes')])
@@ -380,30 +443,28 @@ class NumericCommandControls(OwnedTemporary):
         harness('original-as-rebuilt-rejected', 1)
         harness('wrong-helper-class-rejected', 1)
         harness('positive-restoration', 0)
-        for index, (subdir, label, code, argv) in enumerate(rows):
-            started = datetime.now(timezone.utc).isoformat()
-            value = {'name': label, 'argv': argv, 'started_utc': started, 'returncode': code,
-                     'timeout_seconds': 120, 'duration_seconds': 0.01}
+        for subdir, label, code, argv in rows:
             prefix = self.folder + ('/' + subdir if subdir else '')
-            for stream in ('stdout', 'stderr'):
-                name = prefix + '/' + label + '.' + stream + '.log'
-                path = self.put(name, ('SYNTHETIC NUMERIC POLICY ONLY ' + name).encode())
-                if alias_first_streams and index == 0 and stream == 'stderr':
-                    path.unlink()
-                    os.link(self.root / value['stdout']['path'], path)
-                value[stream] = {'path': name, **inputs.identity(path)}
-            value['ended_utc'] = datetime.now(timezone.utc).isoformat()
-            self.report['commands'].append(value)
-        self.report['finished_utc'] = datetime.now(timezone.utc).isoformat()
-        self.end = time.time_ns() + 10_000_000
+            self.report['commands'].append(self.observed_command(
+                prefix, label, name=label, argv=argv, returncode=code, timeout_seconds=120))
+        self.set_flat_clock(self.report, 'finished', run_acceptance.command_clock())
+        # This is the command guard alone, not a synthetic full acceptance claim.
+        # Its encompassing fixture bounds include the actual filesystem witnesses.
+        first = self.report['commands'][0]['stream_evidence']['before_witness']['final_stat']['ctime_ns']
+        final = self.report['commands'][-1]['stream_evidence']['after_witnesses'][-1]['final_stat']['ctime_ns']
+        self.start = min(first, self.report['started_unix_ns'])
+        self.end = max(final, self.report['finished_unix_ns'])
 
     def check(self):
         ledger = verify.Artifacts(self.root, self.start, self.end)
         verify.verify_numeric_commands(self.report, self.folder, ledger, self.java)
         return ledger
 
-    def test_exact_seventeen_synthetic_command_rows_preserve_thirty_four_distinct_streams(self):
-        self.assertEqual(34, len(self.check().rows))
+    def test_exact_seventeen_synthetic_command_rows_preserve_streams_and_all_witnesses(self):
+        rows = self.check().rows
+        self.assertEqual(34, len([name for name in rows if name.endswith(('.stdout.log', '.stderr.log'))]))
+        expected = sum(3 + len(row['stream_evidence']['after_witnesses']) for row in self.report['commands'])
+        self.assertEqual(expected, len(rows))
 
     def test_retained_streams_cannot_make_bin_true_a_d8_command(self):
         self.report['commands'][0]['argv'] = ['/bin/true']
@@ -447,18 +508,29 @@ class NumericCommandControls(OwnedTemporary):
 
     def test_reused_numeric_stream_name_rejects(self):
         self.report['commands'][1]['stdout'] = copy.deepcopy(self.report['commands'][0]['stdout'])
-        with self.assertRaisesRegex(ValueError, 'reused another stream'):
+        with self.assertRaisesRegex(ValueError, 'reused, renamed or substituted'):
             self.check()
 
     def test_physical_numeric_stream_alias_rejects_even_with_matching_hashes(self):
-        self.make_report(alias_first_streams=True)
-        with self.assertRaisesRegex(ValueError, 'physical result file'):
+        row = self.report['commands'][0]
+        first, second = (self.root / row[stream]['path'] for stream in ('stdout', 'stderr'))
+        second.unlink()
+        os.link(first, second)
+        for stream in ('stdout', 'stderr'):
+            receipt = row['stream_evidence']['streams'][stream]
+            receipt['final_stat'] = run_acceptance.command_file_stat((self.root / receipt['path']).stat())
+            receipt.update(inputs.identity(self.root / receipt['path']))
+            row[stream] = {key: receipt[key] for key in ('path', 'bytes', 'sha256')}
+        with self.assertRaisesRegex(ValueError, 'one owned regular inode'):
             self.check()
 
     def test_stream_from_before_its_own_numeric_child_rejects(self):
         row = self.report['commands'][0]
-        row['started_utc'] = row['ended_utc']
-        with self.assertRaisesRegex(ValueError, 'own subprocess interval'):
+        value = row['stream_evidence']
+        value['started'] = copy.deepcopy(value['invocation_finished'])
+        self.set_flat_clock(row, 'started', value['started'])
+        row['duration_seconds'] = (value['finished']['monotonic_ns'] - value['started']['monotonic_ns']) / 1_000_000_000
+        with self.assertRaisesRegex(ValueError, 'reverse or escape'):
             self.check()
 
     def test_omitted_last_numeric_child_rejects(self):
@@ -471,39 +543,39 @@ class WrapperStreamControls(OwnedTemporary):
     def setUp(self):
         super().setUp()
         self.prepared = {'project': '/synthetic/project'}
-        self.execution = {'started_utc': datetime.now(timezone.utc).isoformat(), 'java_versions': []}
+        self.execution = {'schema': 2, 'java_versions': []}
+        self.set_flat_clock(self.execution, 'started', run_acceptance.command_clock())
         for label, argv, timeout in [('java-version', ['java', '-version'], 15),
                                       ('javac-version', ['javac', '-version'], 15),
                                       ('acceptance', [sys.executable, '-B', 'acceptance.py'], 6600)]:
-            row = {'argv': argv, 'cwd': self.prepared['project'], 'timeout_seconds': timeout,
-                   'returncode': 0, 'timed_out': False, 'started_unix_ns': time.time_ns()}
-            for stream in ('stdout', 'stderr'):
-                name = label + '.' + stream + '.log'
-                path = self.put(name, ('SYNTHETIC OUTER CHILD POLICY ONLY ' + name).encode())
-                row[stream] = {'path': name, **inputs.identity(path)}
-            row['ended_unix_ns'] = time.time_ns()
+            row = self.observed_command('', label, argv=argv, cwd=self.prepared['project'],
+                                        timeout_seconds=timeout, returncode=0, timed_out=False)
             if label == 'acceptance':
                 self.execution['execution'] = row
             else:
                 self.execution['java_versions'].append(row)
-        self.execution['finished_utc'] = datetime.now(timezone.utc).isoformat()
+        self.set_flat_clock(self.execution, 'finished', run_acceptance.command_clock())
 
     def check(self):
         return verify.verify_wrapper_streams(self.execution, self.prepared, self.root)
 
     def test_exact_synthetic_child_stream_roles_and_intervals_are_accepted(self):
-        self.assertEqual(6, len(self.check()))
+        rows = self.check()
+        self.assertEqual(6, len([row for row in rows if row['path'].endswith(('.stdout.log', '.stderr.log'))]))
+        expected = sum(3 + len(row['stream_evidence']['after_witnesses'])
+                       for row in self.execution['java_versions'] + [self.execution['execution']])
+        self.assertEqual(expected, len(rows))
 
     def test_java_version_streams_cannot_replace_acceptance_streams(self):
         for stream in ('stdout', 'stderr'):
             (self.root / self.execution['execution'][stream]['path']).unlink()
             self.execution['execution'][stream] = copy.deepcopy(self.execution['java_versions'][0][stream])
-        with self.assertRaisesRegex(ValueError, 'reused or renamed'):
+        with self.assertRaises((ValueError, FileNotFoundError)):
             self.check()
 
     def test_dot_alias_does_not_create_a_new_acceptance_stream_role(self):
         self.execution['execution']['stdout']['path'] = './acceptance.stdout.log'
-        with self.assertRaisesRegex(ValueError, 'reused or renamed'):
+        with self.assertRaisesRegex(ValueError, 'reused, renamed or substituted'):
             self.check()
 
     def test_version_command_cannot_be_replaced_by_true(self):
@@ -511,16 +583,246 @@ class WrapperStreamControls(OwnedTemporary):
         with self.assertRaisesRegex(ValueError, 'Outer child invocation'):
             self.check()
 
-    def test_old_acceptance_stream_fails_its_specific_child_window(self):
+    def test_old_acceptance_stream_fails_its_recorded_creation_order(self):
         row = self.execution['execution']
-        row['started_unix_ns'] = row['ended_unix_ns'] - 1
-        with self.assertRaisesRegex(ValueError, 'own child interval'):
+        evidence = row['stream_evidence']
+        evidence['started'] = copy.deepcopy(evidence['invocation_finished'])
+        self.set_flat_clock(row, 'started', evidence['started'])
+        row['duration_seconds'] = (evidence['finished']['monotonic_ns'] - evidence['started']['monotonic_ns']) / 1_000_000_000
+        with self.assertRaisesRegex(ValueError, 'reverse or escape'):
             self.check()
 
     def test_acceptance_interval_cannot_precede_the_java_observations(self):
-        self.execution['execution']['started_unix_ns'] = self.execution['java_versions'][0]['started_unix_ns']
-        with self.assertRaisesRegex(ValueError, 'Outer child chronology'):
+        row = self.execution['execution']
+        first = self.execution['java_versions'][0]
+        delta = first['started_unix_ns'] - row['started_unix_ns'] - 1_000_000_000
+        def shift(value):
+            if isinstance(value, dict):
+                if set(value) == {'unix_ns', 'monotonic_ns', 'utc'}:
+                    return self.changed_clock(value, delta, delta)
+                return {key: shift(item) for key, item in value.items()}
+            if isinstance(value, list):
+                return [shift(item) for item in value]
+            return value
+        row['stream_evidence'] = shift(row['stream_evidence'])
+        self.set_flat_clock(row, 'started', row['stream_evidence']['started'])
+        self.set_flat_clock(row, 'ended', row['stream_evidence']['finished'])
+        with self.assertRaisesRegex(ValueError, 'outer child:acceptance'):
             self.check()
+
+
+class ExclusiveStreamControls(OwnedTemporary):
+    """Direct command-receipt boundary; the full outer envelope is tested above."""
+    def setUp(self):
+        super().setUp()
+        self.row = self.observed_command('', 'guard', argv=['SYNTHETIC'],
+                                         returncode=0, timeout_seconds=120)
+
+    def check(self):
+        # This direct boundary deliberately makes no overall acceptance claim.
+        ledger = verify.Artifacts(self.root, 1, 2 ** 63 - 1)
+        verify.verify_command_stream_evidence(self.row, '', 'guard', ledger)
+        return ledger
+
+    def test_complete_live_creation_receipts_match_all_actual_files(self):
+        ledger = self.check()
+        self.assertEqual(3 + len(self.row['stream_evidence']['after_witnesses']), len(ledger.rows))
+
+    def test_missing_before_witness_rejects(self):
+        self.row['stream_evidence'].pop('before_witness')
+        with self.assertRaisesRegex(ValueError, 'Missing, partial or additional'):
+            self.check()
+
+    def test_missing_after_witness_rejects(self):
+        self.row['stream_evidence']['after_witnesses'] = []
+        with self.assertRaisesRegex(ValueError, 'After-witness inventory'):
+            self.check()
+
+    def test_borrowed_before_witness_rejects(self):
+        other = self.observed_command('', 'other', argv=['SYNTHETIC'], returncode=0)
+        self.row['stream_evidence']['before_witness'] = other['stream_evidence']['before_witness']
+        with self.assertRaisesRegex(ValueError, 'Exclusive file role'):
+            self.check()
+
+    def test_borrowed_after_witness_rejects(self):
+        other = self.observed_command('', 'other', argv=['SYNTHETIC'], returncode=0)
+        self.row['stream_evidence']['after_witnesses'][-1] = other['stream_evidence']['after_witnesses'][-1]
+        with self.assertRaisesRegex(ValueError, 'Exclusive file role'):
+            self.check()
+
+    def test_renamed_empty_borrowed_witness_cannot_reuse_original_fstat(self):
+        other = self.observed_command('', 'other', argv=['SYNTHETIC'], returncode=0)
+        receipt = self.row['stream_evidence']['after_witnesses'][-1]
+        path = self.root / receipt['path']
+        replacement = self.root / other['stream_evidence']['after_witnesses'][-1]['path']
+        path.unlink()
+        replacement.rename(path)
+        with self.assertRaisesRegex(ValueError, 'Live file differs'):
+            self.check()
+
+    def test_nonexclusive_open_declaration_rejects(self):
+        self.row['stream_evidence']['streams']['stdout']['exclusive_mode'] = 'wb'
+        with self.assertRaisesRegex(ValueError, 'Exclusive file role'):
+            self.check()
+
+    def test_preexisting_nonempty_initial_file_rejects(self):
+        self.row['stream_evidence']['streams']['stdout']['initial_stat']['bytes'] = 1
+        with self.assertRaisesRegex(ValueError, 'not initially empty'):
+            self.check()
+
+    def test_recorded_final_fstat_must_match_live_metadata(self):
+        self.row['stream_evidence']['streams']['stdout']['final_stat']['ctime_ns'] += 1
+        with self.assertRaisesRegex(ValueError, 'Live file differs'):
+            self.check()
+
+    def test_recorded_initial_inode_cannot_belong_to_another_file(self):
+        value = self.row['stream_evidence']['streams']
+        value['stdout']['initial_stat']['inode'] = value['stderr']['initial_stat']['inode']
+        with self.assertRaisesRegex(ValueError, 'inode ownership changed'):
+            self.check()
+
+    def test_actual_inode_replacement_with_identical_bytes_rejects(self):
+        receipt = self.row['stream_evidence']['streams']['stdout']
+        path = self.root / receipt['path']
+        replacement = self.put('replacement', path.read_bytes())
+        replacement.replace(path)
+        with self.assertRaisesRegex(ValueError, 'Live file differs'):
+            self.check()
+
+    def test_actual_old_mtime_cannot_precede_exclusive_initial_stat(self):
+        receipt = self.row['stream_evidence']['streams']['stdout']
+        path = self.root / receipt['path']
+        os.utime(path, ns=(1, 1))
+        receipt['final_stat'] = run_acceptance.command_file_stat(path.stat())
+        with self.assertRaisesRegex(ValueError, 'predates its recorded exclusive creation'):
+            self.check()
+
+    def test_boolean_stat_value_is_not_an_inode(self):
+        self.row['stream_evidence']['streams']['stdout']['final_stat']['inode'] = True
+        with self.assertRaisesRegex(ValueError, 'Exact filesystem stat fields'):
+            self.check()
+
+    def test_fine_unix_clock_reversal_rejects_even_inside_same_iso_microsecond(self):
+        receipt = self.row['stream_evidence']['streams']['stdout']
+        receipt['opened'] = self.changed_clock(receipt['open_started'], unix_delta=-1, mono_delta=1)
+        with self.assertRaisesRegex(ValueError, 'reverse or escape'):
+            self.check()
+
+    def test_fine_monotonic_clock_reversal_rejects(self):
+        receipt = self.row['stream_evidence']['streams']['stdout']
+        receipt['opened'] = self.changed_clock(receipt['open_started'], unix_delta=1, mono_delta=-1)
+        with self.assertRaisesRegex(ValueError, 'reverse or escape'):
+            self.check()
+
+    def test_iso_cannot_contradict_recorded_integer_time(self):
+        self.row['stream_evidence']['streams']['stdout']['opened']['utc'] = '2020-01-01T00:00:00.000000+00:00'
+        with self.assertRaisesRegex(ValueError, 'integer-clock truncation'):
+            self.check()
+
+    def test_literal_witness_attempt_limit_cannot_be_expanded(self):
+        self.row['stream_evidence']['after_witness_attempt_limit'] = 17
+        with self.assertRaisesRegex(ValueError, 'attempt bound'):
+            self.check()
+
+    def test_literal_poll_interval_cannot_be_reduced(self):
+        self.row['stream_evidence']['after_witness_poll_ns'] = 4_999_999
+        with self.assertRaisesRegex(ValueError, 'polling bound'):
+            self.check()
+
+    def append_actual_extra_witness(self):
+        value = self.row['stream_evidence']
+        index = len(value['after_witnesses'])
+        time.sleep(0.005)
+        observer = run_acceptance.CommandStreamEvidence(self.root,
+            self.root / 'guard.stdout.log', self.root / 'guard.stderr.log')
+        extra = observer.witness('filesystem-after-%02d' % index)
+        value['after_witnesses'].append(extra)
+        value['finished'] = run_acceptance.command_clock()
+        self.set_flat_clock(self.row, 'ended', value['finished'])
+        self.row['duration_seconds'] = (value['finished']['monotonic_ns'] - value['started']['monotonic_ns']) / 1_000_000_000
+        return value
+
+    def test_successful_first_bracket_cannot_be_followed_by_another_selected_witness(self):
+        self.append_actual_extra_witness()
+        with self.assertRaisesRegex(ValueError, 'first actual filesystem bracket'):
+            self.check()
+
+    def test_reordered_witnesses_reject_with_every_file_retained(self):
+        value = self.append_actual_extra_witness()
+        value['after_witnesses'][0], value['after_witnesses'][-1] = value['after_witnesses'][-1], value['after_witnesses'][0]
+        with self.assertRaisesRegex(ValueError, 'Exclusive file role'):
+            self.check()
+
+    def test_partial_cleanup_evidence_cannot_be_a_zero_exit_success(self):
+        self.row['stream_evidence']['cleanup_errors'] = ['synthetic recorded cleanup failure']
+        with self.assertRaisesRegex(ValueError, 'Missing, partial or additional'):
+            self.check()
+
+
+class ClockPrecisionControls(unittest.TestCase):
+    def test_all_one_thousand_integer_microseconds_convert_without_float_rounding(self):
+        seconds = 1791798408
+        for microsecond in range(1000):
+            stamp = datetime.fromtimestamp(seconds, timezone.utc).replace(microsecond=microsecond).isoformat(timespec='microseconds')
+            self.assertEqual(seconds * 1_000_000_000 + microsecond * 1000, verify.epoch_ns(stamp))
+
+    def test_correctly_ordered_integer_nanoseconds_can_share_one_iso_microsecond(self):
+        floor = 1791798408 * 1_000_000_000 + 123456000
+        utc = '2026-10-12T09:46:48.123456+00:00'
+        first = {'unix_ns': floor + 900, 'monotonic_ns': 2000000900, 'utc': utc}
+        second = {'unix_ns': floor + 950, 'monotonic_ns': 2000000950, 'utc': utc}
+        verify.checked_clock(first, 'synthetic earlier child')
+        verify.checked_clock(second, 'synthetic later wrapper')
+        verify.clocks_ordered(first, second, 'same display microsecond', strict=True)
+
+
+class LiveEmptyStreamControls(OwnedTemporary):
+    def test_actual_empty_python_child_retains_unchanged_empty_stat_and_valid_bracket(self):
+        env = os.environ.copy()
+        env.update(PYTHONDONTWRITEBYTECODE='1', TMPDIR=str(self.root))
+        self.row = run_acceptance.run_child([sys.executable, '-B', '-c', 'pass'], self.root, env,
+            self.root / 'empty.stdout.log', self.root / 'empty.stderr.log', 5)
+        self.assertEqual(0, self.row['returncode'])
+        self.assertNotIn('error', self.row)
+        receipts = self.row['stream_evidence']['streams']
+        for name in ('stdout', 'stderr'):
+            self.assertEqual(receipts[name]['initial_stat'], receipts[name]['final_stat'])
+            self.assertEqual(0, receipts[name]['bytes'])
+        self.equal_initial_filesystem_ticks_observed = (receipts['stdout']['initial_stat']['ctime_ns']
+                                                       == receipts['stderr']['initial_stat']['ctime_ns'])
+        ledger = verify.Artifacts(self.root, 1, 2 ** 63 - 1)
+        verify.verify_command_stream_evidence(self.row, '', 'empty', ledger)
+
+
+class JavaObservationFailureControls(OwnedTemporary):
+    def test_zero_exit_with_evidence_error_stops_before_long_acceptance_child(self):
+        pins = inputs.load_pins()
+        expected = dict(pins['future_snapshot'])
+        project = self.root / 'project'
+        output = self.root / 'output'
+        output.mkdir()
+        manifest = 'a' * 64
+        preparation = {'passed': True, 'status': 'EXACT_19_FILE_WIP_PREPARED', 'output': str(output),
+                       'project': str(project), 'runtime_source': {'manifest': {'sha256': manifest}}}
+        inputs.write_json(output / 'preparation.json', preparation)
+        argv = ['run_acceptance.py', '--baseline-repository', str(self.root / 'baseline'),
+                '--overlay-repository', str(self.root / 'overlay'), '--output', str(output),
+                '--runtime-manifest-sha256', manifest]
+        failure = {'returncode': 0, 'timed_out': False, 'error': 'SYNTHETIC unbracketed witness'}
+        inventory = lambda path: ([{'path': 'release-input-snapshot.json', **pins['future_manifest']}]
+                                  if path.name == 'reports' else [])
+        with patch.object(sys, 'argv', argv), patch.object(inputs, 'verify_runtime_manifest'), \
+             patch.object(inputs, 'contract', return_value=(pins, {}, expected, None)), \
+             patch.object(inputs, 'scan_inputs', return_value=expected), \
+             patch.object(inputs, 'compare_inputs'), patch.object(run_acceptance, 'inventory', side_effect=inventory), \
+             patch.object(run_acceptance, 'run_child', return_value=failure) as child:
+            self.assertEqual(2, run_acceptance.main())
+        self.assertEqual(1, child.call_count)
+        self.assertEqual(['java', '-version'], child.call_args.args[0])
+        self.execution = inputs.read_json(output / 'execution.json')
+        self.assertFalse(self.execution['passed'])
+        self.assertNotIn('execution', self.execution)
+        self.assertIn('Java toolchain observation failed', self.execution['error'])
 
 
 class NumericProvenanceControls(unittest.TestCase):

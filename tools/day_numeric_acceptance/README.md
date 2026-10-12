@@ -13,12 +13,12 @@ the application baseline and the reviewed overlay have independent fixed commits
 | Role | Fixed identity |
 | --- | --- |
 | Application baseline | `dbcad968c5c3e8f084205393a6c0d2d06a203c71` |
-| Reviewed overlay publication | `394234b0e74c9f1d660836c8f2a89901fe05ff9d` |
-| Overlay capsule | `work-in-progress/day-trigger-numeric/06-source-integration/checkpoint.json` |
-| Overlay checkpoint SHA-256 | `c59d9624844864de085723167ed67af017ed6e0ef17e06ba0206a33649e92b2f` |
+| Reviewed overlay publication | `811f979eda1b937917c18defef38455c49a59062` |
+| Overlay capsule | `work-in-progress/day-trigger-numeric/08-command-filesystem-source-successor/checkpoint.json` |
+| Overlay checkpoint SHA-256 | `d9ddd3e0f692c66e2cd47870ff3cf95bfa0a2b1cd50fc2fd55a3c09e66df9bcf` |
 | Complete baseline input inventory | 81,291 files; snapshot `b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553` |
-| Complete future input inventory | 81,298 files; snapshot `04b2867b722335f6b2b4910fc4ccba02e89bdbca52f80e1e9a9b9ac4b18fa1d4` |
-| Future manifest bytes | 14,504,095 bytes; SHA-256 `25a60c227b5083b6e608b161ee403503b0232ad59368ba9603db5e6b8e00eb23` |
+| Complete future input inventory | 81,298 files; snapshot `f8fc1cadac8213468e42ac99a2cd5d807827dcdeee25166b8025620ff39a6545` |
+| Future manifest bytes | 14,504,095 bytes; SHA-256 `896f3eb29dc832eb245fee8dcb70b0e8c8935c9635bf1ccc54c09987b26c91c6` |
 
 `pins.json` contains the complete nineteen copy roles, all twelve old-file hashes,
 all seven absence requirements, the exact future manifest identity, the 91 compiled
@@ -30,7 +30,12 @@ cannot define the expected result.
 The workflow validates the SHA-256 of `runtime-files.json` before executing the
 job tools. That manifest binds every top-level tool file. `prepare.py`,
 `run_acceptance.py`, and `verify.py` each check it again. The source capsule's
-complete 113-file inventory and its checkpoint are checked without editing them.
+complete 408-file inventory and its checkpoint are checked without editing them.
+This source successor changes only command-evidence instrumentation in
+`day_numeric_dex_controls.py`; the other eighteen overlay files remain byte-identical
+to the earlier source capsule. Its complete old/new input binding, semantic AST
+comparison, first producer attempt, exceptional-cleanup counterexample, and
+corrected sixteen-control evidence remain in that immutable capsule.
 
 ## Preparation and execution
 
@@ -52,7 +57,10 @@ independent scan also rejects symlinks, special files and aliases between distin
 input paths.
 
 `run_acceptance.py` records the actual Python and Java observations, exact child
-command, resolved Python executable identity, stream hashes, start/end times and return code. It executes the unchanged
+command, resolved Python executable identity, stream hashes, integer Unix and
+monotonic operation clocks, filesystem witnesses, and return code. A zero-exit
+Java observation with a recording/cleanup error stops before the acceptance child.
+The wrapper executes the unchanged
 sixteen-gate acceptance sequence from the reviewed overlay, including the isolated
 signed source-edit test and the final positive three-path run. The UI gate retains
 its reviewed 5,400-second limit; each other gate retains 1,200 seconds. The outer
@@ -68,7 +76,8 @@ source twice, checks all sixteen gate commands in order and their actual exit
 codes, and verifies all 23 required fresh report hashes. Result paths must be
 canonical, physically distinct and created/modified inside the recorded acceptance
 interval. The Java-version and acceptance streams must use their exact distinct
-filenames and fall within their own child invocation intervals. A prior report,
+filenames and complete exclusive-creation receipts, with separately ordered
+integer command clocks and the actual filesystem bracket described below. A prior report,
 aliased log, skipped source-edit test or missing gate
 prevents success.
 
@@ -94,6 +103,60 @@ configuration with only their declared substitution. Recorded command arguments,
 configuration names or stream files cannot substitute for those independently
 reconstructed roles.
 
+## Exact command file creation and clocks
+
+Hosted run [38232050667](https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/actions/runs/38232050667)
+failed in the 67 tooling controls before materialization or an application build.
+The [unchanged raw artifact](../../docs/verification/day-numeric-hosted-run-5c402b4/)
+retains 64 successes, two errors and one dependent failure. It did not record those
+fixtures' exact stat deltas. The separate unchanged-source diagnosis retained eight
+actual empty subprocesses whose sixteen streams had inode timestamps before a
+precise clock sampled immediately before exclusive creation. This is a coarse
+filesystem-clock issue. Floating-point conversion of an epoch timestamp and ISO
+microsecond truncation were distinct additional precision problems; the successor
+uses integer conversions throughout.
+
+For each Java-version, acceptance, and numeric D8/harness command, the producer:
+
+1. Records exact integer Unix and monotonic nanoseconds; ISO is derived from the
+   same Unix value, with no floating-point epoch conversion.
+2. Exclusively creates and closes one empty witness in the stream directory.
+3. Opens stdout and stderr using `xb`, recording the operation clocks, initial
+   empty fstat/hash, and later final fstat/hash and closure clocks for each file.
+4. Preserves every exclusive after-witness observation until the first actual
+   filesystem clock brackets both streams' initial and final mtime/ctime values.
+   There are at most sixteen observations, with a requested five-millisecond wait
+   between failed observations: at most fifteen waits. A missing bracket fails.
+
+The observer never changes a timestamp or adds a tolerance. Repeated observations
+allow a coarse filesystem clock to advance past a recently written fine timestamp.
+The 120-second numeric subprocess limit, 15-second Java-observation limit and
+6,600-second outer acceptance limit stay unchanged. Exception paths attempt every
+owned descriptor's cleanup, retain cleanup errors and preserve an original child
+exception; they never turn that evidence into success.
+
+The independent verifier reconstructs all roles and exact argv, checks the live
+files against recorded final fstat/hash, enforces one regular inode and one link,
+and checks the ordered exclusive-open, invocation, closure and witness clocks.
+Both Unix and monotonic clocks must move forward. All unsuccessful witnesses must
+precede the first successful one; missing, reordered, borrowed or later selected
+witnesses reject. The literal sixteen-observation and five-millisecond policy is
+fixed. Empty files with unchanged creation/final metadata are valid, including
+observed equal filesystem ticks.
+
+**Live verification and archive replay have different metadata scopes.** The
+hosted verifier compares original inode/ctime and bytes while those files still
+exist. The artifact retains the exact serialized original observations and bytes.
+Extraction creates other inodes and ctimes, so a later replay must verify its raw
+byte identities and recorded observations without treating extraction metadata as
+the hosted stat. This tooling does not silently substitute extracted metadata or
+claim that a post-extraction live-stat check occurred on the runner.
+
+The clock interpretation follows the primary [Linux multigrain timestamp
+documentation](https://cdn.kernel.org/doc/html/latest/filesystems/multigrain-ts.html),
+[Linux timekeeping accessors](https://cdn.kernel.org/doc/html/latest/core-api/timekeeping.html),
+and [Python datetime precision](https://docs.python.org/3.12/library/datetime.html).
+
 The unchanged baseline APK must reproduce its existing SHA-256. The new hybrid
 APK's identity is measured from its actual bytes and must be bound by its code,
 resource, host, numeric and source-edit reports. The workflow does not substitute
@@ -107,6 +170,10 @@ The workflow always uploads the complete new `reports` and `dist` scope, the
 preparation/execution/verification receipts, the complete old and future input
 manifests, the exact nineteen overlay payloads, retained historical outputs,
 runtime class evidence, host-control logs, and the exact job tools/workflow.
+The hosted test step also retains each owned fixture's raw files, recorded
+creation receipts, and original stat inventory under `hosted-tool-control-evidence`.
+Intentional symlink faults are retained as inert descriptions. This output is
+separate from preparation and cannot populate the fresh application result scope.
 Temporary build caches and installed Java binaries are infrastructure; their
 source/tool identities and actual runtime observations are recorded. Failed and
 partial results are retained with their literal statuses.
@@ -120,6 +187,11 @@ python3 -B -m unittest discover -s tools/day_numeric_acceptance -p 'test_*.py' -
 These controls use small synthetic report fixtures and actual bounded Python child
 processes. They test inventory truncation, overlay omission, stale or physically
 aliased artifacts, nonzero exits, skips, timeouts and source-preservation guards.
+The successor adds witness ownership/order, actual replaced inodes and stale
+mtime, live-stat mismatch, both fine-clock reversals, exact integer precision,
+partial cleanup and zero-exit fail-fast controls. Actual small empty subprocesses
+check the complete live creation receipt; synthetic command rows explicitly have
+synthetic contents and do not execute Java.
 They do not claim that the full application build or 91 UI controls have executed.
 
 The job inherits the pinned action versions and Java 21 setup from the reviewed

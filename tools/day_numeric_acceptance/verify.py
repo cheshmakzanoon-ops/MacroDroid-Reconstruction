@@ -10,6 +10,7 @@ import math
 from pathlib import Path
 import re
 import shutil
+import stat
 import sys
 import zipfile
 
@@ -32,7 +33,8 @@ def epoch_ns(value):
     inputs.require(isinstance(value, str), 'Missing timestamp')
     parsed = datetime.fromisoformat(value)
     inputs.require(parsed.tzinfo is not None, 'Timestamp lacks timezone')
-    return int(parsed.timestamp() * 1_000_000_000)
+    delta = parsed - datetime(1970, 1, 1, tzinfo=timezone.utc)
+    return (delta.days * 86400 + delta.seconds) * 1_000_000_000 + delta.microseconds * 1000
 
 
 class Artifacts:
@@ -52,7 +54,8 @@ class Artifacts:
         inputs.require(key not in self.physical or self.physical[key] == name,
                        'One physical result file represents multiple artifacts: ' + name)
         row = {'path': name, **inputs.identity(path), 'device': status.st_dev, 'inode': status.st_ino,
-               'mtime_ns': status.st_mtime_ns, 'ctime_ns': status.st_ctime_ns}
+               'mtime_ns': status.st_mtime_ns, 'ctime_ns': status.st_ctime_ns,
+               'mode': status.st_mode, 'links': status.st_nlink}
         inputs.require(name not in self.rows or self.rows[name] == row, 'Result changed during verification: ' + name)
         self.rows[name] = row
         self.physical[key] = name
@@ -70,6 +73,135 @@ class Artifacts:
     def hash(self, name, expected):
         self.path(name)
         inputs.require(self.rows[name]['sha256'] == expected, 'Recorded result hash differs: ' + name)
+
+
+def checked_clock(value, role):
+    inputs.require(isinstance(value, dict) and set(value) == {'unix_ns', 'monotonic_ns', 'utc'},
+                   'Exact clock fields differ: ' + role)
+    inputs.require(type(value['unix_ns']) is int and value['unix_ns'] > 0
+                   and type(value['monotonic_ns']) is int and value['monotonic_ns'] > 0,
+                   'Missing exact integer clocks: ' + role)
+    seconds, fraction = divmod(value['unix_ns'], 1_000_000_000)
+    expected = datetime.fromtimestamp(seconds, timezone.utc).replace(microsecond=fraction // 1000).isoformat(timespec='microseconds')
+    inputs.require(value['utc'] == expected, 'ISO text is not the exact integer-clock truncation: ' + role)
+    return value
+
+
+def row_clock(row, prefix, role):
+    return checked_clock({'unix_ns': row.get(prefix + '_unix_ns'),
+                          'monotonic_ns': row.get(prefix + '_monotonic_ns'),
+                          'utc': row.get(prefix + '_utc')}, role)
+
+
+def clocks_ordered(first, second, role, strict=False):
+    for name in ('unix_ns', 'monotonic_ns'):
+        inputs.require(first[name] < second[name] if strict else first[name] <= second[name],
+                       'Command clocks reverse or escape their ordered operation: ' + role)
+
+
+def checked_stat(value, role):
+    fields = {'device', 'inode', 'mode', 'links', 'bytes', 'mtime_ns', 'ctime_ns'}
+    inputs.require(isinstance(value, dict) and set(value) == fields
+                   and all(type(value[key]) is int for key in fields), 'Exact filesystem stat fields differ: ' + role)
+    inputs.require(value['device'] > 0 and value['inode'] > 0 and stat.S_ISREG(value['mode'])
+                   and value['links'] == 1 and value['bytes'] >= 0
+                   and value['mtime_ns'] > 0 and value['ctime_ns'] > 0,
+                   'File is not one owned regular inode: ' + role)
+    return value
+
+
+def verify_file_creation(receipt, name, artifacts, witness=False):
+    """Check recorded creation against the live host file, not extracted ZIP stats."""
+    fields = {'path', 'exclusive_mode', 'open_started', 'initial_stat', 'initial_sha256', 'opened',
+              'closing', 'final_stat', 'closed', 'bytes', 'sha256', 'hashed'}
+    inputs.require(isinstance(receipt, dict) and set(receipt) == fields
+                   and receipt.get('path') == name and receipt.get('exclusive_mode') == 'xb',
+                   'Exclusive file role or creation receipt differs: ' + name)
+    clocks = [checked_clock(receipt[stage], name + ':' + stage)
+              for stage in ('open_started', 'opened', 'closing', 'closed', 'hashed')]
+    for first, second in zip(clocks, clocks[1:]):
+        clocks_ordered(first, second, name)
+    initial = checked_stat(receipt['initial_stat'], name + ':initial')
+    final = checked_stat(receipt['final_stat'], name + ':final')
+    inputs.require(initial['bytes'] == 0 and receipt['initial_sha256'] == hashlib.sha256(b'').hexdigest()
+                   and initial['mtime_ns'] == initial['ctime_ns'], 'Exclusive file was not initially empty: ' + name)
+    inputs.require(all(initial[key] == final[key] for key in ('device', 'inode', 'mode', 'links')),
+                   'Exclusive file inode ownership changed: ' + name)
+    inputs.require(initial['mtime_ns'] <= final['mtime_ns'] and initial['ctime_ns'] <= final['ctime_ns'],
+                   'File metadata predates its recorded exclusive creation: ' + name)
+    artifacts.hash(name, receipt['sha256'])
+    actual = artifacts.rows[name]
+    inputs.require({key: actual[key] for key in final} == final,
+                   'Live file differs from the recorded final fstat: ' + name)
+    count(receipt['bytes'], final['bytes'], 'Final stream byte count differs')
+    if witness:
+        inputs.require(initial == final and final['bytes'] == 0
+                       and receipt['sha256'] == hashlib.sha256(b'').hexdigest(),
+                       'Filesystem witness was written, changed or substituted: ' + name)
+    return receipt
+
+
+def verify_command_stream_evidence(row, prefix, label, artifacts):
+    value = row.get('stream_evidence')
+    fields = {'schema', 'started', 'streams', 'after_witnesses', 'after_witness_attempt_limit',
+              'after_witness_poll_ns', 'filesystem_bracket_complete', 'before_witness',
+              'invocation_started', 'invocation_finished', 'finished'}
+    inputs.require(isinstance(value, dict) and set(value) == fields,
+                   'Missing, partial or additional command creation evidence: ' + label)
+    count(value['schema'], 2, 'Command creation evidence schema differs')
+    count(value['after_witness_attempt_limit'], 16, 'Filesystem witness attempt bound differs')
+    count(value['after_witness_poll_ns'], 5_000_000, 'Filesystem witness polling bound differs')
+    inputs.require(value['filesystem_bracket_complete'] is True, 'Actual filesystem bracket did not complete')
+    start = checked_clock(value['started'], label + ':start')
+    end = checked_clock(value['finished'], label + ':finish')
+    clocks_ordered(start, end, label, strict=True)
+    inputs.require(row_clock(row, 'started', label) == start and row_clock(row, 'ended', label) == end,
+                   'Command timestamps differ from its stream-creation evidence')
+    inputs.require(type(row.get('duration_seconds')) in (int, float)
+                   and math.isfinite(row['duration_seconds'])
+                   and row['duration_seconds'] == (end['monotonic_ns'] - start['monotonic_ns']) / 1_000_000_000,
+                   'Command duration differs from its exact monotonic interval')
+    prefix = prefix + '/' if prefix else ''
+    before = verify_file_creation(value['before_witness'], prefix + label + '.filesystem-before.log', artifacts, True)
+    clocks_ordered(start, before['open_started'], label + ':before-witness')
+    inputs.require(isinstance(value['streams'], dict) and set(value['streams']) == {'stdout', 'stderr'},
+                   'Exclusive command stream inventory differs')
+    previous = before['hashed']
+    receipts = []
+    for stream in ('stdout', 'stderr'):
+        name = prefix + label + '.' + stream + '.log'
+        receipt = verify_file_creation(value['streams'][stream], name, artifacts)
+        inputs.require(row.get(stream) == {key: receipt[key] for key in ('path', 'bytes', 'sha256')},
+                       'Command reused, renamed or substituted another stream: ' + name)
+        clocks_ordered(previous, receipt['open_started'], name + ':open')
+        previous = receipt['opened']
+        receipts.append(receipt)
+    invocation_start = checked_clock(value['invocation_started'], label + ':invocation-start')
+    invocation_end = checked_clock(value['invocation_finished'], label + ':invocation-end')
+    clocks_ordered(previous, invocation_start, label + ':invoke')
+    clocks_ordered(invocation_start, invocation_end, label + ':return')
+    previous = invocation_end
+    for receipt in reversed(receipts):
+        clocks_ordered(previous, receipt['closing'], receipt['path'] + ':close')
+        previous = receipt['hashed']
+    witnesses = value['after_witnesses']
+    inputs.require(isinstance(witnesses, list) and 1 <= len(witnesses) <= 16, 'After-witness inventory differs')
+    for index, witness in enumerate(witnesses):
+        witness = verify_file_creation(witness, prefix + label + f'.filesystem-after-{index:02d}.log', artifacts, True)
+        clocks_ordered(previous, witness['open_started'], label + ':after-witness')
+        if index:
+            inputs.require(witness['open_started']['monotonic_ns'] - previous['monotonic_ns'] >= 5_000_000,
+                           'After-witness retry omitted its recorded polling interval')
+        previous = witness['hashed']
+        floor, ceiling = before['final_stat'], witness['final_stat']
+        complete = all(floor['device'] == observed['device'] == ceiling['device']
+            and floor['ctime_ns'] <= observed['mtime_ns'] <= ceiling['ctime_ns']
+            and floor['ctime_ns'] <= observed['ctime_ns'] <= ceiling['ctime_ns']
+            for receipt in receipts for observed in (receipt['initial_stat'], receipt['final_stat']))
+        inputs.require(complete is (index == len(witnesses) - 1),
+                       'Witness inventory did not stop at the first actual filesystem bracket')
+    clocks_ordered(previous, end, label + ':complete')
+    return start, end
 
 
 def verify_execution(execution, prepared, pins):
@@ -97,15 +229,23 @@ def verify_execution(execution, prepared, pins):
 
 
 def verify_wrapper_streams(execution, prepared, output):
-    """Bind each outer stream to its exact child, time window and physical file."""
-    beginning, completion = epoch_ns(execution.get('started_utc')), epoch_ns(execution.get('finished_utc'))
-    inputs.require(beginning < completion, 'Wrapper interval differs')
-    artifacts = Artifacts(output, beginning, completion)
+    """Bind outer streams to exact live files and separately ordered integer clocks."""
+    count(execution.get('schema'), 2, 'Wrapper creation-evidence schema differs')
+    beginning = row_clock(execution, 'started', 'wrapper-start')
+    completion = row_clock(execution, 'finished', 'wrapper-finish')
+    clocks_ordered(beginning, completion, 'wrapper', strict=True)
     versions = execution.get('java_versions')
     inputs.require(isinstance(versions, list) and len(versions) == 2, 'Java observation inventory differs')
     expected = [('java-version', ['java', '-version'], versions[0], 15),
                 ('javac-version', ['javac', '-version'], versions[1], 15),
                 ('acceptance', [sys.executable, '-B', 'acceptance.py'], execution['execution'], None)]
+    last = execution['execution'].get('stream_evidence', {}).get('after_witnesses')
+    inputs.require(isinstance(last, list) and 1 <= len(last) <= 16, 'Missing final wrapper filesystem witness')
+    # These bounds come from the live expected witness files. Their recorded
+    # identity and actual exclusive-open operation are checked below as well.
+    first_path = inputs.regular(output, 'java-version.filesystem-before.log')
+    final_path = inputs.regular(output, f'acceptance.filesystem-after-{len(last)-1:02d}.log')
+    artifacts = Artifacts(output, first_path.stat().st_ctime_ns, final_path.stat().st_ctime_ns)
     previous = beginning
     for label, argv, row, timeout in expected:
         inputs.require(row.get('argv') == argv and row.get('cwd') == prepared['project']
@@ -114,22 +254,11 @@ def verify_wrapper_streams(execution, prepared, output):
         count(row.get('returncode'), 0, 'Outer child did not exit zero: ' + label)
         if timeout is not None:
             count(row.get('timeout_seconds'), timeout, 'Java observation timeout differs')
-        start, end = row.get('started_unix_ns'), row.get('ended_unix_ns')
-        inputs.require(type(start) is int and type(end) is int and previous <= start < end <= completion,
-                       'Outer child chronology differs: ' + label)
+        start, end = verify_command_stream_evidence(row, '', label, artifacts)
+        clocks_ordered(previous, start, 'outer child:' + label)
+        clocks_ordered(end, completion, 'outer completion:' + label)
         previous = end
-        for stream in ('stdout', 'stderr'):
-            name = label + '.' + stream + '.log'
-            value = row.get(stream, {})
-            inputs.require(isinstance(value, dict) and value.get('path') == name,
-                           'Outer child reused or renamed another stream: ' + label)
-            artifacts.hash(name, value['sha256'])
-            actual = artifacts.rows[name]
-            count(actual['bytes'], value['bytes'], 'Outer stream length differs')
-            inputs.require(start <= actual['mtime_ns'] <= end and start <= actual['ctime_ns'] <= end,
-                           'Outer stream is outside its own child interval: ' + name)
     return sorted(artifacts.rows.values(), key=lambda row: row['path'])
-
 
 def verify_gates(latest, execution, pins, artifacts):
     flags(latest, {'host_acceptance_passed': True, 'source_edit_probe_skipped': False,
@@ -378,32 +507,23 @@ def expected_numeric_commands(project, folder, java):
 def verify_numeric_commands(report, folder, artifacts, java):
     expected = expected_numeric_commands(artifacts.root, folder, java)
     commands = report.get('commands')
+    count(report.get('schema'), 2, 'Numeric command creation-evidence schema differs')
     inputs.require(isinstance(commands, list) and len(commands) == len(expected) == 17, 'Numeric actual command inventory differs')
-    previous_end = epoch_ns(report['started_utc'])
-    inputs.require(artifacts.started_ns <= previous_end, 'Numeric commands predate acceptance')
+    previous = row_clock(report, 'started', 'numeric-report-start')
+    completion = row_clock(report, 'finished', 'numeric-report-finish')
+    clocks_ordered(previous, completion, 'numeric report', strict=True)
+    inputs.require(artifacts.started_ns <= previous['unix_ns']
+                   and completion['unix_ns'] <= artifacts.ended_ns, 'Numeric report is outside acceptance')
     for row, (subdir, label, code, argv) in zip(commands, expected):
         inputs.require(row.get('name') == label, 'Numeric command order differs')
         inputs.require(row.get('argv') == argv, 'Numeric exact command, JVM policy or input role differs: ' + label)
         count(row.get('returncode'), code, 'Numeric actual subprocess outcome differs')
         count(row.get('timeout_seconds'), 120, 'Numeric child timeout differs')
-        start, end = epoch_ns(row.get('started_utc')), epoch_ns(row.get('ended_utc'))
-        inputs.require(previous_end <= start <= end <= artifacts.ended_ns, 'Numeric subprocess chronology differs')
-        previous_end = end
-        inputs.require(type(row.get('duration_seconds')) in (int, float) and math.isfinite(row['duration_seconds'])
-                       and row['duration_seconds'] >= 0,
-                       'Numeric subprocess lacks an actual bounded invocation')
         prefix = folder + ('/' + subdir if subdir else '')
-        for stream in ('stdout', 'stderr'):
-            name = prefix + '/' + label + '.' + stream + '.log'
-            value = row.get(stream, {})
-            inputs.require(value.get('path') == name, 'Numeric subprocess reused another stream')
-            artifacts.hash(name, value['sha256'])
-            count(artifacts.rows[name]['bytes'], value['bytes'], 'Numeric stream length differs')
-            inputs.require(start <= artifacts.rows[name]['mtime_ns'] <= end
-                           and start <= artifacts.rows[name]['ctime_ns'] <= end,
-                           'Numeric stream is outside its own subprocess interval: ' + name)
-    inputs.require(previous_end <= epoch_ns(report.get('finished_utc')) <= artifacts.ended_ns, 'Numeric completion time differs')
-
+        start, end = verify_command_stream_evidence(row, prefix, label, artifacts)
+        clocks_ordered(previous, start, 'numeric child:' + label)
+        clocks_ordered(end, completion, 'numeric completion:' + label)
+        previous = end
 
 def verify_java_policy(artifacts):
     policy = artifacts.json('reports/ui-runtime-policy.json')
@@ -462,7 +582,7 @@ def verify_numeric(project, pins, apk, ui, controls, report, artifacts, output, 
     inputs.require(report.get('status') == 'TWO_ACTUAL_NUMERIC_DEX_FAULTS_DETECTED_SIGNED_POSITIVE_RESTORED'
                    and report.get('signed_apk_sha256') == apk and report.get('original_fixture_sha256') == pins['fixture']['sha256']
                    and report.get('input_inventory_sha256') == catalog.DAY_INPUT_INVENTORY_SHA256, 'Numeric acceptance identity differs')
-    for key, expected in [('schema', 1), ('primary_recovered_methods', 1), ('original_dependency_methods', 3),
+    for key, expected in [('schema', 2), ('primary_recovered_methods', 1), ('original_dependency_methods', 3),
                           ('expected_java_faults', 13), ('expected_actual_dex_faults', 2), ('provenance_controls_rejected', 2),
                           ('cases', 1291), ('execution_paths', 3), ('original_instruction_count', 32),
                           ('rebuilt_instruction_count', 25), ('conditional_edges_per_path', 4)]:
@@ -609,7 +729,8 @@ def main():
     result = {'schema': 1, 'status': 'WIP_FULL_HOST_ACCEPTANCE_NOT_ESTABLISHED', 'passed': False,
               'started_utc': datetime.now(timezone.utc).isoformat(), 'active_promoted': False,
               'android_runtime_executed': False, 'full_runtime_1_to_1_established': False,
-              'complete_high_level_java_kotlin_source': False}
+              'complete_high_level_java_kotlin_source': False,
+              'file_metadata_verification_scope': 'Live host filesystem; archived recorded inode/ctime values are historical observations, not extracted-file metadata'}
     artifacts = None
     retained = {}
     try:

@@ -22,7 +22,7 @@ concurrency:
 env:
   PYTHONUTF8: '1'
   PYTHONDONTWRITEBYTECODE: '1'
-  DAY_NUMERIC_RUNTIME_MANIFEST_SHA256: 'a2e8c137dd5aed3a3605eddf560789206ec9626593bdc97824a1c78c2245fe69'
+  DAY_NUMERIC_RUNTIME_MANIFEST_SHA256: 'a1b6464be0603913f9fe37b0b90e7026034fd1823f3b24b949355109b9632428'
 
 jobs:
   isolated-numeric-source:
@@ -56,13 +56,13 @@ jobs:
       - name: Check out the independently committed nineteen-file numeric overlay
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: 394234b0e74c9f1d660836c8f2a89901fe05ff9d
+          ref: 811f979eda1b937917c18defef38455c49a59062
           path: overlay-repository
           fetch-depth: 1
           persist-credentials: false
           sparse-checkout-cone-mode: true
           sparse-checkout: |
-            work-in-progress/day-trigger-numeric/06-source-integration
+            work-in-progress/day-trigger-numeric/08-command-filesystem-source-successor
       - name: Set up the parent workflow's Java 21 toolchain
         uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
         with:
@@ -92,6 +92,8 @@ jobs:
           Path('hosted-tool-source-verification.json').write_text(json.dumps({'passed': True, 'manifest_sha256': os.environ['DAY_NUMERIC_RUNTIME_MANIFEST_SHA256'], 'files': value['files']}, indent=2) + '\n')
           PY
       - name: Run bounded job policy and subprocess controls
+        env:
+          DAY_NUMERIC_CONTROL_EVIDENCE_ROOT: ${{ github.workspace }}/hosted-tool-control-evidence
         run: python3 -B -m unittest discover -s job-source/tools/day_numeric_acceptance -p 'test_*.py' -v > hosted-tool-host-tests.log 2>&1
       - name: Verify the complete baseline and apply exactly the reviewed source overlay
         run: |
@@ -131,6 +133,7 @@ jobs:
             numeric-workspace/MacroDroid_v9/reports/
             numeric-workspace/MacroDroid_v9/dist/*.apk
             hosted-tool-host-tests.log
+            hosted-tool-control-evidence/
             hosted-tool-source-verification.json
             job-source/tools/day_numeric_acceptance/
             job-source/.github/workflows/day-numeric-wip-acceptance.yml

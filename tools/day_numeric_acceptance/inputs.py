@@ -261,8 +261,8 @@ def contract(baseline_repository, overlay_repository):
     require(manifest['active_files'] == [] and manifest['source_changes'] == pins['source_changes'],
             'Frozen nineteen source roles differ')
     files = manifest['files']
-    require(isinstance(files, list) and len(files) == 113
-            and len({row['path'] for row in files}) == 113, 'Source capsule inventory differs')
+    require(isinstance(files, list) and len(files) == 408
+            and len({row['path'] for row in files}) == 408, 'Source capsule inventory differs')
     actual_files = set()
     for path in capsule.rglob('*'):
         require(not path.is_symlink(), 'Symlink in frozen source capsule')
