@@ -113,7 +113,10 @@ were still pending at that freeze. The subsequent `03-signed-controls-pending`
 checkpoint passed all 188,791 signed three-path cases and an independent DEX
 roundtrip; its exact APK and complete closed evidence are now preserved beside
 the source. All 37 control executions were still pending at that checkpoint.
-All three plugin checkpoints retain inactive registries. The materializer applies only `project/`, so
+The final `04-signed-proof` checkpoint passed all 37 controls and clean
+18,476-case UI restoration, with the same exact signed APK. Its complete
+191-file archive and 40 source files are preserved alongside the previous
+checkpoints. All four plugin checkpoints retain inactive registries. The materializer applies only `project/`, so
 preserving unfinished work does not adopt it as active application source.
 
 The inactive constructor-owner prototype and its exact original/Java/D8 outputs

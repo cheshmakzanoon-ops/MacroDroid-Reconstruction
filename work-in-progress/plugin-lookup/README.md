@@ -81,3 +81,27 @@ To restore the complete evidence, assemble its manifest and extract the resultin
 start at `evidence/`; exact hashes are listed in the receipt and original checkpoint.
 Future integration must retain parent build/runtime changes and apply the two
 provided merge patches only after their recorded baseline checks.
+
+
+## 04: Signed proof, all controls and clean restoration passed
+
+[The final isolated checkpoint](04-signed-proof/checkpoint.json) preserves 40
+source/test/document/fixture files, two narrow merge patches and a complete
+[191-file evidence archive](04-signed-proof-evidence/manifest.json). Checkpoint
+SHA-256:
+`43ec5fd958e43258f62b3639aac275cccff2333435c7f48bc8fd6f3717cd958d`.
+
+The signed three-path suite passed all 188,791 cases, with zero failures or
+unsupported executions. All 198 original plugin instructions and all 34
+conditional branch edges were covered. All 37 deliberate-fault controls passed,
+including 15 plugin controls, and the final clean 18,476-case UI restoration
+passed. The independent DEX roundtrip and 161 Python tests also passed. See the
+[complete recovery report](04-signed-proof-evidence/plugin-lookup-recovery.json)
+for precise exception, retry and injected-boundary scope.
+
+The APK remains exactly the checkpoint-03 artifact (`9108b581…`, 94,683,497 bytes);
+[its reference](04-signed-proof/artifact-reference.json) binds the final proof
+without duplicating or changing the active candidate. The 1,240-body / 603-class
+source remains inactive. Combined parent acceptance and Android plugin behavior
+are separate, unmeasured scopes for this checkpoint. Earlier failed and pending
+checkpoint reports remain unchanged.
