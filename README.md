@@ -86,7 +86,7 @@ is not a pass.
 | `docs/verification/current/` | Measured current-candidate recovery and verification results. |
 | `tools/android/` | Reproducible JDK/SDK pins, disposable emulator setup, and runtime orchestration. |
 | `docs/v9/` and `docs/history/` | Historical quality reports, delivery records, provenance and checksums. |
-| `source/java/recovered/` | Four original illustrative recovered-source samples retained from the initial repository. |
+| `source/java/recovered/` | Historical and independent recovered-source samples. Active build inputs are under `project/`. |
 
 The committed source archive contains **81,903 files**; the toolchain archive
 contains **14 files**. Together, the two original ZIP byte streams are 328,955,278
