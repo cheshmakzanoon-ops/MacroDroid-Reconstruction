@@ -1,0 +1,166 @@
+{
+  "schema": 1,
+  "status": "PROPOSED_NOT_EXECUTED",
+  "report_schema": 6,
+  "prefix_sha256": "42ece5a06a280186ddf9796a4524975d478263e545260674e2b1b4cf718d46fb",
+  "plan_sha256": "4133e9410db84ac5636ece780b67331bf139afaa2de6b5c110c5ef5679fda85c",
+  "plan": [
+    [
+      "intro-1",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "MACRODROID"
+      },
+      null
+    ],
+    [
+      "intro-2",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "TRIGGERS"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/button_next"
+      }
+    ],
+    [
+      "intro-3",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "ACTIONS"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/button_next"
+      }
+    ],
+    [
+      "intro-4",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "CONSTRAINTS"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/button_next"
+      }
+    ],
+    [
+      "notification-request",
+      "com.google.android.permissioncontroller",
+      {
+        "resource-id": "com.android.permissioncontroller:id/permission_deny_button"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/button_next"
+      }
+    ],
+    [
+      "reference-promotion",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "LITEAPKS"
+      },
+      {
+        "resource-id": "com.android.permissioncontroller:id/permission_deny_button"
+      }
+    ],
+    [
+      "home",
+      "com.arlosoft.macrodroid",
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/navigation_home"
+      },
+      {
+        "text": "CLOSE"
+      }
+    ],
+    [
+      "empty-editor",
+      "com.arlosoft.macrodroid",
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/edit_macro_addTriggerButton"
+      },
+      {
+        "text": "Add Macro"
+      }
+    ],
+    [
+      "favourite-triggers-info",
+      "com.arlosoft.macrodroid",
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/alertTitle",
+        "text": "Favourite Triggers"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/edit_macro_addTriggerButton"
+      }
+    ],
+    [
+      "after-favourite-info",
+      "com.arlosoft.macrodroid",
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/edit_macro_addTriggerButton"
+      },
+      {
+        "resource-id": "android:id/button1",
+        "text": "OK"
+      }
+    ],
+    [
+      "trigger-catalog",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "Add Trigger"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/edit_macro_addTriggerButton"
+      }
+    ],
+    [
+      "after-trigger-date-category",
+      "com.arlosoft.macrodroid",
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/select_item_name",
+        "text": "Day/Time"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/category_name",
+        "text": "Date/Time"
+      }
+    ],
+    [
+      "after-day-time-trigger",
+      "com.arlosoft.macrodroid",
+      {
+        "resource-id": "android:id/button1",
+        "text": "OK"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/select_item_name",
+        "text": "Day/Time"
+      }
+    ],
+    [
+      "after-exact-alarm-ok",
+      "com.android.settings",
+      null,
+      {
+        "resource-id": "android:id/button1",
+        "text": "OK"
+      }
+    ]
+  ],
+  "new_input": {
+    "resource-id": "android:id/button1",
+    "text": "OK"
+  },
+  "screen_count": 14,
+  "input_count": 13,
+  "new_input_count": 1,
+  "terminal_owner": "com.android.settings",
+  "terminal_component": "Observed stable component in the Settings package; no unobserved activity name assumed",
+  "full_runtime_1_to_1_established": false,
+  "exact_alarm_permission_granted": false,
+  "trigger_configuration_confirmed": false,
+  "macros_saved": false,
+  "macros_executed": false
+}

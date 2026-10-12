@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "status": "PARTIAL_ERROR_DESCRIPTOR_CLEANUP_GAP_REPRODUCED",
+  "completed_utc": "2026-10-12T10:05:41.860889+00:00",
+  "source_path": "/dev/shm/day-numeric-hosted-02/source-successor/project/day_numeric_dex_controls.py",
+  "source_sha256": "8e8c26a472c42843147d5aeca159cc48c61dd9d66ad7228059ce2d7d24808591",
+  "source_unchanged": true,
+  "cases": [
+    {
+      "label": "normal-empty-streams",
+      "injected_fault": false,
+      "error": null,
+      "stdout_closed_by_producer": true,
+      "stderr_closed_by_producer": true,
+      "finished_recorded": true
+    },
+    {
+      "label": "flush-and-close-error",
+      "injected_fault": true,
+      "error": "OSError('review-only injected close failure after descriptor closure')",
+      "stdout_closed_by_producer": false,
+      "stderr_closed_by_producer": true,
+      "finished_recorded": false,
+      "remaining_stdout_closed_by_reviewer_after_observation": true
+    }
+  ],
+  "scope": "Direct source-bound context calls with synthetic I/O errors; no child process or full verifier replay",
+  "application_or_android_execution": false,
+  "false_acceptance_claimed": false
+}

@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "scope": "Static preserved source and resource inspection; no dynamic listener execution",
+  "source_manifest": {
+    "bytes": 14502990,
+    "sha256": "ca3bed290f18a378c7a3d6cc70d924c8d6ec85481e236b4e7561c31fedafdfbe"
+  },
+  "source_snapshot_sha256": "b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553",
+  "files": [
+    {
+      "path": "source/smali/classes3/74/DayTrigger_74d1108db13471a8.smali",
+      "bytes": 102706,
+      "sha256": "73914856377629c12077f34916a8674d7d0bdf7799ebc3357c299ce424a7789e"
+    },
+    {
+      "path": "source/smali/classes3/ef/Llob_ef0ec2c9c024726d.smali",
+      "bytes": 121740,
+      "sha256": "b60ab566d1650481137c2cfc2d1ebc681e677e4880c986f15e49a17079f1f6c9"
+    },
+    {
+      "path": "source/smali/classes3/f1/Lzh_f13ce5bd058a5574.smali",
+      "bytes": 34538,
+      "sha256": "3a9995b7383ed038a26641b0efbc875d11c994cf49bab65c12e38d1b923da1ab"
+    },
+    {
+      "path": "source/android/res/values/public.xml",
+      "bytes": 1827567,
+      "sha256": "251a8a55635fec71f2b6424e2f31d23248ac6320d50cd409ca389086791e14ad"
+    },
+    {
+      "path": "source/android/res/values/strings.xml",
+      "bytes": 628362,
+      "sha256": "48bfa22ab2b90a29088736b36102a7c3eb586591f5f7e0c5ed306b50ac99eb9a"
+    }
+  ],
+  "inspection": [
+    "DayTrigger.requiresScheduleExactAlarm returns true",
+    "Llob.c checks API31 and canScheduleExactAlarms before building the required-permission dialog",
+    "Dialog message resource0x7f141194 maps to permission_to_set_exact_alarms_required; title0x7f141190 maps to permission_required",
+    "The positive OnClickListener is Lzh with discriminator16",
+    "Packed-switch discriminator16 maps to pswitch_144",
+    "That branch creates REQUEST_SCHEDULE_EXACT_ALARM with package URI derived from Activity.getPackageName and calls Activity.startActivity"
+  ],
+  "settings_owner_is_a_bounded_expectation": true,
+  "actual_destination_component_not_observed_yet": true
+}

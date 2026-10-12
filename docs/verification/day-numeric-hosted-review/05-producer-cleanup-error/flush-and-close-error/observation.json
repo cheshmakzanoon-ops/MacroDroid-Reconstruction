@@ -1,0 +1,134 @@
+{
+  "label": "flush-and-close-error",
+  "injected_fault": true,
+  "error": "OSError('review-only injected close failure after descriptor closure')",
+  "stdout_closed_by_producer": false,
+  "stderr_closed_by_producer": true,
+  "finished_recorded": false,
+  "stream_evidence": {
+    "schema": 2,
+    "started": {
+      "unix_ns": 1791799541858971678,
+      "monotonic_ns": 37262653634587,
+      "utc": "2026-10-12T10:05:41.858971+00:00"
+    },
+    "streams": {
+      "stdout": {
+        "path": "probe.stdout.log",
+        "exclusive_mode": "xb",
+        "open_started": {
+          "unix_ns": 1791799541859933544,
+          "monotonic_ns": 37262654596738,
+          "utc": "2026-10-12T10:05:41.859933+00:00"
+        },
+        "initial_stat": {
+          "device": 26,
+          "inode": 157570,
+          "mode": 33188,
+          "links": 1,
+          "bytes": 0,
+          "mtime_ns": 1791799541859287244,
+          "ctime_ns": 1791799541859287244
+        },
+        "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "opened": {
+          "unix_ns": 1791799541860076360,
+          "monotonic_ns": 37262654739274,
+          "utc": "2026-10-12T10:05:41.860076+00:00"
+        }
+      },
+      "stderr": {
+        "path": "probe.stderr.log",
+        "exclusive_mode": "xb",
+        "open_started": {
+          "unix_ns": 1791799541860117416,
+          "monotonic_ns": 37262654780269,
+          "utc": "2026-10-12T10:05:41.860117+00:00"
+        },
+        "initial_stat": {
+          "device": 26,
+          "inode": 157571,
+          "mode": 33188,
+          "links": 1,
+          "bytes": 0,
+          "mtime_ns": 1791799541859287244,
+          "ctime_ns": 1791799541859287244
+        },
+        "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "opened": {
+          "unix_ns": 1791799541860155630,
+          "monotonic_ns": 37262654818502,
+          "utc": "2026-10-12T10:05:41.860155+00:00"
+        }
+      }
+    },
+    "after_witnesses": [],
+    "after_witness_attempt_limit": 16,
+    "after_witness_poll_ns": 5000000,
+    "filesystem_bracket_complete": false,
+    "before_witness": {
+      "path": "probe.filesystem-before.log",
+      "exclusive_mode": "xb",
+      "open_started": {
+        "unix_ns": 1791799541859030476,
+        "monotonic_ns": 37262653693426,
+        "utc": "2026-10-12T10:05:41.859030+00:00"
+      },
+      "initial_stat": {
+        "device": 26,
+        "inode": 157569,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 0,
+        "mtime_ns": 1791799541858876489,
+        "ctime_ns": 1791799541858876489
+      },
+      "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "opened": {
+        "unix_ns": 1791799541859298930,
+        "monotonic_ns": 37262653961917,
+        "utc": "2026-10-12T10:05:41.859298+00:00"
+      },
+      "closing": {
+        "unix_ns": 1791799541859305970,
+        "monotonic_ns": 37262653968841,
+        "utc": "2026-10-12T10:05:41.859305+00:00"
+      },
+      "final_stat": {
+        "device": 26,
+        "inode": 157569,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 0,
+        "mtime_ns": 1791799541858876489,
+        "ctime_ns": 1791799541858876489
+      },
+      "closed": {
+        "unix_ns": 1791799541859312078,
+        "monotonic_ns": 37262653974934,
+        "utc": "2026-10-12T10:05:41.859312+00:00"
+      },
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hashed": {
+        "unix_ns": 1791799541859355707,
+        "monotonic_ns": 37262654018563,
+        "utc": "2026-10-12T10:05:41.859355+00:00"
+      }
+    },
+    "invocation_started": {
+      "unix_ns": 1791799541860160135,
+      "monotonic_ns": 37262654823030,
+      "utc": "2026-10-12T10:05:41.860160+00:00"
+    },
+    "invocation_finished": {
+      "unix_ns": 1791799541860166068,
+      "monotonic_ns": 37262654828944,
+      "utc": "2026-10-12T10:05:41.860166+00:00"
+    },
+    "cleanup_errors": [
+      "OSError('review-only injected flush failure')"
+    ]
+  },
+  "remaining_stdout_closed_by_reviewer_after_observation": true
+}
