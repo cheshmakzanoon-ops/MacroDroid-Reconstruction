@@ -1,0 +1,80 @@
+{
+  "class_mappings": [
+    {
+      "target": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;",
+      "method": "requiresScheduleExactAlarm()Z",
+      "helper": "Lrecovered/constants/DayTrigger_74d1108d;",
+      "helper_method": "requiresScheduleExactAlarm_4dd28cf8",
+      "helper_descriptor": "requiresScheduleExactAlarm_4dd28cf8(Ljava/lang/Object;)Z",
+      "instance": true,
+      "java_source": "source/java/recovered/constants/DayTrigger_74d1108d.java",
+      "proof_family": "constant",
+      "original_method_sha256": "1ccf6c201fbed5ac9d75483a666e283eca0204688ac1dc87df2d0734762220ad",
+      "expected": {
+        "kind": "integer",
+        "value": 1,
+        "return": "Z"
+      }
+    },
+    {
+      "target": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;",
+      "method": "r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+      "helper": "Lrecovered/ui/DayTriggerValueMethods;",
+      "helper_method": "numericValue",
+      "instance": false,
+      "java_source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+      "proof_family": "v9-ui",
+      "original_method_sha256": "8383c90ebe3d35afa63d52cf92cd4c92b54ed4525ca0d8a31a29fe603f9eef21"
+    },
+    {
+      "target": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;",
+      "method": "p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+      "helper": "Lrecovered/ui/DayTriggerLookupMethods;",
+      "helper_method": "findEntry",
+      "instance": false,
+      "java_source": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+      "proof_family": "v9-ui",
+      "original_method_sha256": "afdaa9b0977db46a2f333cccb0de57a401b77e2e3b66b535b2bff50991e4614e"
+    }
+  ],
+  "dependencies": [
+    {
+      "consumer": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+      "target": "Lcom/arlosoft/macrodroid/variables/VariableValue$DecimalValue;",
+      "method": "getDecimalValue()D",
+      "original_method_sha256": "89c5a3751f7de7f7bdfaddba05f28651eb8b0b78413e4263e05c9dc795acf7ae"
+    },
+    {
+      "consumer": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+      "target": "Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+      "method": "getVariable()Lcom/arlosoft/macrodroid/variables/VariableValue;",
+      "original_method_sha256": "b3674d51703eb3811fc4918e739777c37de3c580bee961343b80c21e014ca5c0"
+    },
+    {
+      "consumer": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+      "target": "Lcom/arlosoft/macrodroid/variables/VariableValue$IntegerValue;",
+      "method": "getIntValue()J",
+      "original_method_sha256": "1760568e68babc8e32459eed0352a8a20cfdbe35e02b87f2fc6dacc914399993"
+    },
+    {
+      "consumer": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+      "target": "Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;",
+      "method": "getEntries()Ljava/util/List;",
+      "original_method_sha256": "f3959381d2067a3611069ac45c01a34078ef9e718f9c4906f74bb545da48be0e"
+    },
+    {
+      "consumer": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+      "target": "Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+      "method": "getKey()Ljava/lang/String;",
+      "original_method_sha256": "41c4ec0e7f0ec7f3b6638765a92670cdbae7c839b794b8f3de9ba1c2b431b1a3"
+    }
+  ],
+  "fixture": {
+    "bytes": 531256,
+    "sha256": "410ebd6bd6455863812b1c3b34148f6717c6824cb2bdf8d8490323832543f802"
+  },
+  "actual_dex_defined_methods": 1249,
+  "actual_dex_classes": 607,
+  "exact_registry_plus_dependency_key_set": true,
+  "dependency_credit": 0
+}

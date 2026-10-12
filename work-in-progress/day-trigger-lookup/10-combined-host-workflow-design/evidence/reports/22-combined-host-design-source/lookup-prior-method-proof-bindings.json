@@ -1,0 +1,104 @@
+{
+  "scope": "Actual prior method-only proof; old signed APK supplied unchanged getter dependencies, not p0. New signed primary proof remains pending.",
+  "checkpoint": {
+    "bytes": 14400,
+    "sha256": "d40df7530d090b6717d99e5011f1a0e5c0774297576ecc88047737301812a292"
+  },
+  "positive_pipeline": {
+    "method": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+    "original_class": {
+      "bytes": 102706,
+      "sha256": "73914856377629c12077f34916a8674d7d0bdf7799ebc3357c299ce424a7789e"
+    },
+    "original_method_sha256": "afdaa9b0977db46a2f333cccb0de57a401b77e2e3b66b535b2bff50991e4614e",
+    "helper_class": {
+      "bytes": 991,
+      "sha256": "df4383e951f3e897f58adc33f27847198f52cd455ccc5a9b22eb70712f66e082"
+    },
+    "relocated_class": {
+      "bytes": 991,
+      "sha256": "df4383e951f3e897f58adc33f27847198f52cd455ccc5a9b22eb70712f66e082"
+    },
+    "compiler_input": {
+      "bytes": 1173,
+      "sha256": "5efe8ff7432ae5407267970eaee0386a5233fd265ef2dbc88a458863427583db"
+    },
+    "compiler_input_classes": [
+      "recovered/ui/DayTriggerLookupMethods.class"
+    ],
+    "host_stubs_sent_to_d8": 0,
+    "helper_dex_sha256": "9f91c97823884c6677313fa4e1177f1f9d5849b3738c2c4c57a8740fda1af025",
+    "compiled_method_sha256": "4d21eccf2cbcc044efcabb702b97c3421ea60dfee6ffe05d73715599ecf0f1e5",
+    "transplanted_method_sha256": "9f64495b741330b70ab15b4a73fa17237ab87ceef83efcbab3158cb51c0ec131",
+    "transplanted_class": {
+      "bytes": 102414,
+      "sha256": "2330d67090670059890f6b36d374034eb40457340170d3d7c56dc884a0f017b1"
+    },
+    "target_dex_sha256": "cf79aff20187504abf4168c081b0cbd7d80ac664bce7ead175db835d8d06e596",
+    "other_original_methods_unchanged": 33,
+    "non_target_class_text_unchanged": true,
+    "preservation_scope": "One-method micro-DEX only; signed class also contains the pre-existing constant mapping and recovered r0. Signed p0 instructions are independently bound.",
+    "constructor_owner_corrections": []
+  },
+  "runtime_class_names": [
+    "BytecodeOracle",
+    "BytecodeOracle$Bits",
+    "BytecodeOracle$Escaped",
+    "BytecodeOracle$Frame",
+    "BytecodeOracle$Pending",
+    "BytecodeOracle$Ref",
+    "BytecodeOracle$Unsupported",
+    "DayLookupControlHarness",
+    "DayLookupParityCases",
+    "DayLookupParityCases$Input",
+    "DayLookupParityCases$Observed",
+    "DayLookupParityCases$State",
+    "DayLookupParityCases$Throwing",
+    "DayLookupParityCases$TraceIterator",
+    "DayLookupParityCases$TraceList",
+    "com.arlosoft.macrodroid.variables.VariableValue",
+    "com.arlosoft.macrodroid.variables.VariableValue$BooleanValue",
+    "com.arlosoft.macrodroid.variables.VariableValue$DecimalValue",
+    "com.arlosoft.macrodroid.variables.VariableValue$Dictionary",
+    "com.arlosoft.macrodroid.variables.VariableValue$DictionaryEntry",
+    "com.arlosoft.macrodroid.variables.VariableValue$IntegerValue",
+    "com.arlosoft.macrodroid.variables.VariableValue$StringValue",
+    "defpackage.EngineRuntime",
+    "defpackage.EngineRuntime$Dispatch",
+    "defpackage.TestClock",
+    "recovered.ui.DayTriggerLookupMethods"
+  ],
+  "old_config_identity": {
+    "bytes": 8510,
+    "sha256": "c0b38215e97afaba1bb77760a82278da638d97482ba0f4420cbe052c87dcce75"
+  },
+  "raw_report_identity": {
+    "bytes": 627758,
+    "sha256": "196c5487e03fa2844d9f23cd43347452c20d309517e5ea26ac6f6dece546da8a"
+  },
+  "input_inventory_sha256": "02dd119966191ad2f56937eda28e63644979080158465ffb13767710f34e32e6",
+  "original_instruction_count": 26,
+  "rebuilt_instruction_count": 23,
+  "edges_per_path": 4,
+  "java_fault_mismatch_counts": {
+    "case-sensitive": 127,
+    "reverse-receiver": 3,
+    "skip-null-entry": 2,
+    "null-query-early-return": 3,
+    "last-match": 233,
+    "trim-query": 1,
+    "indexed-loop": 369,
+    "extra-iteration-after-match": 233,
+    "swallow-iterator-fault": 25,
+    "replace-injected-npe-identity": 6
+  },
+  "vm_null_cases": [
+    "dictionary-null",
+    "entries-null",
+    "iterator-null",
+    "null-first-entry",
+    "null-query-and-null-key",
+    "null-query-nonempty",
+    "null-second-entry"
+  ]
+}
