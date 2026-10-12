@@ -1,0 +1,49 @@
+{
+  "status": "ALL_68_EXACT_EXCEPTION_OBSERVATION_CONTROLS_PASSED",
+  "started_utc": "2026-10-12T06:32:20.592090+00:00",
+  "scope": "Message-form/observation controls only; no app method or Android execution.",
+  "app_method_executions": 0,
+  "original_coverage_credit_added": 0,
+  "commands": [
+    {
+      "label": "compile",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-study-puumpw9k/harnessclasses:/tmp/macrodroid-video-host-23wavrcl/classes",
+        "-d",
+        "/tmp/macrodroid-video-exception-controls-b_ji6vni/classes",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/exception-conformance-07/VideoExceptionConformance.java"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "seconds": 2.098698,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "controls",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-video-exception-controls-b_ji6vni/classes:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-study-puumpw9k/harnessclasses:/tmp/macrodroid-video-host-23wavrcl/classes",
+        "VideoExceptionConformance",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/exception-conformance-07/controls.json"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "seconds": 0.370131,
+      "stdout_sha256": "90a15390bf7ecdd9c706c8f795f40989decb57d352066e7124120f57e47100a9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "source_sha256": "f7b57147a25cbc5deddb5aa154c8616b5bfec9c720817d979759dcdd819ee79a",
+  "study_result_sha256": "4905173d8eef5f75ed71df8037e2acdb9eb567c5f2049927cfc97d0ef0bab3d8",
+  "every_bound_class_unchanged": true,
+  "source_unchanged": true,
+  "controls": 68,
+  "passed": true,
+  "finished_utc": "2026-10-12T06:32:23.979331+00:00"
+}

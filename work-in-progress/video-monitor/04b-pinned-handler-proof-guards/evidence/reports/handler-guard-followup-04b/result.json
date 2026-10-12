@@ -1,0 +1,64 @@
+{
+  "status": "PINNED_PROOF_GUARDS_PASSED_NO_COVERAGE_POLICY_CHANGE",
+  "started_utc": "2026-10-12T06:40:21.972325+00:00",
+  "scope": "Synthetic proof-input validation only. No classfile or app body is executed; no original coverage credit or policy change.",
+  "original_coverage_credit_added": 0,
+  "coverage_exemption_implemented": false,
+  "app_method_executions": 0,
+  "commands": [
+    {
+      "label": "rehashed-added-throw-disassembly",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/verify_handler_dataflow.py",
+        "--evidence",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs",
+        "--output",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/verification"
+      ],
+      "returncode": 1,
+      "timeout_seconds": 60,
+      "seconds": 0.274243,
+      "stdout_sha256": "ca0d9785cbe60fe581337a1595e88fbe217459dc8d1aecdf216ce7aef4318a80",
+      "stderr_sha256": "042e49afe9c1197788e7cc4f3fc4809710cdbaed9adbb927c4d96a303b43fa5c",
+      "rejected": true,
+      "altered_file": "javap-StringBuilder.stdout.txt",
+      "altered_file_sha256": "6c11e205581c4423833400fd0d829af385c8ab7a7a75b099b820be506d4121c6",
+      "rehashed_collector_sha256": "dc62cef08d4b4f2a09666889a775586d7c4482db28f2403e202884fe75c1f61b"
+    },
+    {
+      "label": "rehashed-changed-jrt-class",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/verify_handler_dataflow.py",
+        "--evidence",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs",
+        "--output",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/verification"
+      ],
+      "returncode": 1,
+      "timeout_seconds": 60,
+      "seconds": 0.115668,
+      "stdout_sha256": "0e39a203f297c87c6ca4de7465ff819e69295156b84062d9afead8686b94eacc",
+      "stderr_sha256": "042e49afe9c1197788e7cc4f3fc4809710cdbaed9adbb927c4d96a303b43fa5c",
+      "rejected": true,
+      "altered_file": "jrt-classfiles/StringBuilder.class",
+      "altered_file_sha256": "1a1c20b5634f85548b071cb4b1f49c994995af362be4d591fc5c03910141ef9d",
+      "rehashed_collector_sha256": "c99af3cb3b67f7c813fd362f5c4a7e36a6e71fc3b75004f6650d5b4166e14a1c"
+    }
+  ],
+  "old_verifier_sha256": "3dede9be9b29d7fbc680df5e11cf3b331ea4bb339fbff96e01cfb733216c8160",
+  "new_verifier_sha256": "da31172a98316ca192e95720ba9eeb3d2070b729c08b1cff4743ddc5a67f69a5",
+  "added_throw_comparison": {
+    "old_substring_guard_accepted": true,
+    "new_complete_disassembly_guard_rejected": true,
+    "new_rejection_reason": "Complete pinned constructor disassembly changed: StringBuilder",
+    "scope": "Modified disassembly text only; the original class bytes and all historical reports remain unchanged."
+  },
+  "structural_guards_rejected": 11,
+  "rehashed_evidence_controls_rejected": 2,
+  "passed": true,
+  "finished_utc": "2026-10-12T06:40:22.449825+00:00"
+}

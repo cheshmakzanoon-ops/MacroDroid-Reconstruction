@@ -1,0 +1,24 @@
+{
+  "method": "Lcom/arlosoft/macrodroid/action/services/a;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+  "helper_sha256": "67f5a47013ffbffa67859f9103d2034b3225521d10be9d96d65acd31599d45ee",
+  "baseline_checkpoint_sha256": "1e94ebcdb8644fbada96e702e4000d0268a5b1d22d5247e6a56e55c90b8ad0fe",
+  "baseline_study_directory": "original-jvm-05-expanded",
+  "expected_cases": 1111,
+  "expected_independent_checks": 223,
+  "controls": [
+    {
+      "name": "dead-cast-order",
+      "reason": "Distinct malformed saved objects must expose File-cast-before-qnc order. This first run measures whether broad wording exclusion hides it.",
+      "edits": [
+        {
+          "find": "            File ignoredFile = (File) self.L$1;\n            qnc ignoredFlag = (qnc) self.L$0;",
+          "replace": "            qnc ignoredFlag = (qnc) self.L$0;\n            File ignoredFile = (File) self.L$1;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-dead-casts:2:2"
+      ]
+    }
+  ]
+}

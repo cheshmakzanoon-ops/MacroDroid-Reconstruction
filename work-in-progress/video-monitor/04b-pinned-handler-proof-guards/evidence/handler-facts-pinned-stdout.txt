@@ -1,0 +1,110 @@
+{
+  "status": "STRUCTURAL_FACTS_VERIFIED_SYNCHRONOUS_HOST_ARGUMENT_FOR_REVIEW",
+  "started_utc": "2026-10-12T06:33:24.254991+00:00",
+  "app_method_executed": false,
+  "android_executed": false,
+  "original_coverage_credit_added": 0,
+  "coverage_exemption_implemented": false,
+  "original_coverage_gate_remains_failed": true,
+  "scope": "Narrow mechanical facts and pinned synchronous host constructor argument for independent review; no runtime or complete-coverage claim.",
+  "collection_result_sha256": "2815ca1b9c3268b90850508734f90695911f502c31e035756abc51c396dd5c18",
+  "independent_digest_bindings": {
+    "collection": "2815ca1b9c3268b90850508734f90695911f502c31e035756abc51c396dd5c18",
+    "release": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec",
+    "actual_jrt_classfiles": {
+      "StringBuilder": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e",
+      "AbstractStringBuilder": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4",
+      "StringUTF16": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5",
+      "Object": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    "complete_javap_outputs": {
+      "StringBuilder": "9dd80fb96b823d0ce9bf2e55382dff5f16d218142c1c9bff4de6c2f024c586a1",
+      "AbstractStringBuilder": "6c4ee77294902e331277a8a8918d08e9f33d2d2913cb8aae221dc9a540ceb50d",
+      "StringUTF16": "ea0800a4ed57f2739594c9e838f508631a46770c5cb1a422f029a027a37aaab1",
+      "Object": "55ac3db4d20f4ae417cc9c2b9ecdaaef3a3b2576d810deed6e5860327b3b5cf1"
+    },
+    "scope": "Fixed reviewed evidence identities, independently specified by this verifier. A future runtime gate must also bind the runtime actually used; this is no such gate."
+  },
+  "every_collected_file_hash_verified": 29,
+  "synthetic_fact_guard_controls": [
+    {
+      "label": "last-divisor-becomes-zero",
+      "rejected": true,
+      "reason": "Instruction operands changed at 129",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "wide-write-clobbers-owner",
+      "rejected": true,
+      "reason": "Captured v14 overwritten",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "branch-bypasses-receiver-call",
+      "rejected": true,
+      "reason": "Constant divisor does not dominate division",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "normal-entry-into-handler",
+      "rejected": true,
+      "reason": "Ordinary entry into handler chain",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "different-field-receiver",
+      "rejected": true,
+      "reason": "Instruction operands changed at 150",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "different-constructor-arity",
+      "rejected": true,
+      "reason": "Instruction operands changed at 156",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "extended-protected-range",
+      "rejected": true,
+      "reason": "Exact Exception-only protected interval changed",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "catch-Throwable-instead-of-Exception",
+      "rejected": true,
+      "reason": "Exact Exception-only protected interval changed",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "additional-protected-constructor-call",
+      "rejected": true,
+      "reason": "Additional protected call",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "negative-default-capacity",
+      "rejected": true,
+      "reason": "Complete pinned constructor disassembly changed: StringBuilder",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "additional-constructor-throw-preserves-old-substrings",
+      "rejected": true,
+      "reason": "Complete pinned constructor disassembly changed: StringBuilder",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    }
+  ],
+  "primary_android_source_scope": "AOSP android-15.0.0_r1 source corroborates capacity16 and positive array lengths; the hosted Google APIs boot library was not extracted or matched byte-for-byte.",
+  "unmodified_original_coverage": {
+    "visited": 259,
+    "instructions": 262,
+    "unvisited": [
+      232,
+      233,
+      235
+    ],
+    "conditional_edges_visited": 46,
+    "conditional_edges": 46
+  },
+  "finished_utc": "2026-10-12T06:33:24.692299+00:00"
+}

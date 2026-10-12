@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/trigger-catalog-forward/workflow-01/reports/validation-01/input-faults/symlinked-runtime-input/work-in-progress/trigger-category-workflow/01-reviewed-workflow/prepare_trigger_journey.py", line 227, in <module>
+    main()
+  File "/workspace/scratch/4130730d15aa/trigger-catalog-forward/workflow-01/reports/validation-01/input-faults/symlinked-runtime-input/work-in-progress/trigger-category-workflow/01-reviewed-workflow/prepare_trigger_journey.py", line 223, in main
+    print(json.dumps(function(args.root.resolve(), args.output.resolve()), indent=2))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/trigger-catalog-forward/workflow-01/reports/validation-01/input-faults/symlinked-runtime-input/work-in-progress/trigger-category-workflow/01-reviewed-workflow/prepare_trigger_journey.py", line 167, in prepare
+    for row in expected_inputs(root):
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/trigger-catalog-forward/workflow-01/reports/validation-01/input-faults/symlinked-runtime-input/work-in-progress/trigger-category-workflow/01-reviewed-workflow/prepare_trigger_journey.py", line 89, in expected_inputs
+    add(name, digest)
+  File "/workspace/scratch/4130730d15aa/trigger-catalog-forward/workflow-01/reports/validation-01/input-faults/symlinked-runtime-input/work-in-progress/trigger-category-workflow/01-reviewed-workflow/prepare_trigger_journey.py", line 78, in add
+    path = checked_file(root, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/trigger-catalog-forward/workflow-01/reports/validation-01/input-faults/symlinked-runtime-input/work-in-progress/trigger-category-workflow/01-reviewed-workflow/prepare_trigger_journey.py", line 60, in checked_file
+    raise ValueError('Missing or unconfined input: ' + name)
+ValueError: Missing or unconfined input: tools/android/runtime_job.py

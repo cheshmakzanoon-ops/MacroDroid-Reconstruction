@@ -1,0 +1,30 @@
+{
+  "name": "strict-critical-storage-threshold",
+  "reason": "Exactly 128MiB is outside the critical-storage condition.",
+  "source_sha256": "bc1ea20ebfed3c5ebe3413b5a26ea7e781a85e8f687de33fa25716ac1f2c168d",
+  "compile_returncode": 0,
+  "expected_failure_labels": [
+    "video-space:134217728:0"
+  ],
+  "detected": true,
+  "execution_returncode": 2,
+  "class_sha256": "0efa418a6bef2ebd410ae021e273d4ce212247efc948f2a1c772d071386f0edd",
+  "cases": 1118,
+  "failed_cases": 10,
+  "unsupported_executions": 0,
+  "expected_result_failures": 0,
+  "failed_case_labels": [
+    "video-space:134217728:-1",
+    "video-space:134217728:-9223372036854775808",
+    "video-space:134217728:0",
+    "video-space:134217728:1",
+    "video-space:134217728:104857599",
+    "video-space:134217728:104857600",
+    "video-space:134217728:373293055",
+    "video-space:134217728:373293056",
+    "video-space:134217728:373293057",
+    "video-space:134217728:9223372036854775807"
+  ],
+  "named_failures_observed": true,
+  "original_coverage_unchanged": true
+}

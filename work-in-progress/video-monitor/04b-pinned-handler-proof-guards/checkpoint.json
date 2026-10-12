@@ -1,0 +1,466 @@
+{
+  "status": "EXACT_REVIEWED_PROOF_IDENTITIES_AND_GUARDS_VERIFIED_NO_COVERAGE_EXEMPTION",
+  "frozen_utc": "2026-10-12T06:41:25.161113+00:00",
+  "scope": "Follow-up proof-input safeguards. All prior app coverage failures remain unchanged; actual future execution runtime still needs its own gate binding.",
+  "reviewed_predecessor_sha256": "053ee22c427813258cc64f7363c150353ce1f5bbc8118aa12dbb9af049b8e754",
+  "original_coverage_credit_added": 0,
+  "app_method_executions_added": 0,
+  "coverage_exemption_implemented": false,
+  "oracle_changed": false,
+  "active_source_changed": false,
+  "structural_guards": 11,
+  "structural_guards_rejected": 11,
+  "rehashed_evidence_controls": 2,
+  "rehashed_evidence_controls_rejected": 2,
+  "old_added_throw_substring_acceptance_preserved": true,
+  "new_added_throw_rejected": true,
+  "facts_result_sha256": "a60de7626b26c6116c035d9059bd3efadfe35cc3f3926c159c0728fde6235c3e",
+  "guard_result_sha256": "c66cea3734c31998df752de9c025b5fd2798b0c2dfc913e1dce4b8b32979f98f",
+  "independent_digest_bindings": {
+    "collection": "2815ca1b9c3268b90850508734f90695911f502c31e035756abc51c396dd5c18",
+    "release": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec",
+    "actual_jrt_classfiles": {
+      "StringBuilder": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e",
+      "AbstractStringBuilder": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4",
+      "StringUTF16": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5",
+      "Object": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    "complete_javap_outputs": {
+      "StringBuilder": "9dd80fb96b823d0ce9bf2e55382dff5f16d218142c1c9bff4de6c2f024c586a1",
+      "AbstractStringBuilder": "6c4ee77294902e331277a8a8918d08e9f33d2d2913cb8aae221dc9a540ceb50d",
+      "StringUTF16": "ea0800a4ed57f2739594c9e838f508631a46770c5cb1a422f029a027a37aaab1",
+      "Object": "55ac3db4d20f4ae417cc9c2b9ecdaaef3a3b2576d810deed6e5860327b3b5cf1"
+    },
+    "scope": "Fixed reviewed evidence identities, independently specified by this verifier. A future runtime gate must also bind the runtime actually used; this is no such gate."
+  },
+  "files": [
+    {
+      "path": "PINNED_PROOF_GUARDS.md",
+      "bytes": 2416,
+      "sha256": "eea0e77ae1b271dfbe386b6cc7ce007fed15af25713cb3319ee1ecdff02fce88"
+    },
+    {
+      "path": "freeze_pinned_handler_guards.py",
+      "bytes": 5535,
+      "sha256": "54444fc36a07f584099d68578aa6645ddc5d46742071a30be30109143bd49d72"
+    },
+    {
+      "path": "handler_guard_followup.py",
+      "bytes": 6867,
+      "sha256": "9a06c82687fc868abc7221cac5e74694d9903278d54de5cd58c0971df0bbd9d0"
+    },
+    {
+      "path": "verify_handler_dataflow.py",
+      "bytes": 17765,
+      "sha256": "da31172a98316ca192e95720ba9eeb3d2070b729c08b1cff4743ddc5a67f69a5"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "handler-facts-pinned-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "handler-facts-pinned-stdout.txt",
+      "bytes": 4848,
+      "sha256": "1017f3b13c75dd93b1d14c08e86848e9c03aea6a5a8e9eb8504905d338df9d01"
+    },
+    {
+      "path": "handler-guard-followup-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "handler-guard-followup-stdout.txt",
+      "bytes": 3392,
+      "sha256": "c66cea3734c31998df752de9c025b5fd2798b0c2dfc913e1dce4b8b32979f98f"
+    },
+    {
+      "path": "reports/handler-facts-04b-pinned/executed-verifier.py",
+      "bytes": 17765,
+      "sha256": "da31172a98316ca192e95720ba9eeb3d2070b729c08b1cff4743ddc5a67f69a5"
+    },
+    {
+      "path": "reports/handler-facts-04b-pinned/result.json",
+      "bytes": 13225,
+      "sha256": "a60de7626b26c6116c035d9059bd3efadfe35cc3f3926c159c0728fde6235c3e"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/VideoHandlerInventory.java",
+      "bytes": 5279,
+      "sha256": "06d86e88dd685e53382ec6b9773a8ca9a26e6862336ddc57f5319ce7beb821e2"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/android15-primary/AbstractStringBuilder.java",
+      "bytes": 66620,
+      "sha256": "f2937d269b7a01a310d9bf5db2ded2dcabdf93f60b3551e4677b58ea721798fb"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/android15-primary/AbstractStringBuilder.java.response-base64.txt",
+      "bytes": 88828,
+      "sha256": "c60456c9c63dc9506dcaaedd1d2379bc318dfbf0b09762ef598596b5f8dbd240"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/android15-primary/StringBuilder.java",
+      "bytes": 16157,
+      "sha256": "9f86d83c39ad46ba87f42afd2744bfaad8f6bfffab8cfa97802dd170f9e882b0"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/android15-primary/StringBuilder.java.response-base64.txt",
+      "bytes": 21544,
+      "sha256": "e87b3afd6adbd82102c0fea0468a57229f12b8f2ee08262ece1e66ba132f3003"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/android15-primary/StringUTF16.java",
+      "bytes": 65441,
+      "sha256": "549455d1c9e8fbd0998abb8c3f910faf3753f2683023b8aee28ae4c941b71f9b"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/android15-primary/StringUTF16.java.response-base64.txt",
+      "bytes": 87256,
+      "sha256": "85e26dce03cfc2998d5dafe343668c45cf5a83aedd0fa382e72358f5ca02f509"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/compile-inventory.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/compile-inventory.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/host-sources/AbstractStringBuilder.java",
+      "bytes": 75913,
+      "sha256": "5cdef262c70a814ebd7eaca13d3c820b7f86abba4f28fdb360fc3c981b21ad6f"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/host-sources/StringBuilder.java",
+      "bytes": 16053,
+      "sha256": "d45975c4b0358fb1e3ac49efacfbd7667b0d87a17c8963ce884c6ad539ae9a15"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/host-sources/StringUTF16.java",
+      "bytes": 67091,
+      "sha256": "3679f04911b9025b800f9c95170895b9c003afed3d22aa1ae4a9fe2bb9dfb6e5"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/host-sources/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/inspect-original-and-jrt.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/inspect-original-and-jrt.stdout.txt",
+      "bytes": 95,
+      "sha256": "9969a6d24f0977cf9a7d50f6c726c80f5b48413539b8fb0e1c2c8412ef8a3aa7"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/javap-AbstractStringBuilder.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/javap-AbstractStringBuilder.stdout.txt",
+      "bytes": 91596,
+      "sha256": "6c4ee77294902e331277a8a8918d08e9f33d2d2913cb8aae221dc9a540ceb50d"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/javap-Object.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/javap-Object.stdout.txt",
+      "bytes": 5067,
+      "sha256": "55ac3db4d20f4ae417cc9c2b9ecdaaef3a3b2576d810deed6e5860327b3b5cf1"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/javap-StringBuilder.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/javap-StringBuilder.stdout.txt",
+      "bytes": 32734,
+      "sha256": "6c11e205581c4423833400fd0d829af385c8ab7a7a75b099b820be506d4121c6"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/javap-StringUTF16.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/javap-StringUTF16.stdout.txt",
+      "bytes": 119339,
+      "sha256": "ea0800a4ed57f2739594c9e838f508631a46770c5cb1a422f029a027a37aaab1"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/jrt-classfiles/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/jrt-classfiles/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/jrt-classfiles/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/jrt-classfiles/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/original-instructions.json",
+      "bytes": 42249,
+      "sha256": "2d368ab110348b3934f217d084d0b66df4d61a0ef3ddb41d3e804ec876efcfda"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/result.json",
+      "bytes": 13592,
+      "sha256": "dc62cef08d4b4f2a09666889a775586d7c4482db28f2403e202884fe75c1f61b"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/inputs/toolclasses/VideoHandlerInventory.class",
+      "bytes": 9559,
+      "sha256": "3b9fb8b04763ec8724ffb9f808165f44bd7a29ed82bfa81a21db8a2e7a5b4333"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/stderr.txt",
+      "bytes": 584,
+      "sha256": "042e49afe9c1197788e7cc4f3fc4809710cdbaed9adbb927c4d96a303b43fa5c"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/stdout.txt",
+      "bytes": 571,
+      "sha256": "ca0d9785cbe60fe581337a1595e88fbe217459dc8d1aecdf216ce7aef4318a80"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/verification/failure-traceback.txt",
+      "bytes": 459,
+      "sha256": "c8a0fae32308f7355fe1bfc03b6c4f8766d43ee74055d3642ba5062ca37e5f1d"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-added-throw-disassembly/verification/result.json",
+      "bytes": 571,
+      "sha256": "ca0d9785cbe60fe581337a1595e88fbe217459dc8d1aecdf216ce7aef4318a80"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/VideoHandlerInventory.java",
+      "bytes": 5279,
+      "sha256": "06d86e88dd685e53382ec6b9773a8ca9a26e6862336ddc57f5319ce7beb821e2"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/android15-primary/AbstractStringBuilder.java",
+      "bytes": 66620,
+      "sha256": "f2937d269b7a01a310d9bf5db2ded2dcabdf93f60b3551e4677b58ea721798fb"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/android15-primary/AbstractStringBuilder.java.response-base64.txt",
+      "bytes": 88828,
+      "sha256": "c60456c9c63dc9506dcaaedd1d2379bc318dfbf0b09762ef598596b5f8dbd240"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/android15-primary/StringBuilder.java",
+      "bytes": 16157,
+      "sha256": "9f86d83c39ad46ba87f42afd2744bfaad8f6bfffab8cfa97802dd170f9e882b0"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/android15-primary/StringBuilder.java.response-base64.txt",
+      "bytes": 21544,
+      "sha256": "e87b3afd6adbd82102c0fea0468a57229f12b8f2ee08262ece1e66ba132f3003"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/android15-primary/StringUTF16.java",
+      "bytes": 65441,
+      "sha256": "549455d1c9e8fbd0998abb8c3f910faf3753f2683023b8aee28ae4c941b71f9b"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/android15-primary/StringUTF16.java.response-base64.txt",
+      "bytes": 87256,
+      "sha256": "85e26dce03cfc2998d5dafe343668c45cf5a83aedd0fa382e72358f5ca02f509"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/compile-inventory.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/compile-inventory.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/host-sources/AbstractStringBuilder.java",
+      "bytes": 75913,
+      "sha256": "5cdef262c70a814ebd7eaca13d3c820b7f86abba4f28fdb360fc3c981b21ad6f"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/host-sources/StringBuilder.java",
+      "bytes": 16053,
+      "sha256": "d45975c4b0358fb1e3ac49efacfbd7667b0d87a17c8963ce884c6ad539ae9a15"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/host-sources/StringUTF16.java",
+      "bytes": 67091,
+      "sha256": "3679f04911b9025b800f9c95170895b9c003afed3d22aa1ae4a9fe2bb9dfb6e5"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/host-sources/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/inspect-original-and-jrt.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/inspect-original-and-jrt.stdout.txt",
+      "bytes": 95,
+      "sha256": "9969a6d24f0977cf9a7d50f6c726c80f5b48413539b8fb0e1c2c8412ef8a3aa7"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/javap-AbstractStringBuilder.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/javap-AbstractStringBuilder.stdout.txt",
+      "bytes": 91596,
+      "sha256": "6c4ee77294902e331277a8a8918d08e9f33d2d2913cb8aae221dc9a540ceb50d"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/javap-Object.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/javap-Object.stdout.txt",
+      "bytes": 5067,
+      "sha256": "55ac3db4d20f4ae417cc9c2b9ecdaaef3a3b2576d810deed6e5860327b3b5cf1"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/javap-StringBuilder.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/javap-StringBuilder.stdout.txt",
+      "bytes": 32558,
+      "sha256": "9dd80fb96b823d0ce9bf2e55382dff5f16d218142c1c9bff4de6c2f024c586a1"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/javap-StringUTF16.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/javap-StringUTF16.stdout.txt",
+      "bytes": 119339,
+      "sha256": "ea0800a4ed57f2739594c9e838f508631a46770c5cb1a422f029a027a37aaab1"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/jrt-classfiles/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/jrt-classfiles/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/jrt-classfiles/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "1a1c20b5634f85548b071cb4b1f49c994995af362be4d591fc5c03910141ef9d"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/jrt-classfiles/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/original-instructions.json",
+      "bytes": 42249,
+      "sha256": "2d368ab110348b3934f217d084d0b66df4d61a0ef3ddb41d3e804ec876efcfda"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/result.json",
+      "bytes": 13592,
+      "sha256": "c99af3cb3b67f7c813fd362f5c4a7e36a6e71fc3b75004f6650d5b4166e14a1c"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/inputs/toolclasses/VideoHandlerInventory.class",
+      "bytes": 9559,
+      "sha256": "3b9fb8b04763ec8724ffb9f808165f44bd7a29ed82bfa81a21db8a2e7a5b4333"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/stderr.txt",
+      "bytes": 584,
+      "sha256": "042e49afe9c1197788e7cc4f3fc4809710cdbaed9adbb927c4d96a303b43fa5c"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/stdout.txt",
+      "bytes": 571,
+      "sha256": "0e39a203f297c87c6ca4de7465ff819e69295156b84062d9afead8686b94eacc"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/verification/failure-traceback.txt",
+      "bytes": 459,
+      "sha256": "c8a0fae32308f7355fe1bfc03b6c4f8766d43ee74055d3642ba5062ca37e5f1d"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/controls/rehashed-changed-jrt-class/verification/result.json",
+      "bytes": 571,
+      "sha256": "0e39a203f297c87c6ca4de7465ff819e69295156b84062d9afead8686b94eacc"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/executed-verifier.py",
+      "bytes": 17765,
+      "sha256": "da31172a98316ca192e95720ba9eeb3d2070b729c08b1cff4743ddc5a67f69a5"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/result.json",
+      "bytes": 3392,
+      "sha256": "c66cea3734c31998df752de9c025b5fd2798b0c2dfc913e1dce4b8b32979f98f"
+    },
+    {
+      "path": "reports/handler-guard-followup-04b/synthetic-added-throw-javap.txt",
+      "bytes": 32734,
+      "sha256": "6c11e205581c4423833400fd0d829af385c8ab7a7a75b099b820be506d4121c6"
+    },
+    {
+      "path": "reviewed-predecessor/HANDLER_DATAFLOW_REVIEW.md",
+      "bytes": 10410,
+      "sha256": "8c7b61f4237c112a2bd8bee3a2661db65beaf900c8fc15843684d77bbb972543"
+    },
+    {
+      "path": "reviewed-predecessor/checkpoint.json",
+      "bytes": 11182,
+      "sha256": "053ee22c427813258cc64f7363c150353ce1f5bbc8118aa12dbb9af049b8e754"
+    },
+    {
+      "path": "reviewed-predecessor/verify_handler_dataflow.py",
+      "bytes": 15132,
+      "sha256": "3dede9be9b29d7fbc680df5e11cf3b331ea4bb339fbff96e01cfb733216c8160"
+    }
+  ],
+  "evidence_bundle": {
+    "path": "/workspace/scratch/4130730d15aa/video-monitor-recovery/checkpoints/04b-pinned-handler-proof-guards-evidence.tar.gz",
+    "bytes": 380558,
+    "sha256": "e1b7563a8438cc53e1e55a11a7adbbcad68aeb7f1f9b75546a149970db163462"
+  },
+  "archive_members_hash_verified": true
+}

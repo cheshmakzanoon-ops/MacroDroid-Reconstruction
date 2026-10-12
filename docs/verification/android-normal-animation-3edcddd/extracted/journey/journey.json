@@ -1,0 +1,5810 @@
+{
+  "schema": 3,
+  "plan_sha256": "5a8ca21b8e96b0ae2cfe55bc944e93749534209ca81b04141ce77eef0416c453",
+  "plan": [
+    [
+      "intro-1",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "MACRODROID"
+      },
+      null
+    ],
+    [
+      "intro-2",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "TRIGGERS"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/button_next"
+      }
+    ],
+    [
+      "intro-3",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "ACTIONS"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/button_next"
+      }
+    ],
+    [
+      "intro-4",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "CONSTRAINTS"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/button_next"
+      }
+    ],
+    [
+      "notification-request",
+      "com.google.android.permissioncontroller",
+      {
+        "resource-id": "com.android.permissioncontroller:id/permission_deny_button"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/button_next"
+      }
+    ],
+    [
+      "reference-promotion",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "LITEAPKS"
+      },
+      {
+        "resource-id": "com.android.permissioncontroller:id/permission_deny_button"
+      }
+    ],
+    [
+      "home",
+      "com.arlosoft.macrodroid",
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/navigation_home"
+      },
+      {
+        "text": "CLOSE"
+      }
+    ],
+    [
+      "empty-editor",
+      "com.arlosoft.macrodroid",
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/edit_macro_addTriggerButton"
+      },
+      {
+        "text": "Add Macro"
+      }
+    ],
+    [
+      "favourite-triggers-info",
+      "com.arlosoft.macrodroid",
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/alertTitle",
+        "text": "Favourite Triggers"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/edit_macro_addTriggerButton"
+      }
+    ],
+    [
+      "after-favourite-info",
+      "com.arlosoft.macrodroid",
+      null,
+      {
+        "resource-id": "android:id/button1",
+        "text": "OK"
+      }
+    ]
+  ],
+  "runs": [
+    {
+      "label": "original",
+      "apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+      "screens": [
+        {
+          "owner": "com.arlosoft.macrodroid",
+          "artifacts": {
+            "pid_first": {
+              "path": "original-intro-1-acquisition-1-frame-2-pid-first.txt",
+              "bytes": 5,
+              "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+            },
+            "foreground": {
+              "path": "original-intro-1-acquisition-1-frame-2-foreground.txt",
+              "bytes": 30746,
+              "sha256": "26e53fe4adad4d403b057b1a7773489900aa2ca2243ed681729f4a86fcb1d9e1"
+            },
+            "hierarchy": {
+              "path": "original-intro-1-acquisition-1-frame-2.xml",
+              "bytes": 5939,
+              "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+            },
+            "screenshot": {
+              "path": "original-intro-1-acquisition-1-frame-2.png",
+              "bytes": 83895,
+              "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+            },
+            "foreground_final": {
+              "path": "original-intro-1-acquisition-1-frame-2-foreground-final.txt",
+              "bytes": 30876,
+              "sha256": "f0d14cdee2a159e823d596c235240c7c269ed1ca0b3605d140f39250dec0f8b7"
+            },
+            "pid_final": {
+              "path": "original-intro-1-acquisition-1-frame-2-pid-final.txt",
+              "bytes": 5,
+              "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+            }
+          },
+          "sample_interval_seconds": 3.404678015000002,
+          "observation": {
+            "started_monotonic": 292.14570305,
+            "finished_monotonic": 295.550381065
+          },
+          "settling": {
+            "path": "original-intro-1-acquisition-1-settling.json",
+            "bytes": 3497,
+            "sha256": "02a6de02fd7a5fa77bb9d331430ae04d6115d01be3e82e64b7e447834d91d900"
+          },
+          "name": "intro-1"
+        }
+      ],
+      "transitions": [
+        {
+          "to": "intro-2",
+          "action": {
+            "resource-id": "com.arlosoft.macrodroid:id/button_next"
+          },
+          "before": {
+            "owner": "com.arlosoft.macrodroid",
+            "artifacts": {
+              "pid_first": {
+                "path": "original-intro-2-before-acquisition-1-frame-2-pid-first.txt",
+                "bytes": 5,
+                "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+              },
+              "foreground": {
+                "path": "original-intro-2-before-acquisition-1-frame-2-foreground.txt",
+                "bytes": 31006,
+                "sha256": "24bf83f2264c95747e66687a6245b1c8f22587e8b7e6fe5014d25ef73f903b19"
+              },
+              "hierarchy": {
+                "path": "original-intro-2-before-acquisition-1-frame-2.xml",
+                "bytes": 5939,
+                "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+              },
+              "screenshot": {
+                "path": "original-intro-2-before-acquisition-1-frame-2.png",
+                "bytes": 83895,
+                "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+              },
+              "foreground_final": {
+                "path": "original-intro-2-before-acquisition-1-frame-2-foreground-final.txt",
+                "bytes": 31135,
+                "sha256": "a730ba4e530bb8531698049ee88966337381d140107f604e3647cff72c885517"
+              },
+              "pid_final": {
+                "path": "original-intro-2-before-acquisition-1-frame-2-pid-final.txt",
+                "bytes": 5,
+                "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+              }
+            },
+            "sample_interval_seconds": 2.906958129999964,
+            "observation": {
+              "started_monotonic": 298.390581524,
+              "finished_monotonic": 301.297539654
+            },
+            "settling": {
+              "path": "original-intro-2-before-acquisition-1-settling.json",
+              "bytes": 3588,
+              "sha256": "f4f38e29848dec418a297c3fec3dc45b104bd6a7c0ffaa82377360ba36d36c79"
+            }
+          },
+          "preinput_artifacts": {
+            "pid": {
+              "path": "original-intro-2-preinput-pid.txt",
+              "bytes": 5,
+              "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+            },
+            "foreground": {
+              "path": "original-intro-2-preinput-foreground.txt",
+              "bytes": 31134,
+              "sha256": "729da0038af3d2131e75f9337e2c1d5c10fb01234fca6bc428f624dda76a17f9"
+            }
+          },
+          "precondition_age_seconds": 5.8891248379999865,
+          "command": {
+            "argv": [
+              "shell",
+              "input tap 640 1152"
+            ],
+            "returncode": 0,
+            "timed_out": false,
+            "started_utc": "2026-10-12T06:34:38.146629+00:00",
+            "started_monotonic": 301.453257421,
+            "finished_monotonic": 301.530386993,
+            "timeout_seconds": 9.110859473000005,
+            "stdout": {
+              "path": "command-00076.stdout",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "stderr": {
+              "path": "command-00076.stderr",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          },
+          "observation_started_monotonic": 295.564113328,
+          "preinput_commands": {
+            "pid": {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T06:34:38.050907+00:00",
+              "started_monotonic": 301.357535267,
+              "finished_monotonic": 301.396001416,
+              "timeout_seconds": 9.206580856000016,
+              "stdout": {
+                "path": "command-00074.stdout",
+                "bytes": 5,
+                "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+              },
+              "stderr": {
+                "path": "command-00074.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            "foreground": {
+              "argv": [
+                "shell",
+                "dumpsys activity activities"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T06:34:38.090072+00:00",
+              "started_monotonic": 301.396700356,
+              "finished_monotonic": 301.45152026,
+              "timeout_seconds": 9.167415996999978,
+              "stdout": {
+                "path": "command-00075.stdout",
+                "bytes": 31134,
+                "sha256": "729da0038af3d2131e75f9337e2c1d5c10fb01234fca6bc428f624dda76a17f9"
+              },
+              "stderr": {
+                "path": "command-00075.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          }
+        }
+      ],
+      "status": "FAILED",
+      "environment": {
+        "serial": "emulator-5560",
+        "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+        "ro.build.version.sdk": "35",
+        "ro.product.cpu.abilist": "x86_64,arm64-v8a",
+        "ro.kernel.qemu": "1",
+        "persist.sys.locale": "",
+        "persist.sys.timezone": "Etc/UTC",
+        "system:font_scale": "1.0",
+        "global:animator_duration_scale": "1",
+        "global:window_animation_scale": "1",
+        "global:transition_animation_scale": "1",
+        "global:airplane_mode_on": "0",
+        "global:wifi_on": "1",
+        "global:mobile_data": "1",
+        "global:sysui_demo_allowed": "1",
+        "global:sysui_tuner_demo_on": "1",
+        "display_size": "Physical size: 720x1280",
+        "display_density": "Physical density: 320"
+      },
+      "absence": {
+        "argv": [
+          "shell",
+          "pm path com.arlosoft.macrodroid"
+        ],
+        "returncode": 1,
+        "timed_out": false,
+        "started_utc": "2026-10-12T06:34:05.160025+00:00",
+        "started_monotonic": 268.466652548,
+        "finished_monotonic": 268.522036156,
+        "timeout_seconds": 120,
+        "stdout": {
+          "path": "command-00036.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "command-00036.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "install": {
+        "argv": [
+          "install",
+          "--no-streaming",
+          "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-original.apk"
+        ],
+        "returncode": 0,
+        "timed_out": false,
+        "started_utc": "2026-10-12T06:34:05.215739+00:00",
+        "started_monotonic": 268.52236619,
+        "finished_monotonic": 280.192766945,
+        "timeout_seconds": 600,
+        "stdout": {
+          "path": "command-00037.stdout",
+          "bytes": 32,
+          "sha256": "8cfe21ca9831863004ad6eb25b313f8944786f7a01b291da8fbbe61cc0c847e5"
+        },
+        "stderr": {
+          "path": "command-00037.stderr",
+          "bytes": 186,
+          "sha256": "db5e37bb2a8ac13de458953e6d203ba581cb0bf9e70571c424b8f0b6dab1d5f5"
+        }
+      },
+      "installed_path": {
+        "argv": [
+          "shell",
+          "pm path com.arlosoft.macrodroid"
+        ],
+        "returncode": 0,
+        "timed_out": false,
+        "started_utc": "2026-10-12T06:34:16.886708+00:00",
+        "started_monotonic": 280.193335973,
+        "finished_monotonic": 280.248825669,
+        "timeout_seconds": 120,
+        "stdout": {
+          "path": "command-00038.stdout",
+          "bytes": 103,
+          "sha256": "79e70bf9c43c0640db89cfaed62f6ff93296ddd999f29ec9c47c2b953d6a785f"
+        },
+        "stderr": {
+          "path": "command-00038.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "installed_checksum": {
+        "argv": [
+          "shell",
+          "sha256sum '/data/app/~~_8LtRZVD2LTk9KGyr1ellw==/com.arlosoft.macrodroid-SyCZmmD3X4BSGjvyo4MgCg==/base.apk'"
+        ],
+        "returncode": 0,
+        "timed_out": false,
+        "started_utc": "2026-10-12T06:34:16.942632+00:00",
+        "started_monotonic": 280.249260307,
+        "finished_monotonic": 280.830542788,
+        "timeout_seconds": 120,
+        "stdout": {
+          "path": "command-00039.stdout",
+          "bytes": 161,
+          "sha256": "38d7d18c10fa3fdb1f4ffb57393bf6f4fa4555d92d4ea47f9e1d8503b06f3bbe"
+        },
+        "stderr": {
+          "path": "command-00039.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "launch": {
+        "argv": [
+          "shell",
+          "am start -W -n com.arlosoft.macrodroid/.intro.IntroActivity"
+        ],
+        "returncode": 0,
+        "timed_out": false,
+        "started_utc": "2026-10-12T06:34:17.556167+00:00",
+        "started_monotonic": 280.862794783,
+        "finished_monotonic": 283.507217452,
+        "timeout_seconds": 180,
+        "stdout": {
+          "path": "command-00041.stdout",
+          "bytes": 194,
+          "sha256": "70ab1ace6c441f7a9afdde03d8314ffb2f2e2b9e56bc88d1126150869ea1c67f"
+        },
+        "stderr": {
+          "path": "command-00041.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "current_step": "intro-2",
+      "reason": "Observed command deadline expired before execution"
+    },
+    {
+      "label": "candidate",
+      "apk_sha256": "9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2",
+      "screens": [
+        {
+          "owner": "com.arlosoft.macrodroid",
+          "artifacts": {
+            "pid_first": {
+              "path": "candidate-intro-1-acquisition-1-frame-2-pid-first.txt",
+              "bytes": 5,
+              "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+            },
+            "foreground": {
+              "path": "candidate-intro-1-acquisition-1-frame-2-foreground.txt",
+              "bytes": 31362,
+              "sha256": "ec24d3b7596c267a34c20627782ca8a42639492c79ee3938aa5b1b2854a74268"
+            },
+            "hierarchy": {
+              "path": "candidate-intro-1-acquisition-1-frame-2.xml",
+              "bytes": 5939,
+              "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+            },
+            "screenshot": {
+              "path": "candidate-intro-1-acquisition-1-frame-2.png",
+              "bytes": 83895,
+              "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+            },
+            "foreground_final": {
+              "path": "candidate-intro-1-acquisition-1-frame-2-foreground-final.txt",
+              "bytes": 31363,
+              "sha256": "5749298c56e78e502460436115dcee475f1e4ea0cef39f3e7bf1c9a2754b0501"
+            },
+            "pid_final": {
+              "path": "candidate-intro-1-acquisition-1-frame-2-pid-final.txt",
+              "bytes": 5,
+              "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+            }
+          },
+          "sample_interval_seconds": 2.270451154,
+          "observation": {
+            "started_monotonic": 353.093125313,
+            "finished_monotonic": 355.363576467
+          },
+          "settling": {
+            "path": "candidate-intro-1-acquisition-1-settling.json",
+            "bytes": 3503,
+            "sha256": "a8accfbe370874ef403c297faa0e331d1a5380ecfe68821ba5451ae9423c48ae"
+          },
+          "name": "intro-1"
+        }
+      ],
+      "transitions": [
+        {
+          "to": "intro-2",
+          "action": {
+            "resource-id": "com.arlosoft.macrodroid:id/button_next"
+          },
+          "before": {
+            "owner": "com.arlosoft.macrodroid",
+            "artifacts": {
+              "pid_first": {
+                "path": "candidate-intro-2-before-acquisition-1-frame-2-pid-first.txt",
+                "bytes": 5,
+                "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+              },
+              "foreground": {
+                "path": "candidate-intro-2-before-acquisition-1-frame-2-foreground.txt",
+                "bytes": 31364,
+                "sha256": "0f04d56dec9c4708a8eb6b6cfcda1383da5d96f2b492e70a85a91dc5cd3f5823"
+              },
+              "hierarchy": {
+                "path": "candidate-intro-2-before-acquisition-1-frame-2.xml",
+                "bytes": 5939,
+                "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+              },
+              "screenshot": {
+                "path": "candidate-intro-2-before-acquisition-1-frame-2.png",
+                "bytes": 83895,
+                "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+              },
+              "foreground_final": {
+                "path": "candidate-intro-2-before-acquisition-1-frame-2-foreground-final.txt",
+                "bytes": 31363,
+                "sha256": "68147b3db758cac3ccb14cd1eae78739c5ad4fcf4e7ca282600388ac5ca4b1d5"
+              },
+              "pid_final": {
+                "path": "candidate-intro-2-before-acquisition-1-frame-2-pid-final.txt",
+                "bytes": 5,
+                "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+              }
+            },
+            "sample_interval_seconds": 2.2707877560000043,
+            "observation": {
+              "started_monotonic": 357.645599528,
+              "finished_monotonic": 359.916387284
+            },
+            "settling": {
+              "path": "candidate-intro-2-before-acquisition-1-settling.json",
+              "bytes": 3603,
+              "sha256": "2eb2fe1f969f90baf869c53534cccc501dcd76ee8f29c3a6b79f5022a49aead1"
+            }
+          },
+          "preinput_artifacts": {
+            "pid": {
+              "path": "candidate-intro-2-preinput-pid.txt",
+              "bytes": 5,
+              "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+            },
+            "foreground": {
+              "path": "candidate-intro-2-preinput-foreground.txt",
+              "bytes": 31362,
+              "sha256": "18844891837e84f72605b9c6a3078daf9c740e27360d9a57731a4d5e8a01fc87"
+            }
+          },
+          "precondition_age_seconds": 4.61386199399999,
+          "command": {
+            "argv": [
+              "shell",
+              "input tap 640 1152"
+            ],
+            "returncode": 0,
+            "timed_out": false,
+            "started_utc": "2026-10-12T06:35:36.681544+00:00",
+            "started_monotonic": 359.988171745,
+            "finished_monotonic": 360.014760157,
+            "timeout_seconds": 10.386126124000043,
+            "stdout": {
+              "path": "command-00178.stdout",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "stderr": {
+              "path": "command-00178.stderr",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          },
+          "observation_started_monotonic": 355.374295104,
+          "preinput_commands": {
+            "pid": {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T06:35:36.645065+00:00",
+              "started_monotonic": 359.951693505,
+              "finished_monotonic": 359.968382258,
+              "timeout_seconds": 10.422603413000047,
+              "stdout": {
+                "path": "command-00176.stdout",
+                "bytes": 5,
+                "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+              },
+              "stderr": {
+                "path": "command-00176.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            "foreground": {
+              "argv": [
+                "shell",
+                "dumpsys activity activities"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T06:35:36.662424+00:00",
+              "started_monotonic": 359.969052054,
+              "finished_monotonic": 359.986902574,
+              "timeout_seconds": 10.405246126000009,
+              "stdout": {
+                "path": "command-00177.stdout",
+                "bytes": 31362,
+                "sha256": "18844891837e84f72605b9c6a3078daf9c740e27360d9a57731a4d5e8a01fc87"
+              },
+              "stderr": {
+                "path": "command-00177.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          }
+        }
+      ],
+      "status": "FAILED",
+      "environment": {
+        "serial": "emulator-5560",
+        "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+        "ro.build.version.sdk": "35",
+        "ro.product.cpu.abilist": "x86_64,arm64-v8a",
+        "ro.kernel.qemu": "1",
+        "persist.sys.locale": "",
+        "persist.sys.timezone": "Etc/UTC",
+        "system:font_scale": "1.0",
+        "global:animator_duration_scale": "1",
+        "global:window_animation_scale": "1",
+        "global:transition_animation_scale": "1",
+        "global:airplane_mode_on": "0",
+        "global:wifi_on": "1",
+        "global:mobile_data": "1",
+        "global:sysui_demo_allowed": "1",
+        "global:sysui_tuner_demo_on": "1",
+        "display_size": "Physical size: 720x1280",
+        "display_density": "Physical density: 320"
+      },
+      "absence": {
+        "argv": [
+          "shell",
+          "pm path com.arlosoft.macrodroid"
+        ],
+        "returncode": 1,
+        "timed_out": false,
+        "started_utc": "2026-10-12T06:35:12.200567+00:00",
+        "started_monotonic": 335.507194344,
+        "finished_monotonic": 335.617269898,
+        "timeout_seconds": 120,
+        "stdout": {
+          "path": "command-00138.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "command-00138.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "install": {
+        "argv": [
+          "install",
+          "--no-streaming",
+          "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-current-hybrid.apk"
+        ],
+        "returncode": 0,
+        "timed_out": false,
+        "started_utc": "2026-10-12T06:35:12.310982+00:00",
+        "started_monotonic": 335.617609259,
+        "finished_monotonic": 343.264232579,
+        "timeout_seconds": 600,
+        "stdout": {
+          "path": "command-00139.stdout",
+          "bytes": 32,
+          "sha256": "8cfe21ca9831863004ad6eb25b313f8944786f7a01b291da8fbbe61cc0c847e5"
+        },
+        "stderr": {
+          "path": "command-00139.stderr",
+          "bytes": 192,
+          "sha256": "05c80e64c8566792afacb208afc7787747f00fddff89133bfcab3c326aad5545"
+        }
+      },
+      "installed_path": {
+        "argv": [
+          "shell",
+          "pm path com.arlosoft.macrodroid"
+        ],
+        "returncode": 0,
+        "timed_out": false,
+        "started_utc": "2026-10-12T06:35:19.958031+00:00",
+        "started_monotonic": 343.264659022,
+        "finished_monotonic": 343.307872935,
+        "timeout_seconds": 120,
+        "stdout": {
+          "path": "command-00140.stdout",
+          "bytes": 103,
+          "sha256": "82307ea2355d1189e5873658138353165eff825afafe64d07ebe0212a75bca40"
+        },
+        "stderr": {
+          "path": "command-00140.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "installed_checksum": {
+        "argv": [
+          "shell",
+          "sha256sum '/data/app/~~Re8rA_hk8yY3Zd-BzPd44w==/com.arlosoft.macrodroid-J-oemRB5viTKrSW3MyjsiQ==/base.apk'"
+        ],
+        "returncode": 0,
+        "timed_out": false,
+        "started_utc": "2026-10-12T06:35:20.001673+00:00",
+        "started_monotonic": 343.30830033,
+        "finished_monotonic": 343.699962789,
+        "timeout_seconds": 120,
+        "stdout": {
+          "path": "command-00141.stdout",
+          "bytes": 161,
+          "sha256": "c88198eced41d420a261d152b8aa91708a2274847bcffe99a0d1d025eb2671c0"
+        },
+        "stderr": {
+          "path": "command-00141.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "launch": {
+        "argv": [
+          "shell",
+          "am start -W -n com.arlosoft.macrodroid/.intro.IntroActivity"
+        ],
+        "returncode": 0,
+        "timed_out": false,
+        "started_utc": "2026-10-12T06:35:20.477774+00:00",
+        "started_monotonic": 343.784402027,
+        "finished_monotonic": 345.949185882,
+        "timeout_seconds": 180,
+        "stdout": {
+          "path": "command-00143.stdout",
+          "bytes": 194,
+          "sha256": "74dc9c71b497879cd4afd2943680dda3b3625aca0a6bcca98b2e95a1bc771dd9"
+        },
+        "stderr": {
+          "path": "command-00143.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "current_step": "intro-2",
+      "reason": "No consecutive identical full frames within six attempts"
+    }
+  ],
+  "status": "RECORDED_NOT_PARITY",
+  "capture_policy": {
+    "schema": 1,
+    "handoff_after": "notification-request",
+    "handoff_to": "reference-promotion",
+    "handoff_action": {
+      "resource-id": "com.android.permissioncontroller:id/permission_deny_button"
+    },
+    "handoff_component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity",
+    "handoff_timeout_seconds": 30,
+    "settling_max_attempts": 6,
+    "settling_timeout_seconds": 30,
+    "consecutive_identical_full_frames": 2,
+    "png_and_xml_bytes_must_match": true,
+    "cross_apk_frame_selection": false
+  },
+  "capture_events": [
+    {
+      "path": "original-intro-1-acquisition-1-settling.json",
+      "bytes": 3497,
+      "sha256": "02a6de02fd7a5fa77bb9d331430ae04d6115d01be3e82e64b7e447834d91d900"
+    },
+    {
+      "path": "original-intro-2-before-acquisition-1-settling.json",
+      "bytes": 3588,
+      "sha256": "f4f38e29848dec418a297c3fec3dc45b104bd6a7c0ffaa82377360ba36d36c79"
+    },
+    {
+      "path": "original-intro-2-acquisition-1-settling.json",
+      "bytes": 8235,
+      "sha256": "899025fbfc5491668ca059b07106ff81d1c194193174a2cebe3a6ecf9b462bff"
+    },
+    {
+      "path": "candidate-intro-1-acquisition-1-settling.json",
+      "bytes": 3503,
+      "sha256": "a8accfbe370874ef403c297faa0e331d1a5380ecfe68821ba5451ae9423c48ae"
+    },
+    {
+      "path": "candidate-intro-2-before-acquisition-1-settling.json",
+      "bytes": 3603,
+      "sha256": "2eb2fe1f969f90baf869c53534cccc501dcd76ee8f29c3a6b79f5022a49aead1"
+    },
+    {
+      "path": "candidate-intro-2-acquisition-1-settling.json",
+      "bytes": 10062,
+      "sha256": "2ff99608a98230a5be96d1c96b01ce338c643cf4bef27716eeedd45cd7429fee"
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "shell",
+        "getprop ro.build.fingerprint"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:03.628689+00:00",
+      "started_monotonic": 266.935307991,
+      "finished_monotonic": 266.970418084,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00001.stdout",
+        "bytes": 82,
+        "sha256": "633fbfc3b92b012914165717ce367282664c75ad9f6e533b4a1ad6e2418ec93a"
+      },
+      "stderr": {
+        "path": "command-00001.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop ro.build.version.sdk"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:03.664124+00:00",
+      "started_monotonic": 266.970750432,
+      "finished_monotonic": 267.013675496,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00002.stdout",
+        "bytes": 3,
+        "sha256": "90d7ec0f0acef104d8b6252794295f661a0149634868d02a1ae0c358099638f5"
+      },
+      "stderr": {
+        "path": "command-00002.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop ro.product.cpu.abilist"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:03.707510+00:00",
+      "started_monotonic": 267.014136754,
+      "finished_monotonic": 267.063705649,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00003.stdout",
+        "bytes": 17,
+        "sha256": "79861d534dd25845f4329d0546f2202124ad6e6af060fdcd362e176faf1f0b14"
+      },
+      "stderr": {
+        "path": "command-00003.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop ro.kernel.qemu"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:03.757366+00:00",
+      "started_monotonic": 267.063994667,
+      "finished_monotonic": 267.102405506,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00004.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00004.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop persist.sys.locale"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:03.796159+00:00",
+      "started_monotonic": 267.102786605,
+      "finished_monotonic": 267.166448836,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00005.stdout",
+        "bytes": 1,
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      "stderr": {
+        "path": "command-00005.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:03.860122+00:00",
+      "started_monotonic": 267.166750057,
+      "finished_monotonic": 267.213213913,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00006.stdout",
+        "bytes": 8,
+        "sha256": "f0dcac7b1d721d2f68937a71f0229b4c4f88564fd711339951528889913cd85d"
+      },
+      "stderr": {
+        "path": "command-00006.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get system font_scale"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:03.906913+00:00",
+      "started_monotonic": 267.213540791,
+      "finished_monotonic": 267.274164155,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00007.stdout",
+        "bytes": 4,
+        "sha256": "5717e7c840171019a4eeab5b79a7f894a4986eaff93d04ec5b12c9a189f594bf"
+      },
+      "stderr": {
+        "path": "command-00007.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global animator_duration_scale"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:03.967814+00:00",
+      "started_monotonic": 267.274442463,
+      "finished_monotonic": 267.334763467,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00008.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00008.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global window_animation_scale"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.028508+00:00",
+      "started_monotonic": 267.335135339,
+      "finished_monotonic": 267.406281697,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00009.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00009.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global transition_animation_scale"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.100045+00:00",
+      "started_monotonic": 267.406672724,
+      "finished_monotonic": 267.451881255,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00010.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00010.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global airplane_mode_on"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.145811+00:00",
+      "started_monotonic": 267.452438913,
+      "finished_monotonic": 267.523662124,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00011.stdout",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      "stderr": {
+        "path": "command-00011.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global wifi_on"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.217376+00:00",
+      "started_monotonic": 267.52400433,
+      "finished_monotonic": 267.591550804,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00012.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00012.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global mobile_data"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.285282+00:00",
+      "started_monotonic": 267.591909711,
+      "finished_monotonic": 267.646184171,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00013.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00013.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global sysui_demo_allowed"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.339926+00:00",
+      "started_monotonic": 267.646553148,
+      "finished_monotonic": 267.721035623,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00014.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00014.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global sysui_tuner_demo_on"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.414755+00:00",
+      "started_monotonic": 267.721383461,
+      "finished_monotonic": 267.784653578,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00015.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00015.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "wm size"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.478405+00:00",
+      "started_monotonic": 267.785032002,
+      "finished_monotonic": 267.823500526,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00016.stdout",
+        "bytes": 24,
+        "sha256": "7f3368455c954e86d4ca3c1b037d4641739037f61333d4750cf197d0ebe98b45"
+      },
+      "stderr": {
+        "path": "command-00016.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "wm density"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.517280+00:00",
+      "started_monotonic": 267.823908214,
+      "finished_monotonic": 267.854834287,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00017.stdout",
+        "bytes": 22,
+        "sha256": "d4282d3761f8524b0cb8905313ff65090c77b3b72f366c9676fdaf8fb2b4ad4c"
+      },
+      "stderr": {
+        "path": "command-00017.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop ro.build.fingerprint"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.548551+00:00",
+      "started_monotonic": 267.855178257,
+      "finished_monotonic": 267.874990531,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00018.stdout",
+        "bytes": 82,
+        "sha256": "633fbfc3b92b012914165717ce367282664c75ad9f6e533b4a1ad6e2418ec93a"
+      },
+      "stderr": {
+        "path": "command-00018.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop ro.build.version.sdk"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.568751+00:00",
+      "started_monotonic": 267.875378804,
+      "finished_monotonic": 267.891495402,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00019.stdout",
+        "bytes": 3,
+        "sha256": "90d7ec0f0acef104d8b6252794295f661a0149634868d02a1ae0c358099638f5"
+      },
+      "stderr": {
+        "path": "command-00019.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop ro.product.cpu.abilist"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.585178+00:00",
+      "started_monotonic": 267.89180636,
+      "finished_monotonic": 267.91107952,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00020.stdout",
+        "bytes": 17,
+        "sha256": "79861d534dd25845f4329d0546f2202124ad6e6af060fdcd362e176faf1f0b14"
+      },
+      "stderr": {
+        "path": "command-00020.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop ro.kernel.qemu"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.604806+00:00",
+      "started_monotonic": 267.911433799,
+      "finished_monotonic": 267.934558262,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00021.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00021.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop persist.sys.locale"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.628182+00:00",
+      "started_monotonic": 267.934810812,
+      "finished_monotonic": 267.957884661,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00022.stdout",
+        "bytes": 1,
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      "stderr": {
+        "path": "command-00022.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.651646+00:00",
+      "started_monotonic": 267.958273174,
+      "finished_monotonic": 267.985595207,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00023.stdout",
+        "bytes": 8,
+        "sha256": "f0dcac7b1d721d2f68937a71f0229b4c4f88564fd711339951528889913cd85d"
+      },
+      "stderr": {
+        "path": "command-00023.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get system font_scale"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.679314+00:00",
+      "started_monotonic": 267.985941561,
+      "finished_monotonic": 268.015604186,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00024.stdout",
+        "bytes": 4,
+        "sha256": "5717e7c840171019a4eeab5b79a7f894a4986eaff93d04ec5b12c9a189f594bf"
+      },
+      "stderr": {
+        "path": "command-00024.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global animator_duration_scale"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.709304+00:00",
+      "started_monotonic": 268.015931675,
+      "finished_monotonic": 268.04964252,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00025.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00025.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global window_animation_scale"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.743351+00:00",
+      "started_monotonic": 268.049979226,
+      "finished_monotonic": 268.073755219,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00026.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00026.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global transition_animation_scale"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.767520+00:00",
+      "started_monotonic": 268.074147529,
+      "finished_monotonic": 268.102476695,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00027.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00027.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global airplane_mode_on"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.796106+00:00",
+      "started_monotonic": 268.102734545,
+      "finished_monotonic": 268.140454084,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00028.stdout",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      "stderr": {
+        "path": "command-00028.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global wifi_on"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.834182+00:00",
+      "started_monotonic": 268.140809465,
+      "finished_monotonic": 268.18042876,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00029.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00029.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global mobile_data"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.874160+00:00",
+      "started_monotonic": 268.180788109,
+      "finished_monotonic": 268.217557242,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00030.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00030.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global sysui_demo_allowed"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.911305+00:00",
+      "started_monotonic": 268.21793268,
+      "finished_monotonic": 268.241271282,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00031.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00031.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global sysui_tuner_demo_on"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.935038+00:00",
+      "started_monotonic": 268.241665034,
+      "finished_monotonic": 268.278741129,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00032.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00032.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "wm size"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:04.972493+00:00",
+      "started_monotonic": 268.279119873,
+      "finished_monotonic": 268.308247513,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00033.stdout",
+        "bytes": 24,
+        "sha256": "7f3368455c954e86d4ca3c1b037d4641739037f61333d4750cf197d0ebe98b45"
+      },
+      "stderr": {
+        "path": "command-00033.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "wm density"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:05.001933+00:00",
+      "started_monotonic": 268.308561016,
+      "finished_monotonic": 268.336111552,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00034.stdout",
+        "bytes": 22,
+        "sha256": "d4282d3761f8524b0cb8905313ff65090c77b3b72f366c9676fdaf8fb2b4ad4c"
+      },
+      "stderr": {
+        "path": "command-00034.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "uninstall",
+        "com.arlosoft.macrodroid"
+      ],
+      "returncode": 1,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:05.118714+00:00",
+      "started_monotonic": 268.425340244,
+      "finished_monotonic": 268.466290846,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00035.stdout",
+        "bytes": 39,
+        "sha256": "f9646c55ffe6e79f6859da172df98883a62129949ea6c4730be71346d4659410"
+      },
+      "stderr": {
+        "path": "command-00035.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pm path com.arlosoft.macrodroid"
+      ],
+      "returncode": 1,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:05.160025+00:00",
+      "started_monotonic": 268.466652548,
+      "finished_monotonic": 268.522036156,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00036.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00036.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "install",
+        "--no-streaming",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-original.apk"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:05.215739+00:00",
+      "started_monotonic": 268.52236619,
+      "finished_monotonic": 280.192766945,
+      "timeout_seconds": 600,
+      "stdout": {
+        "path": "command-00037.stdout",
+        "bytes": 32,
+        "sha256": "8cfe21ca9831863004ad6eb25b313f8944786f7a01b291da8fbbe61cc0c847e5"
+      },
+      "stderr": {
+        "path": "command-00037.stderr",
+        "bytes": 186,
+        "sha256": "db5e37bb2a8ac13de458953e6d203ba581cb0bf9e70571c424b8f0b6dab1d5f5"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pm path com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:16.886708+00:00",
+      "started_monotonic": 280.193335973,
+      "finished_monotonic": 280.248825669,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00038.stdout",
+        "bytes": 103,
+        "sha256": "79e70bf9c43c0640db89cfaed62f6ff93296ddd999f29ec9c47c2b953d6a785f"
+      },
+      "stderr": {
+        "path": "command-00038.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "sha256sum '/data/app/~~_8LtRZVD2LTk9KGyr1ellw==/com.arlosoft.macrodroid-SyCZmmD3X4BSGjvyo4MgCg==/base.apk'"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:16.942632+00:00",
+      "started_monotonic": 280.249260307,
+      "finished_monotonic": 280.830542788,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00039.stdout",
+        "bytes": 161,
+        "sha256": "38d7d18c10fa3fdb1f4ffb57393bf6f4fa4555d92d4ea47f9e1d8503b06f3bbe"
+      },
+      "stderr": {
+        "path": "command-00039.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "cmd package resolve-activity --brief -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -p com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:17.524640+00:00",
+      "started_monotonic": 280.831267235,
+      "finished_monotonic": 280.862245421,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00040.stdout",
+        "bytes": 121,
+        "sha256": "201914541997b24ff00d70c9342dfb36fbe461fc57d7159547e5fd8aafd8cb90"
+      },
+      "stderr": {
+        "path": "command-00040.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "am start -W -n com.arlosoft.macrodroid/.intro.IntroActivity"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:17.556167+00:00",
+      "started_monotonic": 280.862794783,
+      "finished_monotonic": 283.507217452,
+      "timeout_seconds": 180,
+      "stdout": {
+        "path": "command-00041.stdout",
+        "bytes": 194,
+        "sha256": "70ab1ace6c441f7a9afdde03d8314ffb2f2e2b9e56bc88d1126150869ea1c67f"
+      },
+      "stderr": {
+        "path": "command-00041.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:24.201322+00:00",
+      "started_monotonic": 287.507949081,
+      "finished_monotonic": 287.535570325,
+      "timeout_seconds": 29.99995872300002,
+      "stdout": {
+        "path": "command-00042.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00042.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:24.229430+00:00",
+      "started_monotonic": 287.536058013,
+      "finished_monotonic": 287.596922727,
+      "timeout_seconds": 29.971849951000024,
+      "stdout": {
+        "path": "command-00043.stdout",
+        "bytes": 30617,
+        "sha256": "8e6f42b1fab5607f8febe2cd8a28b4aad199158a3a3a5b096b72f8837d39fc87"
+      },
+      "stderr": {
+        "path": "command-00043.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-49cee8f35e1d44ee993cb7387d2e5057.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:24.290886+00:00",
+      "started_monotonic": 287.597514357,
+      "finished_monotonic": 290.35294241,
+      "timeout_seconds": 29.910392193999996,
+      "stdout": {
+        "path": "command-00044.stdout",
+        "bytes": 88,
+        "sha256": "72ca65c4216311c02ea21d0015cfcda4ccbbfc2c7cd8db5245a289ab21278ff4"
+      },
+      "stderr": {
+        "path": "command-00044.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-49cee8f35e1d44ee993cb7387d2e5057.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:27.046695+00:00",
+      "started_monotonic": 290.353322787,
+      "finished_monotonic": 290.38426004,
+      "timeout_seconds": 27.15458633899999,
+      "stdout": {
+        "path": "command-00045.stdout",
+        "bytes": 5939,
+        "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+      },
+      "stderr": {
+        "path": "command-00045.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-49cee8f35e1d44ee993cb7387d2e5057.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:27.078119+00:00",
+      "started_monotonic": 290.384746334,
+      "finished_monotonic": 290.409574802,
+      "timeout_seconds": 27.12316179000004,
+      "stdout": {
+        "path": "command-00046.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00046.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:27.103304+00:00",
+      "started_monotonic": 290.409931596,
+      "finished_monotonic": 290.775130387,
+      "timeout_seconds": 27.097979594000037,
+      "stdout": {
+        "path": "command-00047.stdout",
+        "bytes": 83895,
+        "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+      },
+      "stderr": {
+        "path": "command-00047.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:27.469294+00:00",
+      "started_monotonic": 290.775921388,
+      "finished_monotonic": 290.804416596,
+      "timeout_seconds": 26.731985474,
+      "stdout": {
+        "path": "command-00048.stdout",
+        "bytes": 30745,
+        "sha256": "931137b555525782f731e81d4e7d9a09fd399e17dece0d9c347415cbfd9d2e6d"
+      },
+      "stderr": {
+        "path": "command-00048.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:27.498407+00:00",
+      "started_monotonic": 290.805034936,
+      "finished_monotonic": 290.832313929,
+      "timeout_seconds": 26.702897172999997,
+      "stdout": {
+        "path": "command-00049.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00049.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:28.839090+00:00",
+      "started_monotonic": 292.145718529,
+      "finished_monotonic": 292.177059332,
+      "timeout_seconds": 25.362187041000027,
+      "stdout": {
+        "path": "command-00050.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00050.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:28.870851+00:00",
+      "started_monotonic": 292.177479343,
+      "finished_monotonic": 292.234995351,
+      "timeout_seconds": 25.330428140000038,
+      "stdout": {
+        "path": "command-00051.stdout",
+        "bytes": 30746,
+        "sha256": "26e53fe4adad4d403b057b1a7773489900aa2ca2243ed681729f4a86fcb1d9e1"
+      },
+      "stderr": {
+        "path": "command-00051.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-88fd3226b3d346b49e8a661bcd61f053.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:28.928976+00:00",
+      "started_monotonic": 292.235604574,
+      "finished_monotonic": 294.793353135,
+      "timeout_seconds": 25.272302377000017,
+      "stdout": {
+        "path": "command-00052.stdout",
+        "bytes": 88,
+        "sha256": "7ec52a7c426112f863636e5799c4dd2dcb1733ff99369e1fc170be7b33b223d2"
+      },
+      "stderr": {
+        "path": "command-00052.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-88fd3226b3d346b49e8a661bcd61f053.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:31.487083+00:00",
+      "started_monotonic": 294.79371058,
+      "finished_monotonic": 294.849211653,
+      "timeout_seconds": 22.714196973000014,
+      "stdout": {
+        "path": "command-00053.stdout",
+        "bytes": 5939,
+        "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+      },
+      "stderr": {
+        "path": "command-00053.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-88fd3226b3d346b49e8a661bcd61f053.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:31.543067+00:00",
+      "started_monotonic": 294.849694642,
+      "finished_monotonic": 294.888270213,
+      "timeout_seconds": 22.658212130000038,
+      "stdout": {
+        "path": "command-00054.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00054.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:31.581955+00:00",
+      "started_monotonic": 294.888583186,
+      "finished_monotonic": 295.478680961,
+      "timeout_seconds": 22.619324077000044,
+      "stdout": {
+        "path": "command-00055.stdout",
+        "bytes": 83895,
+        "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+      },
+      "stderr": {
+        "path": "command-00055.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:32.172915+00:00",
+      "started_monotonic": 295.479542152,
+      "finished_monotonic": 295.513738999,
+      "timeout_seconds": 22.028365871000005,
+      "stdout": {
+        "path": "command-00056.stdout",
+        "bytes": 30876,
+        "sha256": "f0d14cdee2a159e823d596c235240c7c269ed1ca0b3605d140f39250dec0f8b7"
+      },
+      "stderr": {
+        "path": "command-00056.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:32.207608+00:00",
+      "started_monotonic": 295.514236775,
+      "finished_monotonic": 295.549848194,
+      "timeout_seconds": 21.993668954000043,
+      "stdout": {
+        "path": "command-00057.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00057.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:32.257516+00:00",
+      "started_monotonic": 295.564143814,
+      "finished_monotonic": 295.589528328,
+      "timeout_seconds": 14.99997192799998,
+      "stdout": {
+        "path": "command-00058.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00058.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:32.283410+00:00",
+      "started_monotonic": 295.590036684,
+      "finished_monotonic": 295.630415149,
+      "timeout_seconds": 14.974109424999995,
+      "stdout": {
+        "path": "command-00059.stdout",
+        "bytes": 30877,
+        "sha256": "4d368eae911ebfffd828ed9fac4d4510af053fb2fb0c37f1a30360d9476979be"
+      },
+      "stderr": {
+        "path": "command-00059.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-f1519c2022934c0590ab65b80382a13a.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:32.324501+00:00",
+      "started_monotonic": 295.631128516,
+      "finished_monotonic": 297.999664417,
+      "timeout_seconds": 14.932989690999989,
+      "stdout": {
+        "path": "command-00060.stdout",
+        "bytes": 88,
+        "sha256": "d9c497d62d36d30c07b583a7d0a8a3f4b4cfcfa505e73ec5d48f2f5ab23f50cb"
+      },
+      "stderr": {
+        "path": "command-00060.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-f1519c2022934c0590ab65b80382a13a.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:34.693418+00:00",
+      "started_monotonic": 298.000045535,
+      "finished_monotonic": 298.043585428,
+      "timeout_seconds": 12.564073582999981,
+      "stdout": {
+        "path": "command-00061.stdout",
+        "bytes": 5939,
+        "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+      },
+      "stderr": {
+        "path": "command-00061.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-f1519c2022934c0590ab65b80382a13a.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:34.737833+00:00",
+      "started_monotonic": 298.044460405,
+      "finished_monotonic": 298.082738266,
+      "timeout_seconds": 12.519657440999993,
+      "stdout": {
+        "path": "command-00062.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00062.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:34.776480+00:00",
+      "started_monotonic": 298.083107072,
+      "finished_monotonic": 298.322069921,
+      "timeout_seconds": 12.481011475000003,
+      "stdout": {
+        "path": "command-00063.stdout",
+        "bytes": 83895,
+        "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+      },
+      "stderr": {
+        "path": "command-00063.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:35.016186+00:00",
+      "started_monotonic": 298.322813313,
+      "finished_monotonic": 298.354091181,
+      "timeout_seconds": 12.241308419999996,
+      "stdout": {
+        "path": "command-00064.stdout",
+        "bytes": 31006,
+        "sha256": "82e18158c5a34d49c4b4b6ebf392e28df617dea309028f2ad3a80c43f4772d6d"
+      },
+      "stderr": {
+        "path": "command-00064.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:35.047950+00:00",
+      "started_monotonic": 298.354577896,
+      "finished_monotonic": 298.380248314,
+      "timeout_seconds": 12.209538997999971,
+      "stdout": {
+        "path": "command-00065.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00065.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:35.083970+00:00",
+      "started_monotonic": 298.390597935,
+      "finished_monotonic": 298.430552692,
+      "timeout_seconds": 12.173519220000003,
+      "stdout": {
+        "path": "command-00066.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00066.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:35.124358+00:00",
+      "started_monotonic": 298.430985918,
+      "finished_monotonic": 298.471703812,
+      "timeout_seconds": 12.133130735999998,
+      "stdout": {
+        "path": "command-00067.stdout",
+        "bytes": 31006,
+        "sha256": "24bf83f2264c95747e66687a6245b1c8f22587e8b7e6fe5014d25ef73f903b19"
+      },
+      "stderr": {
+        "path": "command-00067.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-bd2d210e57744c27bdae00308b3ebab0.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:35.165739+00:00",
+      "started_monotonic": 298.472367576,
+      "finished_monotonic": 300.909433604,
+      "timeout_seconds": 12.091750399999967,
+      "stdout": {
+        "path": "command-00068.stdout",
+        "bytes": 88,
+        "sha256": "010249920ff68f7c33ed1ab5c2f41193047c4a679ba54238ef36c2d7afce689f"
+      },
+      "stderr": {
+        "path": "command-00068.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-bd2d210e57744c27bdae00308b3ebab0.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:37.603113+00:00",
+      "started_monotonic": 300.909741556,
+      "finished_monotonic": 300.944935978,
+      "timeout_seconds": 9.654375648999974,
+      "stdout": {
+        "path": "command-00069.stdout",
+        "bytes": 5939,
+        "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+      },
+      "stderr": {
+        "path": "command-00069.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-bd2d210e57744c27bdae00308b3ebab0.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:37.638828+00:00",
+      "started_monotonic": 300.945455886,
+      "finished_monotonic": 300.977526758,
+      "timeout_seconds": 9.618661340000017,
+      "stdout": {
+        "path": "command-00070.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00070.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:37.671225+00:00",
+      "started_monotonic": 300.977852363,
+      "finished_monotonic": 301.225446019,
+      "timeout_seconds": 9.586265552999976,
+      "stdout": {
+        "path": "command-00071.stdout",
+        "bytes": 83895,
+        "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+      },
+      "stderr": {
+        "path": "command-00071.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:37.919651+00:00",
+      "started_monotonic": 301.226278287,
+      "finished_monotonic": 301.261784208,
+      "timeout_seconds": 9.33783830699997,
+      "stdout": {
+        "path": "command-00072.stdout",
+        "bytes": 31135,
+        "sha256": "a730ba4e530bb8531698049ee88966337381d140107f604e3647cff72c885517"
+      },
+      "stderr": {
+        "path": "command-00072.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:37.955770+00:00",
+      "started_monotonic": 301.262397219,
+      "finished_monotonic": 301.297076002,
+      "timeout_seconds": 9.301720166999985,
+      "stdout": {
+        "path": "command-00073.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00073.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:38.050907+00:00",
+      "started_monotonic": 301.357535267,
+      "finished_monotonic": 301.396001416,
+      "timeout_seconds": 9.206580856000016,
+      "stdout": {
+        "path": "command-00074.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00074.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:38.090072+00:00",
+      "started_monotonic": 301.396700356,
+      "finished_monotonic": 301.45152026,
+      "timeout_seconds": 9.167415996999978,
+      "stdout": {
+        "path": "command-00075.stdout",
+        "bytes": 31134,
+        "sha256": "729da0038af3d2131e75f9337e2c1d5c10fb01234fca6bc428f624dda76a17f9"
+      },
+      "stderr": {
+        "path": "command-00075.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "input tap 640 1152"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:38.146629+00:00",
+      "started_monotonic": 301.453257421,
+      "finished_monotonic": 301.530386993,
+      "timeout_seconds": 9.110859473000005,
+      "stdout": {
+        "path": "command-00076.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00076.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:40.224906+00:00",
+      "started_monotonic": 303.531533264,
+      "finished_monotonic": 303.589843842,
+      "timeout_seconds": 29.999961960000007,
+      "stdout": {
+        "path": "command-00077.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00077.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:40.283783+00:00",
+      "started_monotonic": 303.590410857,
+      "finished_monotonic": 303.663315621,
+      "timeout_seconds": 29.941083754999966,
+      "stdout": {
+        "path": "command-00078.stdout",
+        "bytes": 31137,
+        "sha256": "309a1d8a48fddcfeadbd718d1b378e1925f2d46aea7666e50da2cdff851850e7"
+      },
+      "stderr": {
+        "path": "command-00078.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-0475791b5b44491ea5356198087f6b1d.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:40.357217+00:00",
+      "started_monotonic": 303.663845176,
+      "finished_monotonic": 306.339000632,
+      "timeout_seconds": 29.867648444999986,
+      "stdout": {
+        "path": "command-00079.stdout",
+        "bytes": 88,
+        "sha256": "5fe7b362774ed828b3289f842ba9e35b875b53214e2c2e2ba88c2279cea2b14d"
+      },
+      "stderr": {
+        "path": "command-00079.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-0475791b5b44491ea5356198087f6b1d.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:43.032753+00:00",
+      "started_monotonic": 306.339380989,
+      "finished_monotonic": 306.40818345,
+      "timeout_seconds": 27.192112460999965,
+      "stdout": {
+        "path": "command-00080.stdout",
+        "bytes": 6689,
+        "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+      },
+      "stderr": {
+        "path": "command-00080.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-0475791b5b44491ea5356198087f6b1d.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:43.102115+00:00",
+      "started_monotonic": 306.408741198,
+      "finished_monotonic": 306.505357686,
+      "timeout_seconds": 27.122756359999983,
+      "stdout": {
+        "path": "command-00081.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00081.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:43.199060+00:00",
+      "started_monotonic": 306.50568798,
+      "finished_monotonic": 307.418789314,
+      "timeout_seconds": 27.025806692000003,
+      "stdout": {
+        "path": "command-00082.stdout",
+        "bytes": 77050,
+        "sha256": "7083c3170cde7f836d6365fab2954f6649cdd1820e4367fdd00bc5eb9e1905d6"
+      },
+      "stderr": {
+        "path": "command-00082.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:44.113469+00:00",
+      "started_monotonic": 307.420096615,
+      "finished_monotonic": 307.553679308,
+      "timeout_seconds": 26.111397264999994,
+      "stdout": {
+        "path": "command-00083.stdout",
+        "bytes": 31269,
+        "sha256": "b9172930346714d2e9d2df1b619260ef612112be803557640165875f836baaee"
+      },
+      "stderr": {
+        "path": "command-00083.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:44.247557+00:00",
+      "started_monotonic": 307.554184628,
+      "finished_monotonic": 307.650788658,
+      "timeout_seconds": 25.977308811,
+      "stdout": {
+        "path": "command-00084.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00084.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:46.055172+00:00",
+      "started_monotonic": 309.361799834,
+      "finished_monotonic": 309.423820923,
+      "timeout_seconds": 24.169693144999997,
+      "stdout": {
+        "path": "command-00085.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00085.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:46.120478+00:00",
+      "started_monotonic": 309.427106062,
+      "finished_monotonic": 309.487687378,
+      "timeout_seconds": 24.104389561000005,
+      "stdout": {
+        "path": "command-00086.stdout",
+        "bytes": 31270,
+        "sha256": "a03e9150fe8a2d1e1af74210d58ac75fd8f532a2acf1300325e3b4b775481eea"
+      },
+      "stderr": {
+        "path": "command-00086.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-630ac9305e6848a994f9a726fc3f5858.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:46.181726+00:00",
+      "started_monotonic": 309.488353727,
+      "finished_monotonic": 312.342690127,
+      "timeout_seconds": 24.043140763999986,
+      "stdout": {
+        "path": "command-00087.stdout",
+        "bytes": 88,
+        "sha256": "0bbc8fad46edfcb2f351b87168334eb9df7ae63f1a33f457d07c5c5c9e5421f8"
+      },
+      "stderr": {
+        "path": "command-00087.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-630ac9305e6848a994f9a726fc3f5858.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:49.036430+00:00",
+      "started_monotonic": 312.34305699,
+      "finished_monotonic": 312.419291676,
+      "timeout_seconds": 21.188437803,
+      "stdout": {
+        "path": "command-00088.stdout",
+        "bytes": 6689,
+        "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+      },
+      "stderr": {
+        "path": "command-00088.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-630ac9305e6848a994f9a726fc3f5858.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:49.113220+00:00",
+      "started_monotonic": 312.419847911,
+      "finished_monotonic": 312.49046026,
+      "timeout_seconds": 21.11164604999999,
+      "stdout": {
+        "path": "command-00089.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00089.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:49.184068+00:00",
+      "started_monotonic": 312.490695999,
+      "finished_monotonic": 313.346900368,
+      "timeout_seconds": 21.040797311000006,
+      "stdout": {
+        "path": "command-00090.stdout",
+        "bytes": 75979,
+        "sha256": "a770f4869be42739249f41082c0e4392b25b0540bc2c26ac513e6b7a2b649415"
+      },
+      "stderr": {
+        "path": "command-00090.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:50.042994+00:00",
+      "started_monotonic": 313.349621819,
+      "finished_monotonic": 313.474115319,
+      "timeout_seconds": 20.181871098999977,
+      "stdout": {
+        "path": "command-00091.stdout",
+        "bytes": 31396,
+        "sha256": "fe72c18d2bc346838ad2dc79d10f3930021c643dc6019541b13ec506a6338c76"
+      },
+      "stderr": {
+        "path": "command-00091.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:50.167910+00:00",
+      "started_monotonic": 313.474537995,
+      "finished_monotonic": 313.539633634,
+      "timeout_seconds": 20.056954673000007,
+      "stdout": {
+        "path": "command-00092.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00092.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:51.843802+00:00",
+      "started_monotonic": 315.150430842,
+      "finished_monotonic": 315.215604437,
+      "timeout_seconds": 18.381061885999998,
+      "stdout": {
+        "path": "command-00093.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00093.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:51.909433+00:00",
+      "started_monotonic": 315.216060695,
+      "finished_monotonic": 315.31450959,
+      "timeout_seconds": 18.315433515999985,
+      "stdout": {
+        "path": "command-00094.stdout",
+        "bytes": 31399,
+        "sha256": "ba44c67dad269fbb548035f390dc1976ad06a1cf6a980f8323154db42e1cc715"
+      },
+      "stderr": {
+        "path": "command-00094.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-b6bff1e0c0a74aafacbaa1119dd99786.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:52.009026+00:00",
+      "started_monotonic": 315.315653237,
+      "finished_monotonic": 318.317871756,
+      "timeout_seconds": 18.215840863999972,
+      "stdout": {
+        "path": "command-00095.stdout",
+        "bytes": 88,
+        "sha256": "15f463aace0f5070021df2861d3abcfae3f5e9dfa0b7c7292569e77a3f6f96f9"
+      },
+      "stderr": {
+        "path": "command-00095.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-b6bff1e0c0a74aafacbaa1119dd99786.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:55.013557+00:00",
+      "started_monotonic": 318.320183697,
+      "finished_monotonic": 318.352178899,
+      "timeout_seconds": 15.211311015999968,
+      "stdout": {
+        "path": "command-00096.stdout",
+        "bytes": 6689,
+        "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+      },
+      "stderr": {
+        "path": "command-00096.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-b6bff1e0c0a74aafacbaa1119dd99786.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:55.046006+00:00",
+      "started_monotonic": 318.352633625,
+      "finished_monotonic": 318.398353564,
+      "timeout_seconds": 15.178860315999998,
+      "stdout": {
+        "path": "command-00097.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00097.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:55.092118+00:00",
+      "started_monotonic": 318.398745744,
+      "finished_monotonic": 319.170377899,
+      "timeout_seconds": 15.132749449000016,
+      "stdout": {
+        "path": "command-00098.stdout",
+        "bytes": 76521,
+        "sha256": "818d739080faaa61286b7ff8687e5de9de6748456121ffaa21e156dd0560d698"
+      },
+      "stderr": {
+        "path": "command-00098.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:55.864572+00:00",
+      "started_monotonic": 319.171199287,
+      "finished_monotonic": 319.265297024,
+      "timeout_seconds": 14.360295065000003,
+      "stdout": {
+        "path": "command-00099.stdout",
+        "bytes": 31386,
+        "sha256": "8e17c60e9aed999733afa540a23b604a0764fe5314923423948c9b1758dad70a"
+      },
+      "stderr": {
+        "path": "command-00099.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:55.959168+00:00",
+      "started_monotonic": 319.265796192,
+      "finished_monotonic": 319.370098946,
+      "timeout_seconds": 14.265698208999993,
+      "stdout": {
+        "path": "command-00100.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00100.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:57.624053+00:00",
+      "started_monotonic": 320.930681736,
+      "finished_monotonic": 321.04379367,
+      "timeout_seconds": 12.600811472999965,
+      "stdout": {
+        "path": "command-00101.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00101.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:57.737625+00:00",
+      "started_monotonic": 321.044253004,
+      "finished_monotonic": 321.27425794,
+      "timeout_seconds": 12.487241076999965,
+      "stdout": {
+        "path": "command-00102.stdout",
+        "bytes": 31385,
+        "sha256": "b93a50a90d22aeb3107ecb103ef8f53767d0ddcca239697cb4ec5235d964919d"
+      },
+      "stderr": {
+        "path": "command-00102.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-6ef5a2a5976f477e84f0eaf7860ca04e.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:34:57.969804+00:00",
+      "started_monotonic": 321.276431402,
+      "finished_monotonic": 324.302759478,
+      "timeout_seconds": 12.255061817000012,
+      "stdout": {
+        "path": "command-00103.stdout",
+        "bytes": 88,
+        "sha256": "05870d5d80e5028f8e52041a6b76d15289c1ccf967b711bad161d47e876947a0"
+      },
+      "stderr": {
+        "path": "command-00103.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-6ef5a2a5976f477e84f0eaf7860ca04e.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:00.996524+00:00",
+      "started_monotonic": 324.303151937,
+      "finished_monotonic": 324.382688606,
+      "timeout_seconds": 9.228342243999975,
+      "stdout": {
+        "path": "command-00104.stdout",
+        "bytes": 6689,
+        "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+      },
+      "stderr": {
+        "path": "command-00104.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-6ef5a2a5976f477e84f0eaf7860ca04e.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:01.076511+00:00",
+      "started_monotonic": 324.383138854,
+      "finished_monotonic": 324.437401343,
+      "timeout_seconds": 9.148355246999984,
+      "stdout": {
+        "path": "command-00105.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00105.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:01.131000+00:00",
+      "started_monotonic": 324.437628306,
+      "finished_monotonic": 325.240595587,
+      "timeout_seconds": 9.093864803999963,
+      "stdout": {
+        "path": "command-00106.stdout",
+        "bytes": 76265,
+        "sha256": "147a0b1cbc2ebe76105681e2fa786e0788bae91e0f98e4f0c3cb6c222d240ffe"
+      },
+      "stderr": {
+        "path": "command-00106.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:01.936752+00:00",
+      "started_monotonic": 325.243379505,
+      "finished_monotonic": 325.322827435,
+      "timeout_seconds": 8.288115016999996,
+      "stdout": {
+        "path": "command-00107.stdout",
+        "bytes": 31372,
+        "sha256": "c5c1dc692e476dd6a746875b2b606d055de5679d731470c86abf4154af52bbf4"
+      },
+      "stderr": {
+        "path": "command-00107.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:02.016670+00:00",
+      "started_monotonic": 325.323298399,
+      "finished_monotonic": 325.383358365,
+      "timeout_seconds": 8.208193607999988,
+      "stdout": {
+        "path": "command-00108.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00108.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:03.610254+00:00",
+      "started_monotonic": 326.91688084,
+      "finished_monotonic": 327.039813729,
+      "timeout_seconds": 6.614612829999999,
+      "stdout": {
+        "path": "command-00109.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00109.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:03.733693+00:00",
+      "started_monotonic": 327.040320632,
+      "finished_monotonic": 327.305057034,
+      "timeout_seconds": 6.491174150000006,
+      "stdout": {
+        "path": "command-00110.stdout",
+        "bytes": 31372,
+        "sha256": "e010694a52a4b53c54d37c032de64a9715b432c80d98db6b4a9f46b0ed2448e3"
+      },
+      "stderr": {
+        "path": "command-00110.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-dc2b61a94d354cdbb63ab52b6be1abf4.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:03.999053+00:00",
+      "started_monotonic": 327.305680013,
+      "finished_monotonic": 330.403300215,
+      "timeout_seconds": 6.225814578999973,
+      "stdout": {
+        "path": "command-00111.stdout",
+        "bytes": 88,
+        "sha256": "248c3598add24755db24f83e87fbf58d881ed978f27e4e303e86432fa026d86b"
+      },
+      "stderr": {
+        "path": "command-00111.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-dc2b61a94d354cdbb63ab52b6be1abf4.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:07.097013+00:00",
+      "started_monotonic": 330.403640578,
+      "finished_monotonic": 330.450077517,
+      "timeout_seconds": 3.1278544850000003,
+      "stdout": {
+        "path": "command-00112.stdout",
+        "bytes": 6689,
+        "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+      },
+      "stderr": {
+        "path": "command-00112.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-dc2b61a94d354cdbb63ab52b6be1abf4.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:07.147605+00:00",
+      "started_monotonic": 330.454232305,
+      "finished_monotonic": 330.50205648,
+      "timeout_seconds": 3.077263108000011,
+      "stdout": {
+        "path": "command-00113.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00113.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:07.195800+00:00",
+      "started_monotonic": 330.502427991,
+      "finished_monotonic": 330.961136457,
+      "timeout_seconds": 3.029066560999979,
+      "stdout": {
+        "path": "command-00114.stdout",
+        "bytes": 74853,
+        "sha256": "fbcd762438c72e2461c3def401569cce19275faab51411de8f5fd42ec7081113"
+      },
+      "stderr": {
+        "path": "command-00114.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:07.655248+00:00",
+      "started_monotonic": 330.961875883,
+      "finished_monotonic": 331.021136685,
+      "timeout_seconds": 2.569617796999978,
+      "stdout": {
+        "path": "command-00115.stdout",
+        "bytes": 31371,
+        "sha256": "1c07842f5b91782a5107b60f3583a57693020aadd2b5e98876c771ee963e7c7d"
+      },
+      "stderr": {
+        "path": "command-00115.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:07.715069+00:00",
+      "started_monotonic": 331.021695936,
+      "finished_monotonic": 331.099565079,
+      "timeout_seconds": 2.5097986659999947,
+      "stdout": {
+        "path": "command-00116.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00116.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:09.342929+00:00",
+      "started_monotonic": 332.649557142,
+      "finished_monotonic": 332.701083873,
+      "timeout_seconds": 0.881935967000004,
+      "stdout": {
+        "path": "command-00117.stdout",
+        "bytes": 5,
+        "sha256": "a15a923f32905882b7b1cea9f4afb4a6589bcdabca78d1b4bf98f67d604a9942"
+      },
+      "stderr": {
+        "path": "command-00117.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:09.394854+00:00",
+      "started_monotonic": 332.701482114,
+      "finished_monotonic": 332.763690444,
+      "timeout_seconds": 0.8300119369999948,
+      "stdout": {
+        "path": "command-00118.stdout",
+        "bytes": 31371,
+        "sha256": "10565c0437bc7a57214e8a90d436ccb5b02c719aff186f4cc4322c4d6a677dbc"
+      },
+      "stderr": {
+        "path": "command-00118.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-cb62f6f2e25143d995589a1695f03a3e.xml"
+      ],
+      "returncode": null,
+      "timed_out": true,
+      "started_utc": "2026-10-12T06:35:09.457693+00:00",
+      "started_monotonic": 332.764321077,
+      "finished_monotonic": 333.535147382,
+      "timeout_seconds": 0.7671743060000153,
+      "stdout": {
+        "path": "command-00119.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00119.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop ro.build.fingerprint"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:10.236314+00:00",
+      "started_monotonic": 333.542942343,
+      "finished_monotonic": 333.5749404,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00120.stdout",
+        "bytes": 82,
+        "sha256": "633fbfc3b92b012914165717ce367282664c75ad9f6e533b4a1ad6e2418ec93a"
+      },
+      "stderr": {
+        "path": "command-00120.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop ro.build.version.sdk"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:10.268662+00:00",
+      "started_monotonic": 333.575290351,
+      "finished_monotonic": 333.620266447,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00121.stdout",
+        "bytes": 3,
+        "sha256": "90d7ec0f0acef104d8b6252794295f661a0149634868d02a1ae0c358099638f5"
+      },
+      "stderr": {
+        "path": "command-00121.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop ro.product.cpu.abilist"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:10.313951+00:00",
+      "started_monotonic": 333.620579519,
+      "finished_monotonic": 333.676184967,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00122.stdout",
+        "bytes": 17,
+        "sha256": "79861d534dd25845f4329d0546f2202124ad6e6af060fdcd362e176faf1f0b14"
+      },
+      "stderr": {
+        "path": "command-00122.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop ro.kernel.qemu"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:10.369879+00:00",
+      "started_monotonic": 333.676506746,
+      "finished_monotonic": 333.752699787,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00123.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00123.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop persist.sys.locale"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:10.446431+00:00",
+      "started_monotonic": 333.753059096,
+      "finished_monotonic": 333.823202602,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00124.stdout",
+        "bytes": 1,
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      "stderr": {
+        "path": "command-00124.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "getprop persist.sys.timezone"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:10.516933+00:00",
+      "started_monotonic": 333.8235612,
+      "finished_monotonic": 333.889359391,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00125.stdout",
+        "bytes": 8,
+        "sha256": "f0dcac7b1d721d2f68937a71f0229b4c4f88564fd711339951528889913cd85d"
+      },
+      "stderr": {
+        "path": "command-00125.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get system font_scale"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:10.583079+00:00",
+      "started_monotonic": 333.889706928,
+      "finished_monotonic": 333.972299683,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00126.stdout",
+        "bytes": 4,
+        "sha256": "5717e7c840171019a4eeab5b79a7f894a4986eaff93d04ec5b12c9a189f594bf"
+      },
+      "stderr": {
+        "path": "command-00126.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global animator_duration_scale"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:10.666079+00:00",
+      "started_monotonic": 333.972707171,
+      "finished_monotonic": 334.039895253,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00127.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00127.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global window_animation_scale"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:10.733587+00:00",
+      "started_monotonic": 334.040214587,
+      "finished_monotonic": 334.090695664,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00128.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00128.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global transition_animation_scale"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:10.784511+00:00",
+      "started_monotonic": 334.091137927,
+      "finished_monotonic": 334.158400225,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00129.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00129.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global airplane_mode_on"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:10.852178+00:00",
+      "started_monotonic": 334.15880608,
+      "finished_monotonic": 334.227474037,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00130.stdout",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      "stderr": {
+        "path": "command-00130.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global wifi_on"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:10.921212+00:00",
+      "started_monotonic": 334.227839847,
+      "finished_monotonic": 334.269075016,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00131.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00131.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global mobile_data"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:10.962745+00:00",
+      "started_monotonic": 334.269373732,
+      "finished_monotonic": 334.340964231,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00132.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00132.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global sysui_demo_allowed"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:11.034740+00:00",
+      "started_monotonic": 334.341367671,
+      "finished_monotonic": 334.389707816,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00133.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00133.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "settings get global sysui_tuner_demo_on"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:11.083615+00:00",
+      "started_monotonic": 334.390242761,
+      "finished_monotonic": 334.442768901,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00134.stdout",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "command-00134.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "wm size"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:11.136502+00:00",
+      "started_monotonic": 334.443130294,
+      "finished_monotonic": 334.507828446,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00135.stdout",
+        "bytes": 24,
+        "sha256": "7f3368455c954e86d4ca3c1b037d4641739037f61333d4750cf197d0ebe98b45"
+      },
+      "stderr": {
+        "path": "command-00135.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "wm density"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:11.204471+00:00",
+      "started_monotonic": 334.51109908,
+      "finished_monotonic": 334.582686714,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00136.stdout",
+        "bytes": 22,
+        "sha256": "d4282d3761f8524b0cb8905313ff65090c77b3b72f366c9676fdaf8fb2b4ad4c"
+      },
+      "stderr": {
+        "path": "command-00136.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "uninstall",
+        "com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:11.411222+00:00",
+      "started_monotonic": 334.717847786,
+      "finished_monotonic": 335.506728668,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00137.stdout",
+        "bytes": 8,
+        "sha256": "7fc0023a6402c7bd7abd98bb3e580968de4833eed07d88d1cc8d70819d69c7a0"
+      },
+      "stderr": {
+        "path": "command-00137.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pm path com.arlosoft.macrodroid"
+      ],
+      "returncode": 1,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:12.200567+00:00",
+      "started_monotonic": 335.507194344,
+      "finished_monotonic": 335.617269898,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00138.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00138.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "install",
+        "--no-streaming",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-current-hybrid.apk"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:12.310982+00:00",
+      "started_monotonic": 335.617609259,
+      "finished_monotonic": 343.264232579,
+      "timeout_seconds": 600,
+      "stdout": {
+        "path": "command-00139.stdout",
+        "bytes": 32,
+        "sha256": "8cfe21ca9831863004ad6eb25b313f8944786f7a01b291da8fbbe61cc0c847e5"
+      },
+      "stderr": {
+        "path": "command-00139.stderr",
+        "bytes": 192,
+        "sha256": "05c80e64c8566792afacb208afc7787747f00fddff89133bfcab3c326aad5545"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pm path com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:19.958031+00:00",
+      "started_monotonic": 343.264659022,
+      "finished_monotonic": 343.307872935,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00140.stdout",
+        "bytes": 103,
+        "sha256": "82307ea2355d1189e5873658138353165eff825afafe64d07ebe0212a75bca40"
+      },
+      "stderr": {
+        "path": "command-00140.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "sha256sum '/data/app/~~Re8rA_hk8yY3Zd-BzPd44w==/com.arlosoft.macrodroid-J-oemRB5viTKrSW3MyjsiQ==/base.apk'"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:20.001673+00:00",
+      "started_monotonic": 343.30830033,
+      "finished_monotonic": 343.699962789,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00141.stdout",
+        "bytes": 161,
+        "sha256": "c88198eced41d420a261d152b8aa91708a2274847bcffe99a0d1d025eb2671c0"
+      },
+      "stderr": {
+        "path": "command-00141.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "cmd package resolve-activity --brief -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -p com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:20.394296+00:00",
+      "started_monotonic": 343.700923146,
+      "finished_monotonic": 343.783754242,
+      "timeout_seconds": 120,
+      "stdout": {
+        "path": "command-00142.stdout",
+        "bytes": 121,
+        "sha256": "201914541997b24ff00d70c9342dfb36fbe461fc57d7159547e5fd8aafd8cb90"
+      },
+      "stderr": {
+        "path": "command-00142.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "am start -W -n com.arlosoft.macrodroid/.intro.IntroActivity"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:20.477774+00:00",
+      "started_monotonic": 343.784402027,
+      "finished_monotonic": 345.949185882,
+      "timeout_seconds": 180,
+      "stdout": {
+        "path": "command-00143.stdout",
+        "bytes": 194,
+        "sha256": "74dc9c71b497879cd4afd2943680dda3b3625aca0a6bcca98b2e95a1bc771dd9"
+      },
+      "stderr": {
+        "path": "command-00143.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:26.643082+00:00",
+      "started_monotonic": 349.949708771,
+      "finished_monotonic": 349.978131278,
+      "timeout_seconds": 29.999961016999976,
+      "stdout": {
+        "path": "command-00144.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00144.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:26.671860+00:00",
+      "started_monotonic": 349.978488152,
+      "finished_monotonic": 350.008758676,
+      "timeout_seconds": 29.97117859100001,
+      "stdout": {
+        "path": "command-00145.stdout",
+        "bytes": 31360,
+        "sha256": "ac769341998b34b2a6b1f65ede60ce9d9278f39f90c19475f4d7e043df62fb71"
+      },
+      "stderr": {
+        "path": "command-00145.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-6813a5fab14f4a1aa035f5eba00f1c61.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:26.702797+00:00",
+      "started_monotonic": 350.009425086,
+      "finished_monotonic": 352.102248954,
+      "timeout_seconds": 29.940243159999966,
+      "stdout": {
+        "path": "command-00146.stdout",
+        "bytes": 88,
+        "sha256": "8b9b0ef1fb32e5e373988d993ac9767cb5c712897de4baa1845048a43cee5195"
+      },
+      "stderr": {
+        "path": "command-00146.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-6813a5fab14f4a1aa035f5eba00f1c61.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:28.795881+00:00",
+      "started_monotonic": 352.102508748,
+      "finished_monotonic": 352.117588448,
+      "timeout_seconds": 27.84715728399999,
+      "stdout": {
+        "path": "command-00147.stdout",
+        "bytes": 5939,
+        "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+      },
+      "stderr": {
+        "path": "command-00147.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-6813a5fab14f4a1aa035f5eba00f1c61.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:28.811294+00:00",
+      "started_monotonic": 352.117922059,
+      "finished_monotonic": 352.130734428,
+      "timeout_seconds": 27.83174317099997,
+      "stdout": {
+        "path": "command-00148.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00148.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:28.824313+00:00",
+      "started_monotonic": 352.130940942,
+      "finished_monotonic": 352.291137613,
+      "timeout_seconds": 27.81872476899997,
+      "stdout": {
+        "path": "command-00149.stdout",
+        "bytes": 83895,
+        "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+      },
+      "stderr": {
+        "path": "command-00149.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:28.985307+00:00",
+      "started_monotonic": 352.291935007,
+      "finished_monotonic": 352.312447831,
+      "timeout_seconds": 27.657731495999997,
+      "stdout": {
+        "path": "command-00150.stdout",
+        "bytes": 31361,
+        "sha256": "c14deb264f9992b734bc56a3707260029902256a3ec783caf2949778bbbbab42"
+      },
+      "stderr": {
+        "path": "command-00150.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:29.006219+00:00",
+      "started_monotonic": 352.312847004,
+      "finished_monotonic": 352.330106574,
+      "timeout_seconds": 27.636818566999978,
+      "stdout": {
+        "path": "command-00151.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00151.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:29.786510+00:00",
+      "started_monotonic": 353.093137997,
+      "finished_monotonic": 353.109652254,
+      "timeout_seconds": 26.85652735299999,
+      "stdout": {
+        "path": "command-00152.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00152.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:29.803424+00:00",
+      "started_monotonic": 353.110051957,
+      "finished_monotonic": 353.127229779,
+      "timeout_seconds": 26.83961571699996,
+      "stdout": {
+        "path": "command-00153.stdout",
+        "bytes": 31362,
+        "sha256": "ec24d3b7596c267a34c20627782ca8a42639492c79ee3938aa5b1b2854a74268"
+      },
+      "stderr": {
+        "path": "command-00153.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-e00dc2750a354e08b38a3d8feb9d1e68.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:29.821017+00:00",
+      "started_monotonic": 353.127645191,
+      "finished_monotonic": 355.133215445,
+      "timeout_seconds": 26.822021691999964,
+      "stdout": {
+        "path": "command-00154.stdout",
+        "bytes": 88,
+        "sha256": "ea3daad4f3233e9c4104e9e17d74ed42c8e88481275e55f0f9979e872f155248"
+      },
+      "stderr": {
+        "path": "command-00154.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-e00dc2750a354e08b38a3d8feb9d1e68.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:31.826879+00:00",
+      "started_monotonic": 355.133507749,
+      "finished_monotonic": 355.147251366,
+      "timeout_seconds": 24.816159303999996,
+      "stdout": {
+        "path": "command-00155.stdout",
+        "bytes": 5939,
+        "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+      },
+      "stderr": {
+        "path": "command-00155.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-e00dc2750a354e08b38a3d8feb9d1e68.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:31.840943+00:00",
+      "started_monotonic": 355.147571231,
+      "finished_monotonic": 355.160820705,
+      "timeout_seconds": 24.80209450000001,
+      "stdout": {
+        "path": "command-00156.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00156.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:31.854490+00:00",
+      "started_monotonic": 355.161118409,
+      "finished_monotonic": 355.323625898,
+      "timeout_seconds": 24.78854860499996,
+      "stdout": {
+        "path": "command-00157.stdout",
+        "bytes": 83895,
+        "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+      },
+      "stderr": {
+        "path": "command-00157.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:32.017816+00:00",
+      "started_monotonic": 355.324443539,
+      "finished_monotonic": 355.346464779,
+      "timeout_seconds": 24.625223113999994,
+      "stdout": {
+        "path": "command-00158.stdout",
+        "bytes": 31363,
+        "sha256": "5749298c56e78e502460436115dcee475f1e4ea0cef39f3e7bf1c9a2754b0501"
+      },
+      "stderr": {
+        "path": "command-00158.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:32.040251+00:00",
+      "started_monotonic": 355.34687954,
+      "finished_monotonic": 355.363287159,
+      "timeout_seconds": 24.602786210999966,
+      "stdout": {
+        "path": "command-00159.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00159.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:32.067699+00:00",
+      "started_monotonic": 355.374326252,
+      "finished_monotonic": 355.39076052,
+      "timeout_seconds": 14.99997270900002,
+      "stdout": {
+        "path": "command-00160.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00160.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:32.084530+00:00",
+      "started_monotonic": 355.39115846,
+      "finished_monotonic": 355.408225015,
+      "timeout_seconds": 14.983139409000046,
+      "stdout": {
+        "path": "command-00161.stdout",
+        "bytes": 31360,
+        "sha256": "59f8ed669ad07f1a18d485a61ec07297b10645d1aee7c03a66c76cd0617231bc"
+      },
+      "stderr": {
+        "path": "command-00161.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-2645917e6e344f08b55d1fea4e71672d.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:32.102171+00:00",
+      "started_monotonic": 355.408799463,
+      "finished_monotonic": 357.404484687,
+      "timeout_seconds": 14.965498416000003,
+      "stdout": {
+        "path": "command-00162.stdout",
+        "bytes": 88,
+        "sha256": "ae3f470dd333ca948527e2e3bb3667462523dfd213818bf89d7d919d4e1e11fe"
+      },
+      "stderr": {
+        "path": "command-00162.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-2645917e6e344f08b55d1fea4e71672d.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:34.098126+00:00",
+      "started_monotonic": 357.404753838,
+      "finished_monotonic": 357.421093072,
+      "timeout_seconds": 12.96954583400003,
+      "stdout": {
+        "path": "command-00163.stdout",
+        "bytes": 5939,
+        "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+      },
+      "stderr": {
+        "path": "command-00163.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-2645917e6e344f08b55d1fea4e71672d.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:34.114912+00:00",
+      "started_monotonic": 357.421539953,
+      "finished_monotonic": 357.435822935,
+      "timeout_seconds": 12.952759750000041,
+      "stdout": {
+        "path": "command-00164.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00164.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:34.129455+00:00",
+      "started_monotonic": 357.4360838,
+      "finished_monotonic": 357.602175237,
+      "timeout_seconds": 12.938214430000016,
+      "stdout": {
+        "path": "command-00165.stdout",
+        "bytes": 83895,
+        "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+      },
+      "stderr": {
+        "path": "command-00165.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:34.296173+00:00",
+      "started_monotonic": 357.602801382,
+      "finished_monotonic": 357.62312173,
+      "timeout_seconds": 12.771495986000048,
+      "stdout": {
+        "path": "command-00166.stdout",
+        "bytes": 31364,
+        "sha256": "24cd87b65e1542cd58173679be423f8c09ad1ce60387ab1c5816293d0314b595"
+      },
+      "stderr": {
+        "path": "command-00166.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:34.316948+00:00",
+      "started_monotonic": 357.623575414,
+      "finished_monotonic": 357.639243355,
+      "timeout_seconds": 12.750722335000034,
+      "stdout": {
+        "path": "command-00167.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00167.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:34.338982+00:00",
+      "started_monotonic": 357.645610418,
+      "finished_monotonic": 357.66126099,
+      "timeout_seconds": 12.728686309000011,
+      "stdout": {
+        "path": "command-00168.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00168.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:34.354953+00:00",
+      "started_monotonic": 357.661581797,
+      "finished_monotonic": 357.677818466,
+      "timeout_seconds": 12.712716012000044,
+      "stdout": {
+        "path": "command-00169.stdout",
+        "bytes": 31364,
+        "sha256": "0f04d56dec9c4708a8eb6b6cfcda1383da5d96f2b492e70a85a91dc5cd3f5823"
+      },
+      "stderr": {
+        "path": "command-00169.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-314a02b0757946dd9393140ded42bb9e.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:34.371659+00:00",
+      "started_monotonic": 357.678287278,
+      "finished_monotonic": 359.681742755,
+      "timeout_seconds": 12.696010231000002,
+      "stdout": {
+        "path": "command-00170.stdout",
+        "bytes": 88,
+        "sha256": "06932addfc1b0909b9fa8a2c2ba3334cfa51a5cd917f16fd002a09ce92e1e995"
+      },
+      "stderr": {
+        "path": "command-00170.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-314a02b0757946dd9393140ded42bb9e.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:36.375420+00:00",
+      "started_monotonic": 359.682047803,
+      "finished_monotonic": 359.696389313,
+      "timeout_seconds": 10.692290211000056,
+      "stdout": {
+        "path": "command-00171.stdout",
+        "bytes": 5939,
+        "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+      },
+      "stderr": {
+        "path": "command-00171.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-314a02b0757946dd9393140ded42bb9e.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:36.390134+00:00",
+      "started_monotonic": 359.696762838,
+      "finished_monotonic": 359.710331862,
+      "timeout_seconds": 10.67753551200002,
+      "stdout": {
+        "path": "command-00172.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00172.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:36.403905+00:00",
+      "started_monotonic": 359.710533016,
+      "finished_monotonic": 359.880707987,
+      "timeout_seconds": 10.663764743000002,
+      "stdout": {
+        "path": "command-00173.stdout",
+        "bytes": 83895,
+        "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+      },
+      "stderr": {
+        "path": "command-00173.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:36.574789+00:00",
+      "started_monotonic": 359.881415803,
+      "finished_monotonic": 359.89960038,
+      "timeout_seconds": 10.49288169600004,
+      "stdout": {
+        "path": "command-00174.stdout",
+        "bytes": 31363,
+        "sha256": "68147b3db758cac3ccb14cd1eae78739c5ad4fcf4e7ca282600388ac5ca4b1d5"
+      },
+      "stderr": {
+        "path": "command-00174.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:36.593409+00:00",
+      "started_monotonic": 359.90003621,
+      "finished_monotonic": 359.916080794,
+      "timeout_seconds": 10.474262691000035,
+      "stdout": {
+        "path": "command-00175.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00175.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:36.645065+00:00",
+      "started_monotonic": 359.951693505,
+      "finished_monotonic": 359.968382258,
+      "timeout_seconds": 10.422603413000047,
+      "stdout": {
+        "path": "command-00176.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00176.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:36.662424+00:00",
+      "started_monotonic": 359.969052054,
+      "finished_monotonic": 359.986902574,
+      "timeout_seconds": 10.405246126000009,
+      "stdout": {
+        "path": "command-00177.stdout",
+        "bytes": 31362,
+        "sha256": "18844891837e84f72605b9c6a3078daf9c740e27360d9a57731a4d5e8a01fc87"
+      },
+      "stderr": {
+        "path": "command-00177.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "input tap 640 1152"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:36.681544+00:00",
+      "started_monotonic": 359.988171745,
+      "finished_monotonic": 360.014760157,
+      "timeout_seconds": 10.386126124000043,
+      "stdout": {
+        "path": "command-00178.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00178.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:38.709052+00:00",
+      "started_monotonic": 362.015677908,
+      "finished_monotonic": 362.05155351,
+      "timeout_seconds": 29.99995394499996,
+      "stdout": {
+        "path": "command-00179.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00179.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:38.745422+00:00",
+      "started_monotonic": 362.052049483,
+      "finished_monotonic": 362.083798675,
+      "timeout_seconds": 29.96357994599998,
+      "stdout": {
+        "path": "command-00180.stdout",
+        "bytes": 31363,
+        "sha256": "e68d19fcd3b564f890ae341dbd2840d3316579d55e52fd4b37ff1ddbbe6f8345"
+      },
+      "stderr": {
+        "path": "command-00180.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-b2989c958b4148439f458c5b36567cf4.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:38.778259+00:00",
+      "started_monotonic": 362.084888211,
+      "finished_monotonic": 364.286203471,
+      "timeout_seconds": 29.930739363999976,
+      "stdout": {
+        "path": "command-00181.stdout",
+        "bytes": 88,
+        "sha256": "d9fc234e998963ac54a919b685699c1887f76ec33cabbb7f3c59b371b1f29741"
+      },
+      "stderr": {
+        "path": "command-00181.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-b2989c958b4148439f458c5b36567cf4.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:40.979903+00:00",
+      "started_monotonic": 364.28653101,
+      "finished_monotonic": 364.315993592,
+      "timeout_seconds": 27.729097867000007,
+      "stdout": {
+        "path": "command-00182.stdout",
+        "bytes": 6689,
+        "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+      },
+      "stderr": {
+        "path": "command-00182.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-b2989c958b4148439f458c5b36567cf4.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:41.009928+00:00",
+      "started_monotonic": 364.316555236,
+      "finished_monotonic": 364.347957921,
+      "timeout_seconds": 27.699074071999974,
+      "stdout": {
+        "path": "command-00183.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00183.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:41.041690+00:00",
+      "started_monotonic": 364.34831767,
+      "finished_monotonic": 364.672903671,
+      "timeout_seconds": 27.667311737999967,
+      "stdout": {
+        "path": "command-00184.stdout",
+        "bytes": 76816,
+        "sha256": "8944c6f0ed3a9b546a70d515b0d1f75c3e00d0f8f0410c7d58a7640c7a651727"
+      },
+      "stderr": {
+        "path": "command-00184.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:41.366976+00:00",
+      "started_monotonic": 364.673603723,
+      "finished_monotonic": 364.714066753,
+      "timeout_seconds": 27.342023410999957,
+      "stdout": {
+        "path": "command-00185.stdout",
+        "bytes": 31363,
+        "sha256": "1b9da38928ad5cbc98fb151e2e81f6004c15e9e1195a6b249bd370ccc19b3e4a"
+      },
+      "stderr": {
+        "path": "command-00185.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:41.407959+00:00",
+      "started_monotonic": 364.71458651,
+      "finished_monotonic": 364.757622363,
+      "timeout_seconds": 27.301042567999957,
+      "stdout": {
+        "path": "command-00186.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00186.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:42.565238+00:00",
+      "started_monotonic": 365.871866312,
+      "finished_monotonic": 365.89990551,
+      "timeout_seconds": 26.14376015099998,
+      "stdout": {
+        "path": "command-00187.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00187.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:42.593822+00:00",
+      "started_monotonic": 365.900449391,
+      "finished_monotonic": 365.934433794,
+      "timeout_seconds": 26.115179084999966,
+      "stdout": {
+        "path": "command-00188.stdout",
+        "bytes": 31364,
+        "sha256": "66fbb1e8e6414fb9ffe70845962c06c1a59428e2d00813008ab8fd184ec826dc"
+      },
+      "stderr": {
+        "path": "command-00188.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-ec943df25b7a4a5b9f4ef1d3b0d8b8cf.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:42.628304+00:00",
+      "started_monotonic": 365.934932732,
+      "finished_monotonic": 368.119986702,
+      "timeout_seconds": 26.080694521999988,
+      "stdout": {
+        "path": "command-00189.stdout",
+        "bytes": 88,
+        "sha256": "e599b54d88e9d746098747f036ecd0ee21dc6200ac27f4575a5818987bdd851a"
+      },
+      "stderr": {
+        "path": "command-00189.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-ec943df25b7a4a5b9f4ef1d3b0d8b8cf.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:44.813651+00:00",
+      "started_monotonic": 368.120278825,
+      "finished_monotonic": 368.148566534,
+      "timeout_seconds": 23.895348259000002,
+      "stdout": {
+        "path": "command-00190.stdout",
+        "bytes": 6689,
+        "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+      },
+      "stderr": {
+        "path": "command-00190.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-ec943df25b7a4a5b9f4ef1d3b0d8b8cf.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:44.842454+00:00",
+      "started_monotonic": 368.149082204,
+      "finished_monotonic": 368.181821047,
+      "timeout_seconds": 23.866547043999958,
+      "stdout": {
+        "path": "command-00191.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00191.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:44.875512+00:00",
+      "started_monotonic": 368.182140031,
+      "finished_monotonic": 368.517336628,
+      "timeout_seconds": 23.83348971800001,
+      "stdout": {
+        "path": "command-00192.stdout",
+        "bytes": 78149,
+        "sha256": "64e74c91f5179204971a92550c01d608480f2f665dd83c1b23e59eaa3454c0a9"
+      },
+      "stderr": {
+        "path": "command-00192.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:45.211409+00:00",
+      "started_monotonic": 368.518036821,
+      "finished_monotonic": 368.552073759,
+      "timeout_seconds": 23.497591254999975,
+      "stdout": {
+        "path": "command-00193.stdout",
+        "bytes": 31363,
+        "sha256": "34a118fe5ab58db43b3bc277e475087be0d23d08b1045e3aa75c02728ab1c362"
+      },
+      "stderr": {
+        "path": "command-00193.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:45.245901+00:00",
+      "started_monotonic": 368.552528865,
+      "finished_monotonic": 368.589087884,
+      "timeout_seconds": 23.463099381000006,
+      "stdout": {
+        "path": "command-00194.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00194.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:46.386739+00:00",
+      "started_monotonic": 369.693366721,
+      "finished_monotonic": 369.727874718,
+      "timeout_seconds": 22.322260793999988,
+      "stdout": {
+        "path": "command-00195.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00195.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:46.421718+00:00",
+      "started_monotonic": 369.728345614,
+      "finished_monotonic": 369.764608422,
+      "timeout_seconds": 22.28728264199998,
+      "stdout": {
+        "path": "command-00196.stdout",
+        "bytes": 31365,
+        "sha256": "cc0ca945c8cb456dd0656fab6b16336efe1a8f772be211963b63e536f82afd03"
+      },
+      "stderr": {
+        "path": "command-00196.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-bd8dd86943594152b6d38f6641c4104b.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:46.458557+00:00",
+      "started_monotonic": 369.765185065,
+      "finished_monotonic": 371.909553513,
+      "timeout_seconds": 22.250443270999995,
+      "stdout": {
+        "path": "command-00197.stdout",
+        "bytes": 88,
+        "sha256": "5d115f3ee81e0bb8ca2b6d6618f8e381753b52953638de527c89e105d4d1e42c"
+      },
+      "stderr": {
+        "path": "command-00197.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-bd8dd86943594152b6d38f6641c4104b.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:48.603231+00:00",
+      "started_monotonic": 371.909859132,
+      "finished_monotonic": 371.939573029,
+      "timeout_seconds": 20.105769815999963,
+      "stdout": {
+        "path": "command-00198.stdout",
+        "bytes": 6689,
+        "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+      },
+      "stderr": {
+        "path": "command-00198.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-bd8dd86943594152b6d38f6641c4104b.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:48.633511+00:00",
+      "started_monotonic": 371.940138471,
+      "finished_monotonic": 371.981196398,
+      "timeout_seconds": 20.07549083699996,
+      "stdout": {
+        "path": "command-00199.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00199.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:48.674907+00:00",
+      "started_monotonic": 371.981534737,
+      "finished_monotonic": 372.395883921,
+      "timeout_seconds": 20.03409663499997,
+      "stdout": {
+        "path": "command-00200.stdout",
+        "bytes": 78326,
+        "sha256": "78302ec4440bd17f58042551c8ce434abf13e5f0fd7104e6da392390f4da4ce8"
+      },
+      "stderr": {
+        "path": "command-00200.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:49.090022+00:00",
+      "started_monotonic": 372.396650246,
+      "finished_monotonic": 372.43369136,
+      "timeout_seconds": 19.618978319999997,
+      "stdout": {
+        "path": "command-00201.stdout",
+        "bytes": 31363,
+        "sha256": "57e03fc9d6091581df566e3501c1939c9350f71b6d6855f385d9ae3d428a52ef"
+      },
+      "stderr": {
+        "path": "command-00201.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:49.127749+00:00",
+      "started_monotonic": 372.434376374,
+      "finished_monotonic": 372.472475127,
+      "timeout_seconds": 19.58125331399998,
+      "stdout": {
+        "path": "command-00202.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00202.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:50.347059+00:00",
+      "started_monotonic": 373.653687536,
+      "finished_monotonic": 373.683080909,
+      "timeout_seconds": 18.361940548999996,
+      "stdout": {
+        "path": "command-00203.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00203.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:50.376871+00:00",
+      "started_monotonic": 373.683499537,
+      "finished_monotonic": 373.721643956,
+      "timeout_seconds": 18.332144337999978,
+      "stdout": {
+        "path": "command-00204.stdout",
+        "bytes": 31365,
+        "sha256": "767fdb8599125e3867b68acc9382956efb23b8bd790bc3ed9e051bfdca3197cb"
+      },
+      "stderr": {
+        "path": "command-00204.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-c48e93b90ee049d699258aed7e6fd5cf.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:50.415482+00:00",
+      "started_monotonic": 373.722110013,
+      "finished_monotonic": 375.907252987,
+      "timeout_seconds": 18.29351693999996,
+      "stdout": {
+        "path": "command-00205.stdout",
+        "bytes": 88,
+        "sha256": "65885278a19d5d6d239fc482bfdc5bacf743de7d065a0b45d6760c8bdf1a985c"
+      },
+      "stderr": {
+        "path": "command-00205.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-c48e93b90ee049d699258aed7e6fd5cf.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:52.600885+00:00",
+      "started_monotonic": 375.907513201,
+      "finished_monotonic": 375.93470098,
+      "timeout_seconds": 16.108114674999968,
+      "stdout": {
+        "path": "command-00206.stdout",
+        "bytes": 6689,
+        "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+      },
+      "stderr": {
+        "path": "command-00206.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-c48e93b90ee049d699258aed7e6fd5cf.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:52.628549+00:00",
+      "started_monotonic": 375.935177026,
+      "finished_monotonic": 375.966215809,
+      "timeout_seconds": 16.080450858999995,
+      "stdout": {
+        "path": "command-00207.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00207.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:52.659864+00:00",
+      "started_monotonic": 375.966491321,
+      "finished_monotonic": 376.357757981,
+      "timeout_seconds": 16.049138126999992,
+      "stdout": {
+        "path": "command-00208.stdout",
+        "bytes": 77048,
+        "sha256": "9cf14c09d985716c060b88a9f0283aec5800ab052b29cb9768f939c420c029ce"
+      },
+      "stderr": {
+        "path": "command-00208.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:53.051900+00:00",
+      "started_monotonic": 376.358528043,
+      "finished_monotonic": 376.399181181,
+      "timeout_seconds": 15.657099071000005,
+      "stdout": {
+        "path": "command-00209.stdout",
+        "bytes": 31364,
+        "sha256": "18c4245eeba14a52c1b0fa82bf8861e8bf7340b0ab8af100f713ac256b979dda"
+      },
+      "stderr": {
+        "path": "command-00209.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:53.093015+00:00",
+      "started_monotonic": 376.399643121,
+      "finished_monotonic": 376.439644371,
+      "timeout_seconds": 15.615985465999984,
+      "stdout": {
+        "path": "command-00210.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00210.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:54.380018+00:00",
+      "started_monotonic": 377.686645327,
+      "finished_monotonic": 377.737180551,
+      "timeout_seconds": 14.328981606000013,
+      "stdout": {
+        "path": "command-00211.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00211.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:54.430898+00:00",
+      "started_monotonic": 377.737525893,
+      "finished_monotonic": 377.769257637,
+      "timeout_seconds": 14.278102021999985,
+      "stdout": {
+        "path": "command-00212.stdout",
+        "bytes": 31364,
+        "sha256": "112670a4320719a5d81051ea364d6312ceacdbb3e1db3518f295d105ba43a1b3"
+      },
+      "stderr": {
+        "path": "command-00212.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-181e33e6f5964da18084f609a02c325b.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:54.463290+00:00",
+      "started_monotonic": 377.769916984,
+      "finished_monotonic": 379.965136622,
+      "timeout_seconds": 14.245715350000012,
+      "stdout": {
+        "path": "command-00213.stdout",
+        "bytes": 88,
+        "sha256": "3b25899b045a70ff8c38f57866e7c01b12b15e5e72706435a6db60de987ce2b9"
+      },
+      "stderr": {
+        "path": "command-00213.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-181e33e6f5964da18084f609a02c325b.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:56.658815+00:00",
+      "started_monotonic": 379.965443062,
+      "finished_monotonic": 379.991051484,
+      "timeout_seconds": 12.050185854999995,
+      "stdout": {
+        "path": "command-00214.stdout",
+        "bytes": 6689,
+        "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+      },
+      "stderr": {
+        "path": "command-00214.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-181e33e6f5964da18084f609a02c325b.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:56.684922+00:00",
+      "started_monotonic": 379.991550312,
+      "finished_monotonic": 380.020408669,
+      "timeout_seconds": 12.024079857999993,
+      "stdout": {
+        "path": "command-00215.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00215.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:56.714060+00:00",
+      "started_monotonic": 380.020687798,
+      "finished_monotonic": 380.350701207,
+      "timeout_seconds": 11.994941499999982,
+      "stdout": {
+        "path": "command-00216.stdout",
+        "bytes": 77722,
+        "sha256": "129c8640862f61ff88a64b1c8f3b1bc47cd5247e253e1835a4779e2a7b4479e0"
+      },
+      "stderr": {
+        "path": "command-00216.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:57.044946+00:00",
+      "started_monotonic": 380.35157359,
+      "finished_monotonic": 380.385321453,
+      "timeout_seconds": 11.66405666999998,
+      "stdout": {
+        "path": "command-00217.stdout",
+        "bytes": 31364,
+        "sha256": "490886efc4ecfcaf27c78b19180af5e4cec2efa044af79796a48e26c98f1832d"
+      },
+      "stderr": {
+        "path": "command-00217.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:57.079501+00:00",
+      "started_monotonic": 380.386128735,
+      "finished_monotonic": 380.415647485,
+      "timeout_seconds": 11.629499771999974,
+      "stdout": {
+        "path": "command-00218.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00218.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:58.286471+00:00",
+      "started_monotonic": 381.593099321,
+      "finished_monotonic": 381.632858934,
+      "timeout_seconds": 10.422528393999983,
+      "stdout": {
+        "path": "command-00219.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00219.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:58.326737+00:00",
+      "started_monotonic": 381.633365216,
+      "finished_monotonic": 381.664831704,
+      "timeout_seconds": 10.382263600999977,
+      "stdout": {
+        "path": "command-00220.stdout",
+        "bytes": 31365,
+        "sha256": "6dd33d95fa7a73a1bd2a043a7d99dc6cf22d5ef2dd889e6e8d6d141109a8e9ce"
+      },
+      "stderr": {
+        "path": "command-00220.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "uiautomator dump /data/local/tmp/md-journey-d6d0f40ec07643d6b7b36ed9e1924939.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:35:58.358839+00:00",
+      "started_monotonic": 381.665467075,
+      "finished_monotonic": 383.867717338,
+      "timeout_seconds": 10.350162482999963,
+      "stdout": {
+        "path": "command-00221.stdout",
+        "bytes": 88,
+        "sha256": "e26b529b2378db12f74e07ec829f0057657ceb4cb6d1ec2097f736c152d2e2a0"
+      },
+      "stderr": {
+        "path": "command-00221.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "cat",
+        "/data/local/tmp/md-journey-d6d0f40ec07643d6b7b36ed9e1924939.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:36:00.561547+00:00",
+      "started_monotonic": 383.868173968,
+      "finished_monotonic": 383.907909832,
+      "timeout_seconds": 8.147459717999993,
+      "stdout": {
+        "path": "command-00222.stdout",
+        "bytes": 6689,
+        "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+      },
+      "stderr": {
+        "path": "command-00222.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "rm -f /data/local/tmp/md-journey-d6d0f40ec07643d6b7b36ed9e1924939.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:36:00.602048+00:00",
+      "started_monotonic": 383.908676137,
+      "finished_monotonic": 383.940506371,
+      "timeout_seconds": 8.106952379999996,
+      "stdout": {
+        "path": "command-00223.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "command-00223.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:36:00.634108+00:00",
+      "started_monotonic": 383.940736509,
+      "finished_monotonic": 384.239919734,
+      "timeout_seconds": 8.074891205999961,
+      "stdout": {
+        "path": "command-00224.stdout",
+        "bytes": 76807,
+        "sha256": "987bacff0f84f1d665caceba1fb7a9fe62b75ebb07f3a4b4f0359e043b931ba8"
+      },
+      "stderr": {
+        "path": "command-00224.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "dumpsys activity activities"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:36:00.933984+00:00",
+      "started_monotonic": 384.24061158,
+      "finished_monotonic": 384.274461371,
+      "timeout_seconds": 7.775015653999958,
+      "stdout": {
+        "path": "command-00225.stdout",
+        "bytes": 31365,
+        "sha256": "ab615f79ffcbff2d604b64e6ed78353587ad11aeef8aa9f50d0ecf8d331acb26"
+      },
+      "stderr": {
+        "path": "command-00225.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "shell",
+        "pidof com.arlosoft.macrodroid"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "started_utc": "2026-10-12T06:36:00.968291+00:00",
+      "started_monotonic": 384.274918241,
+      "finished_monotonic": 384.311767097,
+      "timeout_seconds": 7.74071020599996,
+      "stdout": {
+        "path": "command-00226.stdout",
+        "bytes": 5,
+        "sha256": "a69c072e32692134b72f5635c7916ac14f19301dd2a3d485c63defb80dc41935"
+      },
+      "stderr": {
+        "path": "command-00226.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+# Initial 57-control study: 56 detected and one javac failure
+
+The run in `reports/compiled-faults-08-initial` completed on 2026-10-12 at 06:43:32 UTC. It correctly reports `COMPILED_FAULT_CONTROL_GATE_FAILED`: 56 deliberately changed Java method bodies compiled and produced their required named semantic mismatches; the `stop-dispatcher-identity` catalog entry did not compile. Its replacement attempted to assign `zp4.a` (`ad4`) to `i93`, and javac rejected the incompatible type. This compile error provides no semantic detection credit.
+
+Each compiled mutant ran the unchanged 1,118-case original/JVM harness from frozen checkpoint 07. Detection required a real named original/JVM mismatch, zero unsupported executions, zero original expected-result failures, unchanged original coverage, and the actual changed helper class loaded at its bound origin. Process exit 2 alone did not detect a fault, because the unchanged positive study already exits 2 for incomplete raw instruction coverage. The File/qnc cast-order mutant that the older observer missed is now detected using the separately tested exact source-class observation.
+
+After all 57 entries, the runner recompiled the exact original helper source and independently checked its original class hash, all fixed class bytes, original fixture, both frozen checkpoints, and the complete restored positive report. All matched exactly. Both deliberate class-origin faults were rejected before parity execution.
+
+The positive baseline still has zero semantic mismatches across 1,118 cases and 230 independent expected-result checks, with 259 of 262 instructions dynamically visited and all 46 conditional edges visited. Offsets 232, 233, and 235 remain unvisited. No exemption, registration, APK build, rebuilt-DEX proof, or Android execution was performed in this study. The separately reviewed static handler argument does not change these raw results.
+
+A follow-up will change only the ill-typed dispatcher mutation to a compilable wrong identity and rerun the entire 57-control catalog in a new report directory. This failed run, its exact source/catalog/launcher inputs, compile stderr, every actual mutant class and report, and positive restoration remain immutable.

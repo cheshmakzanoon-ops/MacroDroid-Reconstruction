@@ -1,0 +1,26 @@
+{
+  "name": "descriptor-size-sentinel",
+  "reason": "A non-null file descriptor without File yields the negative sentinel.",
+  "source_sha256": "f238913c16ed9b682c95ce880d849fc7a1dcba908490343d709b4868c157ac85",
+  "compile_returncode": 0,
+  "expected_failure_labels": [
+    "video-profile:4:1"
+  ],
+  "detected": true,
+  "execution_returncode": 2,
+  "class_sha256": "58309ecea8de79fe9e58f46f53ee1e3eb94ac0f39525d1b06e01040a299ec532",
+  "cases": 1118,
+  "failed_cases": 6,
+  "unsupported_executions": 0,
+  "expected_result_failures": 0,
+  "failed_case_labels": [
+    "video-fault:4:2:0",
+    "video-fault:4:2:1",
+    "video-fault:4:2:2",
+    "video-fault:4:2:3",
+    "video-profile:4:1",
+    "video-profile:4:3"
+  ],
+  "named_failures_observed": true,
+  "original_coverage_unchanged": true
+}

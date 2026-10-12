@@ -1,0 +1,29 @@
+{
+  "name": "captured-storage-owner-write",
+  "reason": "The x write uses the captured storage owner after owner-field mutation.",
+  "source_sha256": "a66ca70c1f48eef0a3b726d537f4e60c57b440bff336b3d52d01f217271ad501",
+  "compile_returncode": 0,
+  "expected_failure_labels": [
+    "video-captured-storage-owner-survives-field-null"
+  ],
+  "detected": true,
+  "execution_returncode": 2,
+  "class_sha256": "2eac2f5a60234a987b6ad3bcadc5b37e3573a875cb50cd4c38f57f57eab8e734",
+  "cases": 1118,
+  "failed_cases": 9,
+  "unsupported_executions": 0,
+  "expected_result_failures": 0,
+  "failed_case_labels": [
+    "video-captured-owner-x-changed-at-space-call:-1",
+    "video-captured-owner-x-changed-at-space-call:-9223372036854775808",
+    "video-captured-owner-x-changed-at-space-call:0",
+    "video-captured-owner-x-changed-at-space-call:9223372036854775807",
+    "video-captured-storage-owner-survives-field-null",
+    "video-mutation:0:2:0",
+    "video-mutation:1:2:0",
+    "video-mutation:2:2:0",
+    "video-mutation:7:2:0"
+  ],
+  "named_failures_observed": true,
+  "original_coverage_unchanged": true
+}

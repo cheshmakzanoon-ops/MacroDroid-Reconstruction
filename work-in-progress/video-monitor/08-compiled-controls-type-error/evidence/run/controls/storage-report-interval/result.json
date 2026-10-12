@@ -1,0 +1,27 @@
+{
+  "name": "storage-report-interval",
+  "reason": "The report interval is 100MiB, not 1MiB.",
+  "source_sha256": "a14eea770badfb9ea65e9192bb78b65b5d5f4e34e4a3e0863f9610fb3ad3c078",
+  "compile_returncode": 0,
+  "expected_failure_labels": [
+    "video-exact-storage-report-threshold:0"
+  ],
+  "detected": true,
+  "execution_returncode": 2,
+  "class_sha256": "1fac3fa820c65b8d9f55fcae10a25c5ed439a42913895d6d13aa4b867c9887cf",
+  "cases": 1118,
+  "failed_cases": 7,
+  "unsupported_executions": 0,
+  "expected_result_failures": 0,
+  "failed_case_labels": [
+    "video-exact-storage-report-threshold:0",
+    "video-exact-storage-report-threshold:1",
+    "video-space:-1:104857599",
+    "video-space:0:104857599",
+    "video-space:0:104857600",
+    "video-space:268435456:373293055",
+    "video-space:268435456:373293056"
+  ],
+  "named_failures_observed": true,
+  "original_coverage_unchanged": true
+}

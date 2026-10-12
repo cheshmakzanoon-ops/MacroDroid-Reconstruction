@@ -1,0 +1,70 @@
+dead-cast-order: CONTROL_NOT_PROVEN
+{
+  "status": "COMPILED_FAULT_CONTROL_GATE_FAILED",
+  "started_utc": "2026-10-12T06:27:06.745564+00:00",
+  "scope": "Compiled method-only original/JVM faults; baseline full instruction coverage remains failed.",
+  "private_work": "/tmp/macrodroid-video-mutants-diwdo68n",
+  "active_source_changed": false,
+  "apk_built": false,
+  "android_executed": false,
+  "rebuilt_dex_compared": false,
+  "coverage_exemption_implemented": false,
+  "method": "Lcom/arlosoft/macrodroid/action/services/a;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+  "authored_inputs": [
+    {
+      "path": "tests/java/VideoMutationLauncher.java",
+      "bytes": 3352,
+      "sha256": "c4c8e0428545a626529383c933c2ccce6ccdd57982b8de9abcedecbb66a50916"
+    },
+    {
+      "path": "video_method_mutants.json",
+      "bytes": 1024,
+      "sha256": "f323f7a4a367e353ffc3f598cf2fcd2d1a0cfe6c5bcc1be482dd4ad4fbf1870b"
+    },
+    {
+      "path": "video_method_negative_control.py",
+      "bytes": 21106,
+      "sha256": "8d90c144d624f3f4cdf4aaff1ef30b858e45b486bee56801070a4b79a7254089"
+    }
+  ],
+  "baseline_checkpoint_sha256": "1e94ebcdb8644fbada96e702e4000d0268a5b1d22d5247e6a56e55c90b8ad0fe",
+  "host_checkpoint_sha256": "38656eed5691a48b8a11dc5148dd692e813b629141cad9ece604f0588a0311ea",
+  "fixed_helper_class_sha256": "80e94baecb1ed256bced1fe81d154688ceb124bda8e535483156779118006704",
+  "baseline_before": {
+    "returncode": 2,
+    "exact_frozen_parity_match": true,
+    "raw_coverage_gate_failed": true,
+    "reproduced": true
+  },
+  "class_origin_controls": [
+    {
+      "name": "wrong-helper-hash",
+      "returncode": 1,
+      "rejected_before_parity": true
+    },
+    {
+      "name": "baseline-shadows-mutant",
+      "returncode": 1,
+      "rejected_before_parity": true
+    }
+  ],
+  "baseline_restoration": {
+    "returncode": 2,
+    "source_sha256": "67f5a47013ffbffa67859f9103d2034b3225521d10be9d96d65acd31599d45ee",
+    "class_sha256": "80e94baecb1ed256bced1fe81d154688ceb124bda8e535483156779118006704",
+    "source_matches_frozen": true,
+    "class_matches_frozen": true,
+    "exact_frozen_parity_match": true,
+    "reproduced": true,
+    "full_original_coverage_gate_passed": false
+  },
+  "fixed_class_inventory_unchanged": true,
+  "fixture_unchanged": true,
+  "frozen_checkpoint_unchanged": true,
+  "host_checkpoint_unchanged": true,
+  "authored_inputs_unchanged": true,
+  "controls_count": 1,
+  "controls_detected": 0,
+  "passed": false,
+  "finished_utc": "2026-10-12T06:27:23.191041+00:00"
+}

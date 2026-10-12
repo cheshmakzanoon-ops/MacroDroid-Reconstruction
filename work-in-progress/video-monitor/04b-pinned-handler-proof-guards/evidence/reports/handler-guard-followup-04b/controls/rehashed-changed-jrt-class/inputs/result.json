@@ -1,0 +1,335 @@
+{
+  "status": "DATAFLOW_INPUTS_COLLECTED",
+  "started_utc": "2026-10-12T06:08:17.666621+00:00",
+  "scope": "Original instruction operands, exact installed JDK sources/classfiles, and primary Android15 source; no app execution or coverage credit.",
+  "app_method_executed": false,
+  "android_executed": false,
+  "coverage_gate_changed": false,
+  "commands": [
+    {
+      "label": "compile-inventory",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "-d",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/handler-dataflow-04/toolclasses",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/handler-dataflow-04/VideoHandlerInventory.java"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "seconds": 4.077945,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "inspect-original-and-jrt",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/handler-dataflow-04/toolclasses",
+        "VideoHandlerInventory",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/original-jvm-03-initial/original-video-monitor.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/handler-dataflow-04"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "seconds": 1.711691,
+      "stdout_sha256": "9969a6d24f0977cf9a7d50f6c726c80f5b48413539b8fb0e1c2c8412ef8a3aa7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "javap-StringBuilder",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javap",
+        "-c",
+        "-p",
+        "-s",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/handler-dataflow-04/jrt-classfiles/StringBuilder.class"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "seconds": 5.272734,
+      "stdout_sha256": "9dd80fb96b823d0ce9bf2e55382dff5f16d218142c1c9bff4de6c2f024c586a1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "javap-AbstractStringBuilder",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javap",
+        "-c",
+        "-p",
+        "-s",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/handler-dataflow-04/jrt-classfiles/AbstractStringBuilder.class"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "seconds": 1.122125,
+      "stdout_sha256": "6c4ee77294902e331277a8a8918d08e9f33d2d2913cb8aae221dc9a540ceb50d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "javap-StringUTF16",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javap",
+        "-c",
+        "-p",
+        "-s",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/handler-dataflow-04/jrt-classfiles/StringUTF16.class"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "seconds": 2.713471,
+      "stdout_sha256": "ea0800a4ed57f2739594c9e838f508631a46770c5cb1a422f029a027a37aaab1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "javap-Object",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javap",
+        "-c",
+        "-p",
+        "-s",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/handler-dataflow-04/jrt-classfiles/Object.class"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "seconds": 0.883259,
+      "stdout_sha256": "55ac3db4d20f4ae417cc9c2b9ecdaaef3a3b2576d810deed6e5860327b3b5cf1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "installed-jdk-source",
+      "archive_entry": "java.base/java/lang/StringBuilder.java",
+      "bytes": 16053,
+      "sha256": "d45975c4b0358fb1e3ac49efacfbd7667b0d87a17c8963ce884c6ad539ae9a15",
+      "path": "host-sources/StringBuilder.java"
+    },
+    {
+      "kind": "installed-jdk-source",
+      "archive_entry": "java.base/java/lang/AbstractStringBuilder.java",
+      "bytes": 75913,
+      "sha256": "5cdef262c70a814ebd7eaca13d3c820b7f86abba4f28fdb360fc3c981b21ad6f",
+      "path": "host-sources/AbstractStringBuilder.java"
+    },
+    {
+      "kind": "installed-jdk-source",
+      "archive_entry": "java.base/java/lang/StringUTF16.java",
+      "bytes": 67091,
+      "sha256": "3679f04911b9025b800f9c95170895b9c003afed3d22aa1ae4a9fe2bb9dfb6e5",
+      "path": "host-sources/StringUTF16.java"
+    },
+    {
+      "kind": "primary-android15-tag-source",
+      "view_url": "https://android.googlesource.com/platform/libcore/+/refs/tags/android-15.0.0_r1/ojluni/src/main/java/java/lang/StringBuilder.java",
+      "request_url": "https://android.googlesource.com/platform/libcore/+/refs/tags/android-15.0.0_r1/ojluni/src/main/java/java/lang/StringBuilder.java?format=TEXT",
+      "http_status": 200,
+      "timeout_seconds": 30,
+      "seconds": 3.707,
+      "path": "android15-primary/StringBuilder.java",
+      "bytes": 16157,
+      "sha256": "9f86d83c39ad46ba87f42afd2744bfaad8f6bfffab8cfa97802dd170f9e882b0",
+      "response_bytes": 21544,
+      "response_sha256": "e87b3afd6adbd82102c0fea0468a57229f12b8f2ee08262ece1e66ba132f3003",
+      "scope": "Pinned AOSP15 source, not a byte-for-byte extraction of the hosted Google APIs image boot library"
+    },
+    {
+      "kind": "primary-android15-tag-source",
+      "view_url": "https://android.googlesource.com/platform/libcore/+/refs/tags/android-15.0.0_r1/ojluni/src/main/java/java/lang/AbstractStringBuilder.java",
+      "request_url": "https://android.googlesource.com/platform/libcore/+/refs/tags/android-15.0.0_r1/ojluni/src/main/java/java/lang/AbstractStringBuilder.java?format=TEXT",
+      "http_status": 200,
+      "timeout_seconds": 30,
+      "seconds": 3.713,
+      "path": "android15-primary/AbstractStringBuilder.java",
+      "bytes": 66620,
+      "sha256": "f2937d269b7a01a310d9bf5db2ded2dcabdf93f60b3551e4677b58ea721798fb",
+      "response_bytes": 88828,
+      "response_sha256": "c60456c9c63dc9506dcaaedd1d2379bc318dfbf0b09762ef598596b5f8dbd240",
+      "scope": "Pinned AOSP15 source, not a byte-for-byte extraction of the hosted Google APIs image boot library"
+    },
+    {
+      "kind": "primary-android15-tag-source",
+      "view_url": "https://android.googlesource.com/platform/libcore/+/refs/tags/android-15.0.0_r1/ojluni/src/main/java/java/lang/StringUTF16.java",
+      "request_url": "https://android.googlesource.com/platform/libcore/+/refs/tags/android-15.0.0_r1/ojluni/src/main/java/java/lang/StringUTF16.java?format=TEXT",
+      "http_status": 200,
+      "timeout_seconds": 30,
+      "seconds": 3.826,
+      "path": "android15-primary/StringUTF16.java",
+      "bytes": 65441,
+      "sha256": "549455d1c9e8fbd0998abb8c3f910faf3753f2683023b8aee28ae4c941b71f9b",
+      "response_bytes": 87256,
+      "response_sha256": "85e26dce03cfc2998d5dafe343668c45cf5a83aedd0fa382e72358f5ca02f509",
+      "scope": "Pinned AOSP15 source, not a byte-for-byte extraction of the hosted Google APIs image boot library"
+    }
+  ],
+  "installed_source_archive": {
+    "path": "/workspace/scratch/4130730d15aa/tooling/jdk21/lib/src.zip",
+    "bytes": 53599217,
+    "sha256": "2fb0fb7eef6330656944cdd42a3ba36ea819deab00acf958468feb002bdf11e2"
+  },
+  "original_fixture": {
+    "path": "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/original-jvm-03-initial/original-video-monitor.dex",
+    "bytes": 4552,
+    "sha256": "940aee4861d9bd52951ccc835e91a917bb56748b4eaad5deb8a0fa1c7d2c3254"
+  },
+  "art08_device_environment": {
+    "ro.kernel.qemu": "1",
+    "sys.boot_completed": "1",
+    "ro.build.version.sdk": "35",
+    "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.product.cpu.abilist": "x86_64,arm64-v8a",
+    "ro.dalvik.vm.native.bridge": "libndk_translation.so",
+    "dalvik.vm.extra-opts": ""
+  },
+  "files": [
+    {
+      "path": "VideoHandlerInventory.java",
+      "bytes": 5279,
+      "sha256": "06d86e88dd685e53382ec6b9773a8ca9a26e6862336ddc57f5319ce7beb821e2"
+    },
+    {
+      "path": "android15-primary/AbstractStringBuilder.java",
+      "bytes": 66620,
+      "sha256": "f2937d269b7a01a310d9bf5db2ded2dcabdf93f60b3551e4677b58ea721798fb"
+    },
+    {
+      "path": "android15-primary/AbstractStringBuilder.java.response-base64.txt",
+      "bytes": 88828,
+      "sha256": "c60456c9c63dc9506dcaaedd1d2379bc318dfbf0b09762ef598596b5f8dbd240"
+    },
+    {
+      "path": "android15-primary/StringBuilder.java",
+      "bytes": 16157,
+      "sha256": "9f86d83c39ad46ba87f42afd2744bfaad8f6bfffab8cfa97802dd170f9e882b0"
+    },
+    {
+      "path": "android15-primary/StringBuilder.java.response-base64.txt",
+      "bytes": 21544,
+      "sha256": "e87b3afd6adbd82102c0fea0468a57229f12b8f2ee08262ece1e66ba132f3003"
+    },
+    {
+      "path": "android15-primary/StringUTF16.java",
+      "bytes": 65441,
+      "sha256": "549455d1c9e8fbd0998abb8c3f910faf3753f2683023b8aee28ae4c941b71f9b"
+    },
+    {
+      "path": "android15-primary/StringUTF16.java.response-base64.txt",
+      "bytes": 87256,
+      "sha256": "85e26dce03cfc2998d5dafe343668c45cf5a83aedd0fa382e72358f5ca02f509"
+    },
+    {
+      "path": "compile-inventory.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "compile-inventory.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "host-sources/AbstractStringBuilder.java",
+      "bytes": 75913,
+      "sha256": "5cdef262c70a814ebd7eaca13d3c820b7f86abba4f28fdb360fc3c981b21ad6f"
+    },
+    {
+      "path": "host-sources/StringBuilder.java",
+      "bytes": 16053,
+      "sha256": "d45975c4b0358fb1e3ac49efacfbd7667b0d87a17c8963ce884c6ad539ae9a15"
+    },
+    {
+      "path": "host-sources/StringUTF16.java",
+      "bytes": 67091,
+      "sha256": "3679f04911b9025b800f9c95170895b9c003afed3d22aa1ae4a9fe2bb9dfb6e5"
+    },
+    {
+      "path": "host-sources/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "inspect-original-and-jrt.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "inspect-original-and-jrt.stdout.txt",
+      "bytes": 95,
+      "sha256": "9969a6d24f0977cf9a7d50f6c726c80f5b48413539b8fb0e1c2c8412ef8a3aa7"
+    },
+    {
+      "path": "javap-AbstractStringBuilder.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "javap-AbstractStringBuilder.stdout.txt",
+      "bytes": 91596,
+      "sha256": "6c4ee77294902e331277a8a8918d08e9f33d2d2913cb8aae221dc9a540ceb50d"
+    },
+    {
+      "path": "javap-Object.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "javap-Object.stdout.txt",
+      "bytes": 5067,
+      "sha256": "55ac3db4d20f4ae417cc9c2b9ecdaaef3a3b2576d810deed6e5860327b3b5cf1"
+    },
+    {
+      "path": "javap-StringBuilder.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "javap-StringBuilder.stdout.txt",
+      "bytes": 32558,
+      "sha256": "9dd80fb96b823d0ce9bf2e55382dff5f16d218142c1c9bff4de6c2f024c586a1"
+    },
+    {
+      "path": "javap-StringUTF16.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "javap-StringUTF16.stdout.txt",
+      "bytes": 119339,
+      "sha256": "ea0800a4ed57f2739594c9e838f508631a46770c5cb1a422f029a027a37aaab1"
+    },
+    {
+      "path": "jrt-classfiles/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "jrt-classfiles/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "jrt-classfiles/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "1a1c20b5634f85548b071cb4b1f49c994995af362be4d591fc5c03910141ef9d"
+    },
+    {
+      "path": "jrt-classfiles/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "original-instructions.json",
+      "bytes": 42249,
+      "sha256": "2d368ab110348b3934f217d084d0b66df4d61a0ef3ddb41d3e804ec876efcfda"
+    },
+    {
+      "path": "toolclasses/VideoHandlerInventory.class",
+      "bytes": 9559,
+      "sha256": "3b9fb8b04763ec8724ffb9f808165f44bd7a29ed82bfa81a21db8a2e7a5b4333"
+    }
+  ],
+  "finished_utc": "2026-10-12T06:08:37.552716+00:00"
+}

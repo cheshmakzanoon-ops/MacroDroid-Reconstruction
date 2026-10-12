@@ -1,0 +1,550 @@
+{
+  "normal_animation_commands_verified": 19,
+  "normal_animation_streams_verified": 38,
+  "observed_scales": {
+    "animator_duration_scale": "1",
+    "window_animation_scale": "1",
+    "transition_animation_scale": "1"
+  },
+  "device_commands_verified": [
+    {
+      "label": "emulator-check",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop",
+        "ro.kernel.qemu"
+      ],
+      "exit_code": 0,
+      "seconds": 0.021
+    },
+    {
+      "label": "boot-check",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "exit_code": 0,
+      "seconds": 0.021
+    },
+    {
+      "label": "avd-name",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "avd",
+        "name"
+      ],
+      "exit_code": 0,
+      "seconds": 0.004
+    },
+    {
+      "label": "before-gsm",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "status"
+      ],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "before-power",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "power",
+        "display"
+      ],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "before-battery",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "battery"
+      ],
+      "exit_code": 0,
+      "seconds": 0.036
+    },
+    {
+      "label": "before-clock",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "date",
+        "-u",
+        "+%Y-%m-%dT%H:%M:%SZ"
+      ],
+      "exit_code": 0,
+      "seconds": 0.03
+    },
+    {
+      "label": "before-demo-allowed",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "sysui_demo_allowed"
+      ],
+      "exit_code": 0,
+      "seconds": 0.042
+    },
+    {
+      "label": "before-demo-on",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "sysui_tuner_demo_on"
+      ],
+      "exit_code": 0,
+      "seconds": 0.042
+    },
+    {
+      "label": "before-animator_duration_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "animator_duration_scale"
+      ],
+      "exit_code": 0,
+      "seconds": 0.038
+    },
+    {
+      "label": "before-window_animation_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "window_animation_scale"
+      ],
+      "exit_code": 0,
+      "seconds": 0.028
+    },
+    {
+      "label": "before-transition_animation_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "transition_animation_scale"
+      ],
+      "exit_code": 0,
+      "seconds": 0.038
+    },
+    {
+      "label": "before-telephony",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "exit_code": 0,
+      "seconds": 0.052
+    },
+    {
+      "label": "signal-profile-help",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "help",
+        "gsm",
+        "signal-profile"
+      ],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "voice-home",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "voice",
+        "home"
+      ],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "data-home",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "data",
+        "home"
+      ],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "signal-profile-four",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "signal-profile",
+        "4"
+      ],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "telephony",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "exit_code": 0,
+      "seconds": 0.032
+    },
+    {
+      "label": "telephony",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "exit_code": 0,
+      "seconds": 0.089
+    },
+    {
+      "label": "telephony",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "exit_code": 0,
+      "seconds": 0.085
+    },
+    {
+      "label": "telephony",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "exit_code": 0,
+      "seconds": 0.124
+    },
+    {
+      "label": "confirmed-gsm",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "status"
+      ],
+      "exit_code": 0,
+      "seconds": 0.008
+    },
+    {
+      "label": "allow-demo",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "sysui_demo_allowed",
+        "1"
+      ],
+      "exit_code": 0,
+      "seconds": 0.11
+    },
+    {
+      "label": "start-demo",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "sysui_tuner_demo_on",
+        "1"
+      ],
+      "exit_code": 0,
+      "seconds": 0.047
+    },
+    {
+      "label": "demo-controller",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "activity",
+        "service",
+        "com.android.systemui/.SystemUIService",
+        "DemoModeController"
+      ],
+      "exit_code": 0,
+      "seconds": 0.097
+    },
+    {
+      "label": "demo-controller",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "activity",
+        "service",
+        "com.android.systemui/.SystemUIService",
+        "DemoModeController"
+      ],
+      "exit_code": 0,
+      "seconds": 0.079
+    },
+    {
+      "label": "demo-clock",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "am",
+        "broadcast",
+        "-a",
+        "com.android.systemui.demo",
+        "-e",
+        "command",
+        "clock",
+        "-e",
+        "hhmm",
+        "1200"
+      ],
+      "exit_code": 0,
+      "seconds": 0.077
+    },
+    {
+      "label": "after-gsm",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "status"
+      ],
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "after-power",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "power",
+        "display"
+      ],
+      "exit_code": 0,
+      "seconds": 0.004
+    },
+    {
+      "label": "after-battery",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "battery"
+      ],
+      "exit_code": 0,
+      "seconds": 0.042
+    },
+    {
+      "label": "after-clock",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "date",
+        "-u",
+        "+%Y-%m-%dT%H:%M:%SZ"
+      ],
+      "exit_code": 0,
+      "seconds": 0.038
+    },
+    {
+      "label": "after-demo-allowed",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "sysui_demo_allowed"
+      ],
+      "exit_code": 0,
+      "seconds": 0.042
+    },
+    {
+      "label": "after-demo-on",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "sysui_tuner_demo_on"
+      ],
+      "exit_code": 0,
+      "seconds": 0.053
+    },
+    {
+      "label": "after-animator_duration_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "animator_duration_scale"
+      ],
+      "exit_code": 0,
+      "seconds": 0.052
+    },
+    {
+      "label": "after-window_animation_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "window_animation_scale"
+      ],
+      "exit_code": 0,
+      "seconds": 0.043
+    },
+    {
+      "label": "after-transition_animation_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "transition_animation_scale"
+      ],
+      "exit_code": 0,
+      "seconds": 0.027
+    },
+    {
+      "label": "after-telephony",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-normal-animation-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "exit_code": 0,
+      "seconds": 0.046
+    }
+  ],
+  "device_configuration_status": "CAPTURE_DEVICE_CONFIGURED",
+  "demo_clock_requested": "1200",
+  "confirmed_primary_signal": {
+    "primary": "CellSignalStrengthWcdma",
+    "level": 4,
+    "primary_measurements": "ss=-55 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4",
+    "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=-55 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=2147483647 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=0 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthWcdma}"
+  },
+  "signal_stable_seconds": 15.307,
+  "systemui_demo_mode_observed": true,
+  "environment_pair_equal_before_capture": true,
+  "environment_after_not_captured": true
+}

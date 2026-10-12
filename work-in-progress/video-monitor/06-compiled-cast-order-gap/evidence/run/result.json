@@ -1,0 +1,309 @@
+{
+  "status": "COMPILED_FAULT_CONTROL_GATE_FAILED",
+  "started_utc": "2026-10-12T06:27:06.745564+00:00",
+  "scope": "Compiled method-only original/JVM faults; baseline full instruction coverage remains failed.",
+  "private_work": "/tmp/macrodroid-video-mutants-diwdo68n",
+  "active_source_changed": false,
+  "apk_built": false,
+  "android_executed": false,
+  "rebuilt_dex_compared": false,
+  "coverage_exemption_implemented": false,
+  "method": "Lcom/arlosoft/macrodroid/action/services/a;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+  "commands": [
+    {
+      "label": "compile-launcher",
+      "argv": [
+        "javac",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-mutants-diwdo68n/fixed-harness/harnessclasses:/tmp/macrodroid-video-mutants-diwdo68n/fixed-host/classes",
+        "-d",
+        "/tmp/macrodroid-video-mutants-diwdo68n/launcherclasses",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/inputs/tests/java/VideoMutationLauncher.java"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 2.427898,
+      "stdout": {
+        "path": "compile-launcher.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compile-launcher.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "original-jvm",
+      "argv": [
+        "java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-mutants-diwdo68n/launcherclasses:/tmp/macrodroid-video-mutants-diwdo68n/fixed-host/classes:/tmp/macrodroid-video-mutants-diwdo68n/fixed-harness/harnessclasses:/tmp/macrodroid-video-mutants-diwdo68n/fixed-host/classes",
+        "VideoMutationLauncher",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/baseline-before/expected-class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/baseline-before/class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/proposed-method-entry.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/original-video-monitor.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/baseline-before/parity.json"
+      ],
+      "returncode": 2,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 3.250834,
+      "stdout": {
+        "path": "baseline-before/original-jvm.stdout.txt",
+        "sha256": "fbeadae236626a5755feda09ee7e39db3eb75898dee994af65fb16be6fbc4004"
+      },
+      "stderr": {
+        "path": "baseline-before/original-jvm.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "compile",
+      "argv": [
+        "javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-Xlint:-options",
+        "-cp",
+        "/tmp/macrodroid-video-mutants-diwdo68n/fixed-host/classes",
+        "-d",
+        "/tmp/macrodroid-video-mutants-diwdo68n/mutants/dead-cast-order/classes",
+        "/tmp/macrodroid-video-mutants-diwdo68n/mutants/dead-cast-order/src/recovered/ui/VideoMonitorMethods.java"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 1.460079,
+      "stdout": {
+        "path": "controls/dead-cast-order/compile.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/dead-cast-order/compile.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "original-jvm",
+      "argv": [
+        "java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-mutants-diwdo68n/launcherclasses:/tmp/macrodroid-video-mutants-diwdo68n/mutants/dead-cast-order/classes:/tmp/macrodroid-video-mutants-diwdo68n/fixed-harness/harnessclasses:/tmp/macrodroid-video-mutants-diwdo68n/fixed-host/classes",
+        "VideoMutationLauncher",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/controls/dead-cast-order/expected-class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/controls/dead-cast-order/class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/proposed-method-entry.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/original-video-monitor.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/controls/dead-cast-order/parity.json"
+      ],
+      "returncode": 2,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 2.95453,
+      "stdout": {
+        "path": "controls/dead-cast-order/original-jvm.stdout.txt",
+        "sha256": "fbeadae236626a5755feda09ee7e39db3eb75898dee994af65fb16be6fbc4004"
+      },
+      "stderr": {
+        "path": "controls/dead-cast-order/original-jvm.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "execute",
+      "argv": [
+        "java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-mutants-diwdo68n/launcherclasses:/tmp/macrodroid-video-mutants-diwdo68n/fixed-host/classes:/tmp/macrodroid-video-mutants-diwdo68n/fixed-harness/harnessclasses:/tmp/macrodroid-video-mutants-diwdo68n/fixed-host/classes",
+        "VideoMutationLauncher",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/origin-controls/wrong-helper-hash/expected-class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/origin-controls/wrong-helper-hash/class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/proposed-method-entry.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/original-video-monitor.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/origin-controls/wrong-helper-hash/parity.json"
+      ],
+      "returncode": 1,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 0.475358,
+      "stdout": {
+        "path": "origin-controls/wrong-helper-hash/execute.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "origin-controls/wrong-helper-hash/execute.stderr.txt",
+        "sha256": "4ae2eb62e25a52f67dc54f1eb016ac1e1996d8489003657cb81d6ed7766b7175"
+      }
+    },
+    {
+      "label": "execute",
+      "argv": [
+        "java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-mutants-diwdo68n/launcherclasses:/tmp/macrodroid-video-mutants-diwdo68n/fixed-host/classes:/tmp/macrodroid-video-mutants-diwdo68n/fixed-harness/harnessclasses:/tmp/macrodroid-video-mutants-diwdo68n/fixed-host/classes",
+        "VideoMutationLauncher",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/origin-controls/baseline-shadows-mutant/expected-class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/origin-controls/baseline-shadows-mutant/class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/proposed-method-entry.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/original-video-monitor.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/origin-controls/baseline-shadows-mutant/parity.json"
+      ],
+      "returncode": 1,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 0.289195,
+      "stdout": {
+        "path": "origin-controls/baseline-shadows-mutant/execute.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "origin-controls/baseline-shadows-mutant/execute.stderr.txt",
+        "sha256": "4d03c59885c946d0cc75c440a3f8ba0c506c1fe60b3a55e909ab18179d6e1117"
+      }
+    },
+    {
+      "label": "compile",
+      "argv": [
+        "javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-Xlint:-options",
+        "-cp",
+        "/tmp/macrodroid-video-mutants-diwdo68n/fixed-host/classes",
+        "-d",
+        "/tmp/macrodroid-video-mutants-diwdo68n/restored/classes",
+        "/tmp/macrodroid-video-mutants-diwdo68n/restored/src/recovered/ui/VideoMonitorMethods.java"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 1.382916,
+      "stdout": {
+        "path": "baseline-restored/compile.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "baseline-restored/compile.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "original-jvm",
+      "argv": [
+        "java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-video-mutants-diwdo68n/launcherclasses:/tmp/macrodroid-video-mutants-diwdo68n/restored/classes:/tmp/macrodroid-video-mutants-diwdo68n/fixed-harness/harnessclasses:/tmp/macrodroid-video-mutants-diwdo68n/fixed-host/classes",
+        "VideoMutationLauncher",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/baseline-restored/expected-class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/baseline-restored/class-origins.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/proposed-method-entry.json",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/original-video-monitor.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/compiled-fault-06-cast-order-gap/baseline-restored/parity.json"
+      ],
+      "returncode": 2,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 2.850648,
+      "stdout": {
+        "path": "baseline-restored/original-jvm.stdout.txt",
+        "sha256": "fbeadae236626a5755feda09ee7e39db3eb75898dee994af65fb16be6fbc4004"
+      },
+      "stderr": {
+        "path": "baseline-restored/original-jvm.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "controls": [
+    {
+      "name": "dead-cast-order",
+      "reason": "Distinct malformed saved objects must expose File-cast-before-qnc order. This first run measures whether broad wording exclusion hides it.",
+      "source_sha256": "467a048cbf1aa84651e8810baf14b0868a1839b0b4166e6a5ea4038ec51dd894",
+      "compile_returncode": 0,
+      "expected_failure_labels": [
+        "video-dead-casts:2:2"
+      ],
+      "detected": false,
+      "execution_returncode": 2,
+      "class_sha256": "2863da96c089c4f53e2eefc243955e9eb9c602194afdf26d0587af05a4b227bc",
+      "cases": 1111,
+      "failed_cases": 0,
+      "unsupported_executions": 0,
+      "expected_result_failures": 0,
+      "failed_case_labels": [],
+      "named_failures_observed": false,
+      "original_coverage_unchanged": true
+    }
+  ],
+  "authored_inputs": [
+    {
+      "path": "tests/java/VideoMutationLauncher.java",
+      "bytes": 3352,
+      "sha256": "c4c8e0428545a626529383c933c2ccce6ccdd57982b8de9abcedecbb66a50916"
+    },
+    {
+      "path": "video_method_mutants.json",
+      "bytes": 1024,
+      "sha256": "f323f7a4a367e353ffc3f598cf2fcd2d1a0cfe6c5bcc1be482dd4ad4fbf1870b"
+    },
+    {
+      "path": "video_method_negative_control.py",
+      "bytes": 21106,
+      "sha256": "8d90c144d624f3f4cdf4aaff1ef30b858e45b486bee56801070a4b79a7254089"
+    }
+  ],
+  "baseline_checkpoint_sha256": "1e94ebcdb8644fbada96e702e4000d0268a5b1d22d5247e6a56e55c90b8ad0fe",
+  "host_checkpoint_sha256": "38656eed5691a48b8a11dc5148dd692e813b629141cad9ece604f0588a0311ea",
+  "fixed_helper_class_sha256": "80e94baecb1ed256bced1fe81d154688ceb124bda8e535483156779118006704",
+  "baseline_before": {
+    "returncode": 2,
+    "exact_frozen_parity_match": true,
+    "raw_coverage_gate_failed": true,
+    "reproduced": true
+  },
+  "class_origin_controls": [
+    {
+      "name": "wrong-helper-hash",
+      "returncode": 1,
+      "rejected_before_parity": true
+    },
+    {
+      "name": "baseline-shadows-mutant",
+      "returncode": 1,
+      "rejected_before_parity": true
+    }
+  ],
+  "baseline_restoration": {
+    "returncode": 2,
+    "source_sha256": "67f5a47013ffbffa67859f9103d2034b3225521d10be9d96d65acd31599d45ee",
+    "class_sha256": "80e94baecb1ed256bced1fe81d154688ceb124bda8e535483156779118006704",
+    "source_matches_frozen": true,
+    "class_matches_frozen": true,
+    "exact_frozen_parity_match": true,
+    "reproduced": true,
+    "full_original_coverage_gate_passed": false
+  },
+  "fixed_class_inventory_unchanged": true,
+  "fixture_unchanged": true,
+  "frozen_checkpoint_unchanged": true,
+  "host_checkpoint_unchanged": true,
+  "authored_inputs_unchanged": true,
+  "controls_count": 1,
+  "controls_detected": 0,
+  "passed": false,
+  "finished_utc": "2026-10-12T06:27:23.191041+00:00"
+}

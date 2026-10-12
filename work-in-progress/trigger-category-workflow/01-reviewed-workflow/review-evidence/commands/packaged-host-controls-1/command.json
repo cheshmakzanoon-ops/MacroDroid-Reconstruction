@@ -1,0 +1,15 @@
+{
+  "label": "packaged-host-controls-1",
+  "argv": [
+    "bash",
+    "-o",
+    "pipefail",
+    "-c",
+    "python3 -B -m unittest discover -s ci-trigger-category/reviewed-source/tools/parity_journeys -p 'test_*.py' -v 2>&1 | tee ci-trigger-category/journey-host-tests.log"
+  ],
+  "cwd": "/workspace/scratch/4130730d15aa/trigger-catalog-forward/workflow-01/reports/validation-01/private-inputs",
+  "exit_code": 0,
+  "timed_out": false,
+  "seconds": 152.976771,
+  "android_executed": false
+}
