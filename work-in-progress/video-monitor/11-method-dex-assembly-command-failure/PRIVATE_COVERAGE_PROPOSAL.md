@@ -1,0 +1,25 @@
+# Private proposal: separately account for one exactly bound handler chain
+
+This is an integration proposal for review. It changes no active registry, interpreter, instruction-coverage requirement, or acceptance policy. The completed positive studies continue to report a failed raw gate with 259 of 262 instructions executed and all 46 conditional edges executed. Offsets 232, 233, and 235 are not dynamically visited.
+
+## Required bindings
+
+Any proposed accounting entry is restricted to `Lcom/arlosoft/macrodroid/action/services/a;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;`. It must independently fix the exact original fixture, original class and selected body, original instruction inventory, unchanged interpreter and compiled harness, reviewed data-flow collector, proof checkpoints 04 and 04b, complete constructor disassembly, and all four reviewed JRT classes. A user-supplied offset list or a mutable manifest's replacement digest cannot authorize any accounting.
+
+The executing JVM must collect its own relevant boot classes immediately before and after the three-path case run. The new method-only study is designed to record the actual `java.base` bootstrap-loader origin, exact `jrt:` resource URL, bytes and SHA256 of `StringBuilder`, `AbstractStringBuilder`, `StringUTF16`, and `Object`; the actual runtime release, version and Java home; and the VM arguments. The Python launcher also binds the exact Java executable, libjvm, module image and release before and after execution. Java option environment variables are removed from this owned subprocess, and the classpath is explicit. A later validator must compare these records against independently fixed reviewed identities, not merely compare two mutually supplied fields.
+
+The test producer and class-origin launcher must themselves be hash-bound, and the comparison must load the exact unchanged oracle, observer and controlled dependencies. The original fixture is checked inside that JVM before test execution. Actual executed original offsets and conditional edges are recorded directly from the unchanged interpreter, separately from the aggregate coverage fields. The rebuilt fixture is also identity-bound and has a separate actual compiled-DEX fault control so substitution of original bytecode cannot masquerade as rebuilt execution.
+
+## Narrow accounting rule
+
+After independently rechecking the exact frozen data-flow proof, the validator should require that the actual original visited set and the three statically infeasible offsets are disjoint, that their union is precisely the pinned original instruction-offset inventory, and that the raw aggregate coverage agrees with the actual visited set. All original conditional edges must be dynamically visited. It must also require zero semantic mismatches, zero unsupported executions and zero independent expected-result failures across the selected original/JVM/rebuilt case set.
+
+The result must retain `raw_original_coverage_gate_passed: false`, report **259 dynamically visited**, **3 statically infeasible**, and **262 total** as different fields, identify the exact three offsets, and retain the original raw report unchanged. A separate field may describe whether this particular proposed accounting rule is satisfied. It must not label the three instructions as executed, claim 262 dynamically covered instructions, silently alter `passed` in historical reports, or grant an exemption to another method, body, host runtime, or uncovered edge.
+
+The argument remains restricted to synchronous exceptions on the exact reviewed normally linked host runtime. It does not claim that a Google APIs Android boot library was byte-matched to the JRT, that asynchronous injected exceptions were modeled, or that this video-monitor body was run on Android.
+
+## False-positive controls required before review
+
+The private validator should reject changed fixture or method identities; another target; a changed interpreter, producer or loaded helper; a changed proof or collector; a replaced JRT class or release with a recomputed supplied digest; altered constructor code that preserves the old searched substrings; added protected throwing calls; extra normal or exceptional handler entries; missing or fabricated visited offsets; overlap between dynamic and static sets; an extra uncovered instruction; a missing conditional edge; a mismatch or unsupported execution; a changed saved runtime or unexpected VM arguments; and an alleged original-only fixture substituted for the rebuilt input.
+
+Pure guard-data mutations must be labeled as validation controls and grant zero original execution or coverage credit. Actual changed Java and rebuilt DEX bodies remain separate compiled semantic controls. All rejected payloads and the exact unchanged positive restoration should be retained. The final concrete validator, bound input identities, false-positive results and proposed reporting shape require independent parent review before any active integration.

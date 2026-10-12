@@ -1,0 +1,2223 @@
+{
+  "passed": false,
+  "cases": 1118,
+  "failedCases": 9,
+  "unsupportedExecutions": 0,
+  "independentExpectedResultChecks": 230,
+  "expectedResultFailures": 0,
+  "originalOnlyBoundaryDiscoveryExecutions": 23,
+  "methodsCovered": 1,
+  "methodKeys": [
+    "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;"
+  ],
+  "paths": 2,
+  "androidRuntime": false,
+  "rebuiltDexCompared": false,
+  "registeredInActiveProject": false,
+  "instructionCoverage": {
+    "instructions": 262,
+    "visited": 259,
+    "unvisitedOffsets": [
+      232,
+      233,
+      235
+    ],
+    "conditionalEdges": 46,
+    "conditionalEdgesVisited": 46,
+    "unvisitedConditionalEdges": []
+  },
+  "fullInstructionAndConditionalCoverage": false,
+  "failures": [
+    {
+      "method": "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "video-mutation:0:2:0",
+      "original": {
+        "value": "COROUTINE_SUSPENDED",
+        "calls": [],
+        "coreCalls": [
+          "log.info:73:Recording Video - Available storage: 256MB",
+          "log.info:109:Current file size: 8KB",
+          "log.info:109:File growing normally: +7KB"
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "suspended",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": true,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:73:Recording Video - Available storage: 256MB",
+            "file.exists:otherFile",
+            "file.length:otherFile",
+            "log.info:109:Current file size: 8KB",
+            "log.info:109:File growing normally: +7KB",
+            "delay:3000:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:0:420478976:0:0",
+            "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+          ],
+          "boundaryCalls": 9,
+          "recording": true,
+          "state": "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0",
+          "label": 3,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 268435456,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 8192,
+              "w": 0,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 1,
+              "lengthReads": 1
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [
+            {
+              "milliseconds": 3000,
+              "continuation": "continuation",
+              "state": "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+            }
+          ],
+          "delayCount": 1,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:suspended:3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      },
+      "java": {
+        "value": "COROUTINE_SUSPENDED",
+        "calls": [],
+        "coreCalls": [
+          "log.info:109:Recording Video - Available storage: 256MB",
+          "log.info:109:Current file size: 8KB",
+          "log.info:109:File growing normally: +7KB"
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "suspended",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": true,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:109:Recording Video - Available storage: 256MB",
+            "file.exists:otherFile",
+            "file.length:otherFile",
+            "log.info:109:Current file size: 8KB",
+            "log.info:109:File growing normally: +7KB",
+            "delay:3000:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:0:420478976:0:0",
+            "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+          ],
+          "boundaryCalls": 9,
+          "recording": true,
+          "state": "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0",
+          "label": 3,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 268435456,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 8192,
+              "w": 0,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 1,
+              "lengthReads": 1
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [
+            {
+              "milliseconds": 3000,
+              "continuation": "continuation",
+              "state": "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+            }
+          ],
+          "delayCount": 1,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:suspended:3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "video-mutation:1:2:0",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.info:73:Recording Video - Available storage: 127MB",
+          "log.guid:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording."
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:73:Recording Video - Available storage: 127MB",
+            "log.error:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording.",
+            "stop.callback.new:stopCallback0:other:null",
+            "stop.dispatch:mainDispatcher:stopCallback0:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 7,
+          "recording": true,
+          "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 2,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 134217727,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [],
+          "delayCount": 0,
+          "callbacks": [
+            {
+              "identity": "stopCallback0",
+              "owner": "other",
+              "arity": 2
+            }
+          ],
+          "callbackCount": 1,
+          "dispatches": [
+            {
+              "dispatcher": "mainDispatcher",
+              "callback": "stopCallback0",
+              "continuation": "continuation",
+              "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "dispatchCount": 1,
+          "steps": [
+            "return:unit:2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      },
+      "java": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.info:109:Recording Video - Available storage: 127MB",
+          "log.guid:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording."
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:109:Recording Video - Available storage: 127MB",
+            "log.error:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording.",
+            "stop.callback.new:stopCallback0:other:null",
+            "stop.dispatch:mainDispatcher:stopCallback0:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 7,
+          "recording": true,
+          "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 2,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 134217727,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [],
+          "delayCount": 0,
+          "callbacks": [
+            {
+              "identity": "stopCallback0",
+              "owner": "other",
+              "arity": 2
+            }
+          ],
+          "callbackCount": 1,
+          "dispatches": [
+            {
+              "dispatcher": "mainDispatcher",
+              "callback": "stopCallback0",
+              "continuation": "continuation",
+              "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "dispatchCount": 1,
+          "steps": [
+            "return:unit:2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "video-mutation:2:2:0",
+      "original": {
+        "value": "COROUTINE_SUSPENDED",
+        "calls": [],
+        "coreCalls": [
+          "log.info:73:Recording Video - Available storage: 256MB",
+          "log.info:109:Current file size: 8KB",
+          "log.info:109:File growing normally: +7KB"
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "suspended",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": true,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:73:Recording Video - Available storage: 256MB",
+            "file.exists:otherFile",
+            "file.length:otherFile",
+            "log.info:109:Current file size: 8KB",
+            "log.info:109:File growing normally: +7KB",
+            "delay:3000:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:2:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:2:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:2:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:17:0:420478976:0:0",
+            "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+          ],
+          "boundaryCalls": 9,
+          "recording": true,
+          "state": "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0",
+          "label": 3,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 2,
+              "x": 268435456,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 8192,
+              "w": 0,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 1,
+              "lengthReads": 1
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [
+            {
+              "milliseconds": 3000,
+              "continuation": "continuation",
+              "state": "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+            }
+          ],
+          "delayCount": 1,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:suspended:3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      },
+      "java": {
+        "value": "COROUTINE_SUSPENDED",
+        "calls": [],
+        "coreCalls": [
+          "log.info:109:Recording Video - Available storage: 256MB",
+          "log.info:109:Current file size: 8KB",
+          "log.info:109:File growing normally: +7KB"
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "suspended",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": true,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:109:Recording Video - Available storage: 256MB",
+            "file.exists:otherFile",
+            "file.length:otherFile",
+            "log.info:109:Current file size: 8KB",
+            "log.info:109:File growing normally: +7KB",
+            "delay:3000:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:2:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:2:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:2:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:17:0:420478976:0:0",
+            "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+          ],
+          "boundaryCalls": 9,
+          "recording": true,
+          "state": "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0",
+          "label": 3,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 2,
+              "x": 268435456,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 8192,
+              "w": 0,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 1,
+              "lengthReads": 1
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [
+            {
+              "milliseconds": 3000,
+              "continuation": "continuation",
+              "state": "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+            }
+          ],
+          "delayCount": 1,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:suspended:3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:2:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "video-mutation:7:2:0",
+      "original": {
+        "value": "COROUTINE_SUSPENDED",
+        "calls": [],
+        "coreCalls": [
+          "log.info:73:Recording Video - Available storage: 256MB",
+          "log.info:109:Current file size: 8KB",
+          "log.info:109:File growing normally: +7KB"
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "suspended",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": true,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:73:Recording Video - Available storage: 256MB",
+            "file.exists:otherFile",
+            "file.length:otherFile",
+            "log.info:109:Current file size: 8KB",
+            "log.info:109:File growing normally: +7KB",
+            "delay:3000:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:0:420478976:0:0",
+            "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+          ],
+          "boundaryCalls": 9,
+          "recording": true,
+          "state": "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0",
+          "label": 3,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 268435456,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 8192,
+              "w": 0,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 1,
+              "lengthReads": 1
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [
+            {
+              "milliseconds": 3000,
+              "continuation": "continuation",
+              "state": "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+            }
+          ],
+          "delayCount": 1,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:suspended:3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": [
+            {
+              "identity": "error0",
+              "reads": 0
+            }
+          ]
+        }
+      },
+      "java": {
+        "value": "COROUTINE_SUSPENDED",
+        "calls": [],
+        "coreCalls": [
+          "log.info:109:Recording Video - Available storage: 256MB",
+          "log.info:109:Current file size: 8KB",
+          "log.info:109:File growing normally: +7KB"
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "suspended",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": true,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:109:Recording Video - Available storage: 256MB",
+            "file.exists:otherFile",
+            "file.length:otherFile",
+            "log.info:109:Current file size: 8KB",
+            "log.info:109:File growing normally: +7KB",
+            "delay:3000:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:17:0:420478976:0:0",
+            "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+          ],
+          "boundaryCalls": 9,
+          "recording": true,
+          "state": "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0",
+          "label": 3,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 268435456,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 8192,
+              "w": 0,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 1,
+              "lengthReads": 1
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [
+            {
+              "milliseconds": 3000,
+              "continuation": "continuation",
+              "state": "3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+            }
+          ],
+          "delayCount": 1,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:suspended:3:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:268435456:1:0|other:109:otherFile:null:8192:0:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": [
+            {
+              "identity": "error0",
+              "reads": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "video-captured-storage-owner-survives-field-null",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.info:73:Recording Video - Available storage: 127MB",
+          "log.guid:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording."
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:73:Recording Video - Available storage: 127MB",
+            "log.error:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording.",
+            "stop.callback.new:stopCallback0:null:null",
+            "stop.dispatch:mainDispatcher:stopCallback0:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:null:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:null:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:null:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:null:null:null:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 7,
+          "recording": true,
+          "state": "2:null:null:null:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 2,
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 134217727,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [],
+          "delayCount": 0,
+          "callbacks": [
+            {
+              "identity": "stopCallback0",
+              "arity": 2
+            }
+          ],
+          "callbackCount": 1,
+          "dispatches": [
+            {
+              "dispatcher": "mainDispatcher",
+              "callback": "stopCallback0",
+              "continuation": "continuation",
+              "state": "2:null:null:null:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "dispatchCount": 1,
+          "steps": [
+            "return:unit:2:null:null:null:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      },
+      "java": {
+        "exception": "java.lang.NullPointerException",
+        "calls": [],
+        "coreCalls": [],
+        "videoState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "string.concat:Error in storage monitoring: :Cannot read field \"s\" because \"\u003cparameter1\u003e.this$0\" is null"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:null:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 4,
+          "recording": true,
+          "state": "1:savedFlag:file:null:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 1,
+          "saved0": "savedFlag",
+          "saved1": "file",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 134217727,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [],
+          "delayCount": 0,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "throw:java.lang.NullPointerException:1:savedFlag:file:null:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": [],
+          "escapedInjectedIdentity": false,
+          "escapedExternalIdentity": false,
+          "vmGeneratedEscapedMessageExcluded": true
+        }
+      },
+      "expectedObservation": {
+        "videoState": {
+          "returned": "unit",
+          "label": 2,
+          "dispatchCount": 1
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "video-captured-owner-x-changed-at-space-call:-9223372036854775808",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.info:73:Recording Video - Available storage: 127MB",
+          "log.guid:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording."
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:73:Recording Video - Available storage: 127MB",
+            "log.error:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording.",
+            "stop.callback.new:stopCallback0:other:null",
+            "stop.dispatch:mainDispatcher:stopCallback0:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 7,
+          "recording": true,
+          "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 2,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 134217727,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [],
+          "delayCount": 0,
+          "callbacks": [
+            {
+              "identity": "stopCallback0",
+              "owner": "other",
+              "arity": 2
+            }
+          ],
+          "callbackCount": 1,
+          "dispatches": [
+            {
+              "dispatcher": "mainDispatcher",
+              "callback": "stopCallback0",
+              "continuation": "continuation",
+              "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "dispatchCount": 1,
+          "steps": [
+            "return:unit:2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      },
+      "java": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.info:109:Recording Video - Available storage: 127MB",
+          "log.guid:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording."
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:109:Recording Video - Available storage: 127MB",
+            "log.error:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording.",
+            "stop.callback.new:stopCallback0:other:null",
+            "stop.dispatch:mainDispatcher:stopCallback0:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 7,
+          "recording": true,
+          "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 2,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 134217727,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [],
+          "delayCount": 0,
+          "callbacks": [
+            {
+              "identity": "stopCallback0",
+              "owner": "other",
+              "arity": 2
+            }
+          ],
+          "callbackCount": 1,
+          "dispatches": [
+            {
+              "dispatcher": "mainDispatcher",
+              "callback": "stopCallback0",
+              "continuation": "continuation",
+              "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "dispatchCount": 1,
+          "steps": [
+            "return:unit:2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      },
+      "expectedObservation": {
+        "videoState": {
+          "returned": "unit",
+          "owner": "other",
+          "label": 2
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "video-captured-owner-x-changed-at-space-call:-1",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.info:73:Recording Video - Available storage: 127MB",
+          "log.guid:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording."
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:73:Recording Video - Available storage: 127MB",
+            "log.error:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording.",
+            "stop.callback.new:stopCallback0:other:null",
+            "stop.dispatch:mainDispatcher:stopCallback0:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 7,
+          "recording": true,
+          "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 2,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 134217727,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [],
+          "delayCount": 0,
+          "callbacks": [
+            {
+              "identity": "stopCallback0",
+              "owner": "other",
+              "arity": 2
+            }
+          ],
+          "callbackCount": 1,
+          "dispatches": [
+            {
+              "dispatcher": "mainDispatcher",
+              "callback": "stopCallback0",
+              "continuation": "continuation",
+              "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "dispatchCount": 1,
+          "steps": [
+            "return:unit:2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      },
+      "java": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.info:109:Recording Video - Available storage: 127MB",
+          "log.guid:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording."
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:109:Recording Video - Available storage: 127MB",
+            "log.error:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording.",
+            "stop.callback.new:stopCallback0:other:null",
+            "stop.dispatch:mainDispatcher:stopCallback0:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 7,
+          "recording": true,
+          "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 2,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 134217727,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [],
+          "delayCount": 0,
+          "callbacks": [
+            {
+              "identity": "stopCallback0",
+              "owner": "other",
+              "arity": 2
+            }
+          ],
+          "callbackCount": 1,
+          "dispatches": [
+            {
+              "dispatcher": "mainDispatcher",
+              "callback": "stopCallback0",
+              "continuation": "continuation",
+              "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "dispatchCount": 1,
+          "steps": [
+            "return:unit:2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      },
+      "expectedObservation": {
+        "videoState": {
+          "returned": "unit",
+          "owner": "other",
+          "label": 2
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "video-captured-owner-x-changed-at-space-call:0",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.info:73:Recording Video - Available storage: 127MB",
+          "log.guid:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording."
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:73:Recording Video - Available storage: 127MB",
+            "log.error:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording.",
+            "stop.callback.new:stopCallback0:other:null",
+            "stop.dispatch:mainDispatcher:stopCallback0:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 7,
+          "recording": true,
+          "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 2,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 134217727,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [],
+          "delayCount": 0,
+          "callbacks": [
+            {
+              "identity": "stopCallback0",
+              "owner": "other",
+              "arity": 2
+            }
+          ],
+          "callbackCount": 1,
+          "dispatches": [
+            {
+              "dispatcher": "mainDispatcher",
+              "callback": "stopCallback0",
+              "continuation": "continuation",
+              "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "dispatchCount": 1,
+          "steps": [
+            "return:unit:2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      },
+      "java": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.info:109:Recording Video - Available storage: 127MB",
+          "log.guid:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording."
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:109:Recording Video - Available storage: 127MB",
+            "log.error:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording.",
+            "stop.callback.new:stopCallback0:other:null",
+            "stop.dispatch:mainDispatcher:stopCallback0:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 7,
+          "recording": true,
+          "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 2,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 134217727,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [],
+          "delayCount": 0,
+          "callbacks": [
+            {
+              "identity": "stopCallback0",
+              "owner": "other",
+              "arity": 2
+            }
+          ],
+          "callbackCount": 1,
+          "dispatches": [
+            {
+              "dispatcher": "mainDispatcher",
+              "callback": "stopCallback0",
+              "continuation": "continuation",
+              "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "dispatchCount": 1,
+          "steps": [
+            "return:unit:2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      },
+      "expectedObservation": {
+        "videoState": {
+          "returned": "unit",
+          "owner": "other",
+          "label": 2
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "video-captured-owner-x-changed-at-space-call:9223372036854775807",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.info:73:Recording Video - Available storage: 127MB",
+          "log.guid:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording."
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:73:Recording Video - Available storage: 127MB",
+            "log.error:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording.",
+            "stop.callback.new:stopCallback0:other:null",
+            "stop.dispatch:mainDispatcher:stopCallback0:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 7,
+          "recording": true,
+          "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 2,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 134217727,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [],
+          "delayCount": 0,
+          "callbacks": [
+            {
+              "identity": "stopCallback0",
+              "owner": "other",
+              "arity": 2
+            }
+          ],
+          "callbackCount": 1,
+          "dispatches": [
+            {
+              "dispatcher": "mainDispatcher",
+              "callback": "stopCallback0",
+              "continuation": "continuation",
+              "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "dispatchCount": 1,
+          "steps": [
+            "return:unit:2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      },
+      "java": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.info:109:Recording Video - Available storage: 127MB",
+          "log.guid:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording."
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "file.parent:file",
+            "storage.available:owner:directory",
+            "log.info:109:Recording Video - Available storage: 127MB",
+            "log.error:73:CRITICAL: Storage space exhausted (127MB remaining). Stopping recording.",
+            "stop.callback.new:stopCallback0:other:null",
+            "stop.dispatch:mainDispatcher:stopCallback0:continuation"
+          ],
+          "boundaryStates": [
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "1:savedFlag:file:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 7,
+          "recording": true,
+          "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 2,
+          "owner": "other",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 134217727,
+              "file": "file",
+              "spaceReads": 1,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 1,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [],
+          "delayCount": 0,
+          "callbacks": [
+            {
+              "identity": "stopCallback0",
+              "owner": "other",
+              "arity": 2
+            }
+          ],
+          "callbackCount": 1,
+          "dispatches": [
+            {
+              "dispatcher": "mainDispatcher",
+              "callback": "stopCallback0",
+              "continuation": "continuation",
+              "state": "2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "dispatchCount": 1,
+          "steps": [
+            "return:unit:2:null:null:other:true:recordingCompanion|owner:73:file:null:1024:1:134217727:1:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      },
+      "expectedObservation": {
+        "videoState": {
+          "returned": "unit",
+          "owner": "other",
+          "label": 2
+        }
+      }
+    }
+  ],
+  "failedCaseLabels": [
+    "video-captured-owner-x-changed-at-space-call:-1",
+    "video-captured-owner-x-changed-at-space-call:-9223372036854775808",
+    "video-captured-owner-x-changed-at-space-call:0",
+    "video-captured-owner-x-changed-at-space-call:9223372036854775807",
+    "video-captured-storage-owner-survives-field-null",
+    "video-mutation:0:2:0",
+    "video-mutation:1:2:0",
+    "video-mutation:2:2:0",
+    "video-mutation:7:2:0"
+  ],
+  "hostParentConstructorAdapters": {},
+  "hostParentConstructorAdapterCalls": {},
+  "noConstructorOwnerAdapterUsed": true,
+  "invalidLabelDefensiveReturnUsesOneInjectedReturningBoundary": true,
+  "generatedEscapedMessageExclusions": [
+    {
+      "case": "video-dead-casts:0:2",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.qnc",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:0:2",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.qnc cannot be cast to class java.io.File (defpackage.qnc is in unnamed module of loader \u0027app\u0027; java.io.File is in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:0:3",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:0:3",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class java.io.File (java.lang.String and java.io.File are in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:1:2",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.qnc",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:1:2",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.qnc cannot be cast to class java.io.File (defpackage.qnc is in unnamed module of loader \u0027app\u0027; java.io.File is in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:1:3",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:1:3",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class java.io.File (java.lang.String and java.io.File are in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:2:0",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.VideoFile",
+      "castSourceClass": "defpackage.VideoFile"
+    },
+    {
+      "case": "video-dead-casts:2:0",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.VideoFile cannot be cast to class defpackage.qnc (defpackage.VideoFile and defpackage.qnc are in unnamed module of loader \u0027app\u0027)",
+      "castSourceClass": "defpackage.VideoFile"
+    },
+    {
+      "case": "video-dead-casts:2:1",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.VideoFile",
+      "castSourceClass": "defpackage.VideoFile"
+    },
+    {
+      "case": "video-dead-casts:2:1",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.VideoFile cannot be cast to class defpackage.qnc (defpackage.VideoFile and defpackage.qnc are in unnamed module of loader \u0027app\u0027)",
+      "castSourceClass": "defpackage.VideoFile"
+    },
+    {
+      "case": "video-dead-casts:2:2",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.qnc",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:2:2",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.qnc cannot be cast to class java.io.File (defpackage.qnc is in unnamed module of loader \u0027app\u0027; java.io.File is in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:2:3",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:2:3",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class java.io.File (java.lang.String and java.io.File are in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:0",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:0",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class defpackage.qnc (java.lang.String is in module java.base of loader \u0027bootstrap\u0027; defpackage.qnc is in unnamed module of loader \u0027app\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:1",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:1",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class defpackage.qnc (java.lang.String is in module java.base of loader \u0027bootstrap\u0027; defpackage.qnc is in unnamed module of loader \u0027app\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:2",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.qnc",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:3:2",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.qnc cannot be cast to class java.io.File (defpackage.qnc is in unnamed module of loader \u0027app\u0027; java.io.File is in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:3:3",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:3",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class java.io.File (java.lang.String and java.io.File are in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-resumed-stop-dead-cast:0",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-resumed-stop-dead-cast:0",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class defpackage.qnc (java.lang.String is in module java.base of loader \u0027bootstrap\u0027; defpackage.qnc is in unnamed module of loader \u0027app\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-resumed-stop-dead-cast:1",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-resumed-stop-dead-cast:1",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class java.io.File (java.lang.String and java.io.File are in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-captured-storage-owner-survives-field-null",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot read field \"s\" because \"\u003cparameter1\u003e.this$0\" is null"
+    },
+    {
+      "case": "video-companion-before-recording:false",
+      "path": "original",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot invoke \"Object.getClass()\" because \"obj\" is null"
+    },
+    {
+      "case": "video-companion-before-recording:false",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot invoke \"Object.getClass()\" because \"com.arlosoft.macrodroid.action.services.BaseVideoRecordingService.A\" is null"
+    },
+    {
+      "case": "video-companion-before-recording:true",
+      "path": "original",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot invoke \"Object.getClass()\" because \"obj\" is null"
+    },
+    {
+      "case": "video-companion-before-recording:true",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot invoke \"Object.getClass()\" because \"com.arlosoft.macrodroid.action.services.BaseVideoRecordingService.A\" is null"
+    },
+    {
+      "case": "video-null-receiver:0",
+      "path": "original",
+      "exception": "java.lang.NullPointerException"
+    },
+    {
+      "case": "video-null-receiver:0",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot read field \"label\" because \"\u003cparameter1\u003e\" is null"
+    },
+    {
+      "case": "video-null-receiver:1",
+      "path": "original",
+      "exception": "java.lang.NullPointerException"
+    },
+    {
+      "case": "video-null-receiver:1",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot read field \"label\" because \"\u003cparameter1\u003e\" is null"
+    },
+    {
+      "case": "video-null-receiver:2",
+      "path": "original",
+      "exception": "java.lang.NullPointerException"
+    },
+    {
+      "case": "video-null-receiver:2",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot read field \"label\" because \"\u003cparameter1\u003e\" is null"
+    },
+    {
+      "case": "video-null-receiver:3",
+      "path": "original",
+      "exception": "java.lang.NullPointerException"
+    },
+    {
+      "case": "video-null-receiver:3",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot read field \"label\" because \"\u003cparameter1\u003e\" is null"
+    }
+  ],
+  "exceptionMessageScope": "Only generated escaped cast/null wording is excluded with raw messages retained; CCE source-class identity remains compared through three exact original-oracle and four pinned-JDK forms. Unknown cast forms fail closed. Injected/external identities/messages and all logged text stay exact. Same-source-type malformed values do not distinguish cast order.",
+  "scope": "Bounded selected original method/JVM comparison with controlled File/storage/logging/coroutine boundaries; no filesystem operation, scheduler, Android service, APK build or Android execution"
+}

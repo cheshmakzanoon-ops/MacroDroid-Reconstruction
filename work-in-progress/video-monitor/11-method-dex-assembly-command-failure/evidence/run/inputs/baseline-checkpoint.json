@@ -1,0 +1,422 @@
+{
+  "status": "ORIGINAL_JVM_ZERO_MISMATCHES_ORIGINAL_COVERAGE_GATE_FAILED",
+  "frozen_utc": "2026-10-12T06:34:43.991360+00:00",
+  "scope": "1,118 original/JVM cases pass; full original instruction coverage explicitly fails. No active source or APK changes.",
+  "cases": 1118,
+  "failed_cases": 0,
+  "unsupported_executions": 0,
+  "independent_expected_checks": 230,
+  "expected_failures": 0,
+  "separate_exception_observation_controls": 68,
+  "observation_control_app_executions": 0,
+  "original_instruction_coverage": {
+    "instructions": 262,
+    "visited": 259,
+    "unvisitedOffsets": [
+      232,
+      233,
+      235
+    ],
+    "conditionalEdges": 46,
+    "conditionalEdgesVisited": 46,
+    "unvisitedConditionalEdges": []
+  },
+  "full_original_coverage_gate_passed": false,
+  "registered": false,
+  "rebuilt_dex_compared": false,
+  "android_executed": false,
+  "full_runtime_1_to_1_established": false,
+  "draft_host_dependency_checkpoint_sha256": "38656eed5691a48b8a11dc5148dd692e813b629141cad9ece604f0588a0311ea",
+  "study_result_sha256": "4905173d8eef5f75ed71df8037e2acdb9eb567c5f2049927cfc97d0ef0bab3d8",
+  "parity_result_sha256": "f5548276d27f1e522df70486682233472e4f146316e759a1c7f358cf49f3b682",
+  "files": [
+    {
+      "path": "CCE_OBSERVATION_POLICY.md",
+      "bytes": 2483,
+      "sha256": "044e9bc81394b436d2f9d5df2277cfc9b620d0f0ba1b95356b9cf5a12802bc5f"
+    },
+    {
+      "path": "DRAFT_SCOPE.md",
+      "bytes": 2326,
+      "sha256": "30597f0a6225b328ca3bb7f6d25ac56989a648aa02af527f192bd9448af694f8"
+    },
+    {
+      "path": "RECOVERY_STATUS.md",
+      "bytes": 3787,
+      "sha256": "5c3cd47ce91e6427c77c652d5018f2630caa91c901a571e5c2896f7e9b9c1259"
+    },
+    {
+      "path": "compile_video_draft.py",
+      "bytes": 5013,
+      "sha256": "2c52d2b1710c72d23f827c45be36334004760edd09d56e2b537022665e2f58c6"
+    },
+    {
+      "path": "freeze_video_cce_study.py",
+      "bytes": 6336,
+      "sha256": "d39112c5cf465c439d227b51e81357fa920ae295f831e63b31bb263d68e7a8e4"
+    },
+    {
+      "path": "freeze_video_draft.py",
+      "bytes": 4533,
+      "sha256": "6a818d28b0e7d7023046aad954cf88d2bc6f6aad245610a726d61d9f5f7ddd71"
+    },
+    {
+      "path": "proposed-method-entry.json",
+      "bytes": 422,
+      "sha256": "ecdb844cc3f114c41930a1668cba0c7979f916175edf9e3f2dc2545b632e1b01"
+    },
+    {
+      "path": "shared-baseline.json",
+      "bytes": 1843,
+      "sha256": "88268d5c196269f9de3956a5948a3fe979b348cfd84c82ec9018420c085fa2cd"
+    },
+    {
+      "path": "source/java/recovered/ui/VideoMonitorMethods.java",
+      "bytes": 7922,
+      "sha256": "67f5a47013ffbffa67859f9103d2034b3225521d10be9d96d65acd31599d45ee"
+    },
+    {
+      "path": "test-support/java/android/content/Context.java",
+      "bytes": 2451,
+      "sha256": "f0dda08cc5411a0af88c3d8f6c47302f0003518836ef926ad700b03d33dfad5a"
+    },
+    {
+      "path": "test-support/java/android/os/Environment.java",
+      "bytes": 173,
+      "sha256": "743dfdb668e3d51b10b87196c9861dffe4d5cab6c434b2182c385fbfc180aa71"
+    },
+    {
+      "path": "test-support/java/android/os/ParcelFileDescriptor.java",
+      "bytes": 128,
+      "sha256": "07689a1f4b6ab54183de67c73efa8b9e7ef4e0da328a19615e10d4031b3504fe"
+    },
+    {
+      "path": "test-support/java/androidx/lifecycle/LifecycleService.java",
+      "bytes": 173,
+      "sha256": "462a1602f9e57c13758980ef762b734e294d31c75948abfcf20f22ed5c3bde29"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/action/services/BaseVideoRecordingService$a.java",
+      "bytes": 93,
+      "sha256": "2796851aed2116e69b7add46b1841c433bc83d443416b5377f00a91d6094f8f7"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/action/services/BaseVideoRecordingService.java",
+      "bytes": 1039,
+      "sha256": "dbe04faf4132155a7164304ece3169b2fcad4dd87ff3f42761768897e6a804bb"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/action/services/a.java",
+      "bytes": 308,
+      "sha256": "ed66f2342bb430c06601b219679b5717a421b2466cf97d0ff9ff49fef95353c2"
+    },
+    {
+      "path": "test-support/java/defpackage/VideoControl.java",
+      "bytes": 6251,
+      "sha256": "265a8112be27f7fc98e27f6d12c191df055927b4e81fa7fe3730de81261550d1"
+    },
+    {
+      "path": "test-support/java/defpackage/VideoFile.java",
+      "bytes": 1420,
+      "sha256": "d515fbe942234fa3124d2d44761cc4442f801fc0da004f319a24d462c5553908"
+    },
+    {
+      "path": "test-support/java/defpackage/ad4.java",
+      "bytes": 46,
+      "sha256": "2dcb02db6d40bd8c09e891dc2fc3c10db3d179603652bdbacf25ee4cb143df9b"
+    },
+    {
+      "path": "test-support/java/defpackage/at9.java",
+      "bytes": 83,
+      "sha256": "f36e0658757e2cbb552d5607a13df845d20f125dd820824828f585250a61bc94"
+    },
+    {
+      "path": "test-support/java/defpackage/d31.java",
+      "bytes": 777,
+      "sha256": "c1b76d894ce12c9a195edbbef702569a37d610b24c4a47d7a0ecce08163a8aa5"
+    },
+    {
+      "path": "test-support/java/defpackage/dt9.java",
+      "bytes": 530,
+      "sha256": "5f51722ee84aec50a3f7397173960957d1c58fced31725d88522792f29ddf116"
+    },
+    {
+      "path": "test-support/java/defpackage/e6d.java",
+      "bytes": 508,
+      "sha256": "346e8b368b71737c948d8d0a93cb0d91f11acdde8da650b67120898b7588eb81"
+    },
+    {
+      "path": "test-support/java/defpackage/i93.java",
+      "bytes": 44,
+      "sha256": "7878ddfc97499fb992b1f3eab16a2541a21140aead9cf09b2590940d2d3c52b0"
+    },
+    {
+      "path": "test-support/java/defpackage/jb3.java",
+      "bytes": 241,
+      "sha256": "5e30cf859a418b350fadaa09c222253e3ab88988092f83d821312b634c6474dd"
+    },
+    {
+      "path": "test-support/java/defpackage/kjf.java",
+      "bytes": 1031,
+      "sha256": "8d77813cf614c5674a9414814222bc0f878456e4614988bfc9063b06fe6d1763"
+    },
+    {
+      "path": "test-support/java/defpackage/m47.java",
+      "bytes": 61,
+      "sha256": "b77f6587f1b7cad79e6d0def732653ec11aca2834a8c2fc3b22d29d62d1c27a3"
+    },
+    {
+      "path": "test-support/java/defpackage/qnc.java",
+      "bytes": 179,
+      "sha256": "0d7a662c80453b21ca9a625b7f2bac115c7bb0cd83eb6284ba87b8ccbd172ea2"
+    },
+    {
+      "path": "test-support/java/defpackage/sz6.java",
+      "bytes": 442,
+      "sha256": "ed3c7bdd3895e18d87cdd9a4d7159410437fb0f932222d38c5a651f630fb2c8d"
+    },
+    {
+      "path": "test-support/java/defpackage/u2f.java",
+      "bytes": 400,
+      "sha256": "a1c4bfe6064a9fa44bb483243fd3c4120184e7246e72e51952af364361ea939b"
+    },
+    {
+      "path": "test-support/java/defpackage/zp4.java",
+      "bytes": 83,
+      "sha256": "878abb77376b8104bc0dcdca3069550a2c660b8cf43bb2aef633e33f5ff4e27b"
+    },
+    {
+      "path": "tests/java/UiParityTests.java",
+      "bytes": 47879,
+      "sha256": "30fd22f585f64dd921aa9d1e00e68e3e594fcffef689eabec0e50db08416b1c3"
+    },
+    {
+      "path": "tests/java/VideoExceptionConformance.java",
+      "bytes": 6012,
+      "sha256": "f7b57147a25cbc5deddb5aa154c8616b5bfec9c720817d979759dcdd819ee79a"
+    },
+    {
+      "path": "tests/java/VideoMutationLauncher.java",
+      "bytes": 3352,
+      "sha256": "c4c8e0428545a626529383c933c2ccce6ccdd57982b8de9abcedecbb66a50916"
+    },
+    {
+      "path": "tests/java/VideoParityCases.java",
+      "bytes": 32380,
+      "sha256": "efd89cef9abc3e18c63ce6feda17b8b94b70f5515d802860d64aa28da98d77a3"
+    },
+    {
+      "path": "tests/java/VideoParityStudy.java",
+      "bytes": 5713,
+      "sha256": "bdcdb367ffff114763cbe9bcf057c0b1090ee381bf3d9cc461ee24a2a094e2be"
+    },
+    {
+      "path": "video_exception_conformance.py",
+      "bytes": 5549,
+      "sha256": "82bb9836914231591192d62b8d1fb0375795d4a02895b2b5f87c9cda670de007"
+    },
+    {
+      "path": "video_original_jvm_study.py",
+      "bytes": 9227,
+      "sha256": "ff780a73a1ec7c80400d3a7dd2888d7c01ff5a6cf8453f96e8b0b6a75043c472"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "cast-source-study-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cast-source-study-stdout.txt",
+      "bytes": 3434,
+      "sha256": "a66bdf17b1648f9dd2f249388a9bf42b60cd5a9397196451ea69f2dd0212bd49"
+    },
+    {
+      "path": "exception-controls-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "exception-controls-stdout.txt",
+      "bytes": 2345,
+      "sha256": "0f4a3a3ce3648ee4e52027c948c7a076b3c97221c1a0d3c97ad640f74adcd31d"
+    },
+    {
+      "path": "executed-harness-inputs/proposed-method-entry.json",
+      "bytes": 422,
+      "sha256": "ecdb844cc3f114c41930a1668cba0c7979f916175edf9e3f2dc2545b632e1b01"
+    },
+    {
+      "path": "executed-harness-inputs/tests/java/BytecodeOracle.java",
+      "bytes": 25146,
+      "sha256": "d91ddcd8ec3d67d41d69b8252835e747c2cad2c6d5ea898323794ceec30e6b56"
+    },
+    {
+      "path": "executed-harness-inputs/tests/java/ParityTests.java",
+      "bytes": 12913,
+      "sha256": "bad2b1505da37f8d0afb1a44a1a5ec56d645af975fc236f6ea7bbab32dad9d05"
+    },
+    {
+      "path": "executed-harness-inputs/tests/java/PluginParityCases.java",
+      "bytes": 34526,
+      "sha256": "abb8eeac5828d68cd057ab74a9ca6f0efdc464d78253dec00f87e30e1cb814af"
+    },
+    {
+      "path": "executed-harness-inputs/tests/java/PluginUploadParityCases.java",
+      "bytes": 33605,
+      "sha256": "2db300d133f8bfd7a7b5bec42c3ab84345b2cb09292aee2cfe54ec41dd9eef6a"
+    },
+    {
+      "path": "executed-harness-inputs/tests/java/SceneParityCases.java",
+      "bytes": 27356,
+      "sha256": "00ffb41121ba75cb8c327c98b515490177feb6a1968cc9b50e4ff63217e0421f"
+    },
+    {
+      "path": "executed-harness-inputs/tests/java/UiParityTests.java",
+      "bytes": 47879,
+      "sha256": "30fd22f585f64dd921aa9d1e00e68e3e594fcffef689eabec0e50db08416b1c3"
+    },
+    {
+      "path": "executed-harness-inputs/tests/java/VideoParityCases.java",
+      "bytes": 32380,
+      "sha256": "efd89cef9abc3e18c63ce6feda17b8b94b70f5515d802860d64aa28da98d77a3"
+    },
+    {
+      "path": "executed-harness-inputs/tests/java/VideoParityStudy.java",
+      "bytes": 5713,
+      "sha256": "bdcdb367ffff114763cbe9bcf057c0b1090ee381bf3d9cc461ee24a2a094e2be"
+    },
+    {
+      "path": "executed-harness-inputs/tests/java/WidgetParityCases.java",
+      "bytes": 41158,
+      "sha256": "7b1c1affdb2d347405ed2d35a9cf3e7ebc8ab878f75b5be728d9970281374d70"
+    },
+    {
+      "path": "executed-harness-inputs/tools/src/ExtractOracle.java",
+      "bytes": 2118,
+      "sha256": "58aa298c68b7a0f9e395236b136f312a126ee297e7513247af26ce18701cae29"
+    },
+    {
+      "path": "previous-compiled-fault-gap-checkpoint.json",
+      "bytes": 9775,
+      "sha256": "a55dcbd316ce139b64f43acc05444b21bcd18230ff1ddf21405462992c3d7192"
+    },
+    {
+      "path": "reports/exception-conformance-07/VideoExceptionConformance.class",
+      "bytes": 8230,
+      "sha256": "79b207108d6b7795054673502edb72a8f278c987a65bf4c53355500260df2a51"
+    },
+    {
+      "path": "reports/exception-conformance-07/VideoExceptionConformance.java",
+      "bytes": 6012,
+      "sha256": "f7b57147a25cbc5deddb5aa154c8616b5bfec9c720817d979759dcdd819ee79a"
+    },
+    {
+      "path": "reports/exception-conformance-07/class-bindings.json",
+      "bytes": 183677,
+      "sha256": "a2108fe299322b6b1538a5ca55c44d05177e5fdbc4d3d1b82e22238c48e6dbfa"
+    },
+    {
+      "path": "reports/exception-conformance-07/compile.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/exception-conformance-07/compile.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/exception-conformance-07/controls.json",
+      "bytes": 6143,
+      "sha256": "a89e23f5e067bb71e9932ed27df4cad4ce55ef507321abb2afa73c1e5a89c893"
+    },
+    {
+      "path": "reports/exception-conformance-07/controls.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/exception-conformance-07/controls.stdout.txt",
+      "bytes": 52,
+      "sha256": "90a15390bf7ecdd9c706c8f795f40989decb57d352066e7124120f57e47100a9"
+    },
+    {
+      "path": "reports/exception-conformance-07/result.json",
+      "bytes": 2345,
+      "sha256": "0f4a3a3ce3648ee4e52027c948c7a076b3c97221c1a0d3c97ad640f74adcd31d"
+    },
+    {
+      "path": "reports/original-jvm-07-cast-source/compile-extractor.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/original-jvm-07-cast-source/compile-extractor.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/original-jvm-07-cast-source/compile-harness.stderr.txt",
+      "bytes": 168,
+      "sha256": "c20177372ac019893fc965e6542ee74dac316fcc6ff514dff54a16bc370239ed"
+    },
+    {
+      "path": "reports/original-jvm-07-cast-source/compile-harness.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/original-jvm-07-cast-source/compiled-harness-and-toolclasses.tar.gz",
+      "bytes": 144277,
+      "sha256": "5ab15b3e100e6b1dedd2a99831d91d4fb95a5d20a24cc49db405dbe319c117b9"
+    },
+    {
+      "path": "reports/original-jvm-07-cast-source/extract-original.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/original-jvm-07-cast-source/extract-original.stdout.txt",
+      "bytes": 48,
+      "sha256": "1af734a99250876685484357dccf26e45ded0120047a3659d7aebaddfb3c4961"
+    },
+    {
+      "path": "reports/original-jvm-07-cast-source/inputs.json",
+      "bytes": 4121,
+      "sha256": "07e9c5ace452f0d0412150431a9c1b5d9960b86f59a3ececeb96b4e9053c3a3f"
+    },
+    {
+      "path": "reports/original-jvm-07-cast-source/original-jvm.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/original-jvm-07-cast-source/original-jvm.stdout.txt",
+      "bytes": 86,
+      "sha256": "c74dfe53c54ce51aaae417fc86610cf3de0dd4f0f9ca3e2c065ad5565639e03e"
+    },
+    {
+      "path": "reports/original-jvm-07-cast-source/original-video-monitor.dex",
+      "bytes": 4552,
+      "sha256": "940aee4861d9bd52951ccc835e91a917bb56748b4eaad5deb8a0fa1c7d2c3254"
+    },
+    {
+      "path": "reports/original-jvm-07-cast-source/parity.json",
+      "bytes": 12191,
+      "sha256": "f5548276d27f1e522df70486682233472e4f146316e759a1c7f358cf49f3b682"
+    },
+    {
+      "path": "reports/original-jvm-07-cast-source/result.json",
+      "bytes": 7669,
+      "sha256": "4905173d8eef5f75ed71df8037e2acdb9eb567c5f2049927cfc97d0ef0bab3d8"
+    }
+  ],
+  "evidence_bundle": {
+    "path": "/workspace/scratch/4130730d15aa/video-monitor-recovery/checkpoints/07-cast-source-original-jvm-coverage-gap-evidence.tar.gz",
+    "bytes": 275525,
+    "sha256": "e51518fa05d96f63d8e0360ca1595ad158448c9e3976faf1d380b2cf7c0b0615"
+  },
+  "archive_members_hash_verified": true
+}

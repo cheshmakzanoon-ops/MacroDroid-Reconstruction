@@ -1,0 +1,117 @@
+--- preserved/analyze_android_38202401393.py
++++ analyze_android_38214498395.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Independently read the actual cada56c hosted capture and ART evidence."""
++"""Independently read the actual dbcad968 hosted capture and ART evidence."""
+ from __future__ import annotations
+ import hashlib
+ import json
+@@ -13,9 +13,9 @@
+ from PIL import Image
+ 
+ BASE = Path('/workspace/scratch/4130730d15aa')
+-FOLDER = BASE / 'tooling-validation/hosted-run-38202401393'
+-OUT = BASE / 'tooling-validation/android-run-38202401393-analysis'
+-SOURCE = BASE / 'runtime-forward'
++FOLDER = BASE / 'tooling-validation/hosted-run-38214498395'
++OUT = BASE / 'ci-run-analysis/android-run-38214498395'
++SOURCE = BASE / 'MacroDroid-Reconstruction'
+ 
+ 
+ def meta(path):
+@@ -36,23 +36,24 @@
+ 
+ def main():
+     assert not OUT.exists()
+-    archive = BASE / 'tooling-validation/android-cold-launch-run-38202401393.zip'
+-    assert meta(archive) == {'bytes': 1022164, 'sha256': '552cfb1df46eb0fb324fde6468c9edee53611db2983ee7a60dc85179ccdf4891'}
++    archive = BASE / 'tooling-validation/android-cold-launch-run-38214498395.zip'
++    assert meta(archive) == {'bytes': 1021235, 'sha256': '46b33e5b3d22aba73644da191f60c9639fe7d600e003c1f5ce1ee471d31e7372'}
+     extraction = json.loads((FOLDER.parent / (FOLDER.name + '-extraction.json')).read_text())
+-    assert extraction['member_count'] == 428 and len(extraction['files']) == 428
++    assert extraction['member_count'] == 426 and len(extraction['files']) == 426
+     for entry in extraction['files']:
+         path = FOLDER / entry['path']
+         assert path.resolve().is_relative_to(FOLDER.resolve()) and not path.is_symlink()
+-        assert meta(path) == {'bytes': entry['size_bytes'], 'sha256': entry['sha256']}
++        assert meta(path) == {'bytes': entry['bytes'], 'sha256': entry['sha256']}
+     pins = {
+-        'android_compare.py': '0b9a50cec26d0cc97a2b8c5592aaf614a40b5dc339bccf85d85f1d753500126f',
+-        'android_intro.py': '5af591694ff06ae1518345fdc6510d58183f07d54cddff8899c03a9a8c85bd83',
+-        'android_post_intro.py': '941e4703467afedba33445575c4611c9afc0238ba79b46f43ff4f8683a6281c9',
++        'project/android_compare.py': '0b9a50cec26d0cc97a2b8c5592aaf614a40b5dc339bccf85d85f1d753500126f',
++        'project/android_intro.py': '5af591694ff06ae1518345fdc6510d58183f07d54cddff8899c03a9a8c85bd83',
++        'project/android_post_intro.py': '941e4703467afedba33445575c4611c9afc0238ba79b46f43ff4f8683a6281c9',
+         'tools/android/android_constructor_probe.py': 'f2ce05d3e5e50b76876b2761221c7dd796b97ce27a1207c8e5fda2ee7313afcd',
+     }
+     for name, digest in pins.items():
+         assert meta(SOURCE / name)['sha256'] == digest
+-    sys.path[:0] = [str(SOURCE), str(SOURCE / 'tools/android')]
++    sys.dont_write_bytecode = True
++    sys.path[:0] = [str(SOURCE / 'project'), str(SOURCE / 'tools/android')]
+     import android_compare as cold
+     import android_intro as intro
+     import android_post_intro as post
+@@ -115,16 +116,25 @@
+                       'xml_bytes_equal': xml_paths[0].read_bytes() == xml_paths[1].read_bytes(),
+                       'pngs': [{'path': path.relative_to(FOLDER).as_posix(), **meta(path)} for path in png_paths],
+                       'xmls': [{'path': path.relative_to(FOLDER).as_posix(), **meta(path)} for path in xml_paths]})
+-    assert [pair['changed_rgba_pixels'] for pair in pairs] == [0, 26, 0, 0, 0]
++    indicator_frames = [np.asarray(Image.open(FOLDER / 'capture' / (v + '-intro-2.png')).convert('RGBA'))
++                        for v in ('original', 'candidate')]
++    yy, xx = np.where(np.any(indicator_frames[0] != indicator_frames[1], axis=2))
++    indicator_pixels = [{'x': int(x), 'y': int(y), 'original_rgba': indicator_frames[0][y, x].tolist(),
++                         'candidate_rgba': indicator_frames[1][y, x].tolist()} for y, x in zip(yy, xx)]
++    assert len(indicator_pixels) == 35
++    assert all(128 <= row['x'] < 592 and 1184 <= row['y'] < 1200 for row in indicator_pixels)
++    assert [pair['changed_rgba_pixels'] for pair in pairs] == [0, 35, 0, 0, 0]
+     assert comparisons['cold']['installed_apk_identities_verified'] is True
+-    assert comparisons['cold']['apk_sha256'] == ['84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800', '9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2']
++    assert comparisons['cold']['apk_sha256'] == ['84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800', '5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182']
+     assert comparisons['intro']['intro_sequence_equal'] is False and comparisons['intro']['transitions_equal'] is True
+     assert comparisons['post_intro']['changed_pixels'] == 0 and comparisons['post_intro']['surface_identity_equal'] is True
+     assert comparisons['post_intro']['post_intro_surface_equal'] is False
+     assert runtime['constructor_probe_gate_passed'] is True and runtime['requested_capture_gate_passed'] is False
+-    host = BASE / 'tooling-validation/hosted-tools-run-38202401393/android-tooling-host-tests.log'
++    host = BASE / 'tooling-validation/hosted-tools-run-38214498395/android-tooling-host-tests.log'
+     host_text = host.read_text()
+-    assert re.findall(r'^Ran (\d+) tests in ([0-9.]+)s$', host_text, re.M) == [('33', '0.729')]
++    summaries = re.findall(r'^Ran (\d+) tests in ([0-9.]+)s$', host_text, re.M)
++    assert len(summaries) == 1 and summaries[0][0] == '33'
++    host_seconds = float(summaries[0][1])
+     headers = re.findall(r'^(test\S+ \([^\n]+\)) \.\.\. ', host_text, re.M)
+     inline_ok = len(re.findall(r'^test.* \.\.\. ok$', host_text, re.M))
+     separate_ok = len(re.findall(r'^ok$', host_text, re.M))
+@@ -133,8 +143,8 @@
+     evidence = {
+         'status': 'ART_VERIFIED_COLD_EXACT_INTRO_DIFFERENCE',
+         'analyzed_utc': datetime.now(timezone.utc).isoformat(),
+-        'run_id': 38202401393, 'commit': 'cada56c8a11ff5cbd892ec6d0beaeab60b3e644d',
+-        'archive': meta(archive), 'all_archive_files_verified': 428,
++        'run_id': 38214498395, 'commit': 'dbcad968c5c3e8f084205393a6c0d2d06a203c71',
++        'archive': meta(archive), 'all_archive_files_verified': 426,
+         'recorded_artifact_hashes_verified': checked, 'all_six_runtime_report_bindings_verified': True,
+         'boot_ready_binding': {'source_path': 'stages/boot-readiness.stdout.txt', 'literal_byte_offset': boot_offset,
+                               'literal_bytes': len(boot_ready_bytes), 'sha256': runtime['boot_report_sha256'],
+@@ -151,16 +161,18 @@
+         'capture_original_sha256': runtime['original_sha256'], 'capture_candidate_sha256': runtime['candidate_sha256'],
+         'capture_device_environment': capture['device'], 'capture_status': capture['status'],
+         'full_unmasked_pairs': pairs, 'comparisons': comparisons,
++        'all_35_intro2_differing_pixels': indicator_pixels,
++        'all_intro2_changes_inside_observed_indicator_rectangle': True,
+         'runtime_status': runtime['status'], 'runtime_failures': runtime['failures'],
+         'constructor_probe_gate_passed': True, 'cold_launch_capture_equal': True,
+         'intro_sequence_equal': False, 'post_intro_surface_equal': False,
+         'post_intro_raw_notification_pixels_and_xml_equal': True,
+         'post_intro_gate_retains_unequal_intro_prerequisite': True,
+         'requested_capture_gate_passed': False, 'full_runtime_1_to_1_established': False,
+-        'tooling_host_tests': {'count': 33, 'individual_ok_lines': 33, 'distinct_test_headers': len(headers), 'inline_success_lines': inline_ok, 'separate_success_lines': separate_ok, 'seconds': 0.729, 'path': 'android-tooling-host-tests.log', **meta(host)},
++        'tooling_host_tests': {'count': 33, 'individual_ok_lines': 33, 'distinct_test_headers': len(headers), 'inline_success_lines': inline_ok, 'separate_success_lines': separate_ok, 'seconds': host_seconds, 'path': 'android-tooling-host-tests.log', **meta(host)},
+         'new_android_actions_performed_by_analysis': False,
+     }
+-    OUT.mkdir()
++    OUT.mkdir(parents=True)
+     (OUT / 'independent-analysis.json').write_text(json.dumps(evidence, indent=2) + '\n')
+     (OUT / 'boot-ready-snapshot.json').write_bytes(boot_ready_bytes)
+     shutil.copyfile(Path(__file__), OUT / Path(__file__).name)

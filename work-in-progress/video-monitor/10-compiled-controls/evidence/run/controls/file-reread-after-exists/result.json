@@ -1,0 +1,23 @@
+{
+  "name": "file-reread-after-exists",
+  "reason": "The file field is read again after exists returns.",
+  "source_sha256": "c6e61dace46a20ae0bd5ccef15f97f056c029404dc775c66803677cf8c825245",
+  "compile_returncode": 0,
+  "expected_failure_labels": [
+    "video-file-length-rereads-captured-owner-file"
+  ],
+  "detected": true,
+  "execution_returncode": 2,
+  "class_sha256": "63f6579a05b3ffe8018d994057bb6c02ad6decb010e3c516961c9fbfe932ba22",
+  "cases": 1118,
+  "failed_cases": 3,
+  "unsupported_executions": 0,
+  "expected_result_failures": 0,
+  "failed_case_labels": [
+    "video-file-length-rereads-captured-owner-file",
+    "video-mutation:0:4:1",
+    "video-mutation:2:4:1"
+  ],
+  "named_failures_observed": true,
+  "original_coverage_unchanged": true
+}

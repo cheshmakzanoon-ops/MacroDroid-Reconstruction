@@ -1,0 +1,40 @@
+{
+  "name": "stall-counter-wraps-as-int",
+  "reason": "Integer.MAX_VALUE increments with signed int wraparound.",
+  "source_sha256": "693a26028f9d741e0bb27896cc3be434cf5f9b6cbb7d78d75537252b24faf341",
+  "compile_returncode": 0,
+  "expected_failure_labels": [
+    "video-numeric-contract:8"
+  ],
+  "detected": true,
+  "execution_returncode": 2,
+  "class_sha256": "2b688809a892767907d23bb7172f8c475988d99878f8326de1651dc2e684eda3",
+  "cases": 1118,
+  "failed_cases": 20,
+  "unsupported_executions": 0,
+  "expected_result_failures": 0,
+  "failed_case_labels": [
+    "video-numeric-contract:8",
+    "video-size:0:1024:2147483647",
+    "video-size:0:1:2147483647",
+    "video-size:0:2048:2147483647",
+    "video-size:0:9223372036854775807:2147483647",
+    "video-size:1023:1024:2147483647",
+    "video-size:1023:2048:2147483647",
+    "video-size:1023:9223372036854775807:2147483647",
+    "video-size:1024:1024:2147483647",
+    "video-size:1024:2048:2147483647",
+    "video-size:1024:9223372036854775807:2147483647",
+    "video-size:1025:2048:2147483647",
+    "video-size:1025:9223372036854775807:2147483647",
+    "video-size:1:1024:2147483647",
+    "video-size:1:1:2147483647",
+    "video-size:1:2048:2147483647",
+    "video-size:1:9223372036854775807:2147483647",
+    "video-size:2048:2048:2147483647",
+    "video-size:2048:9223372036854775807:2147483647",
+    "video-size:9223372036854775807:9223372036854775807:2147483647"
+  ],
+  "named_failures_observed": true,
+  "original_coverage_unchanged": true
+}

@@ -1,0 +1,142 @@
+{
+  "status": "METHOD_ONLY_THREE_PATH_STUDY_FAILED",
+  "started_utc": "2026-10-12T07:06:36.604328+00:00",
+  "scope": "Method-only production D8/transplant study; the strict original instruction coverage gate is unchanged.",
+  "private_work": "/tmp/macrodroid-video-dex-study-o_952jg4",
+  "active_source_changed": false,
+  "apk_built": false,
+  "android_executed": false,
+  "coverage_exemption_implemented": false,
+  "method": "Lcom/arlosoft/macrodroid/action/services/a;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+  "commands": [
+    {
+      "label": "d8-one-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-11/pipeline-output/d8",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-11/pipeline-output/inputs.jar"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 3.149376,
+      "stdout": {
+        "path": "d8-one-helper.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "d8-one-helper.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "disassemble-one-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-11/pipeline-output/helper-smali",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-11/pipeline-output/d8/classes.dex"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 0.822338,
+      "stdout": {
+        "path": "disassemble-one-helper.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "disassemble-one-helper.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "assemble-one-target",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-j",
+        "2",
+        "-o",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-11/pipeline-output/rebuilt-video-monitor.dex",
+        "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/method-only-three-path-11/pipeline-output/target-smali"
+      ],
+      "returncode": 1,
+      "timed_out": false,
+      "timeout_seconds": 300,
+      "seconds": 0.271326,
+      "stdout": {
+        "path": "assemble-one-target.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "assemble-one-target.stderr.txt",
+        "sha256": "d8cd5ac1f29ca6f239087a0558703f155dcdd0f98bbb12327a476baa75a08893"
+      }
+    }
+  ],
+  "removed_option_environment_keys": [],
+  "tool_jar": {
+    "path": "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+    "bytes": 80076986,
+    "sha256": "354b10af74c09f5d2ab139def4231f0906dc6cc75738b1057e5a8263a412848e"
+  },
+  "jdk_inputs": [
+    {
+      "path": "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+      "bytes": 12328,
+      "sha256": "2a207f5e7d075afa01d97f8048389a64432a44c4a5af0f5e77d6e286ec5f401d"
+    },
+    {
+      "path": "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+      "bytes": 12424,
+      "sha256": "55859b80e7a9c4c4736be19ad3addeb35112ca6d17a30c4e0e116afc0a499bdb"
+    },
+    {
+      "path": "/workspace/scratch/4130730d15aa/tooling/jdk21/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "/workspace/scratch/4130730d15aa/tooling/jdk21/lib/server/libjvm.so",
+      "bytes": 26963256,
+      "sha256": "462fa559157ee8a862e7e4b8a4a74f8abbf5e1a9deb64f22ee23c7e8c43f698b"
+    },
+    {
+      "path": "/workspace/scratch/4130730d15aa/tooling/jdk21/lib/modules",
+      "bytes": 142255299,
+      "sha256": "70c5465dabf8e1bec2860631ea3ffd342f0ec23a5e2efd3a389d2abe32448f98"
+    }
+  ],
+  "class_index": {
+    "path": "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/source/class-index.json",
+    "sha256": "f076e64d661f00c6da4163e88aa43a2f1a28ab6324e477c8c67de23b0976bb06",
+    "selected_records": 1
+  },
+  "passed": false,
+  "error": "RuntimeError: assemble-one-target returned 1",
+  "finished_utc": "2026-10-12T07:06:44.273318+00:00"
+}

@@ -1,0 +1,11 @@
+# Preserved catalog-generation and retry error
+
+The first completed 57-control study is frozen separately as checkpoint 08. Its actual result is 56 detected controls and one failed javac compilation for an ill-typed dispatcher replacement.
+
+The next authoring step edited the catalog generator, then invoked it at its existing default output path. The generator correctly refused to overwrite `video_method_mutants.json` and returned `FileExistsError`. A surrounding command orchestration mistake continued to the next launch despite that failure. As a result, `reports/compiled-faults-09-final` executed the unchanged original catalog. The directory's provisional name does not describe a successful result. That repeated run completed with the same failed gate, 56 detected controls, and the same dispatcher javac error; it restored the exact positive baseline after all entries. Its full inputs, outputs, mutant classes, reports, and restoration are included separately under `repeated-original-catalog` in the final capsule.
+
+An attempted SIGINT of the precisely identified wrapper through the visible procfs PID returned `ProcessLookupError`; the procfs identifier was not a signalable process ID in the caller's namespace. No cancellation succeeded and the repeated study ran to its recorded completion. No other process was targeted.
+
+The corrected authoring command gives the generator an explicit fresh `--output video-monitor-recovery/video_method_mutants_final.json`. That generated file was independently compared with the initial catalog before the subsequent run was launched. Exactly one replacement string differs: the ill-typed `defpackage.i93 dispatcher = zp4.a;` is replaced with the compilable `m47 dispatcher = null;`. All 57 names, required failure labels, other edits, frozen helper identity, and baseline-checkpoint binding are identical. The corrected study is `reports/compiled-faults-10-final` and its raw catalog SHA256 is `c004a5aab38dedd12bb5a7eff4d0e8de739383d490b0d50198f5f8c0d47f488d`.
+
+The redundant run provides no extra method, coverage, or fault-detection credit. The failed generation and repeated old catalog did not alter any production source, frozen checkpoint, original fixture, oracle, observer, active registry, or APK.

@@ -1,0 +1,819 @@
+{
+  "method": "Lcom/arlosoft/macrodroid/action/services/a;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+  "helper_sha256": "67f5a47013ffbffa67859f9103d2034b3225521d10be9d96d65acd31599d45ee",
+  "baseline_checkpoint_sha256": "06986104338d570dd78e4abf34f2691756f772c8f6e521769a9ebf06ea97edbe",
+  "baseline_study_directory": "original-jvm-07-cast-source",
+  "expected_cases": 1118,
+  "expected_independent_checks": 230,
+  "scope": "Actual compiled one-body faults only; unchanged baseline raw coverage remains failed.",
+  "controls": [
+    {
+      "name": "initial-delay-duration",
+      "reason": "Initial suspension delay is exactly 5000ms.",
+      "edits": [
+        {
+          "find": "sz6.s(5000L, self)",
+          "replace": "sz6.s(4000L, self)",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-entry:0:false:0"
+      ]
+    },
+    {
+      "name": "initial-label-before-delay",
+      "reason": "The continuation is label1 before the first delay boundary.",
+      "edits": [
+        {
+          "find": "self.label = 1;",
+          "replace": "self.label = 2;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-inactive-label:0"
+      ]
+    },
+    {
+      "name": "initial-result-validation",
+      "reason": "Initial failure result must escape before changing state or delaying.",
+      "edits": [
+        {
+          "find": "if (label == 0) {\n            u2f.P(result);",
+          "replace": "if (label == 0) {",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-entry:0:false:3"
+      ]
+    },
+    {
+      "name": "label-one-result-validation",
+      "reason": "Label1 validates its result outside the monitor catch.",
+      "edits": [
+        {
+          "find": "} else if (label == 1) {\n            u2f.P(result);",
+          "replace": "} else if (label == 1) {",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-entry:1:false:3"
+      ]
+    },
+    {
+      "name": "label-three-result-validation",
+      "reason": "Label3 validates its result outside the monitor catch.",
+      "edits": [
+        {
+          "find": "} else if (label == 3) {\n            u2f.P(result);",
+          "replace": "} else if (label == 3) {",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-entry:3:false:3"
+      ]
+    },
+    {
+      "name": "retain-dead-file-cast",
+      "reason": "Label2 retains the otherwise unused saved File cast.",
+      "edits": [
+        {
+          "find": "            File ignoredFile = (File) self.L$1;\n",
+          "replace": "",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-dead-casts:0:2"
+      ]
+    },
+    {
+      "name": "retain-dead-flag-cast",
+      "reason": "Label2 retains the otherwise unused saved qnc cast.",
+      "edits": [
+        {
+          "find": "            qnc ignoredFlag = (qnc) self.L$0;\n",
+          "replace": "",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-dead-casts:2:0"
+      ]
+    },
+    {
+      "name": "dead-cast-order",
+      "reason": "Distinct malformed source types expose File-before-qnc order.",
+      "edits": [
+        {
+          "find": "            File ignoredFile = (File) self.L$1;\n            qnc ignoredFlag = (qnc) self.L$0;",
+          "replace": "            qnc ignoredFlag = (qnc) self.L$0;\n            File ignoredFile = (File) self.L$1;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-dead-casts:2:2"
+      ]
+    },
+    {
+      "name": "label-two-result-validation",
+      "reason": "A stopped-operation failure must enter its original error/retry path.",
+      "edits": [
+        {
+          "find": "            try {\n                u2f.P(result);\n                return unit;",
+          "replace": "            try {\n                return unit;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-label-two-resume-failure:3"
+      ]
+    },
+    {
+      "name": "label-two-catches-exception-only",
+      "reason": "Error from a label2 resumed result escapes.",
+      "edits": [
+        {
+          "find": "                return unit;\n            } catch (Exception failure) {",
+          "replace": "                return unit;\n            } catch (Throwable failure) {",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-label-two-resume-failure:4"
+      ]
+    },
+    {
+      "name": "invalid-label-defensive-return",
+      "reason": "The injected returning guard follows the exact defensive null return.",
+      "edits": [
+        {
+          "find": "e6d.r(\"call to 'resume' before 'invoke' with coroutine\");\n            return null;",
+          "replace": "e6d.r(\"call to 'resume' before 'invoke' with coroutine\");\n            return unit;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-invalid-guard-returns-injected"
+      ]
+    },
+    {
+      "name": "companion-read-before-recording",
+      "reason": "The companion getClass check occurs before reading the recording flag.",
+      "edits": [
+        {
+          "find": "            BaseVideoRecordingService.A.getClass();\n",
+          "replace": "",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-companion-before-recording:false"
+      ]
+    },
+    {
+      "name": "inactive-unit-identity",
+      "reason": "An inactive recording returns the captured Unit identity.",
+      "edits": [
+        {
+          "find": "if (!BaseVideoRecordingService.B) return unit;",
+          "replace": "if (!BaseVideoRecordingService.B) return null;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-inactive-label:1"
+      ]
+    },
+    {
+      "name": "recording-parent-directory-read",
+      "reason": "The existing file parent must be consulted before fallback.",
+      "edits": [
+        {
+          "find": "if (directory != null) directory = directory.getParentFile();",
+          "replace": "if (directory != null) directory = null;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:0:1"
+      ]
+    },
+    {
+      "name": "movies-directory-argument",
+      "reason": "Fallback forwards the actual Environment movies constant.",
+      "edits": [
+        {
+          "find": "String movies = Environment.DIRECTORY_MOVIES;",
+          "replace": "String movies = null;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:3:1"
+      ]
+    },
+    {
+      "name": "captured-storage-owner-read",
+      "reason": "A successful c call keeps its captured owner for x reads.",
+      "edits": [
+        {
+          "find": "long previousAvailable = storageOwner.x;",
+          "replace": "long previousAvailable = self.this$0.x;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-captured-storage-owner-survives-field-null"
+      ]
+    },
+    {
+      "name": "captured-storage-owner-write",
+      "reason": "The x write uses the captured storage owner after owner-field mutation.",
+      "edits": [
+        {
+          "find": "storageOwner.x = available;",
+          "replace": "self.this$0.x = available;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-captured-storage-owner-survives-field-null"
+      ]
+    },
+    {
+      "name": "storage-state-before-info-log",
+      "reason": "Availability state changes before the logger can observe or throw.",
+      "edits": [
+        {
+          "find": "                        storageOwner.x = available;\n",
+          "replace": "",
+          "count": 1
+        },
+        {
+          "find": "                        kjf.q(storageOwner.s, text);",
+          "replace": "                        kjf.q(storageOwner.s, text);\n                        storageOwner.x = available;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:0:1"
+      ]
+    },
+    {
+      "name": "strict-storage-report-threshold",
+      "reason": "Equality at a 100MiB reduction must not emit a fresh availability report.",
+      "edits": [
+        {
+          "find": "available < previousAvailable - 104857600L",
+          "replace": "available <= previousAvailable - 104857600L",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-exact-storage-report-threshold:0"
+      ]
+    },
+    {
+      "name": "storage-report-interval",
+      "reason": "The report interval is 100MiB, not 1MiB.",
+      "edits": [
+        {
+          "find": "available < previousAvailable - 104857600L",
+          "replace": "available < previousAvailable - 1048576L",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-exact-storage-report-threshold:0"
+      ]
+    },
+    {
+      "name": "zero-prior-storage-reports",
+      "reason": "An initial zero availability value enters the reporting branch.",
+      "edits": [
+        {
+          "find": "previousAvailable <= 0L",
+          "replace": "previousAvailable < 0L",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:0:1"
+      ]
+    },
+    {
+      "name": "strict-critical-storage-threshold",
+      "reason": "Exactly 128MiB is outside the critical-storage condition.",
+      "edits": [
+        {
+          "find": "available < 134217728L",
+          "replace": "available <= 134217728L",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-space:134217728:0"
+      ]
+    },
+    {
+      "name": "storage-megabyte-log-units",
+      "reason": "Available and critical storage text uses division by 1048576.",
+      "edits": [
+        {
+          "find": "available / 1048576L",
+          "replace": "available / 1024L",
+          "count": 2
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:0:1"
+      ]
+    },
+    {
+      "name": "captured-storage-log-identifier",
+      "reason": "The storage log identifier belongs to the captured owner.",
+      "edits": [
+        {
+          "find": "kjf.q(storageOwner.s, text);",
+          "replace": "kjf.q(self.this$0.s, text);",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-captured-storage-owner-survives-field-null"
+      ]
+    },
+    {
+      "name": "missing-file-does-not-read-length",
+      "reason": "A missing file produces size zero without a length call.",
+      "edits": [
+        {
+          "find": "                                size = 0L;\n                            }\n                        } else",
+          "replace": "                                size = file.length();\n                            }\n                        } else",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:6:1"
+      ]
+    },
+    {
+      "name": "file-reread-after-exists",
+      "reason": "The file field is read again after exists returns.",
+      "edits": [
+        {
+          "find": "file = fileOwner.t;\n                                file.getClass();",
+          "replace": "file = file;\n                                file.getClass();",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-file-length-rereads-captured-owner-file"
+      ]
+    },
+    {
+      "name": "descriptor-size-sentinel",
+      "reason": "A non-null file descriptor without File yields the negative sentinel.",
+      "edits": [
+        {
+          "find": "size = fileOwner.u != null ? -1L : 0L;",
+          "replace": "size = fileOwner.u != null ? 0L : 0L;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:4:1"
+      ]
+    },
+    {
+      "name": "file-size-catches-exception-only",
+      "reason": "An Error during File access escapes the inner Exception catch.",
+      "edits": [
+        {
+          "find": "                    } catch (Exception failure) {",
+          "replace": "                    } catch (Throwable failure) {",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-fault:0:4:1"
+      ]
+    },
+    {
+      "name": "file-error-fallback-zero",
+      "reason": "A caught File-size Exception resumes with size zero.",
+      "edits": [
+        {
+          "find": "                        size = 0L;\n                    }\n\n                    if (size >= 0L)",
+          "replace": "                        size = -1L;\n                    }\n\n                    if (size >= 0L)",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:7:1"
+      ]
+    },
+    {
+      "name": "zero-file-size-is-processed",
+      "reason": "Zero size still logs and updates the monitoring state.",
+      "edits": [
+        {
+          "find": "if (size >= 0L)",
+          "replace": "if (size > 0L)",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-numeric-contract:2"
+      ]
+    },
+    {
+      "name": "file-kilobyte-log-units",
+      "reason": "Current file size uses binary kilobytes.",
+      "edits": [
+        {
+          "find": "size / 1024L",
+          "replace": "size / 1000L",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-size:1023:0:0"
+      ]
+    },
+    {
+      "name": "strict-positive-previous-size",
+      "reason": "The prior-size branch requires a strictly positive value.",
+      "edits": [
+        {
+          "find": "previousSize > 0L",
+          "replace": "previousSize >= 0L",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-numeric-contract:2"
+      ]
+    },
+    {
+      "name": "growth-subtraction-direction",
+      "reason": "Growth subtracts previous size from current size.",
+      "edits": [
+        {
+          "find": "long growth = size - previousSize;",
+          "replace": "long growth = previousSize - size;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-numeric-contract:4"
+      ]
+    },
+    {
+      "name": "equal-size-is-stalled",
+      "reason": "A zero growth value increments the stalled counter.",
+      "edits": [
+        {
+          "find": "growth <= 0L",
+          "replace": "growth < 0L",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-numeric-contract:5"
+      ]
+    },
+    {
+      "name": "stall-counter-wraps-as-int",
+      "reason": "Integer.MAX_VALUE increments with signed int wraparound.",
+      "edits": [
+        {
+          "find": "int checks = previousOwner.w + 1;",
+          "replace": "int checks = previousOwner.w == Integer.MAX_VALUE ? Integer.MAX_VALUE : previousOwner.w + 1;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-numeric-contract:8"
+      ]
+    },
+    {
+      "name": "stall-counter-increments-once",
+      "reason": "Each stopped-growth check increments by exactly one.",
+      "edits": [
+        {
+          "find": "int checks = previousOwner.w + 1;",
+          "replace": "int checks = previousOwner.w + 2;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-numeric-contract:5"
+      ]
+    },
+    {
+      "name": "third-stalled-check-stops",
+      "reason": "The critical stalled threshold includes check three.",
+      "edits": [
+        {
+          "find": "checks >= 3",
+          "replace": "checks > 3",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-numeric-contract:6"
+      ]
+    },
+    {
+      "name": "stall-counter-owner-reread",
+      "reason": "The post-log counter comes from a fresh owner-field read.",
+      "edits": [
+        {
+          "find": "checks = self.this$0.w;",
+          "replace": "checks = previousOwner.w;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-mutation:2:7:0"
+      ]
+    },
+    {
+      "name": "stall-seconds-wide-multiply",
+      "reason": "Counter-to-seconds multiplication remains long before arithmetic.",
+      "edits": [
+        {
+          "find": "(long) checks * 3000L / 1000L",
+          "replace": "(long) (checks * 3000) / 1000L",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-counter-seconds-remain-long"
+      ]
+    },
+    {
+      "name": "growth-resets-stall-counter",
+      "reason": "Positive growth resets the captured counter to zero.",
+      "edits": [
+        {
+          "find": "previousOwner.w = 0;",
+          "replace": "previousOwner.w = 1;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-numeric-contract:4"
+      ]
+    },
+    {
+      "name": "growth-kilobyte-log-units",
+      "reason": "Growth text uses binary kilobytes too.",
+      "edits": [
+        {
+          "find": "growth / 1024L",
+          "replace": "growth / 1000L",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-size:1024:1:0"
+      ]
+    },
+    {
+      "name": "final-size-owner-reread",
+      "reason": "The final previous-size write uses a freshly read owner.",
+      "edits": [
+        {
+          "find": "self.this$0.v = size;",
+          "replace": "previousOwner.v = size;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-mutation:0:7:0"
+      ]
+    },
+    {
+      "name": "stop-callback-captures-owner",
+      "reason": "The stop callback captures the current owner.",
+      "edits": [
+        {
+          "find": "new d31(self.this$0, null)",
+          "replace": "new d31(null, null)",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:1:1"
+      ]
+    },
+    {
+      "name": "stop-callback-null-completion",
+      "reason": "The stop callback constructor has null completion.",
+      "edits": [
+        {
+          "find": "new d31(self.this$0, null)",
+          "replace": "new d31(self.this$0, self)",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:1:1"
+      ]
+    },
+    {
+      "name": "stop-dispatcher-identity",
+      "reason": "Dispatch uses at9.a after the preserved discarded dispatcher read.",
+      "edits": [
+        {
+          "find": "m47 dispatcher = at9.a;",
+          "replace": "m47 dispatcher = null;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:1:1"
+      ]
+    },
+    {
+      "name": "clear-saved-flag-before-suspension",
+      "reason": "L0 is cleared at every preserved suspension preparation.",
+      "edits": [
+        {
+          "find": "self.L$0 = null;",
+          "replace": "",
+          "count": 3
+        }
+      ],
+      "expected_failure_labels": [
+        "video-dispatch-result:0"
+      ]
+    },
+    {
+      "name": "clear-saved-file-before-suspension",
+      "reason": "L1 is cleared at every preserved suspension preparation.",
+      "edits": [
+        {
+          "find": "self.L$1 = null;",
+          "replace": "",
+          "count": 3
+        }
+      ],
+      "expected_failure_labels": [
+        "video-dispatch-result:0"
+      ]
+    },
+    {
+      "name": "stop-resume-label",
+      "reason": "Stop dispatch stores label2.",
+      "edits": [
+        {
+          "find": "self.label = 2;",
+          "replace": "self.label = 3;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:1:1"
+      ]
+    },
+    {
+      "name": "repeat-delay-duration",
+      "reason": "Both retry-delay sites use exactly 3000ms.",
+      "edits": [
+        {
+          "find": "sz6.s(3000L, self)",
+          "replace": "sz6.s(1000L, self)",
+          "count": 2
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:0:1"
+      ]
+    },
+    {
+      "name": "repeat-resume-label",
+      "reason": "Both repeated-delay sites store label3.",
+      "edits": [
+        {
+          "find": "self.label = 3;",
+          "replace": "self.label = 1;",
+          "count": 2
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:0:1"
+      ]
+    },
+    {
+      "name": "delay-marker-reference-identity",
+      "reason": "An equals-only marker lookalike must not count as suspended.",
+      "edits": [
+        {
+          "find": "delayed == suspended",
+          "replace": "java.util.Objects.equals(delayed, suspended)",
+          "count": 3
+        }
+      ],
+      "expected_failure_labels": [
+        "video-delay-result:0:5"
+      ]
+    },
+    {
+      "name": "dispatch-marker-reference-identity",
+      "reason": "Stop dispatch also compares the suspension marker by identity.",
+      "edits": [
+        {
+          "find": "stopped == suspended",
+          "replace": "java.util.Objects.equals(stopped, suspended)",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-dispatch-result:5"
+      ]
+    },
+    {
+      "name": "monitor-catches-exception-only",
+      "reason": "Error during storage monitoring escapes the outer catch.",
+      "edits": [
+        {
+          "find": "                }\n            } catch (Exception failure) {\n                String message",
+          "replace": "                }\n            } catch (Throwable failure) {\n                String message",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-fault:0:2:1"
+      ]
+    },
+    {
+      "name": "outer-error-logger-escapes",
+      "reason": "The error logger is not protected by another swallowing catch.",
+      "edits": [
+        {
+          "find": "kjf.g(self.this$0.s, text);",
+          "replace": "try { kjf.g(self.this$0.s, text); } catch (Exception ignored) { }",
+          "count": 3
+        }
+      ],
+      "expected_failure_labels": [
+        "video-outer-logger-escapes-after-inner:0"
+      ]
+    },
+    {
+      "name": "exception-message-read-once",
+      "reason": "Each catch reads Throwable.getMessage once before concatenation.",
+      "edits": [
+        {
+          "find": "String message = ((Throwable) failure).getMessage();",
+          "replace": "String message = ((Throwable) failure).getMessage(); ((Throwable) failure).getMessage();",
+          "count": 3
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:7:1"
+      ]
+    },
+    {
+      "name": "callback-before-stop-state-preparation",
+      "reason": "The callback constructor observes the old continuation state.",
+      "edits": [
+        {
+          "find": "                    self.label = 2;\n",
+          "replace": "",
+          "count": 1
+        },
+        {
+          "find": "                    d31 callback = new d31(self.this$0, null);",
+          "replace": "                    self.label = 2;\n                    d31 callback = new d31(self.this$0, null);",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:1:1"
+      ]
+    },
+    {
+      "name": "critical-conditions-dispatch-stop",
+      "reason": "Both critical conditions set the stop flag.",
+      "edits": [
+        {
+          "find": "stop = true;",
+          "replace": "stop = false;",
+          "count": 2
+        }
+      ],
+      "expected_failure_labels": [
+        "video-profile:1:1"
+      ]
+    }
+  ]
+}

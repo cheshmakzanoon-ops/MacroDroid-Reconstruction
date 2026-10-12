@@ -1,0 +1,25 @@
+{
+  "name": "retain-dead-flag-cast",
+  "reason": "Label2 retains the otherwise unused saved qnc cast.",
+  "source_sha256": "502e65fad513aca2960ea9b88eb2e3f4a51a278c31355a9af0feb45187f849f1",
+  "compile_returncode": 0,
+  "expected_failure_labels": [
+    "video-dead-casts:2:0"
+  ],
+  "detected": true,
+  "execution_returncode": 2,
+  "class_sha256": "2dd89ac9711f23e6f60dea92b36d4152fec504e9df526b03911e757448a010b9",
+  "cases": 1118,
+  "failed_cases": 5,
+  "unsupported_executions": 0,
+  "expected_result_failures": 0,
+  "failed_case_labels": [
+    "video-dead-casts:2:0",
+    "video-dead-casts:2:1",
+    "video-dead-casts:3:0",
+    "video-dead-casts:3:1",
+    "video-resumed-stop-dead-cast:0"
+  ],
+  "named_failures_observed": true,
+  "original_coverage_unchanged": true
+}

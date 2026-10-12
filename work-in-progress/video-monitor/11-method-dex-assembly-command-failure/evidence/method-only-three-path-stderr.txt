@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/video-monitor-recovery/video_method_dex_study.py", line 323, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/scratch/4130730d15aa/video-monitor-recovery/video_method_dex_study.py", line 209, in main
+    run('assemble-one-target', [java, '-Xmx512m', '-cp', jar, 'com.android.tools.smali.Main', 'a', '--api', '23', '-j', '2', '-o', rebuilt, smali.parent])
+  File "/workspace/scratch/4130730d15aa/video-monitor-recovery/video_method_dex_study.py", line 104, in run
+    raise RuntimeError(label + ' returned ' + str(code))
+RuntimeError: assemble-one-target returned 1
