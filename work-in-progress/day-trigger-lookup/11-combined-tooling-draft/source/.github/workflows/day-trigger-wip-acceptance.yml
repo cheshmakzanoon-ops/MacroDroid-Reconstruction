@@ -1,0 +1,153 @@
+name: DayTrigger numeric and lookup WIP source acceptance
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/day_trigger_acceptance/**'
+      - '.github/workflows/day-trigger-wip-acceptance.yml'
+  pull_request:
+    paths:
+      - 'tools/day_trigger_acceptance/**'
+      - '.github/workflows/day-trigger-wip-acceptance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: day-trigger-wip-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PYTHONUTF8: '1'
+  PYTHONDONTWRITEBYTECODE: '1'
+  DAY_TRIGGER_RUNTIME_MANIFEST_SHA256: '4da614a2b88b7cf3c8739cbc40ea9d5eff63fdec42c17e2343a27694aff852f8'
+
+jobs:
+  isolated-day-trigger-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - name: Check out only the exact triggering job tooling
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.sha }}
+          path: job-source
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: true
+          sparse-checkout: |
+            tools/day_trigger_acceptance
+            .github/workflows
+      - name: Check out the immutable 1,242-method baseline inputs
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: dbcad968c5c3e8f084205393a6c0d2d06a203c71
+          path: baseline-repository
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: true
+          sparse-checkout: |
+            project
+            vendor/v9
+            scripts
+            .github/workflows
+      - name: Check out the independently committed nineteen-file numeric overlay
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: 811f979eda1b937917c18defef38455c49a59062
+          path: overlay-repository
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: true
+          sparse-checkout: |
+            work-in-progress/day-trigger-numeric/08-command-filesystem-source-successor
+      - name: Check out both immutable lookup source capsules
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: 39250fac022aee5551f36782bafd72cabbc33718
+          path: lookup-repository
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: true
+          sparse-checkout: |
+            work-in-progress/day-trigger-lookup/08-numeric-filesystem-merge
+            work-in-progress/day-trigger-lookup/09-lookup-recorder-successor
+      - name: Set up the parent workflow's Java 21 toolchain
+        uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Verify all job tooling before executing it
+        id: tool-inputs
+        run: |
+          python3 -B - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          root = Path('job-source/tools/day_trigger_acceptance')
+          manifest = root / 'runtime-files.json'
+          if hashlib.sha256(manifest.read_bytes()).hexdigest() != os.environ['DAY_TRIGGER_RUNTIME_MANIFEST_SHA256']:
+              raise SystemExit('Exact hosted tooling manifest differs')
+          value = json.loads(manifest.read_text())
+          names = {row['path'] for row in value['files']}
+          if len(names) != len(value['files']) or names != {path.name for path in root.iterdir() if path.is_file() and path.name != 'runtime-files.json'}:
+              raise SystemExit('Hosted tooling inventory differs')
+          for row in value['files']:
+              path = root / row['path']
+              if path.is_symlink() or not path.is_file() or path.parent != root:
+                  raise SystemExit('Invalid hosted tooling file')
+              raw = path.read_bytes()
+              if len(raw) != row['bytes'] or hashlib.sha256(raw).hexdigest() != row['sha256']:
+                  raise SystemExit('Hosted tooling bytes differ: ' + row['path'])
+          Path('hosted-tool-source-verification.json').write_text(json.dumps({'passed': True, 'manifest_sha256': os.environ['DAY_TRIGGER_RUNTIME_MANIFEST_SHA256'], 'files': value['files']}, indent=2) + '\n')
+          PY
+      - name: Run bounded job policy and subprocess controls
+        env:
+          DAY_TRIGGER_CONTROL_EVIDENCE_ROOT: ${{ github.workspace }}/hosted-tool-control-evidence
+        run: timeout 300s python3 -B -m unittest discover -s job-source/tools/day_trigger_acceptance -p 'test_*.py' -v > hosted-tool-host-tests.log 2>&1
+      - name: Physically verify baseline, Numeric19, and then Lookup21
+        run: |
+          python3 -B job-source/tools/day_trigger_acceptance/prepare.py \
+            --baseline-repository baseline-repository \
+            --overlay-repository overlay-repository \
+            --lookup-repository lookup-repository \
+            --destination combined-workspace \
+            --output hosted-proof \
+            --expected-job-commit "$GITHUB_SHA" \
+            --runtime-manifest-sha256 "$DAY_TRIGGER_RUNTIME_MANIFEST_SHA256"
+      - name: Build both APKs and run all sixteen WIP acceptance gates
+        run: |
+          python3 -B job-source/tools/day_trigger_acceptance/run_acceptance.py \
+            --baseline-repository baseline-repository \
+            --overlay-repository overlay-repository \
+            --lookup-repository lookup-repository \
+            --output hosted-proof \
+            --runtime-manifest-sha256 "$DAY_TRIGGER_RUNTIME_MANIFEST_SHA256"
+      - name: Independently verify the actual complete result and preserve any failure
+        if: always() && steps.tool-inputs.outcome == 'success'
+        run: |
+          python3 -B job-source/tools/day_trigger_acceptance/verify.py \
+            --baseline-repository baseline-repository \
+            --overlay-repository overlay-repository \
+            --lookup-repository lookup-repository \
+            --output hosted-proof \
+            --runtime-manifest-sha256 "$DAY_TRIGGER_RUNTIME_MANIFEST_SHA256"
+      - name: Preserve complete WIP inputs, reports, APKs and literal outcomes
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: day-trigger-wip-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          include-hidden-files: true
+          path: |
+            hosted-proof/
+            !hosted-proof/tmp/
+            combined-workspace/MacroDroid_v9/reports/
+            combined-workspace/MacroDroid_v9/dist/*.apk
+            hosted-tool-host-tests.log
+            hosted-tool-control-evidence/
+            hosted-tool-source-verification.json
+            job-source/tools/day_trigger_acceptance/
+            job-source/.github/workflows/day-trigger-wip-acceptance.yml

@@ -1,0 +1,73 @@
+--- parent/editor_journey.py
++++ successor/editor_journey.py
+@@ -214,7 +214,12 @@
+ 
+ def validate_snapshot(folder, shot, proof):
+     a = shot['artifacts']
+-    if shot['owner'] not in (PACKAGE, PERMISSION) or not proof.valid_live_interval(shot['sample_interval_seconds']):
++    if shot['owner'] not in (PACKAGE, PERMISSION):
++        import exact_alarm_journey
++        if not exact_alarm_journey.is_configured() or shot['owner'] != exact_alarm_journey.SETTINGS:
++            raise JourneyError('Invalid snapshot owner or live interval')
++        exact_alarm_journey.validate_settings_snapshot(folder, shot, proof)
++    if not proof.valid_live_interval(shot['sample_interval_seconds']):
+         raise JourneyError('Invalid snapshot owner or live interval')
+     proof.live_pids(proof.artifact(folder, a['pid_first']).decode(), proof.artifact(folder, a['pid_final']).decode())
+     if not resumed(proof.artifact(folder, a['foreground']).decode(), shot['owner']):
+@@ -421,10 +426,13 @@
+                 handoffs.append(run_handoff)
+         if policy is not None:
+             observed_journey.capture_events(folder, report, proof)
+-            import notification_readiness
++            notification_readiness = observed_journey.readiness_adapter(report['schema'])
+             if report['schema'] == notification_readiness.REPORT_SCHEMA:
+                 result['notification_readiness_observations'] = notification_readiness.verify_report(folder, report, proof)
+                 result['notification_readiness_policy'] = notification_readiness.POLICY
++                if observed_journey.exact_alarm_plan():
++                    import exact_alarm_journey
++                    result[exact_alarm_journey.POLICY_KEY] = exact_alarm_journey.POLICY
+             result['capture_policy'] = policy
+             result['process_handoff_outcomes'] = handoffs
+             result['process_handoff_outcomes_equal'] = handoffs[0] == handoffs[1]
+@@ -463,6 +471,16 @@
+                 result['trigger_type_tapped'] = True
+                 result['trigger_configuration_confirmed'] = False
+                 result['status'] = 'EXACT_DAY_TIME_TRIGGER_OBSERVATION_ONLY' if result['journey_equal'] else 'JOURNEY_DIFFERENCE'
++            elif observed_journey.exact_alarm_plan():
++                result['scope'] = 'Observed Day/Time exact-alarm explanation, one observed OK tap and the resulting Settings surface only'
++                result['catalog_navigation_established'] = True
++                result['trigger_type_tapped'] = True
++                result['exact_alarm_explanation_ok_tapped'] = True
++                result['settings_navigation_observed'] = True
++                result['settings_inputs'] = 0
++                result['permission_granted'] = False
++                result['trigger_configuration_confirmed'] = False
++                result['status'] = 'EXACT_ALARM_SETTINGS_OBSERVATION_ONLY' if result['journey_equal'] else 'JOURNEY_DIFFERENCE'
+         if result['journey_equal'] and result.get('post_crash_continuation_observed_in_both'):
+             result['status'] = 'MATCHED_POST_CRASH_CONTINUATION_ONLY'
+         result['apk_sha256'] = [r['apk_sha256'] for r in runs]
+@@ -482,6 +500,9 @@
+     ap.add_argument('--settle-full-frames', action='store_true')
+     ap.add_argument('--observe-notification-readiness', action='store_true')
+     args = ap.parse_args()
++    import observed_journey
++    if observed_journey.exact_alarm_plan() and not args.observe_notification_readiness:
++        ap.error('Exact-alarm navigation requires --observe-notification-readiness')
+     if args.observe_denial_handoff != args.settle_full_frames:
+         ap.error('The observed policy requires both --observe-denial-handoff and --settle-full-frames')
+     if args.observe_notification_readiness and not args.observe_denial_handoff:
+@@ -497,10 +518,13 @@
+         import observed_journey
+         report.update(schema=observed_journey.REPORT_SCHEMA, capture_policy=observed_journey.POLICY, capture_events=[])
+     if args.observe_notification_readiness:
+-        import notification_readiness
++        notification_readiness = observed_journey.readiness_adapter()
+         notification_readiness.require_plan()
+         report.update(schema=notification_readiness.REPORT_SCHEMA,
+                       notification_readiness_policy=notification_readiness.POLICY)
++        if observed_journey.exact_alarm_plan():
++            import exact_alarm_journey
++            report[exact_alarm_journey.POLICY_KEY] = exact_alarm_journey.POLICY
+     def save():
+         (args.output / 'journey.json').write_text(json.dumps(report, indent=2) + '\n')
+     save()

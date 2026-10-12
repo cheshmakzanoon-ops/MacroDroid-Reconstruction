@@ -1,0 +1,71 @@
+--- parent/observed_journey.py
++++ successor/observed_journey.py
+@@ -51,6 +51,18 @@
+     return type(value) in (int, float) and math.isfinite(value)
+ 
+ 
++def exact_alarm_plan():
++    return runner.fingerprint(runner.PLAN) == '4133e9410db84ac5636ece780b67331bf139afaa2de6b5c110c5ef5679fda85c'
++
++
++def readiness_adapter(schema=None):
++    if schema == 6 or (schema is None and exact_alarm_plan()):
++        import exact_alarm_readiness as adapter
++    else:
++        import notification_readiness as adapter
++    return adapter
++
++
+ def information_adapter():
+     if len(runner.PLAN) == 10:
+         import favourite_info_journey as adapter
+@@ -58,6 +70,8 @@
+         import trigger_category_journey as adapter
+     elif len(runner.PLAN) == 13:
+         import day_time_journey as adapter
++    elif exact_alarm_plan():
++        import exact_alarm_journey as adapter
+     else:
+         raise runner.JourneyError('No reviewed information adapter for this plan')
+     return adapter
+@@ -70,7 +84,7 @@
+             or list(runner.PLAN[6]) != ['home', runner.PACKAGE,
+                                        {'resource-id': runner.PACKAGE + ':id/navigation_home'}, {'text': 'CLOSE'}]):
+         raise runner.JourneyError('Observed policy requires the unchanged reviewed reference adapter')
+-    if len(runner.PLAN) in (10, 12, 13):
++    if len(runner.PLAN) in (10, 12, 13) or exact_alarm_plan():
+         information_adapter().require_plan()
+     elif runner.fingerprint(runner.PLAN) != '69bae4f2af8e2f14c407808dbcdea91cdca009af2ae390e13b5c7fbf035a3065':
+         raise runner.JourneyError('Historical fourteen-screen plan differs from its reviewed complete identity')
+@@ -78,7 +92,7 @@
+ 
+ def required_surface(folder, shot, required, proof):
+     """Only an exact reviewed adapter may declare its final unassumed surface."""
+-    if len(runner.PLAN) in (12, 13):
++    if len(runner.PLAN) in (12, 13) or exact_alarm_plan():
+         return information_adapter().required_surface(folder, shot, required, proof)
+     if len(runner.PLAN) == 10:
+         import favourite_info_journey as favourite
+@@ -97,7 +111,12 @@
+ 
+ 
+ def report_policy(report):
+-    import notification_readiness
++    import exact_alarm_journey
++    if exact_alarm_plan() and report.get('schema') != exact_alarm_journey.REPORT_SCHEMA:
++        raise runner.JourneyError('Exact-alarm navigation requires schema6 and both declared policies')
++    if report.get('schema') != exact_alarm_journey.REPORT_SCHEMA and exact_alarm_journey.contains_evidence(report):
++        raise runner.JourneyError('Exact-alarm navigation evidence cannot use an older schema')
++    notification_readiness = readiness_adapter(report.get('schema'))
+     readiness = report.get('schema') == notification_readiness.REPORT_SCHEMA
+     if readiness:
+         notification_readiness.require_policy(report)
+@@ -299,7 +318,7 @@
+         if action != favourite.OK or previous.get('name') != 'favourite-triggers-info':
+             raise runner.JourneyError('Favourite information input is outside its observed boundary')
+         favourite.dialog_identity(folder, before, proof)
+-    if len(runner.PLAN) in (12, 13):
++    if len(runner.PLAN) in (12, 13) or exact_alarm_plan():
+         information_adapter().input_identity(folder, previous, before, action, name, proof)
+     return prior_front
+ 

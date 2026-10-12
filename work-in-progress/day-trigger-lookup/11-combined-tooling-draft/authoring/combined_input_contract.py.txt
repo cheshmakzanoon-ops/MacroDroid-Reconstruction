@@ -1,0 +1,124 @@
+def checked_capsule(repository, specification):
+    capsule = Path(repository) / relative(specification['path'])
+    checkpoint = checked_identity(capsule, 'checkpoint.json', specification['checkpoint'])
+    manifest = read_json(checkpoint)
+    rows = manifest['files']
+    require(isinstance(rows, list) and len(rows) == specification['file_count']
+            and len({row['path'] for row in rows}) == len(rows), 'Source capsule inventory differs')
+    actual = set()
+    for path in capsule.rglob('*'):
+        require(not path.is_symlink(), 'Symlink in frozen source capsule')
+        if path.is_file(): actual.add(path.relative_to(capsule).as_posix())
+    require(actual == {row['path'] for row in rows} | {'checkpoint.json'},
+            'Frozen capsule has omitted or extra file roles')
+    for row in rows:
+        path = checked_identity(capsule, row['path'], {k: row[k] for k in ('bytes', 'sha256')})
+        if 'mode' in row:
+            require(type(row['mode']) is int and stat.S_IMODE(path.stat().st_mode) == row['mode'],
+                    'Frozen capsule mode differs: ' + row['path'])
+    return capsule, manifest
+
+
+def combined_inventory_contract(pins, base, numeric_manifest, lookup_manifest):
+    """Preserve both before-state boundaries; this does not scan a physical tree."""
+    numeric_changes, lookup_changes = pins['source_changes'], pins['lookup_source_changes']
+    require(len(numeric_changes) == 19 and len(lookup_changes) == 21, 'Combined source-stage path counts differ')
+    numeric = derive(base, numeric_changes)
+    require({k: numeric[k] for k in ('files', 'snapshot_sha256')} == pins['numeric_future_snapshot']
+            and byte_identity(encoded(numeric)) == pins['numeric_future_manifest'], 'Derived numeric intermediate inventory differs')
+    require(numeric_manifest['active_files'] == [] and numeric_manifest['source_changes'] == numeric_changes,
+            'Frozen nineteen source roles differ')
+    normalized = []
+    for row in lookup_manifest['changes']:
+        normalized.append({'path': row['path'],
+                           'baseline': None if row['baseline'] is None else {k: row['baseline'][k] for k in ('bytes', 'sha256')},
+                           'candidate': {k: row['after'][k] for k in ('bytes', 'sha256')},
+                           'must_be_absent_if_new': row['must_be_absent_if_new'], 'source': 'project/' + row['path']})
+    require(normalized == lookup_changes, 'Final lookup twenty-one source roles differ')
+    future = derive(numeric, lookup_changes)
+    require({k: future[k] for k in ('files', 'snapshot_sha256')} == pins['future_snapshot']
+            and byte_identity(encoded(future)) == pins['future_manifest'], 'Derived combined future inventory differs')
+    numeric_names = {row['path'] for row in numeric_changes}
+    lookup_names = {row['path'] for row in lookup_changes}
+    union = sorted(numeric_names | lookup_names)
+    require(len(union) == 25 and union == pins['source_union_paths']
+            and len(set(future['entries']) - set(base['entries'])) == 13, 'Combined union or new-input count differs')
+    numeric_only = [{'path': name, **future['entries'][name]} for name in sorted(numeric_names - lookup_names)]
+    require(len(numeric_only) == 4 and numeric_only == pins['numeric_only_files'], 'Four preserved numeric-only inputs differ')
+    return numeric, future
+
+
+def contract(baseline_repository, overlay_repository, lookup_repository):
+    pins = load_pins()
+    baseline_path = checked_identity(baseline_repository, pins['baseline_manifest']['path'],
+                                     {k: pins['baseline_manifest'][k] for k in ('bytes', 'sha256')})
+    base = validate_snapshot(read_json(baseline_path))
+    require(base['files'] == pins['baseline_files'] and base['snapshot_sha256'] == pins['baseline_snapshot_sha256'],
+            'Pinned baseline inventory differs')
+    numeric_root, numeric_manifest = checked_capsule(overlay_repository, {
+        'path': pins['overlay_capsule_path'], 'checkpoint': pins['overlay_checkpoint'], 'file_count': 408})
+    roots, manifests = {}, {}
+    for role in ('merge', 'successor'):
+        roots[role], manifests[role] = checked_capsule(lookup_repository, pins['lookup_capsules'][role])
+        require(manifests[role]['active_source_changed'] is False, 'Lookup capsule changed active application inputs')
+    overlay = read_json(checked_identity(roots['successor'], 'complete-future-overlay-manifest.json', pins['lookup_final_overlay_manifest']))
+    numeric, future = combined_inventory_contract(pins, base, numeric_manifest, overlay)
+    payloads = []
+    resolutions = pins['lookup_payload_resolutions']
+    require(len(resolutions) == 21 and [r['path'] for r in resolutions] == [r['path'] for r in pins['lookup_source_changes']],
+            'Final lookup payload selection differs')
+    for row, resolution in zip(pins['lookup_source_changes'], resolutions):
+        role = resolution['capsule']
+        require(role in roots and resolution['source'] == row['source'], 'Lookup payload capsule or source role differs')
+        require((role == 'successor') == (row['path'] in ('day_lookup_dex_controls.py', 'tests/test_day_lookup.py')),
+                'Lookup successor must replace exactly its two reviewed files')
+        source = checked_identity(roots[role], resolution['source'], row['candidate'])
+        payloads.append({'path': row['path'], 'source': str(source), 'identity': row['candidate']})
+    context = {'numeric_root': numeric_root, 'lookup_roots': roots, 'lookup_payloads': payloads,
+               'baseline_snapshot': base, 'numeric_snapshot': numeric, 'future_snapshot': future}
+    return pins, base, future, context
+
+
+def prepared_stage_records(pins, context):
+    records = []
+    snapshots = [context['baseline_snapshot'], context['numeric_snapshot'], context['future_snapshot']]
+    names = ['baseline', 'numeric', 'combined']
+    for number, (stage, changes) in enumerate([('numeric', pins['source_changes']), ('lookup', pins['lookup_source_changes'])]):
+        before, after = snapshots[number:number + 2]
+        records.append({'stage': stage, 'source_paths': len(changes),
+                        'new_files': sum(row['baseline'] is None for row in changes),
+                        'before_snapshot': {k: before[k] for k in ('files', 'snapshot_sha256')},
+                        'after_snapshot': {k: after[k] for k in ('files', 'snapshot_sha256')},
+                        'before_scan': {'path': 'inputs/' + names[number] + '-complete-inputs.json', **byte_identity(encoded(before))},
+                        'after_scan': {'path': 'inputs/' + names[number + 1] + '-complete-inputs.json', **byte_identity(encoded(after))}})
+    return records
+
+
+def verify_prepared_boundaries(pins, prepared, output, context):
+    """Recheck the literal two-stage receipt and every retained source copy."""
+    require(prepared.get('passed') is True and prepared.get('status') == 'EXACT_NUMERIC19_THEN_LOOKUP21_WIP_PREPARED',
+            'The exact two-stage preparation proof is absent')
+    require(prepared.get('source_stages') == prepared_stage_records(pins, context), 'Physical source-stage receipt differs')
+    for field, wanted in [('complete_baseline_files_checked', pins['baseline_files']),
+                          ('complete_numeric_files_checked', pins['numeric_future_snapshot']['files']),
+                          ('complete_future_files_checked', pins['future_snapshot']['files']),
+                          ('numeric_source_changes_applied', 19), ('lookup_source_changes_applied', 21),
+                          ('distinct_final_source_paths', 25), ('new_files', 13)]:
+        require(type(prepared.get(field)) is int and prepared[field] == wanted, 'Preparation count differs: ' + field)
+    for label, value in [('baseline', context['baseline_snapshot']), ('numeric', context['numeric_snapshot']), ('combined', context['future_snapshot'])]:
+        path = checked_identity(output, 'inputs/' + label + '-complete-inputs.json', byte_identity(encoded(value)))
+        require(read_json(path) == value, 'Retained physical scan differs: ' + label)
+    for role, changes in [('overlay', pins['source_changes']), ('lookup-overlay', pins['lookup_source_changes'])]:
+        for row in changes: checked_identity(output, 'inputs/' + role + '/' + row['path'], row['candidate'])
+    for name, expected in [('source-checkpoint.json', pins['overlay_checkpoint']),
+                           ('lookup-merge-checkpoint.json', pins['lookup_capsules']['merge']['checkpoint']),
+                           ('lookup-successor-checkpoint.json', pins['lookup_capsules']['successor']['checkpoint']),
+                           ('baseline-input-snapshot.json', {k: pins['baseline_manifest'][k] for k in ('bytes', 'sha256')}),
+                           ('future-input-snapshot.json', pins['future_manifest'])]:
+        checked_identity(output, 'inputs/' + name, expected)
+    require(read_json(regular(output, 'inputs/source-changes.json')) == pins['source_changes']
+            and read_json(regular(output, 'inputs/lookup-source-changes.json')) == pins['lookup_source_changes']
+            and read_json(regular(output, 'inputs/pins.json')) == pins, 'Retained source-stage policy differs')
+    for row in pins['baseline_repository_files']:
+        checked_identity(output, 'inputs/baseline-tools/' + row['path'], {k: row[k] for k in ('bytes', 'sha256')})
+    return prepared['source_stages']

@@ -1,0 +1,50 @@
+{
+  "build_git": {
+    "bytes": 20325,
+    "commit": "dbcad968c5c3e8f084205393a6c0d2d06a203c71",
+    "git_blob_sha1": "b5620bf363033674548ed61b1faa35b311994ff9",
+    "mode": 420,
+    "path": "project/build.py",
+    "sha256": "dd599090fc075fed0835875937a2c2b76d91381936c26f4275f876edf47345f0"
+  },
+  "outer_receipt_records_cwd": true,
+  "producers": [
+    {
+      "actual_subprocess_cwd_expression": "root",
+      "independently_recorded_child_cwd_field": false,
+      "producer": "lookup",
+      "root_resolved": true,
+      "subprocess_call": "subprocess.run(list(map(str, argv)), cwd=root, stdout=streams.handles['stdout'], stderr=streams.handles['stderr'], timeout=timeout)"
+    },
+    {
+      "actual_subprocess_cwd_expression": "root",
+      "independently_recorded_child_cwd_field": false,
+      "producer": "numeric",
+      "root_resolved": true,
+      "subprocess_call": "subprocess.run(list(map(str, argv)), cwd=root, stdout=streams.handles['stdout'], stderr=streams.handles['stderr'], timeout=timeout)"
+    }
+  ],
+  "schema": 1,
+  "scope": "Source-bound cwd; no independent child cwd measurement claimed.",
+  "shared_numeric08_provider_text_and_ast": [
+    {
+      "ast_equal": true,
+      "name": "command_clock",
+      "source_equal": true
+    },
+    {
+      "ast_equal": true,
+      "name": "command_file_stat",
+      "source_equal": true
+    },
+    {
+      "ast_equal": true,
+      "name": "CommandStreamEvidence",
+      "source_equal": true
+    }
+  ],
+  "ui_call_order": [
+    "day_numeric_dex_controls.run_controls(build.ROOT, records)",
+    "day_lookup_dex_controls.run_controls(build.ROOT, records)"
+  ]
+}

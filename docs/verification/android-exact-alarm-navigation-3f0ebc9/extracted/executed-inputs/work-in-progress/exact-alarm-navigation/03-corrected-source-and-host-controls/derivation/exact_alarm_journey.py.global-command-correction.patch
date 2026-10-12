@@ -1,0 +1,145 @@
+--- first-attempt/tools/parity_journeys/exact_alarm_journey.py
++++ corrected/tools/parity_journeys/exact_alarm_journey.py
+@@ -8,6 +8,7 @@
+ import json
+ from pathlib import Path
+ import re
++import shlex
+ 
+ import day_time_journey as day
+ import editor_journey as runner
+@@ -44,6 +45,15 @@
+     'settings_inputs': 0,
+     'permission_granted': False,
+     'trigger_configuration_confirmed': False,
++    'global_command_contract': {
++        'schema': 1,
++        'planned_inputs_per_run': 13,
++        'setup_mutations_per_run': ['uninstall', 'install', 'launch'],
++        'state_changing_commands_must_match_declared_roles_in_order': True,
++        'other_commands_use_exact_recorder_evidence_grammar': True,
++        'shell_argv_must_be_canonical': True,
++        'command_stream_paths_and_inodes_are_unique': True,
++    },
+ }
+ 
+ 
+@@ -215,6 +225,118 @@
+     return last
+ 
+ 
++def _command_kind(argv, installed_paths):
++    """Classify only literal commands issued by the reviewed recorder source."""
++    if type(argv) is not list or not argv or any(type(item) is not str or not item for item in argv):
++        raise runner.JourneyError('Unknown exact-alarm global command arguments')
++    if argv == ['uninstall', runner.PACKAGE]:
++        return 'uninstall'
++    if len(argv) == 3 and argv[:2] == ['install', '--no-streaming'] and Path(argv[2]).is_absolute():
++        return 'install'
++    capture_path = r'/data/local/tmp/md-journey-[0-9a-f]{32}\.xml'
++    if argv == ['exec-out', 'screencap', '-p']:
++        return 'evidence'
++    if len(argv) == 3 and argv[:2] == ['exec-out', 'cat'] and re.fullmatch(capture_path, argv[2]):
++        return 'evidence'
++    if len(argv) != 2 or argv[0] != 'shell':
++        raise runner.JourneyError('Unreviewed exact-alarm global command')
++    parts = shlex.split(argv[1])
++    if shlex.join(parts) != argv[1]:
++        raise runner.JourneyError('Noncanonical exact-alarm shell command')
++    if (len(parts) == 4 and parts[:2] == ['input', 'tap']
++            and all(re.fullmatch(r'0|[1-9][0-9]*', value) for value in parts[2:])):
++        return 'input'
++    if parts == ['am', 'start', '-W', '-n', runner.PACKAGE + '/.intro.IntroActivity']:
++        return 'launch'
++    reads = [
++        ['pidof', runner.PACKAGE], ['dumpsys', 'activity', 'activities'],
++        ['dumpsys', 'activity', 'processes', runner.PACKAGE],
++        ['logcat', '-d', '-b', 'crash', '-v', 'threadtime'], ['ps', '-A', '-o', 'PID,NAME'],
++        ['pm', 'path', runner.PACKAGE], ['wm', 'size'], ['wm', 'density'],
++        ['cmd', 'package', 'resolve-activity', '--brief', '-a', 'android.intent.action.MAIN',
++         '-c', 'android.intent.category.LAUNCHER', '-p', runner.PACKAGE],
++        *[['getprop', name] for name in runner.PROPERTIES],
++        *[['settings', 'get', namespace, name] for namespace, name in runner.SETTINGS],
++    ]
++    if parts in reads:
++        return 'evidence'
++    if len(parts) == 2 and parts[0] == 'sha256sum' and parts[1] in installed_paths:
++        return 'evidence'
++    if (len(parts) == 3 and parts[:2] in (['uiautomator', 'dump'], ['rm', '-f'])
++            and re.fullmatch(capture_path, parts[2])):
++        return 'evidence'
++    raise runner.JourneyError('Unreviewed exact-alarm global shell command')
++
++
++def verify_global_commands(folder, report, proof):
++    """Bind every device mutation to its planned run role, including the final tap."""
++    require_navigation_policy(report)
++    runs, ledger = report['runs'], report['commands']
++    if [run.get('label') for run in runs] != ['original', 'candidate']:
++        raise runner.JourneyError('Exact-alarm command roles require both ordered runs')
++    installed_paths = [proof.installed_path(run['installed_path']['returncode'],
++                        proof.artifact(folder, run['installed_path']['stdout']).decode(),
++                        proof.artifact(folder, run['installed_path']['stderr']).decode()) for run in runs]
++    positions, used_paths, used_inodes, mutations = {}, set(), set(), []
++    previous_finish = None
++    for index, command in enumerate(ledger):
++        start, finish = command['started_monotonic'], command['finished_monotonic']
++        if (not observed.finite(start) or not observed.finite(finish) or start > finish
++                or previous_finish is not None and start < previous_finish
++                or command.get('timed_out') is not False or type(command.get('returncode')) is not int):
++            raise runner.JourneyError('Invalid exact-alarm global command completion or chronology')
++        previous_finish = finish
++        for role in ('stdout', 'stderr'):
++            path = runner.artifact_path(folder, command[role], proof)
++            info = path.stat(); inode = (info.st_dev, info.st_ino)
++            if path in used_paths or inode in used_inodes:
++                raise runner.JourneyError('Exact-alarm global command reused a stream path or inode')
++            used_paths.add(path); used_inodes.add(inode)
++        identity = runner.fingerprint(command)
++        if identity in positions:
++            raise runner.JourneyError('Exact-alarm global command record is not unique')
++        positions[identity] = index
++        kind = _command_kind(command.get('argv'), installed_paths)
++        if kind != 'evidence':
++            mutations.append((kind, identity))
++    expected = []
++    previous_terminal_finish = None
++    for run, installed in zip(runs, installed_paths):
++        setup = {
++            'uninstall': ['uninstall', runner.PACKAGE],
++            'absence': ['shell', shlex.join(['pm', 'path', runner.PACKAGE])],
++            'install': run['install']['argv'],
++            'installed_path': ['shell', shlex.join(['pm', 'path', runner.PACKAGE])],
++            'installed_checksum': ['shell', shlex.join(['sha256sum', installed])],
++            'launch': ['shell', shlex.join(['am', 'start', '-W', '-n', runner.PACKAGE + '/.intro.IntroActivity'])],
++        }
++        indices = []
++        for role, argv in setup.items():
++            command = run[role]; identity = runner.fingerprint(command)
++            if command['argv'] != argv or identity not in positions:
++                raise runner.JourneyError('Exact-alarm setup command is not bound to its unique global role')
++            indices.append(positions[identity])
++        if indices != sorted(set(indices)):
++            raise runner.JourneyError('Exact-alarm setup command roles are out of order')
++        if _command_kind(run['install']['argv'], installed_paths) != 'install':
++            raise runner.JourneyError('Exact-alarm install command changed')
++        if previous_terminal_finish is not None and run['uninstall']['started_monotonic'] < previous_terminal_finish:
++            raise runner.JourneyError('Next exact-alarm run started before the prior terminal capture finished')
++        if len(run['transitions']) != POLICY['global_command_contract']['planned_inputs_per_run']:
++            raise runner.JourneyError('Exact-alarm global input count differs from its plan')
++        expected.extend((role, runner.fingerprint(run[role])) for role in ('uninstall', 'install', 'launch'))
++        expected.extend(('input', runner.fingerprint(transition['command'])) for transition in run['transitions'])
++        terminal = run['screens'][-1]
++        if terminal.get('name') != TERMINAL or terminal.get('owner') != SETTINGS:
++            raise runner.JourneyError('Exact-alarm global command role has no Settings terminal')
++        previous_terminal_finish = json.loads(proof.artifact(folder, terminal['settling']))['finished_monotonic']
++    if mutations != expected:
++        raise runner.JourneyError('Unbound, missing or reordered exact-alarm global input or setup mutation')
++    return {'commands': len(ledger), 'unique_command_streams': len(used_paths),
++            'planned_inputs': sum(len(run['transitions']) for run in runs),
++            'setup_mutations': 6, 'unbound_mutations': 0, 'settings_inputs': 0}
++
++
+ def terminal_surface(folder, shot, proof):
+     if shot.get('name') != TERMINAL:
+         raise runner.JourneyError('Missing exact-alarm terminal observation name')

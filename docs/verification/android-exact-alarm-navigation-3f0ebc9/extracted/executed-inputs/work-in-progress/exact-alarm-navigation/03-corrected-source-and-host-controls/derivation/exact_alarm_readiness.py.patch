@@ -1,0 +1,36 @@
+--- parent/exact_alarm_readiness.py
++++ successor/exact_alarm_readiness.py
+@@ -14,8 +14,8 @@
+ import editor_journey as runner
+ import observed_journey as observed
+ 
+-REPORT_SCHEMA = 5
+-PLAN_SHA256 = '42ece5a06a280186ddf9796a4524975d478263e545260674e2b1b4cf718d46fb'
++REPORT_SCHEMA = 6
++PLAN_SHA256 = '4133e9410db84ac5636ece780b67331bf139afaa2de6b5c110c5ef5679fda85c'
+ REFERENCE_KEY = 'pre_capture_readiness'
+ POLICY_KEY = 'notification_readiness_policy'
+ POLICY = {
+@@ -45,10 +45,10 @@
+ 
+ 
+ def require_plan():
+-    import day_time_journey
+-    day_time_journey.require_plan()
++    import exact_alarm_journey
++    exact_alarm_journey.require_plan()
+     if runner.fingerprint(runner.PLAN) != PLAN_SHA256:
+-        raise runner.JourneyError('Notification readiness requires the exact thirteen-screen plan')
++        raise runner.JourneyError('Notification readiness requires the exact new fourteen-screen plan')
+ 
+ 
+ def contains_evidence(value):
+@@ -66,6 +66,8 @@
+ 
+ def require_policy(report):
+     require_plan()
++    import exact_alarm_journey
++    exact_alarm_journey.require_navigation_policy(report)
+     if (type(report.get('schema')) is not int or report['schema'] != REPORT_SCHEMA
+             or runner.fingerprint(report.get(POLICY_KEY)) != runner.fingerprint(POLICY)):
+         raise runner.JourneyError('Missing or altered notification readiness policy')

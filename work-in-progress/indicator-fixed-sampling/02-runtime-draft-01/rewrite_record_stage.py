@@ -1,0 +1,17 @@
+from pathlib import Path
+p=Path('/dev/shm/ink-indicator-fixed-sampling-01/source/tools/indicator_sampling/record.py')
+s=p.read_text()
+s=s.replace("def __init__(self, folder, adb, parents, report, clock=c.now_ns, sleeper=time.sleep):", "def __init__(self, folder, adb, parents, report, clock=c.now_ns, sleeper=time.sleep, executor=subprocess.run):")
+s=s.replace('        self.sleeper = sleeper\n','        self.sleeper = sleeper\n        self.executor = executor\n')
+s=s.replace("self.folder / 'experiment.json'", "self.folder / 'journal.json'")
+s=s.replace('process = subprocess.run([self.adb,', 'process = self.executor([self.adb,')
+s=s.replace("        while self.clock() < target:\n            self.sleeper((target - self.clock()) / 1e9)\n", "        while True:\n            remaining = target - self.clock()\n            if remaining <= 0:\n                break\n            self.sleeper(remaining / 1e9)\n")
+s=s.replace("        remote = '/data/local/tmp/md-indicator-' + uuid.uuid4().hex + '.xml'", "        self.report.setdefault('observations', []).append(value)\n        remote = '/data/local/tmp/md-indicator-' + uuid.uuid4().hex + '.xml'")
+s=s.replace("            try:\n                index, _ = self.checked(['uiautomator', 'dump', remote])", "            acquisition_error = None\n            try:\n                index, _ = self.checked(['uiautomator', 'dump', remote])")
+s=s.replace("            finally:\n                index, _ = self.checked(['rm', '-f', remote])\n                value['commands'].append(index)\n", "            except (ValueError, OSError, subprocess.SubprocessError) as error:\n                acquisition_error = error\n            finally:\n                try:\n                    index, _ = self.checked(['rm', '-f', remote])\n                    value['commands'].append(index)\n                except (ValueError, OSError, subprocess.SubprocessError) as error:\n                    value['cleanup_error'] = str(error)\n                    if acquisition_error is None:\n                        acquisition_error = error\n            if acquisition_error is not None:\n                raise acquisition_error\n")
+s=s.replace("            self.save(label + '-observation.json', json.dumps(value, indent=2).encode() + b'\\n')", "            value['record_artifact'] = self.save(label + '-observation.json', c.bytes_json(value))\n            self.checkpoint()")
+s=s.replace("def slot(recorder, spec, apk, entire_deadline):", "def slot(recorder, spec, apk, entire_deadline, previous_scale, primary):")
+s=s.replace("    recorder.report['slots'].append(record)", "    recorder.report['slot'] = record")
+s=s.replace("        record['uninstall'] = recorder.command", "        record['device_guard'] = recorder.device_guard(previous_scale, primary)\n        record['uninstall'] = recorder.command")
+s=s[:s.index('\ndef main():')]
+p.write_text(s)

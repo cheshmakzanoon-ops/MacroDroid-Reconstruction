@@ -1,0 +1,423 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "<java>",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "<project>/reports/<lookup-evidence>/positive-pipeline/d8",
+        "<project>/reports/<lookup-evidence>/positive-pipeline/inputs.jar"
+      ],
+      "directory": "positive-pipeline",
+      "expected_returncode": 0,
+      "name": "d8-helper",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "<project>/reports/<lookup-evidence>/positive-pipeline/helper-smali",
+        "<project>/reports/<lookup-evidence>/positive-pipeline/d8/classes.dex"
+      ],
+      "directory": "positive-pipeline",
+      "expected_returncode": 0,
+      "name": "disassemble-helper",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-j",
+        "2",
+        "-o",
+        "<project>/reports/<lookup-evidence>/positive-pipeline/lookup-target.dex",
+        "<project>/reports/<lookup-evidence>/positive-pipeline/target-smali"
+      ],
+      "directory": "positive-pipeline",
+      "expected_returncode": 0,
+      "name": "assemble-target",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar:<project>/build/java/hostclasses:<project>/tools/classes",
+        "InspectMethod",
+        "<project>/build/hybrid/classes3.dex",
+        "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+        "<project>/reports/<lookup-evidence>/numeric-before-instructions.json"
+      ],
+      "directory": "",
+      "expected_returncode": 0,
+      "name": "numeric-before-instructions",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar:<project>/build/java/hostclasses:<project>/tools/classes",
+        "InspectMethod",
+        "<project>/build/hybrid/classes3.dex",
+        "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+        "<project>/reports/<lookup-evidence>/signed-apk-instructions.json"
+      ],
+      "directory": "",
+      "expected_returncode": 0,
+      "name": "signed-apk-instructions",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar:<project>/build/java/hostclasses:<project>/tools/classes",
+        "InspectMethod",
+        "<project>/reports/<lookup-evidence>/positive-pipeline/lookup-target.dex",
+        "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+        "<project>/reports/<lookup-evidence>/positive-transplant-instructions.json"
+      ],
+      "directory": "",
+      "expected_returncode": 0,
+      "name": "positive-transplant-instructions",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar:<project>/build/java/hostclasses:<project>/tools/classes",
+        "DayLookupControlHarness",
+        "<project>/reports/<lookup-evidence>/positive/config.json",
+        "<project>/reports/<lookup-evidence>/positive/result.json"
+      ],
+      "directory": "positive",
+      "expected_returncode": 0,
+      "name": "execute",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "<project>/reports/<lookup-evidence>/case-sensitive-pipeline/d8",
+        "<project>/reports/<lookup-evidence>/case-sensitive-pipeline/inputs.jar"
+      ],
+      "directory": "case-sensitive-pipeline",
+      "expected_returncode": 0,
+      "name": "d8-helper",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "<project>/reports/<lookup-evidence>/case-sensitive-pipeline/helper-smali",
+        "<project>/reports/<lookup-evidence>/case-sensitive-pipeline/d8/classes.dex"
+      ],
+      "directory": "case-sensitive-pipeline",
+      "expected_returncode": 0,
+      "name": "disassemble-helper",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-j",
+        "2",
+        "-o",
+        "<project>/reports/<lookup-evidence>/case-sensitive-pipeline/lookup-target.dex",
+        "<project>/reports/<lookup-evidence>/case-sensitive-pipeline/target-smali"
+      ],
+      "directory": "case-sensitive-pipeline",
+      "expected_returncode": 0,
+      "name": "assemble-target",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar:<project>/build/java/hostclasses:<project>/tools/classes",
+        "DayLookupControlHarness",
+        "<project>/reports/<lookup-evidence>/case-sensitive-dex-fault/config.json",
+        "<project>/reports/<lookup-evidence>/case-sensitive-dex-fault/result.json"
+      ],
+      "directory": "case-sensitive-dex-fault",
+      "expected_returncode": 3,
+      "name": "execute",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "<project>/reports/<lookup-evidence>/last-match-pipeline/d8",
+        "<project>/reports/<lookup-evidence>/last-match-pipeline/inputs.jar"
+      ],
+      "directory": "last-match-pipeline",
+      "expected_returncode": 0,
+      "name": "d8-helper",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "<project>/reports/<lookup-evidence>/last-match-pipeline/helper-smali",
+        "<project>/reports/<lookup-evidence>/last-match-pipeline/d8/classes.dex"
+      ],
+      "directory": "last-match-pipeline",
+      "expected_returncode": 0,
+      "name": "disassemble-helper",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-j",
+        "2",
+        "-o",
+        "<project>/reports/<lookup-evidence>/last-match-pipeline/lookup-target.dex",
+        "<project>/reports/<lookup-evidence>/last-match-pipeline/target-smali"
+      ],
+      "directory": "last-match-pipeline",
+      "expected_returncode": 0,
+      "name": "assemble-target",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar:<project>/build/java/hostclasses:<project>/tools/classes",
+        "DayLookupControlHarness",
+        "<project>/reports/<lookup-evidence>/last-match-dex-fault/config.json",
+        "<project>/reports/<lookup-evidence>/last-match-dex-fault/result.json"
+      ],
+      "directory": "last-match-dex-fault",
+      "expected_returncode": 3,
+      "name": "execute",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar:<project>/build/java/hostclasses:<project>/tools/classes",
+        "DayLookupControlHarness",
+        "<project>/reports/<lookup-evidence>/original-as-rebuilt-rejected/config.json",
+        "<project>/reports/<lookup-evidence>/original-as-rebuilt-rejected/result.json"
+      ],
+      "directory": "original-as-rebuilt-rejected",
+      "expected_returncode": 1,
+      "name": "execute",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar:<project>/build/java/hostclasses:<project>/tools/classes",
+        "DayLookupControlHarness",
+        "<project>/reports/<lookup-evidence>/wrong-helper-class-rejected/config.json",
+        "<project>/reports/<lookup-evidence>/wrong-helper-class-rejected/result.json"
+      ],
+      "directory": "wrong-helper-class-rejected",
+      "expected_returncode": 1,
+      "name": "execute",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar:<project>/build/java/hostclasses:<project>/tools/classes",
+        "DayLookupControlHarness",
+        "<project>/reports/<lookup-evidence>/positive-restoration/config.json",
+        "<project>/reports/<lookup-evidence>/positive-restoration/result.json"
+      ],
+      "directory": "positive-restoration",
+      "expected_returncode": 0,
+      "name": "execute",
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "<java>",
+        "-Xmx512m",
+        "-cp",
+        "<project>/tools/lib/jadx-r2721.4574686-all.jar:<project>/build/java/hostclasses:<project>/tools/classes",
+        "InspectMethod",
+        "<project>/build/hybrid/classes3.dex",
+        "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+        "<project>/reports/<lookup-evidence>/numeric-after-instructions.json"
+      ],
+      "directory": "",
+      "expected_returncode": 0,
+      "name": "numeric-after-instructions",
+      "timeout_seconds": 120
+    }
+  ],
+  "distinct_stream_roles": 38,
+  "expected_fault_exits_three": 2,
+  "expected_provenance_exits_one": 2,
+  "matches_frozen_design_exactly": true,
+  "runtime_policy_git": {
+    "bytes": 2793,
+    "commit": "dbcad968c5c3e8f084205393a6c0d2d06a203c71",
+    "git_blob_sha1": "279bf0568fc7ccb41eb81425818a16e62c80ec64",
+    "mode": 420,
+    "path": "project/ui_runtime_policy.py",
+    "sha256": "9f1a70bd67ef37d7fc19edd521bc060ced4e09dcee262606d550e779d83c6d15"
+  },
+  "schema": 1,
+  "scope": "Static symbolic AST expansion; no child command executed.",
+  "source_call_order": [
+    {
+      "expression": "compile_target(build, root, index, entry, host / HELPER_CLASS, output / 'positive-pipeline', run, java, jar)",
+      "line": 451
+    },
+    {
+      "expression": "run(output, 'numeric-before-instructions', [java, '-Xmx512m', '-cp', cp, 'InspectMethod', getter, numeric.METHOD, output / 'numeric-before-instructions.json'])",
+      "line": 454
+    },
+    {
+      "expression": "run(output, name + '-instructions', [java, '-Xmx512m', '-cp', cp, 'InspectMethod', dex, METHOD, output / (name + '-instructions.json')])",
+      "line": 456
+    },
+    {
+      "expression": "run(output, name + '-instructions', [java, '-Xmx512m', '-cp', cp, 'InspectMethod', dex, METHOD, output / (name + '-instructions.json')])",
+      "line": 456
+    },
+    {
+      "expression": "execute('positive', cfg)",
+      "line": 475
+    },
+    {
+      "expression": "compile_target(build, root, index, entry, classes[name], output / (name + '-pipeline'), run, java, jar)",
+      "line": 481
+    },
+    {
+      "expression": "execute(name + '-dex-fault', altered, 3)",
+      "line": 483
+    },
+    {
+      "expression": "compile_target(build, root, index, entry, classes[name], output / (name + '-pipeline'), run, java, jar)",
+      "line": 481
+    },
+    {
+      "expression": "execute(name + '-dex-fault', altered, 3)",
+      "line": 483
+    },
+    {
+      "expression": "execute('original-as-rebuilt-rejected', original_substitution, 1)",
+      "line": 488
+    },
+    {
+      "expression": "execute('wrong-helper-class-rejected', wrong_class, 1)",
+      "line": 491
+    },
+    {
+      "expression": "execute('positive-restoration', cfg)",
+      "line": 493
+    },
+    {
+      "expression": "run(output, 'numeric-after-instructions', [java, '-Xmx512m', '-cp', cp, 'InspectMethod', getter, numeric.METHOD, output / 'numeric-after-instructions.json'])",
+      "line": 497
+    }
+  ],
+  "successful_expected_zero": 15,
+  "timeout_seconds_each": 120
+}

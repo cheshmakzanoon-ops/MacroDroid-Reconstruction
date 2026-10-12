@@ -1,0 +1,19 @@
+{
+  "actual_combined_signed_apk_execution_performed_here": false,
+  "actual_java_or_d8_execution_performed_here": false,
+  "checks": {
+    "all_other_micro_class_methods_and_text_unchanged": true,
+    "apk_and_signed_dex_are_before_after_pinned": true,
+    "config_names_literal_classes3_member": true,
+    "harness_postchecks_all_four_dex_and_apk_roles": true,
+    "harness_rejects_duplicate_signed_member": true,
+    "harness_stream_hash_matches_exact_local_signed_dex": true,
+    "numeric_before_after_compared_byte_for_byte": true,
+    "positive_signed_lookup_compared_byte_for_byte": true,
+    "raw_report_bound_to_exact_config_and_loaded_classes": true,
+    "same_local_signed_dex_for_numeric_before_and_after": true
+  },
+  "micro_dex_scope": "Each micro-DEX replaces only its primary method; the whole micro class is intentionally different from the signed three-mapping class.",
+  "required_future_combined_verifier_binding": "Both method reports and their signed getters must equal the one measured final hybrid APK and unique classes3.dex; both inspected positive primary bodies must equal that signed DEX. Recheck all final raw input identities.",
+  "schema": 1
+}

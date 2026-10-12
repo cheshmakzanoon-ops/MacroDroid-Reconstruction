@@ -1,0 +1,22 @@
+{
+  "command_stream_evidence_schema": 2,
+  "expected_returncode_is_recorded": true,
+  "failed_rows_keep_actual_finalization_without_fabricating_context_finish": true,
+  "finalization_after_shared_context_add_to": true,
+  "provider": "day_numeric_dex_controls.CommandStreamEvidence",
+  "report_schema": 2,
+  "required_clock_order": [
+    "invocation_finished",
+    "stream_evidence.finished",
+    "recording_finalized",
+    "next command start / report finish"
+  ],
+  "required_success_flags": {
+    "error": null,
+    "error_type": null,
+    "stream_context_entered": true,
+    "timed_out": false
+  },
+  "schema": 1,
+  "scope": "Source and design contract verified; no new runtime producer or acceptance execution."
+}

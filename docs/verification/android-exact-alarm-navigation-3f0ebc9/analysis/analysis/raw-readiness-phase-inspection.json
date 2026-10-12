@@ -1,0 +1,802 @@
+[
+  {
+    "label": "original",
+    "transition_index": 4,
+    "reference": {
+      "path": "original-notification-readiness.json",
+      "bytes": 12680,
+      "sha256": "ff4bede85734280dd0a431110e76f683ca1289422b58ca6082f514ae19cc0028"
+    },
+    "raw_phase": {
+      "schema": 1,
+      "status": "READY",
+      "label": "original-notification-readiness",
+      "policy": {
+        "schema": 1,
+        "plan_sha256": "4133e9410db84ac5636ece780b67331bf139afaa2de6b5c110c5ef5679fda85c",
+        "after": "notification-request",
+        "before": "reference-promotion",
+        "action": {
+          "resource-id": "com.android.permissioncontroller:id/permission_deny_button"
+        },
+        "max_observations": 16,
+        "max_seconds": 10,
+        "post_input_wait_seconds": 2,
+        "observation_gap_seconds": 0.25,
+        "minimum_ready_observations": 2,
+        "minimum_ready_span_seconds": 1.05,
+        "ready_span_start": "first_ready_pidof_command_started_monotonic",
+        "ready_span_finish": "last_ready_pidof_command_finished_monotonic",
+        "ready_component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity",
+        "other_allowed_component": "com.google.android.permissioncontroller/com.android.permissioncontroller.permission.ui.GrantPermissionsActivity",
+        "commands": [
+          [
+            "pidof",
+            "com.arlosoft.macrodroid"
+          ],
+          [
+            "dumpsys",
+            "activity",
+            "activities"
+          ],
+          [
+            "pidof",
+            "com.arlosoft.macrodroid"
+          ]
+        ],
+        "first_eligible_contiguous_sequence": true,
+        "frames_or_continuity_credit": false,
+        "app_restart_performed": false
+      },
+      "old_pid": "3960",
+      "started_monotonic": 409.57734533,
+      "observations": [
+        {
+          "index": 0,
+          "started_monotonic": 409.577402875,
+          "commands": [
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:08:07.451209+00:00",
+              "started_monotonic": 409.577420243,
+              "finished_monotonic": 409.605218403,
+              "timeout_seconds": 9.999931752999998,
+              "stdout": {
+                "path": "command-00219.stdout",
+                "bytes": 5,
+                "sha256": "00d835b02afda4a63b3181843c2a31361773fab4503565e1c6b4b4b887e5f843"
+              },
+              "stderr": {
+                "path": "command-00219.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "dumpsys activity activities"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:08:07.479700+00:00",
+              "started_monotonic": 409.605913057,
+              "finished_monotonic": 409.637091425,
+              "timeout_seconds": 9.971438351000018,
+              "stdout": {
+                "path": "command-00220.stdout",
+                "bytes": 30911,
+                "sha256": "6ae262cffa414375525fb4370481b8ad31e95927d51846e9d891e2dfe37ff1f7"
+              },
+              "stderr": {
+                "path": "command-00220.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:08:07.512056+00:00",
+              "started_monotonic": 409.638268697,
+              "finished_monotonic": 409.661848864,
+              "timeout_seconds": 9.93908333500002,
+              "stdout": {
+                "path": "command-00221.stdout",
+                "bytes": 5,
+                "sha256": "00d835b02afda4a63b3181843c2a31361773fab4503565e1c6b4b4b887e5f843"
+              },
+              "stderr": {
+                "path": "command-00221.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          ],
+          "observation": {
+            "state": "HOME_WITH_SAME_PID",
+            "pid_first": "5345",
+            "pid_final": "5345",
+            "component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity"
+          },
+          "finished_monotonic": 409.663620499
+        },
+        {
+          "index": 1,
+          "started_monotonic": 409.913723372,
+          "commands": [
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:08:07.787552+00:00",
+              "started_monotonic": 409.913763556,
+              "finished_monotonic": 409.945858874,
+              "timeout_seconds": 9.663593252999988,
+              "stdout": {
+                "path": "command-00222.stdout",
+                "bytes": 5,
+                "sha256": "00d835b02afda4a63b3181843c2a31361773fab4503565e1c6b4b4b887e5f843"
+              },
+              "stderr": {
+                "path": "command-00222.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "dumpsys activity activities"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:08:07.820390+00:00",
+              "started_monotonic": 409.946602245,
+              "finished_monotonic": 409.97721745,
+              "timeout_seconds": 9.630749658000013,
+              "stdout": {
+                "path": "command-00223.stdout",
+                "bytes": 31525,
+                "sha256": "a6b518aad3d7badee1eadde28ca56071b326119962e8013223f62e0f39b1d69a"
+              },
+              "stderr": {
+                "path": "command-00223.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:08:07.852094+00:00",
+              "started_monotonic": 409.978307229,
+              "finished_monotonic": 410.006129529,
+              "timeout_seconds": 9.599043461999997,
+              "stdout": {
+                "path": "command-00224.stdout",
+                "bytes": 5,
+                "sha256": "00d835b02afda4a63b3181843c2a31361773fab4503565e1c6b4b4b887e5f843"
+              },
+              "stderr": {
+                "path": "command-00224.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          ],
+          "observation": {
+            "state": "HOME_WITH_SAME_PID",
+            "pid_first": "5345",
+            "pid_final": "5345",
+            "component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity"
+          },
+          "finished_monotonic": 410.007839836
+        },
+        {
+          "index": 2,
+          "started_monotonic": 410.257927536,
+          "commands": [
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:08:08.131749+00:00",
+              "started_monotonic": 410.257960566,
+              "finished_monotonic": 410.29090001,
+              "timeout_seconds": 9.319394307000039,
+              "stdout": {
+                "path": "command-00225.stdout",
+                "bytes": 5,
+                "sha256": "00d835b02afda4a63b3181843c2a31361773fab4503565e1c6b4b4b887e5f843"
+              },
+              "stderr": {
+                "path": "command-00225.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "dumpsys activity activities"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:08:08.165385+00:00",
+              "started_monotonic": 410.291598274,
+              "finished_monotonic": 410.311939821,
+              "timeout_seconds": 9.285753424000006,
+              "stdout": {
+                "path": "command-00226.stdout",
+                "bytes": 31526,
+                "sha256": "c9c90a5570a41286bc66cab1329466f196c20daafe83cf7ec2cb2e503935bff4"
+              },
+              "stderr": {
+                "path": "command-00226.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:08:08.186845+00:00",
+              "started_monotonic": 410.313058377,
+              "finished_monotonic": 410.334277496,
+              "timeout_seconds": 9.264292451000017,
+              "stdout": {
+                "path": "command-00227.stdout",
+                "bytes": 5,
+                "sha256": "00d835b02afda4a63b3181843c2a31361773fab4503565e1c6b4b4b887e5f843"
+              },
+              "stderr": {
+                "path": "command-00227.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          ],
+          "observation": {
+            "state": "HOME_WITH_SAME_PID",
+            "pid_first": "5345",
+            "pid_final": "5345",
+            "component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity"
+          },
+          "finished_monotonic": 410.335954658
+        },
+        {
+          "index": 3,
+          "started_monotonic": 410.586044691,
+          "commands": [
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:08:08.459877+00:00",
+              "started_monotonic": 410.586087178,
+              "finished_monotonic": 410.625891421,
+              "timeout_seconds": 8.991271242000039,
+              "stdout": {
+                "path": "command-00228.stdout",
+                "bytes": 5,
+                "sha256": "00d835b02afda4a63b3181843c2a31361773fab4503565e1c6b4b4b887e5f843"
+              },
+              "stderr": {
+                "path": "command-00228.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "dumpsys activity activities"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:08:08.500332+00:00",
+              "started_monotonic": 410.62654503,
+              "finished_monotonic": 410.71058366,
+              "timeout_seconds": 8.950806096999997,
+              "stdout": {
+                "path": "command-00229.stdout",
+                "bytes": 31232,
+                "sha256": "3762bab3740915ce5b0632b10917d6bcd1c781397de6ce80be2f5faacccbc64c"
+              },
+              "stderr": {
+                "path": "command-00229.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:08:08.585496+00:00",
+              "started_monotonic": 410.71170805,
+              "finished_monotonic": 410.729192414,
+              "timeout_seconds": 8.865642826999988,
+              "stdout": {
+                "path": "command-00230.stdout",
+                "bytes": 5,
+                "sha256": "00d835b02afda4a63b3181843c2a31361773fab4503565e1c6b4b4b887e5f843"
+              },
+              "stderr": {
+                "path": "command-00230.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          ],
+          "observation": {
+            "state": "HOME_WITH_SAME_PID",
+            "pid_first": "5345",
+            "pid_final": "5345",
+            "component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity"
+          },
+          "finished_monotonic": 410.730437646
+        }
+      ],
+      "gaps": [
+        {
+          "after_index": 0,
+          "requested_seconds": 0.25,
+          "started_monotonic": 409.663628909,
+          "finished_monotonic": 409.913717461
+        },
+        {
+          "after_index": 1,
+          "requested_seconds": 0.25,
+          "started_monotonic": 410.007849858,
+          "finished_monotonic": 410.257923857
+        },
+        {
+          "after_index": 2,
+          "requested_seconds": 0.25,
+          "started_monotonic": 410.335962807,
+          "finished_monotonic": 410.586038767
+        }
+      ],
+      "accepted_sequence": [
+        0,
+        3
+      ],
+      "ready_pid": "5345",
+      "finished_monotonic": 410.730453277,
+      "seconds": 1.1531079469999668
+    },
+    "inspection_scope": "Raw phase only; full run binding is determined by the complete comparison",
+    "ready_phase_structure_passed": true
+  },
+  {
+    "label": "candidate",
+    "transition_index": 4,
+    "reference": {
+      "path": "candidate-notification-readiness.json",
+      "bytes": 12675,
+      "sha256": "86e15e2bf3f344d3214acfe5b86f4328683a4372e530589b580a4b08eccbc9ba"
+    },
+    "raw_phase": {
+      "schema": 1,
+      "status": "READY",
+      "label": "candidate-notification-readiness",
+      "policy": {
+        "schema": 1,
+        "plan_sha256": "4133e9410db84ac5636ece780b67331bf139afaa2de6b5c110c5ef5679fda85c",
+        "after": "notification-request",
+        "before": "reference-promotion",
+        "action": {
+          "resource-id": "com.android.permissioncontroller:id/permission_deny_button"
+        },
+        "max_observations": 16,
+        "max_seconds": 10,
+        "post_input_wait_seconds": 2,
+        "observation_gap_seconds": 0.25,
+        "minimum_ready_observations": 2,
+        "minimum_ready_span_seconds": 1.05,
+        "ready_span_start": "first_ready_pidof_command_started_monotonic",
+        "ready_span_finish": "last_ready_pidof_command_finished_monotonic",
+        "ready_component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity",
+        "other_allowed_component": "com.google.android.permissioncontroller/com.android.permissioncontroller.permission.ui.GrantPermissionsActivity",
+        "commands": [
+          [
+            "pidof",
+            "com.arlosoft.macrodroid"
+          ],
+          [
+            "dumpsys",
+            "activity",
+            "activities"
+          ],
+          [
+            "pidof",
+            "com.arlosoft.macrodroid"
+          ]
+        ],
+        "first_eligible_contiguous_sequence": true,
+        "frames_or_continuity_credit": false,
+        "app_restart_performed": false
+      },
+      "old_pid": "7334",
+      "started_monotonic": 580.930067475,
+      "observations": [
+        {
+          "index": 0,
+          "started_monotonic": 580.930121052,
+          "commands": [
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:10:58.803923+00:00",
+              "started_monotonic": 580.930135506,
+              "finished_monotonic": 580.973982446,
+              "timeout_seconds": 9.999937875,
+              "stdout": {
+                "path": "command-00756.stdout",
+                "bytes": 5,
+                "sha256": "2801fb5905c406db2534341944291df7206cf173ec28dabe3206d0b17fc38830"
+              },
+              "stderr": {
+                "path": "command-00756.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "dumpsys activity activities"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:10:58.848485+00:00",
+              "started_monotonic": 580.974697328,
+              "finished_monotonic": 580.995906026,
+              "timeout_seconds": 9.955377259999977,
+              "stdout": {
+                "path": "command-00757.stdout",
+                "bytes": 31216,
+                "sha256": "f67be0c48ab6a2be3e9c4f59b3b600596d96315962ecb6ed630fe5f427693262"
+              },
+              "stderr": {
+                "path": "command-00757.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:10:58.870520+00:00",
+              "started_monotonic": 580.996733259,
+              "finished_monotonic": 581.01736099,
+              "timeout_seconds": 9.933338749999962,
+              "stdout": {
+                "path": "command-00758.stdout",
+                "bytes": 5,
+                "sha256": "2801fb5905c406db2534341944291df7206cf173ec28dabe3206d0b17fc38830"
+              },
+              "stderr": {
+                "path": "command-00758.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          ],
+          "observation": {
+            "state": "HOME_WITH_SAME_PID",
+            "pid_first": "8418",
+            "pid_final": "8418",
+            "component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity"
+          },
+          "finished_monotonic": 581.018669558
+        },
+        {
+          "index": 1,
+          "started_monotonic": 581.275031658,
+          "commands": [
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:10:59.148868+00:00",
+              "started_monotonic": 581.275078667,
+              "finished_monotonic": 581.341781782,
+              "timeout_seconds": 9.655003534999992,
+              "stdout": {
+                "path": "command-00759.stdout",
+                "bytes": 5,
+                "sha256": "2801fb5905c406db2534341944291df7206cf173ec28dabe3206d0b17fc38830"
+              },
+              "stderr": {
+                "path": "command-00759.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "dumpsys activity activities"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:10:59.216265+00:00",
+              "started_monotonic": 581.34247745,
+              "finished_monotonic": 581.404145196,
+              "timeout_seconds": 9.587597132000042,
+              "stdout": {
+                "path": "command-00760.stdout",
+                "bytes": 31306,
+                "sha256": "d3609e5f1e5de515f2da0cec30844e293b7a76c609b1163e5815f72bb4494b2e"
+              },
+              "stderr": {
+                "path": "command-00760.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:10:59.278701+00:00",
+              "started_monotonic": 581.404913563,
+              "finished_monotonic": 581.439407148,
+              "timeout_seconds": 9.52515911599994,
+              "stdout": {
+                "path": "command-00761.stdout",
+                "bytes": 5,
+                "sha256": "2801fb5905c406db2534341944291df7206cf173ec28dabe3206d0b17fc38830"
+              },
+              "stderr": {
+                "path": "command-00761.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          ],
+          "observation": {
+            "state": "HOME_WITH_SAME_PID",
+            "pid_first": "8418",
+            "pid_final": "8418",
+            "component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity"
+          },
+          "finished_monotonic": 581.441184931
+        },
+        {
+          "index": 2,
+          "started_monotonic": 581.691280047,
+          "commands": [
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:10:59.565113+00:00",
+              "started_monotonic": 581.691323459,
+              "finished_monotonic": 581.719437011,
+              "timeout_seconds": 9.238756935999959,
+              "stdout": {
+                "path": "command-00762.stdout",
+                "bytes": 5,
+                "sha256": "2801fb5905c406db2534341944291df7206cf173ec28dabe3206d0b17fc38830"
+              },
+              "stderr": {
+                "path": "command-00762.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "dumpsys activity activities"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:10:59.593903+00:00",
+              "started_monotonic": 581.720115378,
+              "finished_monotonic": 581.745700901,
+              "timeout_seconds": 9.209958663999942,
+              "stdout": {
+                "path": "command-00763.stdout",
+                "bytes": 31308,
+                "sha256": "478e39ce844e6afa365e18cc19ddbfad4febd4b02f3eab614a3492f1e984a16b"
+              },
+              "stderr": {
+                "path": "command-00763.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:10:59.620588+00:00",
+              "started_monotonic": 581.746800427,
+              "finished_monotonic": 581.777652276,
+              "timeout_seconds": 9.18327333000002,
+              "stdout": {
+                "path": "command-00764.stdout",
+                "bytes": 5,
+                "sha256": "2801fb5905c406db2534341944291df7206cf173ec28dabe3206d0b17fc38830"
+              },
+              "stderr": {
+                "path": "command-00764.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          ],
+          "observation": {
+            "state": "HOME_WITH_SAME_PID",
+            "pid_first": "8418",
+            "pid_final": "8418",
+            "component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity"
+          },
+          "finished_monotonic": 581.779276362
+        },
+        {
+          "index": 3,
+          "started_monotonic": 582.029363934,
+          "commands": [
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:10:59.903186+00:00",
+              "started_monotonic": 582.029397907,
+              "finished_monotonic": 582.048501147,
+              "timeout_seconds": 8.900679622999974,
+              "stdout": {
+                "path": "command-00765.stdout",
+                "bytes": 5,
+                "sha256": "2801fb5905c406db2534341944291df7206cf173ec28dabe3206d0b17fc38830"
+              },
+              "stderr": {
+                "path": "command-00765.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "dumpsys activity activities"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:10:59.922861+00:00",
+              "started_monotonic": 582.049073964,
+              "finished_monotonic": 582.067197892,
+              "timeout_seconds": 8.88099789599994,
+              "stdout": {
+                "path": "command-00766.stdout",
+                "bytes": 31310,
+                "sha256": "f9d5ac79fb412b4d5fa0863bb91ed8874da4145e89556aad96658766d2b531a3"
+              },
+              "stderr": {
+                "path": "command-00766.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            {
+              "argv": [
+                "shell",
+                "pidof com.arlosoft.macrodroid"
+              ],
+              "returncode": 0,
+              "timed_out": false,
+              "started_utc": "2026-10-12T11:10:59.941930+00:00",
+              "started_monotonic": 582.068142939,
+              "finished_monotonic": 582.08465679,
+              "timeout_seconds": 8.861928970000008,
+              "stdout": {
+                "path": "command-00767.stdout",
+                "bytes": 5,
+                "sha256": "2801fb5905c406db2534341944291df7206cf173ec28dabe3206d0b17fc38830"
+              },
+              "stderr": {
+                "path": "command-00767.stderr",
+                "bytes": 0,
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          ],
+          "observation": {
+            "state": "HOME_WITH_SAME_PID",
+            "pid_first": "8418",
+            "pid_final": "8418",
+            "component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity"
+          },
+          "finished_monotonic": 582.085836033
+        }
+      ],
+      "gaps": [
+        {
+          "after_index": 0,
+          "requested_seconds": 0.25,
+          "started_monotonic": 581.018673698,
+          "finished_monotonic": 581.275027183
+        },
+        {
+          "after_index": 1,
+          "requested_seconds": 0.25,
+          "started_monotonic": 581.441193243,
+          "finished_monotonic": 581.691275351
+        },
+        {
+          "after_index": 2,
+          "requested_seconds": 0.25,
+          "started_monotonic": 581.77928491,
+          "finished_monotonic": 582.029360583
+        }
+      ],
+      "accepted_sequence": [
+        0,
+        3
+      ],
+      "ready_pid": "8418",
+      "finished_monotonic": 582.085851627,
+      "seconds": 1.1557841520000238
+    },
+    "inspection_scope": "Raw phase only; full run binding is determined by the complete comparison",
+    "ready_phase_structure_passed": true
+  }
+]

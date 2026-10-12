@@ -1,0 +1,11 @@
+--- replay_completed_readiness.py
++++ replay_completed_readiness_corrected.py
+@@ -14,7 +14,7 @@
+ SOURCE = ROOT / 'source-01/repository'
+ RAW = Path('/dev/shm/macrodroid-transfer-space-20261012/readiness-run-38230072388/extracted')
+ PARENT = Path('/dev/shm/macrodroid-notification-readiness/checkpoints/01-corrected-host-guard/replay-source')
+-OUTPUT = ROOT / 'source-01/completed-schema5-replay'
++OUTPUT = ROOT / 'source-01/completed-schema5-replay-corrected'
+ 
+ def sha(data):
+     return hashlib.sha256(data).hexdigest()

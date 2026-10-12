@@ -1,0 +1,382 @@
+class CombinedStagesControls(OwnedTemporary):
+    """Small policy tree with the real 19/21 path topology; never an app tree."""
+    def setUp(self):
+        super().setUp()
+        self.pins = copy.deepcopy(inputs.load_pins())
+        self.project = self.root / 'project'; self.project.mkdir()
+        self.output = self.root / 'proof'; (self.output / 'inputs').mkdir(parents=True)
+        for name in inputs.INPUT_DIRECTORIES: (self.project / name).mkdir()
+        self.numeric_root = self.root / 'numeric-capsule'
+        for row in self.pins['source_changes']:
+            if row['baseline'] is not None: self.put('project/' + row['path'], ('SYNTHETIC BASE ' + row['path']).encode())
+        self.put('project/source/unrelated-policy-input.txt', b'SYNTHETIC UNCHANGED')
+        self.base = inputs.scan_inputs(self.project)
+        numeric = []
+        for old in self.pins['source_changes']:
+            raw = ('SYNTHETIC NUMERIC ' + old['path']).encode()
+            source = self.put('numeric-capsule/' + old['source'], raw)
+            before = self.base['entries'].get(old['path'])
+            numeric.append({'path':old['path'], 'source':old['source'], 'baseline':None if before is None else {'bytes':before['size'],'sha256':before['sha256']},
+                            'candidate':inputs.identity(source),'must_be_absent_if_new':before is None})
+        self.middle = inputs.derive(self.base, numeric)
+        lookup = []
+        for old in self.pins['lookup_source_changes']:
+            raw = ('SYNTHETIC LOOKUP ' + old['path']).encode()
+            source = self.put('proof/inputs/lookup-overlay/' + old['source'], raw)
+            before = self.middle['entries'].get(old['path'])
+            lookup.append({'path':old['path'],'source':old['source'],'baseline':None if before is None else {'bytes':before['size'],'sha256':before['sha256']},
+                           'candidate':inputs.identity(source),'must_be_absent_if_new':before is None})
+        self.future = inputs.derive(self.middle, lookup)
+        self.pins.update(source_changes=numeric,lookup_source_changes=lookup,baseline_files=self.base['files'],
+            numeric_future_snapshot={k:self.middle[k] for k in ('files','snapshot_sha256')},numeric_future_manifest=inputs.byte_identity(inputs.encoded(self.middle)),
+            future_snapshot={k:self.future[k] for k in ('files','snapshot_sha256')},future_manifest=inputs.byte_identity(inputs.encoded(self.future)))
+        only = sorted({r['path'] for r in numeric}-{r['path'] for r in lookup})
+        self.pins['numeric_only_files']=[{'path':name,**self.future['entries'][name]} for name in only]
+        self.context={'numeric_root':self.numeric_root,'baseline_snapshot':self.base,'numeric_snapshot':self.middle,'future_snapshot':self.future}
+        self.numeric_manifest={'active_files':[],'source_changes':numeric}
+        self.lookup_manifest={'changes':[{'path':r['path'],'baseline':r['baseline'],'after':r['candidate'],'must_be_absent_if_new':r['must_be_absent_if_new']} for r in lookup]}
+
+    def derive(self):
+        return inputs.combined_inventory_contract(self.pins,self.base,self.numeric_manifest,self.lookup_manifest)
+
+    def apply(self):
+        self.records=prepare.apply_source_stages(self.project,self.output,self.pins,self.base,self.future,self.context)
+        return self.records
+
+    def test_real_small_tree_visits_both_complete_physical_boundaries(self):
+        self.assertEqual((self.middle,self.future),self.derive())
+        records=self.apply()
+        self.assertEqual(['numeric','lookup'],[row['stage'] for row in records])
+        self.assertEqual([19,21],[row['source_paths'] for row in records])
+        self.assertEqual([7,6],[row['new_files'] for row in records])
+        inputs.compare_inputs(inputs.scan_inputs(self.project),self.future)
+        self.assertEqual(b'SYNTHETIC UNCHANGED',(self.project/'source/unrelated-policy-input.txt').read_bytes())
+        for name,expected in [('baseline',self.base),('numeric',self.middle),('combined',self.future)]:
+            self.assertEqual(expected,inputs.read_json(self.output/'inputs'/(name+'-complete-inputs.json')))
+
+    def test_lookup_cannot_be_applied_directly_to_the_baseline(self):
+        with self.assertRaisesRegex(ValueError,'baseline differs|already exists'):
+            inputs.derive(self.base,self.pins['lookup_source_changes'])
+
+    def test_wrong_intermediate_manifest_rejects_before_any_source_write(self):
+        self.pins['numeric_future_snapshot']['snapshot_sha256']='0'*64
+        with self.assertRaisesRegex(ValueError,'numeric intermediate'):self.derive()
+        inputs.compare_inputs(inputs.scan_inputs(self.project),self.base)
+
+    def test_omitted_or_duplicate_lookup_stage_role_is_rejected(self):
+        good=copy.deepcopy(self.pins['lookup_source_changes'])
+        for changed in (good[:-1],good[:-1]+[good[0]]):
+            with self.subTest(size=len(changed)):
+                self.pins['lookup_source_changes']=changed
+                with self.assertRaisesRegex(ValueError,'path counts|source roles'):self.derive()
+        self.pins['lookup_source_changes']=good
+
+    def test_four_numeric_only_file_pins_are_required(self):
+        self.pins['numeric_only_files'][0]['sha256']='0'*64
+        with self.assertRaisesRegex(ValueError,'numeric-only'):self.derive()
+
+    def test_union_cannot_drop_or_add_a_role(self):
+        self.pins['source_union_paths']=self.pins['source_union_paths'][:-1]
+        with self.assertRaisesRegex(ValueError,'union'):self.derive()
+
+    def test_mutated_physical_baseline_rejects_before_numeric_replacement(self):
+        original=(self.project/'acceptance.py').read_bytes()
+        (self.project/'source/unrelated-policy-input.txt').write_bytes(b'CHANGED')
+        with self.assertRaisesRegex(ValueError,'Full input inventory differs'):self.apply()
+        self.assertEqual(original,(self.project/'acceptance.py').read_bytes())
+        self.assertFalse((self.output/'inputs/numeric-complete-inputs.json').exists())
+
+    def test_missing_lookup_payload_preserves_the_completed_numeric_stage_only(self):
+        last=self.pins['lookup_source_changes'][-1]
+        (self.output/'inputs/lookup-overlay'/last['source']).unlink()
+        with self.assertRaisesRegex(ValueError,'Missing regular file'):self.apply()
+        inputs.compare_inputs(inputs.scan_inputs(self.project),self.middle)
+        self.assertTrue((self.output/'inputs/numeric-complete-inputs.json').is_file())
+        self.assertFalse((self.output/'inputs/combined-complete-inputs.json').exists())
+
+    def test_altered_lookup_candidate_cannot_replace_any_numeric_stage_file(self):
+        last=self.pins['lookup_source_changes'][-1]
+        (self.output/'inputs/lookup-overlay'/last['source']).write_bytes(b'OLD RECORDER OR OTHER PAYLOAD')
+        with self.assertRaisesRegex(ValueError,'Exact file identity differs'):self.apply()
+        inputs.compare_inputs(inputs.scan_inputs(self.project),self.middle)
+
+    def test_recorded_stage_order_and_counts_are_independently_required(self):
+        records=self.apply()
+        prepared={'passed':True,'status':'EXACT_NUMERIC19_THEN_LOOKUP21_WIP_PREPARED','source_stages':list(reversed(records))}
+        with self.assertRaisesRegex(ValueError,'Physical source-stage receipt differs'):
+            inputs.verify_prepared_boundaries(self.pins,prepared,self.output,self.context)
+        prepared['source_stages']=records;prepared['complete_baseline_files_checked']=True
+        with self.assertRaisesRegex(ValueError,'Preparation count differs'):
+            inputs.verify_prepared_boundaries(self.pins,prepared,self.output,self.context)
+
+
+class LookupCapsuleControls(OwnedTemporary):
+    def setUp(self):
+        super().setUp();self.capsule=self.root/'capsule';self.capsule.mkdir()
+        self.put('capsule/project/example.py',b'SYNTHETIC SOURCE');self.put('capsule/README.md',b'SYNTHETIC CAPSULE')
+        rows=[{'path':p.relative_to(self.capsule).as_posix(),**inputs.identity(p),'mode':0o644} for p in sorted(self.capsule.rglob('*')) if p.is_file()]
+        inputs.write_json(self.capsule/'checkpoint.json',{'files':rows})
+        self.spec={'path':'capsule','checkpoint':inputs.identity(self.capsule/'checkpoint.json'),'file_count':2}
+
+    def check(self):return inputs.checked_capsule(self.root,self.spec)
+    def test_complete_small_capsule_is_accepted_only_as_a_transport_fixture(self):self.assertEqual(self.capsule,self.check()[0])
+    def test_unlisted_file_rejects_even_if_checkpoint_is_intact(self):
+        self.put('capsule/unlisted',b'EXTRA')
+        with self.assertRaisesRegex(ValueError,'omitted or extra'):self.check()
+    def test_changed_payload_rejects_before_preparation(self):
+        self.put('capsule/project/example.py',b'OLD RECORDER')
+        with self.assertRaisesRegex(ValueError,'Exact file identity differs'):self.check()
+    def test_rehashed_checkpoint_is_not_the_frozen_checkpoint(self):
+        value=inputs.read_json(self.capsule/'checkpoint.json');value['unreviewed']=True
+        (self.capsule/'checkpoint.json').write_bytes(inputs.encoded(value))
+        with self.assertRaisesRegex(ValueError,'Exact file identity differs'):self.check()
+    def test_mode_change_rejects_with_unchanged_bytes(self):
+        (self.capsule/'project/example.py').chmod(0o600)
+        with self.assertRaisesRegex(ValueError,'mode differs'):self.check()
+
+
+class LookupCommandControls(OwnedTemporary):
+    """The frozen design vectors are independent of the new reconstruction function."""
+    def setUp(self):
+        super().setUp();self.java='/synthetic/jdk/bin/java';self.folder='reports/day-lookup-dex-synthetic'
+        self.report={'schema':2,'command_stream_evidence_schema':2,
+                     'command_stream_evidence_provider':'day_numeric_dex_controls.CommandStreamEvidence','commands':[]}
+        self.set_flat_clock(self.report,'started',run_acceptance.command_clock())
+        for spec in LOOKUP_COMMAND_SPEC:
+            directory=spec['directory'];label=spec['name']
+            argv=[part.replace('<project>',str(self.root)).replace('reports/<lookup-evidence>',self.folder).replace('<java>',self.java) for part in spec['argv']]
+            row=self.observed_command(self.folder+('/'+directory if directory else ''),label,name=label,argv=argv,
+                timeout_seconds=120,returncode=spec['expected_returncode'],expected_returncode=spec['expected_returncode'],
+                stream_context_entered=True,timed_out=False,error=None,error_type=None)
+            row['recording_finalized']=run_acceptance.command_clock();self.report['commands'].append(row)
+        self.set_flat_clock(self.report,'finished',run_acceptance.command_clock())
+        self.start=min(self.report['started_unix_ns'],self.report['commands'][0]['stream_evidence']['before_witness']['final_stat']['ctime_ns'])
+        self.end=max(self.report['finished_unix_ns'],self.report['commands'][-1]['stream_evidence']['after_witnesses'][-1]['final_stat']['ctime_ns'])
+
+    def check(self):
+        artifacts=verify.Artifacts(self.root,self.start,self.end)
+        verify.verify_lookup_commands(self.report,self.folder,artifacts,self.java)
+        return artifacts
+
+    def test_exact_nineteen_vectors_and_all_live_stream_receipts_are_accepted_as_policy(self):
+        ledger=self.check();self.assertEqual(19,len(self.report['commands']))
+        self.assertEqual(38,len([n for n in ledger.rows if n.endswith(('.stdout.log','.stderr.log'))]))
+        self.assertTrue(all('cwd' not in row for row in self.report['commands']))
+
+    def test_numeric_seventeen_rows_cannot_stand_in_for_lookup(self):
+        self.report['commands']=self.report['commands'][:-2]
+        with self.assertRaisesRegex(ValueError,'command inventory'):self.check()
+
+    def test_reordered_or_extra_lookup_rows_reject(self):
+        self.report['commands'][0],self.report['commands'][1]=self.report['commands'][1],self.report['commands'][0]
+        with self.assertRaisesRegex(ValueError,'order or exact argv'):self.check()
+        self.report['commands'].append(copy.deepcopy(self.report['commands'][0]))
+        with self.assertRaisesRegex(ValueError,'command inventory'):self.check()
+
+    def test_wrong_method_api_classpath_and_harness_reject(self):
+        original=copy.deepcopy(self.report['commands'])
+        for index,value in [(0,'/bin/true'),(3,'ANOTHER_METHOD'),(6,'ANOTHER_HARNESS')]:
+            with self.subTest(index=index):
+                self.report['commands']=copy.deepcopy(original);self.report['commands'][index]['argv'][-2]=value
+                with self.assertRaisesRegex(ValueError,'order or exact argv'):self.check()
+        self.report['commands']=original
+
+    def test_schema_provider_and_literal_boolean_flags_cannot_be_omitted(self):
+        original=copy.deepcopy(self.report)
+        for key,value in [('schema',1),('command_stream_evidence_schema',True),('command_stream_evidence_provider','another.Provider')]:
+            with self.subTest(key=key):
+                self.report=copy.deepcopy(original);self.report[key]=value
+                with self.assertRaisesRegex(ValueError,'schema differs|provider differs'):self.check()
+        self.report=original
+
+    def test_partial_failed_rows_are_rejected_before_complete_success_validation(self):
+        original=copy.deepcopy(self.report['commands'][0])
+        for key,value in [('stream_context_entered',False),('timed_out',True),('error','ACTUAL FAILED ROW'),('error_type','builtins.OSError')]:
+            with self.subTest(key=key):
+                self.report['commands'][0]=copy.deepcopy(original);self.report['commands'][0][key]=value
+                with self.assertRaisesRegex(ValueError,'stream context|Partial or failed'):self.check()
+        self.report['commands'][0]=original
+
+    def test_missing_null_error_fields_cannot_imply_success(self):
+        del self.report['commands'][0]['error']
+        with self.assertRaisesRegex(ValueError,'Partial or failed'):self.check()
+
+    def test_expected_exit_actual_exit_and_timeout_are_literal_integers(self):
+        original=copy.deepcopy(self.report['commands'][0])
+        for key,value in [('expected_returncode',False),('returncode',False),('timeout_seconds',120.0),('timeout_seconds',121)]:
+            with self.subTest(key=key,value=value):
+                self.report['commands'][0]=copy.deepcopy(original);self.report['commands'][0][key]=value
+                with self.assertRaisesRegex(ValueError,'outcome differs|timeout differs'):self.check()
+        self.report['commands'][0]=original
+
+    def test_finalization_cannot_precede_stream_cleanup(self):
+        row=self.report['commands'][0];row['recording_finalized']=self.changed_clock(row['stream_evidence']['finished'],-1,-1)
+        with self.assertRaisesRegex(ValueError,'row finalization'):self.check()
+
+    def test_finalization_cannot_overlap_the_next_command(self):
+        row=self.report['commands'][0];following=self.report['commands'][1]['stream_evidence']['started']
+        row['recording_finalized']=self.changed_clock(following,1,1)
+        with self.assertRaisesRegex(ValueError,'lookup child'):self.check()
+
+    def test_finalization_cannot_escape_report_completion(self):
+        row=self.report['commands'][-1];completion=verify.row_clock(self.report,'finished','fixture')
+        row['recording_finalized']=self.changed_clock(completion,1,1)
+        with self.assertRaisesRegex(ValueError,'report completion'):self.check()
+
+    def test_finalization_requires_complete_integer_clock_and_exact_utc(self):
+        original=copy.deepcopy(self.report['commands'][0]['recording_finalized'])
+        for key,value in [('unix_ns',True),('monotonic_ns',1.0),('utc','2020-01-01T00:00:00Z')]:
+            with self.subTest(key=key):
+                self.report['commands'][0]['recording_finalized']=copy.deepcopy(original)
+                self.report['commands'][0]['recording_finalized'][key]=value
+                with self.assertRaisesRegex(ValueError,'integer clocks|ISO text'):self.check()
+        self.report['commands'][0]['recording_finalized']=original
+
+    def test_hardlinked_lookup_stream_rejects_unchanged_bytes(self):
+        source=self.root/self.folder/'positive-pipeline/d8-helper.stdout.log'
+        os.link(source,self.root/'alias.stdout')
+        with self.assertRaisesRegex(ValueError,'Live file differs'):self.check()
+
+    def test_replaced_lookup_inode_rejects_same_bytes(self):
+        source=self.root/self.folder/'positive-pipeline/d8-helper.stdout.log';raw=source.read_bytes()
+        replacement=self.put('replacement.log',raw);os.replace(replacement,source)
+        with self.assertRaisesRegex(ValueError,'Live file differs'):self.check()
+
+    def test_lookup_witness_bracket_and_cleanup_fields_are_still_required(self):
+        del self.report['commands'][0]['stream_evidence']['before_witness']
+        with self.assertRaisesRegex(ValueError,'Missing, partial or additional'):self.check()
+
+
+class CombinedSummaryControls(OwnedTemporary):
+    def setUp(self):
+        super().setUp();self.pins=inputs.load_pins();self.apk='a'*64
+        self.report={'schema':2,'passed':True,'androidRuntime':False,'positive_signed_apk_instruction_match':True,
+            'positive_restoration_byte_exact':True,'source_class_fixture_and_apk_unchanged':True,'signed_numeric_method_unchanged':True,
+            'status':'TWO_ACTUAL_LOOKUP_DEX_FAULTS_DETECTED_SIGNED_POSITIVE_RESTORED','signed_apk_sha256':self.apk,
+            'original_fixture_sha256':self.pins['fixture']['sha256'],'input_inventory_sha256':self.pins['lookup_input_inventory_sha256'],
+            'primary_recovered_methods':1,'original_dependency_methods':2,'expected_java_faults':10,'expected_actual_dex_faults':2,
+            'provenance_controls_rejected':2,'cases':371,'execution_paths':3,'original_instruction_count':26,
+            'rebuilt_instruction_count':23,'conditional_edges_per_path':4,
+            'signed_class_registered_methods':sorted(r['method'] for r in self.pins['day_trigger_class_mappings']),
+            'micro_dex_preservation_scope':'Only p0 changed in each micro-DEX. Other original methods stay original there; signed class has its complete three registered mappings.'}
+    def check(self):verify.verify_lookup_summary(self.report,self.pins,self.apk)
+    def test_exact_summary_is_only_a_summary_policy_fixture(self):self.check()
+    def test_numeric_summary_wrong_apk_or_fixture_cannot_be_lookup(self):
+        for key in ['status','signed_apk_sha256','original_fixture_sha256','input_inventory_sha256']:
+            old=self.report[key];self.report[key]='wrong'
+            with self.subTest(key=key),self.assertRaisesRegex(ValueError,'identity differs'):self.check()
+            self.report[key]=old
+    def test_missing_primary_packaging_restoration_or_numeric_preservation_rejects(self):
+        for key in ['positive_signed_apk_instruction_match','positive_restoration_byte_exact','signed_numeric_method_unchanged']:
+            self.report[key]=False
+            with self.subTest(key=key),self.assertRaisesRegex(ValueError,'incomplete'):self.check()
+            self.report[key]=True
+    def test_wrong_counts_boolean_counts_or_getter_credit_reject(self):
+        for key,value in [('cases',370),('expected_java_faults',9),('expected_actual_dex_faults',1),('provenance_controls_rejected',1),('primary_recovered_methods',3),('original_instruction_count',True),('rebuilt_instruction_count',23.0)]:
+            old=self.report[key];self.report[key]=value
+            with self.subTest(key=key),self.assertRaisesRegex(ValueError,'count differs'):self.check()
+            self.report[key]=old
+    def test_existing_constant_mapping_cannot_be_dropped_from_signed_class_scope(self):
+        self.report['signed_class_registered_methods'].remove('requiresScheduleExactAlarm()Z')
+        with self.assertRaisesRegex(ValueError,'preservation scope'):self.check()
+    def test_exact_101_catalog_keeps_all_91_prefix_rows(self):
+        rows=[{'mutation':r['name']} for r in self.pins['ui_mutation_inventory']]
+        self.assertEqual(self.pins['ui_mutation_inventory'],verify.verify_combined_ui_inventory(self.pins,rows))
+        with self.assertRaisesRegex(ValueError,'inventory or order'):verify.verify_combined_ui_inventory(self.pins,rows[:91])
+    def test_reordering_duplication_and_relabeling_cannot_pass_the_combined_catalog(self):
+        original=[{'mutation':r['name']} for r in self.pins['ui_mutation_inventory']]
+        for changed in [original[1:]+original[:1],original[:-1]+original[:1]]:
+            with self.subTest(first=changed[0]),self.assertRaisesRegex(ValueError,'inventory or order'):
+                verify.verify_combined_ui_inventory(self.pins,changed)
+        bad=copy.deepcopy(self.pins);bad['ui_mutation_inventory'][0]['mutant_sha256']='0'*64
+        with self.assertRaisesRegex(ValueError,'91-control prefix'):verify.verify_combined_ui_inventory(bad,original)
+
+
+class LookupByteAndProvenanceControls(OwnedTemporary):
+    def setUp(self):
+        super().setUp();self.folder='reports/day-lookup-dex-policy'
+        for name,raw in [('signed-apk-instructions.json',b'["SYNTHETIC LOOKUP"]'),('positive-transplant-instructions.json',b'["SYNTHETIC LOOKUP"]'),
+            ('numeric-before-instructions.json',b'["SYNTHETIC NUMERIC"]'),('numeric-after-instructions.json',b'["SYNTHETIC NUMERIC"]'),
+            ('positive/result.json',b'{"SYNTHETIC_POLICY_ONLY":true}'),('positive-restoration/result.json',b'{"SYNTHETIC_POLICY_ONLY":true}')]:
+            self.put(self.folder+'/'+name,raw)
+        self.cfg={'originalFixture':{'path':'original.dex','sha256':'o'},'rebuiltApk':{'path':'signed.apk','sha256':'a'},
+                  'targetDex':{'path':'rebuilt.dex','sha256':'d'},'classPins':{verify.LOOKUP_HELPER:{'path':'lookup.class','sha256':'h'}}}
+    def check(self):return verify.verify_lookup_byte_equalities(verify.Artifacts(self.root,1,2**63-1),self.folder)
+    def test_exact_byte_equalities_are_accepted_only_as_policy(self):self.check()
+    def test_signed_lookup_body_cannot_differ_from_transplant(self):
+        self.put(self.folder+'/signed-apk-instructions.json',b'["CHANGED"]')
+        with self.assertRaisesRegex(ValueError,'signed lookup instructions'):self.check()
+    def test_lookup_cannot_change_signed_numeric_body(self):
+        self.put(self.folder+'/numeric-after-instructions.json',b'["CHANGED NUMERIC"]')
+        with self.assertRaisesRegex(ValueError,'numeric instructions changed'):self.check()
+    def test_equal_decoded_restoration_with_changed_bytes_is_rejected(self):
+        self.put(self.folder+'/positive-restoration/result.json',b'{ "SYNTHETIC_POLICY_ONLY": true }')
+        with self.assertRaisesRegex(ValueError,'not byte-exact'):self.check()
+    def test_both_exact_lookup_provenance_faults_preserve_all_other_roles(self):
+        before=copy.deepcopy(self.cfg)
+        for name in ['original-as-rebuilt-rejected','wrong-helper-class-rejected']:
+            altered=verify.expected_lookup_provenance_config(self.cfg,name)
+            verify.verify_lookup_provenance_config(altered,self.cfg,name)
+            with self.subTest(name=name),self.assertRaisesRegex(ValueError,'another input|inject its fault'):
+                verify.verify_lookup_provenance_config(self.cfg,self.cfg,name)
+            altered['rebuiltApk']['sha256']='changed'
+            with self.assertRaisesRegex(ValueError,'another input'):
+                verify.verify_lookup_provenance_config(altered,self.cfg,name)
+        self.assertEqual(before,self.cfg)
+
+
+class CombinedRegistryControls(OwnedTemporary):
+    def setUp(self):
+        super().setUp();self.pins=inputs.load_pins()
+        self.registry=copy.deepcopy(self.pins['day_trigger_class_mappings'])
+        self.registry += [{'target':'Lsynthetic/Policy'+str(i)+';','method':'fixture()V'} for i in range(self.pins['registered_methods']-3)]
+        self.put('source/java-method-map.json',inputs.encoded(self.registry))
+        declaration={'schema':1,'purpose':'Test-only original getter instructions; no recovered-method credit and not an application build input.','dependencies':self.pins['combined_dependencies']}
+        self.put('tests/fixtures/original-dependencies.json',inputs.encoded(declaration)+b'\n')
+        dependencies=sorted(r['target']+'->'+r['method'] for r in declaration['dependencies'])
+        self.put('tests/fixtures/provenance.json',inputs.encoded({'dependency_keys':dependencies,'dependency_declaration_sha256':self.pins['dependency_declaration']['sha256']}))
+    def check(self):return verify.verify_combined_registry(self.root,self.pins)
+    def test_exact_three_class_mappings_and_five_uncredited_getters_are_required(self):self.check()
+    def test_changed_constant_or_other_helper_binding_is_rejected(self):
+        self.registry[0]['expected']['value']=0;self.put('source/java-method-map.json',inputs.encoded(self.registry))
+        with self.assertRaisesRegex(ValueError,'constant and two ordinary'):self.check()
+    def test_getter_cannot_replace_a_registered_synthetic_policy_key(self):
+        getter=self.pins['combined_dependencies'][0]
+        self.registry[-1]={'target':getter['target'],'method':getter['method']}
+        self.put('source/java-method-map.json',inputs.encoded(self.registry))
+        with self.assertRaisesRegex(ValueError,'credited as recovered'):self.check()
+    def test_omitted_duplicate_or_wrong_consumer_dependency_is_rejected(self):
+        original=inputs.read_json(self.root/'tests/fixtures/original-dependencies.json')
+        for kind in ['omitted','duplicate','consumer']:
+            value=copy.deepcopy(original)
+            if kind=='omitted':value['dependencies'].pop()
+            elif kind=='duplicate':value['dependencies'][-1]=copy.deepcopy(value['dependencies'][0])
+            else:value['dependencies'][-1]['consumer']=verify.NUMERIC_METHOD
+            file=self.put('tests/fixtures/original-dependencies.json',inputs.encoded(value))
+            pins=copy.deepcopy(self.pins);pins['dependency_declaration']=inputs.identity(file)
+            with self.subTest(kind=kind),self.assertRaisesRegex(ValueError,'consumer/getter rows differ'):
+                verify.verify_combined_registry(self.root,pins)
+
+
+class ProducerCwdControls(OwnedTemporary):
+    def setUp(self):
+        super().setUp();self.pins={'method_producer_sources':{}}
+        body='def run_controls(root):\n    root = root.resolve()\n    def run(argv):\n        return subprocess.run(argv, cwd=root)\n'
+        sources={'day_numeric_dex_controls.py':body,'day_lookup_dex_controls.py':body,
+                 'ui_negative_control.py':'def main():\n    day_numeric_dex_controls.run_controls(build.ROOT, [])\n    day_lookup_dex_controls.run_controls(build.ROOT, [])\n',
+                 'build.py':'ROOT = Path(__file__).resolve().parent\n'}
+        for name,raw in sources.items():self.pins['method_producer_sources'][name]=inputs.identity(self.put(name,raw.encode()))
+        self.execution={'execution':{'cwd':str(self.root)}}
+    def check(self):return verify.verify_method_producer_cwd(self.root,self.pins,self.execution)
+    def test_exact_source_and_outer_cwd_do_not_invent_a_child_receipt_field(self):
+        result=self.check();self.assertFalse(result['sources']['day_lookup_dex_controls.py']['individual_child_cwd_recorded'])
+    def test_wrong_outer_project_cwd_is_rejected(self):
+        self.execution['execution']['cwd']=str(self.root/'another')
+        with self.assertRaisesRegex(ValueError,'Outer resolved project cwd'):self.check()
+    def test_changed_producer_source_rejects_even_with_same_declared_outer_root(self):
+        self.put('day_lookup_dex_controls.py',b'def run_controls(root): pass\n')
+        with self.assertRaisesRegex(ValueError,'Exact file identity differs'):self.check()
+    def test_rehashed_other_cwd_expression_is_rejected_by_ast_contract(self):
+        path=self.root/'day_lookup_dex_controls.py';path.write_text(path.read_text().replace('cwd=root','cwd=another'))
+        self.pins['method_producer_sources']['day_lookup_dex_controls.py']=inputs.identity(path)
+        with self.assertRaisesRegex(ValueError,'cwd expression differs'):self.check()

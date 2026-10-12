@@ -1,0 +1,21 @@
+--- first-attempt/tools/parity_journeys/editor_journey.py
++++ corrected/tools/parity_journeys/editor_journey.py
+@@ -433,6 +433,7 @@
+                 if observed_journey.exact_alarm_plan():
+                     import exact_alarm_journey
+                     result[exact_alarm_journey.POLICY_KEY] = exact_alarm_journey.POLICY
++                    result['global_command_observations'] = exact_alarm_journey.verify_global_commands(folder, report, proof)
+             result['capture_policy'] = policy
+             result['process_handoff_outcomes'] = handoffs
+             result['process_handoff_outcomes_equal'] = handoffs[0] == handoffs[1]
+@@ -546,7 +547,9 @@
+                 run['environment'] = recorder.environment()
+                 if hashlib.sha256(Path(entry['path']).read_bytes()).hexdigest() != entry['apk_sha256']:
+                     raise JourneyError('APK changed since preflight')
+-                recorder.cmd(['uninstall', PACKAGE])
++                uninstall_command = recorder.cmd(['uninstall', PACKAGE])[0]
++                if observed_journey.exact_alarm_plan():
++                    run['uninstall'] = uninstall_command
+                 run['absence'], out, err = recorder.shell(['pm', 'path', PACKAGE])
+                 if not proof.absence_ok(run['absence']['returncode'], out.decode(), err.decode()):
+                     raise JourneyError('Package removal failed')

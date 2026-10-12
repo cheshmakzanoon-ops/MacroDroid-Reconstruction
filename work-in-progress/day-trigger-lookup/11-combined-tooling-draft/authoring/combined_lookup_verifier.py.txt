@@ -1,0 +1,253 @@
+LOOKUP_METHOD = ('Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0('
+                 'Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)'
+                 'Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;')
+LOOKUP_HELPER = 'recovered.ui.DayTriggerLookupMethods'
+
+
+def verify_combined_registry(project, pins):
+    registry = inputs.read_json(inputs.regular(project, 'source/java-method-map.json'))
+    keys = [row['target'] + '->' + row['method'] for row in registry]
+    inputs.require(len(keys) == len(set(keys)) == pins['registered_methods'], 'Combined registry is incomplete or duplicated')
+    selected = [row for row in registry if row['target'] == 'Lcom/arlosoft/macrodroid/triggers/DayTrigger;']
+    inputs.require(selected == pins['day_trigger_class_mappings'], 'DayTrigger constant and two ordinary-method mappings differ')
+    source = inputs.checked_identity(project, 'tests/fixtures/original-dependencies.json', pins['dependency_declaration'])
+    declaration = inputs.read_json(source)
+    count(declaration.get('schema'), 1, 'Combined dependency schema differs')
+    inputs.require(declaration.get('dependencies') == pins['combined_dependencies'], 'Exact combined consumer/getter rows differ')
+    dependencies = [row['target'] + '->' + row['method'] for row in declaration['dependencies']]
+    inputs.require(len(dependencies) == len(set(dependencies)) == 5 and not set(dependencies) & set(keys),
+                   'A getter was omitted, duplicated or credited as recovered')
+    consumers = {method: [row for row in declaration['dependencies'] if row['consumer'] == method]
+                 for method in (NUMERIC_METHOD, LOOKUP_METHOD)}
+    inputs.require(len(consumers[NUMERIC_METHOD]) == 3 and len(consumers[LOOKUP_METHOD]) == 2,
+                   'Numeric and lookup getter partitions differ')
+    provenance = inputs.read_json(inputs.regular(project, 'tests/fixtures/provenance.json'))
+    inputs.require(provenance.get('dependency_keys') == sorted(dependencies)
+                   and provenance.get('dependency_declaration_sha256') == pins['dependency_declaration']['sha256'],
+                   'Fixture dependency provenance differs')
+    return {'registered_class_mappings': selected, 'uncredited_dependency_keys': sorted(dependencies)}
+
+
+def verify_method_producer_cwd(project, pins, execution):
+    """Bind cwd through exact source and the outer receipt; no child cwd field exists."""
+    import ast
+    project = Path(project)
+    inputs.require(project.is_absolute() and project == project.resolve()
+                   and execution['execution'].get('cwd') == str(project), 'Outer resolved project cwd differs')
+    rows = {}
+    for name, expected in pins['method_producer_sources'].items():
+        path = inputs.checked_identity(project, name, expected)
+        source = path.read_text(); tree = ast.parse(source)
+        if name in ('day_numeric_dex_controls.py', 'day_lookup_dex_controls.py'):
+            owner = next(node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == 'run_controls')
+            function = next(node for node in owner.body if isinstance(node, ast.FunctionDef) and node.name == 'run')
+            calls = [node for node in ast.walk(function) if isinstance(node, ast.Call) and ast.unparse(node.func) == 'subprocess.run']
+            inputs.require(len(calls) == 1 and [ast.unparse(k.value) for k in calls[0].keywords if k.arg == 'cwd'] == ['root'],
+                           'Method subprocess cwd expression differs')
+            roots = [node for node in owner.body if isinstance(node, ast.Assign)
+                     and any(isinstance(target, ast.Name) and target.id == 'root' for target in node.targets)]
+            inputs.require(len(roots) == 1 and ast.unparse(roots[0].value) == 'root.resolve()', 'Method root resolution differs')
+            rows[name] = {'source': expected, 'cwd_expression': 'root', 'resolved_root_expression': 'root.resolve()',
+                          'individual_child_cwd_recorded': False}
+        elif name == 'ui_negative_control.py':
+            calls = [node for node in ast.walk(tree) if isinstance(node, ast.Call)
+                     and ast.unparse(node.func) in ('day_numeric_dex_controls.run_controls', 'day_lookup_dex_controls.run_controls')]
+            inputs.require(len(calls) == 2 and all(ast.unparse(node.args[0]) == 'build.ROOT' for node in calls),
+                           'UI method runner project binding differs')
+            rows[name] = {'source': expected, 'calls': [ast.unparse(node) for node in calls]}
+        else:
+            roots = [node for node in tree.body if isinstance(node, ast.Assign)
+                     and any(isinstance(target, ast.Name) and target.id == 'ROOT' for target in node.targets)]
+            inputs.require(len(roots) == 1 and ast.unparse(roots[0].value) == 'Path(__file__).resolve().parent',
+                           'Build project root binding differs')
+            rows[name] = {'source': expected, 'root_expression': 'Path(__file__).resolve().parent'}
+    return {'scope': 'Exact producer/caller AST and explicit outer acceptance cwd; individual method rows do not independently record cwd',
+            'resolved_project': str(project), 'sources': rows}
+
+
+def expected_lookup_commands(project, folder, java):
+    project, output = Path(project), Path(project) / inputs.relative(folder)
+    jar = str(project / 'tools/lib/jadx-r2721.4574686-all.jar')
+    cp = ':'.join([jar, str(project / 'build/java/hostclasses'), str(project / 'tools/classes')])
+    expected = []
+    def pipeline(name):
+        path = output / name
+        commands = [
+            ('d8-helper', [java, '-Xmx512m', '-cp', jar, 'com.android.tools.r8.D8', '--release',
+                           '--no-desugaring', '--min-api', '23', '--output', path / 'd8', path / 'inputs.jar']),
+            ('disassemble-helper', [java, '-Xmx512m', '-cp', jar, 'com.android.tools.smali.baksmali.Main',
+                                    'd', '--api', '23', '--use-locals', '-o', path / 'helper-smali', path / 'd8/classes.dex']),
+            ('assemble-target', [java, '-Xmx512m', '-cp', jar, 'com.android.tools.smali.smali.Main',
+                                 'a', '--api', '23', '-j', '2', '-o', path / 'lookup-target.dex', path / 'target-smali'])]
+        expected.extend((name, label, 0, list(map(str, argv))) for label, argv in commands)
+    def inspect(name, dex, method):
+        expected.append(('', name, 0, [java, '-Xmx512m', '-cp', cp, 'InspectMethod', str(dex), method,
+                                      str(output / (name + '.json'))]))
+    def execute(name, code):
+        expected.append((name, 'execute', code, [java, *JVM_FLAGS, '-Xmx512m', '-cp', cp,
+                        'DayLookupControlHarness', str(output / name / 'config.json'), str(output / name / 'result.json')]))
+    pipeline('positive-pipeline')
+    inspect('numeric-before-instructions', project / 'build/hybrid/classes3.dex', NUMERIC_METHOD)
+    inspect('signed-apk-instructions', project / 'build/hybrid/classes3.dex', LOOKUP_METHOD)
+    inspect('positive-transplant-instructions', output / 'positive-pipeline/lookup-target.dex', LOOKUP_METHOD)
+    execute('positive', 0)
+    for name in ('case-sensitive', 'last-match'):
+        pipeline(name + '-pipeline'); execute(name + '-dex-fault', 3)
+    for name, code in [('original-as-rebuilt-rejected', 1), ('wrong-helper-class-rejected', 1), ('positive-restoration', 0)]:
+        execute(name, code)
+    inspect('numeric-after-instructions', project / 'build/hybrid/classes3.dex', NUMERIC_METHOD)
+    return expected
+
+
+def verify_lookup_commands(report, folder, artifacts, java):
+    expected = expected_lookup_commands(artifacts.root, folder, java)
+    count(report.get('schema'), 2, 'Lookup command schema differs')
+    count(report.get('command_stream_evidence_schema'), 2, 'Lookup command creation-evidence schema differs')
+    inputs.require(report.get('command_stream_evidence_provider') == 'day_numeric_dex_controls.CommandStreamEvidence',
+                   'Lookup command evidence provider differs')
+    commands = report.get('commands')
+    inputs.require(isinstance(commands, list) and len(commands) == len(expected) == 19, 'Lookup actual command inventory differs')
+    previous = row_clock(report, 'started', 'lookup-report-start')
+    completion = row_clock(report, 'finished', 'lookup-report-finish')
+    clocks_ordered(previous, completion, 'lookup report', strict=True)
+    inputs.require(artifacts.started_ns <= previous['unix_ns'] and completion['unix_ns'] <= artifacts.ended_ns,
+                   'Lookup report is outside acceptance')
+    for row, (subdir, label, code, argv) in zip(commands, expected):
+        inputs.require(row.get('name') == label and row.get('argv') == argv, 'Lookup command order or exact argv differs: ' + label)
+        count(row.get('expected_returncode'), code, 'Lookup expected subprocess outcome differs')
+        count(row.get('returncode'), code, 'Lookup actual subprocess outcome differs')
+        count(row.get('timeout_seconds'), 120, 'Lookup child timeout differs')
+        flags(row, {'stream_context_entered': True, 'timed_out': False}, 'Lookup command did not complete its stream context')
+        inputs.require('error' in row and row['error'] is None and 'error_type' in row and row['error_type'] is None,
+                       'Partial or failed lookup command cannot be accepted as a success')
+        prefix = folder + ('/' + subdir if subdir else '')
+        start, end = verify_command_stream_evidence(row, prefix, label, artifacts)
+        finalization = checked_clock(row.get('recording_finalized'), label + ':recording-finalized')
+        clocks_ordered(previous, start, 'lookup child:' + label)
+        clocks_ordered(row['stream_evidence']['invocation_finished'], end, 'lookup stream completion:' + label)
+        clocks_ordered(end, finalization, 'lookup row finalization:' + label)
+        clocks_ordered(finalization, completion, 'lookup report completion:' + label)
+        previous = finalization
+
+
+def verify_lookup_summary(report, pins, apk):
+    flags(report, {'passed': True, 'androidRuntime': False, 'positive_signed_apk_instruction_match': True,
+                   'positive_restoration_byte_exact': True, 'source_class_fixture_and_apk_unchanged': True,
+                   'signed_numeric_method_unchanged': True}, 'Lookup signed-D8 acceptance is incomplete')
+    inputs.require(report.get('status') == 'TWO_ACTUAL_LOOKUP_DEX_FAULTS_DETECTED_SIGNED_POSITIVE_RESTORED'
+                   and report.get('signed_apk_sha256') == apk and report.get('original_fixture_sha256') == pins['fixture']['sha256']
+                   and report.get('input_inventory_sha256') == pins['lookup_input_inventory_sha256'], 'Lookup acceptance identity differs')
+    for key, expected in [('schema', 2), ('primary_recovered_methods', 1), ('original_dependency_methods', 2),
+                          ('expected_java_faults', 10), ('expected_actual_dex_faults', 2), ('provenance_controls_rejected', 2),
+                          ('cases', 371), ('execution_paths', 3), ('original_instruction_count', 26),
+                          ('rebuilt_instruction_count', 23), ('conditional_edges_per_path', 4)]:
+        count(report.get(key), expected, 'Lookup acceptance count differs: ' + key)
+    inputs.require(report.get('signed_class_registered_methods') == sorted(row['method'] for row in pins['day_trigger_class_mappings'])
+                   and report.get('micro_dex_preservation_scope') == 'Only p0 changed in each micro-DEX. Other original methods stay original there; signed class has its complete three registered mappings.',
+                   'Lookup signed-class or one-method micro-DEX preservation scope differs')
+
+
+def expected_lookup_provenance_config(positive, name):
+    result = copy.deepcopy(positive)
+    if name == 'original-as-rebuilt-rejected':
+        result['targetDex'] = copy.deepcopy(positive['originalFixture'])
+    elif name == 'wrong-helper-class-rejected':
+        result['classPins'][LOOKUP_HELPER]['sha256'] = '0' * 64
+    else:
+        raise ValueError('Unknown lookup provenance control')
+    return result
+
+
+def verify_lookup_provenance_config(actual, positive, name):
+    inputs.require(actual == expected_lookup_provenance_config(positive, name), 'Lookup provenance control changed another input or did not inject its fault')
+
+
+def verify_lookup(project, pins, apk, ui, controls, report, artifacts, output, retained):
+    # Called only after the complete final source scan; imported validators are
+    # part of the exact final twenty-one-path delta, not arbitrary report content.
+    sys.path.insert(0, str(project))
+    import day_lookup_dex_controls as lookup
+    import ui_mutation_catalog as catalog
+    inputs.require(Path(lookup.__file__).resolve() == project / 'day_lookup_dex_controls.py', 'Lookup validator loaded from another source root')
+    verify_lookup_summary(report, pins, apk)
+    artifacts.hash('reports/day-lookup-dex-controls.json', controls['dayLookupDexControlsSha256'])
+    folder = report.get('evidence_directory')
+    inputs.require(isinstance(folder, str) and re.fullmatch(r'reports/day-lookup-dex-[A-Za-z0-9_]+', folder), 'Lookup evidence directory differs')
+    verify_lookup_commands(report, folder, artifacts, verify_java_policy(artifacts))
+    inputs.require(report.get('positive_pipeline') == pins['lookup_positive_pipeline']
+                   and artifacts.json(folder + '/positive-pipeline/method-body-binding.json') == pins['lookup_positive_pipeline'],
+                   'Fresh lookup production transplant differs from its reviewed method-body binding')
+    artifacts.hash(folder + '/positive-pipeline/lookup-target.dex', pins['lookup_positive_pipeline']['target_dex_sha256'])
+    inputs.require(artifacts.raw(folder + '/signed-apk-instructions.json') == artifacts.raw(folder + '/positive-transplant-instructions.json'),
+                   'Actual signed lookup instructions differ from the positive transplant')
+    inputs.require(artifacts.raw(folder + '/numeric-before-instructions.json') == artifacts.raw(folder + '/numeric-after-instructions.json'),
+                   'Signed numeric instructions changed during lookup controls')
+    positive = artifacts.json(folder + '/positive/result.json')
+    restoration = artifacts.json(folder + '/positive-restoration/result.json')
+    lookup.validate_positive(positive); lookup.validate_positive(restoration)
+    inputs.require(positive == restoration and artifacts.raw(folder + '/positive/result.json') == artifacts.raw(folder + '/positive-restoration/result.json'),
+                   'Lookup raw positive restoration is not byte-exact')
+    cfg = artifacts.json(folder + '/positive/config.json')
+    count(cfg.get('schema'), 1, 'Lookup positive configuration schema differs')
+    inputs.require(set(cfg) == {'schema', 'originalFixture', 'rebuiltApk', 'rebuiltGetterDex', 'targetDex', 'classPins'},
+                   'Lookup positive configuration inventory differs')
+    lookup.validate_execution_binding(positive, cfg); lookup.validate_execution_binding(restoration, cfg)
+    inputs.require(artifacts.json(folder + '/positive-restoration/config.json') == cfg, 'Lookup restoration used different positive inputs')
+    for field, name, digest in [
+        ('originalFixture', 'tests/fixtures/original-methods.dex', pins['fixture']['sha256']),
+        ('rebuiltApk', 'dist/MacroDroid-5.67.8-v9-hybrid.apk', apk),
+        ('targetDex', folder + '/positive-pipeline/lookup-target.dex', pins['lookup_positive_pipeline']['target_dex_sha256'])]:
+        inputs.require(cfg.get(field) == {'path': str(project / name), 'sha256': digest}, 'Lookup positive input role differs: ' + field)
+    getter = inputs.regular(project, 'build/hybrid/classes3.dex')
+    getter_hash = inputs.identity(getter)['sha256']
+    inputs.require(cfg.get('rebuiltGetterDex') == {'path': str(getter), 'sha256': getter_hash, 'apk_member': 'classes3.dex'}, 'Lookup getter DEX role differs')
+    with zipfile.ZipFile(inputs.regular(project, 'dist/MacroDroid-5.67.8-v9-hybrid.apk')) as archive:
+        inputs.require(archive.namelist().count('classes3.dex') == 1, 'Signed lookup/getter partition is not unique')
+        with archive.open('classes3.dex') as stream: signed_hash = hashlib.file_digest(stream, 'sha256').hexdigest()
+    inputs.require(getter_hash == signed_hash, 'Lookup and its two getter bodies were not read from the actual signed APK partition')
+    current = lookup.class_pins(project / 'build/java/hostclasses', project / 'tools/classes')
+    inputs.require(cfg.get('classPins') == current and sorted(current) == pins['lookup_class_names'] and len(current) == 26,
+                   'Actual lookup runtime class inventory differs')
+    for value in current.values():
+        name = Path(value['path']).relative_to(project).as_posix()
+        inputs.require(inputs.identity(inputs.regular(project, name))['sha256'] == value['sha256'], 'Loaded lookup class bytes differ')
+        retain_class(project, name, output, retained)
+    faults = report.get('actual_dex_faults')
+    inputs.require(isinstance(faults, list) and [row.get('name') for row in faults] == ['case-sensitive', 'last-match'], 'Actual lookup DEX fault inventory differs')
+    jobs = {row['name'].removeprefix('day-lookup-'): row for row in catalog.load_lookup_mutations(project)}
+    for row in faults:
+        name = row['name']; flags(row, {'passed': True}, 'An actual lookup DEX fault was not rejected')
+        count(row.get('mismatches'), pins['lookup_java_failure_counts'][name], 'Lookup DEX fault failure count differs')
+        inputs.require(row.get('required_cases') == jobs[name]['required_cases'], 'Lookup DEX fault required cases differ')
+        bad = artifacts.json(folder + '/' + name + '-dex-fault/result.json')
+        lookup.validate_fault(positive, bad, jobs[name]['required_cases'], pins['lookup_java_failure_counts'][name], 'rebuilt')
+        bad_cfg = artifacts.json(folder + '/' + name + '-dex-fault/config.json')
+        lookup.validate_execution_binding(bad, bad_cfg)
+        wanted = copy.deepcopy(cfg)
+        wanted['targetDex'] = {'path': str(project / folder / (name + '-pipeline/lookup-target.dex')), 'sha256': row['pipeline']['target_dex_sha256']}
+        inputs.require(bad_cfg == wanted and row['pipeline'] == artifacts.json(folder + '/' + name + '-pipeline/method-body-binding.json'),
+                       'Lookup DEX fault changed another input or production binding')
+        artifacts.hash(folder + '/' + name + '-pipeline/lookup-target.dex', row['pipeline']['target_dex_sha256'])
+    for name, error in [('original-as-rebuilt-rejected', 'Original fixture cannot masquerade as rebuilt target'),
+                        ('wrong-helper-class-rejected', 'Wrong input identity: class ' + LOOKUP_HELPER)]:
+        verify_lookup_provenance_config(artifacts.json(folder + '/' + name + '/config.json'), cfg, name)
+        inputs.require(not (project / folder / name / 'result.json').exists()
+                       and error in artifacts.raw(folder + '/' + name + '/execute.stderr.log').decode(),
+                       'Lookup provenance control did not reject for the required reason')
+    _, bindings = lookup.validate_java_controls(project, controls['controls'])
+    inputs.require(report.get('java_fault_bindings') == bindings and len(bindings) == 10, 'Lookup Java-control source/class binding differs')
+    for key, value in [('dayLookupRecoveredMethods', 1), ('dayLookupOriginalDependencyMethods', 2)]:
+        count(ui.get(key), value, 'UI lookup method/dependency credit differs')
+    inputs.require(ui.get('dayLookupOriginalDependencyKeys') == sorted(lookup.GETTERS)
+                   and ui.get('dayLookupInputInventorySha256') == pins['lookup_input_inventory_sha256']
+                   and ui.get('dayLookupInstructionAndConditionalCoverage') is True
+                   and ui.get('dayLookupGeneratedNullMessageCases') == pins['lookup_vm_null_cases']
+                   and ui.get('dayLookupObserverRecordControls') == positive['observerRecordControls'],
+                   'UI lookup coverage, exact exception scope or observer controls differ')
+    lookup.validate_positive_coverage(ui['dayLookupOriginalCoverage'], 26)
+    lookup.validate_positive_coverage(ui['dayLookupRebuiltCoverage'], 23)
+    return {'cases': 371, 'paths': 3, 'original_instructions': 26, 'rebuilt_instructions': 23,
+            'conditional_edges_per_path': 4, 'java_faults': 10, 'actual_dex_faults': 2, 'provenance_rejections': 2,
+            'uncredited_original_getters': 2, 'actual_command_streams_checked': 38,
+            'signed_positive_instruction_bytes_equal': True, 'exact_positive_restoration': True,
+            'signed_numeric_instructions_unchanged': True, 'loaded_runtime_classes': 26}

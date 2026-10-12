@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "method": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+  "helper_path": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+  "helper_sha256": "020256ed2d78740183aa9ac8d92e8c775db0d4fc647dfc12f1bea0a6881243e5",
+  "input_inventory_sha256": "02dd119966191ad2f56937eda28e63644979080158465ffb13767710f34e32e6",
+  "controls": [
+    {
+      "name": "case-sensitive",
+      "reason": "Case-insensitive matching must retain the first entry object.",
+      "edits": [
+        {
+          "find": "key.equalsIgnoreCase(entry.getKey())",
+          "replace": "key.equals(entry.getKey())",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-lookup:first-duplicate-entry-identity"
+      ]
+    },
+    {
+      "name": "reverse-receiver",
+      "reason": "The query is the receiver; null entry keys are accepted as nonmatches.",
+      "edits": [
+        {
+          "find": "key.equalsIgnoreCase(entry.getKey())",
+          "replace": "entry.getKey().equalsIgnoreCase(key)",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-lookup:null-entry-key-is-not-a-match"
+      ]
+    },
+    {
+      "name": "skip-null-entry",
+      "reason": "A null entry must throw when reached, after the exact iterator calls.",
+      "edits": [
+        {
+          "find": "            if (key.equalsIgnoreCase(entry.getKey())) return entry;",
+          "replace": "            if (entry == null) continue;\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-lookup:null-first-entry"
+      ]
+    },
+    {
+      "name": "null-query-early-return",
+      "reason": "A null query still traverses an empty list and throws only when a key is compared.",
+      "edits": [
+        {
+          "find": "        for (DictionaryEntry entry : dictionary.getEntries()) {",
+          "replace": "        if (key == null) return null;\n        for (DictionaryEntry entry : dictionary.getEntries()) {",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-lookup:null-query-nonempty"
+      ]
+    },
+    {
+      "name": "last-match",
+      "reason": "A match returns immediately without reading a later entry.",
+      "edits": [
+        {
+          "find": "        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;",
+          "replace": "        DictionaryEntry match = null;\n        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) match = entry;\n        }\n        return match;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-lookup:empty-string-match"
+      ]
+    },
+    {
+      "name": "trim-query",
+      "reason": "Query whitespace is significant.",
+      "edits": [
+        {
+          "find": "key.equalsIgnoreCase(entry.getKey())",
+          "replace": "key.trim().equalsIgnoreCase(entry.getKey())",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-lookup:query-whitespace-is-significant"
+      ]
+    },
+    {
+      "name": "indexed-loop",
+      "reason": "The original traverses through Iterator, with observable iterator failures and ordering.",
+      "edits": [
+        {
+          "find": "        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;",
+          "replace": "        java.util.List<DictionaryEntry> entries = dictionary.getEntries();\n        for (int i = 0; i < entries.size(); i++) {\n            DictionaryEntry entry = entries.get(i);\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-lookup:empty"
+      ]
+    },
+    {
+      "name": "extra-iteration-after-match",
+      "reason": "Returning a match must not perform another hasNext operation.",
+      "edits": [
+        {
+          "find": "        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;",
+          "replace": "        java.util.Iterator<DictionaryEntry> entries = dictionary.getEntries().iterator();\n        while (entries.hasNext()) {\n            DictionaryEntry entry = entries.next();\n            if (key.equalsIgnoreCase(entry.getKey())) { entries.hasNext(); return entry; }\n        }\n        return null;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-lookup:match-before-later-iterator-fault"
+      ]
+    },
+    {
+      "name": "swallow-iterator-fault",
+      "reason": "Iterator exceptions escape with their original message and identity.",
+      "edits": [
+        {
+          "find": "        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;",
+          "replace": "        try {\n        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;\n        } catch (RuntimeException failure) { return null; }",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-lookup:injected-iterator-state"
+      ]
+    },
+    {
+      "name": "replace-injected-npe-identity",
+      "reason": "An injected NPE must escape as the same object, even if a replacement has the same message.",
+      "edits": [
+        {
+          "find": "        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;",
+          "replace": "        try {\n        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;\n        } catch (NullPointerException failure) { throw new NullPointerException(failure.getMessage()); }",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-lookup:injected-iterator-npe"
+      ]
+    }
+  ]
+}

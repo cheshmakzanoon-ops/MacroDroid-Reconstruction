@@ -1,0 +1,51 @@
+{
+  "scope": "Read-only exact producer/caller AST binding; no child execution or independently recorded numeric/lookup cwd is claimed.",
+  "sources": {
+    "numeric": {
+      "path": "/dev/shm/macrodroid-day-lookup-integration/stage-04/project/day_numeric_dex_controls.py",
+      "bytes": 40949,
+      "sha256": "2608a9a0a9d5b44627595fcbb696f2ec3f70213eb6af88a7282ec818d53e92f4",
+      "cwd_expression": "root",
+      "resolved_root_statement": "root = root.resolve()",
+      "subprocess_call": "subprocess.run(list(map(str, argv)), cwd=root, stdout=streams.handles['stdout'],\n                                      stderr=streams.handles['stderr'], timeout=timeout)",
+      "independent_cwd_field": false
+    },
+    "lookup": {
+      "path": "/dev/shm/macrodroid-day-lookup-integration/stage-04/project/day_lookup_dex_controls.py",
+      "bytes": 35479,
+      "sha256": "0b72325dbdaf60525f07a7b72708b9096d1e585ef5e1601332ceaac9aa67c8c9",
+      "cwd_expression": "root",
+      "resolved_root_statement": "root = root.resolve()",
+      "subprocess_call": "subprocess.run(list(map(str, argv)), cwd=root, stdout=streams.handles['stdout'],\n                                      stderr=streams.handles['stderr'], timeout=timeout)",
+      "independent_cwd_field": false
+    },
+    "ui_caller": {
+      "path": "/dev/shm/macrodroid-day-lookup-integration/stage-04/project/ui_negative_control.py",
+      "bytes": 25574,
+      "sha256": "460d8c3626e13123d02b636b962b262996be33eed84e2cb4ad7c70c6f4ed814d",
+      "calls": [
+        "day_numeric_dex_controls.run_controls(build.ROOT,records)",
+        "day_lookup_dex_controls.run_controls(build.ROOT,records)"
+      ]
+    },
+    "build": {
+      "path": "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build.py",
+      "bytes": 20325,
+      "sha256": "dd599090fc075fed0835875937a2c2b76d91381936c26f4275f876edf47345f0",
+      "root_assignment": "ROOT=Path(__file__).resolve().parent"
+    },
+    "outer": {
+      "path": "/dev/shm/day-numeric-hosted-02/checkpoints/02-hosted-filesystem-tooling-successor/source/tools/day_numeric_acceptance/run_acceptance.py",
+      "bytes": 16018,
+      "sha256": "f4f0cbd44b0f02ea9f4a699fa5752396241ac52a3ae66b60706f74b11ff1e1f4",
+      "outer_recorder": "def run_child(command, cwd, env, stdout, stderr, timeout):\n    result = {'argv': list(command), 'cwd': str(cwd), 'timeout_seconds': timeout,\n              'returncode': None, 'timed_out': False}\n    observation = CommandStreamEvidence(stdout.parent, stdout, stderr)\n    process = None\n    try:\n        with observation as streams:\n            try:\n                process = subprocess.Popen(command, cwd=cwd, env=env, stdout=streams.handles['stdout'],\n                                           stderr=streams.handles['stderr'], start_new_session=True)\n                result['owned_process_group'] = process.pid\n                try:\n                    result['returncode'] = process.wait(timeout=timeout)\n                except subprocess.TimeoutExpired:\n                    result['timed_out'] = True\n                    stop_owned_group(process)\n                    result['returncode'] = process.returncode\n            finally:\n                if process is not None:\n                    stop_owned_group(process)\n    except BaseException as error:\n        result['error'] = repr(error)\n        if process is not None:\n            result['returncode'] = process.returncode\n    finally:\n        observation.add_to(result)\n    return result"
+    }
+  },
+  "finalization_order": [
+    "stream_evidence.invocation_finished",
+    "stream_evidence.finished",
+    "recording_finalized",
+    "next command started or report finished"
+  ],
+  "clock_contract": "Strict integer Unix and monotonic nanoseconds plus corresponding UTC text; no fabricated finish on partial failed rows."
+}

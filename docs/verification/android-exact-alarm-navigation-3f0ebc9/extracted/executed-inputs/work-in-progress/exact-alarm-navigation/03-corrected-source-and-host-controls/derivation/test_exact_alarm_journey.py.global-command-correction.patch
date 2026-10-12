@@ -1,0 +1,103 @@
+--- first-attempt/tools/parity_journeys/test_exact_alarm_journey.py
++++ corrected/tools/parity_journeys/test_exact_alarm_journey.py
+@@ -87,6 +87,20 @@
+         self.report['plan'] = copy.deepcopy(runner.PLAN)
+         for run in self.report['runs']:
+             run['transitions'][-1]['command']['argv'] = ['shell', 'input tap 560 809']
++            start = run['launch']['started_monotonic'] - 0.6
++            uninstall = self.command([], b'Success\n', start)
++            uninstall['argv'] = ['uninstall', runner.PACKAGE]
++            run['uninstall'] = uninstall
++            setup = {
++                'absence': ['shell', 'pm path ' + runner.PACKAGE],
++                'install': ['install', '--no-streaming', '/synthetic/' + run['label'] + '.apk'],
++                'installed_path': ['shell', 'pm path ' + runner.PACKAGE],
++                'installed_checksum': ['shell', 'sha256sum /data/app/test/base.apk'],
++            }
++            for number, (role, argv) in enumerate(setup.items(), 1):
++                timestamp = start + number * 0.1
++                run[role].update(argv=argv, started_monotonic=timestamp,
++                                 finished_monotonic=timestamp + 0.05, timed_out=False)
+ 
+ 
+ def add_readiness(fixture):
+@@ -310,6 +324,8 @@
+         self.assertTrue(result['exact_alarm_explanation_ok_tapped'])
+         self.assertEqual(len(result['notification_readiness_observations']), 2)
+         self.assertEqual(result['settings_inputs'], 0)
++        self.assertEqual(result['global_command_observations']['planned_inputs'], 26)
++        self.assertEqual(result['global_command_observations']['unbound_mutations'], 0)
+         for key in ('permission_granted', 'trigger_configuration_confirmed', 'full_runtime_1_to_1_established',
+                     'macros_saved', 'macros_executed', 'crash_free_run_established'):
+             self.assertFalse(result[key])
+@@ -355,5 +371,70 @@
+         self.assertFalse(result.get('terminal_surface_identities_equal', True), result)
+ 
+ 
++class GlobalCommandOwnershipControls(unittest.TestCase):
++    def setUp(self):
++        context = alarm.configured_plan(); context.__enter__(); self.addCleanup(context.__exit__, None, None, None)
++        self.fixture = FourteenFixture(); self.addCleanup(self.fixture.close)
++        add_readiness(self.fixture)
++
++    def append(self, report, argv):
++        command = self.fixture.command([], b'', report['commands'][-1]['finished_monotonic'] + 1)
++        command['argv'] = argv
++        report['commands'].append(command)
++
++    def test_all_planned_commands_are_bound_and_extra_read_only_observation_is_labeled_as_evidence(self):
++        result = alarm.verify_global_commands(self.fixture.folder, self.fixture.report, proof)
++        self.assertEqual(result['planned_inputs'], 26)
++        self.assertEqual(result['setup_mutations'], 6)
++        self.assertEqual(result['unbound_mutations'], 0)
++        self.append(self.fixture.report, ['shell', 'getprop ro.kernel.qemu'])
++        expanded = alarm.verify_global_commands(self.fixture.folder, self.fixture.report, proof)
++        self.assertEqual(expanded['commands'], result['commands'] + 1)
++        self.assertEqual(expanded['planned_inputs'], 26)
++
++    def test_appended_input_setup_mutations_shell_wrappers_and_permission_commands_are_rejected(self):
++        extras = [
++            ['shell', 'input tap 20 20'], ['shell', 'input tap 560 809'],
++            ['uninstall', runner.PACKAGE], ['install', '--no-streaming', '/synthetic/extra.apk'],
++            ['shell', 'am start -W -n ' + runner.PACKAGE + '/.intro.IntroActivity'],
++            ['shell', "sh -c 'input tap 20 20'"], ['shell', 'input', 'tap', '20', '20'],
++            ['shell', 'settings put global animator_duration_scale 1'],
++            ['shell', 'appops set ' + runner.PACKAGE + ' SCHEDULE_EXACT_ALARM allow'],
++            ['shell', 'am start -n com.android.settings/.SyntheticDestination'],
++            ['shell', 'getprop ro.kernel.qemu; input tap 20 20'],
++            ['shell', 'input tap 20 20\n'],
++            ['shell', 'rm -f /data/local/tmp/unowned.xml'],
++            ['exec-out', 'sh', '-c', 'input tap 20 20'],
++        ]
++        for argv in extras:
++            report = copy.deepcopy(self.fixture.report); self.append(report, argv)
++            with self.subTest(argv=argv), self.assertRaises(runner.JourneyError):
++                alarm.verify_global_commands(self.fixture.folder, report, proof)
++
++    def test_missing_planned_input_duplicate_stream_and_wrong_setup_role_are_rejected(self):
++        for mutation in ('missing_input', 'duplicate_stream', 'wrong_setup', 'missing_uninstall'):
++            report = copy.deepcopy(self.fixture.report)
++            if mutation == 'missing_input':
++                wanted = report['runs'][1]['transitions'][-1]['command']
++                report['commands'].remove(wanted)
++            elif mutation == 'duplicate_stream':
++                self.append(report, ['shell', 'getprop ro.kernel.qemu'])
++                report['commands'][-1]['stdout'] = copy.deepcopy(report['commands'][0]['stdout'])
++            elif mutation == 'wrong_setup':
++                wanted = report['runs'][1]['absence']
++                index = report['commands'].index(wanted)
++                wanted['argv'] = ['shell', 'pidof ' + runner.PACKAGE]
++                report['commands'][index] = copy.deepcopy(wanted)
++            else: del report['runs'][1]['uninstall']
++            with self.subTest(mutation=mutation), self.assertRaises((runner.JourneyError, KeyError)):
++                alarm.verify_global_commands(self.fixture.folder, report, proof)
++
++    def test_confirmed_whole_report_extra_settings_input_counterexample_now_fails(self):
++        self.append(self.fixture.report, ['shell', 'input tap 20 20'])
++        result = self.fixture.result()
++        self.assertFalse(result['journey_equal'], result)
++        self.assertIn('Unbound, missing or reordered', result['reason'])
++
++
+ if __name__ == '__main__':
+     unittest.main()

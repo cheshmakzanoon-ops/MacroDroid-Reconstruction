@@ -1,0 +1,187 @@
+ACTIVITY MANAGER RUNNING PROCESSES (dumpsys activity processes)
+  All known processes:
+  *APP* UID 10210 ProcessRecord{6b53df0 8418:com.arlosoft.macrodroid/u0a210}
+    user #0 uid=10210 gids={3002, 3003, 3001, 50210, 20210, 9997}
+    mRequiredAbi=arm64-v8a instructionSet=arm64
+    class=com.arlosoft.macrodroid.app.MacroDroidApplication
+    dir=/data/app/~~GcfLiwmUPqGrpmd17tAl0w==/com.arlosoft.macrodroid-HM8WGPzZbGLNIPomGX-58A==/base.apk publicDir=/data/app/~~GcfLiwmUPqGrpmd17tAl0w==/com.arlosoft.macrodroid-HM8WGPzZbGLNIPomGX-58A==/base.apk data=/data/user/0/com.arlosoft.macrodroid
+    packageList={com.arlosoft.macrodroid}
+    packageDependencies={com.google.android.webview}
+    compat={320dpi}
+    thread=android.app.IApplicationThread$Stub$Proxy@55a522d
+    pid=8418
+    lastActivityTime=-8s87ms    startUpTime=-8s456ms    startElapsedTime=-8s456ms
+    startSeq=77
+    mountMode=DEFAULT
+    lastRssTime=-8s476ms rssProcState=20 rssStatType=0 nextRssTime=+15m24s351ms
+    lastRss=0.00 lastCachedRss=0.00
+    trimMemoryLevel=0
+    procStateMemTracker: best=4 () / pending state=1 highest=1 1.0x
+    lastRequestedGc=-8s341ms lastLowMemory=-8s341ms reportLowMemory=false
+    currentHostingComponentTypes=0x300 historicalHostingComponentTypes=0x300
+    reportedInteraction=true time=-8s92ms
+    adjSeq=7370 lruSeq=3415
+    oom adj: max=1001 curRaw=0 setRaw=0 cur=0 set=0
+    mCurSchedGroup=3 setSchedGroup=3 systemNoUi=false
+    curProcState=2 mRepProcState=2 setProcState=2 lastStateTime=-8s92ms
+    curCapability=LCMNFUA setCapability=LCMNFUA
+
+    hasShownUi=true pendingUiClean=true
+    cached=false empty=false
+    foregroundActivities=true (rep=true)
+    mHasForegroundServices=true forcingToImportant=null
+    Services:
+      - ServiceRecord{3eace05 u0 com.arlosoft.macrodroid/androidx.room.MultiInstanceInvalidationService c:com.arlosoft.macrodroid}
+      - ServiceRecord{b80008c u0 com.arlosoft.macrodroid/.MacroDroidService c:com.arlosoft.macrodroid}
+    mConnections:
+      - ConnectionRecord{15d772c u0 CR WPRI com.arlosoft.macrodroid/org.chromium.content.app.SandboxedProcessService0:0:@9890edf flags=0x80000021}
+      - ConnectionRecord{219b9fb u0 CR WACT CAPS com.google.android.gms/.chimera.GmsBoundBrokerService:@eba6f8a flags=0x1081}
+      - ConnectionRecord{5579e44 u0 CR WACT CAPS com.google.android.gms/.measurement.service.MeasurementBrokerService:@d758357 flags=0x1081}
+      - ConnectionRecord{74d7e6c u0 CR com.google.android.gms/.ads.identifier.service.AdvertisingIdService:@523ab1f flags=0x1}
+      - ConnectionRecord{a030b92 u0 CR WACT CAPS com.google.android.gms/.chimera.PersistentDirectBootAwareApiService:@3cc3d1d flags=0x1081}
+      - ConnectionRecord{aac1d83 u0 CR com.arlosoft.macrodroid/org.chromium.content.app.SandboxedProcessService0:0:@f218c32 flags=0x80000001}
+      - ConnectionRecord{ad6857c u0 CR com.arlosoft.macrodroid/androidx.room.MultiInstanceInvalidationService:@e3f246f flags=0x1}
+    scheduleServiceTimeoutPending=false
+    Published Providers:
+      - com.facebook.ads.AudienceNetworkContentProvider
+        -> ContentProviderRecord{84ce362 u0 com.arlosoft.macrodroid/com.facebook.ads.AudienceNetworkContentProvider}
+      - com.canhub.cropper.CropFileProvider
+        -> ContentProviderRecord{5d0dcf3 u0 com.arlosoft.macrodroid/com.canhub.cropper.CropFileProvider}
+      - androidx.startup.InitializationProvider
+        -> ContentProviderRecord{4324db0 u0 com.arlosoft.macrodroid/androidx.startup.InitializationProvider}
+      - com.google.android.gms.ads.MobileAdsInitProvider
+        -> ContentProviderRecord{336e429 u0 com.arlosoft.macrodroid/com.google.android.gms.ads.MobileAdsInitProvider}
+      - androidx.core.content.FileProvider
+        -> ContentProviderRecord{899d3ae u0 com.arlosoft.macrodroid/androidx.core.content.FileProvider}
+      - com.google.mlkit.common.internal.MlKitInitProvider
+        -> ContentProviderRecord{e92554f u0 com.arlosoft.macrodroid/com.google.mlkit.common.internal.MlKitInitProvider}
+      - leakcanary.internal.PlumberInstaller
+        -> ContentProviderRecord{46694dc u0 com.arlosoft.macrodroid/leakcanary.internal.PlumberInstaller}
+      - com.firebase.ui.auth.data.client.AuthUiInitProvider
+        -> ContentProviderRecord{f3099e5 u0 com.arlosoft.macrodroid/com.firebase.ui.auth.data.client.AuthUiInitProvider}
+      - com.squareup.picasso.PicassoProvider
+        -> ContentProviderRecord{2b37cba u0 com.arlosoft.macrodroid/com.squareup.picasso.PicassoProvider}
+      - com.google.firebase.provider.FirebaseInitProvider
+        -> ContentProviderRecord{848f76b u0 com.arlosoft.macrodroid/com.google.firebase.provider.FirebaseInitProvider}
+      - rikka.shizuku.ShizukuProvider
+        -> ContentProviderRecord{a3622c8 u0 com.arlosoft.macrodroid/rikka.shizuku.ShizukuProvider}
+      - dev.skomlach.biometric.compat.BiometricInitProvider
+        -> ContentProviderRecord{655ef61 u0 com.arlosoft.macrodroid/dev.skomlach.biometric.compat.BiometricInitProvider}
+    Connected Providers:
+      - 71f8dcf/com.android.providers.settings/.SettingsProvider->8418:com.arlosoft.macrodroid/u0a210 s1/1 u0/0 +8s269ms
+    mReceivers:
+      - ReceiverList{1ab5ba6 8418 com.arlosoft.macrodroid/10210/u0 remote:12a3101}
+      - ReceiverList{6e8075f 8418 com.arlosoft.macrodroid/10210/u0 remote:a6dc3fe}
+      - ReceiverList{757fa56 8418 com.arlosoft.macrodroid/10210/u0 remote:1205c71}
+      - ReceiverList{7de220a 8418 com.arlosoft.macrodroid/10210/u0 remote:5944275}
+      - ReceiverList{81f47c7 8418 com.arlosoft.macrodroid/10210/u0 remote:881a506}
+      - ReceiverList{843035c 8418 com.arlosoft.macrodroid/10210/u0 remote:8796dcf}
+      - ReceiverList{843988b 8418 com.arlosoft.macrodroid/10210/u0 remote:29d6e5a}
+      - ReceiverList{8db3cd2 8418 com.arlosoft.macrodroid/10210/u0 remote:b8d6b5d}
+      - ReceiverList{d779180 8418 com.arlosoft.macrodroid/10210/u0 remote:4b48e03}
+      - ReceiverList{eb41626 8418 com.arlosoft.macrodroid/10210/u0 remote:f4f4581}
+      - ReceiverList{f5d28a9 8418 com.arlosoft.macrodroid/10210/u0 remote:acd430}
+      - ReceiverList{f767450 8418 com.arlosoft.macrodroid/10210/u0 remote:c8fa13}
+    lastCompactTime=0 lastCompactProfile=null
+    hasPendingCompaction=false    isFreezeExempt=false isPendingFreeze=false isFrozen=false
+    earliestFreezableTimeMs=--
+    Activities:
+      - ActivityRecord{b2fb3fc u0 com.arlosoft.macrodroid/.homescreen.NewHomeScreenActivity t13}
+    Recent Tasks:
+      - Task{d0e9a85 #13 type=standard A=10210:com.arlosoft.macrodroid}
+     Configuration={1.0 310mcc260mnc [en_US] ldltr sw360dp w360dp h640dp 320dpi nrml long port finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 720, 1280) mAppBounds=Rect(0, 0 - 720, 1280) mMaxBounds=Rect(0, 0 - 720, 1280) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.2 s.20 fontWeightAdjustment=0}
+     OverrideConfiguration={1.0 310mcc260mnc [en_US] ldltr sw360dp w360dp h640dp 320dpi nrml long port finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 720, 1280) mAppBounds=Rect(0, 0 - 720, 1280) mMaxBounds=Rect(0, 0 - 720, 1280) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} as.2 s.4 fontWeightAdjustment=0}
+     mLastReportedConfiguration={1.0 310mcc260mnc [en_US] ldltr sw360dp w360dp h640dp 320dpi nrml long port finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 720, 1280) mAppBounds=Rect(0, 0 - 720, 1280) mMaxBounds=Rect(0, 0 - 720, 1280) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.2 s.20 fontWeightAdjustment=0}
+     mActivityStateFlags=W|V|R|VT|taskLayer=1
+  *APP* UID 99004 ProcessRecord{158397e 8596:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0a210i4}
+    user #0 uid=10210 ISOLATED uid=99004 gids={}
+    mRequiredAbi=x86_64 instructionSet=x86_64
+    class=org.chromium.android_webview.nonembedded.WebViewApkApplication
+    dir=/data/app/~~KAf1LyB-pMFBwQnRLFlZ-Q==/com.google.android.webview-9vFkqI7KbIw-KRGVVH_T-w==/WebViewGoogle.apk publicDir=/data/app/~~KAf1LyB-pMFBwQnRLFlZ-Q==/com.google.android.webview-9vFkqI7KbIw-KRGVVH_T-w==/WebViewGoogle.apk data=/data/user/0/com.google.android.webview
+    packageList={com.arlosoft.macrodroid}
+    compat={320dpi}
+    thread=android.app.IApplicationThread$Stub$Proxy@78caa86
+    pid=8596
+    lastActivityTime=-6s218ms    startUpTime=-6s278ms    startElapsedTime=-6s278ms
+    startSeq=78
+    mountMode=NONE
+    lastRssTime=-6s279ms rssProcState=20 rssStatType=0 nextRssTime=+15m24s350ms
+    lastRss=0.00 lastCachedRss=0.00
+    trimMemoryLevel=0
+    procStateMemTracker: best=4 () / pending state=2 highest=2 1.0x
+    lastRequestedGc=-6s239ms lastLowMemory=-6s239ms reportLowMemory=false
+    currentHostingComponentTypes=0x200 historicalHostingComponentTypes=0x200
+    reportedInteraction=true time=-6s218ms
+    adjSeq=7370 lruSeq=3432
+    oom adj: max=1001 curRaw=100 setRaw=100 cur=100 set=100
+    mCurSchedGroup=2 setSchedGroup=2 systemNoUi=false
+    curProcState=3 mRepProcState=3 setProcState=3 lastStateTime=-6s218ms
+    curCapability=---NFU- setCapability=---NFU-
+
+    cached=false empty=false
+    hasClientActivities=true hasAboveClient=false treatLikeActivity=false
+    Services:
+      - ServiceRecord{298ab00 u0 com.arlosoft.macrodroid/org.chromium.content.app.SandboxedProcessService0:0 c:com.arlosoft.macrodroid}
+    scheduleServiceTimeoutPending=false
+    lastCompactTime=0 lastCompactProfile=null
+    hasPendingCompaction=false    isFreezeExempt=false isPendingFreeze=false isFrozen=false
+    earliestFreezableTimeMs=--
+     Configuration={1.0 310mcc260mnc [en_US] ldltr sw360dp w360dp h640dp 320dpi nrml long port finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 720, 1280) mAppBounds=Rect(0, 0 - 720, 1280) mMaxBounds=Rect(0, 0 - 720, 1280) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.2 s.20 fontWeightAdjustment=0}
+     OverrideConfiguration={0.0 ?mcc0mnc [en_US] ldltr ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=undefined mActivityType=undefined mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}
+     mLastReportedConfiguration={1.0 310mcc260mnc [en_US] ldltr sw360dp w360dp h640dp 320dpi nrml long port finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 720, 1280) mAppBounds=Rect(0, 0 - 720, 1280) mMaxBounds=Rect(0, 0 - 720, 1280) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.2 s.20 fontWeightAdjustment=0}
+
+  Isolated process list (sorted by uid):
+    Isolated #1: ProcessRecord{158397e 8596:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0a210i4}
+
+  OOM levels:
+    -900: SYSTEM_ADJ (   73,728K)
+    -800: PERSISTENT_PROC_ADJ (   73,728K)
+    -700: PERSISTENT_SERVICE_ADJ (   73,728K)
+      0: FOREGROUND_APP_ADJ (   73,728K)
+     100: VISIBLE_APP_ADJ (   92,160K)
+     200: PERCEPTIBLE_APP_ADJ (  110,592K)
+     225: PERCEPTIBLE_MEDIUM_APP_ADJ (  129,024K)
+     250: PERCEPTIBLE_LOW_APP_ADJ (  129,024K)
+     300: BACKUP_APP_ADJ (  221,184K)
+     400: HEAVY_WEIGHT_APP_ADJ (  221,184K)
+     500: SERVICE_ADJ (  221,184K)
+     600: HOME_APP_ADJ (  221,184K)
+     700: PREVIOUS_APP_ADJ (  221,184K)
+     800: SERVICE_B_ADJ (  221,184K)
+     900: CACHED_APP_MIN_ADJ (  221,184K)
+     999: CACHED_APP_MAX_ADJ (  322,560K)
+
+  Process OOM control (65 total, non-act at 5, non-svc at 5):
+    Proc # 0: fg     T/A/TOP  LCMNFUA  t: 0 8418:com.arlosoft.macrodroid/u0a210 (top-activity)
+        oom: max=1001 curRaw=0 setRaw=0 cur=0 set=0
+        state: cur=TOP  set=TOP  lastRss=0.00 lastCachedRss=0.00
+        cached=false empty=false hasAboveClient=false
+    Proc # 1: vis    F/ /BTOP ---NFU-  t: 0 8596:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0a210i4 (service)
+        com.arlosoft.macrodroid/org.chromium.content.app.SandboxedProcessService0:0<=Proc{8418:com.arlosoft.macrodroid/u0a210}
+        oom: max=1001 curRaw=100 setRaw=100 cur=100 set=100
+        state: cur=BTOP set=BTOP lastRss=0.00 lastCachedRss=0.00
+        cached=false empty=false hasAboveClient=false
+
+  mHomeProcess: ProcessRecord{574b36b 1138:com.google.android.apps.nexuslauncher/u0a179}
+  mPreviousProcess: null
+
+  Raw LRU list (dumpsys activity lru):
+    Activities:
+    #64: fg     TOP  LCMNFUA 8418:com.arlosoft.macrodroid/u0a210 act:activities|recents
+    #63: vis    BTOP ---NFU- 8596:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0a210i4 act:client
+
+  Process LRU list (sorted by oom_adj, 65 total, non-act at 5, non-svc at 5):
+    Proc # 0: fg     T/A/TOP  LCMNFUA  t: 0 8418:com.arlosoft.macrodroid/u0a210 (top-activity)
+    Proc # 1: vis    F/ /BTOP ---NFU-  t: 0 8596:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0a210i4 (service)
+        com.arlosoft.macrodroid/org.chromium.content.app.SandboxedProcessService0:0<=Proc{8418:com.arlosoft.macrodroid/u0a210}
+
+  PID mappings:
+    PID #8418: ProcessRecord{6b53df0 8418:com.arlosoft.macrodroid/u0a210}
+    PID #8596: ProcessRecord{158397e 8596:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0a210i4}
+  mPreviousProcessVisibleTime: +3m23s970ms
+  mDeviceIdleAllowlist=[2000, 10095, 10101, 10107, 10129, 10143, 10183, 10188, 10203]
+  mDeviceIdleExceptIdleAllowlist=[2000, 10091, 10092, 10095, 10101, 10107, 10129, 10137, 10143, 10154, 10183, 10188, 10203]
+  mDeviceIdleTempAllowlist=[10210]
+  mFgsStartTempAllowList:
+    u0a210:  duration=30000 callingUid=u0a210 reasonCode=SERVICE_LAUNCH reason=fg-service-launch expiration=2026-10-12 11:11:27.114 (+21s892ms)
+  mForceBackgroundCheck=false

@@ -1,0 +1,501 @@
+{
+  "application_executions": 0,
+  "authoring_failure_preserved": {
+    "files_modified_by_rejected_patch": 0,
+    "operation": "apply_patch attempted delete and add for same README path",
+    "result": "invalid patch: multiple operations target README.md",
+    "subsequent_action": "Complete README written as one file; no validation result invented"
+  },
+  "created_utc": "2026-10-12T11:19:50.562090+00:00",
+  "defined_tests": 142,
+  "full_project_materializations": 0,
+  "inherited_test_inventory": [
+    "ActualProcessControls.test_actual_nonzero_exit_and_both_streams_are_retained",
+    "ActualProcessControls.test_actual_zero_exit_is_recorded_without_a_parity_claim",
+    "ActualProcessControls.test_false_process_exit_never_satisfies_execution_verification",
+    "ActualProcessControls.test_timeout_stops_owned_descendant_and_preserves_literal_outcome",
+    "ClockPrecisionControls.test_all_one_thousand_integer_microseconds_convert_without_float_rounding",
+    "ClockPrecisionControls.test_correctly_ordered_integer_nanoseconds_can_share_one_iso_microsecond",
+    "ExclusiveStreamControls.test_actual_inode_replacement_with_identical_bytes_rejects",
+    "ExclusiveStreamControls.test_actual_old_mtime_cannot_precede_exclusive_initial_stat",
+    "ExclusiveStreamControls.test_boolean_stat_value_is_not_an_inode",
+    "ExclusiveStreamControls.test_borrowed_after_witness_rejects",
+    "ExclusiveStreamControls.test_borrowed_before_witness_rejects",
+    "ExclusiveStreamControls.test_complete_live_creation_receipts_match_all_actual_files",
+    "ExclusiveStreamControls.test_fine_monotonic_clock_reversal_rejects",
+    "ExclusiveStreamControls.test_fine_unix_clock_reversal_rejects_even_inside_same_iso_microsecond",
+    "ExclusiveStreamControls.test_iso_cannot_contradict_recorded_integer_time",
+    "ExclusiveStreamControls.test_literal_poll_interval_cannot_be_reduced",
+    "ExclusiveStreamControls.test_literal_witness_attempt_limit_cannot_be_expanded",
+    "ExclusiveStreamControls.test_missing_after_witness_rejects",
+    "ExclusiveStreamControls.test_missing_before_witness_rejects",
+    "ExclusiveStreamControls.test_nonexclusive_open_declaration_rejects",
+    "ExclusiveStreamControls.test_partial_cleanup_evidence_cannot_be_a_zero_exit_success",
+    "ExclusiveStreamControls.test_preexisting_nonempty_initial_file_rejects",
+    "ExclusiveStreamControls.test_recorded_final_fstat_must_match_live_metadata",
+    "ExclusiveStreamControls.test_recorded_initial_inode_cannot_belong_to_another_file",
+    "ExclusiveStreamControls.test_renamed_empty_borrowed_witness_cannot_reuse_original_fstat",
+    "ExclusiveStreamControls.test_reordered_witnesses_reject_with_every_file_retained",
+    "ExclusiveStreamControls.test_successful_first_bracket_cannot_be_followed_by_another_selected_witness",
+    "GateEvidenceControls.test_boolean_zero_exit_rejects",
+    "GateEvidenceControls.test_gate_log_reuse_is_rejected_before_hash_comparison",
+    "GateEvidenceControls.test_larger_ui_timeout_cannot_silently_replace_reviewed_bound",
+    "GateEvidenceControls.test_nonzero_exit_cannot_be_replaced_with_pass_flag",
+    "GateEvidenceControls.test_old_acceptance_directory_rejects_even_with_fresh_latest",
+    "GateEvidenceControls.test_old_gate_bytes_under_correct_name_are_rejected_by_actual_freshness",
+    "GateEvidenceControls.test_omitted_fresh_report_rejects_even_when_other_hashes_match",
+    "GateEvidenceControls.test_omitted_gate_rejects",
+    "GateEvidenceControls.test_physical_gate_log_alias_rejects_with_matching_recorded_hashes",
+    "GateEvidenceControls.test_python_skips_cannot_count_as_successes",
+    "GateEvidenceControls.test_skipped_edit_probe_rejects",
+    "GateEvidenceControls.test_synthetic_complete_fresh_gate_envelope_is_accepted_only_as_policy_fixture",
+    "GateEvidenceControls.test_wrong_gate_order_rejects",
+    "InventoryControls.test_actual_unlisted_input_cannot_be_hidden_by_manifest",
+    "InventoryControls.test_apply_selected_bytes_preserves_unrelated_source",
+    "InventoryControls.test_boolean_counts_and_duplicate_json_keys_are_rejected",
+    "InventoryControls.test_changed_baseline_bytes_reject_before_any_write",
+    "InventoryControls.test_complete_derivation_retains_unchanged_rows_and_adds_only_selected_input",
+    "InventoryControls.test_dot_alias_and_traversal_paths_are_rejected",
+    "InventoryControls.test_duplicate_overlay_role_is_rejected",
+    "InventoryControls.test_existing_new_destination_rejects_before_first_source_replacement",
+    "InventoryControls.test_extra_overlay_row_changes_expected_future_identity",
+    "InventoryControls.test_historical_reports_and_apks_are_retained_outside_fresh_scope",
+    "InventoryControls.test_input_directory_symlink_is_rejected",
+    "InventoryControls.test_leaf_symlink_is_rejected_even_if_bytes_are_identical",
+    "InventoryControls.test_missing_last_candidate_rejects_before_first_source_replacement",
+    "InventoryControls.test_new_role_cannot_replace_existing_baseline",
+    "InventoryControls.test_omitted_overlay_row_changes_expected_future_identity",
+    "InventoryControls.test_only_documented_generated_paths_are_outside_input_scope",
+    "InventoryControls.test_physical_input_alias_is_rejected_even_when_hashes_match",
+    "InventoryControls.test_truncated_inventory_with_recomputed_counters_still_differs_from_fixed_full_expected",
+    "InventoryControls.test_wrong_copy_role_is_rejected",
+    "JavaObservationFailureControls.test_zero_exit_with_evidence_error_stops_before_long_acceptance_child",
+    "JavaPolicyControls.test_ambiguous_raw_effective_flag_is_rejected",
+    "JavaPolicyControls.test_changed_actual_java_bytes_reject_the_retained_policy_hash",
+    "JavaPolicyControls.test_effective_raw_flag_cannot_be_overridden_by_a_true_summary",
+    "JavaPolicyControls.test_synthetic_actual_file_and_raw_effective_flag_binding_is_accepted",
+    "LiveEmptyStreamControls.test_actual_empty_python_child_retains_unchanged_empty_stat_and_valid_bracket",
+    "NumericCommandControls.test_another_method_inspection_rejects",
+    "NumericCommandControls.test_boolean_argv_element_rejects",
+    "NumericCommandControls.test_boolean_subprocess_exit_rejects",
+    "NumericCommandControls.test_different_config_and_result_roles_reject",
+    "NumericCommandControls.test_exact_seventeen_synthetic_command_rows_preserve_streams_and_all_witnesses",
+    "NumericCommandControls.test_extra_classpath_source_rejects",
+    "NumericCommandControls.test_missing_runtime_flag_rejects_with_unchanged_positive_streams",
+    "NumericCommandControls.test_omitted_last_numeric_child_rejects",
+    "NumericCommandControls.test_physical_numeric_stream_alias_rejects_even_with_matching_hashes",
+    "NumericCommandControls.test_retained_streams_cannot_make_bin_true_a_d8_command",
+    "NumericCommandControls.test_reused_numeric_stream_name_rejects",
+    "NumericCommandControls.test_stream_from_before_its_own_numeric_child_rejects",
+    "NumericCommandControls.test_wrong_api_target_rejects_even_when_d8_streams_are_unchanged",
+    "NumericProvenanceControls.test_additional_apk_change_rejects_despite_the_expected_fault",
+    "NumericProvenanceControls.test_exact_two_declared_provenance_faults_are_accepted_without_mutating_positive",
+    "NumericProvenanceControls.test_same_hash_with_another_original_path_rejects",
+    "NumericProvenanceControls.test_unchanged_positive_cannot_stand_in_for_either_provenance_fault",
+    "PreservedReportSchemaControls.test_engine_explicit_android_claim_rejects_despite_host_scope_text",
+    "PreservedReportSchemaControls.test_engine_partial_selection_or_changed_scope_rejects",
+    "PreservedReportSchemaControls.test_exact_preserved_engine_scope_accepts_its_observed_flag_omission",
+    "PreservedReportSchemaControls.test_other_suites_still_require_their_explicit_runtime_flag",
+    "WrapperStreamControls.test_acceptance_interval_cannot_precede_the_java_observations",
+    "WrapperStreamControls.test_dot_alias_does_not_create_a_new_acceptance_stream_role",
+    "WrapperStreamControls.test_exact_synthetic_child_stream_roles_and_intervals_are_accepted",
+    "WrapperStreamControls.test_java_version_streams_cannot_replace_acceptance_streams",
+    "WrapperStreamControls.test_old_acceptance_stream_fails_its_recorded_creation_order",
+    "WrapperStreamControls.test_version_command_cannot_be_replaced_by_true"
+  ],
+  "lookup_commit": "39250fac022aee5551f36782bafd72cabbc33718",
+  "new_test_inventory": [
+    "CombinedRegistryControls.test_changed_constant_or_other_helper_binding_is_rejected",
+    "CombinedRegistryControls.test_exact_three_class_mappings_and_five_uncredited_getters_are_required",
+    "CombinedRegistryControls.test_getter_cannot_replace_a_registered_synthetic_policy_key",
+    "CombinedRegistryControls.test_omitted_duplicate_or_wrong_consumer_dependency_is_rejected",
+    "CombinedStagesControls.test_altered_lookup_candidate_cannot_replace_any_numeric_stage_file",
+    "CombinedStagesControls.test_four_numeric_only_file_pins_are_required",
+    "CombinedStagesControls.test_lookup_cannot_be_applied_directly_to_the_baseline",
+    "CombinedStagesControls.test_missing_lookup_payload_preserves_the_completed_numeric_stage_only",
+    "CombinedStagesControls.test_mutated_physical_baseline_rejects_before_numeric_replacement",
+    "CombinedStagesControls.test_omitted_or_duplicate_lookup_stage_role_is_rejected",
+    "CombinedStagesControls.test_real_small_tree_visits_both_complete_physical_boundaries",
+    "CombinedStagesControls.test_recorded_stage_order_and_counts_are_independently_required",
+    "CombinedStagesControls.test_union_cannot_drop_or_add_a_role",
+    "CombinedStagesControls.test_wrong_intermediate_manifest_rejects_before_any_source_write",
+    "CombinedSummaryControls.test_exact_101_catalog_keeps_all_91_prefix_rows",
+    "CombinedSummaryControls.test_exact_summary_is_only_a_summary_policy_fixture",
+    "CombinedSummaryControls.test_existing_constant_mapping_cannot_be_dropped_from_signed_class_scope",
+    "CombinedSummaryControls.test_missing_primary_packaging_restoration_or_numeric_preservation_rejects",
+    "CombinedSummaryControls.test_numeric_summary_wrong_apk_or_fixture_cannot_be_lookup",
+    "CombinedSummaryControls.test_reordering_duplication_and_relabeling_cannot_pass_the_combined_catalog",
+    "CombinedSummaryControls.test_wrong_counts_boolean_counts_or_getter_credit_reject",
+    "LookupByteAndProvenanceControls.test_both_exact_lookup_provenance_faults_preserve_all_other_roles",
+    "LookupByteAndProvenanceControls.test_equal_decoded_restoration_with_changed_bytes_is_rejected",
+    "LookupByteAndProvenanceControls.test_exact_byte_equalities_are_accepted_only_as_policy",
+    "LookupByteAndProvenanceControls.test_lookup_cannot_change_signed_numeric_body",
+    "LookupByteAndProvenanceControls.test_signed_lookup_body_cannot_differ_from_transplant",
+    "LookupCapsuleControls.test_changed_payload_rejects_before_preparation",
+    "LookupCapsuleControls.test_complete_small_capsule_is_accepted_only_as_a_transport_fixture",
+    "LookupCapsuleControls.test_mode_change_rejects_with_unchanged_bytes",
+    "LookupCapsuleControls.test_rehashed_checkpoint_is_not_the_frozen_checkpoint",
+    "LookupCapsuleControls.test_unlisted_file_rejects_even_if_checkpoint_is_intact",
+    "LookupCommandControls.test_exact_nineteen_vectors_and_all_live_stream_receipts_are_accepted_as_policy",
+    "LookupCommandControls.test_expected_exit_actual_exit_and_timeout_are_literal_integers",
+    "LookupCommandControls.test_finalization_cannot_escape_report_completion",
+    "LookupCommandControls.test_finalization_cannot_overlap_the_next_command",
+    "LookupCommandControls.test_finalization_cannot_precede_stream_cleanup",
+    "LookupCommandControls.test_finalization_requires_complete_integer_clock_and_exact_utc",
+    "LookupCommandControls.test_hardlinked_lookup_stream_rejects_unchanged_bytes",
+    "LookupCommandControls.test_lookup_witness_bracket_and_cleanup_fields_are_still_required",
+    "LookupCommandControls.test_missing_null_error_fields_cannot_imply_success",
+    "LookupCommandControls.test_numeric_seventeen_rows_cannot_stand_in_for_lookup",
+    "LookupCommandControls.test_partial_failed_rows_are_rejected_before_complete_success_validation",
+    "LookupCommandControls.test_reordered_or_extra_lookup_rows_reject",
+    "LookupCommandControls.test_replaced_lookup_inode_rejects_same_bytes",
+    "LookupCommandControls.test_schema_provider_and_literal_boolean_flags_cannot_be_omitted",
+    "LookupCommandControls.test_wrong_method_api_classpath_and_harness_reject",
+    "ProducerCwdControls.test_changed_producer_source_rejects_even_with_same_declared_outer_root",
+    "ProducerCwdControls.test_exact_source_and_outer_cwd_do_not_invent_a_child_receipt_field",
+    "ProducerCwdControls.test_rehashed_other_cwd_expression_is_rejected_by_ast_contract",
+    "ProducerCwdControls.test_wrong_outer_project_cwd_is_rejected"
+  ],
+  "protected_definitions": [
+    {
+      "definition": "require",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "c40d3ac8196e4ffcd6b0aab606bca6595c6543ec0f53f3274de08d4dd26b8445"
+    },
+    {
+      "definition": "pairs",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "2538f0212b12ec94f21becafceb82e7b31f58f87d147d0fc34222e1e29b65fe0"
+    },
+    {
+      "definition": "document",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "a6ca416410a16dd5809af24a2e858966e191a05281e84ece53379deed126cc3d"
+    },
+    {
+      "definition": "read_json",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "5f88da9372904d07fc1bc0513e795a0095b32f277bb0d80da3f4309b4a516a80"
+    },
+    {
+      "definition": "encoded",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "f27c3c4da109c96613fd1da341c7464dc410de6e53553c12c55e359afef0951e"
+    },
+    {
+      "definition": "write_json",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "9e27667bc3dbcdfcafbd726a3fb90d26b43e0b26bdd3e2033694e2eb644bdad7"
+    },
+    {
+      "definition": "byte_identity",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "a221e493432329e26b2f2dc9064605a62dd9e8c715fa330ef4192188c4941aeb"
+    },
+    {
+      "definition": "identity",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "7917c957214bdd06e7ddbb2272a23328f95875f2f223c6aeb2e30ab7c58624c9"
+    },
+    {
+      "definition": "relative",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "78fa8dba3f93fadf0423221727f0760b97d1d081879aed8f2062abd6b78f0038"
+    },
+    {
+      "definition": "regular",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "7afd09b5cddd132259706611e0d9ba5b2013948973bf6ffab1a07989fea7c8e5"
+    },
+    {
+      "definition": "checked_identity",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "51f49cace6a3ae71006a14d7da82e1cc770ccac7b0f4c72396069ed7f060a888"
+    },
+    {
+      "definition": "metadata",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "4b6bb6923984f72462f1258c6ffb671d170e7e2d8a2d5371a3617af5fc4cbaf9"
+    },
+    {
+      "definition": "snapshot",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "82a3163d6811214f7d0aae61662c7e87b8d30a4f0477211624751f10bbed17a2"
+    },
+    {
+      "definition": "validate_snapshot",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "a9a5b0b167a2b9876d2c57c0fc816262fe7153467e4d6605c827c45ac8a1f56e"
+    },
+    {
+      "definition": "input_name",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "6687c9ee5f5c9543b8c3c54bbcb5089473bb6efa4a8f90bb8690d48a73371b79"
+    },
+    {
+      "definition": "derive",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "2f1e855d542a8c8ffd58a7fc34275245280cbf60b583e2e54bd54a5b66d2cd3e"
+    },
+    {
+      "definition": "scan_inputs",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "a61c4ac5f46c45a15861457e6b0770043f296d47fbab97740ac6c1c65a4d2a67"
+    },
+    {
+      "definition": "compare_inputs",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "f7a40e151a2dad7411b0d96b2a7e89613b3dc0e6077d6bf3b5c52b0e0e980256"
+    },
+    {
+      "definition": "atomic_bytes",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "3466fe40d3f17a9fda2ff1b75b9d8bdf93da0775e0d8d2bdb8cfcf421b4788ca"
+    },
+    {
+      "definition": "apply_changes",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "ec879b19e32f2238417d468adfc8613f07aed026fc4d0c100f782132ee9c5888"
+    },
+    {
+      "definition": "load_pins",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "3682482dc08e6ccb13b13c17239d303173a79832651172a8457c8750938d2e2b"
+    },
+    {
+      "definition": "verify_git_commit",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "a4653c3990650031a9244abdcc767f9def696f2490b55790987b767393afef11"
+    },
+    {
+      "definition": "verify_runtime_manifest",
+      "exact_source_unchanged": true,
+      "path": "inputs.py",
+      "source_sha256": "4b8f3151e05d04feb20ded1032a8fd20c61405877ae0a58fcb3a298481127ee5"
+    },
+    {
+      "definition": "command_clock",
+      "exact_source_unchanged": true,
+      "path": "run_acceptance.py",
+      "source_sha256": "715b0998f67925a95bda492517e1410ae25d13bde587008364a3a56cc8cf87a2"
+    },
+    {
+      "definition": "command_file_stat",
+      "exact_source_unchanged": true,
+      "path": "run_acceptance.py",
+      "source_sha256": "19abc0be3a4584491bd81ac8e6f211e6e71e34c9661afa5a15334ba004221534"
+    },
+    {
+      "definition": "CommandStreamEvidence",
+      "exact_source_unchanged": true,
+      "path": "run_acceptance.py",
+      "source_sha256": "a86d9206e9c818835daeabac631e4057d2e13193a2b7c4fb95d83715c2bdf568"
+    },
+    {
+      "definition": "stop_owned_group",
+      "exact_source_unchanged": true,
+      "path": "run_acceptance.py",
+      "source_sha256": "659e6c61feb999eac32fd49404da039d66dc0c04fd28982020fdcae272c60cdb"
+    },
+    {
+      "definition": "run_child",
+      "exact_source_unchanged": true,
+      "path": "run_acceptance.py",
+      "source_sha256": "b6a8ff39f45e9735a3ffcc8a0dd4520c6d448acd8d0b8b4aec574abbe670c832"
+    },
+    {
+      "definition": "count",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "1a6e11a41fda6eb47ebcf4ef8979ac2e4caed2620c94811d089202876ce6e3f1"
+    },
+    {
+      "definition": "flags",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "81b161372df5a1e42e1696044eea398a6b709374b8cf691a959f1fcf66578dac"
+    },
+    {
+      "definition": "epoch_ns",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "fc39bd09abb8f2bf0c84bea452c059b1ce3c25d7672fdf3c28181f683522ad4f"
+    },
+    {
+      "definition": "Artifacts",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "3b3c0afe90c327924e326c4e840b2ad7a538222798e4cff057b3cd35834da8b3"
+    },
+    {
+      "definition": "checked_clock",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "8e58f3a0ebcd5486ed8887773ac25a610a63dc083ae9bdeb87f97ed7902c03bb"
+    },
+    {
+      "definition": "row_clock",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "a41f6cce1178190cf47251615962eb5e27dfe472c5f6f5aabe25891de3657776"
+    },
+    {
+      "definition": "clocks_ordered",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "46e71b6e1d26519a69bb6b8d32a1131beabf6deb81d16dabbd22c0f74fd60cac"
+    },
+    {
+      "definition": "checked_stat",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "4f3aac7f00a1e442a89de6a2cb982cb57eedcfdd022a98a76c394bbe2c376654"
+    },
+    {
+      "definition": "verify_file_creation",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "959ab7acec43bd7dce2606e56b8a5090768c49b2f17228578a38e95b542d4feb"
+    },
+    {
+      "definition": "verify_command_stream_evidence",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "f4b57a1f0b0a187530142f98c825592e684f2a61436d3cbaed4eca79e0bc9e55"
+    },
+    {
+      "definition": "verify_execution",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "b90353ad754779c6cd1cfc0d5296ae614afd3aafa6228ac8713473bf79841648"
+    },
+    {
+      "definition": "verify_wrapper_streams",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "970199ef3994192beabaa7e0a5dc26eab5660fe1d6cc125ad283714fb7d6adbf"
+    },
+    {
+      "definition": "verify_python",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "a090ab548cf6ffe63fcbb6a8f5a32ca292dadf295d993e02e3f16ebf6a29871c"
+    },
+    {
+      "definition": "verify_apks",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "c725c292d61bf6a8bb153cf0afea49303381ed9cc37bcaac153e9241e43e3787"
+    },
+    {
+      "definition": "verify_suite_scope",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "f98b51003b38fa4c281b10b80951f375308d059be4a5f89b8b2e58158934c20a"
+    },
+    {
+      "definition": "retain_class",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "e6d433d27c5d46e7028f3cd1b178193cb06e728dc5a01af5ba36537d10407638"
+    },
+    {
+      "definition": "expected_numeric_commands",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "1a6c7387147080a33540066b1707123116362237645b1bd2f199e361ab820e4f"
+    },
+    {
+      "definition": "verify_numeric_commands",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "b8be9d189f13347227ec845dcb043827975e21c58c8192902eca82e6ba677602"
+    },
+    {
+      "definition": "verify_java_policy",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "3aa83845da1b8f2acb1e6b9119e106b224ee4f3ea54d81f233ef9c14d63e3f37"
+    },
+    {
+      "definition": "expected_provenance_config",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "c452d7e29dbd66d4c8e9744bc580dd6a46a32208879cd7bbeec311bdb216e32b"
+    },
+    {
+      "definition": "verify_provenance_config",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "20e33420d08831f9c69144a4181623d3a76749ce8ccdf0cfea9bdb04998ecfb6"
+    },
+    {
+      "definition": "verify_numeric",
+      "exact_source_unchanged": true,
+      "path": "verify.py",
+      "source_sha256": "e556fecda03e2a5dd941c8e1470664f71e2e6e8fca67e70bc41217975633fdf7"
+    }
+  ],
+  "python_sources": [
+    {
+      "parsed": true,
+      "path": "tools/day_trigger_acceptance/inputs.py",
+      "test_methods": 0
+    },
+    {
+      "parsed": true,
+      "path": "tools/day_trigger_acceptance/prepare.py",
+      "test_methods": 0
+    },
+    {
+      "parsed": true,
+      "path": "tools/day_trigger_acceptance/run_acceptance.py",
+      "test_methods": 0
+    },
+    {
+      "parsed": true,
+      "path": "tools/day_trigger_acceptance/test_day_trigger_acceptance.py",
+      "test_methods": 142
+    },
+    {
+      "parsed": true,
+      "path": "tools/day_trigger_acceptance/verify.py",
+      "test_methods": 0
+    }
+  ],
+  "runtime_manifest": {
+    "bytes": 1183,
+    "mode": 420,
+    "sha256": "4da614a2b88b7cf3c8739cbc40ea9d5eff63fdec42c17e2343a27694aff852f8"
+  },
+  "schema": 1,
+  "status": "SOURCE_PARSES_SHARED_RECORDER_AND_NUMERIC_PROOF_EXACT_TESTS_NOT_RUN",
+  "tests_executed": 0,
+  "workflow": {
+    "bytes": 6912,
+    "mode": 420,
+    "sha256": "0912a16c7d03b20fdf4ecb49a0041e20d4ff834f55eaa977943ed3cbe3141c32"
+  }
+}
