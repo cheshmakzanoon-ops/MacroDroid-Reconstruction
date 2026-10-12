@@ -1,0 +1,174 @@
+--------- beginning of system
+10-12 09:07:55.066   650  1956 I ActivityManager: Skipping next CPU consuming process, not a java proc: 213
+10-12 09:07:55.067   650  1956 I ActivityManager: Skipping next CPU consuming process, not a java proc: 396
+10-12 09:07:55.419   650  1954 W ActivityManager: Native stack dump failed!
+10-12 09:07:55.421   650  1954 E ActivityManager: Aborting stack trace dump (current firstPid=650); deadline exceeded.
+10-12 09:07:56.440   650  1954 E ActivityManager: ANR in com.android.systemui
+10-12 09:07:56.440   650  1954 E ActivityManager: PID: 1868
+10-12 09:07:56.440   650  1954 E ActivityManager: Reason: Process ProcessRecord{960167 1868:com.android.systemui/u0a181} failed to complete startup
+10-12 09:07:56.440   650  1954 E ActivityManager: ErrorId: 30c33bb0-2773-451c-9f7d-94a41453193f
+10-12 09:07:56.440   650  1954 E ActivityManager: Frozen: false
+10-12 09:07:56.440   650  1954 E ActivityManager: Load: 9.59 / 7.47 / 6.27
+10-12 09:07:56.440   650  1954 E ActivityManager: ----- Output from /proc/pressure/memory -----
+10-12 09:07:56.440   650  1954 E ActivityManager: some avg10=0.31 avg60=0.32 avg300=0.35 total=2634296
+10-12 09:07:56.440   650  1954 E ActivityManager: full avg10=0.13 avg60=0.13 avg300=0.07 total=665532
+10-12 09:07:56.440   650  1954 E ActivityManager: ----- End output from /proc/pressure/memory -----
+10-12 09:07:56.440   650  1954 E ActivityManager: ----- Output from /proc/pressure/cpu -----
+10-12 09:07:56.440   650  1954 E ActivityManager: some avg10=81.89 avg60=79.07 avg300=81.43 total=1252198217
+10-12 09:07:56.440   650  1954 E ActivityManager: full avg10=0.00 avg60=0.00 avg300=0.00 total=0
+10-12 09:07:56.440   650  1954 E ActivityManager: ----- End output from /proc/pressure/cpu -----
+10-12 09:07:56.440   650  1954 E ActivityManager: ----- Output from /proc/pressure/io -----
+10-12 09:07:56.440   650  1954 E ActivityManager: some avg10=1.25 avg60=2.04 avg300=1.40 total=62441004
+10-12 09:07:56.440   650  1954 E ActivityManager: full avg10=0.00 avg60=0.01 avg300=0.00 total=7911901
+10-12 09:07:56.440   650  1954 E ActivityManager: ----- End output from /proc/pressure/io -----
+10-12 09:07:56.440   650  1954 E ActivityManager: 
+10-12 09:07:56.440   650  1954 E ActivityManager: CPU usage from 19159ms to 28405ms later (2026-10-12 09:07:46.231 to 2026-10-12 09:07:55.478):
+10-12 09:07:56.440   650  1954 E ActivityManager:   90% 650/system_server: 32% user + 57% kernel / faults: 3426 minor
+10-12 09:07:56.440   650  1954 E ActivityManager:   24% 1868/com.android.systemui: 12% user + 11% kernel / faults: 2478 minor
+10-12 09:07:56.440   650  1954 E ActivityManager:   10% 166/android.system.suspend-service: 0.7% user + 9.7% kernel / faults: 11 minor
+10-12 09:07:56.440   650  1954 E ActivityManager:   5.2% 390/android.hardware.graphics.composer3-service.ranchu: 1% user + 4.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:   5% 428/surfaceflinger: 1.2% user + 3.7% kernel / faults: 4 minor
+10-12 09:07:56.440   650  1954 E ActivityManager:   4.3% 1879/com.google.android.permissioncontroller: 2.4% user + 1.8% kernel / faults: 372 minor
+10-12 09:07:56.440   650  1954 E ActivityManager:   3% 81/kworker/u4:3-ext4-rsv-conversion: 0% user + 3% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:   2.3% 438/adbd: 0.3% user + 2% kernel / faults: 1096 minor
+10-12 09:07:56.440   650  1954 E ActivityManager:   2.2% 143/logd: 0.9% user + 1.3% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:   1.4% 16/rcu_preempt: 0% user + 1.4% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager: 100% TOTAL: 28% user + 64% kernel + 4.9% irq + 2.1% softirq
+10-12 09:07:56.440   650  1954 E ActivityManager: CPU usage from 5993ms to 22890ms later (2026-10-12 09:07:33.065 to 2026-10-12 09:07:49.963):
+10-12 09:07:56.440   650  1954 E ActivityManager:   96% 650/system_server: 35% user + 61% kernel / faults: 2333 minor
+10-12 09:07:56.440   650  1954 E ActivityManager:     37% 679/Signal Catcher: 14% user + 22% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     12% 1956/AnrAuxiliaryTas: 2.7% user + 9.7% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     6.9% 650/system_server: 3.3% user + 3.6% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     5.6% 709/watchdog: 1.1% user + 4.5% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     5.2% 1276/binder:650_3: 3.6% user + 1.6% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     4.8% 1397/StorageManagerS: 2.6% user + 2.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     3% 1954/AnrConsumer: 0.8% user + 2.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     2.4% 1390/NetworkWatchlis: 1.6% user + 0.8% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     2.1% 737/batterystats-wo: 0.5% user + 1.6% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     1.6% 690/binder:650_2: 0.5% user + 1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     1.3% 705/android.io: 0.1% user + 1.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     1.1% 1319/CpuMonitorServi: 0.4% user + 0.7% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     1% 745/CpuTracker: 0.1% user + 0.8% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.8% 689/binder:650_1: 0.2% user + 0.5% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.8% 707/android.anim: 0% user + 0.8% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.8% 1779/Thread-10: 0.2% user + 0.5% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.7% 727/android.bg: 0.1% user + 0.5% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.4% 1313/SensorService: 0.1% user + 0.2% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.2% 725/PowerStatsServi: 0% user + 0.2% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.2% 730/ActivityManager: 0.1% user + 0.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.2% 1321/SettingsProvide: 0% user + 0.2% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.1% 682/system_server: 0% user + 0.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.1% 702/atchdog.monitor: 0% user + 0.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.1% 728/ActivityManager: 0% user + 0.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.1% 734/LowMemThread: 0% user + 0.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.1% 751/PowerManagerSer: 0.1% user + 0% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.1% 1281/OverlayManager: 0% user + 0.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.1% 1311/HealthServiceBi: 0% user + 0.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.1% 1314/roid.usagestats: 0% user + 0.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.1% 1707/TracingMuxer: 0% user + 0.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.1% 1728/DeviceStorageMo: 0.1% user + 0% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.1% 1733/AS.SfxWorker: 0% user + 0.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.1% 1777/SliceManagerSer: 0% user + 0.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.1% 1785/Thread-11: 0% user + 0.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:    +0% 2008/system_server: 0% user + 0% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:   13% 1868/com.android.systemui: 6.8% user + 6.8% kernel / faults: 913 minor
+10-12 09:07:56.440   650  1954 E ActivityManager:     7.1% 1873/Jit thread pool: 2.5% user + 4.5% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     5.5% 1868/ndroid.systemui: 4.1% user + 1.4% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.4% 1979/SystemUIBg-1: 0% user + 0.4% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.1% 1926/wmshell.main: 0% user + 0.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:     0.1% 1999/binder:1868_4: 0% user + 0.1% kernel
+10-12 09:07:56.440   650  1954 E ActivityManager:    +0% 2005/SystemUIBg-2: 0% user + 0% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   5.2% 81/kworker/u4:3-events_unbound: 0% user + 5.2% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   5.6% 390/android.hardware.graphics.composer3-service.ranchu: 1.7% user + 3.9% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:     5.5% 501/_thread: 1.6% user + 3.9% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   5.1% 428/surfaceflinger: 1.3% user + 3.8% kernel / faults: 4 minor
+10-12 09:07:56.447   650  1954 E ActivityManager:     2.7% 518/binder:428_4: 0.2% user + 2.5% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:     1% 489/binder:428_1: 0.3% user + 0.6% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:     0.7% 491/binder:428_2: 0.2% user + 0.5% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:     0.1% 428/surfaceflinger: 0.1% user + 0% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:     0.1% 508/appSf: 0.1% user + 0% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:     0.1% 516/binder:428_3: 0% user + 0.1% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:     0.1% 524/binder:428_5: 0% user + 0.1% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   2.3% 143/logd: 0.4% user + 1.8% kernel / faults: 33 minor
+10-12 09:07:56.447   650  1954 E ActivityManager:     1.2% 169/logd.writer: 0.3% user + 0.8% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:     0.9% 480/logd.reader.per: 0% user + 0.9% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:     0% 176/logd.klogd: 0% user + 0% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   1.6% 16/rcu_preempt: 0% user + 1.6% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   1.2% 79/kworker/1:2H-kblockd: 0% user + 1.2% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   1.3% 462/logcat: 0.4% user + 0.9% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   1.1% 379/android.hardware.sensors-service.multihal: 0.3% user + 0.7% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:     1% 394/android.hardwar: 0.2% user + 0.7% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:     0.2% 395/android.hardwar: 0.1% user + 0.1% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   0.6% 148/servicemanager: 0.3% user + 0.2% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   1.3% 1879/com.google.android.permissioncontroller: 0.6% user + 0.6% kernel / faults: 49 minor
+10-12 09:07:56.447   650  1954 E ActivityManager:     1.3% 1998/pool-2-thread-3: 0.6% user + 0.6% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   0.9% 438/adbd: 0.2% user + 0.6% kernel / faults: 577 minor
+10-12 09:07:56.447   650  1954 E ActivityManager:     0.6% 438/adbd: 0.1% user + 0.5% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:     0.1% 457/adbd: 0% user + 0.1% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:    +0% 2007/shell svc 2006: 0% user + 0% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   0.3% 15/ksoftirqd/0: 0% user + 0.3% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   0.7% 1510/kworker/1:0-mm_percpu_wq: 0% user + 0.7% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   0.2% 43/kswapd0: 0% user + 0.2% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   0.1% 26/ksoftirqd/1: 0% user + 0.1% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   0.1% 60/kworker/u4:2-events_unbound: 0% user + 0.1% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   0.1% 153/qemu-props: 0% user + 0% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   0% 1/init: 0% user + 0% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:     0.1% 1/init: 0% user + 0.1% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   0% 205/jbd2/dm-46-8: 0% user + 0% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   0% 213/tombstoned: 0% user + 0% kernel
+10-12 09:07:56.447   650  1954 E ActivityManager:   0.1% 396/android.hardware.power.stats-service.example: 0% user + 0.1% kernel / faults: 5 minor
+10-12 09:07:56.447   650  1954 E ActivityManager: 100% TOTAL: 26% user + 65% kernel + 5.5% irq + 2.6% softirq
+10-12 09:07:56.777   650  1954 D ActivityManager: Completed ANR of com.android.systemui in 29722ms, latency 237ms
+10-12 09:07:57.018   650  2012 I DropBoxManagerService: add tag=system_app_anr isTagEnabled=true flags=0x6
+10-12 09:07:57.684   650  1823 W Looper  : Drained
+10-12 09:07:59.436   650   730 I ActivityManager: Process PhantomProcessRecord {69c4c9c 2010:650:crash_dump64/1000} died
+10-12 09:07:59.751   650   703 W Looper  : Slow delivery took 2110ms android.fg h=com.android.server.DropBoxManagerService$DropBoxManagerBroadcastHandler c=null m=1
+10-12 09:07:59.767   650   703 W Looper  : Slow dispatch took 130ms android.fg h=com.android.server.DropBoxManagerService$DropBoxManagerBroadcastHandler c=null m=1
+10-12 09:07:59.799   650   704 W KeyguardServiceDelegate: onScreenTurningOn(): no keyguard service!
+10-12 09:07:59.804   650   704 W Looper  : Slow delivery took 2612ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=null m=2
+10-12 09:07:59.805   650   704 W Looper  : Slow dispatch took 432ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=null m=2
+10-12 09:08:00.515   650   704 D GameManagerService: User ID '0' does not have a Game Mode selected for package: 'android'
+10-12 09:08:00.649   650   704 W Looper  : Slow dispatch took 837ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=com.android.server.am.ErrorDialogController$$ExternalSyntheticLambda4@b7cdb7e m=0
+10-12 09:08:00.998   650   704 D CoreBackPreview: Window{ee00e32 u0 Application Not Responding: com.android.systemui}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.WindowOnBackInvokedDispatcher$OnBackInvokedCallbackWrapper@401dff5, mPriority=0, mIsAnimationCallback=false}
+10-12 09:08:01.540   650   650 W SystemServiceManager: Service com.android.server.notification.NotificationManagerService took 10967 ms in onBootPhase
+10-12 09:08:01.564   650   650 V SystemServerTiming: OnBootPhase_600_com.android.server.notification.NotificationManagerService took to complete: 11001ms
+10-12 09:08:01.565   650   650 D SystemServerTiming: OnBootPhase_600_com.android.server.storage.DeviceStorageMonitorService
+10-12 09:08:01.568   650   650 V SystemServerTiming: OnBootPhase_600_com.android.server.storage.DeviceStorageMonitorService took to complete: 0ms
+10-12 09:08:01.569   650   650 D SystemServerTiming: OnBootPhase_600_com.android.server.timedetector.TimeDetectorService$Lifecycle
+10-12 09:08:01.569   650   650 V SystemServerTiming: OnBootPhase_600_com.android.server.timedetector.TimeDetectorService$Lifecycle took to complete: 0ms
+10-12 09:08:01.570   650   650 D SystemServerTiming: OnBootPhase_600_com.android.server.location.LocationManagerService$Lifecycle
+10-12 09:08:01.662   650   709 W Watchdog: main annotated stack trace:
+10-12 09:08:01.745   650   709 W Watchdog:     at java.lang.String.fillBytesLatin1(Native Method)
+10-12 09:08:01.748   650   709 W Watchdog:     at java.lang.String.getBytes(String.java:4384)
+10-12 09:08:01.750   650   709 W Watchdog:     at java.lang.AbstractStringBuilder.putStringAt(AbstractStringBuilder.java:1672)
+10-12 09:08:01.828   650   709 W Watchdog:     at java.lang.AbstractStringBuilder.append(AbstractStringBuilder.java:544)
+10-12 09:08:02.069   650   709 W Watchdog:     at java.lang.StringBuilder.append(StringBuilder.java:186)
+10-12 09:08:02.070   650   709 W Watchdog:     at com.android.server.pm.parsing.PackageInfoUtils.initForUser(PackageInfoUtils.java:1082)
+10-12 09:08:02.189   650   709 W Watchdog:     at com.android.server.pm.parsing.PackageInfoUtils.generateApplicationInfo(PackageInfoUtils.java:470)
+10-12 09:08:02.195   650   709 W Watchdog:     at com.android.server.pm.parsing.PackageInfoUtils.generateWithComponents(PackageInfoUtils.java:125)
+10-12 09:08:02.196   650   709 W Watchdog:     at com.android.server.pm.parsing.PackageInfoUtils.generate(PackageInfoUtils.java:113)
+10-12 09:08:02.197   650   709 W Watchdog:     at com.android.server.pm.ComputerEngine.generatePackageInfo(ComputerEngine.java:1521)
+10-12 09:08:02.198   650   709 W Watchdog:     at com.android.server.pm.ComputerEngine.getInstalledPackagesBody(ComputerEngine.java:1772)
+10-12 09:08:02.312   650   709 W Watchdog:     at com.android.server.pm.ComputerEngine.getInstalledPackages(ComputerEngine.java:1704)
+10-12 09:08:02.313   650   709 W Watchdog:     at com.android.server.pm.IPackageManagerBase.getInstalledPackages(IPackageManagerBase.java:488)
+10-12 09:08:02.314   650   709 W Watchdog:     at com.android.server.pm.ModuleInfoProvider.getInstalledModules(ModuleInfoProvider.java:200)
+10-12 09:08:02.388   650   709 W Watchdog:     at com.android.server.pm.IPackageManagerBase.getInstalledModules(IPackageManagerBase.java:481)
+10-12 09:08:02.389   650   709 W Watchdog:     at android.app.ApplicationPackageManager.getInstalledModules(ApplicationPackageManager.java:1198)
+10-12 09:08:02.427   650   709 W Watchdog:     at com.android.server.notification.NotificationManagerService.onBootPhase(NotificationManagerService.java:2945)
+10-12 09:08:02.428   650   709 W Watchdog:     at com.android.server.notification.NotificationManagerService.onBootPhase(NotificationManagerService.java:2899)
+10-12 09:08:02.429   650   709 W Watchdog:     at com.android.server.SystemServiceManager.startBootPhase(SystemServiceManager.java:318)
+10-12 09:08:02.430   650   709 W Watchdog:     at com.android.server.SystemServer.lambda$startOtherServices$6(SystemServer.java:3176)
+10-12 09:08:02.457   650   709 W Watchdog:     at com.android.server.SystemServer.$r8$lambda$R8_YVQM1rsXoSgswlNNq9SsFhyw(SystemServer.java:0)
+10-12 09:08:02.457   650   709 W Watchdog:     at com.android.server.SystemServer$$ExternalSyntheticLambda6.run(R8$$SyntheticClass:0)
+10-12 09:08:02.458   650   709 W Watchdog:     at com.android.server.am.ActivityManagerService.systemReady(ActivityManagerService.java:9127)
+10-12 09:08:02.458   650   709 W Watchdog:     at com.android.server.SystemServer.startOtherServices(SystemServer.java:3028)
+10-12 09:08:02.611   650   709 W Watchdog:     at com.android.server.SystemServer.run(SystemServer.java:936)
+10-12 09:08:02.611   650   709 W Watchdog:     at com.android.server.SystemServer.main(SystemServer.java:657)
+10-12 09:08:02.612   650   709 W Watchdog:     at java.lang.reflect.Method.invoke(Native Method)
+10-12 09:08:02.612   650   709 W Watchdog:     at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+10-12 09:08:02.637   650   709 W Watchdog:     at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:864)
+10-12 09:08:02.643   650   709 W Watchdog: *** GOODBYE!
+10-12 09:08:02.667   650   703 W Looper  : Drained
+10-12 09:08:08.002  1879  1957 D ActivityThread: Too many transaction errors, throttling freezer binder callback.
+10-12 09:08:08.398  1879  1957 D ActivityThread: Too many transaction errors, throttling freezer binder callback.
+10-12 09:08:16.748  2045  2045 I wificond: wificond is starting up...

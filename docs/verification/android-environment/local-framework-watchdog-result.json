@@ -1,0 +1,23 @@
+{
+  "captured_utc": "2026-10-12T01:08:18Z",
+  "emulator_started_utc": "2026-10-12T00:37:42Z",
+  "result": "ANDROID_FRAMEWORK_WATCHDOG_DURING_SOFTWARE_BOOT",
+  "acceleration": "off",
+  "application_installed_by_validation": false,
+  "application_runtime_test_executed": false,
+  "full_runtime_1_to_1_established": false,
+  "observations": [
+    "System server reached boot phase 600.",
+    "ActivityManager recorded an ANR because com.android.systemui failed to complete startup.",
+    "Guest CPU pressure some avg10 was 81.89 and avg60 was 79.07 in the ANR diagnostics.",
+    "Watchdog dumped the system-server main thread stack in NotificationManagerService.onBootPhase and emitted GOODBYE.",
+    "No sys.boot_completed=1 observation had been recorded by the runtime service."
+  ],
+  "diagnostic_file": "local-framework-watchdog.log",
+  "diagnostic_lines": 174,
+  "key_bearing_lines_omitted": 0,
+  "next_validation_route": "Hardware-accelerated GitHub Actions Android job 114621947323 in run 38190452684.",
+  "service_left_running_at_capture": true,
+  "service_subsequently_stopped_utc": "2026-10-12T01:09:42Z",
+  "service_stop_evidence": "local-runtime-stop.json"
+}

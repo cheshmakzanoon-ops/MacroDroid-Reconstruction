@@ -87,7 +87,10 @@ def relocate_class(raw:bytes)->bytes:
     return b''.join(chunks)+raw[pos:]
 
 def compile_java()->Path:
-    d=WORK/'java';shutil.rmtree(d,ignore_errors=True);(d/'hostclasses').mkdir(parents=True)
+    d=WORK/'java'
+    # A failed cleanup must stop before javac/D8 can mix old and new artifacts.
+    if d.exists():shutil.rmtree(d)
+    (d/'hostclasses').mkdir(parents=True)
     sources=sorted((ROOT/'source/java').rglob('*.java'))+sorted((ROOT/'test-support/java').rglob('*.java'))
     af=d/'sources.args';af.write_text(''.join('"'+str(p).replace('\\','/')+'"\n' for p in sources))
     run(['javac','--release','8','-g:none','-Xlint:-options','-d',d/'hostclasses','@'+str(af)],'javac-methods.log')

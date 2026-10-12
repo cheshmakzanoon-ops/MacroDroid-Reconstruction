@@ -55,6 +55,22 @@ manager's terminal `Success` line. A zero exit status and the exact final succes
 line are required; explicit failure diagnostics in either output stream reject
 the install. Four regression tests cover real transport output and failure cases.
 
+The first hosted device run installed and launched both APKs. Their intro UI
+hierarchies were byte-identical, and all 75 differing screenshot pixels were in
+Android's signal-strength icon. The original failed comparison is retained.
+The next capture setup requests a stable real modem signal and SystemUI demo
+clock of 12:00, records the actual settings and observations, and retains the
+complete-pixel comparison. This setup still requires an actual device result.
+
+## Build staging correction
+
+A fresh acceptance attempt passed input integrity and the baseline build, then
+failed because the generated Java DEX directory already existed during the
+hybrid build. Java staging cleanup now propagates removal errors immediately.
+Two consecutive compilations after the change passed and produced identical
+helper DEX hashes. The failed acceptance logs and repeated-compile diagnostic are
+preserved; a complete acceptance rerun is required before calling this gate passed.
+
 JDK 21 and a pinned Android 15/API 35 emulator image with ARM64 translation have been
 installed in the current environment. Completed app execution is established only by
 actual capture reports. Historical v9 reports in this tree describe the earlier

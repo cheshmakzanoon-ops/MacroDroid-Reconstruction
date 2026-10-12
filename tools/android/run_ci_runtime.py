@@ -35,6 +35,7 @@ def main() -> int:
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
     environment = output / 'environment'
+    capture_device = output / 'capture-device'
     capture = output / 'capture'
     original, candidate = args.original.resolve(), args.candidate.resolve()
     report = {
@@ -42,6 +43,8 @@ def main() -> int:
         'started_utc': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
         'original_sha256': digest(original),
         'candidate_sha256': digest(candidate),
+        'capture_device_configured': False,
+        'systemui_demo_clock_requested': '1200',
         'cold_launch_capture_equal': False,
         'full_runtime_1_to_1_established': False,
         'commands': [],
@@ -80,6 +83,23 @@ def main() -> int:
             if ready:
                 report['failure'] = 'boot-readiness'
                 return ready
+            configured = run('configure-and-observe-capture-device', [
+                sys.executable, str(here / 'runtime_job.py'),
+                '--queue', str(environment / 'queue'), '--timeout', '240',
+                '--cwd', str(source), '--',
+                sys.executable, str(here / 'configure_capture_device.py'),
+                '--serial', 'emulator-5560', '--output', str(capture_device),
+                '--demo-clock', '1200',
+            ], 280)
+            configuration_path = capture_device / 'capture-device.json'
+            if configuration_path.is_file():
+                configuration = json.loads(configuration_path.read_text())
+                report['capture_device_configured'] = configuration.get('status') == 'CAPTURE_DEVICE_CONFIGURED'
+                report['capture_device_status'] = configuration.get('status')
+            save()
+            if configured or not report['capture_device_configured']:
+                report['failure'] = 'capture-device-configuration'
+                return configured or 2
             captured = run('capture-original-and-candidate', [
                 sys.executable, str(here / 'runtime_job.py'),
                 '--queue', str(environment / 'queue'), '--timeout', '1800',

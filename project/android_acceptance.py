@@ -110,7 +110,9 @@ def main()->int:
                         ('font_scale',['settings','get','system','font_scale']),
                         ('airplane_mode_on',['settings','get','global','airplane_mode_on']),
                         ('wifi_on',['settings','get','global','wifi_on']),
-                        ('mobile_data',['settings','get','global','mobile_data'])]:
+                        ('mobile_data',['settings','get','global','mobile_data']),
+                        ('sysui_demo_allowed',['settings','get','global','sysui_demo_allowed']),
+                        ('sysui_tuner_demo_on',['settings','get','global','sysui_tuner_demo_on'])]:
             r=shell(cmd)
             if r.returncode:raise Blocked('Device display settings unreadable')
             props[key]=r.stdout.strip()
