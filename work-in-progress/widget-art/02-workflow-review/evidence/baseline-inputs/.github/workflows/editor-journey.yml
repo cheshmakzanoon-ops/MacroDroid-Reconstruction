@@ -1,0 +1,74 @@
+name: Android editor journey comparison
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/parity_journeys/**'
+      - '.github/workflows/editor-journey.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: editor-journey-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  editor-journey:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Check out the exact reference, candidate and test source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Run verifier adversarial host tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ci-editor
+          python3 -m unittest discover -s tools/android -p 'test_download_retry.py' -v 2>&1 | tee ci-editor/download-tests.log
+          python3 -m unittest discover -s tools/parity_journeys -p 'test_*.py' -v 2>&1 | tee ci-editor/host-tests.log
+      - name: Materialize the source tools and both exact APKs
+        run: |
+          python3 scripts/materialize_v9.py
+          python3 scripts/assemble_artifact.py vendor/original/manifest.json
+          python3 scripts/assemble_artifact.py artifacts/current/manifest.json
+      - name: Install the pinned disposable Android runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/android/bootstrap_android_runtime.py --root "$RUNNER_TEMP/macrodroid-tooling" --create-avd 2>&1 | tee ci-editor/bootstrap.log
+      - name: Run fresh-install notification-denial and editor journey
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -c /dev/kvm
+          sudo setfacl -m "u:$(id -un):rw" /dev/kvm
+          python3 -u tools/android/android_runtime_service.py --tooling "$RUNNER_TEMP/macrodroid-tooling" --evidence ci-editor/environment --acceleration on > ci-editor/service.log 2>&1 &
+          service=$!
+          export PATH="$RUNNER_TEMP/macrodroid-tooling/android/platform-tools:$PATH"
+          trap 'timeout 30s adb -s emulator-5560 logcat -d -b crash -b events -v threadtime > ci-editor/lifecycle.log 2>&1 || true; mkdir -p ci-editor/environment/queue; touch ci-editor/environment/queue/STOP; wait "$service" || true' EXIT
+          python3 tools/android/wait_android_ready.py --evidence ci-editor/environment --timeout 900
+          python3 tools/android/runtime_job.py --queue ci-editor/environment/queue --timeout 240 -- python3 "$GITHUB_WORKSPACE/tools/android/configure_capture_device.py" --serial emulator-5560 --output "$GITHUB_WORKSPACE/ci-editor/device" --demo-clock 1200 --disable-animations
+          python3 tools/android/runtime_job.py --queue ci-editor/environment/queue --timeout 2400 -- python3 "$GITHUB_WORKSPACE/tools/parity_journeys/favourite_info_journey.py" --source "$GITHUB_WORKSPACE/workspace/MacroDroid_v9" --original "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-original.apk" --candidate "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-current-hybrid.apk" --output "$GITHUB_WORKSPACE/ci-editor/journey" --serial emulator-5560 --accept-package-data-removal --observe-denial-handoff --settle-full-frames
+      - name: Preserve all measured results including incomplete runs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: editor-journey-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          path: |
+            ci-editor/host-tests.log
+            ci-editor/service.log
+            ci-editor/lifecycle.log
+            ci-editor/bootstrap.log
+            ci-editor/download-tests.log
+            ci-editor/device/
+            ci-editor/journey/
+            ci-editor/environment/runtime-status.json
+            ci-editor/environment/runtime-properties.json
+            tools/parity_journeys/

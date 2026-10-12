@@ -1,0 +1,90 @@
+{
+  "scope": "Exact prepared inputs only; no Android execution in preflight",
+  "github_sha": "offline-control-no-git-execution",
+  "passed": false,
+  "files": [
+    {
+      "path": "scripts/assemble_artifact.py",
+      "bytes": 4658,
+      "sha256": "f85a570f864ec2481dd75783b82006129755194c941b54e193c893b7ee17e97c",
+      "expected_sha256": "f85a570f864ec2481dd75783b82006129755194c941b54e193c893b7ee17e97c"
+    },
+    {
+      "path": "tools/android/bootstrap_android_runtime.py",
+      "bytes": 9868,
+      "sha256": "8ae2a365cc5ec5109c76967642d6ee7f6655df96287cf8feb3355444e14e4e36",
+      "expected_sha256": "8ae2a365cc5ec5109c76967642d6ee7f6655df96287cf8feb3355444e14e4e36"
+    },
+    {
+      "path": "tools/android/android-toolchain-pins.json",
+      "bytes": 3167,
+      "sha256": "3ce2078cb52f540fd86ffdccf8577535662fee1c5274f13bcf01d8d15e3bd8b2",
+      "expected_sha256": "3ce2078cb52f540fd86ffdccf8577535662fee1c5274f13bcf01d8d15e3bd8b2"
+    },
+    {
+      "path": "tools/android/android_runtime_service.py",
+      "bytes": 8812,
+      "sha256": "3ac1047b8ff41aba79d1ef335e8eed260067d696460bf8322195631f09dfec57",
+      "expected_sha256": "3ac1047b8ff41aba79d1ef335e8eed260067d696460bf8322195631f09dfec57"
+    },
+    {
+      "path": "tools/android/runtime_job.py",
+      "bytes": 2652,
+      "sha256": "7babd7ebcc35e531b6b0fea9167b3436ff738e43bf0f869b44534573cb849bc8",
+      "expected_sha256": "7babd7ebcc35e531b6b0fea9167b3436ff738e43bf0f869b44534573cb849bc8"
+    },
+    {
+      "path": "tools/android/wait_android_ready.py",
+      "bytes": 2514,
+      "sha256": "72cb3bcd56df72cd901ee724c48a44b0254235e1d7cdda6c991b985e572f34af",
+      "expected_sha256": "72cb3bcd56df72cd901ee724c48a44b0254235e1d7cdda6c991b985e572f34af"
+    },
+    {
+      "path": "tools/android/test_download_retry.py",
+      "bytes": 4171,
+      "sha256": "bd5d871951fbf1e5f7aa3093c8c155b1c599d84ae008b90e1eda53bf3a60948a",
+      "expected_sha256": "bd5d871951fbf1e5f7aa3093c8c155b1c599d84ae008b90e1eda53bf3a60948a"
+    },
+    {
+      "path": "vendor/original/manifest.json",
+      "bytes": 3400,
+      "sha256": "b2f12b669ac0e937198216458410aaab03da6682659d6d922c730a175b77d684",
+      "expected_sha256": "b2f12b669ac0e937198216458410aaab03da6682659d6d922c730a175b77d684"
+    },
+    {
+      "path": "work-in-progress/widget-update/06-initial-signed-failure/apk/manifest.json",
+      "bytes": 3508,
+      "sha256": "e0735120e642c1f0ca849a52c3f0f5127c93313457e39d854fad480bc8ef112c",
+      "expected_sha256": "e0735120e642c1f0ca849a52c3f0f5127c93313457e39d854fad480bc8ef112c"
+    },
+    {
+      "path": "work-in-progress/widget-art/01-wrapper-review/checkpoint.json",
+      "bytes": 1630279,
+      "sha256": "aa979100f925ba216d1a78dbb9de9c293d5b2e4b771210c2862556bf6946585a",
+      "expected_sha256": "aa979100f925ba216d1a78dbb9de9c293d5b2e4b771210c2862556bf6946585a"
+    },
+    {
+      "path": "work-in-progress/widget-art/01-wrapper-review/ANDROID_RUNTIME_SOURCE_ASSESSMENT.md",
+      "bytes": 6952,
+      "sha256": "1186cb00abd0dc02e933c44f4a9ce4b50da956d1452411dd2a038f007486307a",
+      "expected_sha256": "1186cb00abd0dc02e933c44f4a9ce4b50da956d1452411dd2a038f007486307a"
+    },
+    {
+      "path": "work-in-progress/widget-art/01-wrapper-review/WIDGET_ART_PROBE.md",
+      "bytes": 11626,
+      "sha256": "d4a42c9bd376e00891f544b40ab4dde18ee282f89b5b401720c2e6c15e4d6b2f",
+      "expected_sha256": "d4a42c9bd376e00891f544b40ab4dde18ee282f89b5b401720c2e6c15e4d6b2f"
+    },
+    {
+      "path": "work-in-progress/widget-art/01-wrapper-review/android_widget_method_probe.py",
+      "bytes": 33681,
+      "sha256": "9897dea2a2c3feff6c2e20f4968f2148e25cfc52c325734ec33a19eee33868f0",
+      "expected_sha256": "c16dcf9376b1ea4de42ca51c63caeeb2ab157a5f4b89fcd0eea505182302d983"
+    }
+  ],
+  "error": "RuntimeError: Pinned input identity changed: work-in-progress/widget-art/01-wrapper-review/android_widget_method_probe.py"
+}
+Traceback (most recent call last):
+  File "<stdin>", line 43, in <module>
+  File "<stdin>", line 32, in verify
+RuntimeError: Pinned input identity changed: work-in-progress/widget-art/01-wrapper-review/android_widget_method_probe.py

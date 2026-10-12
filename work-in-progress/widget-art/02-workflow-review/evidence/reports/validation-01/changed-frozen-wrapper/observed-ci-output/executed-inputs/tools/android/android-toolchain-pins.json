@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "verified_utc_date": "2026-10-12",
+  "target_platform": "linux-x86_64",
+  "sources": {
+    "jdk_checksum": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12.1%2B1/OpenJDK21U-jdk_x64_linux_hotspot_21.0.12.1_1.tar.gz.sha256.txt",
+    "android_sdk_metadata": "https://dl.google.com/android/repository/repository2-3.xml",
+    "google_apis_image_metadata": "https://dl.google.com/android/repository/sys-img/google_apis/sys-img2-3.xml",
+    "emulator_command_line": "https://developer.android.com/studio/run/emulator-commandline",
+    "arm_translation_background": "https://android-developers.googleblog.com/2020/03/run-arm-apps-on-android-emulator.html"
+  },
+  "packages": [
+    {
+      "id": "jdk21",
+      "version": "21.0.12.1",
+      "distribution": "Eclipse Temurin",
+      "build": "21.0.12.1+1",
+      "filename": "OpenJDK21U-jdk_x64_linux_hotspot_21.0.12.1_1.tar.gz",
+      "url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12.1%2B1/OpenJDK21U-jdk_x64_linux_hotspot_21.0.12.1_1.tar.gz",
+      "download_bytes": 207473347,
+      "checksum_algorithm": "sha256",
+      "checksum": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94",
+      "format": "tar.gz",
+      "extract_destination": "jdk21",
+      "installed_tree": "jdk21",
+      "installed_marker": "jdk21/release"
+    },
+    {
+      "id": "platform-tools",
+      "version": "37.0.1",
+      "channel": "stable",
+      "filename": "platform-tools_r37.0.1-linux.zip",
+      "url": "https://dl.google.com/android/repository/platform-tools_r37.0.1-linux.zip",
+      "download_bytes": 9054187,
+      "checksum_algorithm": "sha1",
+      "checksum": "477254aa5f903c15cf51001717bdf347fb6b53e0",
+      "format": "zip",
+      "extract_destination": "android",
+      "installed_tree": "android/platform-tools",
+      "installed_marker": "android/platform-tools/source.properties"
+    },
+    {
+      "id": "emulator",
+      "version": "37.2.12",
+      "channel": "stable",
+      "filename": "emulator-linux_x64-16428233.zip",
+      "url": "https://dl.google.com/android/repository/emulator-linux_x64-16428233.zip",
+      "download_bytes": 349654171,
+      "checksum_algorithm": "sha1",
+      "checksum": "cd7362ea55dfb86a418958138dc396e74165dd01",
+      "format": "zip",
+      "extract_destination": "android",
+      "installed_tree": "android/emulator",
+      "installed_marker": "android/emulator/source.properties"
+    },
+    {
+      "id": "system-images;android-35;google_apis;x86_64",
+      "version": "9",
+      "api_level": 35,
+      "channel": "stable",
+      "filename": "x86_64-35_r09.zip",
+      "url": "https://dl.google.com/android/repository/sys-img/google_apis/x86_64-35_r09.zip",
+      "download_bytes": 1738815903,
+      "checksum_algorithm": "sha1",
+      "checksum": "0103e6dab21290c4b9d16550a3ce99476f884eef",
+      "format": "zip",
+      "extract_destination": "android/system-images/android-35/google_apis",
+      "installed_tree": "android/system-images/android-35/google_apis/x86_64",
+      "installed_marker": "android/system-images/android-35/google_apis/x86_64/source.properties"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+# Inactive step fragment for the existing pinned disposable Android 15 job.
+# This file is deliberately outside .github/workflows. It does not provision a
+# device, change an installed app, or alter the existing constructor probe.
+#
+# The parent job must first check out the immutable reviewed probe checkpoint,
+# reconstruct the original and Widget b79 candidate APKs, and boot the existing
+# MacroDroid_API35_Disposable AVD on emulator-5560. Set these three variables to
+# absolute files/directories prepared by those existing, independently checked
+# stages. The Python wrapper rechecks every required identity before any push.
+#   MD_WIDGET_PROBE_ROOT: frozen work-in-progress/widget-art/01-wrapper-review
+#   MD_ORIGINAL_APK:      immutable original APK (84333011...)
+#   MD_WIDGET_APK:        immutable Widget candidate APK (b79b0010...)
+steps:
+  - name: Run the independent original and candidate Widget method probe
+    timeout-minutes: 12
+    shell: bash
+    run: |
+      set -euo pipefail
+      python3 "${MD_WIDGET_PROBE_ROOT:?reviewed frozen probe checkpoint required}/android_widget_method_probe.py" \
+        --adb "${ANDROID_SDK_ROOT:?pinned Android SDK required}/platform-tools/adb" \
+        --serial emulator-5560 \
+        --avd MacroDroid_API35_Disposable \
+        --original "${MD_ORIGINAL_APK:?immutable original APK required}" \
+        --candidate "${MD_WIDGET_APK:?immutable b79 Widget APK required}" \
+        --probe "$MD_WIDGET_PROBE_ROOT/probes/widget-method-probe.dex" \
+        --provenance "$MD_WIDGET_PROBE_ROOT/probes/widget-method-probe.json" \
+        --output "$RUNNER_TEMP/widget-art-method" \
+        --timeout 120
+
+  - name: Preserve complete Widget ART outputs on success or failure
+    if: always()
+    uses: actions/upload-artifact@v4
+    with:
+      name: widget-art-method-evidence
+      path: ${{ runner.temp }}/widget-art-method/
+      if-no-files-found: error
