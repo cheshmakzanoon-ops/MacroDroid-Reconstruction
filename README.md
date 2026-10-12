@@ -1,48 +1,76 @@
-# MacroDroid Reconstruction — research archive
+# MacroDroid Reconstruction
 
-**Latest produced build: v9 (October 11, 2026).** Status: **incomplete, experimental source reconstruction; full 1:1 Android functionality NOT verified.**
+**The complete historical v9 source and toolchain snapshot is now stored in this
+repository.** Reconstruction remains incomplete: whole-app 1:1 Android runtime
+behavior has not been established.
 
-## What's in this public repository
+## Get the working source
 
-- Provenance, build history, published quality reports, integrity checksums and acceptance status from the v3–v9 reconstruction sessions.
-- A checksum-verifying importer under `scripts/import_v9.py`, for assembling the latest **source and toolchain ZIPs downloaded from the original ChatGPT conversation** into an isolated local workspace.
-- Transfer/status notes distinguishing what has actually been pushed from what remains attached to the conversation.
+Clone this repository, install Python 3.11 or newer, then run:
 
-**The large v9 source ZIP, toolchain ZIP, APKs, original proprietary APK and the 81,000+ extracted source files are NOT yet committed to GitHub.** This repository must not be mistaken for the full runnable v9 project. There is no claim of a successful GitHub CI build based solely on these documents.
+```sh
+python3 scripts/materialize_v9.py
+cd workspace/MacroDroid_v9
+python3 release_integrity.py verify
+python3 build.py build --variant hybrid
+python3 acceptance.py
+```
 
-## Latest available artifact identities
+Java 21 is required for the source build. The materializer verifies every committed
+archive part and the two complete ZIP SHA-256 values, extracts the historical
+snapshot, and applies the current authored source overlay from `project/` when
+present. Existing working directories are preserved; use a fresh `--destination`
+to create another checkout. To inspect historical v9 without current changes, use
+`--without-overlay`. To check the archive bytes without extraction, use
+`--verify-only`.
 
-| File from conversation | Size (bytes) | SHA-256 |
+## Repository contents
+
+| Location | Contents |
+| --- | --- |
+| `vendor/v9/` | Complete immutable v9 source/toolchain archives in 40 ordinary Git binary parts, with a checksum manifest. No LFS download is required. |
+| `project/` | Current authored source, build and verification overlay, as development checkpoints add or update it. |
+| `scripts/materialize_v9.py` | Verified archive assembly, safe extraction and overlay application. |
+| `scripts/import_v9.py` | Import the exact historical source/toolchain ZIPs when supplied separately. |
+| `docs/verification/restored-v9/` | Fresh v9 host build and test evidence from the restored full snapshot. |
+| `docs/v9/` and `docs/history/` | Historical quality reports, delivery records, provenance and checksums. |
+| `source/java/recovered/` | Four original illustrative recovered-source samples retained from the initial repository. |
+
+The committed source archive contains **81,903 files**; the toolchain archive
+contains **14 files**. Together, the two original ZIP byte streams are 328,955,278
+bytes and expand to 1,015,640,489 bytes. This includes the build scripts, recovered
+source/smali, Android resources/assets, native payload and the v9 build dependencies.
+See [snapshot documentation](vendor/v9/README.md) for the storage format and
+[transfer status](docs/TRANSFER_STATUS.md) for what is committed.
+
+## Verified historical artifact identities
+
+| Artifact | Size (bytes) | SHA-256 |
 | --- | ---: | --- |
 | MacroDroid_v9_Source.zip | 225,574,530 | `c11f2d4727a6882943ffccbd81fa45dc738b6fe9c1c5a1c620564e90d8824e01` |
 | MacroDroid_v9_Toolchain.zip | 103,380,748 | `ffb8ea58d6f44dc3b70064a58fc36ead75833d2a2bc14690708248e5640de68d` |
 | MacroDroid_v9_Hybrid.apk | 94,682,999 | `ebd8628eb69f71fc54d70bf87889a11d7b9a673e20b318233c7c30b489d8ff31` |
 | MacroDroid_v9_Baseline.apk | 94,677,674 | `aa8ad3013ad211c8a39d083943b0a671d75e0bbbedccc924ea0093c590c9a096` |
 
-The complete measured results are in [v9 quality report](docs/v9/quality-report.md) and [delivery verification](docs/v9/delivery-verification.json).
+The source and toolchain ZIPs are committed as multipart byte streams. The APK rows
+identify historical outputs; they do not by themselves claim those APK files are
+checked in. The fresh restored v9 source build reproduced the historical hybrid APK
+SHA-256 exactly. Host tests and artifact integrity are documented separately from
+Android runtime acceptance; see the [restored-v9 evidence](docs/verification/restored-v9/)
+and [v9 quality report](docs/v9/quality-report.md).
 
-## Reconstruct the *local* working directory from the conversation attachments
+## Identity and remaining acceptance work
 
-After downloading both v9 ZIPs and checking Python 3.11+:
+Target: the user-supplied MacroDroid 5.67.8 APK. The original high-level application
+source and the publisher's private signing key have not been recovered. Rebuilt
+APKs use the openly distributed development test identity retained in the v9
+snapshot, so update identity and signature-sensitive integrations can differ.
 
-```sh
-python scripts/import_v9.py --source /path/to/MacroDroid_v9_Source.zip --toolchain /path/to/MacroDroid_v9_Toolchain.zip --destination workspace
-cd workspace/MacroDroid_v9
-python release_integrity.py verify
-python build.py build --variant hybrid
-python acceptance.py
-```
+Compilation, checksums, host tests and selected instruction comparisons are
+insufficient to establish whole-app equivalence. Installation, launch, UI flows,
+triggers, actions, constraints, permissions, scheduling and external integrations
+need measured Android runtime comparisons against the supplied reference.
 
-Java 21 is needed for the source build. The importer verifies both official v9 archive SHA-256 values, prevents path traversal and symlink extraction, and refuses to silently overwrite differing files. It does not execute builds, install APKs, or push to GitHub. The `workspace/` directory is gitignored.
-
-**This local build is not proof of Android runtime equivalence.** Device installation, launch, UI, triggers/actions/constraints, permissions, scheduling and external integrations have never been verified end-to-end against the original. The publisher's signing key and original high-level source are not recovered.
-
-## Copyright, credentials and public-repository caution
-
-MacroDroid is third-party proprietary software. This repository is **not affiliated with or endorsed by its publisher** and does not grant redistribution rights to application code, assets or APKs. Do not publicly upload third-party binaries, recovered code, keystores or account material unless you have the necessary rights. The chat source ZIP contains a development signing key; `signing/` and binary artifacts are deliberately excluded here.
-
-See [transfer status](docs/TRANSFER_STATUS.md) and [provenance](docs/PROVENANCE.md).
-
-## Checked-in source samples
-
-A few exact recovered Java helper files are checked in under [`source/java/recovered/`](source/java/recovered/) as examples. These are **not** enough to build the app. The full set of smali classes, Android resources and binary dependencies still lives in the separately delivered v9 ZIPs.
+This reconstruction is not affiliated with or endorsed by MacroDroid or its
+publisher. See [provenance](docs/PROVENANCE.md) for the supplied input identity and
+the precise scope of historical measurements.

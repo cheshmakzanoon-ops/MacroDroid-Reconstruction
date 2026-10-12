@@ -1,13 +1,48 @@
-# GitHub transfer status (October 11, 2026)
+# GitHub transfer status — October 12, 2026
 
-The named GitHub repository is **public**. The connected GitHub API can write text and Git objects, but the session's local git cannot reach github.com (DNS resolution fails), and the connector cannot directly ingest a local 225 MB ZIP or an 81,000-file tree.
+## Complete v9 snapshot committed
 
-**Pushed:** repository index, four exact Java recovered-source samples, release inventory/checksums, quality and delivery reports, importer, safeguards and provenance.
+The complete previously delivered v9 source and toolchain snapshot is now stored
+on `main`, beginning with the completed archive checkpoint
+`5911da0a2d228337a408ed80278160d6b0885b69`.
 
-**Not pushed:** the complete v9 executable sources (71,267 smali class files; 1,237 Java-migrated methods among the project), Android assets, native libraries, original and rebuilt APKs, third-party build tool binaries, development signing keystore, unreviewed historic raw dumps. They remain in the conversation's v9 download artifacts, not GitHub. Any claim that the full source has been pushed would be inaccurate.
+| Snapshot | Original ZIP bytes | Files after extraction | Committed parts |
+| --- | ---: | ---: | ---: |
+| Source | 225,574,530 | 81,903 | 27 |
+| Toolchain | 103,380,748 | 14 | 13 |
+| Total | 328,955,278 | 81,917 | 40 |
 
-To assemble a local working project, download the two v9 archives from the conversation and follow the README importer instructions. Before making any code/assets public, ensure redistribution permission from their copyright holders. If authorized, an authenticated local Git client can publish selected sources using an appropriate license and .gitignore rules. Avoid huge single-file Git objects; use permitted releases/LFS for binaries.
+The ordinary Git binary parts are in `vendor/v9/`, each at most 8 MiB. The manifest
+pins every part's size, SHA-256 and Git blob identity, as well as the full original
+ZIP identities. All uploaded blob identities matched their locally computed Git
+identities. No external conversation attachment or LFS fetch is required to obtain
+the full historical project.
 
-**Static build equivalence is not whole-app equivalence:** host tests and canonical instruction comparisons are documented, but Android runtime tests were unavailable and have not established 1:1 feature behavior.
+`python3 scripts/materialize_v9.py --verify-only` verified the complete byte streams
+against the original delivered ZIP SHA-256 values. A fresh materialization extracted
+all 81,917 files successfully. Repeating extraction into that same working directory
+was rejected as designed, preserving existing edits. The materializer can then apply
+the separately versioned `project/` overlay without claiming that current edits are
+the immutable historical v9 input.
 
-This status is about the present repo contents, not a claim that remote release attachments exist.
+## Build and validation evidence
+
+The freshly restored v9 hybrid build reproduced the historical APK SHA-256 exactly.
+The recorded host run passed all 179,248 selected three-way comparison cases with
+zero unsupported cases or failures, and all 154 Python tests. The actual reports
+and build logs are committed under `docs/verification/restored-v9/`.
+
+This evidence establishes archive preservation and measured host behavior. It does
+not establish whole-app 1:1 Android runtime equivalence. Current Android comparison
+results and later reconstruction changes must be reported separately.
+
+## Separate inputs and outputs
+
+The original supplied reference APK and generated APK outputs are separate from
+the v9 source/toolchain snapshot; their preservation is tracked in subsequent
+checkpoints. Android SDK and emulator caches are reproducible environment tools,
+not project source. The development signing identity inside the historical snapshot
+is an openly distributed test identity, not the publisher's signing key.
+
+All older repository documentation, quality reports and recovered Java samples
+remain available. There is no assertion that GitHub release attachments exist.

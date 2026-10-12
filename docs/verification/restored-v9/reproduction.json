@@ -1,0 +1,109 @@
+{
+  "recorded_at_utc": "2026-10-12T00:40:18.475968+00:00",
+  "scope": "Fresh reproduction of the unchanged verified v9 source baseline on the current host; separate from subsequent code recovery and Android tests.",
+  "source_archive_sha256": "c11f2d4727a6882943ffccbd81fa45dc738b6fe9c1c5a1c620564e90d8824e01",
+  "toolchain_archive_sha256": "ffb8ea58d6f44dc3b70064a58fc36ead75833d2a2bc14690708248e5640de68d",
+  "input_integrity": {
+    "passed": true,
+    "files_checked": 81177,
+    "snapshot_sha256": "6f9e0f823f85c89c45cf2d23672fac246b526a5d389a04a9348aaeaeefe3c65c",
+    "missing": [],
+    "extra": [],
+    "changed": []
+  },
+  "original_apk": {
+    "bytes": 95725918,
+    "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+  },
+  "hybrid": {
+    "variant": "hybrid",
+    "apk": "dist/MacroDroid-5.67.8-v9-hybrid.apk",
+    "bytes": 94682999,
+    "sha256": "ebd8628eb69f71fc54d70bf87889a11d7b9a673e20b318233c7c30b489d8ff31",
+    "original_apk_build_input": false,
+    "original_dex_build_input": false,
+    "source_dex_partitions": 9
+  },
+  "matches_delivered_v9_hybrid_byte_for_byte": true,
+  "host_three_way": {
+    "passed": true,
+    "cases": 179248,
+    "methodsCovered": 1237,
+    "methodsExpected": 1237,
+    "paths": 3,
+    "schemaValid": true,
+    "failedCases": 0,
+    "unsupportedExecutions": 0,
+    "androidRuntime": false,
+    "suiteCases": {
+      "legacy": 95262,
+      "core": 34753,
+      "environment": 30684,
+      "engine": 9616,
+      "ui": 8933
+    },
+    "scope": "Bounded host comparison only; not Android execution",
+    "exactMethodKeyPartitionVerified": true,
+    "apkSha256": "ebd8628eb69f71fc54d70bf87889a11d7b9a673e20b318233c7c30b489d8ff31",
+    "rebuiltDexComparedToApk": true,
+    "fixtureSha256": "b0ece2f31a81e1d646f366b5e83fb674adee916dea3aeb5447eaf840da197e45"
+  },
+  "python_regressions_passed": 154,
+  "java_runtime": "Eclipse Temurin 21.0.12.1+1",
+  "android_runtime_executed": false,
+  "full_functional_parity_established": false,
+  "evidence": {
+    "hybrid-build.json": {
+      "bytes": 279,
+      "sha256": "ca5ae966851d224fefdb3d378d0a968e2457f0905d7a609c896b6e526810698c"
+    },
+    "hybrid-assembly-inputs.json": {
+      "bytes": 2677,
+      "sha256": "00ffa594bc77720760254640c3804da668324fc6236fa44554444f09656c88f2"
+    },
+    "hybrid-signature-verification.log": {
+      "bytes": 46599,
+      "sha256": "ec53b66a105119df8ef94e4714e04da0db14d16b3dd287fa7cd7739138aeb3f7"
+    },
+    "java-all-path-parity.json": {
+      "bytes": 645,
+      "sha256": "a15b824eb3bca265fc7b108b91c226251f556e1d2fdddb7b3483432dedb384c6"
+    },
+    "java-three-path-parity.json": {
+      "bytes": 112301,
+      "sha256": "1460893df420eafa513cf0d12699ea66eb7b570af56adc709a91abe265ae5c7b"
+    },
+    "java-core-three-path-parity.json": {
+      "bytes": 5327,
+      "sha256": "9c5ae86893a164ad5f7a6a894545c4c7c2d28def0ab1104573aa456e77a3f2ea"
+    },
+    "java-environment-three-path-parity.json": {
+      "bytes": 7210,
+      "sha256": "5c84d359ed6cae95f2f50e046fb6b033519e12a6b4520e2821e6c335cb0adf7b"
+    },
+    "java-engine-three-path-parity.json": {
+      "bytes": 7033,
+      "sha256": "b248cb83efebb927f2caab4e61cdf4891099976a48f572abd298d10244b6bbff"
+    },
+    "java-ui-three-path-parity.json": {
+      "bytes": 2463,
+      "sha256": "72a767ce49a8df332c8c9ec78277b20eec64e12079d22db96da9ee4ae988d4b3"
+    },
+    "oracle-semantics.json": {
+      "bytes": 406,
+      "sha256": "4114dc8bee417402fb1064b92d43891c257890b4f9663766b00bd071b339a57f"
+    },
+    "engine-oracle-semantics.json": {
+      "bytes": 313,
+      "sha256": "efc253aea23a98a5549623021127861b67e032b143639974d7661fd6a29e55be"
+    },
+    "ui-oracle-semantics.json": {
+      "bytes": 176,
+      "sha256": "a33dc35354c849da5cd91038342eee424375d8f1176ffc02ee17fd36a6d2b1f9"
+    },
+    "python-unit-tests.log": {
+      "bytes": 15135,
+      "sha256": "b43091d224521febd6ad5ae66808c42319b2318c1f865099a2be14c48e62d689"
+    }
+  }
+}
