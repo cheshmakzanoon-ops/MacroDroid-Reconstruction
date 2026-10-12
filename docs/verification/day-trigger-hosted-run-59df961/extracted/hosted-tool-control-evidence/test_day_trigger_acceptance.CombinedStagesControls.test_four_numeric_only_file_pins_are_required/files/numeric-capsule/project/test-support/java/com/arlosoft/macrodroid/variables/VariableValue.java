@@ -1,0 +1,1 @@
+SYNTHETIC NUMERIC test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java

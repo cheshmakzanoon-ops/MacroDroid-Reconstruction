@@ -1,0 +1,1 @@
+SYNTHETIC NUMERIC tests/test_day_numeric.py

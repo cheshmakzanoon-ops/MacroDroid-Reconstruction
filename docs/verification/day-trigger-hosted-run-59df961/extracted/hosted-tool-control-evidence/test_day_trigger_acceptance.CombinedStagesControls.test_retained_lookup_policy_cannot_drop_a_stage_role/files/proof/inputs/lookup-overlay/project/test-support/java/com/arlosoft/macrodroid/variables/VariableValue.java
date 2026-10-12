@@ -1,0 +1,1 @@
+SYNTHETIC LOOKUP test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java

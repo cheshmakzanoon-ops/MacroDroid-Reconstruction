@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "status": "OBSERVED_CONTROLS_AND_FINITE_PLAN_NO_NEW_ANDROID_EXECUTION",
+  "parent_plan_sha256": "4133e9410db84ac5636ece780b67331bf139afaa2de6b5c110c5ef5679fda85c",
+  "plan_sha256": "ca597b23d9c2d11ebce1ed3953d609189476d7179635f2a4c4068df0795f2211",
+  "report_schema": 7,
+  "screens_per_run": 16,
+  "inputs_per_run": 15,
+  "new_inputs_per_run": 2,
+  "settings_inputs_per_run": 2,
+  "total_settings_inputs": 4,
+  "global_inputs": 30,
+  "global_setup_mutations": 6,
+  "new_state_order": [
+    "observed Settings off",
+    "observed Settings on after one toggle",
+    "observed app surface after Navigate up"
+  ],
+  "contract_identity": {
+    "bytes": 140449,
+    "sha256": "379544de4e9e5d84138959f1e1552fcc9b2e52d7264d30e324c63f2a82814c07"
+  },
+  "expected_new_runtime_candidate": {
+    "bytes": 94683136,
+    "sha256": "0762aad956193ef305afc47b4cbe68e6239c94f72732556e650d701b4a288afd"
+  },
+  "runtime_candidate_manifest_commit": null,
+  "candidate_manifest_must_be_fetched_and_hash_pinned_before_workflow_activation": true,
+  "original_apk": {
+    "bytes": 95725918,
+    "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+  },
+  "new_settings_controls_were_observed_in_both_previous_apks": true,
+  "permission_api_result_observed": false,
+  "trigger_configuration_confirmed": false,
+  "macros_saved": false,
+  "macros_executed": false,
+  "new_android_actions": [],
+  "active_source_or_workflow_changes": [],
+  "proposed_new_sources": [
+    "tools/parity_journeys/exact_alarm_enable_return.py",
+    "tools/parity_journeys/exact_alarm_enable_return_readiness.py",
+    "tools/parity_journeys/test_exact_alarm_enable_return.py",
+    "tools/parity_journeys/test_exact_alarm_enable_return_readiness.py"
+  ],
+  "proposed_existing_source_changes": [
+    "tools/parity_journeys/editor_journey.py",
+    "tools/parity_journeys/observed_journey.py"
+  ],
+  "reused_source_behavior": [
+    "all historical plan identities and policies",
+    "literal thirteen-input fourteen-screen prefix",
+    "full-frame settling and first eligible readiness sequence",
+    "exclusive recorded stream and command chronology checks",
+    "installed APK and main app PID continuity",
+    "full cross-APK RGBA and hierarchy comparison without masks or tolerances"
+  ],
+  "new_settings_capture_roles": [
+    "after-exact-alarm-ok",
+    "after-exact-alarm-enable-before",
+    "after-exact-alarm-enable",
+    "after-exact-alarm-return-before"
+  ],
+  "unexpected_surface_behavior": "Stop that app run and preserve partial captures; never infer or add another action.",
+  "application_return_component_class_assumed": false,
+  "post_return_owner": "com.arlosoft.macrodroid",
+  "test_plan": [
+    "reject changed or misplaced schema7 plan/policy and foreign historical reuse",
+    "reject changed full off Settings hierarchy/owner/component/PNG geometry or target ancestry",
+    "require exactly one actual checked-on state after the toggle before Navigate up",
+    "reject invented Settings role names, mixed capture stems and foreign owner outside four declared roles",
+    "bind thirty total inputs and six setup mutations in global order with no unbound mutation",
+    "reject changed coordinates, stale preconditions, PID/component replacement or raw byte mismatch",
+    "retain all209 historical host controls unchanged",
+    "replay the closed fourteen-screen device artifact with identical historical comparison"
+  ],
+  "resource_budget_bytes": 536870912
+}

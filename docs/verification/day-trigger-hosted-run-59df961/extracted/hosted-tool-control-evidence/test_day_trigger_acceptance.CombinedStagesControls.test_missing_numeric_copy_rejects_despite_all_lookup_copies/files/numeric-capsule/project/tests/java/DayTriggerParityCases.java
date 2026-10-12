@@ -1,0 +1,1 @@
+SYNTHETIC NUMERIC tests/java/DayTriggerParityCases.java

@@ -1,0 +1,1 @@
+SYNTHETIC LOOKUP tests/java/DayLookupParityCases.java

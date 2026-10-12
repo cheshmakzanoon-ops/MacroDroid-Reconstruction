@@ -1,0 +1,1 @@
+SYNTHETIC LOOKUP tests/java/UiParityTests.java

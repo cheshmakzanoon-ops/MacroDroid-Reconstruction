@@ -1,0 +1,5386 @@
+{
+  "schema": 1,
+  "test": "test_day_trigger_acceptance.CombinedStagesControls.test_rehashed_retained_checkpoint_does_not_change_its_frozen_pin",
+  "original_temporary_root": "/tmp/day-numeric-host-control-wibkc04s",
+  "scope": "Tool policy fixtures and declared small Python subprocesses only; no application build or Java parity claim",
+  "metadata_scope": "Recorded original live stat; copied inode/ctime are not substituted",
+  "values": {
+    "pins": {
+      "schema": 1,
+      "scope": "Separate combined DayTrigger numeric and lookup WIP source acceptance; host only, no active promotion",
+      "baseline_commit": "dbcad968c5c3e8f084205393a6c0d2d06a203c71",
+      "overlay_commit": "811f979eda1b937917c18defef38455c49a59062",
+      "overlay_capsule_path": "work-in-progress/day-trigger-numeric/08-command-filesystem-source-successor",
+      "overlay_checkpoint": {
+        "bytes": 43,
+        "sha256": "a22b7896b56ff52cddbf2ff6d266c478884a52cec7945db664663f13c5bfaad0"
+      },
+      "baseline_manifest": {
+        "path": "project/reports/release-input-snapshot.json",
+        "bytes": 2040,
+        "sha256": "8010db1c13cf47aabce8cfbf8f97b423212a74421328035087f8ab64c9d7ccda"
+      },
+      "baseline_files": 13,
+      "baseline_snapshot_sha256": "b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553",
+      "future_snapshot": {
+        "files": 26,
+        "snapshot_sha256": "2b8bfe1f65fc64d8cf47f2ed93cb7101e1915e1f64f5ed8da90e8a9410e25008"
+      },
+      "future_manifest": {
+        "bytes": 4051,
+        "sha256": "1fc5c321f5a1541f654fe899c719251568a0f030ba6e1851c8671bb694b10b24"
+      },
+      "source_changes": [
+        {
+          "path": "acceptance.py",
+          "source": "project/acceptance.py",
+          "baseline": {
+            "bytes": 28,
+            "sha256": "33081a6d53f85aecd01c48ab487e5b2584e645560d0af2dedf53cfce97eb7e6d"
+          },
+          "candidate": {
+            "bytes": 31,
+            "sha256": "d356760f11012f49b3bd8c2887da24e4537cdc8148c63d8511c1616a89e42a13"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "day_numeric_dex_controls.py",
+          "source": "project/day_numeric_dex_controls.py",
+          "baseline": null,
+          "candidate": {
+            "bytes": 45,
+            "sha256": "268f4a594b456a14087c927f475c806fa8fdb7b7164d8a93d1249da1ce2b8fc2"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "source/java-method-map.json",
+          "source": "project/source/java-method-map.json",
+          "baseline": {
+            "bytes": 42,
+            "sha256": "2f638631c91e784781514de5b689f405f693121ac4c5b2e6d633f9b395c9cec0"
+          },
+          "candidate": {
+            "bytes": 45,
+            "sha256": "273783231dc21e6b9f29329887ea53345462df9b737baa8c1e86b281434f88e7"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "source": "project/source/java/recovered/ui/DayTriggerValueMethods.java",
+          "baseline": null,
+          "candidate": {
+            "bytes": 70,
+            "sha256": "a9f6c7f1e7ef08b50ade57a97689d42a8c930b04fe96f0de2afa3a93b4cb82f3"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "source/ui-methods.json",
+          "source": "project/source/ui-methods.json",
+          "baseline": {
+            "bytes": 37,
+            "sha256": "49032498e7f85c35fc0acc71cbca192ab2d19463c4948de520446c978a664db7"
+          },
+          "candidate": {
+            "bytes": 40,
+            "sha256": "d6b1842082f44d83bfecb15cc6be6dc5f8da146ddd95a8735c1ad87c48148ca0"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+          "source": "project/test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+          "baseline": {
+            "bytes": 85,
+            "sha256": "04e7565f51b685abf2375a427aaa2b87812deb4dd158b7e4e7c581614a0ff682"
+          },
+          "candidate": {
+            "bytes": 88,
+            "sha256": "42341e115220161bc190bc67c709da2a6c2d50b99639356cc21f7d52283e2ee9"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/fixtures/day-numeric-mutants.json",
+          "source": "project/tests/fixtures/day-numeric-mutants.json",
+          "baseline": null,
+          "candidate": {
+            "bytes": 57,
+            "sha256": "851eb3692a966671cd5bfa46091a94e956ceb84e21185fbbe65bef52d6b08dd0"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/fixtures/original-dependencies.json",
+          "source": "project/tests/fixtures/original-dependencies.json",
+          "baseline": null,
+          "candidate": {
+            "bytes": 59,
+            "sha256": "0c8e991c1a5188faa6715118d2f6f772182c63e3adfff89c6e9d8e2de33f33c5"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/fixtures/original-methods.dex",
+          "source": "project/tests/fixtures/original-methods.dex",
+          "baseline": {
+            "bytes": 50,
+            "sha256": "7f2010d86ba0b067308bedb7aad8dad1c52f836cb0056b40df3df7c3d37dcc82"
+          },
+          "candidate": {
+            "bytes": 53,
+            "sha256": "1c6a891564e5ac56aeb9fe7c91ce98ad16c3c3f236eed76e7e276ea4c1fda4e9"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/fixtures/provenance.json",
+          "source": "project/tests/fixtures/provenance.json",
+          "baseline": {
+            "bytes": 45,
+            "sha256": "c306af65450dff9dc553a15b566b64c5bae29122c6b817e34f7112d9435149b1"
+          },
+          "candidate": {
+            "bytes": 48,
+            "sha256": "ee03a7bcadb8675823e4f736182741bb8a4913fec631bd96059ce2c4b53dc902"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/java/DayNumericControlHarness.java",
+          "source": "project/tests/java/DayNumericControlHarness.java",
+          "baseline": null,
+          "candidate": {
+            "bytes": 58,
+            "sha256": "7f022e30da72bcff1914ecbfbafb94e0e8ff8812bd2999161f8f014eb4e97040"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/java/DayTriggerParityCases.java",
+          "source": "project/tests/java/DayTriggerParityCases.java",
+          "baseline": null,
+          "candidate": {
+            "bytes": 55,
+            "sha256": "f3a5bde66d6df6c37cd51d47e20d5848436889cdf68f84777fc9b0cf954a4ef3"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/java/UiParityTests.java",
+          "source": "project/tests/java/UiParityTests.java",
+          "baseline": {
+            "bytes": 44,
+            "sha256": "39643e1554d8a9ed9b4e641e52054b906d6847b9caab1a47847db92799f0fe8a"
+          },
+          "candidate": {
+            "bytes": 47,
+            "sha256": "86e599a6f79b62b59f2faddda7e5b07e8924c7fa72bf8d7d65b89141fed007d5"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/test_build.py",
+          "source": "project/tests/test_build.py",
+          "baseline": {
+            "bytes": 34,
+            "sha256": "ea4e00bf83f2917669ab32b857d6d41b6715ad22ad41e8a73534810b82badee0"
+          },
+          "candidate": {
+            "bytes": 37,
+            "sha256": "d44c393d0f0463296b5da138bb4b9c75111c45a416c1838a1f7f12a6b47d961f"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/test_day_numeric.py",
+          "source": "project/tests/test_day_numeric.py",
+          "baseline": null,
+          "candidate": {
+            "bytes": 43,
+            "sha256": "f9b9d591bb82db5a9a066466d6d2d212b1cf2fbb224978a4ef9c46b4af322020"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/test_v9.py",
+          "source": "project/tests/test_v9.py",
+          "baseline": {
+            "bytes": 31,
+            "sha256": "432efc73a2967c23fcd36dcd425a9a97e0b447ee83ac2822a084d318ade9074f"
+          },
+          "candidate": {
+            "bytes": 34,
+            "sha256": "9f96b5011a2eb5545052a02cc870a4f8bf00cddd98ad7eecef61374393262751"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tools/src/ExtractOracle.java",
+          "source": "project/tools/src/ExtractOracle.java",
+          "baseline": {
+            "bytes": 43,
+            "sha256": "0a785685e99901d581acc7e4c633cacd0a77986ffe1ee24faca02445d074b6e4"
+          },
+          "candidate": {
+            "bytes": 46,
+            "sha256": "776b3b87badc0a2d5dce3613df65b2213e46ab3f8e3ad8be66fe120e10a4f664"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "ui_mutation_catalog.py",
+          "source": "project/ui_mutation_catalog.py",
+          "baseline": {
+            "bytes": 37,
+            "sha256": "916a56e4ce9ff9281df0e5b7e0d40b652c0fe4bb1837510ce18953891a613a06"
+          },
+          "candidate": {
+            "bytes": 40,
+            "sha256": "c886633bdf60df5895a993dc7b88612178c219085fbb2f10ee2854aeea4aacc8"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "ui_negative_control.py",
+          "source": "project/ui_negative_control.py",
+          "baseline": {
+            "bytes": 37,
+            "sha256": "ee749014288e92d4e180420b1886b95e344ef21ed895a10172b76d1d83076bfc"
+          },
+          "candidate": {
+            "bytes": 40,
+            "sha256": "08c439313830892548fbde7bae08e0f4acd9f0b1b7d8deff273a4e1a5d32e90f"
+          },
+          "must_be_absent_if_new": false
+        }
+      ],
+      "baseline_repository_files": [
+        {
+          "path": ".github/workflows/reconstruction.yml",
+          "bytes": 60,
+          "sha256": "bb91d0a642cd4568e1870f518b745fdf8c3e37fa6c2d9d4641bb6aafdb69502e"
+        },
+        {
+          "path": "scripts/materialize_v9.py",
+          "bytes": 49,
+          "sha256": "33266987be287e10fafe7612f9c354d2394583bd44a9362801f8bc4a16c209a3"
+        },
+        {
+          "path": "scripts/import_v9.py",
+          "bytes": 44,
+          "sha256": "604b3667e38da883eea1f7b7c49e586a86286872fca65bb07887a723b799b60c"
+        },
+        {
+          "path": "vendor/v9/manifest.json",
+          "bytes": 47,
+          "sha256": "15238a1d2d67c5e1474d984e8295d6356453889b9216e8ab57d43aa6852281a5"
+        },
+        {
+          "path": "project/release_integrity.py",
+          "bytes": 52,
+          "sha256": "5b6a956e990d6b5b65fa00176a8f081809420f352bc9c54aa8948c591f0bd81b"
+        },
+        {
+          "path": "project/test.py",
+          "bytes": 39,
+          "sha256": "688ec7ae3ce07ba64f18fc74cd5fb29f8c201e3deddb486f1254f7703d00ebe8"
+        }
+      ],
+      "baseline_apk": {
+        "bytes": 94677674,
+        "sha256": "aa8ad3013ad211c8a39d083943b0a671d75e0bbbedccc924ea0093c590c9a096"
+      },
+      "previous_active_apk": {
+        "bytes": 94683119,
+        "sha256": "5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182"
+      },
+      "fixture": {
+        "bytes": 531256,
+        "sha256": "410ebd6bd6455863812b1c3b34148f6717c6824cb2bdf8d8490323832543f802"
+      },
+      "original_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+      "registered_methods": 1244,
+      "target_classes": 605,
+      "fixture_methods": 1249,
+      "fixture_classes": 607,
+      "original_dependency_methods": 5,
+      "suite_cases": {
+        "legacy": 95262,
+        "core": 34753,
+        "environment": 30684,
+        "engine": 9616,
+        "ui": 24836
+      },
+      "all_cases": 195151,
+      "python_tests": 357,
+      "ui_mutation_inventory": [
+        {
+          "name": "cast-before-subtract",
+          "source": "source/java/recovered/ui/InteractionMethods.java",
+          "mutant_sha256": "05e1d9720c43dc73417788b3fb9f83df0dfb5db8dc39501c1cbefc2328b5b309",
+          "required_cases": [
+            "touch-numeric:0.9:1:7"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "parcel-nonzero-boolean",
+          "source": "source/java/recovered/ui/SceneStateMethods.java",
+          "mutant_sha256": "bd03f7f6b1263ab83643432bc3fc4af81ae5ac53a1735ba76d9723c1ad7e297b",
+          "required_cases": [
+            "parcel-read:1:1"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "parcel-field-order",
+          "source": "source/java/recovered/ui/SceneStateMethods.java",
+          "mutant_sha256": "26388fce11aa56e2049be95fd5a02eef8b7b2cbecbd6aa6f690661cd510e8712",
+          "required_cases": [
+            "parcel-write:1:0:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "sms-catch-must-not-swallow-error",
+          "source": "source/java/recovered/ui/SelectionMethods.java",
+          "mutant_sha256": "9790c0a6afb99f309f304a1c07c0ddefd2690ef6ac60ffea0f7f21e86b536d0f",
+          "required_cases": [
+            "provider:1:1:2:true"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "sound-generic-token",
+          "source": "source/java/recovered/ui/SelectionMethods.java",
+          "mutant_sha256": "6e4beb7db4822e315870edde9a00e6cb55b3e38d69d4f63e68dd776c3314b83d",
+          "required_cases": [
+            "sound:4:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "block-toggle-snapshot",
+          "source": "source/java/recovered/ui/BlockTouchesMethods.java",
+          "mutant_sha256": "121edefcfaefaa296eb2b92c5f4349810e93b195ac3eb519bedfd9a856ebb680",
+          "required_cases": [
+            "block:2:2:1:false:true"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "block-option-must-be-reread",
+          "source": "source/java/recovered/ui/BlockTouchesMethods.java",
+          "mutant_sha256": "2ea6032650f318cebc78605a01f4cbbda3cf43c5823d4e15cf02a82c92eb6015",
+          "required_cases": [
+            "block-option-after-stop:1:0:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "block-trigger-must-be-reread",
+          "source": "source/java/recovered/ui/BlockTouchesMethods.java",
+          "mutant_sha256": "5f88097ed8bbd57cd276f8a3bf6fff15316076cb2faf6ad93ecb6a44a9d5f73f",
+          "required_cases": [
+            "block:0:9:0:false:true"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "block-width-payload",
+          "source": "source/java/recovered/ui/BlockTouchesMethods.java",
+          "mutant_sha256": "5900d5bb59ccc9e63c0174962f28a52bba2e480dd15fd5d638c5f5528131bdaa",
+          "required_cases": [
+            "block:0:2:0:false:true"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "block-hidden-color-sentinel",
+          "source": "source/java/recovered/ui/BlockTouchesMethods.java",
+          "mutant_sha256": "69961e66ebcbbc8f9404c5ba46247a5cb0c38f47b78ed6ec4cf1a32912636b10",
+          "required_cases": [
+            "block:0:2:0:true:false"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "block-catch-must-include-checked-exception",
+          "source": "source/java/recovered/ui/BlockTouchesMethods.java",
+          "mutant_sha256": "a41d068f4b5a191198191ee579dcd692d23d74f8216a2af5bbb7f259a8a15048",
+          "required_cases": [
+            "block-fault:accessibility:12:4"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "block-catch-must-not-swallow-error",
+          "source": "source/java/recovered/ui/BlockTouchesMethods.java",
+          "mutant_sha256": "ac0afbb1152838059f34ec3b1826b39b6a4d49dc48a123a21d3f86f8da678fb3",
+          "required_cases": [
+            "block-fault:accessibility:12:3"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-permission-warning-falls-through",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "33ccbaa3d69e021a57515ccc5080e7d4e880dfe40448a1064c7e2b8787a7a3d2",
+          "required_cases": [
+            "scene:2:2:false:false:0:true:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-accessibility-description-key",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "7389e60463ddc771abf15c6ffbaa6a57ec2a0add020ad858918915add1548076",
+          "required_cases": [
+            "scene:1:2:true:true:0:true:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-dialog-runnable-discriminator",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "9b6d47bd008cf9bc94381cd6eda69a07b8c939915236d7fa9a338c34cef01e7d",
+          "required_cases": [
+            "scene:2:2:true:true:1:true:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-destroyed-activity-is-not-reused",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "6ba3ae513da27bf481af458ea36445dd9f630d1350b6445724d6af3ddf600e41",
+          "required_cases": [
+            "scene:2:2:true:true:3:true:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-clear-event-precedes-launch",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "a851ab2b007cbd9f93ea5e1ca9656c0fb1170f9072f07550f09eb9f6802bff88",
+          "required_cases": [
+            "scene:3:2:true:true:0:true:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-long-item-identifier",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "303cc11661e673f92314e38bb8b421e44a18e0f181e878559960064e835cce3f",
+          "required_cases": [
+            "scene:1:2:true:true:0:true:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-description-reread-after-context",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "019990e888ebfe122a0d1acdc903e5abfaa293163afc17261a3a9f150ff2a0a9",
+          "required_cases": [
+            "scene-description-after-context:1"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-catch-includes-checked-exception",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "b29101391aa083958fd04668d3af81f83074d865f36c5e5f95b4021b263a9bc4",
+          "required_cases": [
+            "scene-fault:accessibility:22:4"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-catch-must-not-swallow-error",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "3ef6c1fdb0a5c571cd5f52e2c30b31afdc76339212d74c6d81abd4698e23eeee",
+          "required_cases": [
+            "scene-fault:accessibility:22:3"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-description-key-is-read",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "d300b384f3c524dd2aa7dc58971be44ae90049976133233a5c8bf3849642e4a8",
+          "required_cases": [
+            "scene-dynamic-key-bus:3:0:false"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-denied-guard",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "b7d562596dcac5bfce5347c28c53ea7ccf6db970f010ddbcbb448774982a1019",
+          "required_cases": [
+            "plugin-gate:true:false:0:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-attempt-limit",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "9c59618f46563cc5292547782df50ceb92b1dd77f6ff52aea31c1f6929bec607",
+          "required_cases": [
+            "plugin-gate:false:false:5:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-false-precheck",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "ac834b2172de82d3379f53a0ceb91938479d03b95f5ebd4073f3960b1b8df11c",
+          "required_cases": [
+            "plugin-gate:false:false:0:1"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-precheck-label",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "633d0750174518471af1ea61e07d72e86025083eec8b7f0c74f78e0c2cfae196",
+          "required_cases": [
+            "plugin-continuation-labels-at-boundaries"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-api-label",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "7204741a134a663af77302797ac3302a0e77baf3f5eecef0ae2ec46b750e4dea",
+          "required_cases": [
+            "plugin-sequence:0:2"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-retry-original-key-index",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "4a50b7bd228c0a6838df507a679c640498b28ad7ac3ad10ac66625f05a32b638",
+          "required_cases": [
+            "plugin-retry-keeps-index-zero"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-status-must-be-read-twice",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "7721b505fc5ee6b762a3dd64c85d3f9b42bb7cde9c4ffb7c43caf7d336f97936",
+          "required_cases": [
+            "plugin-status-read-twice"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-counter-reset-order",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "9f38a4be9b54e6565905137036b238fa5afd7da8682b21a2ccf158296b33f9c0",
+          "required_cases": [
+            "plugin-counter-reset-after-publication"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-catch-includes-checked-exception",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "892ba564ae952ffc20dea06d0cebe8a53232ca9f1cbc1ac7d8098adf14332b11",
+          "required_cases": [
+            "plugin-fault:0:7:4"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-catch-must-not-swallow-error",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "4a1294dd166ef511d28ad1ecbdafd874197aace2da85c51c5a8a28eb3cf41711",
+          "required_cases": [
+            "plugin-fault:0:7:3"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-resume-error-index",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "5ad00830427fca1d4ea07cd5ce0e1310aa13f4a2ff037bd112efd6d7e78bc96c",
+          "required_cases": [
+            "plugin-resume-index-exhausted"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-retained-retry-flag",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "1bceb1d7950d1d1c4aff6ea57d6ee08c645c2b345b7af579cf2dff64a368dc5c",
+          "required_cases": [
+            "plugin-resume-nonzero-flag-generic"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-owner-captured-before-key",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "98417d9ea465579d10ed2c6df519e137feddfb0a33ee1554b2f93fbb818681fb",
+          "required_cases": [
+            "plugin-owner-captured-before-key"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-analytics-key-index",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "51dd64be58d82a96f4c5cddafe7aa92e9125bae8b7f4a3049f612eb2c71f3ed2",
+          "required_cases": [
+            "plugin-flow:0:0:1:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-suspension-uses-identity",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "a0c674b711dbd166a406be0a88a4792ef272a522db15418fb92c595fdbb6dc3f",
+          "required_cases": [
+            "plugin-api-marker-identity"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-retain-saved-part-cast",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "9b1a55ed8d9b38d5e5d410a1d3558015b093dcc3be06e73eafe54b8ffa3f554d",
+          "required_cases": [
+            "upload-saved-cast:1:4:true"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-compression-result-is-ignored",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "333bb9f2fc2d0bdc66a0d0e53c5f8394c028bdf88be138dd536c44e048def16a",
+          "required_cases": [
+            "upload-compress-false-is-ignored"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-nested-media-catch",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "eb8602437829b3ae54ea98e69eb89c5037dc95c38dacf30a2e1b546b317dbb53",
+          "required_cases": [
+            "upload-nested-media-argument-handler"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-request-companion-capture",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "c1f71e39769a91b6c62beeb06281fedd222120a2c2b33f36009ded94fde9187f",
+          "required_cases": [
+            "upload-request-companion-captured-before-media"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-request-default-mask",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "bb3a34f018e8d738cb1289691c2cff7e649a954fde1b1dd07cf4e6ed95716d75",
+          "required_cases": [
+            "upload-flow:0:true:0:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-icon-suspension-label",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "3909331dc59f6ea0d4ead013417a2e9b4eb26a8202bba6526f5073bc40df7375",
+          "required_cases": [
+            "upload-two-suspensions"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-plugin-suspension-label",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "178b7266b8932d9b8be99ace9dbe6ce94e016ad1833dc054965e308b58c90a9e",
+          "required_cases": [
+            "upload-two-suspensions"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-icon-clears-saved-part",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "4b1d45d10534c6e22c517c4e5609e05180bb295c2673fdae75833f80b9235203",
+          "required_cases": [
+            "upload-flow:0:true:1:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-null-icon-uses-fallback",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "a3dbc9b4fd98ddd7e84528038f17d484ec0595adaeb7db951b5eb388895ca8c7",
+          "required_cases": [
+            "upload-null-icon-fallback"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-http-status-is-read-twice",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "1586c1d14d3386fc41527512eb8c6a4a2b886e8ddf0bfa2ad223d74fb42ebd70",
+          "required_cases": [
+            "upload-second-status-read-and-priority"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-denied-flag-before-publication",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "5eac74b5527071a2a586fd47fe8df79e1206a0ba33fa75f2772e2d40d53c23c1",
+          "required_cases": [
+            "upload-no-icon:4"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-success-sink-before-payload",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "4535cfbafdd580c25a5113121590de5f28e2c5b6ba82fbaf6d57ac8bef7a886c",
+          "required_cases": [
+            "upload-success-sink-captured-before-payload"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-catch-includes-checked-exception",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "d8df8efcb9e8196a4f29bcfbff1092f4393b1b9734148f83787bc797805b43d7",
+          "required_cases": [
+            "upload-fault:0:1:4"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-catch-must-not-swallow-error",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "90c5378e9d1cf380c60faa7f598721ee5371a4b7ab09a27465c7f1b5d9b63dfb",
+          "required_cases": [
+            "upload-fault:0:1:3"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-error-publication-precedes-log",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "37bddf2b6b31ef294eedc1fb02f3e6af7e2ed7912abd5138a887abaac90e96e2",
+          "required_cases": [
+            "upload-no-icon:5"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-icon-suspension-uses-identity",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "f384ba14dcd51860a98d16e47dea6f2e53de594d80c46d821c7959a8895a7748",
+          "required_cases": [
+            "upload-icon-marker-identity"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-plugin-suspension-uses-identity",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "97e6da1d6c7d3c8f1239abb96f749c56cf9f92efc461f40783dbb0f8497cf149",
+          "required_cases": [
+            "upload-plugin-marker-identity"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-reuse-requires-high-bit",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "76fdac434b1e1e6f7db7ba5d30708c1a4a6ddda45129e693710d1b8dcc978ec6",
+          "required_cases": [
+            "widget-no-high-bit-creates-new:1",
+            "widget-entry:3:false"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-reuse-clears-high-bit",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "9ebb163a74cdd9cdea7052d3a326e93e6e28414e1a6b72ee79cc5b542ae1493b",
+          "required_cases": [
+            "widget-entry:3:false",
+            "widget-two-suspensions"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-first-suspension-label",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "5a69ca9bdca0a523b305b3a44b755cffc503fea74e18f109d9e2ed323560b02b",
+          "required_cases": [
+            "widget-flow:1:0",
+            "widget-two-suspensions"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-second-suspension-label",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "c4640f96d2bc4c067d8af8740b5e0afc599c992e8434971431c038e63c78cbb3",
+          "required_cases": [
+            "widget-flow:0:1",
+            "widget-two-suspensions"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-retain-label-two-dead-identifier-cast",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "601e7abd26d383bdcd1611de4ec4763b76e8dbc881d1466d7b78042b5cbd585f",
+          "required_cases": [
+            "widget-saved-cast:2:7:true"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-retain-dead-list-casts",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "aec32955d7ecd4411a61df0f5dcd26c12adadb4f7a394c788166ffc75d3dcd3f",
+          "required_cases": [
+            "widget-saved-cast:1:1:true",
+            "widget-saved-cast:2:1:true"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-leave-saved-L6-unread",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "20f413c7cbf4ee3ed6964fc3835233c8c789bc1f42b4011a75195effcdd7e789",
+          "required_cases": [
+            "widget-saved-unread-L6:1",
+            "widget-saved-unread-L6:2"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-saved-index-does-not-increment",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "ae1ca7291a4a9b47b71985def3e326e99405e74ad526a11627e8a3108b0c1f20",
+          "required_cases": [
+            "widget-resumed-index-never-increments",
+            "widget-multiple-widgets-four-suspensions"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-restore-saved-phase",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "b2751142441634d54cdf1a093bfe06d661b16c24bdd00f54ec7ad57a1faf78a1",
+          "required_cases": [
+            "widget-saved-integers:-1:37",
+            "widget-saved-integers:-2147483648:2147483647"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-second-call-clears-saved-identifier",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "164a0ecd06418f6e414e495b3087faf3409a57fe84a253b8c3d871f44c81268d",
+          "required_cases": [
+            "widget-resumed-result:1:0",
+            "widget-flow:0:1"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-second-label-precedes-call",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "21261f443fe54214a8f09ebea36e0dc4845e5e37e4b47b9cafa7315a07269e0e",
+          "required_cases": [
+            "widget-flow:0:1",
+            "widget-flow:0:3"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-factory-precedes-state-publication",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "e0eee881b40448c19f453888439faf8c096bca23c987041c2cbd7e57335e9a1a",
+          "required_cases": [
+            "widget-factory-before-state-clear"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-factory-arity-is-two",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "a1a38ea44bfeef674217812e008b8bd55fb7ad27dd8f88887af0d5cc1ca3a5ee",
+          "required_cases": [
+            "widget-factory-arity-and-null-completion"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-catch-includes-checked-exception",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "26be5931569675f6ef7c68c508352f805565979cadecad44f6343dbafc854c11",
+          "required_cases": [
+            "widget-checked-failure-inside-handler:widget.first:",
+            "widget-checked-failure-inside-handler:widget.second:"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-catch-excludes-error",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "9e3b62141f043999c5cfbf6a8b9b90e266a2f048866dc707efc20df3731b3ca0",
+          "required_cases": [
+            "widget-flow:4:0",
+            "widget-suspended-failure:2:4"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-logger-failure-escapes",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "62b90f499a6cebf4e54e1a4977bf7a15a5317affb48da45a78fa73b673c46a6f",
+          "required_cases": [
+            "widget-logger-failure-escapes"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-message-accessor-read-once",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "b908ee1f3604a0420d22aae47f80915208b57d7f11263c1ea7ae25df76c53d9e",
+          "required_cases": [
+            "widget-flow:3:0",
+            "widget-flow:0:3"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-first-suspension-uses-identity",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "77e7af58593496adc09fc4814164d169902f69634a7d773fbdf9807815c5342b",
+          "required_cases": [
+            "widget-first-result-uses-identity"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-second-suspension-uses-identity",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "3a13c90f1ea107b18f74cf3f438aa724bc82a117eb5b9671d1a533aac1e1a235",
+          "required_cases": [
+            "widget-second-result-uses-identity"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-has-next-remains-outside-handler",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "15de6f2c518d123b629f20bf60dac747c25e3f79e3ded0207b74ddd152fe94ff",
+          "required_cases": [
+            "widget-checked-failure-outside-handler:iterator.hasNext:"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-iterator-next-remains-outside-handler",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "911b3d42868ef1ca5728d6583078a9ecb1ce91c01b3af7e731f8c9e6b2599816",
+          "required_cases": [
+            "widget-checked-failure-outside-handler:iterator.next:"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-invalid-provider-continues-iteration",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "c2ffaee1caa0bff4f50c8bb9c0f145c33e52eaabf19b6e6a363d1ce9ad342de3",
+          "required_cases": [
+            "widget-invalid-provider-continues"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-initial-result-remains-outside-handler",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "566697ec9ed83c587caa8687335c95b46e17d588c0a7e51dec0e9bdecc56d410",
+          "required_cases": [
+            "widget-checked-failure-outside-handler:coroutine.result:"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-resume-locals-captured-before-result-validation",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "702ac7c129a86a5e658bfd027152339b8d637af31fccd56fdfcc40c51dd654b3",
+          "required_cases": [
+            "widget-resume-captured-fields:1"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "day-numeric-integer-zero",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "fa82a3a6235cb2d55e4801e178151ada32f06e1c26ffb6fd1cdd9df58960aaf8",
+          "required_cases": [
+            "day-numeric:integer-boundary-1"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-decimal-zero",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "6940c674822c10d83b8354a3e2cdb0079648c8d1d94857037a67a380db66d294",
+          "required_cases": [
+            "day-numeric:decimal-boundary-6"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-integer-saturation",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "c557b765a9fdaebd645a454202d9f49b4630c19859a7b606a4db779f2bdd1481",
+          "required_cases": [
+            "day-numeric:integer-boundary-15"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-integer-via-double",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "d51284632e5a95778a9a092a9c8e04a4d9302de2bdf66968a0f9f0a32f09bf41",
+          "required_cases": [
+            "day-numeric:integer-boundary-15"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-integer-via-byte",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "96cfa094d7fdb62cc0af9b32ffecad13e9129ea8f888bbab9b5151909b83fd44",
+          "required_cases": [
+            "day-numeric:integer-boundary-6"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-decimal-round",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "f8343374d6defac34e595c0da0a1f85cb1f13c6bb92604b5034c4c75c14ab5e2",
+          "required_cases": [
+            "day-numeric:decimal-boundary-10"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-decimal-floor",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "d0e845888ff796019fc6e99d23de169c4a7f6e041c2f575967bcdd2330792407",
+          "required_cases": [
+            "day-numeric:decimal-boundary-3"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-decimal-nan-one",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "11e02302207894a1e930e8eb38f64bfbad6ec34ccb8f12f3113154049202ae3a",
+          "required_cases": [
+            "day-numeric:decimal-boundary-35"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-decimal-infinity-zero",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "cdba2646b3259a7417e998c2ec47986065d42b4436806d623d2c74affb7eee9d",
+          "required_cases": [
+            "day-numeric:decimal-boundary-33"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-other-minus-one",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "ba08a0182e76147073b89bc8ffd5bdb5bc735857942162f212a52d525af1979b",
+          "required_cases": [
+            "day-numeric:null-value"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-parse-string",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "c68876fc4ace377c0fcf2d55aca6cfde76c6c6b6802e33462cd52b2fbb93a661",
+          "required_cases": [
+            "day-numeric:string-numeric"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-null-contained-throws",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "d40082ec0a5db4fdef69a2c66754333065e1b4d34154174eedeebd3138decf07",
+          "required_cases": [
+            "day-numeric:null-value"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-null-entry-zero",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "bae6590e8b2dceafe479ef9ae78710490cfa9e334701e09943f5781ff0cc65bb",
+          "required_cases": [
+            "day-numeric:null-entry"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-lookup-case-sensitive",
+          "source": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "mutant_sha256": "f84ffcf16540f773fd55f85a7ea865b8b2cf5048a991872aba7dcd58c246fbf2",
+          "required_cases": [
+            "day-lookup:first-duplicate-entry-identity"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "day-lookup-reverse-receiver",
+          "source": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "mutant_sha256": "7a4fcc5ee9fce1554fe9beda7eb3195c61a3decc0b1fb55243e611341526322f",
+          "required_cases": [
+            "day-lookup:null-entry-key-is-not-a-match"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "day-lookup-skip-null-entry",
+          "source": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "mutant_sha256": "a6c10805c2dc63a7e6fec31d36f569d55e016640d1603cd367bc5b59ee160536",
+          "required_cases": [
+            "day-lookup:null-first-entry"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "day-lookup-null-query-early-return",
+          "source": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "mutant_sha256": "a9d36fbc857fdcca81bd0db4235bdf3ed516811f09065660759eb1a61165a9c5",
+          "required_cases": [
+            "day-lookup:null-query-nonempty"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "day-lookup-last-match",
+          "source": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "mutant_sha256": "57242aa72146bbcc4f8ceca9d80383537be2cd2ebb4453d51bf31b55bc9b0cdd",
+          "required_cases": [
+            "day-lookup:empty-string-match"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "day-lookup-trim-query",
+          "source": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "mutant_sha256": "b8603590968b4c57f741e2d03a997ebf9b552474939786e378f41f3e078572d3",
+          "required_cases": [
+            "day-lookup:query-whitespace-is-significant"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "day-lookup-indexed-loop",
+          "source": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "mutant_sha256": "524aa11d7964297e1b584627bee928c366e81cde0cf2bad252f0546968a1da31",
+          "required_cases": [
+            "day-lookup:empty"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "day-lookup-extra-iteration-after-match",
+          "source": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "mutant_sha256": "a6d3ba997e7b32ad26acd77096d74c22f97c89f767b085ea4559aeef12726999",
+          "required_cases": [
+            "day-lookup:match-before-later-iterator-fault"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "day-lookup-swallow-iterator-fault",
+          "source": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "mutant_sha256": "25c9482dffbefdd31c6e0792c2410f94b1b789592148a9fd50a3982f54a8ca14",
+          "required_cases": [
+            "day-lookup:injected-iterator-state"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "day-lookup-replace-injected-npe-identity",
+          "source": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "mutant_sha256": "d231ebc7660ee2f2c1802f92a3e5175f83e979af22c574f18f8c2c9cf0ea483c",
+          "required_cases": [
+            "day-lookup:injected-iterator-npe"
+          ],
+          "widget": false,
+          "day_numeric": false
+        }
+      ],
+      "ui_mutation_inventory_source": {
+        "path": "evidence/source-controls-pass/mutation-inventory.json",
+        "bytes": 30097,
+        "sha256": "a4786e5058d769859b0f39a637a9386da2e15045739ac43bec0f8b4c9705abf2"
+      },
+      "acceptance_timeout_seconds": 6600,
+      "source_job_timeout_minutes": 120,
+      "materialize_timeout_seconds": 900,
+      "gate_commands": [
+        [
+          "input-integrity",
+          [
+            "release_integrity.py",
+            "verify"
+          ]
+        ],
+        [
+          "baseline-build",
+          [
+            "build.py",
+            "build",
+            "--variant",
+            "baseline"
+          ]
+        ],
+        [
+          "hybrid-build",
+          [
+            "build.py",
+            "build",
+            "--variant",
+            "hybrid"
+          ]
+        ],
+        [
+          "baseline-code",
+          [
+            "build.py",
+            "verify",
+            "--variant",
+            "baseline"
+          ]
+        ],
+        [
+          "hybrid-code",
+          [
+            "build.py",
+            "verify",
+            "--variant",
+            "hybrid"
+          ]
+        ],
+        [
+          "baseline-resources",
+          [
+            "resource_verify.py",
+            "--variant",
+            "baseline"
+          ]
+        ],
+        [
+          "hybrid-resources",
+          [
+            "resource_verify.py",
+            "--variant",
+            "hybrid"
+          ]
+        ],
+        [
+          "positive-host-tests",
+          [
+            "test.py",
+            "--three-way"
+          ]
+        ],
+        [
+          "reference-status",
+          [
+            "reference_status.py"
+          ]
+        ],
+        [
+          "engine-negative-controls",
+          [
+            "engine_negative_control.py"
+          ]
+        ],
+        [
+          "ui-negative-controls",
+          [
+            "ui_negative_control.py"
+          ]
+        ],
+        [
+          "core-negative-controls",
+          [
+            "core_negative_control.py"
+          ]
+        ],
+        [
+          "environment-negative-controls",
+          [
+            "environment_negative_control.py"
+          ]
+        ],
+        [
+          "legacy-negative-control",
+          [
+            "negative_control.py"
+          ]
+        ],
+        [
+          "signed-source-edit",
+          [
+            "full_apk_edit_probe.py"
+          ]
+        ],
+        [
+          "final-positive-host-tests",
+          [
+            "test.py",
+            "--three-way"
+          ]
+        ]
+      ],
+      "fresh_reports": [
+        "baseline-roundtrip.json",
+        "hybrid-roundtrip.json",
+        "baseline-resource-parity.json",
+        "hybrid-resource-parity.json",
+        "java-all-path-parity.json",
+        "java-ui-three-path-parity.json",
+        "ui-oracle-semantics.json",
+        "ui-negative-controls.json",
+        "java-engine-three-path-parity.json",
+        "oracle-semantics.json",
+        "engine-oracle-semantics.json",
+        "engine-negative-controls.json",
+        "core-negative-controls.json",
+        "environment-negative-controls.json",
+        "negative-control.json",
+        "migration-static-proof.json",
+        "migration-linkage-check.json",
+        "reference-failures-status-v9.json",
+        "constructor-oracle-conformance.json",
+        "widget-bitwise-oracle-conformance.json",
+        "ui-runtime-policy.json",
+        "day-numeric-dex-controls.json",
+        "day-lookup-dex-controls.json",
+        "full-apk-edit-probe.json"
+      ],
+      "numeric_positive_pipeline": {
+        "method": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+        "original_class": {
+          "bytes": 102706,
+          "sha256": "73914856377629c12077f34916a8674d7d0bdf7799ebc3357c299ce424a7789e"
+        },
+        "original_method_sha256": "8383c90ebe3d35afa63d52cf92cd4c92b54ed4525ca0d8a31a29fe603f9eef21",
+        "helper_class": {
+          "bytes": 823,
+          "sha256": "2f8b2d3769749301442dae35aca9fda5314eb1f17d59ea6310bd50be62596211"
+        },
+        "relocated_class": {
+          "bytes": 823,
+          "sha256": "2f8b2d3769749301442dae35aca9fda5314eb1f17d59ea6310bd50be62596211"
+        },
+        "compiler_input": {
+          "bytes": 1003,
+          "sha256": "fcd52349b94f35788c2cd9fe625331110bfbf8df320cdf20926756bf47ff116f"
+        },
+        "compiler_input_classes": [
+          "recovered/ui/DayTriggerValueMethods.class"
+        ],
+        "host_stubs_sent_to_d8": 0,
+        "helper_dex_sha256": "63b80e2a325efeac446cb02c2d2a8f9c3a97abd5dd312a1a3c856330cf5037df",
+        "compiled_method_sha256": "5de2b3da703bc71867ce35d17066d2d84f7ea054c53f3f572c962c53200e7fbb",
+        "transplanted_method_sha256": "fb386a8e0ae14d06c65ae08436200b9ac2700d17509141fee2515be43bffc95e",
+        "transplanted_class": {
+          "bytes": 102330,
+          "sha256": "2f16af3d680f61b6cbad0677767fcce9e3255762b8482e18db33e79e71ee69ad"
+        },
+        "target_dex_sha256": "867e137f65908d8360f307cdd0f23b3f910e5606d6b5916f876e85186b813b47",
+        "other_original_methods_unchanged": 33,
+        "non_target_class_text_unchanged": true,
+        "constructor_owner_corrections": []
+      },
+      "numeric_future_snapshot": {
+        "files": 20,
+        "snapshot_sha256": "13e9f88a0b48df7d85e6a68cd7ec1eacdd4d40b27928bde34c633a888bc32bf0"
+      },
+      "numeric_future_manifest": {
+        "bytes": 3127,
+        "sha256": "c01d1c03623fb2d044b4e3ec42e839dd66306b90d42a4b60f46d308e4171bbd2"
+      },
+      "numeric_ui_mutation_inventory": [
+        {
+          "name": "cast-before-subtract",
+          "source": "source/java/recovered/ui/InteractionMethods.java",
+          "mutant_sha256": "05e1d9720c43dc73417788b3fb9f83df0dfb5db8dc39501c1cbefc2328b5b309",
+          "required_cases": [
+            "touch-numeric:0.9:1:7"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "parcel-nonzero-boolean",
+          "source": "source/java/recovered/ui/SceneStateMethods.java",
+          "mutant_sha256": "bd03f7f6b1263ab83643432bc3fc4af81ae5ac53a1735ba76d9723c1ad7e297b",
+          "required_cases": [
+            "parcel-read:1:1"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "parcel-field-order",
+          "source": "source/java/recovered/ui/SceneStateMethods.java",
+          "mutant_sha256": "26388fce11aa56e2049be95fd5a02eef8b7b2cbecbd6aa6f690661cd510e8712",
+          "required_cases": [
+            "parcel-write:1:0:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "sms-catch-must-not-swallow-error",
+          "source": "source/java/recovered/ui/SelectionMethods.java",
+          "mutant_sha256": "9790c0a6afb99f309f304a1c07c0ddefd2690ef6ac60ffea0f7f21e86b536d0f",
+          "required_cases": [
+            "provider:1:1:2:true"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "sound-generic-token",
+          "source": "source/java/recovered/ui/SelectionMethods.java",
+          "mutant_sha256": "6e4beb7db4822e315870edde9a00e6cb55b3e38d69d4f63e68dd776c3314b83d",
+          "required_cases": [
+            "sound:4:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "block-toggle-snapshot",
+          "source": "source/java/recovered/ui/BlockTouchesMethods.java",
+          "mutant_sha256": "121edefcfaefaa296eb2b92c5f4349810e93b195ac3eb519bedfd9a856ebb680",
+          "required_cases": [
+            "block:2:2:1:false:true"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "block-option-must-be-reread",
+          "source": "source/java/recovered/ui/BlockTouchesMethods.java",
+          "mutant_sha256": "2ea6032650f318cebc78605a01f4cbbda3cf43c5823d4e15cf02a82c92eb6015",
+          "required_cases": [
+            "block-option-after-stop:1:0:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "block-trigger-must-be-reread",
+          "source": "source/java/recovered/ui/BlockTouchesMethods.java",
+          "mutant_sha256": "5f88097ed8bbd57cd276f8a3bf6fff15316076cb2faf6ad93ecb6a44a9d5f73f",
+          "required_cases": [
+            "block:0:9:0:false:true"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "block-width-payload",
+          "source": "source/java/recovered/ui/BlockTouchesMethods.java",
+          "mutant_sha256": "5900d5bb59ccc9e63c0174962f28a52bba2e480dd15fd5d638c5f5528131bdaa",
+          "required_cases": [
+            "block:0:2:0:false:true"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "block-hidden-color-sentinel",
+          "source": "source/java/recovered/ui/BlockTouchesMethods.java",
+          "mutant_sha256": "69961e66ebcbbc8f9404c5ba46247a5cb0c38f47b78ed6ec4cf1a32912636b10",
+          "required_cases": [
+            "block:0:2:0:true:false"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "block-catch-must-include-checked-exception",
+          "source": "source/java/recovered/ui/BlockTouchesMethods.java",
+          "mutant_sha256": "a41d068f4b5a191198191ee579dcd692d23d74f8216a2af5bbb7f259a8a15048",
+          "required_cases": [
+            "block-fault:accessibility:12:4"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "block-catch-must-not-swallow-error",
+          "source": "source/java/recovered/ui/BlockTouchesMethods.java",
+          "mutant_sha256": "ac0afbb1152838059f34ec3b1826b39b6a4d49dc48a123a21d3f86f8da678fb3",
+          "required_cases": [
+            "block-fault:accessibility:12:3"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-permission-warning-falls-through",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "33ccbaa3d69e021a57515ccc5080e7d4e880dfe40448a1064c7e2b8787a7a3d2",
+          "required_cases": [
+            "scene:2:2:false:false:0:true:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-accessibility-description-key",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "7389e60463ddc771abf15c6ffbaa6a57ec2a0add020ad858918915add1548076",
+          "required_cases": [
+            "scene:1:2:true:true:0:true:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-dialog-runnable-discriminator",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "9b6d47bd008cf9bc94381cd6eda69a07b8c939915236d7fa9a338c34cef01e7d",
+          "required_cases": [
+            "scene:2:2:true:true:1:true:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-destroyed-activity-is-not-reused",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "6ba3ae513da27bf481af458ea36445dd9f630d1350b6445724d6af3ddf600e41",
+          "required_cases": [
+            "scene:2:2:true:true:3:true:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-clear-event-precedes-launch",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "a851ab2b007cbd9f93ea5e1ca9656c0fb1170f9072f07550f09eb9f6802bff88",
+          "required_cases": [
+            "scene:3:2:true:true:0:true:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-long-item-identifier",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "303cc11661e673f92314e38bb8b421e44a18e0f181e878559960064e835cce3f",
+          "required_cases": [
+            "scene:1:2:true:true:0:true:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-description-reread-after-context",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "019990e888ebfe122a0d1acdc903e5abfaa293163afc17261a3a9f150ff2a0a9",
+          "required_cases": [
+            "scene-description-after-context:1"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-catch-includes-checked-exception",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "b29101391aa083958fd04668d3af81f83074d865f36c5e5f95b4021b263a9bc4",
+          "required_cases": [
+            "scene-fault:accessibility:22:4"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-catch-must-not-swallow-error",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "3ef6c1fdb0a5c571cd5f52e2c30b31afdc76339212d74c6d81abd4698e23eeee",
+          "required_cases": [
+            "scene-fault:accessibility:22:3"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "scene-description-key-is-read",
+          "source": "source/java/recovered/ui/CustomSceneMethods.java",
+          "mutant_sha256": "d300b384f3c524dd2aa7dc58971be44ae90049976133233a5c8bf3849642e4a8",
+          "required_cases": [
+            "scene-dynamic-key-bus:3:0:false"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-denied-guard",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "b7d562596dcac5bfce5347c28c53ea7ccf6db970f010ddbcbb448774982a1019",
+          "required_cases": [
+            "plugin-gate:true:false:0:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-attempt-limit",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "9c59618f46563cc5292547782df50ceb92b1dd77f6ff52aea31c1f6929bec607",
+          "required_cases": [
+            "plugin-gate:false:false:5:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-false-precheck",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "ac834b2172de82d3379f53a0ceb91938479d03b95f5ebd4073f3960b1b8df11c",
+          "required_cases": [
+            "plugin-gate:false:false:0:1"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-precheck-label",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "633d0750174518471af1ea61e07d72e86025083eec8b7f0c74f78e0c2cfae196",
+          "required_cases": [
+            "plugin-continuation-labels-at-boundaries"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-api-label",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "7204741a134a663af77302797ac3302a0e77baf3f5eecef0ae2ec46b750e4dea",
+          "required_cases": [
+            "plugin-sequence:0:2"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-retry-original-key-index",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "4a50b7bd228c0a6838df507a679c640498b28ad7ac3ad10ac66625f05a32b638",
+          "required_cases": [
+            "plugin-retry-keeps-index-zero"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-status-must-be-read-twice",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "7721b505fc5ee6b762a3dd64c85d3f9b42bb7cde9c4ffb7c43caf7d336f97936",
+          "required_cases": [
+            "plugin-status-read-twice"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-counter-reset-order",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "9f38a4be9b54e6565905137036b238fa5afd7da8682b21a2ccf158296b33f9c0",
+          "required_cases": [
+            "plugin-counter-reset-after-publication"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-catch-includes-checked-exception",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "892ba564ae952ffc20dea06d0cebe8a53232ca9f1cbc1ac7d8098adf14332b11",
+          "required_cases": [
+            "plugin-fault:0:7:4"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-catch-must-not-swallow-error",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "4a1294dd166ef511d28ad1ecbdafd874197aace2da85c51c5a8a28eb3cf41711",
+          "required_cases": [
+            "plugin-fault:0:7:3"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-resume-error-index",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "5ad00830427fca1d4ea07cd5ce0e1310aa13f4a2ff037bd112efd6d7e78bc96c",
+          "required_cases": [
+            "plugin-resume-index-exhausted"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-retained-retry-flag",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "1bceb1d7950d1d1c4aff6ea57d6ee08c645c2b345b7af579cf2dff64a368dc5c",
+          "required_cases": [
+            "plugin-resume-nonzero-flag-generic"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-owner-captured-before-key",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "98417d9ea465579d10ed2c6df519e137feddfb0a33ee1554b2f93fbb818681fb",
+          "required_cases": [
+            "plugin-owner-captured-before-key"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-analytics-key-index",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "51dd64be58d82a96f4c5cddafe7aa92e9125bae8b7f4a3049f612eb2c71f3ed2",
+          "required_cases": [
+            "plugin-flow:0:0:1:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "plugin-suspension-uses-identity",
+          "source": "source/java/recovered/ui/PluginLookupMethods.java",
+          "mutant_sha256": "a0c674b711dbd166a406be0a88a4792ef272a522db15418fb92c595fdbb6dc3f",
+          "required_cases": [
+            "plugin-api-marker-identity"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-retain-saved-part-cast",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "9b1a55ed8d9b38d5e5d410a1d3558015b093dcc3be06e73eafe54b8ffa3f554d",
+          "required_cases": [
+            "upload-saved-cast:1:4:true"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-compression-result-is-ignored",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "333bb9f2fc2d0bdc66a0d0e53c5f8394c028bdf88be138dd536c44e048def16a",
+          "required_cases": [
+            "upload-compress-false-is-ignored"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-nested-media-catch",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "eb8602437829b3ae54ea98e69eb89c5037dc95c38dacf30a2e1b546b317dbb53",
+          "required_cases": [
+            "upload-nested-media-argument-handler"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-request-companion-capture",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "c1f71e39769a91b6c62beeb06281fedd222120a2c2b33f36009ded94fde9187f",
+          "required_cases": [
+            "upload-request-companion-captured-before-media"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-request-default-mask",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "bb3a34f018e8d738cb1289691c2cff7e649a954fde1b1dd07cf4e6ed95716d75",
+          "required_cases": [
+            "upload-flow:0:true:0:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-icon-suspension-label",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "3909331dc59f6ea0d4ead013417a2e9b4eb26a8202bba6526f5073bc40df7375",
+          "required_cases": [
+            "upload-two-suspensions"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-plugin-suspension-label",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "178b7266b8932d9b8be99ace9dbe6ce94e016ad1833dc054965e308b58c90a9e",
+          "required_cases": [
+            "upload-two-suspensions"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-icon-clears-saved-part",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "4b1d45d10534c6e22c517c4e5609e05180bb295c2673fdae75833f80b9235203",
+          "required_cases": [
+            "upload-flow:0:true:1:0"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-null-icon-uses-fallback",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "a3dbc9b4fd98ddd7e84528038f17d484ec0595adaeb7db951b5eb388895ca8c7",
+          "required_cases": [
+            "upload-null-icon-fallback"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-http-status-is-read-twice",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "1586c1d14d3386fc41527512eb8c6a4a2b886e8ddf0bfa2ad223d74fb42ebd70",
+          "required_cases": [
+            "upload-second-status-read-and-priority"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-denied-flag-before-publication",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "5eac74b5527071a2a586fd47fe8df79e1206a0ba33fa75f2772e2d40d53c23c1",
+          "required_cases": [
+            "upload-no-icon:4"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-success-sink-before-payload",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "4535cfbafdd580c25a5113121590de5f28e2c5b6ba82fbaf6d57ac8bef7a886c",
+          "required_cases": [
+            "upload-success-sink-captured-before-payload"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-catch-includes-checked-exception",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "d8df8efcb9e8196a4f29bcfbff1092f4393b1b9734148f83787bc797805b43d7",
+          "required_cases": [
+            "upload-fault:0:1:4"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-catch-must-not-swallow-error",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "90c5378e9d1cf380c60faa7f598721ee5371a4b7ab09a27465c7f1b5d9b63dfb",
+          "required_cases": [
+            "upload-fault:0:1:3"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-error-publication-precedes-log",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "37bddf2b6b31ef294eedc1fb02f3e6af7e2ed7912abd5138a887abaac90e96e2",
+          "required_cases": [
+            "upload-no-icon:5"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-icon-suspension-uses-identity",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "f384ba14dcd51860a98d16e47dea6f2e53de594d80c46d821c7959a8895a7748",
+          "required_cases": [
+            "upload-icon-marker-identity"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "upload-plugin-suspension-uses-identity",
+          "source": "source/java/recovered/ui/PluginUploadMethods.java",
+          "mutant_sha256": "97e6da1d6c7d3c8f1239abb96f749c56cf9f92efc461f40783dbb0f8497cf149",
+          "required_cases": [
+            "upload-plugin-marker-identity"
+          ],
+          "widget": false,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-reuse-requires-high-bit",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "76fdac434b1e1e6f7db7ba5d30708c1a4a6ddda45129e693710d1b8dcc978ec6",
+          "required_cases": [
+            "widget-no-high-bit-creates-new:1",
+            "widget-entry:3:false"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-reuse-clears-high-bit",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "9ebb163a74cdd9cdea7052d3a326e93e6e28414e1a6b72ee79cc5b542ae1493b",
+          "required_cases": [
+            "widget-entry:3:false",
+            "widget-two-suspensions"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-first-suspension-label",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "5a69ca9bdca0a523b305b3a44b755cffc503fea74e18f109d9e2ed323560b02b",
+          "required_cases": [
+            "widget-flow:1:0",
+            "widget-two-suspensions"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-second-suspension-label",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "c4640f96d2bc4c067d8af8740b5e0afc599c992e8434971431c038e63c78cbb3",
+          "required_cases": [
+            "widget-flow:0:1",
+            "widget-two-suspensions"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-retain-label-two-dead-identifier-cast",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "601e7abd26d383bdcd1611de4ec4763b76e8dbc881d1466d7b78042b5cbd585f",
+          "required_cases": [
+            "widget-saved-cast:2:7:true"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-retain-dead-list-casts",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "aec32955d7ecd4411a61df0f5dcd26c12adadb4f7a394c788166ffc75d3dcd3f",
+          "required_cases": [
+            "widget-saved-cast:1:1:true",
+            "widget-saved-cast:2:1:true"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-leave-saved-L6-unread",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "20f413c7cbf4ee3ed6964fc3835233c8c789bc1f42b4011a75195effcdd7e789",
+          "required_cases": [
+            "widget-saved-unread-L6:1",
+            "widget-saved-unread-L6:2"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-saved-index-does-not-increment",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "ae1ca7291a4a9b47b71985def3e326e99405e74ad526a11627e8a3108b0c1f20",
+          "required_cases": [
+            "widget-resumed-index-never-increments",
+            "widget-multiple-widgets-four-suspensions"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-restore-saved-phase",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "b2751142441634d54cdf1a093bfe06d661b16c24bdd00f54ec7ad57a1faf78a1",
+          "required_cases": [
+            "widget-saved-integers:-1:37",
+            "widget-saved-integers:-2147483648:2147483647"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-second-call-clears-saved-identifier",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "164a0ecd06418f6e414e495b3087faf3409a57fe84a253b8c3d871f44c81268d",
+          "required_cases": [
+            "widget-resumed-result:1:0",
+            "widget-flow:0:1"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-second-label-precedes-call",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "21261f443fe54214a8f09ebea36e0dc4845e5e37e4b47b9cafa7315a07269e0e",
+          "required_cases": [
+            "widget-flow:0:1",
+            "widget-flow:0:3"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-factory-precedes-state-publication",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "e0eee881b40448c19f453888439faf8c096bca23c987041c2cbd7e57335e9a1a",
+          "required_cases": [
+            "widget-factory-before-state-clear"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-factory-arity-is-two",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "a1a38ea44bfeef674217812e008b8bd55fb7ad27dd8f88887af0d5cc1ca3a5ee",
+          "required_cases": [
+            "widget-factory-arity-and-null-completion"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-catch-includes-checked-exception",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "26be5931569675f6ef7c68c508352f805565979cadecad44f6343dbafc854c11",
+          "required_cases": [
+            "widget-checked-failure-inside-handler:widget.first:",
+            "widget-checked-failure-inside-handler:widget.second:"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-catch-excludes-error",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "9e3b62141f043999c5cfbf6a8b9b90e266a2f048866dc707efc20df3731b3ca0",
+          "required_cases": [
+            "widget-flow:4:0",
+            "widget-suspended-failure:2:4"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-logger-failure-escapes",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "62b90f499a6cebf4e54e1a4977bf7a15a5317affb48da45a78fa73b673c46a6f",
+          "required_cases": [
+            "widget-logger-failure-escapes"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-message-accessor-read-once",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "b908ee1f3604a0420d22aae47f80915208b57d7f11263c1ea7ae25df76c53d9e",
+          "required_cases": [
+            "widget-flow:3:0",
+            "widget-flow:0:3"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-first-suspension-uses-identity",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "77e7af58593496adc09fc4814164d169902f69634a7d773fbdf9807815c5342b",
+          "required_cases": [
+            "widget-first-result-uses-identity"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-second-suspension-uses-identity",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "3a13c90f1ea107b18f74cf3f438aa724bc82a117eb5b9671d1a533aac1e1a235",
+          "required_cases": [
+            "widget-second-result-uses-identity"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-has-next-remains-outside-handler",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "15de6f2c518d123b629f20bf60dac747c25e3f79e3ded0207b74ddd152fe94ff",
+          "required_cases": [
+            "widget-checked-failure-outside-handler:iterator.hasNext:"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-iterator-next-remains-outside-handler",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "911b3d42868ef1ca5728d6583078a9ecb1ce91c01b3af7e731f8c9e6b2599816",
+          "required_cases": [
+            "widget-checked-failure-outside-handler:iterator.next:"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-invalid-provider-continues-iteration",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "c2ffaee1caa0bff4f50c8bb9c0f145c33e52eaabf19b6e6a363d1ce9ad342de3",
+          "required_cases": [
+            "widget-invalid-provider-continues"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-initial-result-remains-outside-handler",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "566697ec9ed83c587caa8687335c95b46e17d588c0a7e51dec0e9bdecc56d410",
+          "required_cases": [
+            "widget-checked-failure-outside-handler:coroutine.result:"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "widget-resume-locals-captured-before-result-validation",
+          "source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+          "mutant_sha256": "702ac7c129a86a5e658bfd027152339b8d637af31fccd56fdfcc40c51dd654b3",
+          "required_cases": [
+            "widget-resume-captured-fields:1"
+          ],
+          "widget": true,
+          "day_numeric": false
+        },
+        {
+          "name": "day-numeric-integer-zero",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "fa82a3a6235cb2d55e4801e178151ada32f06e1c26ffb6fd1cdd9df58960aaf8",
+          "required_cases": [
+            "day-numeric:integer-boundary-1"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-decimal-zero",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "6940c674822c10d83b8354a3e2cdb0079648c8d1d94857037a67a380db66d294",
+          "required_cases": [
+            "day-numeric:decimal-boundary-6"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-integer-saturation",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "c557b765a9fdaebd645a454202d9f49b4630c19859a7b606a4db779f2bdd1481",
+          "required_cases": [
+            "day-numeric:integer-boundary-15"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-integer-via-double",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "d51284632e5a95778a9a092a9c8e04a4d9302de2bdf66968a0f9f0a32f09bf41",
+          "required_cases": [
+            "day-numeric:integer-boundary-15"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-integer-via-byte",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "96cfa094d7fdb62cc0af9b32ffecad13e9129ea8f888bbab9b5151909b83fd44",
+          "required_cases": [
+            "day-numeric:integer-boundary-6"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-decimal-round",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "f8343374d6defac34e595c0da0a1f85cb1f13c6bb92604b5034c4c75c14ab5e2",
+          "required_cases": [
+            "day-numeric:decimal-boundary-10"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-decimal-floor",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "d0e845888ff796019fc6e99d23de169c4a7f6e041c2f575967bcdd2330792407",
+          "required_cases": [
+            "day-numeric:decimal-boundary-3"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-decimal-nan-one",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "11e02302207894a1e930e8eb38f64bfbad6ec34ccb8f12f3113154049202ae3a",
+          "required_cases": [
+            "day-numeric:decimal-boundary-35"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-decimal-infinity-zero",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "cdba2646b3259a7417e998c2ec47986065d42b4436806d623d2c74affb7eee9d",
+          "required_cases": [
+            "day-numeric:decimal-boundary-33"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-other-minus-one",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "ba08a0182e76147073b89bc8ffd5bdb5bc735857942162f212a52d525af1979b",
+          "required_cases": [
+            "day-numeric:null-value"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-parse-string",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "c68876fc4ace377c0fcf2d55aca6cfde76c6c6b6802e33462cd52b2fbb93a661",
+          "required_cases": [
+            "day-numeric:string-numeric"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-null-contained-throws",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "d40082ec0a5db4fdef69a2c66754333065e1b4d34154174eedeebd3138decf07",
+          "required_cases": [
+            "day-numeric:null-value"
+          ],
+          "widget": false,
+          "day_numeric": true
+        },
+        {
+          "name": "day-numeric-null-entry-zero",
+          "source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "mutant_sha256": "bae6590e8b2dceafe479ef9ae78710490cfa9e334701e09943f5781ff0cc65bb",
+          "required_cases": [
+            "day-numeric:null-entry"
+          ],
+          "widget": false,
+          "day_numeric": true
+        }
+      ],
+      "lookup_commit": "39250fac022aee5551f36782bafd72cabbc33718",
+      "lookup_capsules": {
+        "merge": {
+          "path": "work-in-progress/day-trigger-lookup/08-numeric-filesystem-merge",
+          "checkpoint": {
+            "bytes": 49,
+            "sha256": "71ec61b6239df9c3ac292127cd1e1d90f49903916c36555a043700cdbcd9029f"
+          },
+          "file_count": 62
+        },
+        "successor": {
+          "path": "work-in-progress/day-trigger-lookup/09-lookup-recorder-successor",
+          "checkpoint": {
+            "bytes": 53,
+            "sha256": "16a847852cb466cca3af429f13e9e48040f3894f43199f3f93edf840974a77ba"
+          },
+          "file_count": 56
+        }
+      },
+      "lookup_final_overlay_manifest": {
+        "bytes": 17754,
+        "sha256": "db33eb81b16d6260f9e2ae3aff2d2ed4e35064a4643bcaeac4ac062dcb8d1a3b"
+      },
+      "lookup_source_changes": [
+        {
+          "path": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "source": "project/source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "baseline": null,
+          "candidate": {
+            "bytes": 70,
+            "sha256": "def36c753eca633189e2fe209a5899418d15d7517ca163f972baaa6ace3c2d98"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "source/java-method-map.json",
+          "source": "project/source/java-method-map.json",
+          "baseline": {
+            "bytes": 45,
+            "sha256": "273783231dc21e6b9f29329887ea53345462df9b737baa8c1e86b281434f88e7"
+          },
+          "candidate": {
+            "bytes": 44,
+            "sha256": "050a3024278d7bce428cb0c8f2b07bc5bf56d821085f37b61c6fe7e1fc76141c"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "source/ui-methods.json",
+          "source": "project/source/ui-methods.json",
+          "baseline": {
+            "bytes": 40,
+            "sha256": "d6b1842082f44d83bfecb15cc6be6dc5f8da146ddd95a8735c1ad87c48148ca0"
+          },
+          "candidate": {
+            "bytes": 39,
+            "sha256": "8b01fbe627a9b37d0a571244ec2fd09e624d9ac6fd0ec5290591d4de7663aea1"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+          "source": "project/test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+          "baseline": {
+            "bytes": 88,
+            "sha256": "42341e115220161bc190bc67c709da2a6c2d50b99639356cc21f7d52283e2ee9"
+          },
+          "candidate": {
+            "bytes": 87,
+            "sha256": "a0795af87ff8f57d8253b291b00282cf69e02b96cb72fa1382807bf157d307d0"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/fixtures/original-dependencies.json",
+          "source": "project/tests/fixtures/original-dependencies.json",
+          "baseline": {
+            "bytes": 59,
+            "sha256": "0c8e991c1a5188faa6715118d2f6f772182c63e3adfff89c6e9d8e2de33f33c5"
+          },
+          "candidate": {
+            "bytes": 58,
+            "sha256": "d667ea5e2888b44734a7e622cf583651f105a0366c3a67456f0059c5619058de"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/fixtures/original-methods.dex",
+          "source": "project/tests/fixtures/original-methods.dex",
+          "baseline": {
+            "bytes": 53,
+            "sha256": "1c6a891564e5ac56aeb9fe7c91ce98ad16c3c3f236eed76e7e276ea4c1fda4e9"
+          },
+          "candidate": {
+            "bytes": 52,
+            "sha256": "f02ef2c5c8cb829c312c9913d974daf8b458d7b181365fcf95ac85be720c659a"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/fixtures/provenance.json",
+          "source": "project/tests/fixtures/provenance.json",
+          "baseline": {
+            "bytes": 48,
+            "sha256": "ee03a7bcadb8675823e4f736182741bb8a4913fec631bd96059ce2c4b53dc902"
+          },
+          "candidate": {
+            "bytes": 47,
+            "sha256": "042238a28b11438bb46fe471d08d489a4f21b3b8a87823ce54dd3f317a50742c"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/java/DayLookupParityCases.java",
+          "source": "project/tests/java/DayLookupParityCases.java",
+          "baseline": null,
+          "candidate": {
+            "bytes": 53,
+            "sha256": "cf1bcbbaf0e0ff02dfbd2088b89b51e021e32b1987dde1a097a1480b476bf465"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/java/DayLookupControlHarness.java",
+          "source": "project/tests/java/DayLookupControlHarness.java",
+          "baseline": null,
+          "candidate": {
+            "bytes": 56,
+            "sha256": "fc09a28d88223de25dc37d5058820c814afe8d267de5b849fe2ed45519fd06f6"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/java/UiParityTests.java",
+          "source": "project/tests/java/UiParityTests.java",
+          "baseline": {
+            "bytes": 47,
+            "sha256": "86e599a6f79b62b59f2faddda7e5b07e8924c7fa72bf8d7d65b89141fed007d5"
+          },
+          "candidate": {
+            "bytes": 46,
+            "sha256": "4a35a1672282afe5b5b4055ef65312a3c1fe90f7ddee3543e5fb5d28b6a89ac0"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/java/DayTriggerParityCases.java",
+          "source": "project/tests/java/DayTriggerParityCases.java",
+          "baseline": {
+            "bytes": 55,
+            "sha256": "f3a5bde66d6df6c37cd51d47e20d5848436889cdf68f84777fc9b0cf954a4ef3"
+          },
+          "candidate": {
+            "bytes": 54,
+            "sha256": "f3f93ef06748226cce44b39553e420b5a34491735fb66271fabf223d324a2b14"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/fixtures/day-lookup-mutants.json",
+          "source": "project/tests/fixtures/day-lookup-mutants.json",
+          "baseline": null,
+          "candidate": {
+            "bytes": 55,
+            "sha256": "1afbd0e04af5e531217ff6fc13b95934d27a20a4674a6501b09f63f79d7e8cef"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "day_lookup_dex_controls.py",
+          "source": "project/day_lookup_dex_controls.py",
+          "baseline": null,
+          "candidate": {
+            "bytes": 43,
+            "sha256": "fb6b753f796fd19de51703b60a677f8478436c105a7a3e20a34611adb8155db9"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "day_numeric_dex_controls.py",
+          "source": "project/day_numeric_dex_controls.py",
+          "baseline": {
+            "bytes": 45,
+            "sha256": "268f4a594b456a14087c927f475c806fa8fdb7b7164d8a93d1249da1ce2b8fc2"
+          },
+          "candidate": {
+            "bytes": 44,
+            "sha256": "46f5969723f3304a1b161e595a78f29cb0ff926d27d57f9dffc1dde1ca3febfe"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "ui_mutation_catalog.py",
+          "source": "project/ui_mutation_catalog.py",
+          "baseline": {
+            "bytes": 40,
+            "sha256": "c886633bdf60df5895a993dc7b88612178c219085fbb2f10ee2854aeea4aacc8"
+          },
+          "candidate": {
+            "bytes": 39,
+            "sha256": "5747816bca0bd44c67582f9226d376c1f5b5fc4bae81c7900da28367a0aae47e"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "ui_negative_control.py",
+          "source": "project/ui_negative_control.py",
+          "baseline": {
+            "bytes": 40,
+            "sha256": "08c439313830892548fbde7bae08e0f4acd9f0b1b7d8deff273a4e1a5d32e90f"
+          },
+          "candidate": {
+            "bytes": 39,
+            "sha256": "85ffc01e23312bf7414616a9896e8c2a36e9f39cb4f14412c0a13745b621ee50"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/test_day_lookup.py",
+          "source": "project/tests/test_day_lookup.py",
+          "baseline": null,
+          "candidate": {
+            "bytes": 41,
+            "sha256": "2543815c442bec6b8834a4fe723eb8d68b1630be30bbcd1f9a0e361979eab68b"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/test_day_numeric.py",
+          "source": "project/tests/test_day_numeric.py",
+          "baseline": {
+            "bytes": 43,
+            "sha256": "f9b9d591bb82db5a9a066466d6d2d212b1cf2fbb224978a4ef9c46b4af322020"
+          },
+          "candidate": {
+            "bytes": 42,
+            "sha256": "01c26f93144a91ab7e5b2fb7c6c40db73ae872fbe12a0ec8dbe1482a05532dc2"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/test_build.py",
+          "source": "project/tests/test_build.py",
+          "baseline": {
+            "bytes": 37,
+            "sha256": "d44c393d0f0463296b5da138bb4b9c75111c45a416c1838a1f7f12a6b47d961f"
+          },
+          "candidate": {
+            "bytes": 36,
+            "sha256": "b2dd7a18fbaefbbd3c4259cdd0ef7d196dd06dfe7484160976ad03c8d453891a"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/test_v9.py",
+          "source": "project/tests/test_v9.py",
+          "baseline": {
+            "bytes": 34,
+            "sha256": "9f96b5011a2eb5545052a02cc870a4f8bf00cddd98ad7eecef61374393262751"
+          },
+          "candidate": {
+            "bytes": 33,
+            "sha256": "cea9ce46c410f01b02e088d57fef0a8f476af71c65e433259f554c886e07a93a"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "acceptance.py",
+          "source": "project/acceptance.py",
+          "baseline": {
+            "bytes": 31,
+            "sha256": "d356760f11012f49b3bd8c2887da24e4537cdc8148c63d8511c1616a89e42a13"
+          },
+          "candidate": {
+            "bytes": 30,
+            "sha256": "ed03310cef98397129eaf2b9f08fdc15e3cf725f928ebf70686fc0c2aa9e29a8"
+          },
+          "must_be_absent_if_new": false
+        }
+      ],
+      "lookup_payload_resolutions": [
+        {
+          "path": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "source": "project/source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "capsule": "merge"
+        },
+        {
+          "path": "source/java-method-map.json",
+          "source": "project/source/java-method-map.json",
+          "capsule": "merge"
+        },
+        {
+          "path": "source/ui-methods.json",
+          "source": "project/source/ui-methods.json",
+          "capsule": "merge"
+        },
+        {
+          "path": "test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+          "source": "project/test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+          "capsule": "merge"
+        },
+        {
+          "path": "tests/fixtures/original-dependencies.json",
+          "source": "project/tests/fixtures/original-dependencies.json",
+          "capsule": "merge"
+        },
+        {
+          "path": "tests/fixtures/original-methods.dex",
+          "source": "project/tests/fixtures/original-methods.dex",
+          "capsule": "merge"
+        },
+        {
+          "path": "tests/fixtures/provenance.json",
+          "source": "project/tests/fixtures/provenance.json",
+          "capsule": "merge"
+        },
+        {
+          "path": "tests/java/DayLookupParityCases.java",
+          "source": "project/tests/java/DayLookupParityCases.java",
+          "capsule": "merge"
+        },
+        {
+          "path": "tests/java/DayLookupControlHarness.java",
+          "source": "project/tests/java/DayLookupControlHarness.java",
+          "capsule": "merge"
+        },
+        {
+          "path": "tests/java/UiParityTests.java",
+          "source": "project/tests/java/UiParityTests.java",
+          "capsule": "merge"
+        },
+        {
+          "path": "tests/java/DayTriggerParityCases.java",
+          "source": "project/tests/java/DayTriggerParityCases.java",
+          "capsule": "merge"
+        },
+        {
+          "path": "tests/fixtures/day-lookup-mutants.json",
+          "source": "project/tests/fixtures/day-lookup-mutants.json",
+          "capsule": "merge"
+        },
+        {
+          "path": "day_lookup_dex_controls.py",
+          "source": "project/day_lookup_dex_controls.py",
+          "capsule": "successor"
+        },
+        {
+          "path": "day_numeric_dex_controls.py",
+          "source": "project/day_numeric_dex_controls.py",
+          "capsule": "merge"
+        },
+        {
+          "path": "ui_mutation_catalog.py",
+          "source": "project/ui_mutation_catalog.py",
+          "capsule": "merge"
+        },
+        {
+          "path": "ui_negative_control.py",
+          "source": "project/ui_negative_control.py",
+          "capsule": "merge"
+        },
+        {
+          "path": "tests/test_day_lookup.py",
+          "source": "project/tests/test_day_lookup.py",
+          "capsule": "successor"
+        },
+        {
+          "path": "tests/test_day_numeric.py",
+          "source": "project/tests/test_day_numeric.py",
+          "capsule": "merge"
+        },
+        {
+          "path": "tests/test_build.py",
+          "source": "project/tests/test_build.py",
+          "capsule": "merge"
+        },
+        {
+          "path": "tests/test_v9.py",
+          "source": "project/tests/test_v9.py",
+          "capsule": "merge"
+        },
+        {
+          "path": "acceptance.py",
+          "source": "project/acceptance.py",
+          "capsule": "merge"
+        }
+      ],
+      "source_union_paths": [
+        "acceptance.py",
+        "day_lookup_dex_controls.py",
+        "day_numeric_dex_controls.py",
+        "source/java-method-map.json",
+        "source/java/recovered/ui/DayTriggerLookupMethods.java",
+        "source/java/recovered/ui/DayTriggerValueMethods.java",
+        "source/ui-methods.json",
+        "test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+        "tests/fixtures/day-lookup-mutants.json",
+        "tests/fixtures/day-numeric-mutants.json",
+        "tests/fixtures/original-dependencies.json",
+        "tests/fixtures/original-methods.dex",
+        "tests/fixtures/provenance.json",
+        "tests/java/DayLookupControlHarness.java",
+        "tests/java/DayLookupParityCases.java",
+        "tests/java/DayNumericControlHarness.java",
+        "tests/java/DayTriggerParityCases.java",
+        "tests/java/UiParityTests.java",
+        "tests/test_build.py",
+        "tests/test_day_lookup.py",
+        "tests/test_day_numeric.py",
+        "tests/test_v9.py",
+        "tools/src/ExtractOracle.java",
+        "ui_mutation_catalog.py",
+        "ui_negative_control.py"
+      ],
+      "numeric_only_files": [
+        {
+          "path": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "size": 70,
+          "sha256": "a9f6c7f1e7ef08b50ade57a97689d42a8c930b04fe96f0de2afa3a93b4cb82f3"
+        },
+        {
+          "path": "tests/fixtures/day-numeric-mutants.json",
+          "size": 57,
+          "sha256": "851eb3692a966671cd5bfa46091a94e956ceb84e21185fbbe65bef52d6b08dd0"
+        },
+        {
+          "path": "tests/java/DayNumericControlHarness.java",
+          "size": 58,
+          "sha256": "7f022e30da72bcff1914ecbfbafb94e0e8ff8812bd2999161f8f014eb4e97040"
+        },
+        {
+          "path": "tools/src/ExtractOracle.java",
+          "size": 46,
+          "sha256": "776b3b87badc0a2d5dce3613df65b2213e46ab3f8e3ad8be66fe120e10a4f664"
+        }
+      ],
+      "lookup_positive_pipeline": {
+        "method": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+        "original_class": {
+          "bytes": 102706,
+          "sha256": "73914856377629c12077f34916a8674d7d0bdf7799ebc3357c299ce424a7789e"
+        },
+        "original_method_sha256": "afdaa9b0977db46a2f333cccb0de57a401b77e2e3b66b535b2bff50991e4614e",
+        "helper_class": {
+          "bytes": 991,
+          "sha256": "df4383e951f3e897f58adc33f27847198f52cd455ccc5a9b22eb70712f66e082"
+        },
+        "relocated_class": {
+          "bytes": 991,
+          "sha256": "df4383e951f3e897f58adc33f27847198f52cd455ccc5a9b22eb70712f66e082"
+        },
+        "compiler_input": {
+          "bytes": 1173,
+          "sha256": "5efe8ff7432ae5407267970eaee0386a5233fd265ef2dbc88a458863427583db"
+        },
+        "compiler_input_classes": [
+          "recovered/ui/DayTriggerLookupMethods.class"
+        ],
+        "host_stubs_sent_to_d8": 0,
+        "helper_dex_sha256": "9f91c97823884c6677313fa4e1177f1f9d5849b3738c2c4c57a8740fda1af025",
+        "compiled_method_sha256": "4d21eccf2cbcc044efcabb702b97c3421ea60dfee6ffe05d73715599ecf0f1e5",
+        "transplanted_method_sha256": "9f64495b741330b70ab15b4a73fa17237ab87ceef83efcbab3158cb51c0ec131",
+        "transplanted_class": {
+          "bytes": 102414,
+          "sha256": "2330d67090670059890f6b36d374034eb40457340170d3d7c56dc884a0f017b1"
+        },
+        "target_dex_sha256": "cf79aff20187504abf4168c081b0cbd7d80ac664bce7ead175db835d8d06e596",
+        "other_original_methods_unchanged": 33,
+        "non_target_class_text_unchanged": true,
+        "preservation_scope": "One-method micro-DEX only; signed class also contains the pre-existing constant mapping and recovered r0. Signed p0 instructions are independently bound.",
+        "constructor_owner_corrections": []
+      },
+      "lookup_class_names": [
+        "BytecodeOracle",
+        "BytecodeOracle$Bits",
+        "BytecodeOracle$Escaped",
+        "BytecodeOracle$Frame",
+        "BytecodeOracle$Pending",
+        "BytecodeOracle$Ref",
+        "BytecodeOracle$Unsupported",
+        "DayLookupControlHarness",
+        "DayLookupParityCases",
+        "DayLookupParityCases$Input",
+        "DayLookupParityCases$Observed",
+        "DayLookupParityCases$State",
+        "DayLookupParityCases$Throwing",
+        "DayLookupParityCases$TraceIterator",
+        "DayLookupParityCases$TraceList",
+        "com.arlosoft.macrodroid.variables.VariableValue",
+        "com.arlosoft.macrodroid.variables.VariableValue$BooleanValue",
+        "com.arlosoft.macrodroid.variables.VariableValue$DecimalValue",
+        "com.arlosoft.macrodroid.variables.VariableValue$Dictionary",
+        "com.arlosoft.macrodroid.variables.VariableValue$DictionaryEntry",
+        "com.arlosoft.macrodroid.variables.VariableValue$IntegerValue",
+        "com.arlosoft.macrodroid.variables.VariableValue$StringValue",
+        "defpackage.EngineRuntime",
+        "defpackage.EngineRuntime$Dispatch",
+        "defpackage.TestClock",
+        "recovered.ui.DayTriggerLookupMethods"
+      ],
+      "lookup_vm_null_cases": [
+        "dictionary-null",
+        "entries-null",
+        "iterator-null",
+        "null-first-entry",
+        "null-query-and-null-key",
+        "null-query-nonempty",
+        "null-second-entry"
+      ],
+      "lookup_java_failure_counts": {
+        "case-sensitive": 127,
+        "reverse-receiver": 3,
+        "skip-null-entry": 2,
+        "null-query-early-return": 3,
+        "last-match": 233,
+        "trim-query": 1,
+        "indexed-loop": 369,
+        "extra-iteration-after-match": 233,
+        "swallow-iterator-fault": 25,
+        "replace-injected-npe-identity": 6
+      },
+      "lookup_input_inventory_sha256": "02dd119966191ad2f56937eda28e63644979080158465ffb13767710f34e32e6",
+      "day_trigger_class_mappings": [
+        {
+          "target": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;",
+          "method": "requiresScheduleExactAlarm()Z",
+          "helper": "Lrecovered/constants/DayTrigger_74d1108d;",
+          "helper_method": "requiresScheduleExactAlarm_4dd28cf8",
+          "helper_descriptor": "requiresScheduleExactAlarm_4dd28cf8(Ljava/lang/Object;)Z",
+          "instance": true,
+          "java_source": "source/java/recovered/constants/DayTrigger_74d1108d.java",
+          "proof_family": "constant",
+          "original_method_sha256": "1ccf6c201fbed5ac9d75483a666e283eca0204688ac1dc87df2d0734762220ad",
+          "expected": {
+            "kind": "integer",
+            "value": 1,
+            "return": "Z"
+          }
+        },
+        {
+          "target": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;",
+          "method": "r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+          "helper": "Lrecovered/ui/DayTriggerValueMethods;",
+          "helper_method": "numericValue",
+          "instance": false,
+          "java_source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "proof_family": "v9-ui",
+          "original_method_sha256": "8383c90ebe3d35afa63d52cf92cd4c92b54ed4525ca0d8a31a29fe603f9eef21"
+        },
+        {
+          "target": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;",
+          "method": "p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+          "helper": "Lrecovered/ui/DayTriggerLookupMethods;",
+          "helper_method": "findEntry",
+          "instance": false,
+          "java_source": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "proof_family": "v9-ui",
+          "original_method_sha256": "afdaa9b0977db46a2f333cccb0de57a401b77e2e3b66b535b2bff50991e4614e"
+        }
+      ],
+      "combined_dependencies": [
+        {
+          "consumer": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+          "target": "Lcom/arlosoft/macrodroid/variables/VariableValue$DecimalValue;",
+          "method": "getDecimalValue()D",
+          "original_method_sha256": "89c5a3751f7de7f7bdfaddba05f28651eb8b0b78413e4263e05c9dc795acf7ae"
+        },
+        {
+          "consumer": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+          "target": "Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+          "method": "getVariable()Lcom/arlosoft/macrodroid/variables/VariableValue;",
+          "original_method_sha256": "b3674d51703eb3811fc4918e739777c37de3c580bee961343b80c21e014ca5c0"
+        },
+        {
+          "consumer": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+          "target": "Lcom/arlosoft/macrodroid/variables/VariableValue$IntegerValue;",
+          "method": "getIntValue()J",
+          "original_method_sha256": "1760568e68babc8e32459eed0352a8a20cfdbe35e02b87f2fc6dacc914399993"
+        },
+        {
+          "consumer": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+          "target": "Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;",
+          "method": "getEntries()Ljava/util/List;",
+          "original_method_sha256": "f3959381d2067a3611069ac45c01a34078ef9e718f9c4906f74bb545da48be0e"
+        },
+        {
+          "consumer": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+          "target": "Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+          "method": "getKey()Ljava/lang/String;",
+          "original_method_sha256": "41c4ec0e7f0ec7f3b6638765a92670cdbae7c839b794b8f3de9ba1c2b431b1a3"
+        }
+      ],
+      "dependency_declaration": {
+        "bytes": 2232,
+        "sha256": "159061ce552e3364c113f28e72e5a4c1bc091a21153d0d5e0a793d2f773b0229"
+      },
+      "method_producer_sources": {
+        "day_numeric_dex_controls.py": {
+          "bytes": 40949,
+          "sha256": "2608a9a0a9d5b44627595fcbb696f2ec3f70213eb6af88a7282ec818d53e92f4"
+        },
+        "day_lookup_dex_controls.py": {
+          "bytes": 35479,
+          "sha256": "0b72325dbdaf60525f07a7b72708b9096d1e585ef5e1601332ceaac9aa67c8c9"
+        },
+        "ui_negative_control.py": {
+          "bytes": 25574,
+          "sha256": "460d8c3626e13123d02b636b962b262996be33eed84e2cb4ad7c70c6f4ed814d"
+        },
+        "build.py": {
+          "bytes": 20325,
+          "sha256": "dd599090fc075fed0835875937a2c2b76d91381936c26f4275f876edf47345f0"
+        }
+      }
+    },
+    "base": {
+      "format": 1,
+      "files": 13,
+      "snapshot_sha256": "2cd63eb33dfcd6d7ddc1e6eb6a3a5c453da21582f252404a14726d4cff17512f",
+      "entries": {
+        "acceptance.py": {
+          "size": 28,
+          "sha256": "33081a6d53f85aecd01c48ab487e5b2584e645560d0af2dedf53cfce97eb7e6d"
+        },
+        "source/java-method-map.json": {
+          "size": 42,
+          "sha256": "2f638631c91e784781514de5b689f405f693121ac4c5b2e6d633f9b395c9cec0"
+        },
+        "source/ui-methods.json": {
+          "size": 37,
+          "sha256": "49032498e7f85c35fc0acc71cbca192ab2d19463c4948de520446c978a664db7"
+        },
+        "source/unrelated-policy-input.txt": {
+          "size": 19,
+          "sha256": "0b97bfd09dea8e9a1dd87934edeb416860c9d4ba12fe828064fb14417c8be87f"
+        },
+        "test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java": {
+          "size": 85,
+          "sha256": "04e7565f51b685abf2375a427aaa2b87812deb4dd158b7e4e7c581614a0ff682"
+        },
+        "tests/fixtures/original-methods.dex": {
+          "size": 50,
+          "sha256": "7f2010d86ba0b067308bedb7aad8dad1c52f836cb0056b40df3df7c3d37dcc82"
+        },
+        "tests/fixtures/provenance.json": {
+          "size": 45,
+          "sha256": "c306af65450dff9dc553a15b566b64c5bae29122c6b817e34f7112d9435149b1"
+        },
+        "tests/java/UiParityTests.java": {
+          "size": 44,
+          "sha256": "39643e1554d8a9ed9b4e641e52054b906d6847b9caab1a47847db92799f0fe8a"
+        },
+        "tests/test_build.py": {
+          "size": 34,
+          "sha256": "ea4e00bf83f2917669ab32b857d6d41b6715ad22ad41e8a73534810b82badee0"
+        },
+        "tests/test_v9.py": {
+          "size": 31,
+          "sha256": "432efc73a2967c23fcd36dcd425a9a97e0b447ee83ac2822a084d318ade9074f"
+        },
+        "tools/src/ExtractOracle.java": {
+          "size": 43,
+          "sha256": "0a785685e99901d581acc7e4c633cacd0a77986ffe1ee24faca02445d074b6e4"
+        },
+        "ui_mutation_catalog.py": {
+          "size": 37,
+          "sha256": "916a56e4ce9ff9281df0e5b7e0d40b652c0fe4bb1837510ce18953891a613a06"
+        },
+        "ui_negative_control.py": {
+          "size": 37,
+          "sha256": "ee749014288e92d4e180420b1886b95e344ef21ed895a10172b76d1d83076bfc"
+        }
+      }
+    },
+    "middle": {
+      "format": 1,
+      "files": 20,
+      "snapshot_sha256": "13e9f88a0b48df7d85e6a68cd7ec1eacdd4d40b27928bde34c633a888bc32bf0",
+      "entries": {
+        "acceptance.py": {
+          "size": 31,
+          "sha256": "d356760f11012f49b3bd8c2887da24e4537cdc8148c63d8511c1616a89e42a13"
+        },
+        "day_numeric_dex_controls.py": {
+          "size": 45,
+          "sha256": "268f4a594b456a14087c927f475c806fa8fdb7b7164d8a93d1249da1ce2b8fc2"
+        },
+        "source/java-method-map.json": {
+          "size": 45,
+          "sha256": "273783231dc21e6b9f29329887ea53345462df9b737baa8c1e86b281434f88e7"
+        },
+        "source/java/recovered/ui/DayTriggerValueMethods.java": {
+          "size": 70,
+          "sha256": "a9f6c7f1e7ef08b50ade57a97689d42a8c930b04fe96f0de2afa3a93b4cb82f3"
+        },
+        "source/ui-methods.json": {
+          "size": 40,
+          "sha256": "d6b1842082f44d83bfecb15cc6be6dc5f8da146ddd95a8735c1ad87c48148ca0"
+        },
+        "source/unrelated-policy-input.txt": {
+          "size": 19,
+          "sha256": "0b97bfd09dea8e9a1dd87934edeb416860c9d4ba12fe828064fb14417c8be87f"
+        },
+        "test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java": {
+          "size": 88,
+          "sha256": "42341e115220161bc190bc67c709da2a6c2d50b99639356cc21f7d52283e2ee9"
+        },
+        "tests/fixtures/day-numeric-mutants.json": {
+          "size": 57,
+          "sha256": "851eb3692a966671cd5bfa46091a94e956ceb84e21185fbbe65bef52d6b08dd0"
+        },
+        "tests/fixtures/original-dependencies.json": {
+          "size": 59,
+          "sha256": "0c8e991c1a5188faa6715118d2f6f772182c63e3adfff89c6e9d8e2de33f33c5"
+        },
+        "tests/fixtures/original-methods.dex": {
+          "size": 53,
+          "sha256": "1c6a891564e5ac56aeb9fe7c91ce98ad16c3c3f236eed76e7e276ea4c1fda4e9"
+        },
+        "tests/fixtures/provenance.json": {
+          "size": 48,
+          "sha256": "ee03a7bcadb8675823e4f736182741bb8a4913fec631bd96059ce2c4b53dc902"
+        },
+        "tests/java/DayNumericControlHarness.java": {
+          "size": 58,
+          "sha256": "7f022e30da72bcff1914ecbfbafb94e0e8ff8812bd2999161f8f014eb4e97040"
+        },
+        "tests/java/DayTriggerParityCases.java": {
+          "size": 55,
+          "sha256": "f3a5bde66d6df6c37cd51d47e20d5848436889cdf68f84777fc9b0cf954a4ef3"
+        },
+        "tests/java/UiParityTests.java": {
+          "size": 47,
+          "sha256": "86e599a6f79b62b59f2faddda7e5b07e8924c7fa72bf8d7d65b89141fed007d5"
+        },
+        "tests/test_build.py": {
+          "size": 37,
+          "sha256": "d44c393d0f0463296b5da138bb4b9c75111c45a416c1838a1f7f12a6b47d961f"
+        },
+        "tests/test_day_numeric.py": {
+          "size": 43,
+          "sha256": "f9b9d591bb82db5a9a066466d6d2d212b1cf2fbb224978a4ef9c46b4af322020"
+        },
+        "tests/test_v9.py": {
+          "size": 34,
+          "sha256": "9f96b5011a2eb5545052a02cc870a4f8bf00cddd98ad7eecef61374393262751"
+        },
+        "tools/src/ExtractOracle.java": {
+          "size": 46,
+          "sha256": "776b3b87badc0a2d5dce3613df65b2213e46ab3f8e3ad8be66fe120e10a4f664"
+        },
+        "ui_mutation_catalog.py": {
+          "size": 40,
+          "sha256": "c886633bdf60df5895a993dc7b88612178c219085fbb2f10ee2854aeea4aacc8"
+        },
+        "ui_negative_control.py": {
+          "size": 40,
+          "sha256": "08c439313830892548fbde7bae08e0f4acd9f0b1b7d8deff273a4e1a5d32e90f"
+        }
+      }
+    },
+    "future": {
+      "format": 1,
+      "files": 26,
+      "snapshot_sha256": "2b8bfe1f65fc64d8cf47f2ed93cb7101e1915e1f64f5ed8da90e8a9410e25008",
+      "entries": {
+        "acceptance.py": {
+          "size": 30,
+          "sha256": "ed03310cef98397129eaf2b9f08fdc15e3cf725f928ebf70686fc0c2aa9e29a8"
+        },
+        "day_lookup_dex_controls.py": {
+          "size": 43,
+          "sha256": "fb6b753f796fd19de51703b60a677f8478436c105a7a3e20a34611adb8155db9"
+        },
+        "day_numeric_dex_controls.py": {
+          "size": 44,
+          "sha256": "46f5969723f3304a1b161e595a78f29cb0ff926d27d57f9dffc1dde1ca3febfe"
+        },
+        "source/java-method-map.json": {
+          "size": 44,
+          "sha256": "050a3024278d7bce428cb0c8f2b07bc5bf56d821085f37b61c6fe7e1fc76141c"
+        },
+        "source/java/recovered/ui/DayTriggerLookupMethods.java": {
+          "size": 70,
+          "sha256": "def36c753eca633189e2fe209a5899418d15d7517ca163f972baaa6ace3c2d98"
+        },
+        "source/java/recovered/ui/DayTriggerValueMethods.java": {
+          "size": 70,
+          "sha256": "a9f6c7f1e7ef08b50ade57a97689d42a8c930b04fe96f0de2afa3a93b4cb82f3"
+        },
+        "source/ui-methods.json": {
+          "size": 39,
+          "sha256": "8b01fbe627a9b37d0a571244ec2fd09e624d9ac6fd0ec5290591d4de7663aea1"
+        },
+        "source/unrelated-policy-input.txt": {
+          "size": 19,
+          "sha256": "0b97bfd09dea8e9a1dd87934edeb416860c9d4ba12fe828064fb14417c8be87f"
+        },
+        "test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java": {
+          "size": 87,
+          "sha256": "a0795af87ff8f57d8253b291b00282cf69e02b96cb72fa1382807bf157d307d0"
+        },
+        "tests/fixtures/day-lookup-mutants.json": {
+          "size": 55,
+          "sha256": "1afbd0e04af5e531217ff6fc13b95934d27a20a4674a6501b09f63f79d7e8cef"
+        },
+        "tests/fixtures/day-numeric-mutants.json": {
+          "size": 57,
+          "sha256": "851eb3692a966671cd5bfa46091a94e956ceb84e21185fbbe65bef52d6b08dd0"
+        },
+        "tests/fixtures/original-dependencies.json": {
+          "size": 58,
+          "sha256": "d667ea5e2888b44734a7e622cf583651f105a0366c3a67456f0059c5619058de"
+        },
+        "tests/fixtures/original-methods.dex": {
+          "size": 52,
+          "sha256": "f02ef2c5c8cb829c312c9913d974daf8b458d7b181365fcf95ac85be720c659a"
+        },
+        "tests/fixtures/provenance.json": {
+          "size": 47,
+          "sha256": "042238a28b11438bb46fe471d08d489a4f21b3b8a87823ce54dd3f317a50742c"
+        },
+        "tests/java/DayLookupControlHarness.java": {
+          "size": 56,
+          "sha256": "fc09a28d88223de25dc37d5058820c814afe8d267de5b849fe2ed45519fd06f6"
+        },
+        "tests/java/DayLookupParityCases.java": {
+          "size": 53,
+          "sha256": "cf1bcbbaf0e0ff02dfbd2088b89b51e021e32b1987dde1a097a1480b476bf465"
+        },
+        "tests/java/DayNumericControlHarness.java": {
+          "size": 58,
+          "sha256": "7f022e30da72bcff1914ecbfbafb94e0e8ff8812bd2999161f8f014eb4e97040"
+        },
+        "tests/java/DayTriggerParityCases.java": {
+          "size": 54,
+          "sha256": "f3f93ef06748226cce44b39553e420b5a34491735fb66271fabf223d324a2b14"
+        },
+        "tests/java/UiParityTests.java": {
+          "size": 46,
+          "sha256": "4a35a1672282afe5b5b4055ef65312a3c1fe90f7ddee3543e5fb5d28b6a89ac0"
+        },
+        "tests/test_build.py": {
+          "size": 36,
+          "sha256": "b2dd7a18fbaefbbd3c4259cdd0ef7d196dd06dfe7484160976ad03c8d453891a"
+        },
+        "tests/test_day_lookup.py": {
+          "size": 41,
+          "sha256": "2543815c442bec6b8834a4fe723eb8d68b1630be30bbcd1f9a0e361979eab68b"
+        },
+        "tests/test_day_numeric.py": {
+          "size": 42,
+          "sha256": "01c26f93144a91ab7e5b2fb7c6c40db73ae872fbe12a0ec8dbe1482a05532dc2"
+        },
+        "tests/test_v9.py": {
+          "size": 33,
+          "sha256": "cea9ce46c410f01b02e088d57fef0a8f476af71c65e433259f554c886e07a93a"
+        },
+        "tools/src/ExtractOracle.java": {
+          "size": 46,
+          "sha256": "776b3b87badc0a2d5dce3613df65b2213e46ab3f8e3ad8be66fe120e10a4f664"
+        },
+        "ui_mutation_catalog.py": {
+          "size": 39,
+          "sha256": "5747816bca0bd44c67582f9226d376c1f5b5fc4bae81c7900da28367a0aae47e"
+        },
+        "ui_negative_control.py": {
+          "size": 39,
+          "sha256": "85ffc01e23312bf7414616a9896e8c2a36e9f39cb4f14412c0a13745b621ee50"
+        }
+      }
+    },
+    "numeric_manifest": {
+      "active_files": [],
+      "source_changes": [
+        {
+          "path": "acceptance.py",
+          "source": "project/acceptance.py",
+          "baseline": {
+            "bytes": 28,
+            "sha256": "33081a6d53f85aecd01c48ab487e5b2584e645560d0af2dedf53cfce97eb7e6d"
+          },
+          "candidate": {
+            "bytes": 31,
+            "sha256": "d356760f11012f49b3bd8c2887da24e4537cdc8148c63d8511c1616a89e42a13"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "day_numeric_dex_controls.py",
+          "source": "project/day_numeric_dex_controls.py",
+          "baseline": null,
+          "candidate": {
+            "bytes": 45,
+            "sha256": "268f4a594b456a14087c927f475c806fa8fdb7b7164d8a93d1249da1ce2b8fc2"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "source/java-method-map.json",
+          "source": "project/source/java-method-map.json",
+          "baseline": {
+            "bytes": 42,
+            "sha256": "2f638631c91e784781514de5b689f405f693121ac4c5b2e6d633f9b395c9cec0"
+          },
+          "candidate": {
+            "bytes": 45,
+            "sha256": "273783231dc21e6b9f29329887ea53345462df9b737baa8c1e86b281434f88e7"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "source/java/recovered/ui/DayTriggerValueMethods.java",
+          "source": "project/source/java/recovered/ui/DayTriggerValueMethods.java",
+          "baseline": null,
+          "candidate": {
+            "bytes": 70,
+            "sha256": "a9f6c7f1e7ef08b50ade57a97689d42a8c930b04fe96f0de2afa3a93b4cb82f3"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "source/ui-methods.json",
+          "source": "project/source/ui-methods.json",
+          "baseline": {
+            "bytes": 37,
+            "sha256": "49032498e7f85c35fc0acc71cbca192ab2d19463c4948de520446c978a664db7"
+          },
+          "candidate": {
+            "bytes": 40,
+            "sha256": "d6b1842082f44d83bfecb15cc6be6dc5f8da146ddd95a8735c1ad87c48148ca0"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+          "source": "project/test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+          "baseline": {
+            "bytes": 85,
+            "sha256": "04e7565f51b685abf2375a427aaa2b87812deb4dd158b7e4e7c581614a0ff682"
+          },
+          "candidate": {
+            "bytes": 88,
+            "sha256": "42341e115220161bc190bc67c709da2a6c2d50b99639356cc21f7d52283e2ee9"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/fixtures/day-numeric-mutants.json",
+          "source": "project/tests/fixtures/day-numeric-mutants.json",
+          "baseline": null,
+          "candidate": {
+            "bytes": 57,
+            "sha256": "851eb3692a966671cd5bfa46091a94e956ceb84e21185fbbe65bef52d6b08dd0"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/fixtures/original-dependencies.json",
+          "source": "project/tests/fixtures/original-dependencies.json",
+          "baseline": null,
+          "candidate": {
+            "bytes": 59,
+            "sha256": "0c8e991c1a5188faa6715118d2f6f772182c63e3adfff89c6e9d8e2de33f33c5"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/fixtures/original-methods.dex",
+          "source": "project/tests/fixtures/original-methods.dex",
+          "baseline": {
+            "bytes": 50,
+            "sha256": "7f2010d86ba0b067308bedb7aad8dad1c52f836cb0056b40df3df7c3d37dcc82"
+          },
+          "candidate": {
+            "bytes": 53,
+            "sha256": "1c6a891564e5ac56aeb9fe7c91ce98ad16c3c3f236eed76e7e276ea4c1fda4e9"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/fixtures/provenance.json",
+          "source": "project/tests/fixtures/provenance.json",
+          "baseline": {
+            "bytes": 45,
+            "sha256": "c306af65450dff9dc553a15b566b64c5bae29122c6b817e34f7112d9435149b1"
+          },
+          "candidate": {
+            "bytes": 48,
+            "sha256": "ee03a7bcadb8675823e4f736182741bb8a4913fec631bd96059ce2c4b53dc902"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/java/DayNumericControlHarness.java",
+          "source": "project/tests/java/DayNumericControlHarness.java",
+          "baseline": null,
+          "candidate": {
+            "bytes": 58,
+            "sha256": "7f022e30da72bcff1914ecbfbafb94e0e8ff8812bd2999161f8f014eb4e97040"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/java/DayTriggerParityCases.java",
+          "source": "project/tests/java/DayTriggerParityCases.java",
+          "baseline": null,
+          "candidate": {
+            "bytes": 55,
+            "sha256": "f3a5bde66d6df6c37cd51d47e20d5848436889cdf68f84777fc9b0cf954a4ef3"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/java/UiParityTests.java",
+          "source": "project/tests/java/UiParityTests.java",
+          "baseline": {
+            "bytes": 44,
+            "sha256": "39643e1554d8a9ed9b4e641e52054b906d6847b9caab1a47847db92799f0fe8a"
+          },
+          "candidate": {
+            "bytes": 47,
+            "sha256": "86e599a6f79b62b59f2faddda7e5b07e8924c7fa72bf8d7d65b89141fed007d5"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/test_build.py",
+          "source": "project/tests/test_build.py",
+          "baseline": {
+            "bytes": 34,
+            "sha256": "ea4e00bf83f2917669ab32b857d6d41b6715ad22ad41e8a73534810b82badee0"
+          },
+          "candidate": {
+            "bytes": 37,
+            "sha256": "d44c393d0f0463296b5da138bb4b9c75111c45a416c1838a1f7f12a6b47d961f"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/test_day_numeric.py",
+          "source": "project/tests/test_day_numeric.py",
+          "baseline": null,
+          "candidate": {
+            "bytes": 43,
+            "sha256": "f9b9d591bb82db5a9a066466d6d2d212b1cf2fbb224978a4ef9c46b4af322020"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/test_v9.py",
+          "source": "project/tests/test_v9.py",
+          "baseline": {
+            "bytes": 31,
+            "sha256": "432efc73a2967c23fcd36dcd425a9a97e0b447ee83ac2822a084d318ade9074f"
+          },
+          "candidate": {
+            "bytes": 34,
+            "sha256": "9f96b5011a2eb5545052a02cc870a4f8bf00cddd98ad7eecef61374393262751"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tools/src/ExtractOracle.java",
+          "source": "project/tools/src/ExtractOracle.java",
+          "baseline": {
+            "bytes": 43,
+            "sha256": "0a785685e99901d581acc7e4c633cacd0a77986ffe1ee24faca02445d074b6e4"
+          },
+          "candidate": {
+            "bytes": 46,
+            "sha256": "776b3b87badc0a2d5dce3613df65b2213e46ab3f8e3ad8be66fe120e10a4f664"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "ui_mutation_catalog.py",
+          "source": "project/ui_mutation_catalog.py",
+          "baseline": {
+            "bytes": 37,
+            "sha256": "916a56e4ce9ff9281df0e5b7e0d40b652c0fe4bb1837510ce18953891a613a06"
+          },
+          "candidate": {
+            "bytes": 40,
+            "sha256": "c886633bdf60df5895a993dc7b88612178c219085fbb2f10ee2854aeea4aacc8"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "ui_negative_control.py",
+          "source": "project/ui_negative_control.py",
+          "baseline": {
+            "bytes": 37,
+            "sha256": "ee749014288e92d4e180420b1886b95e344ef21ed895a10172b76d1d83076bfc"
+          },
+          "candidate": {
+            "bytes": 40,
+            "sha256": "08c439313830892548fbde7bae08e0f4acd9f0b1b7d8deff273a4e1a5d32e90f"
+          },
+          "must_be_absent_if_new": false
+        }
+      ]
+    },
+    "lookup_manifest": {
+      "changes": [
+        {
+          "path": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+          "baseline": null,
+          "after": {
+            "bytes": 70,
+            "sha256": "def36c753eca633189e2fe209a5899418d15d7517ca163f972baaa6ace3c2d98"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "source/java-method-map.json",
+          "baseline": {
+            "bytes": 45,
+            "sha256": "273783231dc21e6b9f29329887ea53345462df9b737baa8c1e86b281434f88e7"
+          },
+          "after": {
+            "bytes": 44,
+            "sha256": "050a3024278d7bce428cb0c8f2b07bc5bf56d821085f37b61c6fe7e1fc76141c"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "source/ui-methods.json",
+          "baseline": {
+            "bytes": 40,
+            "sha256": "d6b1842082f44d83bfecb15cc6be6dc5f8da146ddd95a8735c1ad87c48148ca0"
+          },
+          "after": {
+            "bytes": 39,
+            "sha256": "8b01fbe627a9b37d0a571244ec2fd09e624d9ac6fd0ec5290591d4de7663aea1"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+          "baseline": {
+            "bytes": 88,
+            "sha256": "42341e115220161bc190bc67c709da2a6c2d50b99639356cc21f7d52283e2ee9"
+          },
+          "after": {
+            "bytes": 87,
+            "sha256": "a0795af87ff8f57d8253b291b00282cf69e02b96cb72fa1382807bf157d307d0"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/fixtures/original-dependencies.json",
+          "baseline": {
+            "bytes": 59,
+            "sha256": "0c8e991c1a5188faa6715118d2f6f772182c63e3adfff89c6e9d8e2de33f33c5"
+          },
+          "after": {
+            "bytes": 58,
+            "sha256": "d667ea5e2888b44734a7e622cf583651f105a0366c3a67456f0059c5619058de"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/fixtures/original-methods.dex",
+          "baseline": {
+            "bytes": 53,
+            "sha256": "1c6a891564e5ac56aeb9fe7c91ce98ad16c3c3f236eed76e7e276ea4c1fda4e9"
+          },
+          "after": {
+            "bytes": 52,
+            "sha256": "f02ef2c5c8cb829c312c9913d974daf8b458d7b181365fcf95ac85be720c659a"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/fixtures/provenance.json",
+          "baseline": {
+            "bytes": 48,
+            "sha256": "ee03a7bcadb8675823e4f736182741bb8a4913fec631bd96059ce2c4b53dc902"
+          },
+          "after": {
+            "bytes": 47,
+            "sha256": "042238a28b11438bb46fe471d08d489a4f21b3b8a87823ce54dd3f317a50742c"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/java/DayLookupParityCases.java",
+          "baseline": null,
+          "after": {
+            "bytes": 53,
+            "sha256": "cf1bcbbaf0e0ff02dfbd2088b89b51e021e32b1987dde1a097a1480b476bf465"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/java/DayLookupControlHarness.java",
+          "baseline": null,
+          "after": {
+            "bytes": 56,
+            "sha256": "fc09a28d88223de25dc37d5058820c814afe8d267de5b849fe2ed45519fd06f6"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/java/UiParityTests.java",
+          "baseline": {
+            "bytes": 47,
+            "sha256": "86e599a6f79b62b59f2faddda7e5b07e8924c7fa72bf8d7d65b89141fed007d5"
+          },
+          "after": {
+            "bytes": 46,
+            "sha256": "4a35a1672282afe5b5b4055ef65312a3c1fe90f7ddee3543e5fb5d28b6a89ac0"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/java/DayTriggerParityCases.java",
+          "baseline": {
+            "bytes": 55,
+            "sha256": "f3a5bde66d6df6c37cd51d47e20d5848436889cdf68f84777fc9b0cf954a4ef3"
+          },
+          "after": {
+            "bytes": 54,
+            "sha256": "f3f93ef06748226cce44b39553e420b5a34491735fb66271fabf223d324a2b14"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/fixtures/day-lookup-mutants.json",
+          "baseline": null,
+          "after": {
+            "bytes": 55,
+            "sha256": "1afbd0e04af5e531217ff6fc13b95934d27a20a4674a6501b09f63f79d7e8cef"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "day_lookup_dex_controls.py",
+          "baseline": null,
+          "after": {
+            "bytes": 43,
+            "sha256": "fb6b753f796fd19de51703b60a677f8478436c105a7a3e20a34611adb8155db9"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "day_numeric_dex_controls.py",
+          "baseline": {
+            "bytes": 45,
+            "sha256": "268f4a594b456a14087c927f475c806fa8fdb7b7164d8a93d1249da1ce2b8fc2"
+          },
+          "after": {
+            "bytes": 44,
+            "sha256": "46f5969723f3304a1b161e595a78f29cb0ff926d27d57f9dffc1dde1ca3febfe"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "ui_mutation_catalog.py",
+          "baseline": {
+            "bytes": 40,
+            "sha256": "c886633bdf60df5895a993dc7b88612178c219085fbb2f10ee2854aeea4aacc8"
+          },
+          "after": {
+            "bytes": 39,
+            "sha256": "5747816bca0bd44c67582f9226d376c1f5b5fc4bae81c7900da28367a0aae47e"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "ui_negative_control.py",
+          "baseline": {
+            "bytes": 40,
+            "sha256": "08c439313830892548fbde7bae08e0f4acd9f0b1b7d8deff273a4e1a5d32e90f"
+          },
+          "after": {
+            "bytes": 39,
+            "sha256": "85ffc01e23312bf7414616a9896e8c2a36e9f39cb4f14412c0a13745b621ee50"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/test_day_lookup.py",
+          "baseline": null,
+          "after": {
+            "bytes": 41,
+            "sha256": "2543815c442bec6b8834a4fe723eb8d68b1630be30bbcd1f9a0e361979eab68b"
+          },
+          "must_be_absent_if_new": true
+        },
+        {
+          "path": "tests/test_day_numeric.py",
+          "baseline": {
+            "bytes": 43,
+            "sha256": "f9b9d591bb82db5a9a066466d6d2d212b1cf2fbb224978a4ef9c46b4af322020"
+          },
+          "after": {
+            "bytes": 42,
+            "sha256": "01c26f93144a91ab7e5b2fb7c6c40db73ae872fbe12a0ec8dbe1482a05532dc2"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/test_build.py",
+          "baseline": {
+            "bytes": 37,
+            "sha256": "d44c393d0f0463296b5da138bb4b9c75111c45a416c1838a1f7f12a6b47d961f"
+          },
+          "after": {
+            "bytes": 36,
+            "sha256": "b2dd7a18fbaefbbd3c4259cdd0ef7d196dd06dfe7484160976ad03c8d453891a"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "tests/test_v9.py",
+          "baseline": {
+            "bytes": 34,
+            "sha256": "9f96b5011a2eb5545052a02cc870a4f8bf00cddd98ad7eecef61374393262751"
+          },
+          "after": {
+            "bytes": 33,
+            "sha256": "cea9ce46c410f01b02e088d57fef0a8f476af71c65e433259f554c886e07a93a"
+          },
+          "must_be_absent_if_new": false
+        },
+        {
+          "path": "acceptance.py",
+          "baseline": {
+            "bytes": 31,
+            "sha256": "d356760f11012f49b3bd8c2887da24e4537cdc8148c63d8511c1616a89e42a13"
+          },
+          "after": {
+            "bytes": 30,
+            "sha256": "ed03310cef98397129eaf2b9f08fdc15e3cf725f928ebf70686fc0c2aa9e29a8"
+          },
+          "must_be_absent_if_new": false
+        }
+      ]
+    },
+    "records": [
+      {
+        "stage": "numeric",
+        "source_paths": 19,
+        "new_files": 7,
+        "before_snapshot": {
+          "files": 13,
+          "snapshot_sha256": "2cd63eb33dfcd6d7ddc1e6eb6a3a5c453da21582f252404a14726d4cff17512f"
+        },
+        "after_snapshot": {
+          "files": 20,
+          "snapshot_sha256": "13e9f88a0b48df7d85e6a68cd7ec1eacdd4d40b27928bde34c633a888bc32bf0"
+        },
+        "before_scan": {
+          "path": "inputs/baseline-complete-inputs.json",
+          "bytes": 2040,
+          "sha256": "8010db1c13cf47aabce8cfbf8f97b423212a74421328035087f8ab64c9d7ccda"
+        },
+        "after_scan": {
+          "path": "inputs/numeric-complete-inputs.json",
+          "bytes": 3127,
+          "sha256": "c01d1c03623fb2d044b4e3ec42e839dd66306b90d42a4b60f46d308e4171bbd2"
+        }
+      },
+      {
+        "stage": "lookup",
+        "source_paths": 21,
+        "new_files": 6,
+        "before_snapshot": {
+          "files": 20,
+          "snapshot_sha256": "13e9f88a0b48df7d85e6a68cd7ec1eacdd4d40b27928bde34c633a888bc32bf0"
+        },
+        "after_snapshot": {
+          "files": 26,
+          "snapshot_sha256": "2b8bfe1f65fc64d8cf47f2ed93cb7101e1915e1f64f5ed8da90e8a9410e25008"
+        },
+        "before_scan": {
+          "path": "inputs/numeric-complete-inputs.json",
+          "bytes": 3127,
+          "sha256": "c01d1c03623fb2d044b4e3ec42e839dd66306b90d42a4b60f46d308e4171bbd2"
+        },
+        "after_scan": {
+          "path": "inputs/combined-complete-inputs.json",
+          "bytes": 4051,
+          "sha256": "1fc5c321f5a1541f654fe899c719251568a0f030ba6e1851c8671bb694b10b24"
+        }
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "numeric-capsule/project/acceptance.py",
+      "type": "regular",
+      "bytes": 31,
+      "sha256": "d356760f11012f49b3bd8c2887da24e4537cdc8148c63d8511c1616a89e42a13",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178120,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 31,
+        "mtime_ns": 1791805765359848090,
+        "ctime_ns": 1791805765359848090
+      }
+    },
+    {
+      "path": "numeric-capsule/project/day_numeric_dex_controls.py",
+      "type": "regular",
+      "bytes": 45,
+      "sha256": "268f4a594b456a14087c927f475c806fa8fdb7b7164d8a93d1249da1ce2b8fc2",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178121,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 45,
+        "mtime_ns": 1791805765359927810,
+        "ctime_ns": 1791805765359927810
+      }
+    },
+    {
+      "path": "numeric-capsule/project/source/java/recovered/ui/DayTriggerValueMethods.java",
+      "type": "regular",
+      "bytes": 70,
+      "sha256": "a9f6c7f1e7ef08b50ade57a97689d42a8c930b04fe96f0de2afa3a93b4cb82f3",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178127,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 70,
+        "mtime_ns": 1791805765360125509,
+        "ctime_ns": 1791805765360125509
+      }
+    },
+    {
+      "path": "numeric-capsule/project/source/java-method-map.json",
+      "type": "regular",
+      "bytes": 45,
+      "sha256": "273783231dc21e6b9f29329887ea53345462df9b737baa8c1e86b281434f88e7",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178123,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 45,
+        "mtime_ns": 1791805765360002343,
+        "ctime_ns": 1791805765360002343
+      }
+    },
+    {
+      "path": "numeric-capsule/project/source/ui-methods.json",
+      "type": "regular",
+      "bytes": 40,
+      "sha256": "d6b1842082f44d83bfecb15cc6be6dc5f8da146ddd95a8735c1ad87c48148ca0",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178128,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 40,
+        "mtime_ns": 1791805765360183857,
+        "ctime_ns": 1791805765360183857
+      }
+    },
+    {
+      "path": "numeric-capsule/project/test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+      "type": "regular",
+      "bytes": 88,
+      "sha256": "42341e115220161bc190bc67c709da2a6c2d50b99639356cc21f7d52283e2ee9",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178135,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 88,
+        "mtime_ns": 1791805765360540655,
+        "ctime_ns": 1791805765360540655
+      }
+    },
+    {
+      "path": "numeric-capsule/project/tests/fixtures/day-numeric-mutants.json",
+      "type": "regular",
+      "bytes": 57,
+      "sha256": "851eb3692a966671cd5bfa46091a94e956ceb84e21185fbbe65bef52d6b08dd0",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178138,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 57,
+        "mtime_ns": 1791805765360644491,
+        "ctime_ns": 1791805765360644491
+      }
+    },
+    {
+      "path": "numeric-capsule/project/tests/fixtures/original-dependencies.json",
+      "type": "regular",
+      "bytes": 59,
+      "sha256": "0c8e991c1a5188faa6715118d2f6f772182c63e3adfff89c6e9d8e2de33f33c5",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178139,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 59,
+        "mtime_ns": 1791805765360701647,
+        "ctime_ns": 1791805765360701647
+      }
+    },
+    {
+      "path": "numeric-capsule/project/tests/fixtures/original-methods.dex",
+      "type": "regular",
+      "bytes": 53,
+      "sha256": "1c6a891564e5ac56aeb9fe7c91ce98ad16c3c3f236eed76e7e276ea4c1fda4e9",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178140,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 53,
+        "mtime_ns": 1791805765360757662,
+        "ctime_ns": 1791805765360757662
+      }
+    },
+    {
+      "path": "numeric-capsule/project/tests/fixtures/provenance.json",
+      "type": "regular",
+      "bytes": 48,
+      "sha256": "ee03a7bcadb8675823e4f736182741bb8a4913fec631bd96059ce2c4b53dc902",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178141,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 48,
+        "mtime_ns": 1791805765360811824,
+        "ctime_ns": 1791805765360811824
+      }
+    },
+    {
+      "path": "numeric-capsule/project/tests/java/DayNumericControlHarness.java",
+      "type": "regular",
+      "bytes": 58,
+      "sha256": "7f022e30da72bcff1914ecbfbafb94e0e8ff8812bd2999161f8f014eb4e97040",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178143,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 58,
+        "mtime_ns": 1791805765360881388,
+        "ctime_ns": 1791805765360881388
+      }
+    },
+    {
+      "path": "numeric-capsule/project/tests/java/DayTriggerParityCases.java",
+      "type": "regular",
+      "bytes": 55,
+      "sha256": "f3a5bde66d6df6c37cd51d47e20d5848436889cdf68f84777fc9b0cf954a4ef3",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178144,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 55,
+        "mtime_ns": 1791805765360935230,
+        "ctime_ns": 1791805765360935230
+      }
+    },
+    {
+      "path": "numeric-capsule/project/tests/java/UiParityTests.java",
+      "type": "regular",
+      "bytes": 47,
+      "sha256": "86e599a6f79b62b59f2faddda7e5b07e8924c7fa72bf8d7d65b89141fed007d5",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178145,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 47,
+        "mtime_ns": 1791805765360988700,
+        "ctime_ns": 1791805765360988700
+      }
+    },
+    {
+      "path": "numeric-capsule/project/tests/test_build.py",
+      "type": "regular",
+      "bytes": 37,
+      "sha256": "d44c393d0f0463296b5da138bb4b9c75111c45a416c1838a1f7f12a6b47d961f",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178146,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 37,
+        "mtime_ns": 1791805765361204686,
+        "ctime_ns": 1791805765361204686
+      }
+    },
+    {
+      "path": "numeric-capsule/project/tests/test_day_numeric.py",
+      "type": "regular",
+      "bytes": 43,
+      "sha256": "f9b9d591bb82db5a9a066466d6d2d212b1cf2fbb224978a4ef9c46b4af322020",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178147,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 43,
+        "mtime_ns": 1791805765361327611,
+        "ctime_ns": 1791805765361327611
+      }
+    },
+    {
+      "path": "numeric-capsule/project/tests/test_v9.py",
+      "type": "regular",
+      "bytes": 34,
+      "sha256": "9f96b5011a2eb5545052a02cc870a4f8bf00cddd98ad7eecef61374393262751",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178148,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 34,
+        "mtime_ns": 1791805765361651980,
+        "ctime_ns": 1791805765361651980
+      }
+    },
+    {
+      "path": "numeric-capsule/project/tools/src/ExtractOracle.java",
+      "type": "regular",
+      "bytes": 46,
+      "sha256": "776b3b87badc0a2d5dce3613df65b2213e46ab3f8e3ad8be66fe120e10a4f664",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178151,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 46,
+        "mtime_ns": 1791805765361891171,
+        "ctime_ns": 1791805765361891171
+      }
+    },
+    {
+      "path": "numeric-capsule/project/ui_mutation_catalog.py",
+      "type": "regular",
+      "bytes": 40,
+      "sha256": "c886633bdf60df5895a993dc7b88612178c219085fbb2f10ee2854aeea4aacc8",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178152,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 40,
+        "mtime_ns": 1791805765362064543,
+        "ctime_ns": 1791805765362064543
+      }
+    },
+    {
+      "path": "numeric-capsule/project/ui_negative_control.py",
+      "type": "regular",
+      "bytes": 40,
+      "sha256": "08c439313830892548fbde7bae08e0f4acd9f0b1b7d8deff273a4e1a5d32e90f",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178153,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 40,
+        "mtime_ns": 1791805765362241039,
+        "ctime_ns": 1791805765362241039
+      }
+    },
+    {
+      "path": "project/acceptance.py",
+      "type": "regular",
+      "bytes": 30,
+      "sha256": "ed03310cef98397129eaf2b9f08fdc15e3cf725f928ebf70686fc0c2aa9e29a8",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179557,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 30,
+        "mtime_ns": 1791805765418577396,
+        "ctime_ns": 1791805765418577396
+      }
+    },
+    {
+      "path": "project/day_lookup_dex_controls.py",
+      "type": "regular",
+      "bytes": 43,
+      "sha256": "fb6b753f796fd19de51703b60a677f8478436c105a7a3e20a34611adb8155db9",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179562,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 43,
+        "mtime_ns": 1791805765414329280,
+        "ctime_ns": 1791805765414329280
+      }
+    },
+    {
+      "path": "project/day_numeric_dex_controls.py",
+      "type": "regular",
+      "bytes": 44,
+      "sha256": "46f5969723f3304a1b161e595a78f29cb0ff926d27d57f9dffc1dde1ca3febfe",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179563,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 44,
+        "mtime_ns": 1791805765414762163,
+        "ctime_ns": 1791805765414762163
+      }
+    },
+    {
+      "path": "project/source/java/recovered/ui/DayTriggerLookupMethods.java",
+      "type": "regular",
+      "bytes": 70,
+      "sha256": "def36c753eca633189e2fe209a5899418d15d7517ca163f972baaa6ace3c2d98",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179558,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 70,
+        "mtime_ns": 1791805765402985523,
+        "ctime_ns": 1791805765403178354
+      }
+    },
+    {
+      "path": "project/source/java/recovered/ui/DayTriggerValueMethods.java",
+      "type": "regular",
+      "bytes": 70,
+      "sha256": "a9f6c7f1e7ef08b50ade57a97689d42a8c930b04fe96f0de2afa3a93b4cb82f3",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179551,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 70,
+        "mtime_ns": 1791805765374637934,
+        "ctime_ns": 1791805765374637934
+      }
+    },
+    {
+      "path": "project/source/java-method-map.json",
+      "type": "regular",
+      "bytes": 44,
+      "sha256": "050a3024278d7bce428cb0c8f2b07bc5bf56d821085f37b61c6fe7e1fc76141c",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179559,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 44,
+        "mtime_ns": 1791805765404825728,
+        "ctime_ns": 1791805765404825728
+      }
+    },
+    {
+      "path": "project/source/ui-methods.json",
+      "type": "regular",
+      "bytes": 39,
+      "sha256": "8b01fbe627a9b37d0a571244ec2fd09e624d9ac6fd0ec5290591d4de7663aea1",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179548,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 39,
+        "mtime_ns": 1791805765406435666,
+        "ctime_ns": 1791805765406435666
+      }
+    },
+    {
+      "path": "project/source/unrelated-policy-input.txt",
+      "type": "regular",
+      "bytes": 19,
+      "sha256": "0b97bfd09dea8e9a1dd87934edeb416860c9d4ba12fe828064fb14417c8be87f",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178117,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 19,
+        "mtime_ns": 1791805765357253287,
+        "ctime_ns": 1791805765357253287
+      }
+    },
+    {
+      "path": "project/test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+      "type": "regular",
+      "bytes": 87,
+      "sha256": "a0795af87ff8f57d8253b291b00282cf69e02b96cb72fa1382807bf157d307d0",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179552,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 87,
+        "mtime_ns": 1791805765407956139,
+        "ctime_ns": 1791805765407956139
+      }
+    },
+    {
+      "path": "project/tests/fixtures/day-lookup-mutants.json",
+      "type": "regular",
+      "bytes": 55,
+      "sha256": "1afbd0e04af5e531217ff6fc13b95934d27a20a4674a6501b09f63f79d7e8cef",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179555,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 55,
+        "mtime_ns": 1791805765413837137,
+        "ctime_ns": 1791805765413837137
+      }
+    },
+    {
+      "path": "project/tests/fixtures/day-numeric-mutants.json",
+      "type": "regular",
+      "bytes": 57,
+      "sha256": "851eb3692a966671cd5bfa46091a94e956ceb84e21185fbbe65bef52d6b08dd0",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178105,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 57,
+        "mtime_ns": 1791805765375944875,
+        "ctime_ns": 1791805765375944875
+      }
+    },
+    {
+      "path": "project/tests/fixtures/original-dependencies.json",
+      "type": "regular",
+      "bytes": 58,
+      "sha256": "d667ea5e2888b44734a7e622cf583651f105a0366c3a67456f0059c5619058de",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178099,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 58,
+        "mtime_ns": 1791805765408679890,
+        "ctime_ns": 1791805765408679890
+      }
+    },
+    {
+      "path": "project/tests/fixtures/original-methods.dex",
+      "type": "regular",
+      "bytes": 52,
+      "sha256": "f02ef2c5c8cb829c312c9913d974daf8b458d7b181365fcf95ac85be720c659a",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179553,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 52,
+        "mtime_ns": 1791805765409279915,
+        "ctime_ns": 1791805765409279915
+      }
+    },
+    {
+      "path": "project/tests/fixtures/provenance.json",
+      "type": "regular",
+      "bytes": 47,
+      "sha256": "042238a28b11438bb46fe471d08d489a4f21b3b8a87823ce54dd3f317a50742c",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179554,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 47,
+        "mtime_ns": 1791805765409875343,
+        "ctime_ns": 1791805765409875343
+      }
+    },
+    {
+      "path": "project/tests/java/DayLookupControlHarness.java",
+      "type": "regular",
+      "bytes": 56,
+      "sha256": "fc09a28d88223de25dc37d5058820c814afe8d267de5b849fe2ed45519fd06f6",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179560,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 56,
+        "mtime_ns": 1791805765412025225,
+        "ctime_ns": 1791805765412178499
+      }
+    },
+    {
+      "path": "project/tests/java/DayLookupParityCases.java",
+      "type": "regular",
+      "bytes": 53,
+      "sha256": "cf1bcbbaf0e0ff02dfbd2088b89b51e021e32b1987dde1a097a1480b476bf465",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178107,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 53,
+        "mtime_ns": 1791805765410457791,
+        "ctime_ns": 1791805765411178483
+      }
+    },
+    {
+      "path": "project/tests/java/DayNumericControlHarness.java",
+      "type": "regular",
+      "bytes": 58,
+      "sha256": "7f022e30da72bcff1914ecbfbafb94e0e8ff8812bd2999161f8f014eb4e97040",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178108,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 58,
+        "mtime_ns": 1791805765377561412,
+        "ctime_ns": 1791805765377561412
+      }
+    },
+    {
+      "path": "project/tests/java/DayTriggerParityCases.java",
+      "type": "regular",
+      "bytes": 54,
+      "sha256": "f3f93ef06748226cce44b39553e420b5a34491735fb66271fabf223d324a2b14",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179556,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 54,
+        "mtime_ns": 1791805765413220397,
+        "ctime_ns": 1791805765413220397
+      }
+    },
+    {
+      "path": "project/tests/java/UiParityTests.java",
+      "type": "regular",
+      "bytes": 46,
+      "sha256": "4a35a1672282afe5b5b4055ef65312a3c1fe90f7ddee3543e5fb5d28b6a89ac0",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179561,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 46,
+        "mtime_ns": 1791805765412683458,
+        "ctime_ns": 1791805765412683458
+      }
+    },
+    {
+      "path": "project/tests/test_build.py",
+      "type": "regular",
+      "bytes": 36,
+      "sha256": "b2dd7a18fbaefbbd3c4259cdd0ef7d196dd06dfe7484160976ad03c8d453891a",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178111,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 36,
+        "mtime_ns": 1791805765417375974,
+        "ctime_ns": 1791805765417375974
+      }
+    },
+    {
+      "path": "project/tests/test_day_lookup.py",
+      "type": "regular",
+      "bytes": 41,
+      "sha256": "2543815c442bec6b8834a4fe723eb8d68b1630be30bbcd1f9a0e361979eab68b",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178115,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 41,
+        "mtime_ns": 1791805765416457239,
+        "ctime_ns": 1791805765416457239
+      }
+    },
+    {
+      "path": "project/tests/test_day_numeric.py",
+      "type": "regular",
+      "bytes": 42,
+      "sha256": "01c26f93144a91ab7e5b2fb7c6c40db73ae872fbe12a0ec8dbe1482a05532dc2",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179564,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 42,
+        "mtime_ns": 1791805765416836090,
+        "ctime_ns": 1791805765416836090
+      }
+    },
+    {
+      "path": "project/tests/test_v9.py",
+      "type": "regular",
+      "bytes": 33,
+      "sha256": "cea9ce46c410f01b02e088d57fef0a8f476af71c65e433259f554c886e07a93a",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178110,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 33,
+        "mtime_ns": 1791805765417943520,
+        "ctime_ns": 1791805765417943520
+      }
+    },
+    {
+      "path": "project/tools/src/ExtractOracle.java",
+      "type": "regular",
+      "bytes": 46,
+      "sha256": "776b3b87badc0a2d5dce3613df65b2213e46ab3f8e3ad8be66fe120e10a4f664",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178112,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 46,
+        "mtime_ns": 1791805765379945989,
+        "ctime_ns": 1791805765379945989
+      }
+    },
+    {
+      "path": "project/ui_mutation_catalog.py",
+      "type": "regular",
+      "bytes": 39,
+      "sha256": "5747816bca0bd44c67582f9226d376c1f5b5fc4bae81c7900da28367a0aae47e",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178097,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 39,
+        "mtime_ns": 1791805765415306033,
+        "ctime_ns": 1791805765415306033
+      }
+    },
+    {
+      "path": "project/ui_negative_control.py",
+      "type": "regular",
+      "bytes": 39,
+      "sha256": "85ffc01e23312bf7414616a9896e8c2a36e9f39cb4f14412c0a13745b621ee50",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178114,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 39,
+        "mtime_ns": 1791805765415888421,
+        "ctime_ns": 1791805765415888421
+      }
+    },
+    {
+      "path": "proof/inputs/baseline-complete-inputs.json",
+      "type": "regular",
+      "bytes": 2040,
+      "sha256": "8010db1c13cf47aabce8cfbf8f97b423212a74421328035087f8ab64c9d7ccda",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179546,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 2040,
+        "mtime_ns": 1791805765367795004,
+        "ctime_ns": 1791805765367795004
+      }
+    },
+    {
+      "path": "proof/inputs/baseline-input-snapshot.json",
+      "type": "regular",
+      "bytes": 2040,
+      "sha256": "8010db1c13cf47aabce8cfbf8f97b423212a74421328035087f8ab64c9d7ccda",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179848,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 2040,
+        "mtime_ns": 1791805765425596811,
+        "ctime_ns": 1791805765425596811
+      }
+    },
+    {
+      "path": "proof/inputs/baseline-tools/.github/workflows/reconstruction.yml",
+      "type": "regular",
+      "bytes": 60,
+      "sha256": "bb91d0a642cd4568e1870f518b745fdf8c3e37fa6c2d9d4641bb6aafdb69502e",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179853,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 60,
+        "mtime_ns": 1791805765425820579,
+        "ctime_ns": 1791805765425820579
+      }
+    },
+    {
+      "path": "proof/inputs/baseline-tools/project/release_integrity.py",
+      "type": "regular",
+      "bytes": 52,
+      "sha256": "5b6a956e990d6b5b65fa00176a8f081809420f352bc9c54aa8948c591f0bd81b",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179861,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 52,
+        "mtime_ns": 1791805765426132720,
+        "ctime_ns": 1791805765426132720
+      }
+    },
+    {
+      "path": "proof/inputs/baseline-tools/project/test.py",
+      "type": "regular",
+      "bytes": 39,
+      "sha256": "688ec7ae3ce07ba64f18fc74cd5fb29f8c201e3deddb486f1254f7703d00ebe8",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179862,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 39,
+        "mtime_ns": 1791805765426188684,
+        "ctime_ns": 1791805765426188684
+      }
+    },
+    {
+      "path": "proof/inputs/baseline-tools/scripts/import_v9.py",
+      "type": "regular",
+      "bytes": 44,
+      "sha256": "604b3667e38da883eea1f7b7c49e586a86286872fca65bb07887a723b799b60c",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179856,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 44,
+        "mtime_ns": 1791805765425956464,
+        "ctime_ns": 1791805765425956464
+      }
+    },
+    {
+      "path": "proof/inputs/baseline-tools/scripts/materialize_v9.py",
+      "type": "regular",
+      "bytes": 49,
+      "sha256": "33266987be287e10fafe7612f9c354d2394583bd44a9362801f8bc4a16c209a3",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179855,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 49,
+        "mtime_ns": 1791805765425897855,
+        "ctime_ns": 1791805765425897855
+      }
+    },
+    {
+      "path": "proof/inputs/baseline-tools/vendor/v9/manifest.json",
+      "type": "regular",
+      "bytes": 47,
+      "sha256": "15238a1d2d67c5e1474d984e8295d6356453889b9216e8ab57d43aa6852281a5",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179859,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 47,
+        "mtime_ns": 1791805765426059479,
+        "ctime_ns": 1791805765426059479
+      }
+    },
+    {
+      "path": "proof/inputs/combined-complete-inputs.json",
+      "type": "regular",
+      "bytes": 4051,
+      "sha256": "1fc5c321f5a1541f654fe899c719251568a0f030ba6e1851c8671bb694b10b24",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179547,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 4051,
+        "mtime_ns": 1791805765423712570,
+        "ctime_ns": 1791805765423712570
+      }
+    },
+    {
+      "path": "proof/inputs/future-input-snapshot.json",
+      "type": "regular",
+      "bytes": 4051,
+      "sha256": "1fc5c321f5a1541f654fe899c719251568a0f030ba6e1851c8671bb694b10b24",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179849,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 4051,
+        "mtime_ns": 1791805765425714649,
+        "ctime_ns": 1791805765425714649
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-merge-checkpoint.json",
+      "type": "regular",
+      "bytes": 49,
+      "sha256": "71ec61b6239df9c3ac292127cd1e1d90f49903916c36555a043700cdbcd9029f",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179846,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 49,
+        "mtime_ns": 1791805765425405813,
+        "ctime_ns": 1791805765425405813
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/acceptance.py",
+      "type": "regular",
+      "bytes": 30,
+      "sha256": "ed03310cef98397129eaf2b9f08fdc15e3cf725f928ebf70686fc0c2aa9e29a8",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178189,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 30,
+        "mtime_ns": 1791805765364632165,
+        "ctime_ns": 1791805765364632165
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/day_lookup_dex_controls.py",
+      "type": "regular",
+      "bytes": 43,
+      "sha256": "fb6b753f796fd19de51703b60a677f8478436c105a7a3e20a34611adb8155db9",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178181,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 43,
+        "mtime_ns": 1791805765364187855,
+        "ctime_ns": 1791805765364187855
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/day_numeric_dex_controls.py",
+      "type": "regular",
+      "bytes": 44,
+      "sha256": "46f5969723f3304a1b161e595a78f29cb0ff926d27d57f9dffc1dde1ca3febfe",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178182,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 44,
+        "mtime_ns": 1791805765364241886,
+        "ctime_ns": 1791805765364241886
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/source/java/recovered/ui/DayTriggerLookupMethods.java",
+      "type": "regular",
+      "bytes": 70,
+      "sha256": "def36c753eca633189e2fe209a5899418d15d7517ca163f972baaa6ace3c2d98",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178160,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 70,
+        "mtime_ns": 1791805765363116078,
+        "ctime_ns": 1791805765363116078
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/source/java-method-map.json",
+      "type": "regular",
+      "bytes": 44,
+      "sha256": "050a3024278d7bce428cb0c8f2b07bc5bf56d821085f37b61c6fe7e1fc76141c",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178161,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 44,
+        "mtime_ns": 1791805765363188247,
+        "ctime_ns": 1791805765363188247
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/source/ui-methods.json",
+      "type": "regular",
+      "bytes": 39,
+      "sha256": "8b01fbe627a9b37d0a571244ec2fd09e624d9ac6fd0ec5290591d4de7663aea1",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178162,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 39,
+        "mtime_ns": 1791805765363248398,
+        "ctime_ns": 1791805765363248398
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+      "type": "regular",
+      "bytes": 87,
+      "sha256": "a0795af87ff8f57d8253b291b00282cf69e02b96cb72fa1382807bf157d307d0",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178169,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 87,
+        "mtime_ns": 1791805765363446256,
+        "ctime_ns": 1791805765363446256
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/tests/fixtures/day-lookup-mutants.json",
+      "type": "regular",
+      "bytes": 55,
+      "sha256": "1afbd0e04af5e531217ff6fc13b95934d27a20a4674a6501b09f63f79d7e8cef",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178180,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 55,
+        "mtime_ns": 1791805765364132571,
+        "ctime_ns": 1791805765364132571
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/tests/fixtures/original-dependencies.json",
+      "type": "regular",
+      "bytes": 58,
+      "sha256": "d667ea5e2888b44734a7e622cf583651f105a0366c3a67456f0059c5619058de",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178172,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 58,
+        "mtime_ns": 1791805765363717045,
+        "ctime_ns": 1791805765363717045
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/tests/fixtures/original-methods.dex",
+      "type": "regular",
+      "bytes": 52,
+      "sha256": "f02ef2c5c8cb829c312c9913d974daf8b458d7b181365fcf95ac85be720c659a",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178173,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 52,
+        "mtime_ns": 1791805765363780881,
+        "ctime_ns": 1791805765363780881
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/tests/fixtures/provenance.json",
+      "type": "regular",
+      "bytes": 47,
+      "sha256": "042238a28b11438bb46fe471d08d489a4f21b3b8a87823ce54dd3f317a50742c",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178174,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 47,
+        "mtime_ns": 1791805765363838478,
+        "ctime_ns": 1791805765363838478
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/tests/java/DayLookupControlHarness.java",
+      "type": "regular",
+      "bytes": 56,
+      "sha256": "fc09a28d88223de25dc37d5058820c814afe8d267de5b849fe2ed45519fd06f6",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178177,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 56,
+        "mtime_ns": 1791805765363966611,
+        "ctime_ns": 1791805765363966611
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/tests/java/DayLookupParityCases.java",
+      "type": "regular",
+      "bytes": 53,
+      "sha256": "cf1bcbbaf0e0ff02dfbd2088b89b51e021e32b1987dde1a097a1480b476bf465",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178176,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 53,
+        "mtime_ns": 1791805765363910336,
+        "ctime_ns": 1791805765363910336
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/tests/java/DayTriggerParityCases.java",
+      "type": "regular",
+      "bytes": 54,
+      "sha256": "f3f93ef06748226cce44b39553e420b5a34491735fb66271fabf223d324a2b14",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178179,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 54,
+        "mtime_ns": 1791805765364077318,
+        "ctime_ns": 1791805765364077318
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/tests/java/UiParityTests.java",
+      "type": "regular",
+      "bytes": 46,
+      "sha256": "4a35a1672282afe5b5b4055ef65312a3c1fe90f7ddee3543e5fb5d28b6a89ac0",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178178,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 46,
+        "mtime_ns": 1791805765364021814,
+        "ctime_ns": 1791805765364021814
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/tests/test_build.py",
+      "type": "regular",
+      "bytes": 36,
+      "sha256": "b2dd7a18fbaefbbd3c4259cdd0ef7d196dd06dfe7484160976ad03c8d453891a",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178187,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 36,
+        "mtime_ns": 1791805765364522189,
+        "ctime_ns": 1791805765364522189
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/tests/test_day_lookup.py",
+      "type": "regular",
+      "bytes": 41,
+      "sha256": "2543815c442bec6b8834a4fe723eb8d68b1630be30bbcd1f9a0e361979eab68b",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178185,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 41,
+        "mtime_ns": 1791805765364403269,
+        "ctime_ns": 1791805765364403269
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/tests/test_day_numeric.py",
+      "type": "regular",
+      "bytes": 42,
+      "sha256": "01c26f93144a91ab7e5b2fb7c6c40db73ae872fbe12a0ec8dbe1482a05532dc2",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178186,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 42,
+        "mtime_ns": 1791805765364458563,
+        "ctime_ns": 1791805765364458563
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/tests/test_v9.py",
+      "type": "regular",
+      "bytes": 33,
+      "sha256": "cea9ce46c410f01b02e088d57fef0a8f476af71c65e433259f554c886e07a93a",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178188,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 33,
+        "mtime_ns": 1791805765364577232,
+        "ctime_ns": 1791805765364577232
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/ui_mutation_catalog.py",
+      "type": "regular",
+      "bytes": 39,
+      "sha256": "5747816bca0bd44c67582f9226d376c1f5b5fc4bae81c7900da28367a0aae47e",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178183,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 39,
+        "mtime_ns": 1791805765364295417,
+        "ctime_ns": 1791805765364295417
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-overlay/project/ui_negative_control.py",
+      "type": "regular",
+      "bytes": 39,
+      "sha256": "85ffc01e23312bf7414616a9896e8c2a36e9f39cb4f14412c0a13745b621ee50",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178184,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 39,
+        "mtime_ns": 1791805765364349038,
+        "ctime_ns": 1791805765364349038
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-source-changes.json",
+      "type": "regular",
+      "bytes": 7830,
+      "sha256": "c970af350e9a575ca33242111755012766d6887549e0b83883e573b73960c377",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179864,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 7830,
+        "mtime_ns": 1791805765426522277,
+        "ctime_ns": 1791805765426522277
+      }
+    },
+    {
+      "path": "proof/inputs/lookup-successor-checkpoint.json",
+      "type": "regular",
+      "bytes": 18,
+      "sha256": "c726b9e6447aeefafaed0db84c8ec3f244da4c45e12c4b5e25b682e3c2ef332a",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179847,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 18,
+        "mtime_ns": 1791805765427984983,
+        "ctime_ns": 1791805765427984983
+      }
+    },
+    {
+      "path": "proof/inputs/numeric-complete-inputs.json",
+      "type": "regular",
+      "bytes": 3127,
+      "sha256": "c01d1c03623fb2d044b4e3ec42e839dd66306b90d42a4b60f46d308e4171bbd2",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9178116,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 3127,
+        "mtime_ns": 1791805765391361363,
+        "ctime_ns": 1791805765391361363
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/acceptance.py",
+      "type": "regular",
+      "bytes": 31,
+      "sha256": "d356760f11012f49b3bd8c2887da24e4537cdc8148c63d8511c1616a89e42a13",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179811,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 31,
+        "mtime_ns": 1791805765424141997,
+        "ctime_ns": 1791805765424141997
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/day_numeric_dex_controls.py",
+      "type": "regular",
+      "bytes": 45,
+      "sha256": "268f4a594b456a14087c927f475c806fa8fdb7b7164d8a93d1249da1ce2b8fc2",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179812,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 45,
+        "mtime_ns": 1791805765424193135,
+        "ctime_ns": 1791805765424193135
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/source/java/recovered/ui/DayTriggerValueMethods.java",
+      "type": "regular",
+      "bytes": 70,
+      "sha256": "a9f6c7f1e7ef08b50ade57a97689d42a8c930b04fe96f0de2afa3a93b4cb82f3",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179818,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 70,
+        "mtime_ns": 1791805765424370662,
+        "ctime_ns": 1791805765424370662
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/source/java-method-map.json",
+      "type": "regular",
+      "bytes": 45,
+      "sha256": "273783231dc21e6b9f29329887ea53345462df9b737baa8c1e86b281434f88e7",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179814,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 45,
+        "mtime_ns": 1791805765424256210,
+        "ctime_ns": 1791805765424256210
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/source/ui-methods.json",
+      "type": "regular",
+      "bytes": 40,
+      "sha256": "d6b1842082f44d83bfecb15cc6be6dc5f8da146ddd95a8735c1ad87c48148ca0",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179819,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 40,
+        "mtime_ns": 1791805765424416041,
+        "ctime_ns": 1791805765424416041
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+      "type": "regular",
+      "bytes": 88,
+      "sha256": "42341e115220161bc190bc67c709da2a6c2d50b99639356cc21f7d52283e2ee9",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179826,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 88,
+        "mtime_ns": 1791805765424635612,
+        "ctime_ns": 1791805765424635612
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/tests/fixtures/day-numeric-mutants.json",
+      "type": "regular",
+      "bytes": 57,
+      "sha256": "851eb3692a966671cd5bfa46091a94e956ceb84e21185fbbe65bef52d6b08dd0",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179829,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 57,
+        "mtime_ns": 1791805765424723384,
+        "ctime_ns": 1791805765424723384
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/tests/fixtures/original-dependencies.json",
+      "type": "regular",
+      "bytes": 59,
+      "sha256": "0c8e991c1a5188faa6715118d2f6f772182c63e3adfff89c6e9d8e2de33f33c5",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179830,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 59,
+        "mtime_ns": 1791805765424767381,
+        "ctime_ns": 1791805765424767381
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/tests/fixtures/original-methods.dex",
+      "type": "regular",
+      "bytes": 53,
+      "sha256": "1c6a891564e5ac56aeb9fe7c91ce98ad16c3c3f236eed76e7e276ea4c1fda4e9",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179831,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 53,
+        "mtime_ns": 1791805765424810436,
+        "ctime_ns": 1791805765424810436
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/tests/fixtures/provenance.json",
+      "type": "regular",
+      "bytes": 48,
+      "sha256": "ee03a7bcadb8675823e4f736182741bb8a4913fec631bd96059ce2c4b53dc902",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179832,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 48,
+        "mtime_ns": 1791805765424853681,
+        "ctime_ns": 1791805765424853681
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/tests/java/DayNumericControlHarness.java",
+      "type": "regular",
+      "bytes": 58,
+      "sha256": "7f022e30da72bcff1914ecbfbafb94e0e8ff8812bd2999161f8f014eb4e97040",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179834,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 58,
+        "mtime_ns": 1791805765424911498,
+        "ctime_ns": 1791805765424911498
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/tests/java/DayTriggerParityCases.java",
+      "type": "regular",
+      "bytes": 55,
+      "sha256": "f3a5bde66d6df6c37cd51d47e20d5848436889cdf68f84777fc9b0cf954a4ef3",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179835,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 55,
+        "mtime_ns": 1791805765424954212,
+        "ctime_ns": 1791805765424954212
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/tests/java/UiParityTests.java",
+      "type": "regular",
+      "bytes": 47,
+      "sha256": "86e599a6f79b62b59f2faddda7e5b07e8924c7fa72bf8d7d65b89141fed007d5",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179836,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 47,
+        "mtime_ns": 1791805765424997047,
+        "ctime_ns": 1791805765424997047
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/tests/test_build.py",
+      "type": "regular",
+      "bytes": 37,
+      "sha256": "d44c393d0f0463296b5da138bb4b9c75111c45a416c1838a1f7f12a6b47d961f",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179837,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 37,
+        "mtime_ns": 1791805765425040022,
+        "ctime_ns": 1791805765425040022
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/tests/test_day_numeric.py",
+      "type": "regular",
+      "bytes": 43,
+      "sha256": "f9b9d591bb82db5a9a066466d6d2d212b1cf2fbb224978a4ef9c46b4af322020",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179838,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 43,
+        "mtime_ns": 1791805765425084619,
+        "ctime_ns": 1791805765425084619
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/tests/test_v9.py",
+      "type": "regular",
+      "bytes": 34,
+      "sha256": "9f96b5011a2eb5545052a02cc870a4f8bf00cddd98ad7eecef61374393262751",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179839,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 34,
+        "mtime_ns": 1791805765425129026,
+        "ctime_ns": 1791805765425129026
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/tools/src/ExtractOracle.java",
+      "type": "regular",
+      "bytes": 46,
+      "sha256": "776b3b87badc0a2d5dce3613df65b2213e46ab3f8e3ad8be66fe120e10a4f664",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179842,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 46,
+        "mtime_ns": 1791805765425216648,
+        "ctime_ns": 1791805765425216648
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/ui_mutation_catalog.py",
+      "type": "regular",
+      "bytes": 40,
+      "sha256": "c886633bdf60df5895a993dc7b88612178c219085fbb2f10ee2854aeea4aacc8",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179843,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 40,
+        "mtime_ns": 1791805765425259433,
+        "ctime_ns": 1791805765425259433
+      }
+    },
+    {
+      "path": "proof/inputs/overlay/project/ui_negative_control.py",
+      "type": "regular",
+      "bytes": 40,
+      "sha256": "08c439313830892548fbde7bae08e0f4acd9f0b1b7d8deff273a4e1a5d32e90f",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179844,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 40,
+        "mtime_ns": 1791805765425307455,
+        "ctime_ns": 1791805765425307455
+      }
+    },
+    {
+      "path": "proof/inputs/pins.json",
+      "type": "regular",
+      "bytes": 104798,
+      "sha256": "3f98d43600537706199b1628d780cbb64d24c9a36d0279936e8799ee53d7a33b",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179865,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 104798,
+        "mtime_ns": 1791805765427178741,
+        "ctime_ns": 1791805765427178741
+      }
+    },
+    {
+      "path": "proof/inputs/source-changes.json",
+      "type": "regular",
+      "bytes": 6928,
+      "sha256": "5f5e9f2e6a56ffe08904631b4b1506045b71717f0938e235abd2d73a9b105eef",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179863,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 6928,
+        "mtime_ns": 1791805765426366502,
+        "ctime_ns": 1791805765426366502
+      }
+    },
+    {
+      "path": "proof/inputs/source-checkpoint.json",
+      "type": "regular",
+      "bytes": 43,
+      "sha256": "a22b7896b56ff52cddbf2ff6d266c478884a52cec7945db664663f13c5bfaad0",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9179845,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 43,
+        "mtime_ns": 1791805765425341807,
+        "ctime_ns": 1791805765425341807
+      }
+    }
+  ]
+}

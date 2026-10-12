@@ -1,0 +1,1 @@
+SYNTHETIC BASE test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java

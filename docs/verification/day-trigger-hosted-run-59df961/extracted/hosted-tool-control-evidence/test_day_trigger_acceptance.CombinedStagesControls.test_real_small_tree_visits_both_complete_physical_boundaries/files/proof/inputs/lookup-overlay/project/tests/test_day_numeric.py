@@ -1,0 +1,1 @@
+SYNTHETIC LOOKUP tests/test_day_numeric.py

@@ -1,0 +1,209 @@
+--- before/artifacts/current/manifest.json
++++ proposed/artifacts/current/manifest.json
+@@ -4,124 +4,138 @@
+   "id": "current-hybrid",
+   "filename": "MacroDroid-5.67.8-current-hybrid.apk",
+   "media_type": "application/vnd.android.package-archive",
+-  "purpose": "Current development candidate with 1,242 recovered bodies and complete configured host acceptance; Android and whole-application parity remain separately measured.",
+   "source_build_filename": "dist/MacroDroid-5.67.8-v9-hybrid.apk",
+-  "recovered_method_bodies": 1242,
++  "purpose": "Current development candidate with 1,243 recovered bodies and complete hosted numeric source acceptance; Android and whole-application parity remain separately measured.",
++  "recovered_method_bodies": 1243,
+   "recovered_classes": 605,
+   "full_functional_parity_established": false,
+   "source_checkpoint_manifest": {
+-    "path": "work-in-progress/combined-recovery/05-full-acceptance/checkpoint.json",
+-    "sha256": "e4cd0b6af4cf95d7131138b3ad3dab8a070042cea077a80cf83c322168457063",
+-    "commit": "c9373851d4408fb4db63c21873ac2d0bb6867270"
++    "path": "work-in-progress/day-trigger-numeric/08-command-filesystem-source-successor/checkpoint.json",
++    "sha256": "d9ddd3e0f692c66e2cd47870ff3cf95bfa0a2b1cd50fc2fd55a3c09e66df9bcf",
++    "commit": "811f979eda1b937917c18defef38455c49a59062"
+   },
+   "source_input_snapshot": {
+     "path": "project/reports/release-input-snapshot.json",
+-    "files": 81291,
+-    "canonical_sha256": "b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553",
+-    "manifest_file_sha256": "ca3bed290f18a378c7a3d6cc70d924c8d6ec85481e236b4e7561c31fedafdfbe"
++    "files": 81298,
++    "canonical_sha256": "f8fc1cadac8213468e42ac99a2cd5d807827dcdeee25166b8025620ff39a6545",
++    "manifest_file_bytes": 14504095,
++    "manifest_file_sha256": "896f3eb29dc832eb245fee8dcb70b0e8c8935c9635bf1ccc54c09987b26c91c6"
+   },
+   "origin": {
+-    "kind": "complete-sixteen-gate-combined-source-acceptance",
+-    "proof_commit": "c9373851d4408fb4db63c21873ac2d0bb6867270",
+-    "immutable_apk_manifest": "work-in-progress/combined-recovery/05-full-acceptance/apk/manifest.json",
+-    "immutable_apk_manifest_sha256": "459960a6afc81fc0119cd66f3a9f6be823f7947ae90cd74c902d1a8a1e010afc",
+-    "independent_review_manifest": "docs/verification/combined-recovery/05-full-acceptance-independent-review/checkpoint.json",
+-    "independent_review_manifest_sha256": "7eaa75bfbab27f87b2568c478b1434ed10f4b1e247b883356f46188068addac5"
++    "kind": "hosted-sixteen-gate-numeric-source-acceptance",
++    "proof_commit": "48ddc442c61e383c4368606cb31984f15d03bb1f",
++    "run_id": 38238858564,
++    "job_id": 114776169911,
++    "tooling_commit": "3d91187924af10457366ede7a1a8f10d3a1a6ac4",
++    "immutable_apk_manifest": "work-in-progress/day-trigger-numeric/10-hosted-accepted-artifact/manifest.json",
++    "immutable_apk_manifest_sha256": "e1e9c5713c83981cc85ec84e0ce25bfe3fe3a4918d8ff35744ff86194cad0152",
++    "independent_review_manifest": "docs/verification/day-numeric-hosted-run-3d91187/analysis/checkpoint.json",
++    "independent_review_manifest_sha256": "dc154a04c2a734446cf57d8d32628f1b0cc7110d66100f098e247e5cdb2e3301",
++    "complete_ci_artifact_manifest": "docs/verification/day-numeric-hosted-run-3d91187/manifest.json",
++    "literal_verification_path": "docs/verification/day-numeric-hosted-run-3d91187/selected/hosted-proof/verification.json"
+   },
+   "validation_at_publication": {
+     "configured_acceptance_gates_passed": 16,
+-    "original_jvm_rebuilt_cases": 193489,
+-    "registered_methods": 1242,
+-    "python_tests_passed": 273,
+-    "ui_cases": 23174,
+-    "independent_ui_checks": 15326,
+-    "actual_ui_fault_controls_passed": 78,
++    "fresh_reports_verified": 23,
++    "original_jvm_rebuilt_cases": 194780,
++    "registered_methods": 1243,
++    "python_tests_passed": 308,
++    "tooling_host_tests_passed": 92,
++    "ui_cases": 24465,
++    "actual_ui_java_fault_controls_passed": 91,
++    "actual_numeric_dex_fault_controls_passed": 2,
++    "numeric_cases": 1291,
++    "numeric_original_instructions": 32,
++    "numeric_rebuilt_instructions": 25,
++    "numeric_conditional_edges_per_path": 4,
+     "exact_positive_restoration_passed": true,
++    "signed_source_edit_probe_passed": true,
+     "full_configured_acceptance_executed_for_this_pin": true,
+-    "separate_capture_guard_union_host_tests_passed": 148,
+     "android_executed_for_this_candidate": false,
+-    "post_intro_capture": "pending fresh hosted candidate result",
+-    "constructor_art_probe": "pending fresh hosted candidate result"
++    "android_status": "Not yet observed for the 0762aad9 candidate"
+   },
+   "previous_candidate": {
+-    "commit": "c9373851d4408fb4db63c21873ac2d0bb6867270",
++    "commit": "59df96186fefb2bf883031c09562af08b48bde16",
+     "manifest_path": "artifacts/current/manifest.json",
+-    "sha256": "9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2"
++    "manifest_sha256": "474783400cf49245d575dc700ea75f674bbc80ff963172f9b75d8c3765be2a77",
++    "immutable_manifest_path": "work-in-progress/combined-recovery/05-full-acceptance/apk/manifest.json",
++    "sha256": "5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182",
++    "size_bytes": 94683119
+   },
+-  "size_bytes": 94683119,
+-  "sha256": "5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182",
++  "size_bytes": 94683136,
++  "sha256": "0762aad956193ef305afc47b4cbe68e6239c94f72732556e650d701b4a288afd",
+   "parts": [
+     {
+-      "path": "artifacts/current/hybrid.0001.part",
+-      "size_bytes": 8388608,
++      "git_blob_sha1": "dc51e04139194f7c1a0f4c0eb5ec8c6127f3f75f",
++      "path": "work-in-progress/day-trigger-numeric/10-hosted-accepted-artifact/parts/part-0001.bin",
+       "sha256": "1463aea284b0e9478a1d21f9f10e250ac8aff945a063a5744f9821d72319fb94",
+-      "git_blob_sha1": "dc51e04139194f7c1a0f4c0eb5ec8c6127f3f75f"
++      "size_bytes": 8388608
+     },
+     {
+-      "path": "artifacts/current/hybrid.0002.part",
+-      "size_bytes": 8388608,
+-      "sha256": "90cb532e136fef62bf05bdf389ad4574cb8386aef770b612b7524aa34f0e7db9",
+-      "git_blob_sha1": "13c8c582b533ccaf4a81e8d7a3f5ed76248f69b6"
++      "git_blob_sha1": "831f1f524a6eff49f8311077aaaa1442c347da72",
++      "path": "work-in-progress/day-trigger-numeric/10-hosted-accepted-artifact/parts/part-0002.bin",
++      "sha256": "6e174691b80695c767253f83e001683bf5df83ec6ce777ed59920318287dde53",
++      "size_bytes": 8388608
+     },
+     {
+-      "path": "artifacts/current/hybrid.0003.part",
+-      "size_bytes": 8388608,
+-      "sha256": "f21934769c0ace7055eb0cbb8582d765b4a91546121c34883db763872f938703",
+-      "git_blob_sha1": "7cdf9d2f850d6be6df0deb028cb55dcfb1c8210b"
++      "git_blob_sha1": "dcf46e863f68d2edb3f68ec435292ed0e9dafc0c",
++      "path": "work-in-progress/day-trigger-numeric/10-hosted-accepted-artifact/parts/part-0003.bin",
++      "sha256": "610de89b934e720b5ca47d4b649ec26ce6ad6c93c66596e3546ba5697a699058",
++      "size_bytes": 8388608
+     },
+     {
+-      "path": "artifacts/current/hybrid.0004.part",
+-      "size_bytes": 8388608,
+-      "sha256": "2d2737629e5fa425e95429ec2e7ca18dfc49eefd79e735c21977c3054709c24b",
+-      "git_blob_sha1": "618befe87ee716d5bbc4ac9b4dfc5ea29a8fa435"
++      "git_blob_sha1": "55f6efab401b13d033c4ffbf771cf6ad65c67930",
++      "path": "work-in-progress/day-trigger-numeric/10-hosted-accepted-artifact/parts/part-0004.bin",
++      "sha256": "28fd53b8eda907628ca41f8263abdb14b1b60867dc1e9816967af7fd3b8f7743",
++      "size_bytes": 8388608
+     },
+     {
+-      "path": "artifacts/current/hybrid.0005.part",
+-      "size_bytes": 8388608,
+-      "sha256": "d91c17667f5f29ff3068ca028702514f37fa584262481cb9ad94f2a1a79b4061",
+-      "git_blob_sha1": "36c735ed4e8c7bf72209918fb42d634286f55f23"
++      "git_blob_sha1": "e1583d17e9832f778b935370617492933d8c1bc7",
++      "path": "work-in-progress/day-trigger-numeric/10-hosted-accepted-artifact/parts/part-0005.bin",
++      "sha256": "29e96d634c44ffbb05ad47f6d6e4ae8aebe4157b4d772acfbca6807b7060e910",
++      "size_bytes": 8388608
+     },
+     {
+-      "path": "artifacts/current/hybrid.0006.part",
+-      "size_bytes": 8388608,
++      "git_blob_sha1": "c5d3e68387428dc097731ffccc4fd1d3d6cea824",
++      "path": "work-in-progress/day-trigger-numeric/10-hosted-accepted-artifact/parts/part-0006.bin",
+       "sha256": "1230a412c24ace703f2e2e9c309a2247a980c119814deadabb750107336a7120",
+-      "git_blob_sha1": "c5d3e68387428dc097731ffccc4fd1d3d6cea824"
++      "size_bytes": 8388608
+     },
+     {
+-      "path": "artifacts/current/hybrid.0007.part",
+-      "size_bytes": 8388608,
++      "git_blob_sha1": "f0a37ed707c4eff1c596c4f6851be635c32d5610",
++      "path": "work-in-progress/day-trigger-numeric/10-hosted-accepted-artifact/parts/part-0007.bin",
+       "sha256": "08906caeea7f703c20f678b8c397618ec25fc59d5cc25b65e68b1dedf250f90d",
+-      "git_blob_sha1": "f0a37ed707c4eff1c596c4f6851be635c32d5610"
++      "size_bytes": 8388608
+     },
+     {
+-      "path": "artifacts/current/hybrid.0008.part",
+-      "size_bytes": 8388608,
++      "git_blob_sha1": "2f0f83955955c26951735988d051cd07796093ae",
++      "path": "work-in-progress/day-trigger-numeric/10-hosted-accepted-artifact/parts/part-0008.bin",
+       "sha256": "d6a1240a3fff117635c8b8959caa581e01c3a2a38894466ab2182147341210bc",
+-      "git_blob_sha1": "2f0f83955955c26951735988d051cd07796093ae"
++      "size_bytes": 8388608
+     },
+     {
+-      "path": "artifacts/current/hybrid.0009.part",
+-      "size_bytes": 8388608,
++      "git_blob_sha1": "2c45a46b7bc89786b260f2d3fb2ed5fc77d335b6",
++      "path": "work-in-progress/day-trigger-numeric/10-hosted-accepted-artifact/parts/part-0009.bin",
+       "sha256": "31ea2fce036e98ff0dc79222b5fd4d266da83bc8678a5c6b7fc11d4e33641b36",
+-      "git_blob_sha1": "2c45a46b7bc89786b260f2d3fb2ed5fc77d335b6"
++      "size_bytes": 8388608
+     },
+     {
+-      "path": "artifacts/current/hybrid.0010.part",
+-      "size_bytes": 8388608,
++      "git_blob_sha1": "b171eab479e080f18f64ae00381091c41904e880",
++      "path": "work-in-progress/day-trigger-numeric/10-hosted-accepted-artifact/parts/part-0010.bin",
+       "sha256": "4187594c0171f6e7c2d356971dfc23de3b7cb73452e555763344e10f2af84741",
+-      "git_blob_sha1": "b171eab479e080f18f64ae00381091c41904e880"
++      "size_bytes": 8388608
+     },
+     {
+-      "path": "artifacts/current/hybrid.0011.part",
+-      "size_bytes": 8388608,
++      "git_blob_sha1": "9aafa7c580a16829fab6f70546dc4264b9308df9",
++      "path": "work-in-progress/day-trigger-numeric/10-hosted-accepted-artifact/parts/part-0011.bin",
+       "sha256": "332eaed82b468ce453933a8abc81a7a357eaefdc4108d25356acced2113b03a0",
+-      "git_blob_sha1": "9aafa7c580a16829fab6f70546dc4264b9308df9"
++      "size_bytes": 8388608
+     },
+     {
+-      "path": "artifacts/current/hybrid.0012.part",
+-      "size_bytes": 2408431,
+-      "sha256": "2def01e9eca907dffa87cbeda68dd315e893c55a8a7b59411b301460c177ad49",
+-      "git_blob_sha1": "b91800c61097e1ae673eb4c9aba0acc352ac7894"
++      "git_blob_sha1": "1d10aaee71e4f19be770fabe1320fe63d6a95207",
++      "path": "work-in-progress/day-trigger-numeric/10-hosted-accepted-artifact/parts/part-0012.bin",
++      "sha256": "fba985adef594bd4d4719df7ebb5a1fd0e1dffe249029a3a1a807af89879eb7e",
++      "size_bytes": 2408448
+     }
+   ]
+ }

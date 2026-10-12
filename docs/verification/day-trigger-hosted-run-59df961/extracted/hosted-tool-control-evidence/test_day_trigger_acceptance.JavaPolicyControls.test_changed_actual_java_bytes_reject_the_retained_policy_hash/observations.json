@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "test": "test_day_trigger_acceptance.JavaPolicyControls.test_changed_actual_java_bytes_reject_the_retained_policy_hash",
+  "original_temporary_root": "/tmp/day-numeric-host-control-1yoo2sxx",
+  "scope": "Tool policy fixtures and declared small Python subprocesses only; no application build or Java parity claim",
+  "metadata_scope": "Recorded original live stat; copied inode/ctime are not substituted",
+  "values": {
+    "start": 1791805766016936772,
+    "text": "COMMAND: [\"/tmp/day-numeric-host-control-1yoo2sxx/jdk/bin/java\", \"-XX:-OmitStackTraceInFastThrow\", \"-XX:+ShowCodeDetailsInExceptionMessages\", \"-XX:+PrintFlagsFinal\", \"-version\"]\n bool OmitStackTraceInFastThrow = false {product}\n bool ShowCodeDetailsInExceptionMessages = true {product}\n",
+    "policy": {
+      "passed": true,
+      "androidRuntime": false,
+      "scope": "Host UI exception runtime only; unchanged APK and exact injected messages",
+      "java_executable": "/tmp/day-numeric-host-control-1yoo2sxx/jdk/bin/java",
+      "java_sha256": "a6859597a0a61a53abca708778db29c98c0874becdb9cf0bda31f2661c75eba4",
+      "vm_library": "/tmp/day-numeric-host-control-1yoo2sxx/jdk/lib/server/libjvm.so",
+      "vm_library_sha256": "b56e88ed800485b85799f5c640e6ab387f5ee6d5ad6a9fdb1cfdb6ffd23d627d",
+      "argv": [
+        "/tmp/day-numeric-host-control-1yoo2sxx/jdk/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-XX:+PrintFlagsFinal",
+        "-version"
+      ],
+      "log": "ui-runtime-policy.log",
+      "effective_flags": {
+        "OmitStackTraceInFastThrow": false,
+        "ShowCodeDetailsInExceptionMessages": true
+      },
+      "log_sha256": "76973707d42fd9b0495841d545f101f9318becb905024abaea61037f571f58a3"
+    }
+  },
+  "files": [
+    {
+      "path": "jdk/bin/java",
+      "type": "regular",
+      "bytes": 30,
+      "sha256": "4d4b94a1de6565573c45b50d9ff5db7919e39e6ab76d2aaa6add3128fefd34cc",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9180584,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 30,
+        "mtime_ns": 1791805766027180449,
+        "ctime_ns": 1791805766027180449
+      }
+    },
+    {
+      "path": "jdk/lib/server/libjvm.so",
+      "type": "regular",
+      "bytes": 26,
+      "sha256": "b56e88ed800485b85799f5c640e6ab387f5ee6d5ad6a9fdb1cfdb6ffd23d627d",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9181385,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 26,
+        "mtime_ns": 1791805766027083794,
+        "ctime_ns": 1791805766027083794
+      }
+    },
+    {
+      "path": "reports/ui-runtime-policy.json",
+      "type": "regular",
+      "bytes": 907,
+      "sha256": "4d0d9d45f09718b9c4e40c4d3f0b12f014d859ff373e06b61c030206a0b56125",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9181388,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 907,
+        "mtime_ns": 1791805766027412980,
+        "ctime_ns": 1791805766027412980
+      }
+    },
+    {
+      "path": "reports/ui-runtime-policy.log",
+      "type": "regular",
+      "bytes": 286,
+      "sha256": "76973707d42fd9b0495841d545f101f9318becb905024abaea61037f571f58a3",
+      "observed_stat": {
+        "device": 66305,
+        "inode": 9181387,
+        "mode": 33188,
+        "links": 1,
+        "bytes": 286,
+        "mtime_ns": 1791805766027311597,
+        "ctime_ns": 1791805766027311597
+      }
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+--- parent/tools/parity_journeys/editor_journey.py
++++ candidate/tools/parity_journeys/editor_journey.py
+@@ -216,9 +216,11 @@
+     a = shot['artifacts']
+     if shot['owner'] not in (PACKAGE, PERMISSION):
+         import exact_alarm_journey
+-        if not exact_alarm_journey.is_configured() or shot['owner'] != exact_alarm_journey.SETTINGS:
++        import exact_alarm_enable_return
++        adapter = exact_alarm_enable_return if exact_alarm_enable_return.is_configured() else exact_alarm_journey
++        if not adapter.is_configured() or shot['owner'] != adapter.SETTINGS:
+             raise JourneyError('Invalid snapshot owner or live interval')
+-        exact_alarm_journey.validate_settings_snapshot(folder, shot, proof)
++        adapter.validate_settings_snapshot(folder, shot, proof)
+     if not proof.valid_live_interval(shot['sample_interval_seconds']):
+         raise JourneyError('Invalid snapshot owner or live interval')
+     proof.live_pids(proof.artifact(folder, a['pid_first']).decode(), proof.artifact(folder, a['pid_final']).decode())
+@@ -430,10 +432,10 @@
+             if report['schema'] == notification_readiness.REPORT_SCHEMA:
+                 result['notification_readiness_observations'] = notification_readiness.verify_report(folder, report, proof)
+                 result['notification_readiness_policy'] = notification_readiness.POLICY
+-                if observed_journey.exact_alarm_plan():
+-                    import exact_alarm_journey
+-                    result[exact_alarm_journey.POLICY_KEY] = exact_alarm_journey.POLICY
+-                    result['global_command_observations'] = exact_alarm_journey.verify_global_commands(folder, report, proof)
++                if observed_journey.exact_alarm_plan() or observed_journey.exact_alarm_enable_return_plan():
++                    alarm = observed_journey.information_adapter()
++                    result[alarm.POLICY_KEY] = alarm.POLICY
++                    result['global_command_observations'] = alarm.verify_global_commands(folder, report, proof)
+             result['capture_policy'] = policy
+             result['process_handoff_outcomes'] = handoffs
+             result['process_handoff_outcomes_equal'] = handoffs[0] == handoffs[1]
+@@ -482,6 +484,19 @@
+                 result['permission_granted'] = False
+                 result['trigger_configuration_confirmed'] = False
+                 result['status'] = 'EXACT_ALARM_SETTINGS_OBSERVATION_ONLY' if result['journey_equal'] else 'JOURNEY_DIFFERENCE'
++            elif observed_journey.exact_alarm_enable_return_plan():
++                result['scope'] = 'Observed exact-alarm Settings off state, one visible toggle, checked-on full state, one Navigate up tap and the resulting unassumed app surface'
++                result['catalog_navigation_established'] = True
++                result['trigger_type_tapped'] = True
++                result['exact_alarm_explanation_ok_tapped'] = True
++                result['settings_navigation_observed'] = True
++                result['settings_inputs'] = 4
++                result['settings_inputs_per_run'] = 2
++                result['settings_enabled_state_observed'] = True
++                result['settings_return_navigation_observed'] = True
++                result['permission_api_result_observed'] = False
++                result['trigger_configuration_confirmed'] = False
++                result['status'] = 'EXACT_ALARM_ENABLED_RETURN_OBSERVATION_ONLY' if result['journey_equal'] else 'JOURNEY_DIFFERENCE'
+         if result['journey_equal'] and result.get('post_crash_continuation_observed_in_both'):
+             result['status'] = 'MATCHED_POST_CRASH_CONTINUATION_ONLY'
+         result['apk_sha256'] = [r['apk_sha256'] for r in runs]
+@@ -502,7 +517,7 @@
+     ap.add_argument('--observe-notification-readiness', action='store_true')
+     args = ap.parse_args()
+     import observed_journey
+-    if observed_journey.exact_alarm_plan() and not args.observe_notification_readiness:
++    if (observed_journey.exact_alarm_plan() or observed_journey.exact_alarm_enable_return_plan()) and not args.observe_notification_readiness:
+         ap.error('Exact-alarm navigation requires --observe-notification-readiness')
+     if args.observe_denial_handoff != args.settle_full_frames:
+         ap.error('The observed policy requires both --observe-denial-handoff and --settle-full-frames')
+@@ -523,9 +538,9 @@
+         notification_readiness.require_plan()
+         report.update(schema=notification_readiness.REPORT_SCHEMA,
+                       notification_readiness_policy=notification_readiness.POLICY)
+-        if observed_journey.exact_alarm_plan():
+-            import exact_alarm_journey
+-            report[exact_alarm_journey.POLICY_KEY] = exact_alarm_journey.POLICY
++        if observed_journey.exact_alarm_plan() or observed_journey.exact_alarm_enable_return_plan():
++            alarm = observed_journey.information_adapter()
++            report[alarm.POLICY_KEY] = alarm.POLICY
+     def save():
+         (args.output / 'journey.json').write_text(json.dumps(report, indent=2) + '\n')
+     save()
+@@ -548,7 +563,7 @@
+                 if hashlib.sha256(Path(entry['path']).read_bytes()).hexdigest() != entry['apk_sha256']:
+                     raise JourneyError('APK changed since preflight')
+                 uninstall_command = recorder.cmd(['uninstall', PACKAGE])[0]
+-                if observed_journey.exact_alarm_plan():
++                if observed_journey.exact_alarm_plan() or observed_journey.exact_alarm_enable_return_plan():
+                     run['uninstall'] = uninstall_command
+                 run['absence'], out, err = recorder.shell(['pm', 'path', PACKAGE])
+                 if not proof.absence_ok(run['absence']['returncode'], out.decode(), err.decode()):
+--- parent/tools/parity_journeys/observed_journey.py
++++ candidate/tools/parity_journeys/observed_journey.py
+@@ -55,8 +55,14 @@
+     return runner.fingerprint(runner.PLAN) == '4133e9410db84ac5636ece780b67331bf139afaa2de6b5c110c5ef5679fda85c'
+ 
+ 
++def exact_alarm_enable_return_plan():
++    return runner.fingerprint(runner.PLAN) == 'ca597b23d9c2d11ebce1ed3953d609189476d7179635f2a4c4068df0795f2211'
++
++
+ def readiness_adapter(schema=None):
+-    if schema == 6 or (schema is None and exact_alarm_plan()):
++    if schema == 7 or (schema is None and exact_alarm_enable_return_plan()):
++        import exact_alarm_enable_return_readiness as adapter
++    elif schema == 6 or (schema is None and exact_alarm_plan()):
+         import exact_alarm_readiness as adapter
+     else:
+         import notification_readiness as adapter
+@@ -70,6 +76,8 @@
+         import trigger_category_journey as adapter
+     elif len(runner.PLAN) == 13:
+         import day_time_journey as adapter
++    elif exact_alarm_enable_return_plan():
++        import exact_alarm_enable_return as adapter
+     elif exact_alarm_plan():
+         import exact_alarm_journey as adapter
+     else:
+@@ -78,13 +86,13 @@
+ 
+ 
+ def require_plan():
+-    if (len(runner.PLAN) not in (10, 12, 13, 14)
++    if (len(runner.PLAN) not in (10, 12, 13, 14, 16)
+             or list(runner.PLAN[4]) != ['notification-request', runner.PERMISSION, runner.DENY, runner.NEXT]
+             or list(runner.PLAN[5]) != ['reference-promotion', runner.PACKAGE, {'text': 'LITEAPKS'}, runner.DENY]
+             or list(runner.PLAN[6]) != ['home', runner.PACKAGE,
+                                        {'resource-id': runner.PACKAGE + ':id/navigation_home'}, {'text': 'CLOSE'}]):
+         raise runner.JourneyError('Observed policy requires the unchanged reviewed reference adapter')
+-    if len(runner.PLAN) in (10, 12, 13) or exact_alarm_plan():
++    if len(runner.PLAN) in (10, 12, 13) or exact_alarm_plan() or exact_alarm_enable_return_plan():
+         information_adapter().require_plan()
+     elif runner.fingerprint(runner.PLAN) != '69bae4f2af8e2f14c407808dbcdea91cdca009af2ae390e13b5c7fbf035a3065':
+         raise runner.JourneyError('Historical fourteen-screen plan differs from its reviewed complete identity')
+@@ -92,7 +100,7 @@
+ 
+ def required_surface(folder, shot, required, proof):
+     """Only an exact reviewed adapter may declare its final unassumed surface."""
+-    if len(runner.PLAN) in (12, 13) or exact_alarm_plan():
++    if len(runner.PLAN) in (12, 13) or exact_alarm_plan() or exact_alarm_enable_return_plan():
+         return information_adapter().required_surface(folder, shot, required, proof)
+     if len(runner.PLAN) == 10:
+         import favourite_info_journey as favourite
+@@ -111,6 +119,11 @@
+ 
+ 
+ def report_policy(report):
++    import exact_alarm_enable_return
++    if exact_alarm_enable_return_plan() and report.get('schema') != exact_alarm_enable_return.REPORT_SCHEMA:
++        raise runner.JourneyError('Exact-alarm enable/return requires schema7 and both declared policies')
++    if report.get('schema') != exact_alarm_enable_return.REPORT_SCHEMA and exact_alarm_enable_return.contains_evidence(report):
++        raise runner.JourneyError('Exact-alarm enable/return evidence cannot use another schema')
+     import exact_alarm_journey
+     if exact_alarm_plan() and report.get('schema') != exact_alarm_journey.REPORT_SCHEMA:
+         raise runner.JourneyError('Exact-alarm navigation requires schema6 and both declared policies')
+@@ -318,7 +331,7 @@
+         if action != favourite.OK or previous.get('name') != 'favourite-triggers-info':
+             raise runner.JourneyError('Favourite information input is outside its observed boundary')
+         favourite.dialog_identity(folder, before, proof)
+-    if len(runner.PLAN) in (12, 13) or exact_alarm_plan():
++    if len(runner.PLAN) in (12, 13) or exact_alarm_plan() or exact_alarm_enable_return_plan():
+         information_adapter().input_identity(folder, previous, before, action, name, proof)
+     return prior_front
+ 
