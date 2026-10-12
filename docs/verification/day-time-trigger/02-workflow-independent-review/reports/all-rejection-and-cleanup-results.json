@@ -1,0 +1,257 @@
+{
+  "inventory_faults": [
+    {
+      "inventory_fault": "omit-runtime-row",
+      "outcomes": [
+        {
+          "phase": "materialized",
+          "exit_code": 1,
+          "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+        },
+        {
+          "phase": "final",
+          "exit_code": 2,
+          "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+        }
+      ],
+      "rejected_before_copied_code_or_aapt2_execution": true
+    },
+    {
+      "inventory_fault": "empty-inventory",
+      "outcomes": [
+        {
+          "phase": "materialized",
+          "exit_code": 1,
+          "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+        },
+        {
+          "phase": "final",
+          "exit_code": 2,
+          "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+        }
+      ],
+      "rejected_before_copied_code_or_aapt2_execution": true
+    },
+    {
+      "inventory_fault": "duplicate-row",
+      "outcomes": [
+        {
+          "phase": "materialized",
+          "exit_code": 1,
+          "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+        },
+        {
+          "phase": "final",
+          "exit_code": 2,
+          "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+        }
+      ],
+      "rejected_before_copied_code_or_aapt2_execution": true
+    },
+    {
+      "inventory_fault": "reorder-rows",
+      "outcomes": [
+        {
+          "phase": "materialized",
+          "exit_code": 1,
+          "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+        },
+        {
+          "phase": "final",
+          "exit_code": 2,
+          "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+        }
+      ],
+      "rejected_before_copied_code_or_aapt2_execution": true
+    },
+    {
+      "inventory_fault": "extra-row",
+      "outcomes": [
+        {
+          "phase": "materialized",
+          "exit_code": 1,
+          "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+        },
+        {
+          "phase": "final",
+          "exit_code": 2,
+          "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+        }
+      ],
+      "rejected_before_copied_code_or_aapt2_execution": true
+    },
+    {
+      "inventory_fault": "changed-source-and-copy-retained",
+      "outcomes": [
+        {
+          "phase": "materialized",
+          "exit_code": 1,
+          "reason": "ValueError: Pinned input changed: tools/android/bootstrap_android_runtime.py"
+        },
+        {
+          "phase": "final",
+          "exit_code": 2,
+          "reason": "ValueError: Pinned input changed: tools/android/bootstrap_android_runtime.py"
+        }
+      ],
+      "rejected_before_copied_code_or_aapt2_execution": true
+    },
+    {
+      "inventory_fault": "changed-source-and-copy-omitted",
+      "outcomes": [
+        {
+          "phase": "materialized",
+          "exit_code": 1,
+          "reason": "ValueError: Pinned input changed: tools/android/bootstrap_android_runtime.py"
+        },
+        {
+          "phase": "final",
+          "exit_code": 2,
+          "reason": "ValueError: Pinned input changed: tools/android/bootstrap_android_runtime.py"
+        }
+      ],
+      "rejected_before_copied_code_or_aapt2_execution": true
+    },
+    {
+      "inventory_fault": "changed-source-and-copy-empty",
+      "outcomes": [
+        {
+          "phase": "materialized",
+          "exit_code": 1,
+          "reason": "ValueError: Pinned input changed: tools/android/bootstrap_android_runtime.py"
+        },
+        {
+          "phase": "final",
+          "exit_code": 2,
+          "reason": "ValueError: Pinned input changed: tools/android/bootstrap_android_runtime.py"
+        }
+      ],
+      "rejected_before_copied_code_or_aapt2_execution": true
+    },
+    {
+      "inventory_fault": "changed-source-and-copy-rehashed",
+      "outcomes": [
+        {
+          "phase": "materialized",
+          "exit_code": 1,
+          "reason": "ValueError: Pinned input changed: tools/android/bootstrap_android_runtime.py"
+        },
+        {
+          "phase": "final",
+          "exit_code": 2,
+          "reason": "ValueError: Pinned input changed: tools/android/bootstrap_android_runtime.py"
+        }
+      ],
+      "rejected_before_copied_code_or_aapt2_execution": true
+    },
+    {
+      "inventory_fault": "changed-copy-retained",
+      "outcomes": [
+        {
+          "phase": "materialized",
+          "exit_code": 1,
+          "reason": "ValueError: Prepared input changed before execution: tools/android/bootstrap_android_runtime.py"
+        },
+        {
+          "phase": "final",
+          "exit_code": 2,
+          "reason": "ValueError: Prepared input changed before execution: tools/android/bootstrap_android_runtime.py"
+        }
+      ],
+      "rejected_before_copied_code_or_aapt2_execution": true
+    },
+    {
+      "inventory_fault": "changed-copy-rehashed",
+      "outcomes": [
+        {
+          "phase": "materialized",
+          "exit_code": 1,
+          "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+        },
+        {
+          "phase": "final",
+          "exit_code": 2,
+          "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+        }
+      ],
+      "rejected_before_copied_code_or_aapt2_execution": true
+    },
+    {
+      "inventory_fault": "omit-reviewed-copy-role",
+      "outcomes": [
+        {
+          "phase": "materialized",
+          "exit_code": 1,
+          "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+        },
+        {
+          "phase": "final",
+          "exit_code": 2,
+          "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+        }
+      ],
+      "rejected_before_copied_code_or_aapt2_execution": true
+    }
+  ],
+  "cleanups": [
+    {
+      "case": "clean",
+      "actual_exit_code": 0,
+      "recorded_cleanup": {
+        "journey_step_exit_code": "0",
+        "diagnostic_logcat_exit_code": "0",
+        "owned_stop_marker_exit_code": "0",
+        "bounded_service_wait_exit_code": "0",
+        "owned_service_exit_code": "0",
+        "scope": "STOP is written only to this job's newly created service queue; no unrelated device or process is stopped.",
+        "service_cleanup_confirmed": true
+      }
+    },
+    {
+      "case": "failed-journey",
+      "actual_exit_code": 7,
+      "recorded_cleanup": {
+        "journey_step_exit_code": "7",
+        "diagnostic_logcat_exit_code": "0",
+        "owned_stop_marker_exit_code": "0",
+        "bounded_service_wait_exit_code": "0",
+        "owned_service_exit_code": "0",
+        "scope": "STOP is written only to this job's newly created service queue; no unrelated device or process is stopped.",
+        "service_cleanup_confirmed": true
+      }
+    },
+    {
+      "case": "failed-service",
+      "actual_exit_code": 1,
+      "recorded_cleanup": {
+        "journey_step_exit_code": "0",
+        "diagnostic_logcat_exit_code": "0",
+        "owned_stop_marker_exit_code": "0",
+        "bounded_service_wait_exit_code": "0",
+        "owned_service_exit_code": "5",
+        "scope": "STOP is written only to this job's newly created service queue; no unrelated device or process is stopped.",
+        "service_cleanup_confirmed": false
+      }
+    }
+  ],
+  "host_summaries": [
+    {
+      "label": "packaged-host-controls-0",
+      "tests": 6,
+      "individual_successes": 6,
+      "seconds": 0.017
+    },
+    {
+      "label": "packaged-host-controls-1",
+      "tests": 145,
+      "individual_successes": 145,
+      "seconds": 163.658
+    },
+    {
+      "label": "packaged-host-controls-2",
+      "tests": 10,
+      "individual_successes": 10,
+      "seconds": 0.538
+    }
+  ]
+}

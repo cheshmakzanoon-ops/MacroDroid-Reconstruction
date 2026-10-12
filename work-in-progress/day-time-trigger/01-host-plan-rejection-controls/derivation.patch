@@ -1,0 +1,205 @@
+--- parent/trigger_category_journey.py
++++ proposed/day_time_journey.py
+@@ -1,9 +1,8 @@
+ #!/usr/bin/env python3
+-"""Observe one Date/Time trigger-category expansion after the verified first-use tip.
+-
+-The twelve-screen sequence adds only the observed trigger + and Date/Time row.
+-It records the resulting app surface, then stops without selecting a trigger,
+-saving a macro, executing a macro, or changing an APK.
++"""Tap the exact observed Day/Time trigger tile after the twelve-screen prefix.
++
++The next app surface is recorded without an assumed selector. This proves only
++the declared type tap and ensuing observation; no configuration is confirmed.
+ """
+ from __future__ import annotations
+ 
+@@ -14,37 +13,35 @@
+ import editor_journey as runner
+ import favourite_info_journey as favourite
+ import observed_journey as observed
+-
+-TEN_PLAN_SHA256 = '5a8ca21b8e96b0ae2cfe55bc944e93749534209ca81b04141ce77eef0416c453'
++import trigger_category_journey as category
++
++TWELVE_PLAN_SHA256 = '940be18b226ab29de46ea48a1496238b8a2221a52077466693a34a2113bc24cc'
+ EDITOR = favourite.EDITOR
+ CATALOG = runner.PACKAGE + '/' + runner.PACKAGE + '.selectableitemlist.AddTriggerActivity'
+ TITLE = favourite.TITLE
+ OK = favourite.OK
+ DATE_TIME = {'resource-id': runner.PACKAGE + ':id/category_name', 'text': 'Date/Time'}
+ CATALOG_TITLE = {'text': 'Add Trigger'}
++DAY_TIME = {'resource-id': runner.PACKAGE + ':id/select_item_name', 'text': 'Day/Time'}
+ 
+ 
+ def expected_plan():
+-    prefix = favourite.expected_plan()
+-    if runner.fingerprint(prefix) != TEN_PLAN_SHA256:
+-        raise runner.JourneyError('Reviewed ten-screen prefix changed')
++    prefix = category.expected_plan()
++    if runner.fingerprint(prefix) != TWELVE_PLAN_SHA256:
++        raise runner.JourneyError('Reviewed twelve-screen prefix changed')
+     plan = copy.deepcopy(prefix)
+-    # The prior actual sixteen-screen run observed this exact editor after OK.
+-    plan[-1][2] = runner.TRIGGER
+-    return plan + [
+-        ['trigger-catalog', runner.PACKAGE, CATALOG_TITLE, runner.TRIGGER],
+-        ['after-trigger-date-category', runner.PACKAGE, None, DATE_TIME],
+-    ]
++    plan[-1][2] = DAY_TIME
++    return plan + [['after-day-time-trigger', runner.PACKAGE, None, DAY_TIME]]
+ 
+ 
+ def require_plan():
+     if runner.fingerprint(runner.PLAN) != runner.fingerprint(expected_plan()):
+-        raise runner.JourneyError('Trigger-category sequence differs from the reviewed two additional inputs')
++        raise runner.JourneyError('Day/Time sequence differs from the reviewed one additional input')
+ 
+ 
+ @contextmanager
+ def configured_plan():
+-    with favourite.configured_plan():
++    with category.configured_plan():
+         previous = runner.PLAN
+         try:
+             runner.PLAN = expected_plan()
+@@ -123,16 +120,59 @@
+     return runner.target(data, runner.PACKAGE, DATE_TIME, width, height)
+ 
+ 
++def day_time_identity(folder, shot, proof):
++    require_plan()
++    exact_component(folder, shot, CATALOG, proof)
++    data = proof.artifact(folder, shot['artifacts']['hierarchy'])
++    root = runner.tree(data, runner.PACKAGE)
++    title = runner.select(root, runner.PACKAGE, CATALOG_TITLE)
++    heading = runner.select(root, runner.PACKAGE, DATE_TIME)
++    node = runner.select(root, runner.PACKAGE, DAY_TIME)
++    if (title.get('class') != 'android.widget.TextView' or title.get('enabled') != 'true'
++            or heading.get('class') != 'android.widget.TextView' or heading.get('enabled') != 'true'):
++        raise runner.JourneyError('Observed Date/Time catalog title or heading changed')
++    parents = {child: parent for parent in root.iter() for child in parent}
++    chain = [node]
++    for _ in range(3):
++        if chain[-1] not in parents:
++            raise runner.JourneyError('Observed Day/Time row ancestor is missing')
++        chain.append(parents[chain[-1]])
++    roles = [
++        ('android.widget.TextView', runner.PACKAGE + ':id/select_item_name', 'false'),
++        ('android.widget.LinearLayout', '', 'false'),
++        ('android.widget.FrameLayout', runner.PACKAGE + ':id/select_item_container', 'false'),
++        ('android.widget.LinearLayout', runner.PACKAGE + ':id/select_item_row_frame', 'true'),
++    ]
++    for item, (kind, resource, clickable) in zip(chain, roles):
++        if (item.get('package') != runner.PACKAGE or item.get('class') != kind
++                or item.get('resource-id', '') != resource or item.get('enabled') != 'true'
++                or item.get('clickable') != clickable):
++            raise runner.JourneyError('Observed Day/Time row ancestor chain changed')
++    width, height, _ = observed.png_pixels(proof.artifact(folder, shot['artifacts']['screenshot']), proof)
++    containing = (0, 0, width, height)
++    for item in reversed(chain):
++        bounds = re.fullmatch(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', item.get('bounds', ''))
++        if bounds is None:
++            raise runner.JourneyError('Observed Day/Time row bounds are invalid')
++        left, top, right, bottom = map(int, bounds.groups())
++        if not (containing[0] <= left < right <= containing[2]
++                and containing[1] <= top < bottom <= containing[3]):
++            raise runner.JourneyError('Observed Day/Time row bounds are inconsistent or off screen')
++        containing = (left, top, right, bottom)
++    return runner.target(data, runner.PACKAGE, DAY_TIME, width, height)
++
++
+ def terminal_surface(folder, shot, proof):
+     require_plan()
+-    if shot.get('name') != 'after-trigger-date-category' or shot['owner'] != runner.PACKAGE:
+-        raise runner.JourneyError('Unexpected terminal trigger-category observation')
++    if shot.get('name') != 'after-day-time-trigger' or shot['owner'] != runner.PACKAGE:
++        raise runner.JourneyError('Unexpected terminal Day/Time trigger observation')
+     first = observed.component(proof.artifact(folder, shot['artifacts']['foreground']), proof)
+     last = observed.component(proof.artifact(folder, shot['artifacts']['foreground_final']), proof)
+     if first != last or last.split('/', 1)[0] != runner.PACKAGE:
+         raise runner.JourneyError('Terminal app component is not stable')
+     return {'name': shot['name'], 'owner': runner.PACKAGE, 'component': last,
+-            'surface_after_one_observed_date_category_tap': True, 'subsequent_inputs': 0}
++            'surface_after_one_observed_day_time_tap': True, 'subsequent_inputs': 0,
++            'trigger_type_tapped': True, 'trigger_configuration_confirmed': False}
+ 
+ 
+ def required_surface(folder, shot, required, proof):
+@@ -145,6 +185,8 @@
+     elif name == 'trigger-catalog':
+         category_identity(folder, shot, proof)
+     elif name == 'after-trigger-date-category':
++        day_time_identity(folder, shot, proof)
++    elif name == 'after-day-time-trigger':
+         if required is not None:
+             raise runner.JourneyError('The newly observed terminal surface has an assumed selector')
+         return terminal_surface(folder, shot, proof)
+@@ -164,6 +206,10 @@
+         if previous.get('name') != 'trigger-catalog' or action != DATE_TIME:
+             raise runner.JourneyError('Date/Time tap is outside its observed catalog boundary')
+         category_identity(folder, before, proof)
++    elif name == 'after-day-time-trigger':
++        if previous.get('name') != 'after-trigger-date-category' or action != DAY_TIME:
++            raise runner.JourneyError('Day/Time tap is outside its observed expanded-category boundary')
++        day_time_identity(folder, before, proof)
+ 
+ 
+ def main():
+--- parent/observed_journey.py
++++ proposed/observed_journey.py
+@@ -56,25 +56,27 @@
+         import favourite_info_journey as adapter
+     elif len(runner.PLAN) == 12:
+         import trigger_category_journey as adapter
++    elif len(runner.PLAN) == 13:
++        import day_time_journey as adapter
+     else:
+         raise runner.JourneyError('No reviewed information adapter for this plan')
+     return adapter
+ 
+ 
+ def require_plan():
+-    if (len(runner.PLAN) not in (10, 12, 14)
++    if (len(runner.PLAN) not in (10, 12, 13, 14)
+             or list(runner.PLAN[4]) != ['notification-request', runner.PERMISSION, runner.DENY, runner.NEXT]
+             or list(runner.PLAN[5]) != ['reference-promotion', runner.PACKAGE, {'text': 'LITEAPKS'}, runner.DENY]
+             or list(runner.PLAN[6]) != ['home', runner.PACKAGE,
+                                        {'resource-id': runner.PACKAGE + ':id/navigation_home'}, {'text': 'CLOSE'}]):
+         raise runner.JourneyError('Observed policy requires the unchanged reviewed reference adapter')
+-    if len(runner.PLAN) in (10, 12):
++    if len(runner.PLAN) in (10, 12, 13):
+         information_adapter().require_plan()
+ 
+ 
+ def required_surface(folder, shot, required, proof):
+     """Only an exact reviewed adapter may declare its final unassumed surface."""
+-    if len(runner.PLAN) == 12:
++    if len(runner.PLAN) in (12, 13):
+         return information_adapter().required_surface(folder, shot, required, proof)
+     if len(runner.PLAN) == 10:
+         import favourite_info_journey as favourite
+@@ -289,7 +291,7 @@
+         if action != favourite.OK or previous.get('name') != 'favourite-triggers-info':
+             raise runner.JourneyError('Favourite information input is outside its observed boundary')
+         favourite.dialog_identity(folder, before, proof)
+-    if len(runner.PLAN) == 12:
++    if len(runner.PLAN) in (12, 13):
+         information_adapter().input_identity(folder, previous, before, action, name, proof)
+     return prior_front
+ 
+--- parent/editor_journey.py
++++ proposed/editor_journey.py
+@@ -453,6 +453,12 @@
+                 result['catalog_navigation_established'] = True
+                 result['trigger_selected'] = False
+                 result['status'] = 'EXACT_TRIGGER_CATEGORY_OBSERVATION_ONLY' if result['journey_equal'] else 'JOURNEY_DIFFERENCE'
++            elif len(PLAN) == 13:
++                result['scope'] = 'Observed first-use dialog, trigger catalog, Date/Time category and one Day/Time trigger-type tap; the resulting app surface only'
++                result['catalog_navigation_established'] = True
++                result['trigger_type_tapped'] = True
++                result['trigger_configuration_confirmed'] = False
++                result['status'] = 'EXACT_DAY_TIME_TRIGGER_OBSERVATION_ONLY' if result['journey_equal'] else 'JOURNEY_DIFFERENCE'
+         if result['journey_equal'] and result.get('post_crash_continuation_observed_in_both'):
+             result['status'] = 'MATCHED_POST_CRASH_CONTINUATION_ONLY'
+         result['apk_sha256'] = [r['apk_sha256'] for r in runs]

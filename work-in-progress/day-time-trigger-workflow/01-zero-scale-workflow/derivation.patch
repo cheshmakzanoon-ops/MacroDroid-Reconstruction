@@ -1,0 +1,493 @@
+--- twelve-screen/prepare_trigger_journey.py
++++ thirteen-screen/prepare_trigger_journey.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Prepare pinned tools and APKs for the twelve-screen trigger-category journey."""
++"""Prepare pinned tools and APKs for the thirteen-screen trigger-category journey."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -12,10 +12,10 @@
+ import re
+ import sys
+ 
+-GUARD = 'work-in-progress/trigger-category/05-physical-identity-host-success'
++GUARD = 'work-in-progress/day-time-trigger/02-host-success'
+ ANIMATION = 'work-in-progress/trigger-category/07-zero-animation-source'
+-WORKFLOW = '.github/workflows/editor-trigger-category.yml'
+-PACKAGE = 'work-in-progress/trigger-category-workflow/02-zero-scale-workflow'
++WORKFLOW = '.github/workflows/editor-day-time-trigger.yml'
++PACKAGE = 'work-in-progress/day-time-trigger-workflow/01-zero-scale-workflow'
+ PINS = {
+     'scripts/materialize_v9.py': '99a2a50a1518bf7f960ba8bc07b9e4c25bbb882118494cc4b82d0cc87f94be0c',
+     'scripts/import_v9.py': '11a1890a9e60d3905181189df6f28963c7c59b2046bc759a28b975d9b309ffa1',
+@@ -30,7 +30,7 @@
+     'tools/android/wait_android_ready.py': '72cb3bcd56df72cd901ee724c48a44b0254235e1d7cdda6c991b985e572f34af',
+     'tools/android/configure_capture_device.py': '50b93f00b68147323be46c8311ee32d3f201683a40b1825d17a02bc51ce25ec8',
+     'tools/android/test_download_retry.py': 'bd5d871951fbf1e5f7aa3093c8c155b1c599d84ae008b90e1eda53bf3a60948a',
+-    GUARD + '/checkpoint.json': '8c985ee7da3a2f3d0dab9a9b93cac49b07246f9f78f8b0b897144c60c085f743',
++    GUARD + '/checkpoint.json': '0e010cfbace03cffa6d45e8c9157402b1b68c9a392249eb2aeae39445dc57a7d',
+     ANIMATION + '/checkpoint.json': '5cb124753f8acb7cf8e0ec070f1ddf2b2f9b49d99ad144dea6f2b37047258a48',
+ }
+ APKS = [
+@@ -87,7 +87,7 @@
+ 
+     for name, digest in PINS.items():
+         add(name, digest)
+-    for package, count in [(GUARD, 97), (ANIMATION, 9)]:
++    for package, count in [(GUARD, 114), (ANIMATION, 9)]:
+         checkpoint = json.loads(checked_file(root, package + '/checkpoint.json').read_text())
+         files = checkpoint['files']
+         if (type(files) is not list or len(files) != count
+@@ -128,12 +128,12 @@
+ 
+ def verify_prepared_inputs(root, output, report):
+     """Require exact membership and identities before executing copied code."""
+-    if report.get('passed') is not True or report.get('status') != 'FROZEN_TRIGGER_CATEGORY_INPUTS_VERIFIED':
++    if report.get('passed') is not True or report.get('status') != 'FROZEN_DAY_TIME_TRIGGER_INPUTS_VERIFIED':
+         raise ValueError('Successful frozen input preflight required')
+     expected = expected_inputs(root)
+     if type(report.get('files')) is not list or report['files'] != expected:
+         raise ValueError('Prepared input inventory is not the complete independently pinned inventory')
+-    if (report.get('plan_sha256') != '940be18b226ab29de46ea48a1496238b8a2221a52077466693a34a2113bc24cc'
++    if (report.get('plan_sha256') != '42ece5a06a280186ddf9796a4524975d478263e545260674e2b1b4cf718d46fb'
+             or report.get('requested_scales') != '0'
+             or report.get('android_executed') is not False):
+         raise ValueError('Frozen diagnostic plan or preparation scope changed')
+@@ -166,8 +166,8 @@
+     try:
+         for row in expected_inputs(root):
+             copy(row)
+-        report.update(status='FROZEN_TRIGGER_CATEGORY_INPUTS_VERIFIED', passed=True,
+-                      plan_sha256='940be18b226ab29de46ea48a1496238b8a2221a52077466693a34a2113bc24cc',
++        report.update(status='FROZEN_DAY_TIME_TRIGGER_INPUTS_VERIFIED', passed=True,
++                      plan_sha256='42ece5a06a280186ddf9796a4524975d478263e545260674e2b1b4cf718d46fb',
+                       requested_scales='0', full_runtime_1_to_1_established=False)
+     except Exception as error:
+         report.update(status='FROZEN_INPUT_PREFLIGHT_FAILED', reason=type(error).__name__ + ': ' + str(error))
+--- twelve-screen/verify_trigger_journey.py
++++ thirteen-screen/verify_trigger_journey.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Verify the declared twelve-screen trigger-category observation at scale zero."""
++"""Verify the declared thirteen-screen trigger-category observation at scale zero."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -13,9 +13,9 @@
+ 
+ 
+ def verify(root, output):
+-    result = {'status': 'TRIGGER_CATEGORY_EVIDENCE_INCOMPLETE', 'evidence_valid': False,
++    result = {'status': 'DAY_TIME_TRIGGER_EVIDENCE_INCOMPLETE', 'evidence_valid': False,
+               'full_runtime_1_to_1_established': False, 'animation_timing_parity_established': False,
+-              'scope': 'Two fixed APKs, twelve full-frame still observations and eleven inputs each at animation scale zero',
++              'scope': 'Two fixed APKs, thirteen full-frame still observations and twelve inputs each at animation scale zero',
+               'verified_at_utc': datetime.now(timezone.utc).isoformat()}
+     try:
+         preflight = json.loads((output / 'input-preflight.json').read_text())
+@@ -38,7 +38,7 @@
+         sys.path[:0] = [str(output / 'reviewed-source/tools/parity_journeys'),
+                        str(output / 'reviewed-source/project'), str(root / preparation.ANIMATION)]
+         import enable_still_animations as scales
+-        import trigger_category_journey as category
++        import day_time_journey as category
+         import editor_journey as runner
+         import android_compare as proof
+         folder = output / 'animation-settings'
+@@ -57,9 +57,9 @@
+         if (report.get('status') != 'RECORDED_NOT_PARITY' or len(report.get('runs', [])) != 2
+                 or [run['apk_sha256'] for run in report['runs']] != [row[3] for row in preparation.APKS]
+                 or report.get('plan_sha256') != preflight['plan_sha256']):
+-            raise ValueError('The exact two-APK twelve-screen observation is incomplete')
++            raise ValueError('The exact two-APK thirteen-screen observation is incomplete')
+         for run in report['runs']:
+-            if (run.get('status') != 'COMPLETE' or len(run['screens']) != 12 or len(run['transitions']) != 11
++            if (run.get('status') != 'COMPLETE' or len(run['screens']) != 13 or len(run['transitions']) != 12
+                     or settings['finished_monotonic'] > run['launch']['started_monotonic']):
+                 raise ValueError('Configuration and complete journey are not in order')
+             for name in ('environment', 'environment_after'):
+@@ -71,22 +71,23 @@
+                     raise ValueError('Zero animation settings or pinned device changed during a run')
+         with category.configured_plan():
+             replayed = runner.compare(journey, report, proof)
+-        if (replayed != captured or len(replayed.get('screens', [])) != 12
++        if (replayed != captured or len(replayed.get('screens', [])) != 13
+                 or 'reason' in replayed or replayed.get('android_runtime_executed') is not True
+                 or replayed.get('catalog_navigation_established') is not True
+-                or replayed.get('trigger_selected') is not False
++                or replayed.get('trigger_type_tapped') is not True
++                or replayed.get('trigger_configuration_confirmed') is not False
+                 or replayed.get('status') not in ('JOURNEY_DIFFERENCE',
+-                    'EXACT_TRIGGER_CATEGORY_OBSERVATION_ONLY', 'MATCHED_POST_CRASH_CONTINUATION_ONLY')):
++                    'EXACT_DAY_TIME_TRIGGER_OBSERVATION_ONLY', 'MATCHED_POST_CRASH_CONTINUATION_ONLY')):
+             raise ValueError('Independent full-frame replay differs from the recorded comparison')
+-        result.update(status=('TRIGGER_CATEGORY_TWELVE_SCREEN_MATCH_ONLY' if replayed['journey_equal']
+-                              else 'TRIGGER_CATEGORY_TWELVE_SCREEN_DIFFERENCE'), evidence_valid=True,
++        result.update(status=('DAY_TIME_TRIGGER_THIRTEEN_SCREEN_MATCH_ONLY' if replayed['journey_equal']
++                              else 'DAY_TIME_TRIGGER_THIRTEEN_SCREEN_DIFFERENCE'), evidence_valid=True,
+                       journey_equal=replayed['journey_equal'], comparison=replayed,
+                       changed_pixels=[row['changed_pixels'] for row in replayed['screens']],
+                       animation_configuration_sha256=hashlib.sha256((folder / 'animation-scales.json').read_bytes()).hexdigest(),
+                       historical_results_rewritten=False)
+     except Exception as error:
+         result['reason'] = type(error).__name__ + ': ' + str(error)
+-    (output / 'trigger-category-verification.json').write_text(json.dumps(result, indent=2) + '\n')
++    (output / 'day-time-trigger-verification.json').write_text(json.dumps(result, indent=2) + '\n')
+     return result
+ 
+ 
+--- twelve-screen/build_workflow.py
++++ thirteen-screen/build_workflow.py
+@@ -20,40 +20,40 @@
+     steps = old['jobs']['widget-method-probe']['steps']
+     bootstrap = next(step['run'] for step in steps if step['name'] == 'Install the checksum-pinned disposable Android runtime')
+     runtime = next(step['run'] for step in steps if step['name'] == 'Run both exact APKs through the independent Widget method probe')
+-    for before, after in [('ci-widget-method', 'ci-trigger-category'),
+-                          ('macrodroid-widget-tooling', 'macrodroid-trigger-category-tooling'),
++    for before, after in [('ci-widget-method', 'ci-day-time-trigger'),
++                          ('macrodroid-widget-tooling', 'macrodroid-day-time-trigger-tooling'),
+                           ('widget_', 'trigger_'), ('Widget runtime', 'trigger-category runtime'),
+                           ('probe_step_exit_code', 'journey_step_exit_code')]:
+         bootstrap, runtime = bootstrap.replace(before, after), runtime.replace(before, after)
+-    boundary = 'python3 tools/android/runtime_job.py --queue ci-trigger-category/environment/queue'
++    boundary = 'python3 tools/android/runtime_job.py --queue ci-day-time-trigger/environment/queue'
+     if runtime.count(boundary) != 1:
+         raise ValueError('Reviewed runtime command boundary changed')
+-    runtime = runtime.split(boundary, 1)[0] + '''python3 tools/android/runtime_job.py --queue ci-trigger-category/environment/queue \
+-  --id trigger-category-radio-clock --timeout 240 -- \
++    runtime = runtime.split(boundary, 1)[0] + '''python3 tools/android/runtime_job.py --queue ci-day-time-trigger/environment/queue \
++  --id day-time-trigger-radio-clock --timeout 240 -- \
+   python3 "$GITHUB_WORKSPACE/tools/android/configure_capture_device.py" \
+-    --adb "$RUNNER_TEMP/macrodroid-trigger-category-tooling/android/platform-tools/adb" \
+-    --serial emulator-5560 --output "$GITHUB_WORKSPACE/ci-trigger-category/device" --demo-clock 1200 \
+-  2>&1 | tee ci-trigger-category/device-job.log
+-python3 tools/android/runtime_job.py --queue ci-trigger-category/environment/queue \
+-  --id trigger-category-settings --timeout 360 -- \
++    --adb "$RUNNER_TEMP/macrodroid-day-time-trigger-tooling/android/platform-tools/adb" \
++    --serial emulator-5560 --output "$GITHUB_WORKSPACE/ci-day-time-trigger/device" --demo-clock 1200 \
++  2>&1 | tee ci-day-time-trigger/device-job.log
++python3 tools/android/runtime_job.py --queue ci-day-time-trigger/environment/queue \
++  --id day-time-trigger-settings --timeout 360 -- \
+   python3 "$GITHUB_WORKSPACE/work-in-progress/trigger-category/07-zero-animation-source/enable_still_animations.py" \
+-    --adb "$RUNNER_TEMP/macrodroid-trigger-category-tooling/android/platform-tools/adb" \
+-    --serial emulator-5560 --output "$GITHUB_WORKSPACE/ci-trigger-category/animation-settings" \
+-  2>&1 | tee ci-trigger-category/animation-job.log
+-python3 tools/android/runtime_job.py --queue ci-trigger-category/environment/queue \
+-  --id trigger-category-twelve-screen --timeout 2400 -- \
+-  python3 "$GITHUB_WORKSPACE/ci-trigger-category/reviewed-source/tools/parity_journeys/trigger_category_journey.py" \
+-    --source "$GITHUB_WORKSPACE/ci-trigger-category/reviewed-source/project" \
++    --adb "$RUNNER_TEMP/macrodroid-day-time-trigger-tooling/android/platform-tools/adb" \
++    --serial emulator-5560 --output "$GITHUB_WORKSPACE/ci-day-time-trigger/animation-settings" \
++  2>&1 | tee ci-day-time-trigger/animation-job.log
++python3 tools/android/runtime_job.py --queue ci-day-time-trigger/environment/queue \
++  --id day-time-trigger-thirteen-screen --timeout 2400 -- \
++  python3 "$GITHUB_WORKSPACE/ci-day-time-trigger/reviewed-source/tools/parity_journeys/day_time_journey.py" \
++    --source "$GITHUB_WORKSPACE/ci-day-time-trigger/reviewed-source/project" \
+     --original "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-original.apk" \
+     --candidate "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-combined-plugin-widget-hybrid.apk" \
+-    --output "$GITHUB_WORKSPACE/ci-trigger-category/journey" --serial emulator-5560 \
++    --output "$GITHUB_WORKSPACE/ci-day-time-trigger/journey" --serial emulator-5560 \
+     --accept-package-data-removal --observe-denial-handoff --settle-full-frames \
+-  2>&1 | tee ci-trigger-category/journey-job.log
++  2>&1 | tee ci-day-time-trigger/journey-job.log
+ '''
+     home = Path(__file__).resolve().parent
+     def sha(name):
+         return hashlib.sha256((home / name).read_bytes()).hexdigest()
+-    package = 'work-in-progress/trigger-category-workflow/02-zero-scale-workflow'
++    package = 'work-in-progress/day-time-trigger-workflow/01-zero-scale-workflow'
+     preflight = f'''set -euo pipefail
+ python3 - <<'PY'
+ from pathlib import Path
+@@ -67,42 +67,42 @@
+     if path.is_symlink() or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+         raise RuntimeError('Reviewed diagnostic helper changed: ' + name)
+ PY
+-python3 {package}/prepare_trigger_journey.py --root "$GITHUB_WORKSPACE" --output ci-trigger-category
++python3 {package}/prepare_trigger_journey.py --root "$GITHUB_WORKSPACE" --output ci-day-time-trigger
+ '''
+     host = '''set -euo pipefail
+-python3 -B -m unittest discover -s tools/android -p 'test_download_retry.py' -v 2>&1 | tee ci-trigger-category/download-tests.log
+-python3 -B -m unittest discover -s ci-trigger-category/reviewed-source/tools/parity_journeys -p 'test_*.py' -v 2>&1 | tee ci-trigger-category/journey-host-tests.log
+-python3 -B -m unittest discover -s work-in-progress/trigger-category/07-zero-animation-source -p 'test_enable_still_animations.py' -v 2>&1 | tee ci-trigger-category/animation-host-tests.log
++python3 -B -m unittest discover -s tools/android -p 'test_download_retry.py' -v 2>&1 | tee ci-day-time-trigger/download-tests.log
++python3 -B -m unittest discover -s ci-day-time-trigger/reviewed-source/tools/parity_journeys -p 'test_*.py' -v 2>&1 | tee ci-day-time-trigger/journey-host-tests.log
++python3 -B -m unittest discover -s work-in-progress/trigger-category/07-zero-animation-source -p 'test_enable_still_animations.py' -v 2>&1 | tee ci-day-time-trigger/animation-host-tests.log
+ '''
+     materialize = f'''set -euo pipefail
+-python3 scripts/materialize_v9.py --without-overlay 2>&1 | tee ci-trigger-category/materialize-toolchain.log
+-python3 scripts/assemble_artifact.py vendor/original/manifest.json 2>&1 | tee ci-trigger-category/materialize-original.log
+-python3 scripts/assemble_artifact.py work-in-progress/combined-recovery/05-full-acceptance/apk/manifest.json 2>&1 | tee ci-trigger-category/materialize-candidate.log
+-python3 {package}/prepare_trigger_journey.py --root "$GITHUB_WORKSPACE" --output ci-trigger-category --materialized 2>&1 | tee ci-trigger-category/apk-preflight.log
++python3 scripts/materialize_v9.py --without-overlay 2>&1 | tee ci-day-time-trigger/materialize-toolchain.log
++python3 scripts/assemble_artifact.py vendor/original/manifest.json 2>&1 | tee ci-day-time-trigger/materialize-original.log
++python3 scripts/assemble_artifact.py work-in-progress/combined-recovery/05-full-acceptance/apk/manifest.json 2>&1 | tee ci-day-time-trigger/materialize-candidate.log
++python3 {package}/prepare_trigger_journey.py --root "$GITHUB_WORKSPACE" --output ci-day-time-trigger --materialized 2>&1 | tee ci-day-time-trigger/apk-preflight.log
+ '''
+     final = f'''set -euo pipefail
+-mkdir -p ci-trigger-category
+-python3 {package}/verify_trigger_journey.py --root "$GITHUB_WORKSPACE" --output ci-trigger-category 2>&1 | tee ci-trigger-category/independent-comparison.log
++mkdir -p ci-day-time-trigger
++python3 {package}/verify_trigger_journey.py --root "$GITHUB_WORKSPACE" --output ci-day-time-trigger 2>&1 | tee ci-day-time-trigger/independent-comparison.log
+ '''
+-    document = '''name: Independent trigger-category twelve-screen comparison at scale zero
++    document = '''name: Independent trigger-category thirteen-screen comparison at scale zero
+ 
+ on:
+   push:
+     branches: [main]
+     paths:
+-      - '.github/workflows/editor-trigger-category.yml'
+-      - 'work-in-progress/trigger-category-workflow/02-zero-scale-workflow/**'
++      - '.github/workflows/editor-day-time-trigger.yml'
++      - 'work-in-progress/day-time-trigger-workflow/01-zero-scale-workflow/**'
+   workflow_dispatch:
+ 
+ permissions:
+   contents: read
+ 
+ concurrency:
+-  group: editor-trigger-category-${{ github.ref }}
++  group: editor-day-time-trigger-${{ github.ref }}
+   cancel-in-progress: false
+ 
+ jobs:
+-  editor-trigger-category:
++  editor-day-time-trigger:
+     runs-on: ubuntu-24.04
+     timeout-minutes: 75
+     env:
+@@ -114,11 +114,11 @@
+           persist-credentials: false
+ '''
+     for title, script, always in [
+-            ('Verify and copy the frozen twelve-screen guard and diagnostic source', preflight, False),
++            ('Verify and copy the frozen thirteen-screen guard and diagnostic source', preflight, False),
+             ('Run the frozen capture, animation and downloader host controls', host, False),
+             ('Inspect both exact APKs using the preserved AAPT2 tool', materialize, False),
+             ('Install the pinned disposable runtime and preserve toolchain identities', bootstrap, False),
+-            ('Observe the twelve declared screens with explicit zero animation scales', runtime, False),
++            ('Observe the thirteen declared screens with explicit zero animation scales', runtime, False),
+             ('Recheck raw animation settings, ordered captures and exact pixels', final, True)]:
+         document += '\n      - name: ' + title + '\n'
+         if always:
+@@ -130,10 +130,10 @@
+         if: always()
+         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+         with:
+-          name: editor-trigger-category-${{ github.sha }}
++          name: editor-day-time-trigger-${{ github.sha }}
+           retention-days: 30
+           if-no-files-found: error
+-          path: ci-trigger-category/
++          path: ci-day-time-trigger/
+           include-hidden-files: true
+ '''
+     args.output.parent.mkdir(parents=True, exist_ok=True)
+--- twelve-screen/validate_workflow.py
++++ thirteen-screen/validate_workflow.py
+@@ -55,7 +55,7 @@
+         return row
+     def source(name):
+         for package, origin in [
+-                (preparation.GUARD, workspace / 'trigger-catalog-forward/checkpoints/05-physical-identity-host-success'),
++                (preparation.GUARD, workspace / 'day-time-trigger-forward/checkpoints/02-host-success'),
+                 (preparation.ANIMATION, workspace / 'trigger-catalog-forward/checkpoints/07-zero-animation-source'),
+                 (preparation.PACKAGE, home)]:
+             if name.startswith(package + '/'):
+@@ -69,17 +69,17 @@
+         workflow = home / preparation.WORKFLOW
+         report['workflow_sha256'] = preparation.identity(workflow)['sha256']
+         parsed = yaml.load(workflow.read_text(), Loader=yaml.BaseLoader)
+-        job = parsed['jobs']['editor-trigger-category']
++        job = parsed['jobs']['editor-day-time-trigger']
+         steps = job['steps']
+         if parsed['permissions'] != {'contents': 'read'} or job['timeout-minutes'] != '75':
+             raise ValueError('Workflow permission or timeout differs')
+         if parsed['on'] != {'push': {'branches': ['main'], 'paths': [preparation.WORKFLOW,
+                          preparation.PACKAGE + '/**']}, 'workflow_dispatch': ''}:
+             raise ValueError('Unexpected workflow trigger scope')
+-        if (steps[-1].get('if') != 'always()' or steps[-1]['with']['path'] != 'ci-trigger-category/'
++        if (steps[-1].get('if') != 'always()' or steps[-1]['with']['path'] != 'ci-day-time-trigger/'
+                 or steps[-1]['with']['include-hidden-files'] != 'true'
+                 or '--disable-animations' in workflow.read_text()
+-                or 'trigger_category_journey.py"' not in workflow.read_text()
++                or 'day_time_journey.py"' not in workflow.read_text()
+                 or 'favourite_info_journey.py"' in workflow.read_text()):
+             raise ValueError('Diagnostic scope or complete evidence preservation changed')
+         if [step['uses'] for step in steps if 'uses' in step] != [
+@@ -114,7 +114,7 @@
+         row = execute('exact-frozen-preflight', ['bash', str(output / 'step-01.sh')])
+         if row['exit_code']:
+             raise ValueError('Exact real input preflight did not pass')
+-        clean = json.loads((root / 'ci-trigger-category/input-preflight.json').read_text())
++        clean = json.loads((root / 'ci-day-time-trigger/input-preflight.json').read_text())
+         if not clean['passed']:
+             raise ValueError('Input report disagrees')
+         report['prepared_input_copies'] = len(clean['files'])
+@@ -166,7 +166,7 @@
+             runtime_before.append({'source': str(original), 'path': relative, **preparation.identity(original)})
+         save(output / 'runtime-inputs-before.json', runtime_before)
+         row = execute('exact-offline-apk-preflight', [sys.executable, str(home / 'prepare_trigger_journey.py'),
+-            '--root', str(root), '--output', str(root / 'ci-trigger-category'), '--materialized'], timeout=120)
++            '--root', str(root), '--output', str(root / 'ci-day-time-trigger'), '--materialized'], timeout=120)
+         if row['exit_code']:
+             raise ValueError('Exact offline APK and AAPT2 inspection did not pass')
+ 
+@@ -188,8 +188,8 @@
+             ('omit-reviewed-copy-role', 'omit-reviewed', False, False),
+         ]
+         inventory_names = {entry['path'] for entry in inputs + runtime_before}
+-        inventory_names.update('ci-trigger-category/' + entry['copy'] for entry in clean['files'])
+-        inventory_names.add('ci-trigger-category/input-preflight.json')
++        inventory_names.update('ci-day-time-trigger/' + entry['copy'] for entry in clean['files'])
++        inventory_names.add('ci-day-time-trigger/input-preflight.json')
+         fault_name = 'tools/android/bootstrap_android_runtime.py'
+         fault_copy = next(entry['copy'] for entry in clean['files'] if entry['path'] == fault_name)
+         fault_bytes = (root / fault_name).read_bytes() + b'\n# DELIBERATE OFFLINE INVENTORY MUTATION\n'
+@@ -203,7 +203,7 @@
+                 target = case / name
+                 target.parent.mkdir(parents=True, exist_ok=True)
+                 os.link(root / name, target)
+-            case_output = case / 'ci-trigger-category'
++            case_output = case / 'ci-day-time-trigger'
+             declared = json.loads(json.dumps(clean))
+             if change_source:
+                 replace_bytes(case / fault_name, fault_bytes)
+@@ -230,7 +230,7 @@
+             outcomes = []
+             for phase, script, suffix, report_name in [
+                     ('materialized', 'prepare_trigger_journey.py', ['--materialized'], 'materialized-inputs.json'),
+-                    ('final', 'verify_trigger_journey.py', [], 'trigger-category-verification.json')]:
++                    ('final', 'verify_trigger_journey.py', [], 'day-time-trigger-verification.json')]:
+                 command = execute('inventory-' + label + '-' + phase,
+                     [sys.executable, str(home / script), '--root', str(case), '--output', str(case_output)] + suffix)
+                 value = json.loads((case_output / report_name).read_text())
+@@ -250,26 +250,26 @@
+             row = execute('packaged-host-controls-' + str(index), ['bash', '-o', 'pipefail', '-c', script], timeout=300)
+             if row['exit_code']:
+                 raise ValueError('Packaged host controls failed')
+-        runtime = next(step['run'] for step in steps if step['name'].startswith('Observe the twelve declared'))
++        runtime = next(step['run'] for step in steps if step['name'].startswith('Observe the thirteen declared'))
+         start = runtime.index('cleanup_trigger_runtime() {')
+         stop = runtime.index("trap 'exit 143' TERM") + len("trap 'exit 143' TERM")
+         cleanup = runtime[start:stop]
+         for label, step_status, service_status in [('clean', 0, 0), ('failed-journey', 7, 0), ('failed-service', 0, 5)]:
+             case = output / 'cleanup-controls' / label
+-            queue = case / 'ci-trigger-category/environment/queue'
++            queue = case / 'ci-day-time-trigger/environment/queue'
+             queue.mkdir(parents=True)
+-            adb = case / 'tooling/macrodroid-trigger-category-tooling/android/platform-tools/adb'
++            adb = case / 'tooling/macrodroid-day-time-trigger-tooling/android/platform-tools/adb'
+             adb.parent.mkdir(parents=True)
+             adb.write_text('#!/bin/sh\nprintf "SIMULATED OFFLINE DIAGNOSTIC ONLY\\n"\nexit 0\n')
+             adb.chmod(0o755)
+             script = output / ('cleanup-' + label + '.sh')
+             script.write_text('set -euo pipefail\n' +
+-                "bash -c 'for ((n=0;n<200;n++)); do if test -e ci-trigger-category/environment/queue/STOP; then exit \"$1\"; fi; sleep 0.01; done; exit 99' _ " + str(service_status) + ' &\n' +
++                "bash -c 'for ((n=0;n<200;n++)); do if test -e ci-day-time-trigger/environment/queue/STOP; then exit \"$1\"; fi; sleep 0.01; done; exit 99' _ " + str(service_status) + ' &\n' +
+                 'trigger_service_pid=$!\n' + cleanup + '\nexit ' + str(step_status) + '\n')
+             row = execute('owned-cleanup-' + label, ['bash', str(script)], cwd=case,
+                           extra={'RUNNER_TEMP': str(case / 'tooling')}, timeout=10)
+             expected = step_status or (1 if service_status else 0)
+-            value = json.loads((case / 'ci-trigger-category/runtime-cleanup.json').read_text())
++            value = json.loads((case / 'ci-day-time-trigger/runtime-cleanup.json').read_text())
+             if (row['exit_code'] != expected or not (queue / 'STOP').is_file()
+                     or value['service_cleanup_confirmed'] is not (service_status == 0)):
+                 raise ValueError('Owned cleanup status or evidence mismatch')
+@@ -278,10 +278,10 @@
+                 raise ValueError('Baseline input changed during validation: ' + entry['source'])
+         if preparation.identity(workflow)['sha256'] != report['workflow_sha256']:
+             raise ValueError('Workflow changed during validation')
+-        report.update(status='OFFLINE_TRIGGER_CATEGORY_WORKFLOW_VALIDATED', passed=True,
++        report.update(status='OFFLINE_DAY_TIME_TRIGGER_WORKFLOW_VALIDATED', passed=True,
+                       source_apks_and_preserved_tool_bytes_unchanged=True)
+     except Exception as error:
+-        report.update(status='OFFLINE_TRIGGER_CATEGORY_WORKFLOW_REJECTED', reason=type(error).__name__ + ': ' + str(error))
++        report.update(status='OFFLINE_DAY_TIME_TRIGGER_WORKFLOW_REJECTED', reason=type(error).__name__ + ': ' + str(error))
+     finally:
+         report['finished_utc'] = datetime.now(timezone.utc).isoformat()
+         save(output / 'result.json', report)
+--- twelve-screen/freeze_trigger_zero_workflow.py
++++ thirteen-screen/freeze_day_time_workflow.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Freeze the separate zero-scale twelve-screen workflow and exact offline evidence."""
++"""Freeze the separate zero-scale thirteen-screen workflow and exact offline evidence."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -37,9 +37,9 @@
+         raise ValueError('The exact published candidate commit is required')
+     source, evidence, output = [path.resolve() for path in (args.source, args.evidence, args.output)]
+     result = json.loads((evidence / 'result.json').read_text())
+-    if result.get('passed') is not True or result.get('status') != 'OFFLINE_TRIGGER_CATEGORY_WORKFLOW_VALIDATED':
++    if result.get('passed') is not True or result.get('status') != 'OFFLINE_DAY_TIME_TRIGGER_WORKFLOW_VALIDATED':
+         raise ValueError('A complete closed positive offline validation is required')
+-    workflow = source / '.github/workflows/editor-trigger-category.yml'
++    workflow = source / '.github/workflows/editor-day-time-trigger.yml'
+     if identity(workflow)['sha256'] != result['workflow_sha256']:
+         raise ValueError('Workflow differs from the measured validation')
+     originals = json.loads((evidence / 'inputs-before.json').read_text())
+@@ -60,10 +60,10 @@
+         files.append({'path': relative, **expected})
+ 
+     for name in ('prepare_trigger_journey.py', 'verify_trigger_journey.py', 'build_workflow.py',
+-                 'validate_workflow.py', '.github/workflows/editor-trigger-category.yml',
+-                 'parent-source-identities.json', 'derivation.patch'):
++                 'validate_workflow.py', '.github/workflows/editor-day-time-trigger.yml',
++                 'parent-source-identities.json', 'derivation.patch', 'derive_workflow.py'):
+         copy(source / name, name)
+-    copy(Path(__file__), 'freeze_trigger_zero_workflow.py')
++    copy(Path(__file__), 'freeze_day_time_workflow.py')
+     copy(evidence / 'result.json', 'offline-validation.json')
+ 
+     external = {row['sha256']: {key: row[key] for key in ('source', 'path', 'bytes', 'sha256')}
+@@ -135,44 +135,10 @@
+                     'restoration': 'For each regular file, copy its archive_member bytes or exact external_input_sha256 bytes to path with mode; never restore symlink controls automatically.'})
+     files.append({'path': manifest.name, **identity(manifest)})
+     readme = output / 'README.md'
+-    readme.write_text('''# Twelve-screen trigger-category observation at animation scale zero
++    readme.write_text('# Day/Time trigger: thirteen observed screens at animation scale zero\n\nThis separate workflow adds one Day/Time type tap to the exact twelve-screen prefix. Both raw AddTriggerActivity captures identify the nearest clickable row at (184, 626). The resulting app surface is observed without assuming its activity or controls. Its terminal component must be stable and equal in both runs; no trigger configuration is confirmed and no macro is saved or executed.\n\nThe original84333011 and combined5f635e APKs, API35 runtime, nineteen raw zero-scale configuration commands, radio/demo-clock preparation, exact input inventory, owned service cleanup and complete raw artifact preservation remain independently bound. Every one of the thirteen PNG/XML pairs is compared in full with a zero changed-pixel threshold. Shared crash continuation remains explicitly scoped.\n\nThe earlier twelve-screen run38216299675 has a real five-pixel intro difference. It remains a failure. This new workflow extends the observed interaction space; its fresh Android outcome must be evaluated independently. Offline host and workflow controls are not an Android or whole-application parity result.\n\nCheckpoint01 preserves the first guard attempt, including a fourteen-step plan identity bypass and an unsupported nested-context test assumption. Guard02 fixes the complete historical plan identity and records corrected host controls. All input copies and raw offline outputs are mapped to exact deduplicated payloads. Exact previously published APK/tool bytes retain commit/manifest references, and deliberate symlink controls remain inert metadata.\n')
+ 
+-This prepared proposal extends the declared first-use journey by two observed
+-inputs: the editor's Add Trigger button and the Date/Time category. The category
+-selector is bound to the preserved actual AddTriggerActivity hierarchy and its
+-clickable ancestor; the final surface is freshly observed after that input.
+-The recorder stops without selecting a trigger, saving or executing a macro.
+-
+-The original APK and the exact combined 5f635e candidate are pinned independently
+-of artifacts/current. This separate experiment explicitly uses animation scales
+-of zero, with monotonic raw configuration evidence before capture and repeated
+-settings/identity checks around both runs. It compares twelve full PNG/XML pairs
+-using the existing zero-pixel rule and binds the paired terminal components.
+-Motion, timing, crash-free lifecycle and whole-application parity remain outside
+-this still-observation result. Prior scale-zero and ten-screen results remain
+-separate and are not relabelled as this new measurement.
+-
+-The workflow derives from the preserved twelve-screen normal-scale proposal
+-(checkpoint 3bde1da21b4c3243ac4c87f582db42ac334c3831556aa36be41aa2a9d4e1479c),
+-which inherits the reviewed Normal03 complete-input and owned-runtime checks.
+-Normal03 run 38212813248 stopped on intro-2 for both APKs: none of the five
+-original or six candidate attempt frames formed a consecutive identical pair.
+-That actual failure remains separate. The new nine-file zero-scale preparation
+-package includes ten host tests and binds all nineteen raw configuration commands. Both materialized and final verification
+-independently reconstruct the full ordered inventory from immutable file and
+-checkpoint pins; missing, empty, duplicate, reordered, extra or rehashed rows
+-cannot omit a dependency. The full Trigger05 capture guard enforces chronology
+-and physical-file identity. All declared raw input and output paths are retained
+-with a deduplicated payload mapping; exact separately published APK/tool bytes
+-have pinned commit/manifest references. Deliberate symlinks remain inert metadata.
+-
+-The included offline controls are host/metadata checks, not Android execution.
+-This package remains inactive until independently reviewed and its exact
+-workflow is published. Its complete fresh Android result must be evaluated
+-with the unchanged twelve-screen comparator and preserved input copies.
+-''')
+     files.append({'path': readme.name, **identity(readme)})
+-    checkpoint = {'status': 'TRIGGER_CATEGORY_WORKFLOW_OFFLINE_CONTROLS_PASSED_REVIEW_PENDING',
++    checkpoint = {'status': 'DAY_TIME_TRIGGER_WORKFLOW_OFFLINE_CONTROLS_PASSED_REVIEW_PENDING',
+                   'created_utc': datetime.now(timezone.utc).isoformat(), 'android_executed': False,
+                   'active_changes': False, 'workflow_sha256': identity(workflow)['sha256'],
+                   'offline_validation': result, 'evidence_files': len(entries),
