@@ -1,0 +1,98 @@
+{
+  "status": "WIDGET_METADATA_CORRECTED_APPLICATION_INPUTS_UNCHANGED",
+  "passed": true,
+  "started_utc": "2026-10-12T04:13:30.743482+00:00",
+  "private_project": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+  "inherited_preparation": {
+    "path": "/workspace/scratch/4130730d15aa/widget-recovery/reports/signed-integration-06/preparation.json",
+    "bytes": 20081,
+    "sha256": "87ce8346a82f454c6bbd939489b902e3d559ea7e6553175757dfe55f7ffb9742"
+  },
+  "closed_initial_failure": {
+    "path": "/workspace/scratch/4130730d15aa/widget-recovery/reports/signed-integration-06/five-gates/result.json",
+    "bytes": 3712,
+    "sha256": "0920e6d620c993b99efe727604b013a0d5dcfd3adb131b77d4bb9132eb3e7069"
+  },
+  "frozen_failure": {
+    "path": "/workspace/scratch/4130730d15aa/widget-recovery/checkpoints/06-initial-signed-failure/checkpoint.json",
+    "bytes": 6212,
+    "sha256": "538e2252699bde6e089f49ff0167e620e3b13811cc62b9bff2c3ca7ef947e0ce"
+  },
+  "commands": [
+    {
+      "label": "verify-closed-inputs",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "release_integrity.py",
+        "verify"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:13:31.180446+00:00",
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:13:50.912354+00:00",
+      "elapsed_seconds": 19.732022,
+      "log": {
+        "path": "verify-closed-inputs.log",
+        "bytes": 304,
+        "sha256": "bf9728ac73a10088472c749d8496ba659a999c3fd41b1aa7e30c11a749c6ec21"
+      }
+    },
+    {
+      "label": "record-corrected-inputs",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "release_integrity.py",
+        "record"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:13:51.096252+00:00",
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:14:26.751860+00:00",
+      "elapsed_seconds": 35.655683,
+      "log": {
+        "path": "record-corrected-inputs.log",
+        "bytes": 246,
+        "sha256": "7ee1db42fec18bdaeddb8c67bb4ed171d0e443476fd9359e1cd53b80fd9a2bf8"
+      }
+    }
+  ],
+  "changes": [
+    {
+      "path": "tests/test_build.py",
+      "before": {
+        "bytes": 10201,
+        "sha256": "866b0d2b83d89d787de73022f546ab11e4e9a8f7118261806b09eca35460e308"
+      },
+      "after": {
+        "bytes": 10201,
+        "sha256": "83fbde6451c9d85c5cc926e4a569a570c1fec98db95ab3dfe127a384a9504903"
+      }
+    },
+    {
+      "path": "tests/fixtures/provenance.json",
+      "before": {
+        "bytes": 518,
+        "sha256": "82d683ff234ce4f0ac3a461e96481cee8ee43b1555d08a5e58294d6f81f349b5"
+      },
+      "after": {
+        "bytes": 526,
+        "sha256": "53d30a05bf0a508ee5cdcc5c5d28e35413bc3836c580cbd3a73615af1912a58c"
+      }
+    }
+  ],
+  "metadata_changed_paths": [
+    "tests/fixtures/provenance.json",
+    "tests/test_build.py"
+  ],
+  "application_input_changes": [],
+  "source_input_files": 81264,
+  "previous_input_snapshot_sha256": "a729f01fc4b0dc136c980501c144b43769332c324f8c6f63438107d605291691",
+  "source_input_snapshot_sha256": "46c68873d3ff573da2d6676507b2dd6e82e7077c9ed7bcac422e45b0939a8659",
+  "apk_unchanged": {
+    "bytes": 94683439,
+    "sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f"
+  },
+  "finished_utc": "2026-10-12T04:15:21.166306+00:00"
+}

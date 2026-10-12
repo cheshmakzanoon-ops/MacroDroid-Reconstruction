@@ -1,0 +1,2064 @@
+--- a/.github/workflows/editor-journey.yml
++++ b/.github/workflows/editor-journey.yml
+@@ -53,7 +53,7 @@
+           trap 'timeout 30s adb -s emulator-5560 logcat -d -b crash -b events -v threadtime > ci-editor/lifecycle.log 2>&1 || true; mkdir -p ci-editor/environment/queue; touch ci-editor/environment/queue/STOP; wait "$service" || true' EXIT
+           python3 tools/android/wait_android_ready.py --evidence ci-editor/environment --timeout 900
+           python3 tools/android/runtime_job.py --queue ci-editor/environment/queue --timeout 240 -- python3 "$GITHUB_WORKSPACE/tools/android/configure_capture_device.py" --serial emulator-5560 --output "$GITHUB_WORKSPACE/ci-editor/device" --demo-clock 1200 --disable-animations
+-          python3 tools/android/runtime_job.py --queue ci-editor/environment/queue --timeout 2400 -- python3 "$GITHUB_WORKSPACE/tools/parity_journeys/supplied_reference_journey.py" --source "$GITHUB_WORKSPACE/workspace/MacroDroid_v9" --original "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-original.apk" --candidate "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-current-hybrid.apk" --output "$GITHUB_WORKSPACE/ci-editor/journey" --serial emulator-5560 --accept-package-data-removal
++          python3 tools/android/runtime_job.py --queue ci-editor/environment/queue --timeout 2400 -- python3 "$GITHUB_WORKSPACE/tools/parity_journeys/favourite_info_journey.py" --source "$GITHUB_WORKSPACE/workspace/MacroDroid_v9" --original "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-original.apk" --candidate "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-current-hybrid.apk" --output "$GITHUB_WORKSPACE/ci-editor/journey" --serial emulator-5560 --accept-package-data-removal --observe-denial-handoff --settle-full-frames
+       - name: Preserve all measured results including incomplete runs
+         if: always()
+         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+--- a/tools/parity_journeys/editor_journey.py
++++ b/tools/parity_journeys/editor_journey.py
+@@ -15,6 +15,7 @@
+ import time
+ import uuid
+ import xml.etree.ElementTree as ET
++from datetime import datetime, timezone
+ from pathlib import Path
+ 
+ PACKAGE = 'com.arlosoft.macrodroid'
+@@ -128,18 +129,37 @@
+             raise JourneyError('ADB unavailable')
+         self.count = 0
+         self.log = []
++        self.capture_policy = None
++        self.capture_events = []
++        self.deadline = None
+     def save(self, name, data):
+         (self.folder / name).write_bytes(data)
+         return {'path': name, 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
+     def cmd(self, args, timeout=120):
++        if self.deadline is not None:
++            timeout = min(timeout, self.deadline - time.monotonic())
++            if timeout <= 0:
++                raise JourneyError('Observed command deadline expired before execution')
+         self.count += 1
+         name = f'command-{self.count:05}'
+-        p = subprocess.run([self.adb, '-s', self.serial, *args], capture_output=True, timeout=timeout)
+-        item = {'argv': args, 'returncode': p.returncode,
+-                'stdout': self.save(name + '.stdout', p.stdout),
+-                'stderr': self.save(name + '.stderr', p.stderr)}
++        started = time.monotonic()
++        started_utc = datetime.now(timezone.utc).isoformat()
++        timed_out = False
++        try:
++            p = subprocess.run([self.adb, '-s', self.serial, *args], capture_output=True, timeout=timeout)
++            code, out, err = p.returncode, p.stdout, p.stderr
++        except subprocess.TimeoutExpired as error:
++            code, out, err = None, error.stdout or b'', error.stderr or b''
++            timed_out = True
++        item = {'argv': args, 'returncode': code, 'timed_out': timed_out,
++                'started_utc': started_utc, 'started_monotonic': started,
++                'finished_monotonic': time.monotonic(), 'timeout_seconds': timeout,
++                'stdout': self.save(name + '.stdout', out),
++                'stderr': self.save(name + '.stderr', err)}
+         self.log.append(item)
+-        return item, p.stdout, p.stderr
++        if timed_out:
++            raise JourneyError('Device command timed out; partial output retained')
++        return item, out, err
+     def shell(self, args, timeout=120):
+         return self.cmd(['shell', shlex.join(args)], timeout)
+     def ok(self, args):
+@@ -157,6 +177,11 @@
+             result['display_' + name] = self.ok(['wm', name]).decode().strip()
+         return result
+     def snapshot(self, label, owner):
++        if getattr(self, 'capture_policy', None) is not None:
++            import observed_journey
++            return observed_journey.settle(self, label, owner, self._snapshot_once)
++        return self._snapshot_once(label, owner)
++    def _snapshot_once(self, label, owner):
+         started = time.monotonic()
+         a = {}
+         a['pid_first'] = self.save(label + '-pid-first.txt', self.ok(['pidof', PACKAGE]))
+@@ -175,8 +200,13 @@
+             raise JourneyError('Screenshot failed')
+         a['screenshot'] = self.save(label + '.png', png)
+         time.sleep(max(0, 1.05 - (time.monotonic() - started)))
++        if getattr(self, 'capture_policy', None) is not None:
++            a['foreground_final'] = self.save(label + '-foreground-final.txt', self.ok(['dumpsys', 'activity', 'activities']))
+         a['pid_final'] = self.save(label + '-pid-final.txt', self.ok(['pidof', PACKAGE]))
+-        result = {'owner': owner, 'artifacts': a, 'sample_interval_seconds': time.monotonic() - started}
++        finished = time.monotonic()
++        result = {'owner': owner, 'artifacts': a, 'sample_interval_seconds': finished - started}
++        if getattr(self, 'capture_policy', None) is not None:
++            result['observation'] = {'started_monotonic': started, 'finished_monotonic': finished}
+         # Persist even an unexpected screen as diagnostic evidence before validation.
+         self.save(label + '-snapshot.json', json.dumps(result, indent=2).encode())
+         validate_snapshot(self.folder, result, self.proof)
+@@ -192,12 +222,34 @@
+     data = proof.artifact(folder, a['hierarchy'])
+     root = tree(data, shot['owner'])
+     png = proof.artifact(folder, a['screenshot'])
+-    width, height, pixels = proof.png_pixels(png)
++    if 'observation' in shot:
++        import observed_journey
++        width, height, pixels = observed_journey.png_pixels(png, proof)
++    else:
++        width, height, pixels = proof.png_pixels(png)
+     return canonical(root), width, height, pixels, proof.color_metadata(png)
+ 
+-def capture_transition(recorder, previous, label, name, action, proof):
++def capture_transition(recorder, previous, label, name, action, proof, run=None):
++    if getattr(recorder, 'capture_policy', None) is not None:
++        import observed_journey
++        with observed_journey.command_budget(recorder, MAX_PRECONDITION_AGE):
++            return _capture_transition(recorder, previous, label, name, action, proof, run)
++    return _capture_transition(recorder, previous, label, name, action, proof, run)
++
++def _capture_transition(recorder, previous, label, name, action, proof, run=None):
+     # Acquisition can be slow: the freshness budget includes the entire snapshot.
+     started = time.monotonic()
++    policy = getattr(recorder, 'capture_policy', None)
++    diagnostics = None
++    installed_guard = None
++    if policy is not None:
++        import observed_journey
++        if action == DENY:
++            diagnostics = observed_journey.boundary_diagnostics(recorder)
++        if name == 'after-favourite-info':
++            import favourite_info_journey as favourite
++            favourite.require_plan()
++            installed_guard = favourite.installed_guard(recorder, run)
+     before = recorder.snapshot(label + '-before', previous['owner'])
+     proof.live_pids(proof.artifact(recorder.folder, previous['artifacts']['pid_final']).decode(),
+                     proof.artifact(recorder.folder, before['artifacts']['pid_final']).decode())
+@@ -207,26 +259,42 @@
+     if artifact_path(recorder.folder, before['artifacts']['hierarchy'], proof) == artifact_path(
+             recorder.folder, previous['artifacts']['hierarchy'], proof):
+         raise JourneyError('Reused stale input precondition')
++    expected_component = None
++    if policy is not None:
++        expected_component = observed_journey.input_identity(
++            recorder.folder, previous, before, action, name, proof, label.split('-', 1)[0])
+     argv = ['input', 'keyevent', '4'] if action == 'BACK' else ['input', 'tap', *map(str, target(
+         proof.artifact(recorder.folder, before['artifacts']['hierarchy']), previous['owner'], action,
+         prior_state[1], prior_state[2]))]
+     # These observations occur after the dump, retrieval, screenshot and UI checks.
+     live = {}
++    live_commands = {}
+     for key, args in [('pid', ['pidof', PACKAGE]), ('foreground', ['dumpsys', 'activity', 'activities'])]:
+         item, out, err = recorder.shell(args)
+         live[key] = recorder.save(label + '-preinput-' + key + '.txt', out)
++        if policy is not None:
++            live_commands[key] = item
+         if type(item['returncode']) is not int or item['returncode'] != 0 or err.strip():
+             raise JourneyError('Immediate input ' + key + ' check failed')
+         if key == 'pid':
+             proof.live_pids(proof.artifact(recorder.folder, before['artifacts']['pid_final']).decode(), out.decode())
+         elif not resumed(out.decode(), previous['owner']):
+             raise JourneyError('Expected activity left the foreground before input')
++        elif expected_component is not None and observed_journey.component(out, proof) != expected_component:
++            raise JourneyError('Expected component left the foreground before input')
+     age = time.monotonic() - started
+     if not 0 <= age <= MAX_PRECONDITION_AGE:
+         raise JourneyError('Input precondition expired')
+     cmd, out, err = recorder.shell(argv)
+     transition = {'to': name, 'action': action, 'before': before, 'preinput_artifacts': live,
+                   'precondition_age_seconds': age, 'command': cmd}
++    if policy is not None:
++        transition['observation_started_monotonic'] = started
++        transition['preinput_commands'] = live_commands
++        if diagnostics is not None:
++            transition['pre_denial_diagnostics'] = diagnostics
++        if installed_guard is not None:
++            transition['pre_ok_installed_identity'] = installed_guard
+     if cmd['returncode'] or out.strip() or err.strip():
+         raise JourneyError('Input did not complete cleanly')
+     return transition
+@@ -236,7 +304,9 @@
+               'scope': 'Fresh install, notification denial, home and empty-editor catalog navigation only',
+               'screens': [], 'masks_used': False, 'android_runtime_executed': False, 'macros_executed': False, 'macros_saved': False}
+     try:
+-        if report.get('schema') != SCHEMA or report.get('plan_sha256') != fingerprint(PLAN) or report.get('status') != 'RECORDED_NOT_PARITY':
++        import observed_journey
++        policy = observed_journey.report_policy(report)
++        if report.get('plan_sha256') != fingerprint(PLAN) or report.get('status') != 'RECORDED_NOT_PARITY':
+             raise JourneyError('Unexpected journey schema or plan')
+         runs = report['runs']
+         if len(runs) != 2 or [r['label'] for r in runs] != ['original', 'candidate']:
+@@ -253,6 +323,8 @@
+         if not re.fullmatch('[0-9a-f]{64}', runs[1]['apk_sha256']):
+             raise JourneyError('Invalid candidate checksum')
+         states = []
++        handoffs = []
++        terminal_surfaces = []
+         for run in runs:
+             if run['status'] != 'COMPLETE' or run['environment'] != run['environment_after']:
+                 raise JourneyError('Incomplete run or changed environment')
+@@ -273,6 +345,7 @@
+             if len(run['screens']) != len(PLAN) or len(run['transitions']) != len(PLAN) - 1:
+                 raise JourneyError('Wrong number of screens or transitions')
+             collected = []
++            run_handoff = None
+             anchor = proof.artifact(folder, run['screens'][0]['artifacts']['pid_first']).decode()
+             for index, (screen, step) in enumerate(zip(run['screens'], PLAN)):
+                 name, owner, required, action = step
+@@ -280,9 +353,14 @@
+                     raise JourneyError('Screen order/owner mismatch')
+                 if any(not item['path'].startswith(run['label'] + '-') for item in screen['artifacts'].values()):
+                     raise JourneyError('Cross-run snapshot artifact reuse')
+-                state = validate_snapshot(folder, screen, proof)
+-                select(tree(proof.artifact(folder, screen['artifacts']['hierarchy']), owner), owner, required)
+-                proof.live_pids(anchor, proof.artifact(folder, screen['artifacts']['pid_final']).decode())
++                state = (observed_journey.stable_snapshot(folder, screen, proof, run['label'])
++                         if policy is not None else validate_snapshot(folder, screen, proof))
++                if policy is not None:
++                    terminal = observed_journey.required_surface(folder, screen, required, proof)
++                    if terminal is not None:
++                        terminal_surfaces.append(terminal)
++                else:
++                    select(tree(proof.artifact(folder, screen['artifacts']['hierarchy']), owner), owner, required)
+                 if index:
+                     transition = run['transitions'][index - 1]
+                     before = transition['before']
+@@ -294,6 +372,10 @@
+                     if artifact_path(folder, before['artifacts']['hierarchy'], proof) == artifact_path(
+                             folder, prior['artifacts']['hierarchy'], proof):
+                         raise JourneyError('Reused stale input precondition')
++                    expected_component = None
++                    if policy is not None:
++                        expected_component = observed_journey.input_identity(
++                            folder, prior, before, action, name, proof, run['label'])
+                     proof.live_pids(anchor, proof.artifact(folder, before['artifacts']['pid_final']).decode())
+                     live = transition['preinput_artifacts']
+                     if set(live) != {'pid', 'foreground'} or any(
+@@ -307,6 +389,9 @@
+                     proof.live_pids(anchor, proof.artifact(folder, live['pid']).decode())
+                     if not resumed(proof.artifact(folder, live['foreground']).decode(), prior['owner']):
+                         raise JourneyError('Expected activity was not foreground immediately before input')
++                    if expected_component is not None and observed_journey.component(
++                            proof.artifact(folder, live['foreground']), proof) != expected_component:
++                        raise JourneyError('Expected component was not foreground immediately before input')
+                     age = transition['precondition_age_seconds']
+                     if type(age) not in (int, float) or not 0 <= age <= MAX_PRECONDITION_AGE:
+                         raise JourneyError('Expired input precondition')
+@@ -315,8 +400,36 @@
+                     if transition.get('to') != name or transition.get('action') != action or transition['command']['argv'] != ['shell', shlex.join(expected)]:
+                         raise JourneyError('Input command differs from observed plan')
+                     evidence_command(folder, transition['command'], proof, clean=True)
++                    if policy is not None:
++                        observed_journey.verify_preinput(folder, transition, proof)
++                        if name == 'reference-promotion':
++                            run_handoff = observed_journey.verified_handoff(folder, run, transition, prior, screen, proof)
++                            anchor = proof.artifact(folder, screen['artifacts']['pid_first']).decode()
++                        elif 'process_handoff' in transition or 'pre_denial_diagnostics' in transition:
++                            raise JourneyError('Unplanned process-boundary evidence')
++                        if name == 'after-favourite-info':
++                            import favourite_info_journey as favourite
++                            favourite.verify_installed_guard(folder, transition, run, proof)
++                        elif 'pre_ok_installed_identity' in transition:
++                            raise JourneyError('Unplanned information-dialog installed-APK guard')
++                proof.live_pids(anchor, proof.artifact(folder, screen['artifacts']['pid_final']).decode())
+                 collected.append(state)
+             states.append(collected)
++            if policy is not None:
++                if run_handoff is None:
++                    raise JourneyError('Missing observed notification boundary')
++                handoffs.append(run_handoff)
++        if policy is not None:
++            observed_journey.capture_events(folder, report, proof)
++            result['capture_policy'] = policy
++            result['process_handoff_outcomes'] = handoffs
++            result['process_handoff_outcomes_equal'] = handoffs[0] == handoffs[1]
++            result['process_handoff_cause_established'] = all(
++                item['cause'] == 'RECORDED_JAVA_FATAL_EXCEPTION' for item in handoffs)
++            result['crash_free_run_established'] = False
++            result['crash_literal_messages_compared_for_equality'] = False
++            result['post_crash_continuation_observed_in_both'] = all(
++                item['pid_replaced'] and item['cause'] == 'RECORDED_JAVA_FATAL_EXCEPTION' for item in handoffs)
+         result['android_runtime_executed'] = True
+         for step, a, b in zip(PLAN, *states):
+             same_size = a[1:3] == b[1:3]
+@@ -324,8 +437,19 @@
+             result['screens'].append({'name': step[0], 'hierarchy_equal': a[0] == b[0], 'same_size': same_size,
+                                       'changed_pixels': changed, 'color_metadata_equal': a[4] == b[4],
+                                       'equal': a == b})
+-        result['journey_equal'] = all(s['equal'] for s in result['screens'])
++        result['journey_equal'] = all(s['equal'] for s in result['screens']) and (not handoffs or handoffs[0] == handoffs[1])
+         result['status'] = 'EXACT_EDITOR_JOURNEY_MATCH_ONLY' if result['journey_equal'] else 'JOURNEY_DIFFERENCE'
++        if terminal_surfaces:
++            if len(terminal_surfaces) != 2:
++                raise JourneyError('Missing paired terminal surface identity')
++            result['terminal_surfaces'] = terminal_surfaces
++            result['terminal_surface_identities_equal'] = terminal_surfaces[0] == terminal_surfaces[1]
++            result['journey_equal'] &= result['terminal_surface_identities_equal']
++            result['scope'] = 'Nine observed intro, notification, promotion, home/editor and information-dialog stills; one OK tap and its first app surface only'
++            result['catalog_navigation_established'] = False
++            result['status'] = 'EXACT_OBSERVED_DIALOG_JOURNEY_MATCH_ONLY' if result['journey_equal'] else 'JOURNEY_DIFFERENCE'
++        if result['journey_equal'] and result.get('post_crash_continuation_observed_in_both'):
++            result['status'] = 'MATCHED_POST_CRASH_CONTINUATION_ONLY'
+         result['apk_sha256'] = [r['apk_sha256'] for r in runs]
+     except (OSError, ValueError, KeyError, TypeError, IndexError, AttributeError, ET.ParseError) as exc:
+         result['reason'] = str(exc)
+@@ -339,12 +463,21 @@
+     ap.add_argument('--output', type=Path, required=True)
+     ap.add_argument('--serial', required=True)
+     ap.add_argument('--accept-package-data-removal', action='store_true')
++    ap.add_argument('--observe-denial-handoff', action='store_true')
++    ap.add_argument('--settle-full-frames', action='store_true')
+     args = ap.parse_args()
++    if args.observe_denial_handoff != args.settle_full_frames:
++        ap.error('The observed policy requires both --observe-denial-handoff and --settle-full-frames')
++    if any(step[2] is None for step in PLAN) and not args.observe_denial_handoff:
++        ap.error('The information-dialog adapter requires --observe-denial-handoff and --settle-full-frames')
+     sys.path.insert(0, str(args.source.resolve()))
+     import android_compare as proof
+     from android_acceptance import prevalidate_pair
+     args.output.mkdir(parents=True, exist_ok=False)
+     report = {'schema': SCHEMA, 'plan_sha256': fingerprint(PLAN), 'plan': PLAN, 'runs': [], 'status': 'INCOMPLETE'}
++    if args.observe_denial_handoff:
++        import observed_journey
++        report.update(schema=observed_journey.REPORT_SCHEMA, capture_policy=observed_journey.POLICY, capture_events=[])
+     def save():
+         (args.output / 'journey.json').write_text(json.dumps(report, indent=2) + '\n')
+     save()
+@@ -353,6 +486,9 @@
+             raise JourneyError('Explicit package data removal acceptance required')
+         pair = prevalidate_pair(args.original.resolve(), args.candidate.resolve())
+         recorder = Recorder(args.output, args.serial, proof)
++        if args.observe_denial_handoff:
++            observed_journey.require_plan()
++            recorder.capture_policy = observed_journey.POLICY
+         props = recorder.environment()
+         if props['ro.build.version.sdk'] != '35' or props['ro.kernel.qemu'] != '1' or 'arm64-v8a' not in props['ro.product.cpu.abilist'].split(','):
+             raise JourneyError('Only an explicitly selected ARM64-capable emulator is allowed')
+@@ -388,12 +524,18 @@
+                     if action:
+                         previous = run['screens'][-1]
+                         run['transitions'].append(capture_transition(
+-                            recorder, previous, entry['label'] + '-' + name, name, action, proof))
++                            recorder, previous, entry['label'] + '-' + name, name, action, proof, run))
+                         time.sleep(2)
+-                    shot = recorder.snapshot(entry['label'] + '-' + name, owner)
++                    shot = (observed_journey.capture(recorder, entry['label'] + '-' + name, owner)
++                            if args.observe_denial_handoff else recorder.snapshot(entry['label'] + '-' + name, owner))
+                     shot['name'] = name
+                     run['screens'].append(shot)
+-                    select(tree(proof.artifact(args.output, shot['artifacts']['hierarchy']), owner), owner, required)
++                    if args.observe_denial_handoff:
++                        observed_journey.required_surface(args.output, shot, required, proof)
++                    else:
++                        select(tree(proof.artifact(args.output, shot['artifacts']['hierarchy']), owner), owner, required)
++                    if args.observe_denial_handoff and name == 'reference-promotion':
++                        observed_journey.observe_handoff(recorder, run, run['transitions'][-1], run['screens'][-2], shot)
+                     save()
+                 run['environment_after'] = recorder.environment()
+                 run['status'] = 'COMPLETE'
+@@ -401,6 +543,8 @@
+                 run['reason'] = str(exc)
+                 run['status'] = 'FAILED'
+             report['commands'] = recorder.log
++            if args.observe_denial_handoff:
++                report['capture_events'] = recorder.capture_events
+             save()
+         report['status'] = 'RECORDED_NOT_PARITY'
+     except (ValueError, OSError, RuntimeError, subprocess.SubprocessError) as exc:
+--- /dev/null
++++ b/tools/parity_journeys/observed_journey.py
+@@ -0,0 +1,582 @@
++"""Opt-in evidence for one observed PID boundary and consecutive full frames.
++
++This module never chooses a frame using another APK's capture, edits a screenshot,
++or changes the existing reference plan. Legacy reports retain their original
++process-continuity rule. All observations below are from a disposable emulator.
++"""
++from __future__ import annotations
++
++from contextlib import contextmanager
++import copy
++from functools import lru_cache
++import json
++import math
++import re
++import shlex
++import time
++import xml.etree.ElementTree as ET
++
++import editor_journey as runner
++
++REPORT_SCHEMA = 3
++HOME = runner.PACKAGE + '/' + runner.PACKAGE + '.homescreen.NewHomeScreenActivity'
++PERMISSION_ACTIVITY = runner.PERMISSION + '/com.android.permissioncontroller.permission.ui.GrantPermissionsActivity'
++POLICY = {
++    'schema': 1,
++    'handoff_after': 'notification-request',
++    'handoff_to': 'reference-promotion',
++    'handoff_action': runner.DENY,
++    'handoff_component': HOME,
++    'handoff_timeout_seconds': 30,
++    'settling_max_attempts': 6,
++    'settling_timeout_seconds': 30,
++    'consecutive_identical_full_frames': 2,
++    'png_and_xml_bytes_must_match': True,
++    'cross_apk_frame_selection': False,
++}
++
++
++@lru_cache(maxsize=4)
++def _decoded_png(decoder, data):
++    # Pure decoding only: every caller still reads/hash-checks each artifact.
++    # Both the complete bytes and decoder identity are part of the cache key.
++    return decoder(data)
++
++
++def png_pixels(data, proof):
++    return _decoded_png(proof.png_pixels, data)
++
++
++def finite(value):
++    return type(value) in (int, float) and math.isfinite(value)
++
++
++def require_plan():
++    if (len(runner.PLAN) not in (10, 14)
++            or list(runner.PLAN[4]) != ['notification-request', runner.PERMISSION, runner.DENY, runner.NEXT]
++            or list(runner.PLAN[5]) != ['reference-promotion', runner.PACKAGE, {'text': 'LITEAPKS'}, runner.DENY]
++            or list(runner.PLAN[6]) != ['home', runner.PACKAGE,
++                                       {'resource-id': runner.PACKAGE + ':id/navigation_home'}, {'text': 'CLOSE'}]):
++        raise runner.JourneyError('Observed policy requires the unchanged reviewed reference adapter')
++    if len(runner.PLAN) == 10:
++        import favourite_info_journey as favourite
++        favourite.require_plan()
++
++
++def required_surface(folder, shot, required, proof):
++    """Only the separate ten-step plan may end with an unassumed app surface."""
++    if len(runner.PLAN) == 10:
++        import favourite_info_journey as favourite
++        favourite.require_plan()
++        if shot['name'] == 'favourite-triggers-info':
++            favourite.dialog_identity(folder, shot, proof)
++        if shot['name'] == 'after-favourite-info':
++            if required is not None:
++                raise runner.JourneyError('Terminal surface unexpectedly has an assumed selector')
++            return favourite.terminal_surface(folder, shot, proof)
++    if required is None:
++        raise runner.JourneyError('Only the reviewed terminal capture may omit a selector')
++    runner.select(runner.tree(proof.artifact(folder, shot['artifacts']['hierarchy']), shot['owner']),
++                  shot['owner'], required)
++    return None
++
++
++def report_policy(report):
++    if report.get('schema') == runner.SCHEMA:
++        if 'capture_policy' in report or 'capture_events' in report:
++            raise runner.JourneyError('Observed evidence cannot use the legacy schema')
++        return None
++    if type(report.get('schema')) is not int or report['schema'] != REPORT_SCHEMA:
++        raise runner.JourneyError('Unknown journey evidence schema')
++    require_plan()
++    if runner.fingerprint(report.get('capture_policy')) != runner.fingerprint(POLICY):
++        raise runner.JourneyError('Unknown or altered observed capture policy')
++    return POLICY
++
++
++@contextmanager
++def command_budget(recorder, seconds):
++    previous = getattr(recorder, 'deadline', None)
++    deadline = time.monotonic() + seconds
++    recorder.deadline = min(previous, deadline) if previous is not None else deadline
++    try:
++        yield
++    finally:
++        recorder.deadline = previous
++
++
++def capture(recorder, label, owner):
++    with command_budget(recorder, POLICY['settling_timeout_seconds']):
++        return recorder.snapshot(label, owner)
++
++
++def one_pid(data, proof):
++    text = data.decode()
++    values = proof.live_pids(text, text)
++    if len(values) != 1:
++        raise runner.JourneyError('Exactly one live main app PID is required')
++    return values[0]
++
++
++def component(data, proof):
++    values = proof.resumed_components(data.decode())
++    if len(values) != 1:
++        raise runner.JourneyError('Exactly one resumed component is required')
++    package, name = values[0].split('/', 1)
++    return package + '/' + (package + name if name.startswith('.') else name)
++
++
++def observation(folder, shot, proof):
++    state = runner.validate_snapshot(folder, shot, proof)
++    artifacts = shot['artifacts']
++    if set(artifacts) != {'pid_first', 'pid_final', 'foreground', 'foreground_final', 'hierarchy', 'screenshot'}:
++        raise runner.JourneyError('Incomplete observed snapshot artifacts')
++    first = proof.artifact(folder, artifacts['pid_first'])
++    last = proof.artifact(folder, artifacts['pid_final'])
++    pid = one_pid(first, proof)
++    if one_pid(last, proof) != pid:
++        raise runner.JourneyError('PID changed within a full-frame observation')
++    front = component(proof.artifact(folder, artifacts['foreground']), proof)
++    if component(proof.artifact(folder, artifacts['foreground_final']), proof) != front:
++        raise runner.JourneyError('Component changed within a full-frame observation')
++    timing = shot['observation']
++    start, finish = timing['started_monotonic'], timing['finished_monotonic']
++    if (not finite(start) or not finite(finish) or finish < start
++            or abs(finish - start - shot['sample_interval_seconds']) > 0.001):
++        raise runner.JourneyError('Invalid full-frame observation timing')
++    paths = [runner.artifact_path(folder, item, proof) for item in artifacts.values()]
++    if len(set(paths)) != len(paths):
++        raise runner.JourneyError('Observation artifacts reuse a path')
++    return state, pid, front
++
++
++def identical_bytes(folder, a, b, proof):
++    return all(proof.artifact(folder, a['artifacts'][key]) == proof.artifact(folder, b['artifacts'][key])
++               for key in ['hierarchy', 'screenshot'])
++
++
++def settle(recorder, label, owner, acquire):
++    """Accept the first consecutive identical pair; retain every earlier attempt."""
++    started = time.monotonic()
++    evidence = {'schema': 1, 'status': 'INCOMPLETE', 'label': label, 'owner': owner,
++                'started_monotonic': started, 'attempts': [],
++                'max_attempts': POLICY['settling_max_attempts'],
++                'max_seconds': POLICY['settling_timeout_seconds']}
++    previous_identity = None
++    frame_label = None
++    try:
++        for attempt in range(1, POLICY['settling_max_attempts'] + 1):
++            if time.monotonic() >= recorder.deadline:
++                raise runner.JourneyError('Full-frame acquisition deadline expired')
++            frame_label = label + '-frame-' + str(attempt)
++            shot = acquire(frame_label, owner)
++            evidence['attempts'].append(shot)
++            _, pid, front = observation(recorder.folder, shot, recorder.proof)
++            identity = (pid, front)
++            if previous_identity is not None and identity != previous_identity:
++                raise runner.JourneyError('Process or component changed while waiting for full-frame stability')
++            previous_identity = identity
++            if len(evidence['attempts']) > 1 and identical_bytes(
++                    recorder.folder, evidence['attempts'][-2], shot, recorder.proof):
++                if time.monotonic() > recorder.deadline:
++                    raise runner.JourneyError('Full-frame acquisition deadline expired')
++                evidence['status'] = 'CONSECUTIVE_FULL_FRAMES_IDENTICAL'
++                evidence['accepted_pair'] = [attempt - 2, attempt - 1]
++                result = copy.deepcopy(shot)
++                break
++        else:
++            raise runner.JourneyError('No consecutive identical full frames within six attempts')
++    except Exception as error:
++        evidence.update(status='FAILED', error_type=type(error).__name__, reason=str(error))
++        # The base recorder saves its raw snapshot before validating XML/PID/UI.
++        # This binds a rejected partial observation even when acquire raised.
++        if frame_label:
++            path = recorder.folder / (frame_label + '-snapshot.json')
++            if path.is_file():
++                data = path.read_bytes()
++                evidence['last_raw_snapshot'] = recorder.save(frame_label + '-retained-snapshot.json', data)
++        raise
++    finally:
++        evidence['finished_monotonic'] = time.monotonic()
++        evidence['seconds'] = evidence['finished_monotonic'] - started
++        record = recorder.save(label + '-settling.json', json.dumps(evidence, indent=2).encode())
++        recorder.capture_events.append(record)
++    result['settling'] = record
++    return result
++
++
++def stable_snapshot(folder, shot, proof, label):
++    record = shot['settling']
++    if not record['path'].startswith(label + '-'):
++        raise runner.JourneyError('Cross-run settling evidence')
++    evidence = json.loads(proof.artifact(folder, record))
++    attempts = evidence['attempts']
++    if (evidence.get('schema') != 1 or evidence.get('status') != 'CONSECUTIVE_FULL_FRAMES_IDENTICAL'
++            or evidence['max_attempts'] != POLICY['settling_max_attempts']
++            or evidence['max_seconds'] != POLICY['settling_timeout_seconds']
++            or not 2 <= len(attempts) <= POLICY['settling_max_attempts']
++            or evidence['accepted_pair'] != [len(attempts) - 2, len(attempts) - 1]):
++        raise runner.JourneyError('Incomplete or altered full-frame stability proof')
++    start, finish = evidence['started_monotonic'], evidence['finished_monotonic']
++    if (not finite(start) or not finite(finish) or not 0 <= finish - start <= POLICY['settling_timeout_seconds']
++            or not finite(evidence['seconds']) or abs(finish - start - evidence['seconds']) > 0.001):
++        raise runner.JourneyError('Full-frame stability exceeded its time bound')
++    used = set()
++    identity = None
++    previous_finish = start
++    state = None
++    for index, attempt in enumerate(attempts):
++        state, pid, front = observation(folder, attempt, proof)
++        timing = attempt['observation']
++        if not previous_finish <= timing['started_monotonic'] <= timing['finished_monotonic'] <= finish:
++            raise runner.JourneyError('Full-frame observation order is invalid')
++        previous_finish = timing['finished_monotonic']
++        paths = {runner.artifact_path(folder, item, proof) for item in attempt['artifacts'].values()}
++        if any(not item['path'].startswith(label + '-') for item in attempt['artifacts'].values()) or used & paths:
++            raise runner.JourneyError('Full-frame acquisition reused an earlier artifact')
++        used |= paths
++        if identity is not None and identity != (pid, front):
++            raise runner.JourneyError('PID or component changed between consecutive observations')
++        identity = (pid, front)
++        if index:
++            same = identical_bytes(folder, attempts[index - 1], attempt, proof)
++            if same != (index == len(attempts) - 1):
++                raise runner.JourneyError('Recorder did not accept the first consecutive identical full frames')
++    selected = {key: value for key, value in shot.items() if key not in {'settling', 'name'}}
++    if selected != attempts[-1] or evidence['owner'] != shot['owner']:
++        raise runner.JourneyError('Selected snapshot differs from its final full-frame observation')
++    return state
++
++
++def input_identity(folder, previous, before, action, name, proof, label):
++    if stable_snapshot(folder, previous, proof, label) != stable_snapshot(folder, before, proof, label):
++        raise runner.JourneyError('Full frame changed before input')
++    prior_front = component(proof.artifact(folder, previous['artifacts']['foreground_final']), proof)
++    before_front = component(proof.artifact(folder, before['artifacts']['foreground_final']), proof)
++    if prior_front != before_front:
++        raise runner.JourneyError('Resumed component changed before input')
++    data = proof.artifact(folder, before['artifacts']['hierarchy'])
++    root = runner.tree(data, before['owner'])
++    if action == runner.DENY:
++        if name != 'reference-promotion' or previous.get('name') != 'notification-request' or prior_front != PERMISSION_ACTIVITY:
++            raise runner.JourneyError('Notification denial is outside its observed boundary')
++        node = runner.select(root, runner.PERMISSION, runner.DENY)
++        if node.get('class') != 'android.widget.Button' or node.get('enabled') != 'true' or node.get('clickable') != 'true':
++            raise runner.JourneyError('Observed notification denial button changed')
++    if action == {'text': 'CLOSE'}:
++        if name != 'home' or previous.get('name') != 'reference-promotion' or prior_front != HOME:
++            raise runner.JourneyError('CLOSE is outside the observed promotion surface')
++        title = runner.select(root, runner.PACKAGE, {'text': 'LITEAPKS'})
++        button = runner.select(root, runner.PACKAGE, {'text': 'CLOSE'})
++        if (title.get('class') != 'android.widget.TextView' or title.get('enabled') != 'true'
++                or button.get('class') != 'android.widget.Button'
++                or button.get('enabled') != 'true' or button.get('clickable') != 'true'):
++            raise runner.JourneyError('Observed promotion title or CLOSE button changed')
++    if name == 'after-favourite-info':
++        import favourite_info_journey as favourite
++        favourite.require_plan()
++        if action != favourite.OK or previous.get('name') != 'favourite-triggers-info':
++            raise runner.JourneyError('Favourite information input is outside its observed boundary')
++        favourite.dialog_identity(folder, before, proof)
++    return prior_front
++
++
++def boundary_diagnostics(recorder):
++    # Never clear a buffer. A separate verifier binds any new, known fatal block.
++    return {key: recorder.shell(args, 10)[0] for key, args in [
++        ('processes', ['dumpsys', 'activity', 'processes', runner.PACKAGE]),
++        ('crash', ['logcat', '-d', '-b', 'crash', '-v', 'threadtime']),
++    ]}
++
++
++FRAGMENT_FATAL_STACK = [
++    'at android.app.Fragment.getResources(Fragment.java:785)',
++    'at com.zx.lbua80.onShow(Unknown Source:22)',
++    'at android.app.Dialog$ListenersHandler.handleMessage(Dialog.java:1500)',
++    'at android.os.Handler.dispatchMessage(Handler.java:107)',
++    'at android.os.Looper.loopOnce(Looper.java:232)',
++    'at android.os.Looper.loop(Looper.java:317)',
++    'at android.app.ActivityThread.main(ActivityThread.java:8705)',
++    'at java.lang.reflect.Method.invoke(Native Method)',
++    'at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)',
++    'at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)',
++]
++
++
++def crash_observation(folder, before, after, old_pid, proof):
++    """Classify only the observed LB fatal stack; retain all literal log bytes.
++
++    This is not a claim that notification denial caused the crash. An empty or
++    unavailable Java crash buffer cannot establish that a run was crash-free.
++    """
++    records = [before['crash'], after['crash']]
++    data = []
++    for record in records:
++        out, err = (proof.artifact(folder, record[key]) for key in ['stdout', 'stderr'])
++        if record['returncode'] != 0 or err.strip():
++            return {'classification': {'status': 'CRASH_DIAGNOSTIC_UNAVAILABLE'}, 'new_fatal_blocks': []}
++        data.append(out.decode())
++    pattern = re.compile(r'^(\d\d-\d\d \d\d:\d\d:\d\d\.\d{3})\s+([1-9]\d*)\s+([1-9]\d*)\s+[EF]\s+AndroidRuntime: ?(.*)$')
++    blocks = []
++    for line in data[1].splitlines(keepends=True):
++        match = pattern.fullmatch(line.rstrip('\r\n'))
++        if not match or match[2] != old_pid:
++            continue
++        payload = match[4]
++        if payload.startswith('FATAL EXCEPTION:'):
++            blocks.append({'header': line, 'lines': [], 'payloads': [], 'thread': match[3]})
++        if blocks:
++            blocks[-1]['lines'].append(line)
++            blocks[-1]['payloads'].append(payload)
++    events = []
++    for block in blocks:
++        if block['header'] in data[0]:
++            continue
++        payloads = block['payloads']
++        if (block['thread'] != old_pid or len(payloads) != 13 or payloads[0] != 'FATAL EXCEPTION: main'
++                or payloads[1] != 'Process: ' + runner.PACKAGE + ', PID: ' + old_pid
++                or not re.fullmatch(r'java\.lang\.IllegalStateException: Fragment LB\{[0-9a-f]+\} not attached to Activity', payloads[2])
++                or [value.strip() for value in payloads[3:]] != FRAGMENT_FATAL_STACK):
++            raise runner.JourneyError('Unreviewed new fatal exception at the notification boundary; raw log retained')
++        events.append({'literal_header': block['header'], 'literal_exception': payloads[2],
++                       'literal_block': ''.join(block['lines'])})
++    if not events:
++        classification = {'status': 'NO_NEW_JAVA_FATAL_EXCEPTION_OBSERVED'}
++    else:
++        classification = {'status': 'NEW_OBSERVED_FRAGMENT_FATAL_EXCEPTION', 'count': len(events),
++                          'exception_type': 'java.lang.IllegalStateException',
++                          'message_pattern': 'Fragment LB{hex instance} not attached to Activity',
++                          'stack': FRAGMENT_FATAL_STACK}
++    return {'classification': classification, 'new_fatal_blocks': events}
++
++
++def outcome(old, new, crash):
++    known_fatal = crash['classification']['status'] == 'NEW_OBSERVED_FRAGMENT_FATAL_EXCEPTION'
++    return {'pid_replaced': old != new, 'old_pid_absent_in_both_lists': old != new,
++            'component': HOME, 'installed_apk_identity_verified': True,
++            'cause': 'RECORDED_JAVA_FATAL_EXCEPTION' if known_fatal else 'UNDETERMINED',
++            'crash_observation': crash['classification']}
++
++
++def parse_processes(data):
++    lines = data.decode().splitlines()
++    if not lines or lines[0].split() != ['PID', 'NAME']:
++        raise runner.JourneyError('Unexpected complete process-list header')
++    values = {}
++    for line in lines[1:]:
++        match = re.fullmatch(r'\s*([1-9][0-9]*)\s+(\S.*?)\s*', line)
++        if not match or match[1] in values:
++            raise runner.JourneyError('Malformed or duplicate process-list row')
++        values[match[1]] = match[2]
++    if '1' not in values or len(values) < 2:
++        raise runner.JourneyError('Incomplete all-process listing')
++    return values
++
++
++def check_processes(data, old, new):
++    values = parse_processes(data)
++    if [pid for pid, name in values.items() if name == runner.PACKAGE] != [new]:
++        raise runner.JourneyError('Expected single main app process is absent or ambiguous')
++    if (old not in values) != (old != new):
++        raise runner.JourneyError('Old PID remains present after a claimed replacement')
++
++
++def checked_command(folder, record, args, proof):
++    if record['argv'] != ['shell', shlex.join(args)]:
++        raise runner.JourneyError('Observed device command differs from the required command')
++    out, err = runner.evidence_command(folder, record, proof)
++    if err.strip() or record.get('timed_out') is not False:
++        raise runner.JourneyError('Observed device command failed or timed out')
++    start, finish = record['started_monotonic'], record['finished_monotonic']
++    if not finite(start) or not finite(finish) or finish < start:
++        raise runner.JourneyError('Invalid observed command timing')
++    return out
++
++
++def verify_preinput(folder, transition, proof):
++    start = transition['observation_started_monotonic']
++    input_start = transition['command']['started_monotonic']
++    age = transition['precondition_age_seconds']
++    before = json.loads(proof.artifact(folder, transition['before']['settling']))
++    if (not finite(start) or not finite(input_start) or not 0 <= input_start - start <= runner.MAX_PRECONDITION_AGE
++            or abs(input_start - start - age) > 0.05
++            or transition['command'].get('timed_out') is not False
++            or not start <= before['started_monotonic'] <= before['finished_monotonic'] <= input_start):
++        raise runner.JourneyError('Recorded input freshness does not include its full acquisition')
++    commands = transition['preinput_commands']
++    if list(commands) != ['pid', 'foreground']:
++        raise runner.JourneyError('Incomplete immediate pre-input command records')
++    previous = before['finished_monotonic']
++    used = {runner.artifact_path(folder, item, proof) for item in transition['before']['artifacts'].values()}
++    used |= {runner.artifact_path(folder, item, proof) for item in transition['preinput_artifacts'].values()}
++    for key, args in [('pid', ['pidof', runner.PACKAGE]), ('foreground', ['dumpsys', 'activity', 'activities'])]:
++        command = commands[key]
++        out = checked_command(folder, command, args, proof)
++        if (out != proof.artifact(folder, transition['preinput_artifacts'][key])
++                or not previous <= command['started_monotonic'] <= command['finished_monotonic'] <= input_start):
++            raise runner.JourneyError('Immediate pre-input bytes or timing are inconsistent')
++        paths = {runner.artifact_path(folder, command[stream], proof) for stream in ['stdout', 'stderr']}
++        if len(paths) != 2 or used & paths:
++            raise runner.JourneyError('Immediate pre-input command reused earlier artifacts')
++        used |= paths
++        previous = command['finished_monotonic']
++
++
++def handoff_outcome(folder, record, run, transition, prior, shot, proof):
++    """Validate actual bytes before authorizing a new phase's PID anchor."""
++    if (transition.get('to') != 'reference-promotion' or transition.get('action') != runner.DENY
++            or prior.get('name') != 'notification-request' or shot.get('name') != 'reference-promotion'):
++        raise runner.JourneyError('Process boundary is outside notification denial')
++    if type(record.get('schema')) is not int or record['schema'] != 1 or record.get('status') != 'OBSERVED_NOTIFICATION_BOUNDARY':
++        raise runner.JourneyError('Incomplete notification-boundary observation')
++    old = one_pid(proof.artifact(folder, transition['preinput_artifacts']['pid']), proof)
++    new = one_pid(proof.artifact(folder, shot['artifacts']['pid_first']), proof)
++    if component(proof.artifact(folder, shot['artifacts']['foreground_final']), proof) != HOME:
++        raise runner.JourneyError('Unexpected post-denial resumed component')
++    commands = record['commands']
++    keys = ['pid_first', 'process_list_first', 'installed_path', 'installed_checksum', 'foreground',
++            'process_list_final', 'pid_final']
++    if list(commands) != keys:
++        raise runner.JourneyError('Incomplete or reordered notification-boundary commands')
++    path_data = checked_command(folder, commands['installed_path'], ['pm', 'path', runner.PACKAGE], proof)
++    path = proof.installed_path(0, path_data.decode(), '')
++    old_out, old_err = runner.evidence_command(folder, run['installed_path'], proof)
++    if path != proof.installed_path(0, old_out.decode(), old_err.decode()):
++        raise runner.JourneyError('Installed APK path changed across notification denial')
++    digest = checked_command(folder, commands['installed_checksum'], ['sha256sum', path], proof)
++    if proof.installed_digest(0, digest.decode(), '', path) != run['apk_sha256']:
++        raise runner.JourneyError('Fresh post-denial installed APK identity differs')
++    for key in ['pid_first', 'pid_final']:
++        if one_pid(checked_command(folder, commands[key], ['pidof', runner.PACKAGE], proof), proof) != new:
++            raise runner.JourneyError('PID changed during the notification-boundary checks')
++    for key in ['process_list_first', 'process_list_final']:
++        check_processes(checked_command(folder, commands[key], ['ps', '-A', '-o', 'PID,NAME'], proof), old, new)
++    front = checked_command(folder, commands['foreground'], ['dumpsys', 'activity', 'activities'], proof)
++    if component(front, proof) != HOME:
++        raise runner.JourneyError('Unexpected component during notification-boundary checks')
++    start, finish = record['started_monotonic'], record['finished_monotonic']
++    if (not finite(start) or not finite(finish) or not 0 <= finish - start <= POLICY['handoff_timeout_seconds']
++            or transition['command']['finished_monotonic'] > shot['observation']['started_monotonic']
++            or shot['observation']['finished_monotonic'] > start):
++        raise runner.JourneyError('Stale or unordered notification-boundary evidence')
++    previous = start
++    all_paths = set()
++    stale = {runner.artifact_path(folder, item, proof)
++             for snapshot in [prior, transition['before'], shot] for item in snapshot['artifacts'].values()}
++    stale |= {runner.artifact_path(folder, item, proof) for item in transition['preinput_artifacts'].values()}
++    for command in [run['installed_path'], run['installed_checksum'], transition['command'],
++                    *transition['preinput_commands'].values(), *transition['pre_denial_diagnostics'].values()]:
++        stale |= {runner.artifact_path(folder, command[stream], proof) for stream in ['stdout', 'stderr']}
++    for key in keys:
++        command = commands[key]
++        if not previous <= command['started_monotonic'] <= command['finished_monotonic'] <= finish:
++            raise runner.JourneyError('Boundary command order is not fresh')
++        previous = command['finished_monotonic']
++        paths = {runner.artifact_path(folder, command[stream], proof) for stream in ['stdout', 'stderr']}
++        if len(paths) != 2 or all_paths & paths or stale & paths:
++            raise runner.JourneyError('Boundary command reused an earlier artifact')
++        if any(not command[stream]['path'].startswith('command-') for stream in ['stdout', 'stderr']):
++            raise runner.JourneyError('Unexpected boundary command artifact identity')
++        all_paths |= paths
++    before_event = json.loads(proof.artifact(folder, transition['before']['settling']))
++    verify_diagnostics(folder, transition['pre_denial_diagnostics'], proof,
++                       transition['observation_started_monotonic'], before_event['started_monotonic'])
++    verify_diagnostics(folder, record['after_diagnostics'], proof, previous, finish)
++    crash = crash_observation(folder, transition['pre_denial_diagnostics'], record['after_diagnostics'], old, proof)
++    expected = outcome(old, new, crash)
++    if (record['old_pid'] != old or record['new_pid'] != new
++            or runner.fingerprint(record['outcome']) != runner.fingerprint(expected)
++            or runner.fingerprint(record['crash_observation']) != runner.fingerprint(crash)):
++        raise runner.JourneyError('Reported process/crash outcome differs from observed command bytes')
++    return expected
++
++
++def verify_diagnostics(folder, diagnostics, proof, earliest, latest):
++    if set(diagnostics) != {'processes', 'crash'}:
++        raise runner.JourneyError('Missing raw process/crash diagnostics')
++    for key, args in [('processes', ['dumpsys', 'activity', 'processes', runner.PACKAGE]),
++                      ('crash', ['logcat', '-d', '-b', 'crash', '-v', 'threadtime'])]:
++        record = diagnostics[key]
++        if record['argv'] != ['shell', shlex.join(args)] or type(record['returncode']) is not int:
++            raise runner.JourneyError('Invalid diagnostic command')
++        start, finish = record['started_monotonic'], record['finished_monotonic']
++        if not finite(start) or not finite(finish) or not earliest <= start <= finish <= latest or record.get('timed_out') is not False:
++            raise runner.JourneyError('Raw diagnostic timing is outside the observed boundary')
++        earliest = finish
++        for stream in ['stdout', 'stderr']:
++            proof.artifact(folder, record[stream])
++
++
++def observe_handoff(recorder, run, transition, prior, shot):
++    started = time.monotonic()
++    record = {'schema': 1, 'status': 'INCOMPLETE', 'started_monotonic': started, 'commands': {}}
++    try:
++        with command_budget(recorder, POLICY['handoff_timeout_seconds']):
++            for key, args in [
++                ('pid_first', ['pidof', runner.PACKAGE]),
++                ('process_list_first', ['ps', '-A', '-o', 'PID,NAME']),
++                ('installed_path', ['pm', 'path', runner.PACKAGE]),
++            ]:
++                record['commands'][key], out, err = recorder.shell(args)
++            path_record = record['commands']['installed_path']
++            out, err = runner.evidence_command(recorder.folder, path_record, recorder.proof)
++            installed = recorder.proof.installed_path(path_record['returncode'], out.decode(), err.decode())
++            for key, args in [
++                ('installed_checksum', ['sha256sum', installed]),
++                ('foreground', ['dumpsys', 'activity', 'activities']),
++                ('process_list_final', ['ps', '-A', '-o', 'PID,NAME']),
++                ('pid_final', ['pidof', runner.PACKAGE]),
++            ]:
++                record['commands'][key] = recorder.shell(args)[0]
++            record['after_diagnostics'] = boundary_diagnostics(recorder)
++            old = one_pid(recorder.proof.artifact(recorder.folder, transition['preinput_artifacts']['pid']), recorder.proof)
++            new = one_pid(recorder.proof.artifact(recorder.folder, shot['artifacts']['pid_first']), recorder.proof)
++            crash = crash_observation(recorder.folder, transition['pre_denial_diagnostics'],
++                                      record['after_diagnostics'], old, recorder.proof)
++            record.update(old_pid=old, new_pid=new, status='OBSERVED_NOTIFICATION_BOUNDARY',
++                          finished_monotonic=time.monotonic(),
++                          outcome=outcome(old, new, crash), crash_observation=crash)
++            handoff_outcome(recorder.folder, record, run, transition, prior, shot, recorder.proof)
++    except Exception as error:
++        record.update(status='FAILED', reason=str(error), error_type=type(error).__name__)
++        raise
++    finally:
++        record['finished_monotonic'] = time.monotonic()
++        transition['process_handoff'] = recorder.save(run['label'] + '-notification-boundary.json',
++                                                      json.dumps(record, indent=2).encode())
++
++
++def verified_handoff(folder, run, transition, prior, shot, proof):
++    artifact = transition['process_handoff']
++    if artifact['path'] != run['label'] + '-notification-boundary.json':
++        raise runner.JourneyError('Cross-run process-boundary artifact')
++    return handoff_outcome(folder, json.loads(proof.artifact(folder, artifact)), run, transition, prior, shot, proof)
++
++
++def capture_events(folder, report, proof):
++    """Bind successful ledgers and rejected XML acquisitions retained by the adapter."""
++    entries = report['capture_events']
++    paths = set()
++    for entry in entries:
++        path = runner.artifact_path(folder, entry, proof)
++        if path in paths:
++            raise runner.JourneyError('Duplicate acquisition ledger')
++        paths.add(path)
++        event = json.loads(proof.artifact(folder, entry))
++        if event['status'] == 'FAILED':
++            if event.get('error_type') != 'ParseError':
++                raise runner.JourneyError('Completed journey contains a rejected semantic/process acquisition')
++            raw = json.loads(proof.artifact(folder, event['last_raw_snapshot']))
++            try:
++                runner.validate_snapshot(folder, raw, proof)
++            except ET.ParseError:
++                pass
++            else:
++                raise runner.JourneyError('Retry was not caused by an actual XML parser failure')
++        elif event['status'] != 'CONSECUTIVE_FULL_FRAMES_IDENTICAL':
++            raise runner.JourneyError('Incomplete acquisition ledger')
++    for run in report['runs']:
++        shots = run['screens'] + [transition['before'] for transition in run['transitions']]
++        for shot in shots:
++            if runner.artifact_path(folder, shot['settling'], proof) not in paths:
++                raise runner.JourneyError('Accepted observation is missing from the acquisition ledger')
+--- /dev/null
++++ b/tools/parity_journeys/favourite_info_journey.py
+@@ -0,0 +1,140 @@
++#!/usr/bin/env python3
++"""Observe the supplied APK's Favourite Triggers dialog, tap OK once, then stop.
++
++The earlier 13/14-step plans remain unchanged. This opt-in ten-screen plan records
++the actual first app surface after OK; it does not assume a trigger catalog or
++issue another input. A matched continuation may include a recorded shared crash.
++"""
++from __future__ import annotations
++
++from contextlib import contextmanager
++import copy
++import json
++import re
++
++import editor_journey as runner
++import observed_journey as observed
++import supplied_reference_journey as reference
++
++REFERENCE_PLAN_SHA256 = '69bae4f2af8e2f14c407808dbcdea91cdca009af2ae390e13b5c7fbf035a3065'
++EDITOR = runner.PACKAGE + '/' + runner.PACKAGE + '.editscreen.EditMacroActivity'
++TITLE = {'resource-id': runner.PACKAGE + ':id/alertTitle', 'text': 'Favourite Triggers'}
++OK = {'resource-id': 'android:id/button1', 'text': 'OK'}
++# The parsed UIAutomator message contains two actual newline characters.
++MESSAGE = ('You can now long press on the + button to display quick tiles for your favourite items.\n\n'
++           'The set of quick tiles displayed can be edited and tailored to your needs using the wrench icon.')
++
++
++def expected_plan():
++    baseline = json.loads(reference.PLAN_PATH.read_text())
++    if runner.fingerprint(baseline) != REFERENCE_PLAN_SHA256:
++        raise runner.JourneyError('Reviewed reference plan changed; review the information-dialog adapter')
++    return copy.deepcopy(baseline[:8]) + [
++        ['favourite-triggers-info', runner.PACKAGE, TITLE, runner.TRIGGER],
++        ['after-favourite-info', runner.PACKAGE, None, OK],
++    ]
++
++
++def require_plan():
++    if runner.fingerprint(runner.PLAN) != runner.fingerprint(expected_plan()):
++        raise runner.JourneyError('Information-dialog plan differs from the reviewed single-OK sequence')
++
++
++@contextmanager
++def configured_plan():
++    with reference.configured_plan():
++        previous = runner.PLAN
++        try:
++            runner.PLAN = expected_plan()
++            yield runner.PLAN
++        finally:
++            runner.PLAN = previous
++
++
++def dialog_identity(folder, shot, proof):
++    require_plan()
++    if shot['owner'] != runner.PACKAGE:
++        raise runner.JourneyError('Information dialog has an unexpected owner')
++    for key in ['foreground', 'foreground_final']:
++        if observed.component(proof.artifact(folder, shot['artifacts'][key]), proof) != EDITOR:
++            raise runner.JourneyError('Information dialog is not on EditMacroActivity')
++    data = proof.artifact(folder, shot['artifacts']['hierarchy'])
++    root = runner.tree(data, runner.PACKAGE)
++    title = runner.select(root, runner.PACKAGE, TITLE)
++    message = runner.select(root, runner.PACKAGE, {'resource-id': 'android:id/message'})
++    # Select by ID alone first so a duplicate button with different text fails.
++    button = runner.select(root, runner.PACKAGE, {'resource-id': 'android:id/button1'})
++    if (title.get('class') != 'android.widget.TextView' or title.get('enabled') != 'true'
++            or message.get('class') != 'android.widget.TextView' or message.get('enabled') != 'true'
++            or message.get('text') != MESSAGE or button.get('text') != 'OK'
++            or button.get('class') != 'android.widget.Button' or button.get('clickable') != 'true'
++            or button.get('enabled') != 'true'):
++        raise runner.JourneyError('Observed Favourite Triggers title, message or unique OK button changed')
++    width, height, _ = observed.png_pixels(proof.artifact(folder, shot['artifacts']['screenshot']), proof)
++    return runner.target(data, runner.PACKAGE, OK, width, height)
++
++
++def terminal_surface(folder, shot, proof):
++    require_plan()
++    if shot.get('name') != 'after-favourite-info' or shot['owner'] != runner.PACKAGE:
++        raise runner.JourneyError('Unexpected terminal app capture')
++    component = observed.component(proof.artifact(folder, shot['artifacts']['foreground_final']), proof)
++    if component.split('/', 1)[0] != runner.PACKAGE:
++        raise runner.JourneyError('Terminal surface belongs to another package')
++    return {'name': shot['name'], 'owner': runner.PACKAGE, 'component': component,
++            'surface_after_one_observed_ok': True, 'subsequent_inputs': 0}
++
++
++def checked_installed(folder, records, run, proof):
++    if list(records) != ['installed_path', 'installed_checksum'] or not re.fullmatch('[0-9a-f]{64}', run['apk_sha256']):
++        raise runner.JourneyError('Incomplete installed-APK guard before OK')
++    out = observed.checked_command(folder, records['installed_path'], ['pm', 'path', runner.PACKAGE], proof)
++    path = proof.installed_path(0, out.decode(), '')
++    old_out, old_err = runner.evidence_command(folder, run['installed_path'], proof)
++    if path != proof.installed_path(0, old_out.decode(), old_err.decode()):
++        raise runner.JourneyError('Installed APK path changed before OK')
++    digest = observed.checked_command(folder, records['installed_checksum'], ['sha256sum', path], proof)
++    if proof.installed_digest(0, digest.decode(), '', path) != run['apk_sha256']:
++        raise runner.JourneyError('Installed APK identity changed before OK')
++
++
++def installed_guard(recorder, run):
++    if run is None:
++        raise runner.JourneyError('Missing exact run identity before OK')
++    records = {}
++    records['installed_path'], out, err = recorder.shell(['pm', 'path', runner.PACKAGE])
++    path = recorder.proof.installed_path(records['installed_path']['returncode'], out.decode(), err.decode())
++    records['installed_checksum'] = recorder.shell(['sha256sum', path])[0]
++    checked_installed(recorder.folder, records, run, recorder.proof)
++    return records
++
++
++def verify_installed_guard(folder, transition, run, proof):
++    require_plan()
++    if transition['to'] != 'after-favourite-info' or transition['action'] != OK:
++        raise runner.JourneyError('Installed-APK OK guard has the wrong boundary')
++    records = transition['pre_ok_installed_identity']
++    checked_installed(folder, records, run, proof)
++    start = transition['observation_started_monotonic']
++    finish = json.loads(proof.artifact(folder, transition['before']['settling']))['started_monotonic']
++    used = {runner.artifact_path(folder, item, proof)
++            for command in [run['installed_path'], run['installed_checksum'],
++                            *transition['preinput_commands'].values(), transition['command']]
++            for item in [command['stdout'], command['stderr']]}
++    for command in records.values():
++        if not start <= command['started_monotonic'] <= command['finished_monotonic'] <= finish:
++            raise runner.JourneyError('Installed-APK OK guard is stale or unordered')
++        start = command['finished_monotonic']
++        paths = {runner.artifact_path(folder, command[key], proof) for key in ['stdout', 'stderr']}
++        if len(paths) != 2 or used & paths:
++            raise runner.JourneyError('Installed-APK OK guard reused earlier command output')
++        used |= paths
++
++
++def main():
++    with configured_plan():
++        return runner.main()
++
++
++if __name__ == '__main__':
++    raise SystemExit(main())
+--- /dev/null
++++ b/tools/parity_journeys/test_observed_journey.py
+@@ -0,0 +1,550 @@
++"""Synthetic rejection controls and raw-fixture checks; no Android execution."""
++from __future__ import annotations
++
++import copy
++import json
++from pathlib import Path
++import shlex
++import subprocess
++import tempfile
++import unittest
++from unittest.mock import patch
++import xml.etree.ElementTree as ET
++
++import editor_journey as runner
++import observed_journey as observed
++from robust_capture import EvidenceRecorder
++import supplied_reference_journey as adapter
++import test_editor_journey as legacy
++
++proof = legacy.proof
++
++
++class ObservedFixture:
++    def __init__(self):
++        self.legacy = legacy.JourneyTests()
++        plan = runner.PLAN
++        try:
++            if len(plan) == 10:
++                runner.PLAN = json.loads(adapter.PLAN_PATH.read_text())
++            self.legacy.setUp()
++        finally:
++            runner.PLAN = plan
++        self.folder = self.legacy.root
++        self.base = copy.deepcopy(self.legacy.report)
++        self.sequence = 0
++        self.build()
++
++    def close(self):
++        self.legacy.tearDown()
++
++    def put(self, name, data):
++        return self.legacy.put(name, data)
++
++    def command(self, args, out, start):
++        self.sequence += 1
++        name = 'command-observed-' + str(self.sequence)
++        return {'argv': ['shell', shlex.join(args)], 'returncode': 0, 'timed_out': False,
++                'started_monotonic': start, 'finished_monotonic': start + 0.05,
++                'stdout': self.put(name + '.stdout', out), 'stderr': self.put(name + '.stderr', b'')}
++
++    def front(self, index):
++        if index == 4:
++            return observed.PERMISSION_ACTIVITY
++        if len(runner.PLAN) == 10 and index >= 7:
++            import favourite_info_journey as favourite
++            return favourite.EDITOR
++        if index >= 5:
++            return observed.HOME
++        return runner.PACKAGE + '/' + runner.PACKAGE + '.intro.IntroActivity'
++
++    def xml(self, index):
++        if len(runner.PLAN) == 10 and index >= 8:
++            import favourite_info_journey as favourite
++            root = ET.Element('hierarchy')
++            attributes = {'package': runner.PACKAGE, 'enabled': 'true', 'clickable': 'true',
++                          'bounds': '[0,0][4,4]', 'class': 'android.widget.Button'}
++            if index == 8:
++                for selector, kind in [(favourite.TITLE, 'android.widget.TextView'),
++                                       ({'resource-id': 'android:id/message', 'text': favourite.MESSAGE}, 'android.widget.TextView'),
++                                       (favourite.OK, 'android.widget.Button')]:
++                    ET.SubElement(root, 'node', {**attributes, **selector, 'class': kind})
++            else:
++                ET.SubElement(root, 'node', {**attributes, **runner.TRIGGER})
++            return ET.tostring(root)
++        root = ET.fromstring(legacy.xml(index))
++        for node in root.iter('node'):
++            if node.get('text') == 'LITEAPKS':
++                node.set('class', 'android.widget.TextView')
++                node.set('clickable', 'false')
++            else:
++                node.set('class', 'android.widget.Button')
++        return ET.tostring(root)
++
++    def stable(self, label, index, pid, start):
++        shots = []
++        for number in range(2):
++            name = label + '-frame-' + str(number + 1)
++            timestamp = start + number * 1.2
++            contents = {'hierarchy': self.xml(index), 'screenshot': legacy.png(index + 1),
++                        'pid_first': pid.encode(), 'pid_final': pid.encode(),
++                        'foreground': ('topResumedActivity=' + self.front(index) + '\n').encode(),
++                        'foreground_final': ('topResumedActivity=' + self.front(index) + '\n').encode()}
++            shots.append({'owner': runner.PLAN[index][1], 'sample_interval_seconds': 1.1,
++                          'observation': {'started_monotonic': timestamp, 'finished_monotonic': timestamp + 1.1},
++                          'artifacts': {key: self.put(name + '-' + key, data) for key, data in contents.items()}})
++        event = {'schema': 1, 'status': 'CONSECUTIVE_FULL_FRAMES_IDENTICAL', 'label': label,
++                 'owner': runner.PLAN[index][1], 'max_attempts': 6, 'max_seconds': 30,
++                 'started_monotonic': start, 'finished_monotonic': start + 2.31, 'seconds': 2.31,
++                 'attempts': shots, 'accepted_pair': [0, 1]}
++        record = self.put(label + '-settling.json', json.dumps(event).encode())
++        self.report['capture_events'].append(record)
++        result = copy.deepcopy(shots[-1])
++        result['settling'] = record
++        return result
++
++    def diagnostics(self, start):
++        return {'processes': self.command(['dumpsys', 'activity', 'processes', runner.PACKAGE], b'raw processes\n', start),
++                'crash': self.command(['logcat', '-d', '-b', 'crash', '-v', 'threadtime'], b'', start + 0.1)}
++
++    def boundary(self, run, transition, prior, shot, old, new, start):
++        process_data = ('PID NAME\n1 init\n' + new + ' ' + runner.PACKAGE + '\n500 adbd\n').encode()
++        command_data = [
++            ('pid_first', ['pidof', runner.PACKAGE], new.encode()),
++            ('process_list_first', ['ps', '-A', '-o', 'PID,NAME'], process_data),
++            ('installed_path', ['pm', 'path', runner.PACKAGE], b'package:/data/app/test/base.apk\n'),
++            ('installed_checksum', ['sha256sum', '/data/app/test/base.apk'],
++             (run['apk_sha256'] + '  /data/app/test/base.apk\n').encode()),
++            ('foreground', ['dumpsys', 'activity', 'activities'], ('topResumedActivity=' + observed.HOME + '\n').encode()),
++            ('process_list_final', ['ps', '-A', '-o', 'PID,NAME'], process_data),
++            ('pid_final', ['pidof', runner.PACKAGE], new.encode()),
++        ]
++        record = {'schema': 1, 'status': 'OBSERVED_NOTIFICATION_BOUNDARY', 'old_pid': old, 'new_pid': new,
++                  'started_monotonic': start, 'finished_monotonic': start + 1.1,
++                  'commands': {key: self.command(args, out, start + number * 0.1)
++                               for number, (key, args, out) in enumerate(command_data)},
++                  'after_diagnostics': self.diagnostics(start + 0.8)}
++        crash = observed.crash_observation(self.folder, transition['pre_denial_diagnostics'], record['after_diagnostics'], old, proof)
++        record.update(crash_observation=crash, outcome=observed.outcome(old, new, crash))
++        transition['process_handoff'] = self.put(run['label'] + '-notification-boundary.json', json.dumps(record).encode())
++
++    def build(self, candidate_replaced=True):
++        self.report = copy.deepcopy(self.base)
++        self.report.update(schema=3, capture_policy=copy.deepcopy(observed.POLICY), capture_events=[])
++        self.report['plan_sha256'] = runner.fingerprint(runner.PLAN)
++        for run_number, run in enumerate(self.report['runs']):
++            old = '31' if run_number == 0 else '51'
++            new = '41' if run_number == 0 else ('61' if candidate_replaced else '51')
++            run['screens'], run['transitions'] = [], []
++            now = 1000.0 + run_number * 1000
++            for index, (name, owner, required, action) in enumerate(runner.PLAN):
++                prefix = run['label'] + '-' + name
++                if index:
++                    before_start = now + (0.3 if action == runner.DENY or name == 'after-favourite-info' else 0)
++                    before = self.stable(prefix + '-before', index - 1, old if index <= 5 else new, before_start)
++                    front = ('topResumedActivity=' + self.front(index - 1) + '\n').encode()
++                    pid = (old if index <= 5 else new).encode()
++                    live_commands = {'pid': self.command(['pidof', runner.PACKAGE], pid, before_start + 2.4),
++                                     'foreground': self.command(['dumpsys', 'activity', 'activities'], front, before_start + 2.5)}
++                    input_start = before_start + 2.6
++                    argv = ['input', 'keyevent', '4'] if action == 'BACK' else ['input', 'tap', '2', '2']
++                    transition = {'to': name, 'action': action, 'before': before,
++                                  'observation_started_monotonic': now,
++                                  'precondition_age_seconds': input_start - now,
++                                  'preinput_artifacts': {'pid': self.put(prefix + '-preinput-pid', pid),
++                                                         'foreground': self.put(prefix + '-preinput-foreground', front)},
++                                  'preinput_commands': live_commands,
++                                  'command': self.command(argv, b'', input_start)}
++                    if action == runner.DENY:
++                        transition['pre_denial_diagnostics'] = self.diagnostics(now)
++                    if name == 'after-favourite-info':
++                        transition['pre_ok_installed_identity'] = {
++                            'installed_path': self.command(['pm', 'path', runner.PACKAGE], b'package:/data/app/test/base.apk\n', now),
++                            'installed_checksum': self.command(['sha256sum', '/data/app/test/base.apk'],
++                                (run['apk_sha256'] + '  /data/app/test/base.apk\n').encode(), now + 0.1)}
++                    run['transitions'].append(transition)
++                    now = input_start + 0.15
++                shot = self.stable(prefix, index, old if index < 5 else new, now)
++                shot['name'] = name
++                run['screens'].append(shot)
++                now += 2.5
++                if index == 5:
++                    self.boundary(run, run['transitions'][-1], run['screens'][-2], shot, old, new, now)
++                    now += 1.2
++
++    def result(self):
++        return runner.compare(self.folder, self.report, proof)
++
++    def candidate(self):
++        return self.report['runs'][1]
++
++    def change_boundary(self, edit):
++        transition = self.candidate()['transitions'][4]
++        artifact = transition['process_handoff']
++        value = json.loads(proof.artifact(self.folder, artifact))
++        edit(value)
++        transition['process_handoff'] = self.put(artifact['path'], json.dumps(value).encode())
++
++    def replace_output(self, record, data):
++        record['stdout'] = self.put(record['stdout']['path'], data)
++
++    def edit_stable(self, shot, edit):
++        artifact = shot['settling']
++        event = json.loads(proof.artifact(self.folder, artifact))
++        for attempt in event['attempts']:
++            edit(attempt)
++        name = shot.get('name')
++        shot.clear()
++        shot.update(copy.deepcopy(event['attempts'][-1]))
++        record = self.put(artifact['path'], json.dumps(event).encode())
++        shot['settling'] = record
++        if name is not None:
++            shot['name'] = name
++        self.report['capture_events'] = [record if item['path'] == record['path'] else item
++                                         for item in self.report['capture_events']]
++
++    def raw_value(self, shot, key, data):
++        shot['artifacts'][key] = self.put(shot['artifacts'][key]['path'], data)
++
++
++class ObservedVerifierTests(unittest.TestCase):
++    def setUp(self):
++        self.context = adapter.configured_plan()
++        self.context.__enter__()
++        self.addCleanup(self.context.__exit__, None, None, None)
++        self.fixture = ObservedFixture()
++        self.addCleanup(self.fixture.close)
++
++    def rejected(self, text=None):
++        result = self.fixture.result()
++        self.assertFalse(result['journey_equal'], result)
++        if text:
++            self.assertIn(text, result.get('reason', ''), result)
++        return result
++
++    def test_two_proved_replacements_keep_all_full_screens_and_narrow_scope(self):
++        result = self.fixture.result()
++        self.assertTrue(result['journey_equal'], result)
++        self.assertEqual(len(result['screens']), 14)
++        self.assertTrue(result['process_handoff_outcomes_equal'])
++        self.assertTrue(all(item['pid_replaced'] for item in result['process_handoff_outcomes']))
++        self.assertFalse(result['process_handoff_cause_established'])
++        self.assertFalse(result['full_runtime_1_to_1_established'])
++
++    def test_continuity_in_only_one_variant_is_a_real_outcome_difference(self):
++        self.fixture.build(candidate_replaced=False)
++        result = self.rejected()
++        self.assertEqual(result['status'], 'JOURNEY_DIFFERENCE', result)
++        self.assertFalse(result['process_handoff_outcomes_equal'])
++        self.assertTrue(all(item['changed_pixels'] == 0 for item in result['screens']))
++
++    def test_old_pid_in_either_all_process_sample_rejects_replacement(self):
++        for key in ['process_list_first', 'process_list_final']:
++            with self.subTest(sample=key):
++                self.fixture.build()
++                self.fixture.change_boundary(lambda r: self.fixture.replace_output(
++                    r['commands'][key], b'PID NAME\n1 init\n51 old-app\n61 com.arlosoft.macrodroid\n'))
++                self.rejected('Old PID remains present')
++
++    def test_truncated_or_ambiguous_main_process_listing_is_rejected(self):
++        values = [b'PID NAME\n61 com.arlosoft.macrodroid\n',
++                  b'PID NAME\n1 init\n61 com.arlosoft.macrodroid\n62 com.arlosoft.macrodroid\n',
++                  b'PID NAME\n1 init\n61 other.package\n']
++        for value in values:
++            with self.subTest(value=value):
++                self.fixture.build()
++                self.fixture.change_boundary(lambda r: self.fixture.replace_output(r['commands']['process_list_first'], value))
++                self.rejected()
++
++    def test_fresh_device_apk_checksum_and_path_are_required(self):
++        for key, data in [('installed_checksum', b'9999999999999999999999999999999999999999999999999999999999999999  /data/app/test/base.apk\n'),
++                          ('installed_path', b'package:/data/app/replaced/base.apk\n')]:
++            with self.subTest(field=key):
++                self.fixture.build()
++                self.fixture.change_boundary(lambda r: self.fixture.replace_output(r['commands'][key], data))
++                self.rejected()
++
++    def test_initial_checksum_artifact_cannot_be_reused_as_a_fresh_measurement(self):
++        old = self.fixture.candidate()['installed_checksum']['stdout']
++        self.fixture.change_boundary(lambda r: r['commands']['installed_checksum'].update(stdout=old))
++        self.rejected('reused an earlier artifact')
++
++    def test_process_list_samples_require_independent_files(self):
++        self.fixture.change_boundary(lambda r: r['commands']['process_list_final'].update(
++            stdout=r['commands']['process_list_first']['stdout']))
++        self.rejected('reused an earlier artifact')
++
++    def test_late_pid_or_foreground_change_during_boundary_rejects(self):
++        for key, data in [('pid_final', b'62'), ('foreground', b'topResumedActivity=com.arlosoft.macrodroid/.OtherActivity\n')]:
++            with self.subTest(field=key):
++                self.fixture.build()
++                self.fixture.change_boundary(lambda r: self.fixture.replace_output(r['commands'][key], data))
++                self.rejected()
++
++    def test_changed_pid_inside_a_snapshot_is_still_rejected(self):
++        shot = self.fixture.candidate()['screens'][8]
++        self.fixture.edit_stable(shot, lambda s: self.fixture.raw_value(s, 'pid_final', b'62'))
++        self.rejected('PID changed')
++
++    def test_new_restart_after_denial_boundary_is_not_another_allowed_handoff(self):
++        shot = self.fixture.candidate()['screens'][-1]
++        def edit(value):
++            for key in ['pid_first', 'pid_final']:
++                self.fixture.raw_value(value, key, b'62')
++        self.fixture.edit_stable(shot, edit)
++        self.rejected('PID changed')
++
++    def test_late_preinput_pid_after_the_boundary_is_rejected(self):
++        transition = self.fixture.candidate()['transitions'][6]
++        transition['preinput_artifacts']['pid'] = self.fixture.put('candidate-late-input-pid', b'62')
++        self.rejected('PID changed')
++
++    def test_multiple_live_pids_are_not_a_single_stable_process(self):
++        shot = self.fixture.candidate()['screens'][5]
++        def edit(value):
++            for key in ['pid_first', 'pid_final']:
++                self.fixture.raw_value(value, key, b'61 62')
++        self.fixture.edit_stable(shot, edit)
++        self.rejected('Exactly one live main app PID')
++
++    def test_boundary_cannot_move_to_an_unobserved_step(self):
++        run = self.fixture.candidate()
++        run['transitions'][5]['process_handoff'] = run['transitions'][4]['process_handoff']
++        self.rejected('Unplanned process-boundary evidence')
++
++    def test_forged_handoff_boolean_or_missing_diagnostics_is_rejected(self):
++        self.fixture.change_boundary(lambda r: r['outcome'].update(pid_replaced=False))
++        self.rejected('differs from observed command bytes')
++        self.fixture.build()
++        self.fixture.candidate()['transitions'][4].pop('pre_denial_diagnostics')
++        self.rejected()
++
++    def test_stale_boundary_and_reversed_command_order_are_rejected(self):
++        for edit in [lambda r: r.update(started_monotonic=0),
++                     lambda r: r['commands']['pid_final'].update(started_monotonic=0)]:
++            self.fixture.build()
++            self.fixture.change_boundary(edit)
++            self.rejected()
++
++    def test_freshness_cannot_restart_after_slow_acquisition(self):
++        transition = self.fixture.candidate()['transitions'][0]
++        transition['observation_started_monotonic'] = transition['command']['started_monotonic'] - 0.1
++        transition['precondition_age_seconds'] = 0.1
++        self.rejected('does not include its full acquisition')
++
++    def test_fresh_preinput_records_must_match_captured_immediate_bytes(self):
++        transition = self.fixture.candidate()['transitions'][0]
++        self.fixture.replace_output(transition['preinput_commands']['pid'], b'999')
++        self.rejected('bytes or timing are inconsistent')
++
++    def test_stable_but_different_final_pixels_are_never_normalized(self):
++        shot = self.fixture.candidate()['screens'][-1]
++        self.fixture.edit_stable(shot, lambda s: self.fixture.raw_value(s, 'screenshot', legacy.png(222)))
++        result = self.rejected()
++        self.assertEqual(result['status'], 'JOURNEY_DIFFERENCE')
++        self.assertEqual(result['screens'][-1]['changed_pixels'], 16)
++
++    def test_stable_but_changed_xml_attribute_is_preserved(self):
++        shot = self.fixture.candidate()['screens'][-1]
++        def edit(value):
++            data = proof.artifact(self.fixture.folder, value['artifacts']['hierarchy'])
++            self.fixture.raw_value(value, 'hierarchy', data.replace(b'<hierarchy>', b'<hierarchy changed="yes">'))
++        self.fixture.edit_stable(shot, edit)
++        result = self.rejected()
++        self.assertEqual(result['status'], 'JOURNEY_DIFFERENCE')
++        self.assertFalse(result['screens'][-1]['hierarchy_equal'])
++
++    def test_missing_or_altered_settling_policy_is_rejected(self):
++        for edit in [lambda r: r.pop('capture_policy'), lambda r: r['capture_policy'].update(settling_max_attempts=100),
++                     lambda r: r.update(schema=2), lambda r: r['capture_events'].pop()]:
++            self.fixture.build()
++            edit(self.fixture.report)
++            self.rejected()
++
++
++class VirtualRecorder(EvidenceRecorder):
++    """Run the real base snapshot and external XML-retry adapter on virtual ADB."""
++    def __init__(self, folder, clock, frames):
++        with patch.object(runner.shutil, 'which', return_value='/virtual/adb'):
++            super().__init__(folder, 'virtual-emulator', proof)
++        self.clock, self.frames = clock, list(frames)
++        self.capture_policy = observed.POLICY
++        self.inputs = []
++        self.frame = None
++        self.pid_reads = 0
++
++    def _snapshot_once(self, label, owner):
++        if not self.frames:
++            raise AssertionError('Test frame supply exhausted')
++        self.frame = self.frames.pop(0)
++        self.pid_reads = 0
++        self.foreground_reads = 0
++        return super()._snapshot_once(label, owner)
++
++    def cmd(self, args, timeout=120):
++        if self.deadline is not None and self.clock['now'] >= self.deadline:
++            raise runner.JourneyError('Observed command deadline expired before execution')
++        self.count += 1
++        started = self.clock['now']
++        self.clock['now'] += 0.05
++        data = b''
++        if args[0] == 'shell':
++            argv = shlex.split(args[1])
++            if argv[0] == 'pidof':
++                self.pid_reads += 1
++                data = self.frame.get('late_pid', b'31') if self.pid_reads > 2 else self.frame.get('pid', b'31')
++            elif argv[:3] == ['dumpsys', 'activity', 'activities']:
++                self.foreground_reads += 1
++                front = self.frame.get('foreground', ('topResumedActivity=' + runner.PACKAGE + '/' + runner.PACKAGE + '.intro.IntroActivity\n').encode())
++                data = self.frame.get('late_foreground', front) if self.foreground_reads > 2 else front
++            elif argv[:2] == ['pm', 'path']:
++                data = b'package:/data/app/test/base.apk\n'
++            elif argv[0] == 'sha256sum':
++                data = (getattr(self, 'device_apk_sha256', '2' * 64) + '  /data/app/test/base.apk\n').encode()
++            elif argv[0] == 'input':
++                self.inputs.append(argv)
++            elif argv[0] not in ('uiautomator', 'rm'):
++                raise AssertionError('Unexpected virtual command: ' + str(argv))
++        elif args[:2] == ['exec-out', 'cat']:
++            self.clock['now'] += self.frame.get('delay', 0)
++            data = self.frame.get('xml', legacy.xml(0))
++        elif args == ['exec-out', 'screencap', '-p']:
++            data = self.frame.get('png', legacy.png(1))
++        else:
++            raise AssertionError('Unexpected virtual ADB: ' + str(args))
++        name = 'command-virtual-' + str(self.count)
++        item = {'argv': args, 'returncode': 0, 'timed_out': False,
++                'started_monotonic': started, 'finished_monotonic': self.clock['now'],
++                'stdout': self.save(name + '.stdout', data), 'stderr': self.save(name + '.stderr', b'')}
++        self.log.append(item)
++        return item, data, b''
++
++
++class AcquisitionControls(unittest.TestCase):
++    def setUp(self):
++        self.temp = tempfile.TemporaryDirectory()
++        self.addCleanup(self.temp.cleanup)
++        self.folder = Path(self.temp.name)
++        self.clock = {'now': 0.0}
++
++    def capture(self, frames, budget=30):
++        recorder = VirtualRecorder(self.folder, self.clock, frames)
++        self.recorder = recorder
++        def sleep(seconds):
++            self.clock['now'] += seconds
++        with patch.object(runner.time, 'monotonic', side_effect=lambda: self.clock['now']), \
++                patch.object(runner.time, 'sleep', side_effect=sleep), observed.command_budget(recorder, budget):
++            return recorder.snapshot('candidate-intro-1', runner.PACKAGE)
++
++    def test_first_identical_pair_is_accepted_and_unequal_intermediate_is_retained(self):
++        shot = self.capture([{'png': legacy.png(9)}, {}, {}])
++        event = json.loads(proof.artifact(self.folder, shot['settling']))
++        self.assertEqual(event['accepted_pair'], [1, 2])
++        self.assertEqual(len(event['attempts']), 3)
++        self.assertNotEqual(proof.artifact(self.folder, event['attempts'][0]['artifacts']['screenshot']),
++                            proof.artifact(self.folder, event['attempts'][1]['artifacts']['screenshot']))
++        observed.stable_snapshot(self.folder, shot, proof, 'candidate')
++        self.assertEqual(self.recorder.frames, [])
++
++    def test_capture_stops_at_the_first_pair_without_reading_a_later_frame(self):
++        shot = self.capture([{}, {}, {'png': legacy.png(99)}])
++        self.assertEqual(len(self.recorder.frames), 1)
++        self.assertEqual(json.loads(proof.artifact(self.folder, shot['settling']))['accepted_pair'], [0, 1])
++
++    def test_six_unstable_full_frames_fail_with_all_raw_attempts_preserved(self):
++        with self.assertRaisesRegex(runner.JourneyError, 'within six attempts'):
++            self.capture([{'png': legacy.png(n)} for n in range(6)])
++        event = json.loads(proof.artifact(self.folder, self.recorder.capture_events[-1]))
++        self.assertEqual(event['status'], 'FAILED')
++        self.assertEqual(len(event['attempts']), 6)
++        self.assertEqual(len(list(self.folder.glob('*-frame-*.png'))), 6)
++        self.assertEqual(self.recorder.inputs, [])
++
++    def test_whole_hierarchy_must_be_identical_even_when_png_is_static(self):
++        altered = legacy.xml(0).replace(b'<hierarchy>', b'<hierarchy changed="yes">')
++        shot = self.capture([{'xml': altered}, {}, {}])
++        event = json.loads(proof.artifact(self.folder, shot['settling']))
++        self.assertEqual(event['accepted_pair'], [1, 2])
++
++    def test_process_change_between_valid_frames_is_not_retried(self):
++        with self.assertRaisesRegex(runner.JourneyError, 'Process or component changed'):
++            self.capture([{}, {'pid': b'32'}, {}])
++        self.assertEqual(len(self.recorder.frames), 1)
++        self.assertEqual(len(self.recorder.capture_events), 1)
++
++    def test_actual_parse_error_keeps_external_retry_and_resets_the_pair(self):
++        shot = self.capture([{}, {'xml': b'cat: /missing: No such file or directory\n'}, {}, {}])
++        self.assertEqual(len(self.recorder.capture_events), 2)
++        first = json.loads(proof.artifact(self.folder, self.recorder.capture_events[0]))
++        self.assertEqual(first['error_type'], 'ParseError')
++        retained = json.loads(proof.artifact(self.folder, first['last_raw_snapshot']))
++        self.assertIn(b'No such file', proof.artifact(self.folder, retained['artifacts']['hierarchy']))
++        self.assertTrue((self.folder / 'candidate-intro-1-acquisition-1-acquisition-error.json').is_file())
++        last = json.loads(proof.artifact(self.folder, shot['settling']))
++        self.assertEqual(last['accepted_pair'], [0, 1])
++        self.assertEqual(len(last['attempts']), 2)
++
++    def test_three_bad_xml_attempts_still_fail_without_semantic_retry(self):
++        with self.assertRaisesRegex(runner.JourneyError, 'three fresh attempts'):
++            self.capture([{'xml': b'bad xml'}] * 3)
++        self.assertEqual(len(self.recorder.capture_events), 3)
++        self.assertEqual(len(list(self.folder.glob('*acquisition-error.json'))), 3)
++
++    def test_capture_deadline_preserves_failure_before_any_input(self):
++        with self.assertRaisesRegex(runner.JourneyError, 'deadline'):
++            self.capture([{'delay': 31}, {}, {}])
++        self.assertEqual(self.recorder.inputs, [])
++        self.assertEqual(json.loads(proof.artifact(self.folder, self.recorder.capture_events[-1]))['status'], 'FAILED')
++
++    def test_reused_acquisition_path_or_skipped_first_match_is_rejected(self):
++        shot = self.capture([{}, {}])
++        meta = shot['settling']
++        event = json.loads(proof.artifact(self.folder, meta))
++        event['attempts'][0]['artifacts']['hierarchy'] = event['attempts'][1]['artifacts']['hierarchy']
++        shot['settling'] = self.recorder.save(meta['path'], json.dumps(event).encode())
++        with self.assertRaisesRegex(runner.JourneyError, 'reused an earlier artifact'):
++            observed.stable_snapshot(self.folder, shot, proof, 'candidate')
++
++    def test_real_adb_timeout_retains_partial_outputs_and_uses_remaining_budget(self):
++        with patch.object(runner.shutil, 'which', return_value='/virtual/adb'):
++            recorder = runner.Recorder(self.folder, 'virtual', proof)
++        recorder.deadline = 5
++        timeout = subprocess.TimeoutExpired(['/virtual/adb'], 5, output=b'partial XML', stderr=b'transfer stalled')
++        with patch.object(runner.time, 'monotonic', side_effect=[0, 0, 1]), \
++                patch.object(runner.subprocess, 'run', side_effect=timeout) as execute:
++            with self.assertRaisesRegex(runner.JourneyError, 'partial output retained'):
++                recorder.cmd(['exec-out', 'cat', '/data/local/tmp/owned.xml'])
++        self.assertEqual(execute.call_args.kwargs['timeout'], 5)
++        self.assertEqual(len(recorder.log), 1)
++        self.assertIsNone(recorder.log[0]['returncode'])
++        self.assertTrue(recorder.log[0]['timed_out'])
++        self.assertEqual(proof.artifact(self.folder, recorder.log[0]['stdout']), b'partial XML')
++        self.assertEqual(proof.artifact(self.folder, recorder.log[0]['stderr']), b'transfer stalled')
++
++    def test_decode_cache_uses_exact_bytes_and_decoder_and_is_bounded(self):
++        from types import SimpleNamespace
++        observed._decoded_png.cache_clear()
++        calls = []
++        def decode(data):
++            calls.append(data)
++            return proof.png_pixels(data)
++        wrapped = SimpleNamespace(png_pixels=decode)
++        first = legacy.png(1)
++        self.assertEqual(observed.png_pixels(first, wrapped), observed.png_pixels(bytes(first), wrapped))
++        self.assertEqual(len(calls), 1)
++        self.assertNotEqual(observed.png_pixels(legacy.png(2), wrapped), observed.png_pixels(first, wrapped))
++        corrupt = first[:-1] + bytes([first[-1] ^ 1])
++        with self.assertRaises(ValueError):
++            observed.png_pixels(corrupt, wrapped)
++        # Another decoder cannot reuse the first decoder's result.
++        other = SimpleNamespace(png_pixels=lambda data: ('other decoder', data))
++        self.assertEqual(observed.png_pixels(first, other), ('other decoder', first))
++        for value in range(3, 9):
++            observed.png_pixels(legacy.png(value), wrapped)
++        self.assertEqual(observed._decoded_png.cache_info().maxsize, 4)
++        self.assertLessEqual(observed._decoded_png.cache_info().currsize, 4)
++        observed._decoded_png.cache_clear()
++
++
++if __name__ == '__main__':
++    unittest.main()
+--- /dev/null
++++ b/tools/parity_journeys/test_favourite_info_journey.py
+@@ -0,0 +1,251 @@
++"""Actual XML/log fixtures and synthetic controls; no device execution."""
++from __future__ import annotations
++
++import copy
++import hashlib
++import json
++from pathlib import Path
++import re
++import tempfile
++import unittest
++from unittest.mock import patch
++import xml.etree.ElementTree as ET
++
++import editor_journey as runner
++import favourite_info_journey as favourite
++import observed_journey as observed
++import supplied_reference_journey as reference
++from test_observed_journey import ObservedFixture, VirtualRecorder, proof
++
++FIXTURES = Path(__file__).with_name('fixtures')
++
++
++class DialogControls(unittest.TestCase):
++    def setUp(self):
++        self.context = favourite.configured_plan()
++        self.context.__enter__()
++        self.addCleanup(self.context.__exit__, None, None, None)
++        self.temp = tempfile.TemporaryDirectory()
++        self.addCleanup(self.temp.cleanup)
++        self.folder = Path(self.temp.name)
++        self.number = 0
++
++    def put(self, data):
++        self.number += 1
++        name = 'fixture-' + str(self.number)
++        (self.folder / name).write_bytes(data)
++        return {'path': name, 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
++
++    def frame(self):
++        return {'xml': (FIXTURES / 'favourite-triggers-api35.xml').read_bytes(),
++                'png': (FIXTURES / 'favourite-triggers-api35.png').read_bytes(),
++                'foreground': ('topResumedActivity=' + favourite.EDITOR + '\n').encode()}
++
++    def shot(self, frame):
++        return {'owner': runner.PACKAGE, 'artifacts': {
++            'hierarchy': self.put(frame['xml']), 'screenshot': self.put(frame['png']),
++            'foreground': self.put(frame['foreground']), 'foreground_final': self.put(frame['foreground'])}}
++
++    def test_exact_observed_fixture_has_one_ok_target_at_recorded_center(self):
++        frame = self.frame()
++        self.assertEqual(hashlib.sha256(frame['xml']).hexdigest(), 'af7f2d14b631c0762a065a831f8247d9ca194f7fd755d0d30f2e2ba63d5b85b2')
++        self.assertEqual(favourite.dialog_identity(self.folder, self.shot(frame), proof), [560, 828])
++
++    def test_changed_message_title_role_owner_and_duplicate_button_fail(self):
++        edits = [
++            ('android:id/message', 'text', 'Different information'),
++            (runner.PACKAGE + ':id/alertTitle', 'text', 'Favourite Actions'),
++            ('android:id/button1', 'enabled', 'false'),
++            ('android:id/button1', 'clickable', 'false'),
++            ('android:id/button1', 'class', 'android.widget.TextView'),
++            ('android:id/button1', 'text', 'DOWNLOAD'),
++            ('android:id/button1', 'package', 'other.package'),
++        ]
++        for target, key, value in edits:
++            with self.subTest(target=target, field=key):
++                frame = self.frame()
++                tree = ET.fromstring(frame['xml'])
++                next(n for n in tree.iter('node') if n.get('resource-id') == target).set(key, value)
++                frame['xml'] = ET.tostring(tree)
++                with self.assertRaises(runner.JourneyError):
++                    favourite.dialog_identity(self.folder, self.shot(frame), proof)
++        frame = self.frame()
++        tree = ET.fromstring(frame['xml'])
++        node = copy.deepcopy(next(n for n in tree.iter('node') if n.get('resource-id') == 'android:id/button1'))
++        node.set('text', 'Other button')
++        tree.append(node)
++        frame['xml'] = ET.tostring(tree)
++        with self.assertRaisesRegex(runner.JourneyError, 'ambiguous'):
++            favourite.dialog_identity(self.folder, self.shot(frame), proof)
++
++    def input(self, edit=None, digest='2' * 64):
++        clock = {'now': 0.0}
++        frames = [self.frame() for _ in range(4)]
++        # Geometry on the complete unchanged 720x1280 fixture is tested above.
++        # Virtual process/input controls use tiny synthetic frames so repeated
++        # PNG decoding does not dominate the suite; no actual capture is edited.
++        from test_editor_journey import png
++        for frame in frames:
++            tree = ET.fromstring(frame['xml'])
++            for node in tree.iter('node'):
++                node.set('bounds', '[0,0][4,4]')
++            frame['xml'] = ET.tostring(tree)
++            frame['png'] = png(1)
++        if edit:
++            for frame in frames[2:]:
++                edit(frame)
++        recorder = VirtualRecorder(self.folder, clock, frames)
++        self.recorder = recorder
++        def sleep(seconds):
++            clock['now'] += seconds
++        with patch.object(runner.time, 'monotonic', side_effect=lambda: clock['now']), \
++                patch.object(runner.time, 'sleep', side_effect=sleep):
++            installed = recorder.shell(['pm', 'path', runner.PACKAGE])[0]
++            run = {'label': 'candidate', 'apk_sha256': '2' * 64, 'installed_path': installed}
++            previous = observed.capture(recorder, 'candidate-favourite-triggers-info', runner.PACKAGE)
++            previous['name'] = 'favourite-triggers-info'
++            recorder.device_apk_sha256 = digest
++            return runner.capture_transition(recorder, previous, 'candidate-after-favourite-info',
++                                             'after-favourite-info', favourite.OK, proof, run)
++
++    def test_real_recorder_path_taps_only_the_fresh_observed_ok_once(self):
++        transition = self.input()
++        self.assertEqual(self.recorder.inputs, [['input', 'tap', '2', '2']])
++        self.assertIn('pre_ok_installed_identity', transition)
++        self.assertLess(transition['precondition_age_seconds'], 15)
++
++    def test_real_recorder_late_pid_or_component_change_prevents_input(self):
++        edits = [(lambda frame: frame.update(late_pid=b'32'), 'App PID changed'),
++                 (lambda frame: frame.update(late_foreground=('topResumedActivity=' + observed.HOME + '\n').encode()),
++                  'Expected component left')]
++        for edit, reason in edits:
++            with self.subTest(reason=reason), self.assertRaisesRegex(ValueError, reason):
++                self.input(edit)
++            self.assertEqual(self.recorder.inputs, [])
++
++    def test_real_recorder_wrong_device_apk_prevents_ok(self):
++        with self.assertRaisesRegex(runner.JourneyError, 'identity changed'):
++            self.input(digest='9' * 64)
++        self.assertEqual(self.recorder.inputs, [])
++
++    def test_new_plan_stops_after_one_ok_and_preserves_reference_bytes(self):
++        plan = runner.PLAN
++        old = json.loads(reference.PLAN_PATH.read_text())
++        self.assertEqual(len(plan), 10)
++        self.assertEqual(plan[:8], old[:8])
++        self.assertEqual(plan[-1], ['after-favourite-info', runner.PACKAGE, None, favourite.OK])
++        self.assertEqual(sum(step[3] == favourite.OK for step in plan), 1)
++        self.assertEqual(hashlib.sha256(reference.PLAN_PATH.read_bytes()).hexdigest(), 'ff578443029fff6da5056f0e8eb30e07cc7c74c8bada126939062e5bbc311df3')
++        with patch.object(runner, 'PLAN', plan + [old[-1]]), self.assertRaises(runner.JourneyError):
++            favourite.require_plan()
++
++
++class ContinuationControls(unittest.TestCase):
++    def setUp(self):
++        self.context = favourite.configured_plan()
++        self.context.__enter__()
++        self.addCleanup(self.context.__exit__, None, None, None)
++        self.fixture = ObservedFixture()
++        self.addCleanup(self.fixture.close)
++
++    def inject_crash(self, run, mutate=None):
++        transition = run['transitions'][4]
++        artifact = transition['process_handoff']
++        value = json.loads(proof.artifact(self.fixture.folder, artifact))
++        data = (FIXTURES / 'fragment-fatal-api35-original.txt').read_text()
++        data = re.sub(r'\b3947\b', value['old_pid'], data).encode()
++        if mutate:
++            data = mutate(data)
++        self.fixture.replace_output(value['after_diagnostics']['crash'], data)
++        crash = observed.crash_observation(self.fixture.folder, transition['pre_denial_diagnostics'],
++                                            value['after_diagnostics'], value['old_pid'], proof)
++        value.update(crash_observation=crash, outcome=observed.outcome(value['old_pid'], value['new_pid'], crash))
++        transition['process_handoff'] = self.fixture.put(artifact['path'], json.dumps(value).encode())
++
++    def test_full_ten_screen_synthetic_scope_preserves_terminal_component(self):
++        result = self.fixture.result()
++        self.assertTrue(result['journey_equal'], result)
++        self.assertEqual(len(result['screens']), 10)
++        self.assertEqual(result['status'], 'EXACT_OBSERVED_DIALOG_JOURNEY_MATCH_ONLY')
++        self.assertTrue(result['terminal_surface_identities_equal'])
++        self.assertFalse(result['catalog_navigation_established'])
++
++    def test_shared_known_fatal_is_classified_as_post_crash_continuation(self):
++        for run in self.fixture.report['runs']:
++            self.inject_crash(run)
++        result = self.fixture.result()
++        self.assertTrue(result['journey_equal'], result)
++        self.assertEqual(result['status'], 'MATCHED_POST_CRASH_CONTINUATION_ONLY')
++        self.assertTrue(result['post_crash_continuation_observed_in_both'])
++        self.assertFalse(result['crash_free_run_established'])
++        self.assertFalse(result['full_runtime_1_to_1_established'])
++
++    def test_known_fatal_in_only_one_run_is_an_outcome_difference(self):
++        self.inject_crash(self.fixture.candidate())
++        result = self.fixture.result()
++        self.assertFalse(result['journey_equal'], result)
++        self.assertEqual(result['status'], 'JOURNEY_DIFFERENCE')
++        self.assertFalse(result['process_handoff_outcomes_equal'])
++
++    def test_stale_or_wrong_pre_ok_installed_identity_is_rejected(self):
++        transition = self.fixture.candidate()['transitions'][-1]
++        records = transition['pre_ok_installed_identity']
++        records['installed_checksum']['stdout'] = self.fixture.candidate()['installed_checksum']['stdout']
++        result = self.fixture.result()
++        self.assertFalse(result['journey_equal'], result)
++        self.assertIn('reused earlier', result['reason'])
++
++    def test_terminal_pixel_difference_is_retained_after_shared_crash(self):
++        for run in self.fixture.report['runs']:
++            self.inject_crash(run)
++        shot = self.fixture.candidate()['screens'][-1]
++        from test_editor_journey import png
++        self.fixture.edit_stable(shot, lambda value: self.fixture.raw_value(value, 'screenshot', png(199)))
++        result = self.fixture.result()
++        self.assertFalse(result['journey_equal'], result)
++        self.assertTrue(result['post_crash_continuation_observed_in_both'])
++        self.assertEqual(result['screens'][-1]['changed_pixels'], 16)
++
++
++class CrashFixtureControls(unittest.TestCase):
++    def setUp(self):
++        self.temp = tempfile.TemporaryDirectory()
++        self.addCleanup(self.temp.cleanup)
++        self.folder = Path(self.temp.name)
++        self.number = 0
++
++    def diagnostics(self, data):
++        self.number += 1
++        prefix = str(self.number)
++        records = {}
++        for stream, value in [('stdout', data), ('stderr', b'')]:
++            name = prefix + '-' + stream
++            (self.folder / name).write_bytes(value)
++            records[stream] = {'path': name, 'bytes': len(value), 'sha256': hashlib.sha256(value).hexdigest()}
++        return {'crash': {'returncode': 0, **records}}
++
++    def test_exact_two_actual_fatal_blocks_share_type_stack_but_keep_literal_messages(self):
++        results = []
++        for label, pid in [('original', '3947'), ('candidate', '5811')]:
++            data = (FIXTURES / ('fragment-fatal-api35-' + label + '.txt')).read_bytes()
++            results.append(observed.crash_observation(self.folder, self.diagnostics(b''), self.diagnostics(data), pid, proof))
++        self.assertEqual(results[0]['classification'], results[1]['classification'])
++        self.assertNotEqual(results[0]['new_fatal_blocks'][0]['literal_exception'], results[1]['new_fatal_blocks'][0]['literal_exception'])
++
++    def test_old_buffer_entry_is_not_a_new_crash_and_empty_buffer_is_not_crash_free(self):
++        data = (FIXTURES / 'fragment-fatal-api35-original.txt').read_bytes()
++        result = observed.crash_observation(self.folder, self.diagnostics(data), self.diagnostics(data), '3947', proof)
++        self.assertEqual(result['classification'], {'status': 'NO_NEW_JAVA_FATAL_EXCEPTION_OBSERVED'})
++
++    def test_changed_stack_message_missing_process_or_truncation_rejects_classification(self):
++        data = (FIXTURES / 'fragment-fatal-api35-original.txt').read_bytes()
++        for changed in [data.replace(b'lbua80.onShow', b'Other.onShow'),
++                        data.replace(b'not attached to Activity', b'other failure'),
++                        data.replace(b'Process: com.arlosoft.macrodroid', b'Process: other.package'),
++                        b'\n'.join(data.splitlines()[:-1]) + b'\n']:
++            with self.subTest(data=changed[:40]), self.assertRaisesRegex(runner.JourneyError, 'Unreviewed new fatal'):
++                observed.crash_observation(self.folder, self.diagnostics(b''), self.diagnostics(changed), '3947', proof)
++
++
++if __name__ == '__main__':
++    unittest.main()
+--- /dev/null
++++ b/tools/parity_journeys/OBSERVED_CAPTURE.md
+@@ -0,0 +1,45 @@
++# Explicit process-boundary and full-frame observations
++
++The new capture policy is opt-in. The existing thirteen-step `editor_journey.py` and fourteen-step `supplied_reference_journey.py` plans retain their original action sequences and default initial-PID continuity checks. The external XML ParseError retry adapter and `editor-plan.json` remain byte-identical.
++
++`favourite_info_journey.py` selects a separate ten-screen plan. It preserves the first eight reference steps, records the observed Favourite Triggers information dialog, taps its verified OK button once, records the actual first resulting app surface, and stops. It requires both `--observe-denial-handoff` and `--settle-full-frames`. The workflow uses that entry point and both flags; downloader tests, bootstrap logging, raw lifecycle logging, and artifact preservation from `cada56c8` remain intact.
++
++## What is accepted as a stable observation
++
++For each capture, including the fresh snapshot immediately before an input, the recorder accepts the **first two consecutive observations with identical full PNG bytes and full XML bytes**. Each observation has its own raw files, before/final PID samples, before/final resumed component, and monotonic timestamps. The same single main app PID and component must remain stable across the observations. Every earlier unequal frame/hierarchy and failed acquisition ledger is retained.
++
++There are at most six full-frame attempts within a shared 30-second deadline. The existing adapter may retry only a real XML ParseError, at most three acquisitions, still within the same outer deadline. It does not retry a semantic, identity, or process failure. The input freshness deadline remains 15 seconds and includes diagnostics or installed-APK checks, full-frame acquisition, immediate PID/component checks, and input dispatch. Device-command timeouts preserve any partial stdout/stderr.
++
++No frame is chosen by comparing it with the other APK. The final comparison still includes every pixel, every hierarchy attribute, and PNG color metadata. No screenshot is cropped, masked, recolored, or averaged. A persistent difference or failure to reach stability remains a failure.
++
++The new observation path retains at most four pure PNG decode results, keyed by the complete PNG bytes and decoder function. Identical bytes therefore do not consume the input deadline repeatedly decoding the same image. Each artifact is still read and hash-checked; different or corrupt bytes must go through the decoder, and raw frame equality is unchanged. This cache does not store a selected screenshot or skip a device observation.
++
++## One explicitly observed process boundary
++
++Only the transition from the notification prompt to the observed app-owned LITEAPKS dialog may establish a new PID anchor. The pre-input notification controller, unique denial button, and prior live PID are verified. After the first stable resulting app capture, independent commands record:
++
++- A single live main app PID before and after the boundary checks.
++- Two complete `ps -A -o PID,NAME` listings containing PID 1, the expected sole main app process, and no old PID anywhere if replacement is claimed.
++- A fresh package path and SHA-256 matching the exact installed APK from this run.
++- NewHomeScreenActivity as the resumed component.
++- Raw process and Java crash diagnostics before and after the boundary, without clearing a log buffer.
++
++The seven identity commands and diagnostics must be fresh, ordered, independently stored, and completed within 30 seconds. Subsequent captures and inputs retain the new anchor; another restart or a PID change inside an input guard still fails. The paired comparison includes whether each APK replaced its PID, so different lifecycle outcomes cannot become an image-only match. The primary [Toybox ps source](https://android.googlesource.com/platform/external/toybox/+/08dc20ad276251f61a9a4036f9d17ee601a4b3a0/toys/posix/ps.c) documents the all-process selection and PID/NAME fields used here.
++
++## Crash evidence is part of the outcome
++
++The [actual run 38202401351](../../docs/verification/editor-journey/run-38202401351-attempt-1/) recorded a `java.lang.IllegalStateException` in both APKs: the LB fragment was detached when `com.zx.lbua80.onShow` called `Fragment.getResources`. Both original processes died, and both continued in new main processes. The new classifier recognizes only that exact observed exception shape and ten-frame stack in a new fatal block for the old PID. An unexpected new fatal stack fails closed for review. The full raw logs, literal exception messages, fragment instances, timestamps, and PIDs remain in the evidence.
++
++Comparable crash outcomes contain the recorded exception type, message shape, and exact stack. Runtime fragment instance IDs are preserved in the literal blocks; their equality is not claimed. A fatal block already present before the input is not classified as newly observed. An empty or unavailable Java crash buffer never proves that a run was crash-free.
++
++If every full capture and paired lifecycle outcome matches after the known shared crash, the result is `MATCHED_POST_CRASH_CONTINUATION_ONLY`. It is not a crash-free result, nor a claim of complete runtime or feature parity. A pixel difference continues to produce `JOURNEY_DIFFERENCE`, including when both crashes match.
++
++## Favourite Triggers is a separate final observation
++
++The new adapter requires the exact observed app-owned Favourite Triggers title, two-paragraph message, and unique enabled/clickable `android:id/button1` with text `OK` and Button class. It verifies EditMacroActivity before and after the fresh snapshot, and checks the actual installed APK path/hash before the snapshot, inside the same 15-second input deadline. A fresh PID and resumed-component check immediately precede the one tap. Geometry is computed from the observed button bounds, never a hard-coded input coordinate.
++
++The final surface is captured in full, with stable process and component observations. Its actual component must match between the APKs for a matching result. No assumed Add Trigger selector or subsequent catalog action is inserted. Unexpected ownership, a changed process, or unstable frames preserve the raw evidence and fail the capture.
++
++## Verification and limits
++
++Host tests exercise the actual recorder/input paths with a virtual ADB, the complete legacy verifier suites, synthetic positive and rejection cases, and exact observed XML/PNG/crash fixtures. They do not establish an Android result. The new device policy and the single OK input remain pending until a hosted run supplies their actual evidence. The preserved 26-pixel page-dot difference, prior intro differences, prior permission-background difference, and recorded crashes remain failures within their original measured scopes.
+--- /dev/null
++++ b/tools/parity_journeys/fixtures/liteapks-landing-api35.xml
+@@ -0,0 +1 @@
++<?xml version='1.0' encoding='UTF-8' standalone='yes' ?><hierarchy rotation="0"><node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,303][648,976]"><node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,303][648,976]"><node index="0" text="" resource-id="android:id/content" class="android.widget.FrameLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,303][648,976]"><node index="0" text="" resource-id="android:id/parentPanel" class="android.widget.LinearLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,303][648,976]"><node index="0" text="" resource-id="android:id/customPanel" class="android.widget.FrameLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,303][648,976]"><node index="0" text="" resource-id="android:id/custom" class="android.widget.FrameLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,303][648,976]"><node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,303][648,976]"><node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[112,343][608,519]"><node index="0" text="" resource-id="" class="android.widget.ImageView" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[160,371][280,491]" /><node index="1" text="" resource-id="" class="android.view.View" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[304,371][310,491]" /><node index="2" text="" resource-id="" class="android.widget.LinearLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[334,375][560,487]"><node index="0" text="LITEAPKS" resource-id="" class="android.widget.TextView" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[334,375][560,449]" /><node index="1" text="Safest and Fastest" resource-id="" class="android.widget.TextView" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[334,449][560,487]" /></node></node><node index="1" text="" resource-id="" class="android.widget.LinearLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[112,535][608,686]"><node index="0" text="Endless Modded Apps &amp; Games, All in One Place. Get LITEAPKs App Store Now" resource-id="" class="android.widget.TextView" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[128,551][592,670]" /></node><node index="2" text="" resource-id="" class="android.widget.LinearLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[112,718][608,796]"><node index="0" text="" resource-id="" class="android.widget.Switch" package="com.arlosoft.macrodroid" content-desc=" " checkable="true" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[124,730][218,784]" /><node index="1" text="Don't show again" resource-id="" class="android.widget.TextView" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[234,738][443,776]" /></node><node index="3" text="" resource-id="" class="android.widget.LinearLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[112,812][608,948]"><node index="0" text="CLOSE" resource-id="" class="android.widget.Button" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[124,832][344,928]" /><node index="1" text="DOWNLOAD✅" resource-id="" class="android.widget.Button" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[376,832][596,928]" /></node></node></node></node></node></node></node></node></hierarchy>--- /dev/null
++++ b/tools/parity_journeys/fixtures/favourite-triggers-api35.xml
+@@ -0,0 +1 @@
++<?xml version='1.0' encoding='UTF-8' standalone='yes' ?><hierarchy rotation="0"><node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[40,363][680,916]"><node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,395][648,884]"><node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,395][648,884]"><node index="0" text="" resource-id="com.arlosoft.macrodroid:id/action_bar_root" class="android.widget.FrameLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,395][648,884]"><node index="0" text="" resource-id="android:id/content" class="android.widget.FrameLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,395][648,884]"><node index="0" text="" resource-id="com.arlosoft.macrodroid:id/parentPanel" class="androidx.appcompat.widget.LinearLayoutCompat" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,395][648,884]"><node index="0" text="" resource-id="com.arlosoft.macrodroid:id/topPanel" class="android.widget.LinearLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,395][648,501]"><node index="0" text="" resource-id="com.arlosoft.macrodroid:id/title_template" class="android.widget.LinearLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,395][648,485]"><node index="0" text="Favourite Triggers" resource-id="com.arlosoft.macrodroid:id/alertTitle" class="android.widget.TextView" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[120,431][600,485]" /></node><node index="1" text="" resource-id="com.arlosoft.macrodroid:id/titleDividerNoCustom" class="android.view.View" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,485][648,501]" /></node><node index="1" text="" resource-id="com.arlosoft.macrodroid:id/contentPanel" class="android.widget.FrameLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,501][648,772]"><node index="0" text="" resource-id="com.arlosoft.macrodroid:id/scrollView" class="android.widget.ScrollView" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,501][648,772]"><node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,501][648,772]"><node index="0" text="You can now long press on the + button to display quick tiles for your favourite items.&#10;&#10;The set of quick tiles displayed can be edited and tailored to your needs using the wrench icon." resource-id="android:id/message" class="android.widget.TextView" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,501][648,772]" /></node></node></node><node index="2" text="" resource-id="com.arlosoft.macrodroid:id/buttonPanel" class="android.widget.ScrollView" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,772][648,884]"><node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,772][648,884]"><node index="0" text="OK" resource-id="android:id/button1" class="android.widget.Button" package="com.arlosoft.macrodroid" content-desc="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[496,780][624,876]" /></node></node></node></node></node></node></node></node></hierarchy>Binary file added; exact bytes bound in checkpoint: tools/parity_journeys/fixtures/favourite-triggers-api35.png
+--- /dev/null
++++ b/tools/parity_journeys/fixtures/fragment-fatal-api35-original.txt
+@@ -0,0 +1,13 @@
++10-12 04:11:08.873  3947  3947 E AndroidRuntime: FATAL EXCEPTION: main
++10-12 04:11:08.873  3947  3947 E AndroidRuntime: Process: com.arlosoft.macrodroid, PID: 3947
++10-12 04:11:08.873  3947  3947 E AndroidRuntime: java.lang.IllegalStateException: Fragment LB{3bdefc2} not attached to Activity
++10-12 04:11:08.873  3947  3947 E AndroidRuntime: 	at android.app.Fragment.getResources(Fragment.java:785)
++10-12 04:11:08.873  3947  3947 E AndroidRuntime: 	at com.zx.lbua80.onShow(Unknown Source:22)
++10-12 04:11:08.873  3947  3947 E AndroidRuntime: 	at android.app.Dialog$ListenersHandler.handleMessage(Dialog.java:1500)
++10-12 04:11:08.873  3947  3947 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:107)
++10-12 04:11:08.873  3947  3947 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:232)
++10-12 04:11:08.873  3947  3947 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:317)
++10-12 04:11:08.873  3947  3947 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:8705)
++10-12 04:11:08.873  3947  3947 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
++10-12 04:11:08.873  3947  3947 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
++10-12 04:11:08.873  3947  3947 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+--- /dev/null
++++ b/tools/parity_journeys/fixtures/fragment-fatal-api35-candidate.txt
+@@ -0,0 +1,13 @@
++10-12 04:12:40.576  5811  5811 E AndroidRuntime: FATAL EXCEPTION: main
++10-12 04:12:40.576  5811  5811 E AndroidRuntime: Process: com.arlosoft.macrodroid, PID: 5811
++10-12 04:12:40.576  5811  5811 E AndroidRuntime: java.lang.IllegalStateException: Fragment LB{445de12} not attached to Activity
++10-12 04:12:40.576  5811  5811 E AndroidRuntime: 	at android.app.Fragment.getResources(Fragment.java:785)
++10-12 04:12:40.576  5811  5811 E AndroidRuntime: 	at com.zx.lbua80.onShow(Unknown Source:22)
++10-12 04:12:40.576  5811  5811 E AndroidRuntime: 	at android.app.Dialog$ListenersHandler.handleMessage(Dialog.java:1500)
++10-12 04:12:40.576  5811  5811 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:107)
++10-12 04:12:40.576  5811  5811 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:232)
++10-12 04:12:40.576  5811  5811 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:317)
++10-12 04:12:40.576  5811  5811 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:8705)
++10-12 04:12:40.576  5811  5811 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
++10-12 04:12:40.576  5811  5811 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
++10-12 04:12:40.576  5811  5811 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+--- /dev/null
++++ b/tools/parity_journeys/fixtures/observed-fixtures.json
+@@ -0,0 +1,80 @@
++{
++  "schema": 1,
++  "scope": "Unchanged actual input fixtures; host use is not a device run",
++  "source_run": 38202401351,
++  "source_commit": "cada56c8a11ff5cbd892ec6d0beaeab60b3e644d",
++  "archive_commit": "4c279db5619b2d22fdb12d6f084e740bfc5ce20c",
++  "source_archive_sha256": "fa2eca5f893ae181b91aa7a7bf5df8320620bbc8da21b87eacffb1de0c3bc7ee",
++  "source_manifest": "docs/verification/editor-journey/run-38202401351-attempt-1/manifest.json",
++  "files": [
++    {
++      "path": "favourite-triggers-api35.xml",
++      "bytes": 6388,
++      "sha256": "af7f2d14b631c0762a065a831f8247d9ca194f7fd755d0d30f2e2ba63d5b85b2",
++      "source_member": "ci-editor/journey/original-trigger-catalog-acquisition-1.xml",
++      "copy": "exact complete artifact member"
++    },
++    {
++      "path": "favourite-triggers-api35.png",
++      "bytes": 83484,
++      "sha256": "a825ecda49d1d7e04e65a84d1579f47219d52eb6ffba66519401e4177b5f2689",
++      "source_member": "ci-editor/journey/original-trigger-catalog-acquisition-1.png",
++      "copy": "exact complete artifact member"
++    },
++    {
++      "path": "fragment-fatal-api35-original.txt",
++      "bytes": 1368,
++      "sha256": "d959b510811926ea3b7a0c240ca72661a3086b6df3a98288b4675776ec7e10ff",
++      "source_member": "ci-editor/lifecycle.log",
++      "line_numbers": [
++        2468,
++        2469,
++        2470,
++        2471,
++        2472,
++        2473,
++        2474,
++        2475,
++        2476,
++        2477,
++        2478,
++        2479,
++        2480
++      ],
++      "copy": "exact unmodified source lines; complete original log remains archived"
++    },
++    {
++      "path": "fragment-fatal-api35-candidate.txt",
++      "bytes": 1368,
++      "sha256": "8b7a84ff50a1d68be171a3a582c62b6de7ee0bce4b03f338022445cc8ba3a383",
++      "source_member": "ci-editor/lifecycle.log",
++      "line_numbers": [
++        2933,
++        2934,
++        2935,
++        2936,
++        2937,
++        2938,
++        2939,
++        2940,
++        2941,
++        2942,
++        2943,
++        2944,
++        2945
++      ],
++      "copy": "exact unmodified source lines; complete original log remains archived"
++    }
++  ],
++  "earlier_promotion_fixture": {
++    "path": "liteapks-landing-api35.xml",
++    "bytes": 7273,
++    "sha256": "77ccbb1de2f4ce42c402f25c80404b74eece18943f5d003e6cb15c9478d0a4f2",
++    "run_id": 38199371948,
++    "source_member": "ci-editor/journey/original-home.xml",
++    "archive_sha256": "5edc5aa2a46b2281432c082046400474f53a466ed8c77f6747c5e11a2f0adc70",
++    "copy": "exact complete artifact member"
++  },
++  "original_and_candidate_favourite_xml_and_png_are_byte_identical": true,
++  "screenshots_modified": false
++}

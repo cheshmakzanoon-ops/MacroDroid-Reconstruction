@@ -1,0 +1,129 @@
+{
+  "status": "PROBE_PREPARATION_FAILED",
+  "started_at_utc": "2026-10-12T04:15:17.901841+00:00",
+  "scope": "Reflection-only standalone probe compilation and APK identity binding; no ART execution",
+  "android_executed": false,
+  "app_apk_modified": false,
+  "app_installed": false,
+  "target_method": "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;",
+  "runtime_cases": [
+    "fresh-empty-unit-identity",
+    "reused-label-zero-empty",
+    "resumed-label-two-empty",
+    "invalid-label-exact-exception",
+    "label-two-dead-cast-L7",
+    "label-two-dead-cast-L4",
+    "label-two-dead-cast-L1",
+    "null-list-exception-type"
+  ],
+  "commands": [
+    {
+      "label": "javac",
+      "argv": [
+        "javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-d",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-01/classes",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-01/source/recovered/probe/WidgetMethodProbe.java"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "elapsed_seconds": 5.854,
+      "stdout": {
+        "path": "javac.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "javac.stderr.txt",
+        "bytes": 268,
+        "sha256": "312e9bd919c699a2f8409f70240177012720c94095f0f4374d44152defc50f7e"
+      }
+    },
+    {
+      "label": "d8",
+      "argv": [
+        "java",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-01/dex",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-01/probe-inputs.jar"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "elapsed_seconds": 1.969,
+      "stdout": {
+        "path": "d8.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "d8.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "disassemble",
+      "argv": [
+        "java",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-01/smali",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-01/dex/classes.dex"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "elapsed_seconds": 0.627,
+      "stdout": {
+        "path": "disassemble.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "disassemble.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "apks": {
+    "original": {
+      "path": "/workspace/scratch/4130730d15aa/recovered/automation android app",
+      "bytes": 95725918,
+      "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+    },
+    "candidate": {
+      "path": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9/dist/MacroDroid-5.67.8-v9-hybrid.apk",
+      "bytes": 94683439,
+      "sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f"
+    }
+  },
+  "original_method_sha256": "a1dd490bbfd6837fa72e6bf8ae4c75736612989fcba050fe2f0582aa03640e34",
+  "source": {
+    "path": "/workspace/scratch/4130730d15aa/widget-art-probe/source/recovered/probe/WidgetMethodProbe.java",
+    "copied_path": "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-01/source/recovered/probe/WidgetMethodProbe.java",
+    "sha256": "7194fcfeb3b4885f3cfec8393a24aadf4dcd4ea6a9607d37c4aa784125f721b2"
+  },
+  "tool_jar": {
+    "path": "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+    "sha256": "354b10af74c09f5d2ab139def4231f0906dc6cc75738b1057e5a8263a412848e"
+  },
+  "passed": false,
+  "error": "RuntimeError: Probe directly references non-JDK, non-probe classes: ['Ldalvik/annotation/Signature;', 'Ldalvik/annotation/Throws;', 'List()Ljava/util/List;', 'Loader()Ljava/lang/ClassLoader;']",
+  "finished_at_utc": "2026-10-12T04:15:35.223462+00:00"
+}

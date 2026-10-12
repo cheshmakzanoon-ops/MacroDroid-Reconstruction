@@ -1,0 +1,5 @@
+{
+  "scope": "Probe compilation and D8 succeeded; the conservative direct-type audit failed. No Android execution occurred.",
+  "script_sha256": "61933a5fe3615a93f7b41b76c16ebe2f762cc8f0a1051aff6afe432e7dc1367d",
+  "finding": "The first regex also matched method-name suffixes List()/Loader() and did not classify standard Dalvik Signature/Throws annotations separately. The follow-up uses a descriptor-only regex and explicitly records these two metadata types; application and Android API definitions/references remain prohibited."
+}

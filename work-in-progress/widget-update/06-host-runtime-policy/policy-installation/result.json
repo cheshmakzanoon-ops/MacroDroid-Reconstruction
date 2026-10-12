@@ -1,0 +1,137 @@
+{
+  "status": "HOST_UI_RUNTIME_POLICY_INSTALLED",
+  "passed": true,
+  "started_utc": "2026-10-12T04:32:48.592913+00:00",
+  "commands": [
+    {
+      "label": "runtime-policy-adversarial-tests",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_ui_runtime_policy.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "log": {
+        "path": "runtime-policy-adversarial-tests.log",
+        "bytes": 1059,
+        "sha256": "6d9762776595cc026398e5f3d375ff48dad23db4baa69d7ae382651f0cdb65a8"
+      }
+    },
+    {
+      "label": "effective-runtime-policy",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-c",
+        "from pathlib import Path; import ui_runtime_policy; ui_runtime_policy.verify(Path('reports'))"
+      ],
+      "returncode": 0,
+      "log": {
+        "path": "effective-runtime-policy.log",
+        "bytes": 190,
+        "sha256": "f2c743a561e937e985489868e76ee56807231c6acc50052ae7d58d017c80dc23"
+      }
+    },
+    {
+      "label": "record-runtime-policy-inputs",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "release_integrity.py",
+        "record"
+      ],
+      "returncode": 0,
+      "log": {
+        "path": "record-runtime-policy-inputs.log",
+        "bytes": 246,
+        "sha256": "b64abe53d0a90494d0aadff6f82adb2796c565570dbbb438c6c8215147512951"
+      }
+    }
+  ],
+  "inherited_preparation": {
+    "path": "/workspace/scratch/4130730d15aa/widget-recovery/reports/signed-integration-06-metadata/preparation.json",
+    "bytes": 18321,
+    "sha256": "84461b4cb2fc2de182bfa13686fb16f5b861fc34c2ec43f386bf2903a51e1a0a"
+  },
+  "scope": "Host runtime/test policy only; exact application sources and APK retained",
+  "frozen_failure": {
+    "bytes": 10646,
+    "sha256": "6164aeaad35d5aa02bd97f2c729fb9253ca6bbd61785c5837b31450a5429ccf3"
+  },
+  "measured_flag_experiment": {
+    "path": "/workspace/scratch/4130730d15aa/widget-recovery/reports/jvm-exception-flag-01/result.json",
+    "bytes": 3950,
+    "sha256": "ee3ac84daad75c442eac725976db93e98df8ae2300cfa5a2dbbf79e8b47b41c6"
+  },
+  "changed_paths": [
+    "acceptance.py",
+    "test.py",
+    "tests/test_ui_runtime_policy.py",
+    "ui_negative_control.py",
+    "ui_runtime_policy.py"
+  ],
+  "input_snapshot_before": "46c68873d3ff573da2d6676507b2dd6e82e7077c9ed7bcac422e45b0939a8659",
+  "input_snapshot_after": "00634710968ddf2fcd7400699ea3c1bb179209ff13e8062d28e64dc098fd7c99",
+  "application_input_changes": [],
+  "apk_unchanged": true,
+  "apk": {
+    "bytes": 94683439,
+    "sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f"
+  },
+  "changed_inputs": [
+    {
+      "path": "acceptance.py",
+      "before": {
+        "size": 5939,
+        "sha256": "c975faba34ad68fbe15507532607f34af681466b193143cb10d0e87b3b9b8d80"
+      },
+      "after": {
+        "size": 6055,
+        "sha256": "ca49ec8da2a3b09d554f1afa62272569d78d29a0b08ae1fa3f0bc0fc4a208120"
+      }
+    },
+    {
+      "path": "test.py",
+      "before": {
+        "size": 8746,
+        "sha256": "3cfc2f5b48cb75aa1cc505a6a1b0a1673317722c28ada1605ee854108c42a6d1"
+      },
+      "after": {
+        "size": 8938,
+        "sha256": "bd9984250b943807cc76a68a52c37e3493d0b3221212c3c6aec8b6ebe18519e3"
+      }
+    },
+    {
+      "path": "tests/test_ui_runtime_policy.py",
+      "before": null,
+      "after": {
+        "size": 1651,
+        "sha256": "4cfa092b94bb19ffab0ff873366db570fcf9e95081c79bd6c62b2742d9c87693"
+      }
+    },
+    {
+      "path": "ui_negative_control.py",
+      "before": {
+        "size": 12188,
+        "sha256": "a87bfb6a572c9e9f5c4765fff25fad084d5b75fe4a8cf451d7ad263990e62a0c"
+      },
+      "after": {
+        "size": 12360,
+        "sha256": "9895dad27cfe1edeaca41d9b8e09187de61c0ad74443ec9e0c423c246d89a05a"
+      }
+    },
+    {
+      "path": "ui_runtime_policy.py",
+      "before": null,
+      "after": {
+        "size": 2793,
+        "sha256": "9f1a70bd67ef37d7fc19edd521bc060ced4e09dcee262606d550e779d83c6d15"
+      }
+    }
+  ],
+  "finished_utc": "2026-10-12T04:33:47.523406+00:00"
+}

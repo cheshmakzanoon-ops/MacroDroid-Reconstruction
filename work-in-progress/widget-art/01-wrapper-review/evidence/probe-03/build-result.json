@@ -1,0 +1,261 @@
+{
+  "status": "STANDALONE_PROBE_COMPILED_AND_BOUND_ART_NOT_EXECUTED",
+  "started_at_utc": "2026-10-12T04:18:49.012648+00:00",
+  "scope": "Reflection-only standalone probe compilation and APK identity binding; no ART execution",
+  "android_executed": false,
+  "app_apk_modified": false,
+  "app_installed": false,
+  "target_method": "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;",
+  "runtime_cases": [
+    "fresh-empty-unit-identity",
+    "reused-label-zero-empty",
+    "resumed-label-two-empty",
+    "invalid-label-exact-exception",
+    "label-two-dead-cast-L7",
+    "label-two-dead-cast-L4",
+    "label-two-dead-cast-L1",
+    "null-list-exception-type"
+  ],
+  "commands": [
+    {
+      "label": "javac",
+      "argv": [
+        "javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-d",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/classes",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/source/recovered/probe/WidgetMethodProbe.java"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "elapsed_seconds": 1.551,
+      "stdout": {
+        "path": "javac.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "javac.stderr.txt",
+        "bytes": 268,
+        "sha256": "312e9bd919c699a2f8409f70240177012720c94095f0f4374d44152defc50f7e"
+      }
+    },
+    {
+      "label": "d8",
+      "argv": [
+        "java",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/dex",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/probe-inputs.jar"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "elapsed_seconds": 1.82,
+      "stdout": {
+        "path": "d8.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "d8.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "disassemble",
+      "argv": [
+        "java",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/smali",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/dex/classes.dex"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "elapsed_seconds": 0.63,
+      "stdout": {
+        "path": "disassemble.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "disassemble.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "reassemble",
+      "argv": [
+        "java",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-o",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/roundtrip.dex",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/smali"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "elapsed_seconds": 0.727,
+      "stdout": {
+        "path": "reassemble.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "reassemble.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "roundtrip-disassemble",
+      "argv": [
+        "java",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/roundtrip-smali",
+        "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/roundtrip.dex"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "elapsed_seconds": 1.161,
+      "stdout": {
+        "path": "roundtrip-disassemble.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "roundtrip-disassemble.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "preparation_script_sha256": "e4705773ff7c769c40c59135fdab6942c7efc8b2473325042ff51da8c1a5ad25",
+  "observed_apk_bindings": {
+    "original": {
+      "path": "/workspace/scratch/4130730d15aa/recovered/automation android app",
+      "bytes_before": 95725918,
+      "bytes_after": 95725918,
+      "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+      "mtime_ns_before": 1791764836758036187,
+      "mtime_ns_after": 1791764836758036187,
+      "unchanged_during_hash": true
+    },
+    "candidate": {
+      "path": "/tmp/macrodroid-widget-art-inputs-t0vfcjt_/candidate.apk",
+      "bytes_before": 94683439,
+      "bytes_after": 94683439,
+      "sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f",
+      "mtime_ns_before": 1791778703704586426,
+      "mtime_ns_after": 1791778703704586426,
+      "unchanged_during_hash": true
+    }
+  },
+  "apks": {
+    "original": {
+      "path": "/workspace/scratch/4130730d15aa/recovered/automation android app",
+      "bytes": 95725918,
+      "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+    },
+    "candidate": {
+      "path": "/tmp/macrodroid-widget-art-inputs-t0vfcjt_/candidate.apk",
+      "bytes": 94683439,
+      "sha256": "b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f"
+    }
+  },
+  "original_method_sha256": "a1dd490bbfd6837fa72e6bf8ae4c75736612989fcba050fe2f0582aa03640e34",
+  "source": {
+    "path": "/workspace/scratch/4130730d15aa/widget-art-probe/source/recovered/probe/WidgetMethodProbe.java",
+    "copied_path": "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/source/recovered/probe/WidgetMethodProbe.java",
+    "sha256": "7194fcfeb3b4885f3cfec8393a24aadf4dcd4ea6a9607d37c4aa784125f721b2"
+  },
+  "tool_jar": {
+    "path": "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+    "sha256": "354b10af74c09f5d2ab139def4231f0906dc6cc75738b1057e5a8263a412848e"
+  },
+  "probe": {
+    "path": "/workspace/scratch/4130730d15aa/widget-art-probe/reports/probe-03/widget-method-probe.dex",
+    "bytes": 7580,
+    "sha256": "79bd3b46e71253b17ec75099cce3611df1735b8f74e8bdcb61c61e5a37ae1a07",
+    "runtime_class_count": 1,
+    "runtime_class": "Lrecovered/probe/WidgetMethodProbe;",
+    "android_or_application_host_stub_definitions": 0,
+    "direct_android_or_application_type_references": 0,
+    "compiler_metadata_type_references": [
+      "Ldalvik/annotation/Signature;",
+      "Ldalvik/annotation/Throws;"
+    ],
+    "typed_references": [
+      "Ldalvik/annotation/Signature;",
+      "Ldalvik/annotation/Throws;",
+      "Ljava/io/PrintStream;",
+      "Ljava/lang/AssertionError;",
+      "Ljava/lang/Class;",
+      "Ljava/lang/ClassCastException;",
+      "Ljava/lang/ClassLoader;",
+      "Ljava/lang/Exception;",
+      "Ljava/lang/IllegalStateException;",
+      "Ljava/lang/Integer;",
+      "Ljava/lang/NullPointerException;",
+      "Ljava/lang/Object;",
+      "Ljava/lang/String;",
+      "Ljava/lang/StringBuilder;",
+      "Ljava/lang/System;",
+      "Ljava/lang/Throwable;",
+      "Ljava/lang/reflect/Constructor;",
+      "Ljava/lang/reflect/Field;",
+      "Ljava/lang/reflect/InvocationTargetException;",
+      "Ljava/lang/reflect/Method;",
+      "Ljava/util/Collections;",
+      "Ljava/util/Iterator;",
+      "Ljava/util/List;",
+      "Lrecovered/probe/WidgetMethodProbe;"
+    ]
+  },
+  "source_unchanged": true,
+  "preparation_script_unchanged": true,
+  "apks_unchanged": true,
+  "disassembled_roundtrip_byte_identical": true,
+  "expected_stdout_lines": [
+    "WIDGET_ART_CASE_OK fresh-empty-unit-identity",
+    "WIDGET_ART_CASE_OK reused-label-zero-empty",
+    "WIDGET_ART_CASE_OK resumed-label-two-empty",
+    "WIDGET_ART_CASE_OK invalid-label-exact-exception",
+    "WIDGET_ART_CASE_OK label-two-dead-cast-L7",
+    "WIDGET_ART_CASE_OK label-two-dead-cast-L4",
+    "WIDGET_ART_CASE_OK label-two-dead-cast-L1",
+    "WIDGET_ART_CASE_OK null-list-exception-type",
+    "WIDGET_METHOD_ART_OK cases=8"
+  ],
+  "provenance_sha256": "31e7ebb8bebaa12210d1486b87b864e9ed7cf9771dde4488ffe435dd4e434901",
+  "passed": true,
+  "finished_at_utc": "2026-10-12T04:18:56.029571+00:00"
+}
