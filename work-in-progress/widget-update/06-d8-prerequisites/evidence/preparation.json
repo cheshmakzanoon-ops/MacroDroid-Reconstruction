@@ -1,0 +1,557 @@
+{
+  "status": "PRIVATE_WIDGET_D8_STATIC_LINKAGE_PASSED",
+  "passed": true,
+  "started_utc": "2026-10-12T03:56:57.680382+00:00",
+  "commands": [
+    {
+      "label": "bootstrap-extractor",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-c",
+        "import build; build.bootstrap()"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:00:00.352763+00:00",
+      "timeout_seconds": 1200,
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:00:04.061788+00:00",
+      "elapsed_seconds": 3.708983,
+      "log": {
+        "path": "bootstrap-extractor.log",
+        "bytes": 128,
+        "sha256": "d874f46b54307eb613ec06f4405240110d97472d6e12f9dc7248690cdb2bb0d2"
+      }
+    },
+    {
+      "label": "extract-full-original-fixture",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx1200m",
+        "-cp",
+        "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9/tools/classes",
+        "ExtractOracle",
+        "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+        "/workspace/scratch/4130730d15aa/recovered/automation android app"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:00:04.069614+00:00",
+      "timeout_seconds": 1200,
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:00:08.453151+00:00",
+      "elapsed_seconds": 4.383416,
+      "log": {
+        "path": "extract-full-original-fixture.log",
+        "bytes": 442,
+        "sha256": "fa7f4ba243f8135505ee210b3f6ec8ad98593500a92370689a609d04ef9b893c"
+      }
+    },
+    {
+      "label": "pin-private-inputs",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "release_integrity.py",
+        "record"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:00:08.458227+00:00",
+      "timeout_seconds": 1200,
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:01:40.626972+00:00",
+      "elapsed_seconds": 92.168794,
+      "log": {
+        "path": "pin-private-inputs.log",
+        "bytes": 246,
+        "sha256": "2ee14ccf3bb87945ea92fa5ec66e407e4a3ebc4451fa06f083f1ec160dbc92df"
+      }
+    },
+    {
+      "label": "compile-widget-d8",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-c",
+        "import build; build.compile_java()"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:01:41.858976+00:00",
+      "timeout_seconds": 1200,
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:01:56.841571+00:00",
+      "elapsed_seconds": 14.982593,
+      "log": {
+        "path": "compile-widget-d8.log",
+        "bytes": 131,
+        "sha256": "d2da694d8352b85a06d80aa4719d6745565839820f6acf3d1b2bac0a6e990b4c"
+      }
+    },
+    {
+      "label": "widget-static-migration",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "validate_migration.py"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:01:56.843364+00:00",
+      "timeout_seconds": 1200,
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:01:59.952378+00:00",
+      "elapsed_seconds": 3.109175,
+      "log": {
+        "path": "widget-static-migration.log",
+        "bytes": 1503,
+        "sha256": "0a0eaa20d71678e60b687db09ffbf6daffd36f698ed764702c4a9925a5cd48ea"
+      }
+    },
+    {
+      "label": "widget-linkage",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "linkage_verify.py"
+      ],
+      "cwd": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+      "started_utc": "2026-10-12T04:01:59.956524+00:00",
+      "timeout_seconds": 1200,
+      "returncode": 0,
+      "timed_out": false,
+      "finished_utc": "2026-10-12T04:02:01.148997+00:00",
+      "elapsed_seconds": 1.192485,
+      "log": {
+        "path": "widget-linkage.log",
+        "bytes": 1899,
+        "sha256": "2a4f8d27703fc8eb8c803557caaec97d874ec536315597480d79b13c67dfb261"
+      }
+    }
+  ],
+  "scope": "Private Widget source preparation and D8/static/linkage prerequisites; no APK or Android claim",
+  "private_project": "/tmp/macrodroid-widget-signed-eti67161/MacroDroid_v9",
+  "baseline_project": "/workspace/scratch/4130730d15aa/current/MacroDroid_v9",
+  "baseline_input_pin": "19ea47f8563262c255b1d11632bfc404eb68819f332ececdf68d0a686643c183",
+  "baseline_manifest_sha256": "713c40cfcab17ce42294e37af68f758d0c0f488748c47aaba3a2e54f9b3e7883",
+  "widget_checkpoint_sha256": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b",
+  "oracle_checkpoint_sha256": "8029598a231875b00c11f9a78be92c8ceb13b0b0618989babd1333705315ed28",
+  "original_apk": {
+    "path": "/workspace/scratch/4130730d15aa/recovered/automation android app",
+    "bytes": 95725918,
+    "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+  },
+  "source_copy": {
+    "files": 81245,
+    "bytes": 819399298,
+    "all_source_and_destination_hashes_verified": true,
+    "hardlinked_inputs": 0,
+    "generated_caches_copied": 0,
+    "documentation": [
+      {
+        "path": "ANDROID_ACCEPTANCE.md",
+        "bytes": 11628,
+        "sha256": "d0deb003b0c23c2199d3120322f2cc304b32c04c8e9a3d05984d90c604344cb2"
+      },
+      {
+        "path": "CORE_RECOVERY.md",
+        "bytes": 6982,
+        "sha256": "fbc9f77f92506d81bb6828354bf7371d550b123313e2045b291db5868298737f"
+      },
+      {
+        "path": "ENGINE_RECOVERY.md",
+        "bytes": 6455,
+        "sha256": "d902ff68e1eb4324d4c674235c50d16014e80d3fca25cb85f06e71997909d1f0"
+      },
+      {
+        "path": "ENVIRONMENT_RECOVERY.md",
+        "bytes": 6893,
+        "sha256": "fc5a4c7c2fc1eccc013734f2824e0782129b9152451907335143da0491319eda"
+      },
+      {
+        "path": "FOLLOWON_ASSESSMENT.md",
+        "bytes": 4081,
+        "sha256": "498e7e2cee59477da93f90dbddc3baaec8782688a985b5824415ddfe36e19512"
+      },
+      {
+        "path": "PLUGIN_RECOVERY.md",
+        "bytes": 12750,
+        "sha256": "dea91fb0c17daab4c96b44a2917293954a002e5397260eefb80f1813b5706645"
+      },
+      {
+        "path": "PROVENANCE.md",
+        "bytes": 4136,
+        "sha256": "faca5c086e5e9214332581a7acf8bb4535ea1a353d21ae882eb0eb56331760ac"
+      },
+      {
+        "path": "QUALITY_REPORT.md",
+        "bytes": 16468,
+        "sha256": "3eb0434d08d09856ab594691f0c1b5e71b88916aaa510c93dff2a9d70503367d"
+      },
+      {
+        "path": "README.md",
+        "bytes": 6409,
+        "sha256": "fec938f30413989c49548972699845c7c8263c9fd595446e9a448093bfc4beed"
+      },
+      {
+        "path": "RECONSTRUCTION_STATUS.md",
+        "bytes": 12351,
+        "sha256": "b1e285ac354388ca80920cc7b105c8d3b02f002e353908dd49ea3b490f51cbc2"
+      },
+      {
+        "path": "RUNTIME_CAPTURE.md",
+        "bytes": 15519,
+        "sha256": "2668388fcd0373661506add2ab64b5ade9378b9132afd21da5bee8fb3903e088"
+      },
+      {
+        "path": "SCENE_RECOVERY.md",
+        "bytes": 13583,
+        "sha256": "b38e23a46036d7559b0912abf1f8afc20ab5541b77ee26379bcec584161999a4"
+      },
+      {
+        "path": "UI_RECOVERY.md",
+        "bytes": 13411,
+        "sha256": "cb1bf4cd1ee96fc13365623d86b735382cb8a420d49c0f871bdef4da886c54a1"
+      }
+    ]
+  },
+  "overlays": [
+    {
+      "path": "source/java/recovered/ui/WidgetUpdateMethods.java",
+      "before": null,
+      "after": {
+        "bytes": 6169,
+        "sha256": "dbcb1a98d25ae4637531644da37d24f6e1bc494f941d4212da03c360fe315d79"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/android/appwidget/AppWidgetManager.java",
+      "before": null,
+      "after": {
+        "bytes": 653,
+        "sha256": "3cee71a251b807a16a5405cf49f2b762a556049fca93ea0e10ce74a323c15572"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/android/appwidget/AppWidgetProviderInfo.java",
+      "before": null,
+      "after": {
+        "bytes": 101,
+        "sha256": "7eed1d92c615151d1591f8241d973fabfff9477ed33e42076b8746ec8a658266"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/widget/custom/WidgetUpdateManager.java",
+      "before": null,
+      "after": {
+        "bytes": 567,
+        "sha256": "db562037eeeb86ffb4065d85a14108ba3814086a811502bc8980e3f9fa668500"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/com/arlosoft/macrodroid/widget/custom/b.java",
+      "before": null,
+      "after": {
+        "bytes": 818,
+        "sha256": "27d241cdef2698ad4cc647a804fbf0144b144d19190ac9239054e8fe0f0f18b3"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/defpackage/WidgetControl.java",
+      "before": null,
+      "after": {
+        "bytes": 4652,
+        "sha256": "d55189ad8badcfe4d5e20234d3b520d7494ed680fad32ba2b21630d8fdf75b53"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/defpackage/e6d.java",
+      "before": {
+        "bytes": 245,
+        "sha256": "d62aee806b48c45d7d275126f6e04cea75a633802a8c1143c8a13502438e89a6"
+      },
+      "after": {
+        "bytes": 377,
+        "sha256": "850cf30f1633d3ab8e60a3d574b885f66aaa5b41fce765d1d8e63b4ed56b6615"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/defpackage/gy6.java",
+      "before": null,
+      "after": {
+        "bytes": 78,
+        "sha256": "e5488937cad975c9649ff6f1d78fd2714e2a0602fbd53f15fafe8c673b58bc34"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/defpackage/hn9.java",
+      "before": null,
+      "after": {
+        "bytes": 309,
+        "sha256": "709dd4a483961034fb13e711996893a3286faf0f984b2aa787896d4d0fa55904"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/defpackage/jn6.java",
+      "before": null,
+      "after": {
+        "bytes": 128,
+        "sha256": "52104ff1420b47b7ba141641b8bb0bd3bb4c261f55dcaab0e6a3ec9e85c5e0a5"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/defpackage/kjf.java",
+      "before": {
+        "bytes": 911,
+        "sha256": "de498f79a8a29bc773ea4293314823dcc876169269da17f5203895230c2ef978"
+      },
+      "after": {
+        "bytes": 948,
+        "sha256": "f3f3e0ecb3c2f4ea8802eb1feeda9f283d5c93aa9a13f8e6e3f20f53ae5d3ccd"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/defpackage/mh0.java",
+      "before": null,
+      "after": {
+        "bytes": 387,
+        "sha256": "58c107092e6b672541e7452bb03446f1fd2877e773b3904468b72d3209d747f5"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/defpackage/rff.java",
+      "before": {
+        "bytes": 61,
+        "sha256": "3721f188d942a73ef27300f05233a0863ab7a6581cae2f4b752e3c72173b7e3a"
+      },
+      "after": {
+        "bytes": 493,
+        "sha256": "2a31169d848e43960025df4d47904cc8c077aec5fed61b79231ae76311b69e38"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/defpackage/rjb.java",
+      "before": null,
+      "after": {
+        "bytes": 699,
+        "sha256": "992f468722dc60b333e8fc1962c1e0f019fb4a592db5c65a53d599e587599438"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/defpackage/rx6.java",
+      "before": null,
+      "after": {
+        "bytes": 630,
+        "sha256": "ededaad8d858cee88deb5b68a323de97ff7d7777191c49d3824ad7d941abc0bb"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/defpackage/u2f.java",
+      "before": {
+        "bytes": 252,
+        "sha256": "50483669d425614b08154a9daa4977a51a6c20a27f44d0fddc5f3800b0c99d53"
+      },
+      "after": {
+        "bytes": 327,
+        "sha256": "608ba40725cb0d25c29834a4e14d6a26307afed56a5924539676ad6b86ff4233"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/defpackage/wx6.java",
+      "before": null,
+      "after": {
+        "bytes": 554,
+        "sha256": "c1f033da84ff2fb581161fef523abe2cc4f4a767cf2145dce8457e2038dc1486"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "test-support/java/defpackage/zhh.java",
+      "before": null,
+      "after": {
+        "bytes": 241,
+        "sha256": "6deced8b64997c4ebc8e10c912c7ca550acd66d963eef5717413c1091d2f95e2"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "tests/java/BytecodeOracle.java",
+      "before": {
+        "bytes": 21504,
+        "sha256": "38f60a2ce6f30da923b2fd6a0c1824ba668e7ca8e63a2da72032dcd0b2953a80"
+      },
+      "after": {
+        "bytes": 25146,
+        "sha256": "d91ddcd8ec3d67d41d69b8252835e747c2cad2c6d5ea898323794ceec30e6b56"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "tests/java/UiParityTests.java",
+      "before": {
+        "bytes": 44976,
+        "sha256": "19801e55118a23ce12218f77a162e61300bb044036c8fc1b9356cb2898911779"
+      },
+      "after": {
+        "bytes": 46268,
+        "sha256": "b270a1d8fefb9668c3f449ca1a2f04c633fef5330db48ff83d29b1cf66285b8b"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "tests/java/WidgetParityCases.java",
+      "before": null,
+      "after": {
+        "bytes": 41158,
+        "sha256": "7b1c1affdb2d347405ed2d35a9cf3e7ebc8ab878f75b5be728d9970281374d70"
+      },
+      "source_checkpoint": "c448b645b27f98918fab3369d9b72a408a0a16cab217f8684f2733247b6a8b1b"
+    },
+    {
+      "path": "tests/java/ConstructorOracleConformance.java",
+      "before": null,
+      "after": {
+        "bytes": 6312,
+        "sha256": "afc76afcd2ecb163f71b05bb2e66d260b017aed686dbcdd3fc625efb495fb2a7"
+      },
+      "source_checkpoint": "8029598a231875b00c11f9a78be92c8ceb13b0b0618989babd1333705315ed28"
+    },
+    {
+      "path": "tests/java/WidgetOracleOpcodeConformance.java",
+      "before": null,
+      "after": {
+        "bytes": 3226,
+        "sha256": "0cc5368c8c47a79e2b5bb3a18dbf1b2e03da2489f0c7d5d75cc17e016ca93e4a"
+      },
+      "source_checkpoint": "8029598a231875b00c11f9a78be92c8ceb13b0b0618989babd1333705315ed28"
+    },
+    {
+      "path": "tests/fixtures/constructor-owner-opcodes.smali",
+      "before": null,
+      "after": {
+        "bytes": 969,
+        "sha256": "1cd51ecf03135f228bdc5dba6b52b44ee034524be667bd89064d9660da7a7eaf"
+      },
+      "source_checkpoint": "8029598a231875b00c11f9a78be92c8ceb13b0b0618989babd1333705315ed28"
+    },
+    {
+      "path": "tests/fixtures/widget-bitwise-opcodes.smali",
+      "before": null,
+      "after": {
+        "bytes": 507,
+        "sha256": "53ac2f5ef8d4e8bb7fdfbba0a1f84447101d8b9a4d5533436fba5f0125c23762"
+      },
+      "source_checkpoint": "8029598a231875b00c11f9a78be92c8ceb13b0b0618989babd1333705315ed28"
+    },
+    {
+      "path": "source/java-method-map.json",
+      "before": {
+        "bytes": 778169,
+        "sha256": "c1f244811f24c60deb3383348a04e074c018bc0e45371e072a60096190b9b1e3"
+      },
+      "after": {
+        "bytes": 778839,
+        "sha256": "577b432f59a739725b96efdcc63413a46afab0ba010b3fb696ca8144c5fbb5c7"
+      },
+      "operation": "Append exactly one frozen Widget entry"
+    },
+    {
+      "path": "source/ui-methods.json",
+      "before": {
+        "bytes": 3578,
+        "sha256": "b8ceedae0561f1f07201e041b34a977109162455fb5cafe30a23ad26921879bb"
+      },
+      "after": {
+        "bytes": 4248,
+        "sha256": "22d5b97bbb6457e0b8a346e7a43cbe12dd8ad8315b40c691203f4602a4000f35"
+      },
+      "operation": "Append exactly one frozen Widget entry"
+    },
+    {
+      "path": "tests/test_v9.py",
+      "before": {
+        "bytes": 15421,
+        "sha256": "19608939993d9ba70ea784d1a5afa55eb8495de9e6e6bc77589fb6adbc2c0cdb"
+      },
+      "after": {
+        "bytes": 15420,
+        "sha256": "d10afa24bc707355b74fb46ff6890678fb7e9bcc7e0079fbf4ffd47269b2a8eb"
+      },
+      "operation": "Require exactly 9 registered UI methods and classes"
+    },
+    {
+      "path": "test.py",
+      "before": {
+        "bytes": 7278,
+        "sha256": "e331adfab735b7bbdbf938635426f9ed5c0b3eea61eac490e4a00c0adabe6ed3"
+      },
+      "after": {
+        "bytes": 8746,
+        "sha256": "3cfc2f5b48cb75aa1cc505a6a1b0a1673317722c28ada1605ee854108c42a6d1"
+      },
+      "operation": "Execute pinned constructor and numeric conformance with fresh explicit report gates"
+    }
+  ],
+  "full_original_fixture": {
+    "path": "tests/fixtures/original-methods.dex",
+    "bytes": 525456,
+    "sha256": "f8ae4520e1a6e20be2f4343cd322a40e91873eb19cf7cc08b05485ccf195afbe",
+    "test_only_not_apk_input": true
+  },
+  "candidate_inputs": {
+    "format": 1,
+    "files": 81264,
+    "snapshot_sha256": "a729f01fc4b0dc136c980501c144b43769332c324f8c6f63438107d605291691"
+  },
+  "input_delta": {
+    "added": [
+      "source/java/recovered/ui/WidgetUpdateMethods.java",
+      "test-support/java/android/appwidget/AppWidgetManager.java",
+      "test-support/java/android/appwidget/AppWidgetProviderInfo.java",
+      "test-support/java/com/arlosoft/macrodroid/widget/custom/WidgetUpdateManager.java",
+      "test-support/java/com/arlosoft/macrodroid/widget/custom/b.java",
+      "test-support/java/defpackage/WidgetControl.java",
+      "test-support/java/defpackage/gy6.java",
+      "test-support/java/defpackage/hn9.java",
+      "test-support/java/defpackage/jn6.java",
+      "test-support/java/defpackage/mh0.java",
+      "test-support/java/defpackage/rjb.java",
+      "test-support/java/defpackage/rx6.java",
+      "test-support/java/defpackage/wx6.java",
+      "test-support/java/defpackage/zhh.java",
+      "tests/fixtures/constructor-owner-opcodes.smali",
+      "tests/fixtures/widget-bitwise-opcodes.smali",
+      "tests/java/ConstructorOracleConformance.java",
+      "tests/java/WidgetOracleOpcodeConformance.java",
+      "tests/java/WidgetParityCases.java"
+    ],
+    "removed": [],
+    "changed": [
+      "source/java-method-map.json",
+      "source/ui-methods.json",
+      "test-support/java/defpackage/e6d.java",
+      "test-support/java/defpackage/kjf.java",
+      "test-support/java/defpackage/rff.java",
+      "test-support/java/defpackage/u2f.java",
+      "test.py",
+      "tests/fixtures/original-methods.dex",
+      "tests/java/BytecodeOracle.java",
+      "tests/java/UiParityTests.java",
+      "tests/test_v9.py"
+    ]
+  },
+  "finished_utc": "2026-10-12T04:02:01.152880+00:00"
+}

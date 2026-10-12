@@ -1,0 +1,23 @@
+{
+  "name": "retain-dead-list-casts",
+  "reason": "Both resumed branches retain their unused saved-list check-cast instructions.",
+  "source_sha256": "aec32955d7ecd4411a61df0f5dcd26c12adadb4f7a394c788166ffc75d3dcd3f",
+  "compile_returncode": 0,
+  "expected_failure_labels": [
+    "widget-saved-cast:1:1:true",
+    "widget-saved-cast:2:1:true"
+  ],
+  "passed": true,
+  "class_sha256": "bd8814192679948f8b1e7e28cf5fb01dbddbd3dd382f2a45cc593ab604128541",
+  "execution_returncode": 2,
+  "cases": 2342,
+  "failed_cases": 2,
+  "unsupported_executions": 0,
+  "expected_result_failures": 0,
+  "failed_case_labels": [
+    "widget-saved-cast:1:1:true",
+    "widget-saved-cast:2:1:true"
+  ],
+  "named_failures_observed": true,
+  "coverage_unchanged": true
+}

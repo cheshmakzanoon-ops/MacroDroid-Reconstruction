@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "cases": 2342,
+  "failedCases": 0,
+  "unsupportedExecutions": 0,
+  "independentExpectedResultChecks": 198,
+  "expectedResultFailures": 0,
+  "methodsCovered": 1,
+  "methodKeys": [
+    "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;-\u003em(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;"
+  ],
+  "paths": 2,
+  "androidRuntime": false,
+  "rebuiltDexCompared": false,
+  "registeredInActiveProject": false,
+  "instructionCoverage": {
+    "instructions": 194,
+    "visited": 194,
+    "unvisitedOffsets": [],
+    "conditionalEdges": 20,
+    "conditionalEdgesVisited": 20,
+    "unvisitedConditionalEdges": []
+  },
+  "fullInstructionAndConditionalCoverage": true,
+  "failures": [],
+  "failedCaseLabels": [],
+  "hostParentConstructorAdapters": {
+    "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;-\u003em(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;": [
+      "Lzhh;-\u003eLrff;-\u003e\u003cinit\u003e(ILm73;)V"
+    ]
+  },
+  "hostParentConstructorAdapterCalls": {
+    "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;-\u003em(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;:Lzhh;-\u003eLrff;-\u003e\u003cinit\u003e(ILm73;)V": 2460
+  },
+  "constructorScope": "Exact method-scoped DEX owner validation with a compile-only child reflection adapter; not ART verification",
+  "invalidLabelDefensiveReturnUsesOneInjectedReturningBoundary": true,
+  "generatedNullMessageExclusions": [
+    {
+      "case": "widget-saved-cast:1:3:false",
+      "path": "original",
+      "rawLog": "Failed to update custom widget instance 417: Cannot invoke \"Object.getClass()\" because \"obj\" is null",
+      "excludedText": "Cannot invoke \"Object.getClass()\" because \"obj\" is null",
+      "reason": "Only VM-generated NPE wording for the deliberately null saved renderer; no injected or external exception is present"
+    },
+    {
+      "case": "widget-saved-cast:1:3:false",
+      "path": "java",
+      "rawLog": "Failed to update custom widget instance 417: Cannot invoke \"defpackage.rx6.d(android.content.Context, defpackage.gy6, defpackage.o73)\" because \"\u003clocal13\u003e\" is null",
+      "excludedText": "Cannot invoke \"defpackage.rx6.d(android.content.Context, defpackage.gy6, defpackage.o73)\" because \"\u003clocal13\u003e\" is null",
+      "reason": "Only VM-generated NPE wording for the deliberately null saved renderer; no injected or external exception is present"
+    }
+  ],
+  "exceptionMessageScope": "Only VM-generated escaped null/cast wording, plus the exact recognized VM-generated logged NPE wording in one deliberately null saved-renderer fixture. Raw excluded log text is preserved. Injected/external messages remain exact.",
+  "scope": "Bounded selected original method/JVM comparison; no widget service, rendering, coroutine scheduler, application build or Android execution"
+}

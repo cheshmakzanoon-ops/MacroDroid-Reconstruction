@@ -1,0 +1,25 @@
+{
+  "name": "resume-locals-captured-before-result-validation",
+  "reason": "Fields restored before resumed result validation stay captured even when that boundary mutates continuation slots.",
+  "source_sha256": "702ac7c129a86a5e658bfd027152339b8d637af31fccd56fdfcc40c51dd654b3",
+  "compile_returncode": 0,
+  "expected_failure_labels": [
+    "widget-resume-captured-fields:1"
+  ],
+  "passed": true,
+  "class_sha256": "f6cfac0c2f8376d5860fcddcd679f93f5e79dd75e84db64e727369e2b522a8a4",
+  "execution_returncode": 2,
+  "cases": 2342,
+  "failed_cases": 5,
+  "unsupported_executions": 0,
+  "expected_result_failures": 0,
+  "failed_case_labels": [
+    "widget-mutation:1:0:3",
+    "widget-mutation:1:0:5",
+    "widget-mutation:1:0:6",
+    "widget-mutation:1:0:7",
+    "widget-resume-captured-fields:1"
+  ],
+  "named_failures_observed": true,
+  "coverage_unchanged": true
+}

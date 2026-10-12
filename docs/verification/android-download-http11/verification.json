@@ -1,0 +1,20 @@
+{
+  "status": "PINNED_DOWNLOAD_HTTP11_TRANSPORT_PREPARED",
+  "created_utc": "2026-10-12T04:07:18.508580+00:00",
+  "observed_failure": {
+    "workflow_run": 38201362423,
+    "source_head": "4e3f761",
+    "curl_exit_code": 92,
+    "error": "HTTP/2 INTERNAL_ERROR",
+    "android_journey_executed": false,
+    "artifact_sha256": "69118e7160b133f1084b233de9a03b30ce935d2e34cbc767d4666eec3b6fefaf"
+  },
+  "source_path": "tools/android/bootstrap_android_runtime.py",
+  "baseline_sha256": "176d48d7b253f1d3238ae4058d2b61bb70247140752d96903f55854e6aa0e21e",
+  "final_sha256": "8d0d8ece84479b75dc2efa03fd174aa340611747fa6381ebe2fb05291d9d314f",
+  "unchanged_toolchain_pins_sha256": "3ce2078cb52f540fd86ffdccf8577535662fee1c5274f13bcf01d8d15e3bd8b2",
+  "change": "Pass --http1.1 explicitly to curl; all pinned URLs, expected sizes, checksum algorithms/values, timeouts, retries, extraction and installation checks remain byte-unchanged.",
+  "python_syntax_checked": true,
+  "network_download_executed_by_this_check": false,
+  "scope": "Prepared transport correction for the observed infrastructure failure; fresh hosted execution remains required."
+}
