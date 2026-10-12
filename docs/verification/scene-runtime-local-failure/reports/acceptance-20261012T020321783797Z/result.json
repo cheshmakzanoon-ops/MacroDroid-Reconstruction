@@ -1,0 +1,71 @@
+{
+  "started_utc": "2026-10-12T02:03:52.045503+00:00",
+  "input_snapshot_before": "8c8999f971f61def792cdf4ecd7999220c2fa2e56a5bdfecf3b04dee113bf7b0",
+  "input_files": 81211,
+  "commands": [
+    {
+      "label": "input-integrity",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "release_integrity.py",
+        "verify"
+      ],
+      "log": "reports/acceptance-20261012T020321783797Z/01-input-integrity.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 22.434,
+      "log_sha256": "2dff062e068faa9d58640267397d1dbd1095028b8841e52c677f0ed074ef8bdc"
+    },
+    {
+      "label": "baseline-build",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "build.py",
+        "build",
+        "--variant",
+        "baseline"
+      ],
+      "log": "reports/acceptance-20261012T020321783797Z/02-baseline-build.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 49.093,
+      "log_sha256": "7e8e666adfb231a304ed8d27ddfa68dd0438dce3c7909658e97b5145b2e7f5f7"
+    },
+    {
+      "label": "hybrid-build",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "build.py",
+        "build",
+        "--variant",
+        "hybrid"
+      ],
+      "log": "reports/acceptance-20261012T020321783797Z/03-hybrid-build.log",
+      "exit_code": 1,
+      "passed": false,
+      "seconds": 19.556,
+      "log_sha256": "1c3661a80477ec4d6c044cb65e0bcf5298f2f84581cc1982def318be537a0116"
+    }
+  ],
+  "host_acceptance_passed": false,
+  "android_runtime_executed": false,
+  "full_runtime_1_to_1_established": false,
+  "complete_high_level_java_kotlin_source": false,
+  "source_edit_probe_skipped": false,
+  "failure": "hybrid-build",
+  "remaining_not_executed": [
+    "baseline-code",
+    "hybrid-code",
+    "baseline-resources",
+    "hybrid-resources",
+    "positive-host-tests",
+    "reference-status",
+    "engine-negative-controls",
+    "ui-negative-controls",
+    "core-negative-controls",
+    "environment-negative-controls",
+    "legacy-negative-control",
+    "signed-source-edit",
+    "final-positive-host-tests"
+  ]
+}
