@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/widget-art-probe/verify_hosted_widget_result_06.py", line 172, in <module>
+    main()
+  File "/workspace/scratch/4130730d15aa/widget-art-probe/verify_hosted_widget_result_06.py", line 92, in main
+    if (item['path'] in names or path.is_symlink() or path.stat().st_size != item['bytes'] or
+                                                      ^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 840, in stat
+    return os.stat(self, follow_symlinks=follow_symlinks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/4130730d15aa/widget-art-probe/hosted-run-38207925500/extracted/executed-inputs/.github/workflows/widget-method-probe.yml'
