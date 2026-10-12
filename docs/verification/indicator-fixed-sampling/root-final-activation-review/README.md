@@ -1,0 +1,7 @@
+# Root final indicator activation review
+
+The root reviewed the complete final workflow, exact three-path correction, literal full/focused outcomes and independent implementation assessment. It independently rehashed all thirty peer-review payloads and all sixteen final source roles, checked the complete source-path set, compared every role with the implemented parent, and verified the fifteen runtime-manifest rows. All read inputs remained unchanged.
+
+The workflow retains the mandatory full 41-control host discovery, exact immutable parent checkout, both fixed APKs, the A-then-B eight-install schedule, finite queue/slot/experiment bounds, owned runtime cleanup and complete partial-evidence upload. Its sole test change corrects an expected rejection string. The existing full run remains 40 passing / 1 failed, with the focused corrected test passing separately. No fresh full-suite result or Android behavior is invented.
+
+The independent reviewer checked all 3,660 payload rows across five capsules and all 92 deliberately unequal synthetic pixel/XML pairs. That report, the exact implementation and this final review must be committed, pushed and fetched with matching bytes/modes before activating only the sixteen declared paths. Root finds no blocking issue for that exact diagnostic activation. The experiment retains original APK 84333011 and older candidate 5f635e16 to preserve the fixed study inputs. It grants no app promotion, runtime parity or causality credit. Actual Android evidence remains pending.

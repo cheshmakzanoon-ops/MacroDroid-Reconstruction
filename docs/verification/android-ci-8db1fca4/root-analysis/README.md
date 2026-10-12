@@ -1,0 +1,9 @@
+# Active numeric build: literal Android result and independent pixel review
+
+The Android job for active commit 8db1fca4 and candidate 0762aad9 completed capture but **failed all three exact image-comparison gates**. The separate constructor allocation probe on the original APK passed with verification enabled and owned cleanup complete. These outcomes remain separate; this review changes no gate status.
+
+The actual four intro pages and the first notification-permission surface have pixel differences of **578, 612, 578, 578 and 578**, respectively. Independent full-RGBA decoding reproduces all five counts. The same 578 changed coordinates occur in rectangle [596,10,632,38] on every screen. TRIGGERS has 34 additional changed indicator coordinates. Every changed coordinate and both RGBA values are retained losslessly in the five 12-byte-record files. All pixels remain part of the failed comparisons. This spatial decomposition is a diagnostic observation, not a mask, cause assignment or revised success rule.
+
+The exact full XML result is recorded in `full-pixel-and-xml-review.json` and `result.json`, alongside raw XML byte equality. Both APKs reached the same notification-permission surface; no permission choice was taken. The runtime driver retained four zero exits for readiness, configuration, original-only constructor allocation and capture, then three comparison exits of 2. Its complete requested-runtime gate is false.
+
+This independent read-only analysis rehashed all 424 original ZIP members and their extracted bytes, reconciled the raw driver and constructor streams, and decoded all five pixel/XML pairs. It did not rerun the recorder, production verifier, tests or Android, and extracted filesystem metadata does not stand in for the original live metadata. All raw archive/extracted inputs remained unchanged. The complete raw artifact is published separately under `docs/verification/android-ci-8db1fca4/`.

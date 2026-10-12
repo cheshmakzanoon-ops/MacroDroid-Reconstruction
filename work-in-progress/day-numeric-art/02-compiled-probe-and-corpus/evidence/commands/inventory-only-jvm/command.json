@@ -1,0 +1,30 @@
+{
+  "label": "inventory-only-jvm",
+  "argv": [
+    "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+    "-Xmx512m",
+    "-XX:ActiveProcessorCount=2",
+    "-Xverify:all",
+    "-cp",
+    "/dev/shm/macrodroid-day-numeric-art/compile-01/classes",
+    "recovered.probe.DayNumericMethodProbe",
+    "--inventory"
+  ],
+  "cwd": "/dev/shm/macrodroid-day-numeric-art/compile-01",
+  "timeout_seconds": 120,
+  "started_utc": "2026-10-12T12:18:01.843461+00:00",
+  "timed_out": false,
+  "returncode": 0,
+  "seconds": 2.0586858370006667,
+  "finished_utc": "2026-10-12T12:18:03.902147+00:00",
+  "stdout": {
+    "bytes": 124071,
+    "sha256": "865951c892238d3f75500129dffee27d4c478fecc4e74e624f1254c9c344e3a2",
+    "mode": 420
+  },
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mode": 420
+  }
+}

@@ -1,0 +1,11 @@
+# Compiled neutral numeric probe and complete input inventory
+
+The exact neutral Java source `ab5b1b1d01ab33f66cab22c1d5a5f7c09ffdf13b8e0e335cf22f86ba5fcc6c2b` compiled successfully into one class and one DEX. The DEX is 14,108 bytes, SHA256 `7cf6f31793b1f0546bf4927a63481a25662634b8a0ac2fa520a69900204ed3aa`. Its only class is `Lrecovered/probe/DayNumericMethodProbe;`; all typed references are Java, that probe, primitive/array types or the two standard Dalvik annotations. No application or Android class definition is present.
+
+The retained five actual commands observed Java and javac, compiled with Java 8 bytecode semantics, ran only the host input-inventory branch with verification enabled, and converted the single class with the pinned D8 compiler. Every command exited zero within its existing 30- or 120-second bound. The Java 8 compilation warning remains verbatim in stderr. No application APK was built or executed.
+
+The host inventory emitted all 1,291 original cases in their original order. Independent Python integer-only arithmetic agreed with every Java expectation. The original compact input SHA256 remains `e083bc1996c5c7191bffe837fc0f30e254848a4754676ba0a8a119d23e8f6e79`. Counts are 547 integer, 734 decimal and ten other inputs, including a null entry and two explicitly declared reflective invalid-heap states. The protocol/source-design capsule documents those states and the exact original method scope.
+
+This is a neutral-probe compilation and input-corpus result. The host inventory does not load application classes. Neither APK, the actual target method, Android ART, the emulator, UI nor alarms were exercised here. Android execution and its bounded wrapper/workflow review remain pending. The historical source-design capsule retains its original uncompiled status; this successor records the later actual compilation without rewriting that history.
+
+`evidence/` preserves the executed compiler, Java source and class, DEX, full literal stdout/stderr and command metadata, both input inventories, toolchain release metadata and all 1,291 independent expectations. Read-only closure rechecked the five commands and raw-stream identities. All source and output inputs remained unchanged through closure.

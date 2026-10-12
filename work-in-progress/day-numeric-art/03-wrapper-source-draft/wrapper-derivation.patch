@@ -1,0 +1,406 @@
+--- parent/android_widget_method_probe.py
++++ source/android_day_numeric_method_probe.py
+@@ -1,11 +1,5 @@
+ #!/usr/bin/env python3
+-"""Eight pinned Widget method cases on real APK classes in AndroidRuntime.
+-
+-The two app_process64 commands are bounded and use separate guest processes.
+-The helper installs no application, supplies no Context or nonempty widget list,
+-and requires verification to remain enabled. Host controls inject a simulated
+-runner explicitly; their reports cannot be accepted as Android execution.
+-"""
++"""Bounded neutral 1291-case numeric ART probe; host controls are explicitly simulated."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -26,54 +20,90 @@
+ 
+ ROOT = Path(__file__).resolve().parent
+ ORIGINAL_SHA256 = '84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800'
+-ORIGINAL_BYTES = 95_725_918
+-CANDIDATE_SHA256 = 'b79b0010285733e4ed27d50590786e5e87f943ad6d15aeeef445d2b2c750f82f'
+-CANDIDATE_BYTES = 94_683_439
+-PROBE_SHA256 = '79bd3b46e71253b17ec75099cce3611df1735b8f74e8bdcb61c61e5a37ae1a07'
+-PROBE_BYTES = 7_580
+-PROVENANCE_SHA256 = '31e7ebb8bebaa12210d1486b87b864e9ed7cf9771dde4488ffe435dd4e434901'
+-PROBE_CLASS = 'Lrecovered/probe/WidgetMethodProbe;'
+-MAIN_CLASS = 'recovered.probe.WidgetMethodProbe'
+-TARGET = ('Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->'
+-          'm(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;')
+-ORIGINAL_METHOD_SHA256 = 'a1dd490bbfd6837fa72e6bf8ae4c75736612989fcba050fe2f0582aa03640e34'
+-HELPER_SHA256 = 'dbcb1a98d25ae4637531644da37d24f6e1bc494f941d4212da03c360fe315d79'
+-CASES = [
+-    'fresh-empty-unit-identity', 'reused-label-zero-empty', 'resumed-label-two-empty',
+-    'invalid-label-exact-exception', 'label-two-dead-cast-L7',
+-    'label-two-dead-cast-L4', 'label-two-dead-cast-L1', 'null-list-exception-type',
+-]
+-EXPECTED_LINES = ['WIDGET_ART_CASE_OK ' + case for case in CASES] + ['WIDGET_METHOD_ART_OK cases=8']
+-EXPECTED_STDOUT = '\n'.join(EXPECTED_LINES) + '\n'
++ORIGINAL_BYTES = 95725918
++CANDIDATE_SHA256 = '0762aad956193ef305afc47b4cbe68e6239c94f72732556e650d701b4a288afd'
++CANDIDATE_BYTES = 94683136
++PROBE_SHA256 = '7cf6f31793b1f0546bf4927a63481a25662634b8a0ac2fa520a69900204ed3aa'
++PROBE_BYTES = 14108
++PROVENANCE_SHA256 = 'ce95e9a3314a406c6fac6078c7af32ee2fe7eb23f5a20566b554e5a9cbacb9a4'
++PROBE_CLASS = 'Lrecovered/probe/DayNumericMethodProbe;'
++MAIN_CLASS = 'recovered.probe.DayNumericMethodProbe'
++TARGET = 'Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I'
++ORIGINAL_METHOD_SHA256 = '8383c90ebe3d35afa63d52cf92cd4c92b54ed4525ca0d8a31a29fe603f9eef21'
++HELPER_SHA256 = 'b99984c0ca9128f9def8658d874f98d9a8e4529433d0f76f7f86e9e8299cc792'
++PROBE_SCOPE = 'All 1291 frozen DayTrigger r0 numeric/other/null-entry cases on real original and candidate APK classes; only null-entry exception class is compared, with its raw UTF16 message retained'
++CORPUS_SHA256 = 'e083bc1996c5c7191bffe837fc0f30e254848a4754676ba0a8a119d23e8f6e79'
++CORPUS_FILE_SHA256 = '8728c4d87c1563389e5efcc1ad8127fd9f9d16890088e1f53d248e51bfe26c64'
++CORPUS_BYTES = 137356
++CORPUS_PATH = ROOT / 'probes/day-numeric-inputs.json'
++EXCEPTION_POLICY = {'only_kind': 'null-entry', 'class': 'java.lang.NullPointerException', 'message_encoding': 'null or utf16: followed by zero or more lowercase four-hex-digit code units', 'message_equality_required': False, 'raw_message_retained': True}
+ APP_PROCESS = '/system/bin/app_process64'
+ GUEST_TIMEOUT = '/system/bin/timeout'
+ DEFAULT_AVD = 'MacroDroid_API35_Disposable'
+-EXPECTED_DEVICE = {
+-    'ro.kernel.qemu': '1',
+-    'sys.boot_completed': '1',
+-    'ro.build.version.sdk': '35',
+-    'ro.build.fingerprint': 'google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys',
+-    'ro.product.cpu.abi': 'x86_64',
+-    'ro.product.cpu.abilist': 'x86_64,arm64-v8a',
+-    'ro.dalvik.vm.native.bridge': 'libndk_translation.so',
+-    # AndroidRuntime parses this property after the explicit command-line options.
+-    'dalvik.vm.extra-opts': '',
+-}
+-REMOTE_PATTERN = r'/data/local/tmp/md-widget-method-[0-9a-f]{32}'
+-UNCLAIMED_FLAGS = [
+-    'full_runtime_1_to_1_established', 'nonempty_widget_behavior_verified',
+-    'widget_rendering_verified', 'app_apk_modified', 'app_installed',
+-    'app_ui_interaction', 'compile_only_stubs_on_classpath',
+-]
+-INPUT_SPECS = (
+-    ('probe', 'widget-method-probe.dex', PROBE_BYTES, PROBE_SHA256),
++EXPECTED_DEVICE = {'ro.kernel.qemu': '1', 'sys.boot_completed': '1', 'ro.build.version.sdk': '35', 'ro.build.fingerprint': 'google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys', 'ro.product.cpu.abi': 'x86_64', 'ro.product.cpu.abilist': 'x86_64,arm64-v8a', 'ro.dalvik.vm.native.bridge': 'libndk_translation.so', 'dalvik.vm.extra-opts': ''}
++REMOTE_PATTERN = r'/data/local/tmp/md-day-numeric-[0-9a-f]{32}'
++UNCLAIMED_FLAGS = ['full_runtime_1_to_1_established', 'macro_configuration_verified',
++    'alarm_scheduling_verified', 'macro_execution_verified', 'ui_behavior_verified',
++    'app_apk_modified', 'app_installed', 'app_ui_interaction', 'compile_only_stubs_on_classpath']
++INPUT_SPECS = (('probe', 'day-numeric-method-probe.dex', PROBE_BYTES, PROBE_SHA256),
+     ('original', 'original.apk', ORIGINAL_BYTES, ORIGINAL_SHA256),
+-    ('candidate', 'candidate.apk', CANDIDATE_BYTES, CANDIDATE_SHA256),
+-)
++    ('candidate', 'candidate.apk', CANDIDATE_BYTES, CANDIDATE_SHA256))
+ 
+ 
+ class ProbeError(ValueError):
+     pass
++
++
++def expected_numeric(row):
++    """Independent integer arithmetic; never use a host float-to-int cast."""
++    bits = int(row['rawBitsHex'], 16)
++    if row['kind'] == 'null-entry':
++        return 'exception:java.lang.NullPointerException'
++    if row['kind'] == 'integer':
++        value = bits & 0xffffffff
++        if value & 0x80000000:
++            value -= 1 << 32
++    elif row['kind'] == 'decimal':
++        exponent = (bits >> 52) & 0x7ff
++        fraction = bits & ((1 << 52) - 1)
++        negative = bool(bits >> 63)
++        if exponent == 0x7ff:
++            value = 0 if fraction else -(1 << 31) if negative else (1 << 31) - 1
++        else:
++            significand = fraction | (1 << 52) if exponent else fraction
++            shift = (exponent if exponent else 1) - 1023 - 52
++            magnitude = significand << shift if shift >= 0 else significand >> -shift
++            value = -magnitude if negative else magnitude
++            value = min((1 << 31) - 1, max(-(1 << 31), value))
++    else:
++        value = 0
++    return 'value:' + str(value)
++
++def load_corpus():
++    data = CORPUS_PATH.read_bytes()
++    if len(data) != CORPUS_BYTES or hashlib.sha256(data).hexdigest() != CORPUS_FILE_SHA256:
++        raise ProbeError('The frozen 1291-case input corpus changed')
++    rows = json.loads(data)
++    encoded = json.dumps(rows, ensure_ascii=False, separators=(',', ':')).encode()
++    if len(rows) != 1291 or hashlib.sha256(encoded).hexdigest() != CORPUS_SHA256:
++        raise ProbeError('The original compact numeric input identity changed')
++    return rows
++
++
++CORPUS = load_corpus()
++CASES = [row['case'] for row in CORPUS]
++HEADER = 'DAY_NUMERIC_ART_BEGIN\tcases=1291\tsha256=' + CORPUS_SHA256
++FOOTER = 'DAY_NUMERIC_ART_END\tcases=1291\tpassed=true'
++CASE_LINES = []
++for _index, _row in enumerate(CORPUS):
++    _prefix = ['DAY_NUMERIC_ART_CASE', str(_index), _row['case'], _row['kind'], _row['rawBitsHex']]
++    _suffix = (['exception', 'java.lang.NullPointerException', 'null'] if _row['kind'] == 'null-entry'
++               else ['value', expected_numeric(_row).split(':')[1]])
++    CASE_LINES.append('\t'.join(_prefix + _suffix))
++# This is an explicitly synthetic fixture. A real NPE message is variable and
++# must be retained losslessly; only the declared null-entry class is compared.
++EXPECTED_LINES = [HEADER, *CASE_LINES, FOOTER]
++EXPECTED_STDOUT = '\n'.join(EXPECTED_LINES) + '\n'
+ 
+ 
+ def digest(path: Path) -> str:
+@@ -93,7 +123,7 @@
+ 
+ def validate_probe(data: bytes) -> dict:
+     if len(data) != PROBE_BYTES or hashlib.sha256(data).hexdigest() != PROBE_SHA256:
+-        raise ProbeError('Widget probe DEX differs from the exact compiled preparation')
++        raise ProbeError('Numeric probe DEX differs from the exact compiled preparation')
+     if data[:8] != b'dex\n035\x00' or struct.unpack_from('<II', data, 32) != (len(data), 112):
+         raise ProbeError('Probe DEX header is invalid')
+     if (struct.unpack_from('<I', data, 8)[0] != (zlib.adler32(data[12:]) & 0xffffffff) or
+@@ -140,12 +170,17 @@
+ 
+ 
+ def validate_provenance(info: dict) -> None:
+-    if (not isinstance(info, dict) or info.get('main_class') != MAIN_CLASS or
++    if (not isinstance(info, dict) or info.get('schema_version') != 2 or
++            info.get('main_class') != MAIN_CLASS or info.get('scope') != PROBE_SCOPE or
+             info.get('target_method') != TARGET or info.get('original_method_sha256') != ORIGINAL_METHOD_SHA256 or
+             info.get('candidate_helper_sha256') != HELPER_SHA256 or
+-            info.get('runtime_cases') != CASES or info.get('expected_stdout_lines') != EXPECTED_LINES or
++            info.get('runtime_cases') != CASES or info.get('canonical_simulated_stdout_lines') != EXPECTED_LINES or
++            info.get('exception_policy') != EXCEPTION_POLICY or
+             info.get('android_runtime_executed_during_preparation') is not False):
+-        raise ProbeError('Probe provenance does not describe the frozen eight-case preparation')
++        raise ProbeError('Probe provenance does not describe the frozen 1291-case preparation')
++    if info.get('input_corpus') != {'bytes': CORPUS_BYTES, 'sha256': CORPUS_FILE_SHA256,
++            'compact_sha256': CORPUS_SHA256, 'cases': 1291}:
++        raise ProbeError('Probe provenance describes a changed input corpus')
+     for key, _, size, expected in INPUT_SPECS:
+         row = info['probe'] if key == 'probe' else info['apks'][key]
+         if type(row.get('bytes')) is not int or row['bytes'] != size or row.get('sha256') != expected:
+@@ -177,6 +212,10 @@
+     provenance_row['content'] = json.loads(provenance.read_text())
+     validate_provenance(provenance_row['content'])
+     result['provenance'] = provenance_row
++    corpus_row = stable_identity(CORPUS_PATH)
++    if corpus_row['bytes'] != CORPUS_BYTES or corpus_row['sha256'] != CORPUS_FILE_SHA256:
++        raise ProbeError('Local input corpus differs from the fixed original cases')
++    result['input_corpus'] = corpus_row
+     return result
+ 
+ 
+@@ -196,28 +235,51 @@
+ 
+ 
+ def observation(code, stdout: bytes, stderr: bytes, *, timed_out=False) -> dict:
+-    expected = EXPECTED_STDOUT.encode()
+-    lines = stdout.decode('utf-8', errors='replace').splitlines()
+-    prefix = []
+-    for index, case in enumerate(CASES):
+-        if index < len(lines) and lines[index] == EXPECTED_LINES[index]:
+-            prefix.append(case)
+-        else:
+-            break
+-    semantics = type(code) is int and code == 0 and not timed_out and stdout == expected
++    """Check every complete raw line; preserve the single declared exception message."""
++    # Only LF-terminated ASCII lines belong to the Java wire protocol. The raw
++    # streams remain artifacts even if decoding/framing or a case later fails.
++    complete = stdout.split(b'\n')[:-1]
++    prefix, exceptions = [], []
++    header = bool(complete) and complete[0] == HEADER.encode('ascii')
++    if header:
++        for index, row in enumerate(CORPUS):
++            if index + 1 >= len(complete):
++                break
++            raw = complete[index + 1]
++            try:
++                line = raw.decode('ascii', errors='strict')
++            except UnicodeDecodeError:
++                break
++            if row['kind'] == 'null-entry':
++                fields = line.split('\t')
++                fixed = ['DAY_NUMERIC_ART_CASE', str(index), row['case'], row['kind'], row['rawBitsHex'],
++                         'exception', 'java.lang.NullPointerException']
++                if (len(fields) != 8 or fields[:7] != fixed or
++                        re.fullmatch(r'null|utf16:(?:[0-9a-f]{4})*', fields[7]) is None):
++                    break
++                exceptions.append({'index': index, 'case': row['case'], 'class': fields[6],
++                    'raw_message_encoding': fields[7], 'raw_line_hex': raw.hex()})
++            elif line != CASE_LINES[index]:
++                break
++            prefix.append(row['case'])
++    contract = (stdout.endswith(b'\n') and len(complete) == len(CORPUS) + 2 and header and
++                len(prefix) == len(CORPUS) and complete[-1] == FOOTER.encode('ascii'))
++    semantics = type(code) is int and code == 0 and timed_out is False and contract
+     return {'completed_case_prefix': prefix, 'completed_cases': len(prefix),
+-            'exact_stdout': stdout == expected, 'semantic_cases_passed': semantics,
+-            'stderr_empty': stderr == b'', 'diagnostic_bytes': len(stderr),
+-            'strict_command_passed': semantics and stderr == b''}
++            'exact_synthetic_stdout': stdout == EXPECTED_STDOUT.encode('ascii'),
++            'complete_output_contract_matched': contract,
++            'raw_exception_records': exceptions,
++            'semantic_cases_passed': semantics, 'stderr_empty': stderr == b'',
++            'diagnostic_bytes': len(stderr), 'strict_command_passed': semantics and stderr == b''}
+ 
+ 
+ def guest_argv(remote: str, variant: str, timeout: int) -> list[str]:
+     if not re.fullmatch(REMOTE_PATTERN, remote) or variant not in ('original', 'candidate'):
+         raise ProbeError('Unexpected classpath selection')
+-    if type(timeout) is not int or not 30 <= timeout <= 180:
+-        raise ProbeError('Guest timeout must be an integer between 30 and 180 seconds')
++    if type(timeout) is not int or timeout != 120:
++        raise ProbeError('Guest timeout must be exactly the integer 120 seconds')
+     return [GUEST_TIMEOUT, '-s', 'KILL', str(timeout), APP_PROCESS, '-Xverify:all', '-cp',
+-            remote + '/widget-method-probe.dex:' + remote + '/' + variant + '.apk', remote, MAIN_CLASS]
++            remote + '/day-numeric-method-probe.dex:' + remote + '/' + variant + '.apk', remote, MAIN_CLASS]
+ 
+ 
+ def run_probe(args, *, runner=None) -> tuple[int, dict]:
+@@ -228,21 +290,21 @@
+         raise ProbeError('A new or empty output directory is required')
+     output.mkdir(parents=True, exist_ok=True)
+     report = {
+-        'schema_version': 1,
+-        'scope': 'Eight bounded Widget method entry/restoration/type-check cases in real original and candidate APK classes',
++        'schema_version': 2,
++        'scope': PROBE_SCOPE,
+         'started_utc': datetime.now(timezone.utc).isoformat(), 'status': 'BLOCKED',
+         'commands': [], 'serial': args.serial, 'expected_avd': args.avd,
+         'guest_timeout_seconds': args.timeout, 'verification_mode': '-Xverify:all',
+         'execution_backend': 'simulated-host-control' if simulated else 'adb-android-runtime',
+         'android_runtime_executed': False, 'art_execution_attempted': False,
+-        'widget_cases_on_art_verified': False, 'both_semantic_case_sets_passed': False,
++        'numeric_cases_on_art_verified': False, 'both_semantic_case_sets_passed': False,
+         'strict_diagnostics_passed': False, 'inputs_unchanged': False,
+-        'cleanup_complete': False, 'runtime_cases': CASES, 'expected_stdout': EXPECTED_STDOUT,
++        'cleanup_complete': False, 'runtime_cases': CASES, 'synthetic_stdout_fixture': EXPECTED_STDOUT,
+         'target_method': TARGET, 'executions': {},
+         **{key: False for key in UNCLAIMED_FLAGS},
+     }
+     created = False
+-    remote = '/data/local/tmp/md-widget-method-' + uuid.uuid4().hex
++    remote = '/data/local/tmp/md-day-numeric-' + uuid.uuid4().hex
+     adb = None
+ 
+     def checkpoint():
+@@ -306,6 +368,7 @@
+         report['inputs_before'] = validate_inputs(args.original, args.candidate, args.probe, args.provenance)
+         report['provenance_artifact'] = artifact('input-provenance.json', args.provenance.read_bytes())
+         report['probe_artifact'] = artifact('input-probe.dex', args.probe.read_bytes())
++        report['corpus_artifact'] = artifact('input-corpus.json', CORPUS_PATH.read_bytes())
+         report['wrapper_artifact'] = artifact('executed-wrapper.py', Path(__file__).read_bytes())
+         adb = shutil.which(args.adb)
+         if not adb:
+@@ -347,15 +410,15 @@
+             report['both_semantic_case_sets_passed'] = all(
+                 report['executions'].get(key, {}).get('semantic_cases_passed') is True
+                 for key in ('original', 'candidate'))
+-            report['widget_cases_on_art_verified'] = report['both_semantic_case_sets_passed'] and not simulated
++            report['numeric_cases_on_art_verified'] = report['both_semantic_case_sets_passed'] and not simulated
+             report['strict_diagnostics_passed'] = all(
+                 report['executions'].get(key, {}).get('stderr_empty') is True for key in ('original', 'candidate'))
+             checkpoint()
+             if not observed['strict_command_passed']:
+-                raise ProbeError('Exact Widget cases or clean diagnostics failed: ' + variant)
+-        report['status'] = 'SIMULATED_WIDGET_CASES_PASSED' if simulated else 'ART_WIDGET_CASES_VERIFIED'
++                raise ProbeError('Exact Numeric cases or clean diagnostics failed: ' + variant)
++        report['status'] = 'SIMULATED_NUMERIC_CASES_PASSED' if simulated else 'ART_NUMERIC_CASES_VERIFIED'
+     except (OSError, ValueError, KeyError, IndexError, struct.error, zipfile.BadZipFile) as exc:
+-        report['status'] = 'SIMULATED_WIDGET_PROBE_FAILED' if simulated else 'ART_WIDGET_PROBE_FAILED'
++        report['status'] = 'SIMULATED_NUMERIC_PROBE_FAILED' if simulated else 'ART_NUMERIC_PROBE_FAILED'
+         report['reason'] = str(exc)
+     finally:
+         if created:
+@@ -389,7 +452,7 @@
+             except (OSError, ValueError, KeyError, IndexError, struct.error, zipfile.BadZipFile) as exc:
+                 report['postcheck_errors'].append(str(exc))
+             if report['postcheck_errors']:
+-                report['status'] = 'SIMULATED_WIDGET_POSTCHECK_FAILED' if simulated else 'ART_WIDGET_POSTCHECK_FAILED'
++                report['status'] = 'SIMULATED_NUMERIC_POSTCHECK_FAILED' if simulated else 'ART_NUMERIC_POSTCHECK_FAILED'
+             try:
+                 checked(shell('remove-owned-directory', ['rm', '-rf', '--', remote]), 'remove-owned-directory')
+                 checked(shell('confirm-owned-directory-absent', ['test', '!', '-e', remote]),
+@@ -398,15 +461,15 @@
+             except (OSError, ValueError) as exc:
+                 report['cleanup_error'] = str(exc)
+                 if report['both_semantic_case_sets_passed']:
+-                    report['status'] = 'SIMULATED_WIDGET_CLEANUP_FAILED' if simulated else 'ART_WIDGET_CLEANUP_FAILED'
++                    report['status'] = 'SIMULATED_NUMERIC_CLEANUP_FAILED' if simulated else 'ART_NUMERIC_CLEANUP_FAILED'
+         report['finished_utc'] = datetime.now(timezone.utc).isoformat()
+         checkpoint()
+-    success = report['status'] in ('ART_WIDGET_CASES_VERIFIED', 'SIMULATED_WIDGET_CASES_PASSED')
++    success = report['status'] in ('ART_NUMERIC_CASES_VERIFIED', 'SIMULATED_NUMERIC_CASES_PASSED')
+     if success and report['cleanup_complete']:
+         try:
+             verify_result(output, report, serial=args.serial, allow_simulated=simulated)
+         except ProbeError as exc:
+-            report['status'] = 'SIMULATED_WIDGET_EVIDENCE_INVALID' if simulated else 'ART_WIDGET_EVIDENCE_INVALID'
++            report['status'] = 'SIMULATED_NUMERIC_EVIDENCE_INVALID' if simulated else 'ART_NUMERIC_EVIDENCE_INVALID'
+             report['evidence_error'] = str(exc)
+             success = False
+             checkpoint()
+@@ -421,16 +484,17 @@
+             raise ProbeError('A simulated host result is not Android evidence')
+         if report.get('execution_backend') != ('simulated-host-control' if simulated else 'adb-android-runtime'):
+             raise ProbeError('Unknown execution backend')
+-        expected_status = 'SIMULATED_WIDGET_CASES_PASSED' if simulated else 'ART_WIDGET_CASES_VERIFIED'
+-        if (report.get('status') != expected_status or report.get('serial') != serial or
++        expected_status = 'SIMULATED_NUMERIC_CASES_PASSED' if simulated else 'ART_NUMERIC_CASES_VERIFIED'
++        if (report.get('schema_version') != 2 or report.get('scope') != PROBE_SCOPE or
++                report.get('status') != expected_status or report.get('serial') != serial or
+                 not re.fullmatch(r'emulator-[0-9]+', serial) or report.get('expected_avd') != DEFAULT_AVD or
+                 report.get('verification_mode') != '-Xverify:all' or report.get('target_method') != TARGET or
+-                report.get('runtime_cases') != CASES or report.get('expected_stdout') != EXPECTED_STDOUT or
++                report.get('runtime_cases') != CASES or report.get('synthetic_stdout_fixture') != EXPECTED_STDOUT or
+                 any(report.get(key) is not False for key in UNCLAIMED_FLAGS) or
+                 any(report.get(key) is not True for key in ('art_execution_attempted', 'both_semantic_case_sets_passed',
+                     'strict_diagnostics_passed', 'inputs_unchanged', 'cleanup_complete')) or
+                 report.get('postcheck_errors') != [] or
+-                report.get('widget_cases_on_art_verified') is not (not simulated) or
++                report.get('numeric_cases_on_art_verified') is not (not simulated) or
+                 report.get('android_runtime_executed') is not (not simulated)):
+             raise ProbeError('A complete bounded result with its exact scope is required')
+         remote, adb, timeout = report['owned_device_directory'], report['adb_path'], report['guest_timeout_seconds']
+@@ -449,6 +513,9 @@
+                     raise ProbeError('Device input identity differs: ' + key)
+             if report['device_inputs_before'][key].get('mode') != '444':
+                 raise ProbeError('Device classpath file was writable')
++        corpus = report['inputs_before']['input_corpus']
++        if corpus.get('sha256') != CORPUS_FILE_SHA256 or type(corpus.get('bytes')) is not int or corpus['bytes'] != CORPUS_BYTES:
++            raise ProbeError('Input corpus identity differs')
+         provenance = report['inputs_before']['provenance']
+         if provenance.get('sha256') != PROVENANCE_SHA256:
+             raise ProbeError('Provenance hash differs')
+@@ -456,6 +523,7 @@
+         for key, name, sha in (
+                 ('provenance_artifact', 'input-provenance.json', PROVENANCE_SHA256),
+                 ('probe_artifact', 'input-probe.dex', PROBE_SHA256),
++                ('corpus_artifact', 'input-corpus.json', CORPUS_FILE_SHA256),
+                 ('wrapper_artifact', 'executed-wrapper.py', digest(Path(__file__)))):
+             row = report[key]
+             if row.get('path') != name or (folder / name).is_symlink():
+@@ -508,7 +576,7 @@
+             argv = guest_argv(remote, variant, timeout)
+             value = report['executions'][variant]
+             if value.get('guest_argv') != argv:
+-                raise ProbeError('Widget command changed its verifier or classpath')
++                raise ProbeError('Numeric command changed its verifier or classpath')
+             shell('execute-' + variant, argv, timeout + 30, kind='execution', value=variant)
+         for key, name, _, sha in INPUT_SPECS:
+             shell('sha256-after-' + key, ['sha256sum', remote + '/' + name], kind='sha', value=(remote + '/' + name, sha))
+@@ -554,7 +622,7 @@
+                 if (report['executions'][value].get('command') != record or
+                         any(report['executions'][value].get(key) != item for key, item in observed.items()) or
+                         observed['strict_command_passed'] is not True):
+-                    raise ProbeError('Widget case observation differs from its raw command output')
++                    raise ProbeError('Numeric case observation differs from its raw command output')
+         return True
+     except ProbeError:
+         raise
+@@ -569,8 +637,8 @@
+     parser.add_argument('--avd', default=DEFAULT_AVD, choices=[DEFAULT_AVD])
+     parser.add_argument('--original', type=Path, required=True)
+     parser.add_argument('--candidate', type=Path, required=True)
+-    parser.add_argument('--probe', type=Path, default=ROOT / 'probes/widget-method-probe.dex')
+-    parser.add_argument('--provenance', type=Path, default=ROOT / 'probes/widget-method-probe.json')
++    parser.add_argument('--probe', type=Path, default=ROOT / 'probes/day-numeric-method-probe.dex')
++    parser.add_argument('--provenance', type=Path, default=ROOT / 'probes/day-numeric-method-probe.json')
+     parser.add_argument('--output', type=Path, required=True)
+     parser.add_argument('--timeout', type=int, default=120)
+     args = parser.parse_args()

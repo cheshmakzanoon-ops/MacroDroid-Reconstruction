@@ -1,0 +1,9 @@
+{
+  "status": "DERIVED_BINDING_CHECK_FAILED",
+  "returncode": 1,
+  "scope": "Read-only source-change assertion; no production or test execution failure.",
+  "actual_failed_assertion": "The checker replaced only the test SHA in the workflow and forgot the accompanying changed test byte count.",
+  "source_preserved": "verify_final_source_binding.py",
+  "production_inputs_unchanged": true,
+  "correction": "Bind replacement to the entire exact test path metadata entry, including bytes and SHA, then require all remaining workflow bytes equal."
+}

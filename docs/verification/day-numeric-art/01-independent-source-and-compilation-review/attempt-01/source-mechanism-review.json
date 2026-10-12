@@ -1,0 +1,32 @@
+{
+  "source": {
+    "bytes": 15540,
+    "sha256": "ab5b1b1d01ab33f66cab22c1d5a5f7c09ffdf13b8e0e335cf22f86ba5fcc6c2b",
+    "mode": 420
+  },
+  "exact_original_method_sha256": "8383c90ebe3d35afa63d52cf92cd4c92b54ed4525ca0d8a31a29fe603f9eef21",
+  "original_class_fingerprints_exact": 10,
+  "cases_and_expectations_exact_mechanical_host_adaptation": true,
+  "constructor_sites_use_reflection_on_actual_app_types": true,
+  "no_recovered_target_body_substituted": true,
+  "target_method": "public static int DayTrigger.r0(DictionaryEntry)",
+  "zero_argument_runtime_branch": true,
+  "only_exception_class_allowed": "java.lang.NullPointerException",
+  "exception_case_only": "null-entry",
+  "message": "Complete UTF-16 code units retained; no equality requirement for this one VM-generated message.",
+  "declared_mutated_fields": [
+    {
+      "case": "null-value",
+      "class": "VariableValue$DictionaryEntry",
+      "field": "variable"
+    },
+    {
+      "case": "string-null",
+      "class": "VariableValue$StringValue",
+      "field": "textValue"
+    }
+  ],
+  "getter_readback_scope": "547 integer and 734 decimal direct target-value cases; nested inner integer not separately read back.",
+  "identity_readback_scope": "Every outer non-null entry. The nested inner reference follows exact reviewed constructor stores without an extra readback.",
+  "wrapper_and_runtime_review_pending": true
+}

@@ -1,0 +1,43 @@
+{
+  "stages": [
+    {
+      "label": "boot-readiness",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "label": "configure-and-observe-capture-device",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "label": "verify-independent-constructor-allocation-on-art",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "label": "capture-original-and-candidate",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "label": "compare-complete-cold-captures",
+      "exit_code": 2,
+      "timed_out": false
+    },
+    {
+      "label": "compare-four-intro-pages-and-transitions",
+      "exit_code": 2,
+      "timed_out": false
+    },
+    {
+      "label": "compare-first-surface-after-intro",
+      "exit_code": 2,
+      "timed_out": false
+    }
+  ],
+  "constructor_original_only": true,
+  "constructor_status": "ART_CONSTRUCTOR_ALLOCATION_VERIFIED",
+  "ui_runtime_status": "REQUESTED_RUNTIME_SCOPES_INCOMPLETE_OR_DIFFERENT",
+  "all_requested_runtime_checks_passed": false
+}

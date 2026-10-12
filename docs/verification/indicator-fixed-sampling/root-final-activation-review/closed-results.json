@@ -1,0 +1,47 @@
+{
+  "status": "CLOSED_SYNTHETIC_ATTEMPT_WITH_FOCUSED_TEST_ASSERTION_CORRECTION",
+  "full_attempt": {
+    "result": "reports/attempt-02/result.json",
+    "literal_status": "FAILED",
+    "tests_run": 41,
+    "successes": 40,
+    "assertion_failures": 1,
+    "errors": 0,
+    "unittest_seconds": 851.94,
+    "outer_seconds": 852.341924428,
+    "timeout_seconds": 900,
+    "timed_out": false,
+    "sole_failure": "test_changed_local_apk_identity_rejects_before_any_capture_credit",
+    "actual_guard_rejection": "Slot local APK read differs from its fixed input",
+    "incorrect_test_regex": "Local APK"
+  },
+  "focused_final_test": {
+    "result": "reports/focused-03/result.json",
+    "tests_run": 1,
+    "failures": 0,
+    "errors": 0,
+    "fresh_full_suite": false,
+    "reused_exact_closed_synthetic_baseline": true
+  },
+  "complete_recorder_dataset": {
+    "slots": 8,
+    "post_input_frames": 40,
+    "pairs": 92,
+    "every_pair_one_rgba_difference_and_unequal_canonical_xml": true,
+    "independent_literal_replay_test_passed": true
+  },
+  "final_binding_result": "reports/final-binding-05/result.json",
+  "preserved_binding_checker_failure": "reports/final-binding-04/result.json",
+  "preserved_initial_freezer_order_failure": "reports/freeze-06/result.json",
+  "only_changed_source_paths": [
+    ".github/workflows/indicator-fixed-sampling.yml",
+    "tools/indicator_sampling/runtime-files.json",
+    "tools/indicator_sampling/test_indicator_sampling.py"
+  ],
+  "production_inputs_unchanged": true,
+  "timeouts_unchanged": true,
+  "final_fresh_full_suite_locally_reexecuted": false,
+  "hosted_full_suite_remains_required": true,
+  "android_executed": false,
+  "new_runtime_parity_credit": 0
+}

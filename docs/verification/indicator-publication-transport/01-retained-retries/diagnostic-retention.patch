@@ -1,0 +1,10 @@
+--- before/upload-batch.js
++++ after/upload-batch.js
+@@ -21,6 +21,7 @@
+   cache=load("indicator_progress_chunk_cache")[row.git_blob_sha1];if(parts.some(p=>!cache[p.offset]))throw Error("read incomplete after bounded retries");
+   const content=parts.map(p=>cache[p.offset]).join("");if(content.length!==(row.encoding==='utf-8'?row.size_bytes:4*Math.ceil(row.size_bytes/3)))throw Error("whole transport size mismatch");
+   const args={link_id:"link_6a9ea15de9248191931f1987300fc159",repository_full_name:"cheshmakzanoon-ops/MacroDroid-Reconstruction",encoding:row.encoding,content};if(JSON.stringify(args).length>16777216)throw Error("request cap exceeded");const result=await tools.mcp__codex_apps__github_create_blob(args);
++  store("indicator_progress_last_blob_response",{path:row.path,bytes:row.size_bytes,expected_git_blob_sha1:row.git_blob_sha1,isError:result.isError,structuredContent:result.structuredContent,text:result.content?.filter(c=>c.type==="text").map(c=>c.text)});
+   if(result.structuredContent?.sha!==row.git_blob_sha1)throw Error("remote blob digest mismatch");
+   const uploaded=load("indicator_progress_uploaded");uploaded[row.git_blob_sha1]=true;store("indicator_progress_uploaded",uploaded);const allcache=load("indicator_progress_chunk_cache");delete allcache[row.git_blob_sha1];store("indicator_progress_chunk_cache",allcache);
+   if(Object.keys(uploaded).length%10===0)notify({completed:Object.keys(uploaded).length,total:load("indicator_progress_newblobs").length});

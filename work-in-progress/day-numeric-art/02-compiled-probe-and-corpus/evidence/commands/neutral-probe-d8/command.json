@@ -1,0 +1,35 @@
+{
+  "label": "neutral-probe-d8",
+  "argv": [
+    "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+    "-Xmx512m",
+    "-XX:ActiveProcessorCount=2",
+    "-cp",
+    "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+    "com.android.tools.r8.D8",
+    "--release",
+    "--no-desugaring",
+    "--min-api",
+    "23",
+    "--output",
+    "/dev/shm/macrodroid-day-numeric-art/compile-01/dex",
+    "/dev/shm/macrodroid-day-numeric-art/compile-01/classes/recovered/probe/DayNumericMethodProbe.class"
+  ],
+  "cwd": "/dev/shm/macrodroid-day-numeric-art/compile-01",
+  "timeout_seconds": 120,
+  "started_utc": "2026-10-12T12:18:03.921281+00:00",
+  "timed_out": false,
+  "returncode": 0,
+  "seconds": 5.398686391999945,
+  "finished_utc": "2026-10-12T12:18:09.320023+00:00",
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mode": 420
+  },
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mode": 420
+  }
+}

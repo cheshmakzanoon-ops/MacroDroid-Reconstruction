@@ -1,0 +1,10 @@
+{
+  "status": "FREEZER_ORDER_ASSUMPTION_FAILED_BEFORE_DESTINATION_CREATION",
+  "exit_code": 1,
+  "source_sha256": "bfa38484d2f24bb35769cc6ba20bac8eaddc82221a235aff9a32a0b64b092dc4",
+  "failure": "Required final-source manifest lists runtime-files.json last; filesystem enumeration sorts it among other paths. The equal 16-path inventories were compared as ordered lists.",
+  "actual_per_path_identities_equal": true,
+  "final_source_unchanged": true,
+  "destination_created": false,
+  "correction": "Sort the required manifest by its exact path before comparison; preserve all required rows."
+}

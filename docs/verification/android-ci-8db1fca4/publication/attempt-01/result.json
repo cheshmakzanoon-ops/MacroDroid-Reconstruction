@@ -1,0 +1,31 @@
+{
+  "status": "PUBLISHER_ASSERTION_FAILURE_REPRODUCED",
+  "original_full_attempt": {
+    "exit_code": 1,
+    "source_sha256": "62a661d4b964aa500ef19032974c5ee751e94d0f4422adb7a01dc7a8ec12bee7",
+    "line": 85,
+    "exception": "AssertionError",
+    "complete_raw_stderr_saved": false,
+    "statement": "The original full invocation failed before producing a checkpoint; its complete stderr was not saved to a file."
+  },
+  "focused_replay": {
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-B",
+      "/dev/shm/macrodroid-transfer-space-20261012/active-numeric-android-freezer-attempt-01/replay-failed-assertion.py"
+    ],
+    "exit_code": 1,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "61547826b23b87b481c98cbc81c8392a719576c7eedf4986dee4c9065f3c7b98"
+  },
+  "observed_successful_upload_step": {
+    "name": "Preserve measured runtime outcomes, including failures",
+    "status": "completed",
+    "conclusion": "success",
+    "number": 9,
+    "started_at": "2026-10-12T12:21:00Z",
+    "completed_at": "2026-10-12T12:21:02Z"
+  },
+  "raw_artifact_mutations": [],
+  "application_failure_claim": false
+}

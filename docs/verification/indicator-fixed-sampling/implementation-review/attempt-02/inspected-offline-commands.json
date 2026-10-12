@@ -1,0 +1,145 @@
+{
+  "source_result": "/dev/shm/ink-indicator-fixed-sampling-01/checkpoints/02-implemented-offline-validated/reports/workflow-01/result.json",
+  "command_count": 12,
+  "command_rows": [
+    {
+      "label": "bash-syntax-02",
+      "argv": [
+        "bash",
+        "-n",
+        "/dev/shm/ink-indicator-fixed-sampling-01/reports/workflow-01/step-02.sh"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 30,
+      "timed_out": false
+    },
+    {
+      "label": "bash-syntax-03",
+      "argv": [
+        "bash",
+        "-n",
+        "/dev/shm/ink-indicator-fixed-sampling-01/reports/workflow-01/step-03.sh"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 30,
+      "timed_out": false
+    },
+    {
+      "label": "bash-syntax-04",
+      "argv": [
+        "bash",
+        "-n",
+        "/dev/shm/ink-indicator-fixed-sampling-01/reports/workflow-01/step-04.sh"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 30,
+      "timed_out": false
+    },
+    {
+      "label": "bash-syntax-05",
+      "argv": [
+        "bash",
+        "-n",
+        "/dev/shm/ink-indicator-fixed-sampling-01/reports/workflow-01/step-05.sh"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 30,
+      "timed_out": false
+    },
+    {
+      "label": "bash-syntax-06",
+      "argv": [
+        "bash",
+        "-n",
+        "/dev/shm/ink-indicator-fixed-sampling-01/reports/workflow-01/step-06.sh"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 30,
+      "timed_out": false
+    },
+    {
+      "label": "bash-syntax-07",
+      "argv": [
+        "bash",
+        "-n",
+        "/dev/shm/ink-indicator-fixed-sampling-01/reports/workflow-01/step-07.sh"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 30,
+      "timed_out": false
+    },
+    {
+      "label": "cli-help-prepare",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/dev/shm/ink-indicator-fixed-sampling-01/source/tools/indicator_sampling/prepare.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 30,
+      "timed_out": false
+    },
+    {
+      "label": "cli-help-record",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/dev/shm/ink-indicator-fixed-sampling-01/source/tools/indicator_sampling/record.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 30,
+      "timed_out": false
+    },
+    {
+      "label": "cli-help-verify",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/dev/shm/ink-indicator-fixed-sampling-01/source/tools/indicator_sampling/verify.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 30,
+      "timed_out": false
+    },
+    {
+      "label": "owned-cleanup-clean",
+      "argv": [
+        "bash",
+        "/dev/shm/ink-indicator-fixed-sampling-01/reports/workflow-01/cleanup-clean.sh"
+      ],
+      "returncode": 0,
+      "timeout_seconds": 10,
+      "timed_out": false
+    },
+    {
+      "label": "owned-cleanup-failed-slot",
+      "argv": [
+        "bash",
+        "/dev/shm/ink-indicator-fixed-sampling-01/reports/workflow-01/cleanup-failed-slot.sh"
+      ],
+      "returncode": 7,
+      "timeout_seconds": 10,
+      "timed_out": false
+    },
+    {
+      "label": "owned-cleanup-failed-service",
+      "argv": [
+        "bash",
+        "/dev/shm/ink-indicator-fixed-sampling-01/reports/workflow-01/cleanup-failed-service.sh"
+      ],
+      "returncode": 1,
+      "timeout_seconds": 10,
+      "timed_out": false
+    }
+  ],
+  "raw_streams_independently_rehashed": 24,
+  "new_commands_executed_by_review": 0,
+  "checked_prior_guard_count": 5,
+  "old_workflow_source_identity": {
+    "bytes": 18658,
+    "sha256": "732f4e40d97d3828dcc4d633785cab4dcd085edf23fd55b5f96456bed55d84a1"
+  }
+}

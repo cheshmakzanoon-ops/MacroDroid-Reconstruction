@@ -1,0 +1,32 @@
+--- attempt-01/freezer.py
++++ attempt-02/freezer.py
+@@ -11,7 +11,7 @@
+ 
+ ROOT = Path('/dev/shm/macrodroid-transfer-space-20261012')
+ SOURCE = ROOT / 'active-numeric-android-run-38247941263'
+-OUTPUT = ROOT / 'active-numeric-android-raw-capsule'
++OUTPUT = ROOT / 'active-numeric-android-raw-capsule-02'
+ TARGET = 'docs/verification/android-ci-8db1fca4'
+ OUTPUT.mkdir(exist_ok=False)
+ 
+@@ -82,7 +82,8 @@
+ assert android['status'] == 'completed' and android['conclusion'] == 'failure'
+ steps = {row['number']: row for row in android['steps']}
+ assert steps[8]['conclusion'] == 'failure'
+-assert any('Upload' in row['name'] and row['conclusion'] == 'success' for row in android['steps'])
++assert steps[9]['name'] == 'Preserve measured runtime outcomes, including failures'
++assert steps[9]['status'] == 'completed' and steps[9]['conclusion'] == 'success'
+ copy(ROOT / 'download_verified_artifact.py', 'publication/download_verified_artifact.py')
+ copy(Path('/workspace/scratch/4130730d15aa/ci-run-analysis/extract_artifact.py'), 'publication/extract_artifact.py')
+ copy(Path(__file__), 'publication/executed-freezer.py')
+@@ -101,6 +102,10 @@
+ 
+ The only artifact downloads were the two independently identified ZIPs recorded here. No raw member, APK, workflow or application source was modified by this preservation step.
+ ''')
++copy(ROOT / 'derive_active_numeric_android_raw_freezer02.py', 'publication/derive-freezer02.py')
++for failed_path in sorted((ROOT / 'active-numeric-android-freezer-attempt-01').iterdir()):
++    copy(failed_path, 'publication/attempt-01/' + failed_path.name)
++copy(ROOT / 'active-numeric-android-freezer02.patch', 'publication/freezer02.patch')
+ files = []
+ for path in sorted(OUTPUT.rglob('*')):
+     if path.is_file():

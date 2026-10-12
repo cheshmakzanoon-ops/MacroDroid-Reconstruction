@@ -1,0 +1,245 @@
+--- parent/test_android_widget_method_probe.py
++++ source/test_android_day_numeric_method_probe.py
+@@ -14,7 +14,7 @@
+ import unittest
+ from unittest import mock
+ 
+-import android_widget_method_probe as probe
++import android_day_numeric_method_probe as probe
+ 
+ 
+ class SimulatedADB:
+@@ -96,7 +96,7 @@
+                 self.executions.append(variant)
+                 if self.timeout_variant == variant:
+                     raise subprocess.TimeoutExpired(argv, kwargs['timeout'],
+-                        output=('\n'.join(probe.EXPECTED_LINES[:2]) + '\n').encode(), stderr=b'partial guest diagnostics\n')
++                        output=('\n'.join(probe.EXPECTED_LINES[:3]) + '\n').encode(), stderr=b'partial guest diagnostics\n')
+                 code = self.codes[variant]
+                 out = self.stdout[variant] if self.stdout[variant] is not None else probe.EXPECTED_STDOUT.encode()
+                 err = self.stderr[variant]
+@@ -120,9 +120,9 @@
+         return subprocess.CompletedProcess(argv, code, out, err)
+ 
+ 
+-class WidgetProbeControls(unittest.TestCase):
++class NumericProbeControls(unittest.TestCase):
+     def setUp(self):
+-        self.temp = tempfile.TemporaryDirectory(prefix='widget-art-host-control-')
++        self.temp = tempfile.TemporaryDirectory(prefix='day-numeric-art-host-control-')
+         self.root = Path(self.temp.name)
+         self.addCleanup(self.temp.cleanup)
+         self.addCleanup(self.preserve_evidence)
+@@ -133,9 +133,10 @@
+         self.candidate.write_bytes(b'Host control candidate fixture, not an Android APK.\n')
+         self.args = argparse.Namespace(adb=str(self.adb), serial='emulator-5560', avd=probe.DEFAULT_AVD,
+             original=self.original, candidate=self.candidate,
+-            probe=probe.ROOT / 'probes/widget-method-probe.dex',
+-            provenance=probe.ROOT / 'probes/widget-method-probe.json', output=self.root / 'result', timeout=120)
++            probe=probe.ROOT / 'probes/day-numeric-method-probe.dex',
++            provenance=probe.ROOT / 'probes/day-numeric-method-probe.json', output=self.root / 'result', timeout=120)
+         self.inputs = {
++            'input_corpus': {'path': str(probe.CORPUS_PATH.resolve()), 'bytes': probe.CORPUS_BYTES, 'sha256': probe.CORPUS_FILE_SHA256},
+             'probe': {'path': str(self.args.probe.resolve()), **probe.validate_probe(self.args.probe.read_bytes())},
+             'original': {'path': str(self.original), 'bytes': probe.ORIGINAL_BYTES, 'sha256': probe.ORIGINAL_SHA256},
+             'candidate': {'path': str(self.candidate), 'bytes': probe.CANDIDATE_BYTES, 'sha256': probe.CANDIDATE_SHA256},
+@@ -145,7 +146,7 @@
+         }
+ 
+     def preserve_evidence(self):
+-        destination = os.environ.get('WIDGET_PROBE_CONTROL_EVIDENCE')
++        destination = os.environ.get('NUMERIC_PROBE_CONTROL_EVIDENCE')
+         if destination:
+             folder = Path(destination) / self.id().rsplit('.', 1)[-1]
+             for result in self.root.rglob('probe-result.json'):
+@@ -206,10 +207,10 @@
+         code, report, simulator = self.execute()
+         self.assertEqual(code, 0, report.get('evidence_error'))
+         self.assertEqual(simulator.executions, ['original', 'candidate'])
+-        self.assertEqual(report['status'], 'SIMULATED_WIDGET_CASES_PASSED')
++        self.assertEqual(report['status'], 'SIMULATED_NUMERIC_CASES_PASSED')
+         self.assertTrue(report['both_semantic_case_sets_passed'])
+         self.assertFalse(report['android_runtime_executed'])
+-        self.assertFalse(report['widget_cases_on_art_verified'])
++        self.assertFalse(report['numeric_cases_on_art_verified'])
+         self.assertTrue(probe.verify_result(self.args.output, report, serial=self.args.serial, allow_simulated=True))
+         with self.assertRaisesRegex(probe.ProbeError, 'simulated'):
+             probe.verify_result(self.args.output, report, serial=self.args.serial)
+@@ -217,7 +218,7 @@
+             argv = report['executions'][variant]['guest_argv']
+             self.assertEqual(argv[:7], ['/system/bin/timeout', '-s', 'KILL', '120',
+                 '/system/bin/app_process64', '-Xverify:all', '-cp'])
+-            self.assertEqual(argv[7].split(':'), [simulator.owned + '/widget-method-probe.dex', simulator.owned + '/' + variant + '.apk'])
++            self.assertEqual(argv[7].split(':'), [simulator.owned + '/day-numeric-method-probe.dex', simulator.owned + '/' + variant + '.apk'])
+             self.assertNotIn('--application', argv)
+             self.assertEqual(report['executions'][variant]['completed_case_prefix'], probe.CASES)
+         self.assertTrue(report['cleanup_complete'])
+@@ -232,7 +233,7 @@
+         code, report, simulator = self.execute(SimulatedADB(avd_stdout=captured))
+         self.assertEqual(code, 0, report.get('evidence_error'))
+         self.assertEqual(simulator.executions, ['original', 'candidate'])
+-        self.assertEqual(report['status'], 'SIMULATED_WIDGET_CASES_PASSED')
++        self.assertEqual(report['status'], 'SIMULATED_NUMERIC_CASES_PASSED')
+         self.assertFalse(report['android_runtime_executed'])
+         row = next(row for row in report['commands'] if row['label'] == 'avd-name')
+         self.assertEqual((self.args.output / row['stdout']['path']).read_bytes(), captured)
+@@ -403,7 +404,7 @@
+         code, report, simulator = self.execute(SimulatedADB(original_code=1))
+         self.assertEqual(code, 2)
+         self.assertEqual(simulator.executions, ['original'])
+-        self.assertEqual(report['executions']['original']['completed_cases'], 8)
++        self.assertEqual(report['executions']['original']['completed_cases'], 1291)
+         self.assertFalse(report['executions']['original']['semantic_cases_passed'])
+         self.assertEqual(set(report['device_inputs_after']), {'probe', 'original', 'candidate'})
+         self.assertTrue(report['cleanup_complete'])
+@@ -426,7 +427,7 @@
+         self.assertFalse(report['strict_diagnostics_passed'])
+         self.assertTrue(report['executions']['candidate']['semantic_cases_passed'])
+         self.assertFalse(report['executions']['candidate']['strict_command_passed'])
+-        self.assertFalse(report['widget_cases_on_art_verified'])
++        self.assertFalse(report['numeric_cases_on_art_verified'])
+         self.assertTrue(report['cleanup_complete'])
+ 
+     def test_timeout_preserves_prefix_stderr_and_after_identities(self):
+@@ -464,7 +465,7 @@
+     def test_cleanup_failure_preserves_cases_and_fails_overall(self):
+         code, report, simulator = self.execute(SimulatedADB(cleanup_failure=True))
+         self.assertEqual(code, 2)
+-        self.assertEqual(report['status'], 'SIMULATED_WIDGET_CLEANUP_FAILED')
++        self.assertEqual(report['status'], 'SIMULATED_NUMERIC_CLEANUP_FAILED')
+         self.assertTrue(report['both_semantic_case_sets_passed'])
+         self.assertFalse(report['cleanup_complete'])
+         with self.assertRaises(probe.ProbeError):
+@@ -554,11 +555,130 @@
+     def test_exact_case_predicate_rejects_bool_returncode_and_retains_partial(self):
+         value = probe.observation(False, probe.EXPECTED_STDOUT.encode(), b'')
+         self.assertFalse(value['semantic_cases_passed'])
+-        self.assertEqual(value['completed_cases'], 8)
+-        value = probe.observation(0, ('\n'.join(probe.EXPECTED_LINES[:3]) + '\n').encode(), b'failure detail\n')
++        self.assertEqual(value['completed_cases'], 1291)
++        value = probe.observation(0, ('\n'.join(probe.EXPECTED_LINES[:4]) + '\n').encode(), b'failure detail\n')
+         self.assertFalse(value['semantic_cases_passed'])
+         self.assertEqual(value['completed_case_prefix'], probe.CASES[:3])
+ 
++    def test_all_1291_input_rows_and_independent_expected_values_are_bound(self):
++        self.assertEqual(len(probe.CORPUS), 1291)
++        self.assertEqual(hashlib.sha256(json.dumps(probe.CORPUS, ensure_ascii=False,
++            separators=(',', ':')).encode()).hexdigest(), probe.CORPUS_SHA256)
++        expected = json.loads((probe.ROOT / 'fixtures/independent-python-expectations.json').read_bytes())
++        self.assertEqual([{'case': row['case'], 'expected': probe.expected_numeric(row)}
++                         for row in probe.CORPUS], expected)
++        self.assertEqual(sum(row['kind'] == 'integer' for row in probe.CORPUS), 547)
++        self.assertEqual(sum(row['kind'] == 'decimal' for row in probe.CORPUS), 734)
++
++    def test_fixed_120_second_guest_has_no_case_selection_or_inventory_argument(self):
++        remote = '/data/local/tmp/md-day-numeric-' + 'a' * 32
++        for variant in ('original', 'candidate'):
++            argv = probe.guest_argv(remote, variant, 120)
++            self.assertEqual(len(argv), 10)
++            self.assertEqual(argv[-1], probe.MAIN_CLASS)
++            self.assertNotIn('--inventory', argv)
++        for timeout in (30, 119, 121, 180, 120.0, True):
++            with self.subTest(timeout=timeout), self.assertRaises(probe.ProbeError):
++                probe.guest_argv(remote, 'original', timeout)
++
++    def test_every_case_wire_field_and_numeric_lexeme_is_required(self):
++        for field, replacement in enumerate(['OTHER', '1', 'wrong-case', 'decimal',
++                                             'ffffffffffffffff', 'exception', '+0']):
++            with self.subTest(field=field):
++                lines = list(probe.EXPECTED_LINES)
++                parts = lines[1].split('\t'); parts[field] = replacement
++                lines[1] = '\t'.join(parts)
++                observed = probe.observation(0, ('\n'.join(lines) + '\n').encode(), b'')
++                self.assertFalse(observed['semantic_cases_passed'])
++                self.assertEqual(observed['completed_cases'], 0)
++
++    def test_duplicate_reordered_omitted_and_unterminated_case_rows_are_rejected(self):
++        original = list(probe.EXPECTED_LINES)
++        duplicate = original[:2] + [original[1]] + original[2:]
++        reorder = list(original); reorder[1], reorder[2] = reorder[2], reorder[1]
++        omitted = original[:2] + original[3:]
++        for label, raw in [('duplicate', '\n'.join(duplicate) + '\n'),
++                           ('reorder', '\n'.join(reorder) + '\n'),
++                           ('omitted', '\n'.join(omitted) + '\n'),
++                           ('unterminated', probe.EXPECTED_STDOUT[:-1])]:
++            with self.subTest(label=label):
++                self.assertFalse(probe.observation(0, raw.encode(), b'')['semantic_cases_passed'])
++
++    def test_null_entry_exception_messages_are_lossless_and_not_required_identical(self):
++        index = next(i for i, row in enumerate(probe.CORPUS) if row['kind'] == 'null-entry') + 1
++        lines = list(probe.EXPECTED_LINES)
++        message = 'utf16:00000009d800dc00ffff'
++        lines[index] = lines[index].rsplit('\t', 1)[0] + '\t' + message
++        raw = ('\n'.join(lines) + '\n').encode()
++        observed = probe.observation(0, raw, b'')
++        self.assertTrue(observed['semantic_cases_passed'])
++        self.assertFalse(observed['exact_synthetic_stdout'])
++        self.assertEqual(observed['raw_exception_records'][0]['raw_message_encoding'], message)
++        self.assertEqual(observed['raw_exception_records'][0]['raw_line_hex'], lines[index].encode().hex())
++        code, report, _ = self.execute(SimulatedADB(candidate_stdout=raw))
++        self.assertEqual(code, 0, report.get('evidence_error'))
++        self.assertNotEqual(report['executions']['original']['raw_exception_records'],
++                            report['executions']['candidate']['raw_exception_records'])
++        self.assertTrue(probe.verify_result(self.args.output, report, serial=self.args.serial, allow_simulated=True))
++
++    def test_only_null_entry_may_report_exact_npe_class(self):
++        index = next(i for i, row in enumerate(probe.CORPUS) if row['kind'] == 'null-entry') + 1
++        bad_class = list(probe.EXPECTED_LINES)
++        bad_class[index] = bad_class[index].replace('java.lang.NullPointerException', 'java.lang.IllegalStateException')
++        wrong_kind = list(probe.EXPECTED_LINES)
++        wrong_kind[1] = '\t'.join(wrong_kind[1].split('\t')[:5] + ['exception', 'java.lang.NullPointerException', 'null'])
++        for lines in (bad_class, wrong_kind):
++            self.assertFalse(probe.observation(0, ('\n'.join(lines) + '\n').encode(), b'')['semantic_cases_passed'])
++
++    def test_incomplete_or_noncanonical_exception_message_encoding_is_rejected(self):
++        index = next(i for i, row in enumerate(probe.CORPUS) if row['kind'] == 'null-entry') + 1
++        for message in ('utf16:0', 'utf16:000', 'utf16:00000', 'utf16:ABCD', 'utf8:00',
++                        'null ', 'None', 'utf16:000g', 'null\textra', 'null\r'):
++            with self.subTest(message=message):
++                lines = list(probe.EXPECTED_LINES)
++                lines[index] = lines[index].rsplit('\t', 1)[0] + '\t' + message
++                self.assertFalse(probe.observation(0, ('\n'.join(lines) + '\n').encode(), b'')['semantic_cases_passed'])
++        for message in ('null', 'utf16:', 'utf16:0061'):
++            lines = list(probe.EXPECTED_LINES)
++            lines[index] = lines[index].rsplit('\t', 1)[0] + '\t' + message
++            self.assertTrue(probe.observation(0, ('\n'.join(lines) + '\n').encode(), b'')['semantic_cases_passed'])
++
++    def test_changed_rehashed_case_value_still_fails_independent_evidence_recheck(self):
++        code, report, _ = self.execute()
++        self.assertEqual(code, 0)
++        changed = copy.deepcopy(report)
++        row = next(row for row in changed['commands'] if row['label'] == 'execute-candidate')
++        lines = list(probe.EXPECTED_LINES)
++        parts = lines[1].split('\t'); parts[-1] = str(int(parts[-1]) + 1)
++        lines[1] = '\t'.join(parts)
++        raw = ('\n'.join(lines) + '\n').encode()
++        folder = self.root / 'rehashed-case-value'
++        shutil.copytree(self.args.output, folder)
++        (folder / row['stdout']['path']).write_bytes(raw)
++        row['stdout'].update(bytes=len(raw), sha256=hashlib.sha256(raw).hexdigest())
++        changed['executions']['candidate']['command'] = row
++        (folder / 'probe-result.json').write_text(json.dumps(changed, indent=2) + '\n')
++        with self.assertRaises(probe.ProbeError):
++            probe.verify_result(folder, changed, serial=self.args.serial, allow_simulated=True)
++        self.assertTrue(probe.verify_result(self.args.output, report, serial=self.args.serial, allow_simulated=True))
++
++    def test_host_inventory_branch_is_never_android_runtime_evidence(self):
++        raw = (probe.ROOT / 'fixtures/original-host-input-inventory.stdout.txt').read_bytes()
++        observed = probe.observation(0, raw, b'')
++        self.assertFalse(observed['semantic_cases_passed'])
++        self.assertEqual(observed['completed_cases'], 0)
++        code, report, simulator = self.execute(SimulatedADB(original_stdout=raw))
++        self.assertEqual(code, 2)
++        self.assertEqual(simulator.executions, ['original'])
++        self.assertFalse(report['android_runtime_executed'])
++
++    def test_corpus_exception_policy_and_scope_are_mandatory_provenance_fields(self):
++        original = self.inputs['provenance']['content']
++        for key, value in [('input_corpus', {}), ('exception_policy', {}), ('scope', 'all features'),
++                           ('schema_version', 1), ('canonical_simulated_stdout_lines', [])]:
++            with self.subTest(key=key), self.assertRaises(probe.ProbeError):
++                probe.validate_provenance({**original, key: value})
++
+ 
+ if __name__ == '__main__':
+     unittest.main()
