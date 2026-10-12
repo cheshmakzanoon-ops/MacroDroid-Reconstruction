@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/private-accounting-16-guards/subprocess-controls/unreviewed-static-offset-pin-file/video_private_accounting.py", line 260, in main
+    pins = load_pins(); payload, proof = load_payload(args.checkpoints.resolve(), pins, args.jdk.resolve())
+           ^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/private-accounting-16-guards/subprocess-controls/unreviewed-static-offset-pin-file/video_private_accounting.py", line 53, in load_pins
+    require(not path.is_symlink() and sha(path) == PINS_SHA, 'INDEPENDENT_REVIEW_PINS_CHANGED')
+  File "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/private-accounting-16-guards/subprocess-controls/unreviewed-static-offset-pin-file/video_private_accounting.py", line 25, in require
+    raise ValueError(message)
+ValueError: INDEPENDENT_REVIEW_PINS_CHANGED

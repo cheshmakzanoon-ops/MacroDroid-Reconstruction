@@ -1,0 +1,1178 @@
+{
+  "passed": false,
+  "cases": 1125,
+  "failedCases": 4,
+  "unsupportedExecutions": 0,
+  "independentExpectedResultChecks": 237,
+  "expectedResultFailures": 0,
+  "originalOnlyBoundaryDiscoveryExecutions": 23,
+  "methodsCovered": 1,
+  "methodKeys": [
+    "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;"
+  ],
+  "paths": 2,
+  "androidRuntime": false,
+  "rebuiltDexCompared": false,
+  "registeredInActiveProject": false,
+  "instructionCoverage": {
+    "instructions": 262,
+    "visited": 259,
+    "unvisitedOffsets": [
+      232,
+      233,
+      235
+    ],
+    "conditionalEdges": 46,
+    "conditionalEdgesVisited": 46,
+    "unvisitedConditionalEdges": []
+  },
+  "fullInstructionAndConditionalCoverage": false,
+  "failures": [
+    {
+      "method": "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "video-label-two-retry-delay:0",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.guid:73:Error in storage monitoring: label2 resumed failure"
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:defpackage.g3d#16",
+            "exception.message:error0",
+            "string.concat:Error in storage monitoring: :label2 resumed failure",
+            "log.error:73:Error in storage monitoring: label2 resumed failure",
+            "delay:3000:continuation"
+          ],
+          "boundaryStates": [
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 5,
+          "recording": false,
+          "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 3,
+          "owner": "owner",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 0,
+              "file": "file",
+              "spaceReads": 0,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [
+            {
+              "milliseconds": 3000,
+              "continuation": "continuation",
+              "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "delayCount": 1,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:unit:3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": [
+            {
+              "identity": "error0",
+              "reads": 1
+            }
+          ]
+        }
+      },
+      "java": {
+        "value": "COROUTINE_SUSPENDED",
+        "calls": [],
+        "coreCalls": [
+          "log.guid:73:Error in storage monitoring: label2 resumed failure"
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "suspended",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": true,
+          "boundaries": [
+            "coroutine.result:defpackage.g3d#16",
+            "exception.message:error0",
+            "string.concat:Error in storage monitoring: :label2 resumed failure",
+            "log.error:73:Error in storage monitoring: label2 resumed failure",
+            "delay:3000:continuation"
+          ],
+          "boundaryStates": [
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 5,
+          "recording": false,
+          "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 3,
+          "owner": "owner",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 0,
+              "file": "file",
+              "spaceReads": 0,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [
+            {
+              "milliseconds": 3000,
+              "continuation": "continuation",
+              "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "delayCount": 1,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:suspended:3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": [
+            {
+              "identity": "error0",
+              "reads": 1
+            }
+          ]
+        }
+      },
+      "expectedObservation": {
+        "videoState": {
+          "label": 3,
+          "delayCount": 1,
+          "dispatchCount": 0,
+          "callbackCount": 0,
+          "recording": false,
+          "equalsCalls": 0,
+          "boundaryCalls": 5,
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "resultKind": "return",
+          "exceptionMessageReads": [
+            {
+              "identity": "error0",
+              "reads": 1
+            }
+          ],
+          "returned": "unit"
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "video-label-two-retry-delay:2",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.guid:73:Error in storage monitoring: label2 resumed failure"
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:defpackage.g3d#16",
+            "exception.message:error0",
+            "string.concat:Error in storage monitoring: :label2 resumed failure",
+            "log.error:73:Error in storage monitoring: label2 resumed failure",
+            "delay:3000:continuation"
+          ],
+          "boundaryStates": [
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 5,
+          "recording": false,
+          "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 3,
+          "owner": "owner",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 0,
+              "file": "file",
+              "spaceReads": 0,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [
+            {
+              "milliseconds": 3000,
+              "continuation": "continuation",
+              "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "delayCount": 1,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:unit:3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": [
+            {
+              "identity": "error0",
+              "reads": 1
+            }
+          ]
+        }
+      },
+      "java": {
+        "value": "COROUTINE_SUSPENDED",
+        "calls": [],
+        "coreCalls": [
+          "log.guid:73:Error in storage monitoring: label2 resumed failure"
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "suspended",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": true,
+          "boundaries": [
+            "coroutine.result:defpackage.g3d#16",
+            "exception.message:error0",
+            "string.concat:Error in storage monitoring: :label2 resumed failure",
+            "log.error:73:Error in storage monitoring: label2 resumed failure",
+            "delay:3000:continuation"
+          ],
+          "boundaryStates": [
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 5,
+          "recording": false,
+          "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 3,
+          "owner": "owner",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 0,
+              "file": "file",
+              "spaceReads": 0,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [
+            {
+              "milliseconds": 3000,
+              "continuation": "continuation",
+              "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "delayCount": 1,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:suspended:3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": [
+            {
+              "identity": "error0",
+              "reads": 1
+            }
+          ]
+        }
+      },
+      "expectedObservation": {
+        "videoState": {
+          "label": 3,
+          "delayCount": 1,
+          "dispatchCount": 0,
+          "callbackCount": 0,
+          "recording": false,
+          "equalsCalls": 0,
+          "boundaryCalls": 5,
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "resultKind": "return",
+          "exceptionMessageReads": [
+            {
+              "identity": "error0",
+              "reads": 1
+            }
+          ],
+          "returned": "unit"
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "video-label-two-retry-delay:5",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.guid:73:Error in storage monitoring: label2 resumed failure"
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:defpackage.g3d#16",
+            "exception.message:error0",
+            "string.concat:Error in storage monitoring: :label2 resumed failure",
+            "log.error:73:Error in storage monitoring: label2 resumed failure",
+            "delay:3000:continuation"
+          ],
+          "boundaryStates": [
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 5,
+          "recording": false,
+          "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 3,
+          "owner": "owner",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 0,
+              "file": "file",
+              "spaceReads": 0,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [
+            {
+              "milliseconds": 3000,
+              "continuation": "continuation",
+              "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "delayCount": 1,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:unit:3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": [
+            {
+              "identity": "error0",
+              "reads": 1
+            }
+          ]
+        }
+      },
+      "java": {
+        "value": "COROUTINE_SUSPENDED",
+        "calls": [],
+        "coreCalls": [
+          "log.guid:73:Error in storage monitoring: label2 resumed failure"
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "suspended",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": true,
+          "boundaries": [
+            "coroutine.result:defpackage.g3d#16",
+            "exception.message:error0",
+            "string.concat:Error in storage monitoring: :label2 resumed failure",
+            "log.error:73:Error in storage monitoring: label2 resumed failure",
+            "delay:3000:continuation"
+          ],
+          "boundaryStates": [
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 5,
+          "recording": false,
+          "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 3,
+          "owner": "owner",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 0,
+              "file": "file",
+              "spaceReads": 0,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [
+            {
+              "milliseconds": 3000,
+              "continuation": "continuation",
+              "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "delayCount": 1,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:suspended:3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": [
+            {
+              "identity": "error0",
+              "reads": 1
+            }
+          ]
+        }
+      },
+      "expectedObservation": {
+        "videoState": {
+          "label": 3,
+          "delayCount": 1,
+          "dispatchCount": 0,
+          "callbackCount": 0,
+          "recording": false,
+          "equalsCalls": 0,
+          "boundaryCalls": 5,
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "resultKind": "return",
+          "exceptionMessageReads": [
+            {
+              "identity": "error0",
+              "reads": 1
+            }
+          ],
+          "returned": "unit"
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "video-label-two-retry-delay:6",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.guid:73:Error in storage monitoring: label2 resumed failure"
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:defpackage.g3d#17",
+            "exception.message:error0",
+            "string.concat:Error in storage monitoring: :label2 resumed failure",
+            "log.error:73:Error in storage monitoring: label2 resumed failure",
+            "delay:3000:continuation"
+          ],
+          "boundaryStates": [
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 5,
+          "recording": false,
+          "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 3,
+          "owner": "owner",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 0,
+              "file": "file",
+              "spaceReads": 0,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [
+            {
+              "milliseconds": 3000,
+              "continuation": "continuation",
+              "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "delayCount": 1,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:unit:3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": [
+            {
+              "identity": "error0",
+              "reads": 1
+            }
+          ]
+        }
+      },
+      "java": {
+        "value": "COROUTINE_SUSPENDED",
+        "calls": [],
+        "coreCalls": [
+          "log.guid:73:Error in storage monitoring: label2 resumed failure"
+        ],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "suspended",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": true,
+          "boundaries": [
+            "coroutine.result:defpackage.g3d#17",
+            "exception.message:error0",
+            "string.concat:Error in storage monitoring: :label2 resumed failure",
+            "log.error:73:Error in storage monitoring: label2 resumed failure",
+            "delay:3000:continuation"
+          ],
+          "boundaryStates": [
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "2:savedFlag:file:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+            "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 5,
+          "recording": false,
+          "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 3,
+          "owner": "owner",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 0,
+              "file": "file",
+              "spaceReads": 0,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [
+            {
+              "milliseconds": 3000,
+              "continuation": "continuation",
+              "state": "3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+            }
+          ],
+          "delayCount": 1,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:suspended:3:null:null:owner:false:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": [
+            {
+              "identity": "error0",
+              "reads": 1
+            }
+          ]
+        }
+      },
+      "expectedObservation": {
+        "videoState": {
+          "label": 3,
+          "delayCount": 1,
+          "dispatchCount": 0,
+          "callbackCount": 0,
+          "recording": false,
+          "equalsCalls": 0,
+          "boundaryCalls": 5,
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "resultKind": "return",
+          "exceptionMessageReads": [
+            {
+              "identity": "error0",
+              "reads": 1
+            }
+          ],
+          "returned": "unit"
+        }
+      }
+    }
+  ],
+  "failedCaseLabels": [
+    "video-label-two-retry-delay:0",
+    "video-label-two-retry-delay:2",
+    "video-label-two-retry-delay:5",
+    "video-label-two-retry-delay:6"
+  ],
+  "hostParentConstructorAdapters": {},
+  "hostParentConstructorAdapterCalls": {},
+  "noConstructorOwnerAdapterUsed": true,
+  "invalidLabelDefensiveReturnUsesOneInjectedReturningBoundary": true,
+  "generatedEscapedMessageExclusions": [
+    {
+      "case": "video-dead-casts:0:2",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.qnc",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:0:2",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.qnc cannot be cast to class java.io.File (defpackage.qnc is in unnamed module of loader \u0027app\u0027; java.io.File is in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:0:3",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:0:3",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class java.io.File (java.lang.String and java.io.File are in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:1:2",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.qnc",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:1:2",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.qnc cannot be cast to class java.io.File (defpackage.qnc is in unnamed module of loader \u0027app\u0027; java.io.File is in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:1:3",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:1:3",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class java.io.File (java.lang.String and java.io.File are in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:2:0",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.VideoFile",
+      "castSourceClass": "defpackage.VideoFile"
+    },
+    {
+      "case": "video-dead-casts:2:0",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.VideoFile cannot be cast to class defpackage.qnc (defpackage.VideoFile and defpackage.qnc are in unnamed module of loader \u0027app\u0027)",
+      "castSourceClass": "defpackage.VideoFile"
+    },
+    {
+      "case": "video-dead-casts:2:1",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.VideoFile",
+      "castSourceClass": "defpackage.VideoFile"
+    },
+    {
+      "case": "video-dead-casts:2:1",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.VideoFile cannot be cast to class defpackage.qnc (defpackage.VideoFile and defpackage.qnc are in unnamed module of loader \u0027app\u0027)",
+      "castSourceClass": "defpackage.VideoFile"
+    },
+    {
+      "case": "video-dead-casts:2:2",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.qnc",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:2:2",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.qnc cannot be cast to class java.io.File (defpackage.qnc is in unnamed module of loader \u0027app\u0027; java.io.File is in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:2:3",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:2:3",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class java.io.File (java.lang.String and java.io.File are in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:0",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:0",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class defpackage.qnc (java.lang.String is in module java.base of loader \u0027bootstrap\u0027; defpackage.qnc is in unnamed module of loader \u0027app\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:1",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:1",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class defpackage.qnc (java.lang.String is in module java.base of loader \u0027bootstrap\u0027; defpackage.qnc is in unnamed module of loader \u0027app\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:2",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.qnc",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:3:2",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.qnc cannot be cast to class java.io.File (defpackage.qnc is in unnamed module of loader \u0027app\u0027; java.io.File is in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:3:3",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:3",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class java.io.File (java.lang.String and java.io.File are in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-resumed-stop-dead-cast:0",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-resumed-stop-dead-cast:0",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class defpackage.qnc (java.lang.String is in module java.base of loader \u0027bootstrap\u0027; defpackage.qnc is in unnamed module of loader \u0027app\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-resumed-stop-dead-cast:1",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-resumed-stop-dead-cast:1",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class java.io.File (java.lang.String and java.io.File are in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-companion-before-recording:false",
+      "path": "original",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot invoke \"Object.getClass()\" because \"obj\" is null"
+    },
+    {
+      "case": "video-companion-before-recording:false",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot invoke \"Object.getClass()\" because \"com.arlosoft.macrodroid.action.services.BaseVideoRecordingService.A\" is null"
+    },
+    {
+      "case": "video-companion-before-recording:true",
+      "path": "original",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot invoke \"Object.getClass()\" because \"obj\" is null"
+    },
+    {
+      "case": "video-companion-before-recording:true",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot invoke \"Object.getClass()\" because \"com.arlosoft.macrodroid.action.services.BaseVideoRecordingService.A\" is null"
+    },
+    {
+      "case": "video-null-receiver:0",
+      "path": "original",
+      "exception": "java.lang.NullPointerException"
+    },
+    {
+      "case": "video-null-receiver:0",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot read field \"label\" because \"\u003cparameter1\u003e\" is null"
+    },
+    {
+      "case": "video-null-receiver:1",
+      "path": "original",
+      "exception": "java.lang.NullPointerException"
+    },
+    {
+      "case": "video-null-receiver:1",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot read field \"label\" because \"\u003cparameter1\u003e\" is null"
+    },
+    {
+      "case": "video-null-receiver:2",
+      "path": "original",
+      "exception": "java.lang.NullPointerException"
+    },
+    {
+      "case": "video-null-receiver:2",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot read field \"label\" because \"\u003cparameter1\u003e\" is null"
+    },
+    {
+      "case": "video-null-receiver:3",
+      "path": "original",
+      "exception": "java.lang.NullPointerException"
+    },
+    {
+      "case": "video-null-receiver:3",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot read field \"label\" because \"\u003cparameter1\u003e\" is null"
+    }
+  ],
+  "exceptionMessageScope": "Only generated escaped cast/null wording is excluded with raw messages retained; CCE source-class identity remains compared through three exact original-oracle and four pinned-JDK forms. Unknown cast forms fail closed. Injected/external identities/messages and all logged text stay exact. Same-source-type malformed values do not distinguish cast order.",
+  "scope": "Bounded selected original method/JVM comparison with controlled File/storage/logging/coroutine boundaries; no filesystem operation, scheduler, Android service, APK build or Android execution"
+}

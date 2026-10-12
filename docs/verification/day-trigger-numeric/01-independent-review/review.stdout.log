@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "started_utc": "2026-10-12T07:46:34.839393+00:00",
+  "status": "INDEPENDENT_DAY_NUMERIC_CAPSULE_REVIEW_PASSED",
+  "passed": true,
+  "capsules": [
+    {
+      "name": "01-original-java-proof",
+      "checkpoint_sha256": "6c78e9a5498e516f4a2b6f939055151fa2ab1d5585e12b77a4c991534593da0e"
+    },
+    {
+      "name": "02-three-path-and-compiled-controls",
+      "checkpoint_sha256": "d93f08507afce1b6eebe1e3ae64338f86eb04ca01e26118bdd97f98f5d6af631"
+    }
+  ],
+  "all_source_files_verified": [
+    19,
+    20
+  ],
+  "all_archive_members_verified": [
+    47,
+    174
+  ],
+  "cases": 1291,
+  "case_kinds": {
+    "integer": 547,
+    "decimal": 734,
+    "null-entry": 1,
+    "null-value": 1,
+    "string": 4,
+    "boolean": 2,
+    "dictionary": 1,
+    "nested-entry": 1
+  },
+  "execution_paths": 3,
+  "independent_integer_only_expected_mismatches": 0,
+  "original_instructions": 32,
+  "original_primary_instructions": 25,
+  "rebuilt_instructions": 25,
+  "rebuilt_primary_instructions": 18,
+  "branch_edges_per_path": 4,
+  "compiled_java_faults_detected": 13,
+  "actual_rebuilt_dex_faults_detected": 2,
+  "provenance_controls_detected": 2,
+  "original_commands_verified": [
+    7,
+    41
+  ],
+  "positive_reports_restored_byte_for_byte": true,
+  "fresh_extractor_class_matches_frozen": true,
+  "fresh_direct_original_fixture_matches_frozen": true,
+  "original_fixture": {
+    "bytes": 7528,
+    "sha256": "26ff2b80887ee3c7ca8ebe55b94f458f388f2f3ce2b0542510304f3272015840"
+  },
+  "all_three_production_transplants_recomputed": true,
+  "all_33_non_target_methods_preserved_each_time": true,
+  "production_helpers_match_active": true,
+  "frozen_oracle_diff_reviewed_as_outside_selected_opcodes": true,
+  "selected_method_registered_in_active_project": false,
+  "app_apk_built_or_modified": false,
+  "android_or_art_executed": false,
+  "calendar_or_scheduling_behavior_established": false,
+  "original_source_archive_toolchain_and_apk_hashes_unchanged": true,
+  "finished_utc": "2026-10-12T07:46:51.111837+00:00"
+}

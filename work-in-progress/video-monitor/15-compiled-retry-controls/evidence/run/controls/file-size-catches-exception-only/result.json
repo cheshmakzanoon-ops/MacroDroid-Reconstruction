@@ -1,0 +1,25 @@
+{
+  "name": "file-size-catches-exception-only",
+  "reason": "An Error during File access escapes the inner Exception catch.",
+  "source_sha256": "d4b625d473ca9e26287793baaf4c5fa7fc2de8013e041748ea750322e06232a5",
+  "compile_returncode": 0,
+  "expected_failure_labels": [
+    "video-fault:0:4:1"
+  ],
+  "detected": true,
+  "execution_returncode": 2,
+  "class_sha256": "7f4d5de2f42845874766fe2895acc4cbb9e87b77d2461e8602443d9f62e8e7cc",
+  "cases": 1125,
+  "failed_cases": 5,
+  "unsupported_executions": 0,
+  "expected_result_failures": 0,
+  "failed_case_labels": [
+    "video-fault:0:4:1",
+    "video-fault:0:5:1",
+    "video-fault:2:4:1",
+    "video-fault:2:5:1",
+    "video-fault:7:4:1"
+  ],
+  "named_failures_observed": true,
+  "original_coverage_unchanged": true
+}

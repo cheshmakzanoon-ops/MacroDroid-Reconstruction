@@ -1,0 +1,57 @@
+[
+  {
+    "name": "compile-exact-extractor",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+      "-cp",
+      "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+      "-d",
+      "/workspace/scratch/4130730d15aa/day-trigger-review/reports/01-closed-capsules/direct-original-apk-check/classes",
+      "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/checkpoints/02-three-path-and-compiled-controls/inputs/ExtractDayFixture.java"
+    ],
+    "started_utc": "2026-10-12T07:46:36.656845+00:00",
+    "finished_utc": "2026-10-12T07:46:42.733859+00:00",
+    "seconds": 6.077020876000461,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "stdout": {
+      "path": "direct-original-apk-check/compile-exact-extractor.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "direct-original-apk-check/compile-exact-extractor.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "extract-from-pinned-original-apk",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+      "-Xmx512m",
+      "-Xverify:all",
+      "-cp",
+      "/workspace/scratch/4130730d15aa/day-trigger-review/reports/01-closed-capsules/direct-original-apk-check/classes:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+      "ExtractDayFixture",
+      "/workspace/scratch/4130730d15aa/recovered/automation android app",
+      "/workspace/scratch/4130730d15aa/day-trigger-review/reports/01-closed-capsules/direct-original-apk-check/original-selected.dex",
+      "/workspace/scratch/4130730d15aa/day-trigger-review/reports/01-closed-capsules/direct-original-apk-check/original-method-inventory.json"
+    ],
+    "started_utc": "2026-10-12T07:46:43.045000+00:00",
+    "finished_utc": "2026-10-12T07:46:50.581511+00:00",
+    "seconds": 7.536219237001205,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "stdout": {
+      "path": "direct-original-apk-check/extract-from-pinned-original-apk.stdout.txt",
+      "bytes": 63,
+      "sha256": "4e478a5567d5cfcb13ccb1b5e4b1135e4aa43bafa5294dfc1c6ef21ceabf4e52"
+    },
+    "stderr": {
+      "path": "direct-original-apk-check/extract-from-pinned-original-apk.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+]

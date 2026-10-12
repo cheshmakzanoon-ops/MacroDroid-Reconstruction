@@ -1,0 +1,127 @@
+initial-delay-duration: DETECTED
+initial-label-before-delay: DETECTED
+initial-result-validation: DETECTED
+label-one-result-validation: DETECTED
+label-three-result-validation: DETECTED
+retain-dead-file-cast: DETECTED
+retain-dead-flag-cast: DETECTED
+dead-cast-order: DETECTED
+label-two-result-validation: DETECTED
+label-two-catches-exception-only: DETECTED
+invalid-label-defensive-return: DETECTED
+companion-read-before-recording: DETECTED
+inactive-unit-identity: DETECTED
+recording-parent-directory-read: DETECTED
+movies-directory-argument: DETECTED
+captured-storage-owner-read: DETECTED
+captured-storage-owner-write: DETECTED
+storage-state-before-info-log: DETECTED
+strict-storage-report-threshold: DETECTED
+storage-report-interval: DETECTED
+zero-prior-storage-reports: DETECTED
+strict-critical-storage-threshold: DETECTED
+storage-megabyte-log-units: DETECTED
+captured-storage-log-identifier: DETECTED
+missing-file-does-not-read-length: DETECTED
+file-reread-after-exists: DETECTED
+descriptor-size-sentinel: DETECTED
+file-size-catches-exception-only: DETECTED
+file-error-fallback-zero: DETECTED
+zero-file-size-is-processed: DETECTED
+file-kilobyte-log-units: DETECTED
+strict-positive-previous-size: DETECTED
+growth-subtraction-direction: DETECTED
+equal-size-is-stalled: DETECTED
+stall-counter-wraps-as-int: DETECTED
+stall-counter-increments-once: DETECTED
+third-stalled-check-stops: DETECTED
+stall-counter-owner-reread: DETECTED
+stall-seconds-wide-multiply: DETECTED
+growth-resets-stall-counter: DETECTED
+growth-kilobyte-log-units: DETECTED
+final-size-owner-reread: DETECTED
+stop-callback-captures-owner: DETECTED
+stop-callback-null-completion: DETECTED
+stop-dispatcher-identity: DETECTED
+clear-saved-flag-before-suspension: DETECTED
+clear-saved-file-before-suspension: DETECTED
+stop-resume-label: DETECTED
+repeat-delay-duration: DETECTED
+repeat-resume-label: DETECTED
+delay-marker-reference-identity: DETECTED
+dispatch-marker-reference-identity: DETECTED
+monitor-catches-exception-only: DETECTED
+outer-error-logger-escapes: DETECTED
+exception-message-read-once: DETECTED
+callback-before-stop-state-preparation: DETECTED
+critical-conditions-dispatch-stop: DETECTED
+label-two-retry-always-suspends: DETECTED
+{
+  "status": "ALL_COMPILED_FAULTS_DETECTED_EXACT_FAILED_COVERAGE_BASELINE_RESTORED",
+  "started_utc": "2026-10-12T07:22:46.803969+00:00",
+  "scope": "Compiled method-only original/JVM faults; baseline full instruction coverage remains failed.",
+  "private_work": "/tmp/macrodroid-video-mutants-4r6ycui7",
+  "active_source_changed": false,
+  "apk_built": false,
+  "android_executed": false,
+  "rebuilt_dex_compared": false,
+  "coverage_exemption_implemented": false,
+  "method": "Lcom/arlosoft/macrodroid/action/services/a;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+  "authored_inputs": [
+    {
+      "path": "tests/java/VideoMutationLauncher.java",
+      "bytes": 3352,
+      "sha256": "c4c8e0428545a626529383c933c2ccce6ccdd57982b8de9abcedecbb66a50916"
+    },
+    {
+      "path": "video_method_mutants.json",
+      "bytes": 24475,
+      "sha256": "f4bc13ea601fe14cf286b1b175603b81a7d742da53d94dd303ff69ed452e0482"
+    },
+    {
+      "path": "video_method_negative_control.py",
+      "bytes": 21106,
+      "sha256": "8d90c144d624f3f4cdf4aaff1ef30b858e45b486bee56801070a4b79a7254089"
+    }
+  ],
+  "baseline_checkpoint_sha256": "02f80d76ee2fcf9d9cacf38f4b8d0fdd9c8697934daa190aa9c3450ab7cfc6ac",
+  "host_checkpoint_sha256": "38656eed5691a48b8a11dc5148dd692e813b629141cad9ece604f0588a0311ea",
+  "fixed_helper_class_sha256": "80e94baecb1ed256bced1fe81d154688ceb124bda8e535483156779118006704",
+  "baseline_before": {
+    "returncode": 2,
+    "exact_frozen_parity_match": true,
+    "raw_coverage_gate_failed": true,
+    "reproduced": true
+  },
+  "class_origin_controls": [
+    {
+      "name": "wrong-helper-hash",
+      "returncode": 1,
+      "rejected_before_parity": true
+    },
+    {
+      "name": "baseline-shadows-mutant",
+      "returncode": 1,
+      "rejected_before_parity": true
+    }
+  ],
+  "baseline_restoration": {
+    "returncode": 2,
+    "source_sha256": "67f5a47013ffbffa67859f9103d2034b3225521d10be9d96d65acd31599d45ee",
+    "class_sha256": "80e94baecb1ed256bced1fe81d154688ceb124bda8e535483156779118006704",
+    "source_matches_frozen": true,
+    "class_matches_frozen": true,
+    "exact_frozen_parity_match": true,
+    "reproduced": true,
+    "full_original_coverage_gate_passed": false
+  },
+  "fixed_class_inventory_unchanged": true,
+  "fixture_unchanged": true,
+  "frozen_checkpoint_unchanged": true,
+  "host_checkpoint_unchanged": true,
+  "authored_inputs_unchanged": true,
+  "controls_count": 58,
+  "controls_detected": 58,
+  "passed": true,
+  "finished_utc": "2026-10-12T07:30:16.674512+00:00"
+}

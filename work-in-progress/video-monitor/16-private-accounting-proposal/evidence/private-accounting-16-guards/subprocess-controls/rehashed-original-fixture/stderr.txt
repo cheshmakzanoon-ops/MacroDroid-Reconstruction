@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/private-accounting-16-guards/subprocess-controls/rehashed-original-fixture/video_private_accounting.py", line 281, in <module>
+    main()
+  File "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/private-accounting-16-guards/subprocess-controls/rehashed-original-fixture/video_private_accounting.py", line 260, in main
+    pins = load_pins(); payload, proof = load_payload(args.checkpoints.resolve(), pins, args.jdk.resolve())
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/private-accounting-16-guards/subprocess-controls/rehashed-original-fixture/video_private_accounting.py", line 116, in load_payload
+    _, files = seal(root, spec['sha256']); roots[key] = root; sealed_hashes[key] = sha(root / 'checkpoint.json')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/private-accounting-16-guards/subprocess-controls/rehashed-original-fixture/video_private_accounting.py", line 69, in seal
+    require(not manifest.is_symlink() and sha(manifest) == expected_sha, 'CHECKPOINT_IDENTITY_CHANGED')
+  File "/workspace/scratch/4130730d15aa/video-monitor-recovery/reports/private-accounting-16-guards/subprocess-controls/rehashed-original-fixture/video_private_accounting.py", line 25, in require
+    raise ValueError(message)
+ValueError: CHECKPOINT_IDENTITY_CHANGED

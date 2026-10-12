@@ -1,0 +1,27 @@
+{
+  "name": "delay-marker-reference-identity",
+  "reason": "An equals-only marker lookalike must not count as suspended.",
+  "source_sha256": "10f86c1000a2474a509fbd6e991aa77d1b201790bf6464b7593ca073f0b8bd7d",
+  "compile_returncode": 0,
+  "expected_failure_labels": [
+    "video-delay-result:0:5"
+  ],
+  "detected": true,
+  "execution_returncode": 2,
+  "class_sha256": "d31380956981461866a179ae5283c918ce3c15435799cc9b42bb736dff034cfc",
+  "cases": 1125,
+  "failed_cases": 7,
+  "unsupported_executions": 0,
+  "expected_result_failures": 0,
+  "failed_case_labels": [
+    "video-delay-result:0:5",
+    "video-delay-result:1:5",
+    "video-delay-result:3:5",
+    "video-label-two-retry-delay:5",
+    "video-synchronous-repeat-chain:2",
+    "video-synchronous-repeat-chain:3",
+    "video-synchronous-repeat-chain:4"
+  ],
+  "named_failures_observed": true,
+  "original_coverage_unchanged": true
+}

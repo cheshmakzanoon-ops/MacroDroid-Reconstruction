@@ -1,0 +1,882 @@
+{
+  "status": "SEALED_PRIVATE_ACCOUNTING_PROPOSAL_AND_ALL_55_GUARDS_VERIFIED",
+  "frozen_utc": "2026-10-12T07:42:46.463112+00:00",
+  "scope": "Review-only calculation on one exactly bound already executed study; no active/fresh-run accounting gate, source registry or APK promotion.",
+  "proposed_original_accounting_satisfied": true,
+  "raw_original_coverage_gate_passed": false,
+  "original_dynamic_instructions": 259,
+  "original_static_infeasible_instructions": 3,
+  "original_total_instructions": 262,
+  "original_static_offsets": [
+    232,
+    233,
+    235
+  ],
+  "original_dynamic_conditional_edges": 46,
+  "rebuilt_raw_coverage": {
+    "instructions": 290,
+    "visited": 288,
+    "unvisitedOffsets": [
+      235,
+      236
+    ],
+    "conditionalEdges": 48,
+    "conditionalEdgesVisited": 48,
+    "unvisitedConditionalEdges": []
+  },
+  "rebuilt_static_accounting_applied": false,
+  "pure_payload_guards": 51,
+  "actual_rejection_subprocesses": 4,
+  "all_guards_rejected": true,
+  "additional_app_executions": 0,
+  "additional_dynamic_coverage_credit": 0,
+  "exact_positive_restoration": true,
+  "active_policy_changed": false,
+  "active_registry_changed": false,
+  "apk_built": false,
+  "android_executed": false,
+  "initial_pre_type_guard_positive_preserved": true,
+  "validator_sha256": "09528652694c21f8141e3ef8fe69bb506981463c3779fcdc298a2c4caa3f1d28",
+  "independent_pin_file_sha256": "21ecda6da3a5791cd444e76821b5361ce5e7b458b74a500b00c30da73688ecdf",
+  "bound_checkpoint_hashes": {
+    "three_path": "5174cc11e51cc333f7b75042259aee15cf4cf5ff666eb733730351ef31d7e278",
+    "cases": "02f80d76ee2fcf9d9cacf38f4b8d0fdd9c8697934daa190aa9c3450ab7cfc6ac",
+    "host": "38656eed5691a48b8a11dc5148dd692e813b629141cad9ece604f0588a0311ea",
+    "dataflow": "053ee22c427813258cc64f7363c150353ce1f5bbc8118aa12dbb9af049b8e754",
+    "proof": "aade36da986f9fd683577caed650ce2a2a8b24008a92e4194931ed1ac7af0255"
+  },
+  "bound_frozen_file_count": 367,
+  "guard_result_sha256": "2dc91251845b739c98e6c8a05b947e879ca98109feaa7ca6c17b6b86909cd4b2",
+  "final_result_sha256": "ee4d18ee9d5ae5f2258cb836256865a60650f824479d7bc335ca5dca7e9f0321",
+  "free_bytes_before": 215756800,
+  "files": [
+    {
+      "path": "PRIVATE_ACCOUNTING_REVIEW.md",
+      "bytes": 6667,
+      "sha256": "a639798023f9d6961d65961e634cc051732095458973d031a9ef7d080c4b6e5e"
+    },
+    {
+      "path": "PRIVATE_COVERAGE_PROPOSAL.md",
+      "bytes": 5002,
+      "sha256": "adc7faef80c33cebea2231bf3c0f4537661b638660af4a468e3d7086b1151f69"
+    },
+    {
+      "path": "RECOVERY_STATUS.md",
+      "bytes": 3608,
+      "sha256": "da678434f53ee5fa4dec6729d7481f82945578a9dc5fdeec6c6e5bba792d25e6"
+    },
+    {
+      "path": "freeze_video_private_accounting.py",
+      "bytes": 8904,
+      "sha256": "42f365d564d363cd2ab67e6282a84e8602887f35a73ee7100bdecd1dfa2f61a5"
+    },
+    {
+      "path": "prepare_private_accounting_pins.py",
+      "bytes": 3231,
+      "sha256": "8807777af6e5b3ddfe78b873929ad8e6d6be0282ec73f6e9844e183e4989bc22"
+    },
+    {
+      "path": "private_accounting_pins.json",
+      "bytes": 70347,
+      "sha256": "21ecda6da3a5791cd444e76821b5361ce5e7b458b74a500b00c30da73688ecdf"
+    },
+    {
+      "path": "video_private_accounting.py",
+      "bytes": 18425,
+      "sha256": "09528652694c21f8141e3ef8fe69bb506981463c3779fcdc298a2c4caa3f1d28"
+    },
+    {
+      "path": "video_private_accounting_controls.py",
+      "bytes": 17972,
+      "sha256": "9fc1a217626396253479e4adc37c2ecaa3cbadeca38ce083bbdc5e35bc1c9475"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "private-accounting-16-final/result.json",
+      "bytes": 2544,
+      "sha256": "ee4d18ee9d5ae5f2258cb836256865a60650f824479d7bc335ca5dca7e9f0321"
+    },
+    {
+      "path": "private-accounting-16-final/sealed-input-payload.json.gz",
+      "bytes": 57305,
+      "sha256": "78b8c212db5b6be15c8e770cd3f1881240550c0962df996d6e3531cb217fcf90"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/actual-helper-class-changed/payload.json.gz",
+      "bytes": 57296,
+      "sha256": "5586788cb55d8dbf02a001097fd89f051e277eae0f5202d4eb3c980b6dec5f99"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/actual-helper-class-changed/result.json",
+      "bytes": 415,
+      "sha256": "4e6387b300080781a52fe7d1fed204dbdfda89649ca84daf30e60af48ff7a9d2"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/actual-mismatch/payload.json.gz",
+      "bytes": 57292,
+      "sha256": "bae3126a8dd3856309ee6d9f4856bf3a6ece0e86ebde706dffcd7af14f416e25"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/actual-mismatch/result.json",
+      "bytes": 415,
+      "sha256": "64b213485f95eb3f104460e12cb0deaa1c39c6c063647bc535c7cce05fb507c1"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/actual-producer-class-changed/payload.json.gz",
+      "bytes": 57296,
+      "sha256": "684d72c555a299fb7bc073889429a3e1be5ae9be6819cba44b5b2001bacdce3a"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/actual-producer-class-changed/result.json",
+      "bytes": 417,
+      "sha256": "68e01dbcd0150bb3d9fd047faa533ec92a176b264662ff04be3a4fc0b33ffec5"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/actual-rebuilt-control-not-detected/payload.json.gz",
+      "bytes": 57292,
+      "sha256": "65513d522549c1cd080397d3b23af5fbe232ce6f11cb215fab9c0d7ae23fd054"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/actual-rebuilt-control-not-detected/result.json",
+      "bytes": 415,
+      "sha256": "11a92ff86603e0da19941f707925ca0bd88cc7ce823de23413b7b45b84db7bda"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/aggregate-disagrees-with-visited-set/payload.json.gz",
+      "bytes": 57296,
+      "sha256": "7619abc3352ebfd298c4a2f1a53ad4f8cac7868f4d6b15a61773772a25f7c1d8"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/aggregate-disagrees-with-visited-set/result.json",
+      "bytes": 444,
+      "sha256": "5ba3f3c82f389573a5dcd1ed3d2c2c14e84274af34afb98e944e93c57e8d0b7f"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/changed-jrt-rehashed-rows/payload.json.gz",
+      "bytes": 57226,
+      "sha256": "9ae4a8be8faf10709117d1514241c746409354092a3ee9297b84aa9cc5d597d3"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/changed-jrt-rehashed-rows/result.json",
+      "bytes": 407,
+      "sha256": "2b264a99d9ad8af3f84f13bc3f2eea1c0d067e155086badadb4593e6e50c8197"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/changed-rebuilt-handler-operands/payload.json.gz",
+      "bytes": 57292,
+      "sha256": "d162a64015c9181042de9233be55ee97cfa2d506471903c107f55ff7b8a9ff8f"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/changed-rebuilt-handler-operands/result.json",
+      "bytes": 418,
+      "sha256": "39ab1dfa391572e83be2cfb77eea42d9a2f90fa87aacfcfde1892f949bde7977"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/changed-release-rehashed-rows/payload.json.gz",
+      "bytes": 57293,
+      "sha256": "76d26788d7013fc82d51d0a13534f32d527eb9fc371e76447a4ca4a3efc79102"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/changed-release-rehashed-rows/result.json",
+      "bytes": 411,
+      "sha256": "9647d3016a4a6a3eaede3313d967b90dc4fee38d2a4d151d67f3b286cba60355"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/constructor-adapter-use/payload.json.gz",
+      "bytes": 57292,
+      "sha256": "6b6b4fae51e44befd45651d321d9cbff2c805aa35204b54955b3b9d7c30795f6"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/constructor-adapter-use/result.json",
+      "bytes": 435,
+      "sha256": "458d03282893b96739b82d86fdcbcd1febed5f45d083df501ceb86c22c1f2afa"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/coverage-exemption-flag/payload.json.gz",
+      "bytes": 57297,
+      "sha256": "51ca525491f355c619b04279db50918d9e1050970dcdfe7e84e27a6a4dcaa4bc"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/coverage-exemption-flag/result.json",
+      "bytes": 411,
+      "sha256": "2cad63350f51dd36de0a289997058c93c9999e564961b31922c9917574fcdfff"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/current-java-executable-changed/payload.json.gz",
+      "bytes": 57262,
+      "sha256": "290a2f6298946c15a87eb06240004d7bb1f817d6b2b76d7a7ef0a7a651dea954"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/current-java-executable-changed/result.json",
+      "bytes": 445,
+      "sha256": "79264dbbebaa3df0c1c50b2830f005b537ea4d8693b3423a645a2a5ac5f8b823"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/duplicate-visited-offset/payload.json.gz",
+      "bytes": 57311,
+      "sha256": "6f387a4e82c2ad045024bcfe17ebccfb0bb9e95653884378f66a73253d6638d6"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/duplicate-visited-offset/result.json",
+      "bytes": 420,
+      "sha256": "05c6e66662206cecb8fe182a7fca6eacb763248dba85ad26aaa4e8adc2ba7407"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/dynamic-coverage-relabelling/payload.json.gz",
+      "bytes": 57288,
+      "sha256": "fb6f47f6f810d5a5a91fb7e0dd81ec21e42030d8f6ef926ae22470a950ca9cb8"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/dynamic-coverage-relabelling/result.json",
+      "bytes": 416,
+      "sha256": "29f990e38399c02071a6746a679f9e4a3324fed25f10f737c7b025839d126502"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/dynamic-static-overlap/payload.json.gz",
+      "bytes": 57299,
+      "sha256": "d08898275925b3e4e21d60cb4653a42f801e8efc664a0d3f0d5ce3b2dea6fc7b"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/dynamic-static-overlap/result.json",
+      "bytes": 414,
+      "sha256": "c92a8f3f1341f483c3b00ff40908460401498300438f0ff4692b532936285452"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/expected-result-failure/payload.json.gz",
+      "bytes": 57292,
+      "sha256": "ce812d2340342e3075b6a868966c4f937fcbf17333fd8c6ebdb665cf5b00eaf1"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/expected-result-failure/result.json",
+      "bytes": 423,
+      "sha256": "8a0e6c1f3ffaa21576132513ed46b795c0199106e48e4d8554ecea981dc1ccf4"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/extended-protected-interval/payload.json.gz",
+      "bytes": 57292,
+      "sha256": "f5f52070edd73b60e2f80462c823926d848d5eb89a4036ba518e86e45e5d99d5"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/extended-protected-interval/result.json",
+      "bytes": 439,
+      "sha256": "70e0f8b3a386e0499ce8284565f4832394916cb1e525dee1b4e4d81039c5fd25"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/extra-constructor-throw-retains-old-substrings/payload.json.gz",
+      "bytes": 57322,
+      "sha256": "4c3bf6324e37e161705e429b2ba2f9c45ba06a327c6e88c9b3aaf1ef9ccb9bb2"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/extra-constructor-throw-retains-old-substrings/result.json",
+      "bytes": 473,
+      "sha256": "341e145b937dfea44ce92afe12a3aae95862cb28f304236fd21a357d4458b056"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/extra-protected-constructor-call/payload.json.gz",
+      "bytes": 57301,
+      "sha256": "0b88ca3f92cd9498ca2a948139cc8309fe5498716dd00958b650c6968ea5d3ef"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/extra-protected-constructor-call/result.json",
+      "bytes": 400,
+      "sha256": "cbc69ee0af81ee7f99b52852bcf8ccb270c90107e898dcf5345da1e628402f19"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/fabricated-original-edge/payload.json.gz",
+      "bytes": 57316,
+      "sha256": "29c3a2b5d7ba4085c20fb8859c968da8f073c4f4f97994faeb6f6a50f57de492"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/fabricated-original-edge/result.json",
+      "bytes": 412,
+      "sha256": "150eed345dcfd825676a3ecda1df4f9ead43f87dc442c02f6a8299158a966632"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/fabricated-original-offset/payload.json.gz",
+      "bytes": 57315,
+      "sha256": "f0ea0679fef524e677a8db57f27d6578e76030cf7b4da429e5632c3272394a3c"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/fabricated-original-offset/result.json",
+      "bytes": 396,
+      "sha256": "c2bd7d1f9905aa0885400067829d9ef8c8884b491d5fed0bb7b4a5667fb3d9ce"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/helper-source-binding/payload.json.gz",
+      "bytes": 57295,
+      "sha256": "9363aed41773923eceb7271158b2474082c3877a62edb9ab841a36f05ebd9fe4"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/helper-source-binding/result.json",
+      "bytes": 421,
+      "sha256": "e99f972b22c76d5259075431c6037de9a5cba0f35c357dd583cc675b9419a3e8"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/hidden-failure-array/payload.json.gz",
+      "bytes": 57299,
+      "sha256": "10887c49e1b332fd398ca66ddf9fbdc96771e3e72ef100020aecebb799e2f59d"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/hidden-failure-array/result.json",
+      "bytes": 384,
+      "sha256": "484f0fa9883d025de819452b3246f400c2499e91e15af35aab8c0cc5a102b93c"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/invented-android-execution/payload.json.gz",
+      "bytes": 57305,
+      "sha256": "2d849870bd246e1d73cf223400356ca1c222a253e098e0dd4a47548e1703b8ea"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/invented-android-execution/result.json",
+      "bytes": 382,
+      "sha256": "8e1ab3e1a62962b780dc1aba8ea15b6cd232f5db518a64e51066f349e85a4f39"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/live-jrt-bytes-disagree-with-rows/payload.json.gz",
+      "bytes": 57299,
+      "sha256": "6ba63bab3a18384d1ab85d3ba161503e5738d80d96dcad9598d4dc1d051008d2"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/live-jrt-bytes-disagree-with-rows/result.json",
+      "bytes": 421,
+      "sha256": "d5ee63b0d26603b5f16bfae66e22c62005c7d56ea2483497b504590bd3768e3b"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/missing-original-edge/payload.json.gz",
+      "bytes": 57301,
+      "sha256": "8223d10a1ce3d276a171c9e8cb9766d583581d00dce89ff43f240248aef4c3f2"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/missing-original-edge/result.json",
+      "bytes": 409,
+      "sha256": "fa9e07e2d43cf510917310e8667856c7eb84c267a11c2f3c43c621e26f9e48fb"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/missing-real-original-offset/payload.json.gz",
+      "bytes": 57320,
+      "sha256": "500563c96ab59e48a6fa33a310c56d59e57d22a149e62bac4005f9cd2e32baea"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/missing-real-original-offset/result.json",
+      "bytes": 410,
+      "sha256": "a5946b94ef4c7afae9358e834add03c169267c870ee5e2f4a2327392ef11431f"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/missing-rebuilt-path/payload.json.gz",
+      "bytes": 57293,
+      "sha256": "e93de832fe8ac0c998a0f20e60e3c7dc54d47e16efbc3392132b2f3fbf7c0ede"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/missing-rebuilt-path/result.json",
+      "bytes": 386,
+      "sha256": "00f1cde183c2f4e07ba077790b69a8a415ee1d88b61a55e85028e926f9d2fe58"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/noninteger-case-count/payload.json.gz",
+      "bytes": 57312,
+      "sha256": "67fb0a6b2612e911bfabd1932ee11903b7f0a3d6332ad517e5aea5501da43252"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/noninteger-case-count/result.json",
+      "bytes": 385,
+      "sha256": "6cb1c756f8c0ddafda9a686166d6d6d732e6576d0406c1df0d92ae0c25750078"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/noninteger-coverage-count/payload.json.gz",
+      "bytes": 57313,
+      "sha256": "f4cfd2d7bab1e174c6b182766309ff8948b745cb24890be6bff858c531d9b5ea"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/noninteger-coverage-count/result.json",
+      "bytes": 381,
+      "sha256": "fd05d7b2b2f13d0f76ab90500018eb020570ace1dbf4dcca503c549df59e6224"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/observed-class-origin-changed/payload.json.gz",
+      "bytes": 57295,
+      "sha256": "92c2176a79691b8b534d5dfdaf48a85efd2e10420e579c65f31739c0067322ef"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/observed-class-origin-changed/result.json",
+      "bytes": 405,
+      "sha256": "92313436110ad7161bea2c95ec314aadc1f2770fc4e598ed57ef6ee1d7748df0"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/oracle-source-binding/payload.json.gz",
+      "bytes": 57294,
+      "sha256": "4006bd606ce483d6575d494436d4c4ac8861d52620a390cea6764e4aa25d60e3"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/oracle-source-binding/result.json",
+      "bytes": 421,
+      "sha256": "7109f476e525e9982ebb56fd1845404f4995f1cebf4277b985fc81c81614231c"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/ordinary-entry-to-handler/payload.json.gz",
+      "bytes": 57293,
+      "sha256": "286c5648e956d383a5d37401750158253263d91bd856cbba9aac55461739a36f"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/ordinary-entry-to-handler/result.json",
+      "bytes": 409,
+      "sha256": "530b2d1a16988ed5cb3b81d66e0615d367251377bc296196ec88c982adb695bc"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/origin-launcher-binding/payload.json.gz",
+      "bytes": 57296,
+      "sha256": "dc16eab80df865f78c8987bcd523576356ff729e1f49d9c4acc875267cffe2db"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/origin-launcher-binding/result.json",
+      "bytes": 423,
+      "sha256": "50f4d35c0c9abb87fecfc2364af381d539e6e82845af76125cbdddfbb5268247"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/original-fixture-binding/payload.json.gz",
+      "bytes": 57296,
+      "sha256": "3ce7c8dcd0598cf289229dec05f2b3e3874a7de5002bcf911aa3366a04eec06e"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/original-fixture-binding/result.json",
+      "bytes": 424,
+      "sha256": "62e86744700406ae67b5b0bce4043c6fd09765a5de748ff447a0e9386e21518c"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/original-substituted-as-rebuilt/payload.json.gz",
+      "bytes": 57292,
+      "sha256": "615006598d5b7953895112dd21a220aa674444cebfff69f1c2de289da68075fd"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/original-substituted-as-rebuilt/result.json",
+      "bytes": 425,
+      "sha256": "6ea7cad5cd36507af6d72f8dbe256de400c9c00362b0c118f22106668223278f"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/producer-source-binding/payload.json.gz",
+      "bytes": 57296,
+      "sha256": "c44348549cd19a6377009c5160cd679e7c012c6cac6bc3c3cd5f47d144120f15"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/producer-source-binding/result.json",
+      "bytes": 423,
+      "sha256": "373b3bef173a233f93b74af0234f42636bf59ad74fac30e218033ccba6cab58d"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/proof-checkpoint-binding/payload.json.gz",
+      "bytes": 57259,
+      "sha256": "b8e9d98de8e642f23020495a652bf0cfb2877339cd9beb1d871484599e3f38cc"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/proof-checkpoint-binding/result.json",
+      "bytes": 396,
+      "sha256": "5bc5d11b4c5534e977b361a4ca3b9b5db3844480fe644e03fedf173760903930"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/protected-divisor-becomes-zero/payload.json.gz",
+      "bytes": 57293,
+      "sha256": "f3ad04e8799cedc0ecbcfa9e43857730b5753d53ca554d7252efcd27eaa61462"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/protected-divisor-becomes-zero/result.json",
+      "bytes": 418,
+      "sha256": "756d6bc735c3f455810a8d44b3a16d6e821b3ac8585d0fe80998595b093276f6"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/raw-pass-relabelling/payload.json.gz",
+      "bytes": 57305,
+      "sha256": "7296d2169366ead28b9d77d4ed95cdd991216d68445e38af4975604be534a255"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/raw-pass-relabelling/result.json",
+      "bytes": 408,
+      "sha256": "81c6fa79901b8cca212e155e79d781325217e635b86f9b109538cfb690f7070b"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/rebuilt-retry-edge-missing/payload.json.gz",
+      "bytes": 57290,
+      "sha256": "0770778a1459bf4ec97a013e564c4fbddc73e40199382df841178fdac9eaad00"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/rebuilt-retry-edge-missing/result.json",
+      "bytes": 412,
+      "sha256": "1e13ebb0c1111e3ce59c899bd989f09afc37ac700cce0eb4e703358c71e90373"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/recorded-module-image-changed/payload.json.gz",
+      "bytes": 57258,
+      "sha256": "3a8c92a68ce7da92dc58d9c773204ee93b5a232a9563b0c8e83a2c51dcdb0be2"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/recorded-module-image-changed/result.json",
+      "bytes": 443,
+      "sha256": "913732e2be40436d9cb1538ec70f80c54de1c3f6f532de8977e67444ba32f5e1"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/restoration-differs/payload.json.gz",
+      "bytes": 57312,
+      "sha256": "3db2d35adb9f9236ce8b3dd65e3a57e612457e1d1680176e2a93dd47c47c9906"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/restoration-differs/result.json",
+      "bytes": 403,
+      "sha256": "97f13629302722400bea4fed71b6e1c5a2f87ea67d3ffa06fcd8e12764201906"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/reviewed-collector-binding/payload.json.gz",
+      "bytes": 57296,
+      "sha256": "87efd5b77a820d28ca519237be48fd99b37cfcaa605bae2417a85ee261928a0c"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/reviewed-collector-binding/result.json",
+      "bytes": 426,
+      "sha256": "59b5f566492cfff20df5c6bcaa3dafeafa935967ec3f123f54cce0a5efc5895d"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/reviewed-proof-binding/payload.json.gz",
+      "bytes": 57294,
+      "sha256": "3b0dd15e1e18fc2be948b44c4564b35eee0e5555029863d5d7f3687a0b3a8bce"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/reviewed-proof-binding/result.json",
+      "bytes": 422,
+      "sha256": "95f81609984908d46e5314395da01d9f954fd57363c4810f2b20b30b15d42dcd"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/runtime-identity-failed/payload.json.gz",
+      "bytes": 57293,
+      "sha256": "30a26763950b9fb5d4006dbef288cdb1eef111e24057fb44d98833e530845f72"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/runtime-identity-failed/result.json",
+      "bytes": 435,
+      "sha256": "10865b88efa3064c8aacf0a4c1442bbc826507c055257a354d4124d9f0922231"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/source-changed-after-run/payload.json.gz",
+      "bytes": 57296,
+      "sha256": "efabcf408b15777c05d754da7b8dd05697aa8c6d52ac6cf084861f862c7dd41e"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/source-changed-after-run/result.json",
+      "bytes": 417,
+      "sha256": "699b4345bb4456cdcac44f177362c94994cd7fd0e826b26b5f7ca1c67828a63f"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/unexpected-vm-options/payload.json.gz",
+      "bytes": 57309,
+      "sha256": "7fd95cbdbbbd51e419dcad5d3327f8dbdda74058a580bc1ae8abd41b78177a17"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/unexpected-vm-options/result.json",
+      "bytes": 403,
+      "sha256": "af9825d5c00e37f7aa8dac2e940b3c898328d9e6a2bf3d5670d8cb78c38d43bc"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/unsupported-execution/payload.json.gz",
+      "bytes": 57293,
+      "sha256": "9a592f3058a3c4670706e6ebf2bedb14355e032f129b1868cfd360197f387f5a"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/unsupported-execution/result.json",
+      "bytes": 421,
+      "sha256": "fbc04fc9ca6644ccf9420e02ec402ed07eb9d8474ea9b7b3afd1a089ec2c2d61"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/wrapper-raw-gate-relabelling/payload.json.gz",
+      "bytes": 57293,
+      "sha256": "6a1ad8d05f9aace0667860b9badbc77f3396d0d12cef61404926903fc8b85a16"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/wrapper-raw-gate-relabelling/result.json",
+      "bytes": 398,
+      "sha256": "20acf9a54029816c4695a21bfa8d0a44ce96cde04166cc8b8f537999f56a1b7a"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/wrong-live-boot-loader/payload.json.gz",
+      "bytes": 57302,
+      "sha256": "1519a45ada78a9bbf1bb2556da44dbe345724211821323690ca76be2d5652c38"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/wrong-live-boot-loader/result.json",
+      "bytes": 404,
+      "sha256": "7cb9e511a9a8d98545c28432dd76fd37de208dc82d92de4564f1320423bc4ce9"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/wrong-method-domain/payload.json.gz",
+      "bytes": 57333,
+      "sha256": "983b1e7dc600100b1c1cc1af4961908b01876560165394ff70b6c894f4b65c2f"
+    },
+    {
+      "path": "private-accounting-16-guards/controls/wrong-method-domain/result.json",
+      "bytes": 375,
+      "sha256": "fac7470ae6aa1339858cf57076852bed08fc28f23aee3778d2f46cc74f1374d3"
+    },
+    {
+      "path": "private-accounting-16-guards/inputs/private_accounting_pins.json",
+      "bytes": 70347,
+      "sha256": "21ecda6da3a5791cd444e76821b5361ce5e7b458b74a500b00c30da73688ecdf"
+    },
+    {
+      "path": "private-accounting-16-guards/inputs/video_private_accounting.py",
+      "bytes": 18425,
+      "sha256": "09528652694c21f8141e3ef8fe69bb506981463c3779fcdc298a2c4caa3f1d28"
+    },
+    {
+      "path": "private-accounting-16-guards/inputs/video_private_accounting_controls.py",
+      "bytes": 17972,
+      "sha256": "9fc1a217626396253479e4adc37c2ecaa3cbadeca38ce083bbdc5e35bc1c9475"
+    },
+    {
+      "path": "private-accounting-16-guards/positive-payload.json.gz",
+      "bytes": 57301,
+      "sha256": "17bcc1dde32451da5a85e3dbb4cfaed78402d79f031e1afa4e9edc56b0197a48"
+    },
+    {
+      "path": "private-accounting-16-guards/result.json",
+      "bytes": 31026,
+      "sha256": "2dc91251845b739c98e6c8a05b947e879ca98109feaa7ca6c17b6b86909cd4b2"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-live-builder-bytes/changed-checkpoints/14-method-only-three-path-retry-delay/checkpoint.json",
+      "bytes": 26487,
+      "sha256": "03d677ad7134b5a94800b81866a2e9d872c6a99b1645522b8b6e7476f00c1587"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-live-builder-bytes/changed-checkpoints/14-method-only-three-path-retry-delay/evidence/run/positive/live-runtime/before/StringBuilder.class",
+      "bytes": 14051,
+      "sha256": "0dd69740005858aa8e8eedb3e3cf47c04d49159cd2e1d0afee88da4eaab8631d"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-live-builder-bytes/control-result.json",
+      "bytes": 1239,
+      "sha256": "5a5bbc99ec4ef8b614cce6f6c1ab35764c1f14f3f99032350b3c7ad08681992f"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-live-builder-bytes/mutation.json",
+      "bytes": 440,
+      "sha256": "7848a1f19d101da50e3bfd6be2c000a59064ae6eb418ebbac621baf51708c948"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-live-builder-bytes/private_accounting_pins.json",
+      "bytes": 70347,
+      "sha256": "21ecda6da3a5791cd444e76821b5361ce5e7b458b74a500b00c30da73688ecdf"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-live-builder-bytes/stderr.txt",
+      "bytes": 1584,
+      "sha256": "44ec00be0bcf4950120c2c9955ae7cad079b7bed658aab56b58ec1b1468ec60b"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-live-builder-bytes/stdout.txt",
+      "bytes": 273,
+      "sha256": "38b6b5be18e110fb1427007ec2a7270207403dd1013b7c16f975ef444e38d701"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-live-builder-bytes/verification/failure-traceback.txt",
+      "bytes": 1373,
+      "sha256": "da80ac97693111dc1c5abd6a5ff933011345c813839a7d2731b59d690207d2a7"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-live-builder-bytes/verification/result.json",
+      "bytes": 273,
+      "sha256": "38b6b5be18e110fb1427007ec2a7270207403dd1013b7c16f975ef444e38d701"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-live-builder-bytes/video_private_accounting.py",
+      "bytes": 18425,
+      "sha256": "09528652694c21f8141e3ef8fe69bb506981463c3779fcdc298a2c4caa3f1d28"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-original-fixture/changed-checkpoints/14-method-only-three-path-retry-delay/checkpoint.json",
+      "bytes": 26487,
+      "sha256": "d358d58e8cbf30b624210e112630d3c566ebac6d3890a35f7822d828bac821ce"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-original-fixture/changed-checkpoints/14-method-only-three-path-retry-delay/evidence/run/inputs/original-video-monitor.dex",
+      "bytes": 4553,
+      "sha256": "df94ac6af794fe70d5c03cbd02440a0b84511e09dca9bee646ca93bfaa579ad3"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-original-fixture/control-result.json",
+      "bytes": 1231,
+      "sha256": "d5d921d87e4ce3d65faa21a1196d59ce59b82b24fc409032fe52cfab562dcb84"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-original-fixture/mutation.json",
+      "bytes": 425,
+      "sha256": "4ab439eb0261345a7154da41dfe417ce39d36e09057b55c8fd962c5c6ea78b81"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-original-fixture/private_accounting_pins.json",
+      "bytes": 70347,
+      "sha256": "21ecda6da3a5791cd444e76821b5361ce5e7b458b74a500b00c30da73688ecdf"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-original-fixture/stderr.txt",
+      "bytes": 1574,
+      "sha256": "fca85d1dae33d687c78edff25b8f531a503be7e5f727f652fd16c72e5b9db0d3"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-original-fixture/stdout.txt",
+      "bytes": 273,
+      "sha256": "9bbf164196c498f220fb1c8e7ae048b7fc6e173bc14f8d2710ef37fb0dd64716"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-original-fixture/verification/failure-traceback.txt",
+      "bytes": 1365,
+      "sha256": "755bc3344d914350650e66e4ff2e7b4813ade27de565e436f8fbef4c8ad95408"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-original-fixture/verification/result.json",
+      "bytes": 273,
+      "sha256": "9bbf164196c498f220fb1c8e7ae048b7fc6e173bc14f8d2710ef37fb0dd64716"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-original-fixture/video_private_accounting.py",
+      "bytes": 18425,
+      "sha256": "09528652694c21f8141e3ef8fe69bb506981463c3779fcdc298a2c4caa3f1d28"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-producer-source/changed-checkpoints/14-method-only-three-path-retry-delay/checkpoint.json",
+      "bytes": 26487,
+      "sha256": "08c921843a0a0e0ba50e874662a2f0b22cfbb4a4c3f6ea0ba44bf5faa439edde"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-producer-source/changed-checkpoints/14-method-only-three-path-retry-delay/evidence/run/inputs/tests/java/VideoDexStudy.java",
+      "bytes": 11658,
+      "sha256": "2d0196a9ef4328e5f58cadae2e1e0b87150dd302ea1616191e36c8691d4fe536"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-producer-source/control-result.json",
+      "bytes": 1227,
+      "sha256": "7f32f65c694fcbb9e8e3f8f7251f87b4a342119163cf3211e785a0ad023852ff"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-producer-source/mutation.json",
+      "bytes": 428,
+      "sha256": "1bef05a219db0fd3ab6928b1199a40598e62ea68e1d3d12f7cade5c0c0664399"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-producer-source/private_accounting_pins.json",
+      "bytes": 70347,
+      "sha256": "21ecda6da3a5791cd444e76821b5361ce5e7b458b74a500b00c30da73688ecdf"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-producer-source/stderr.txt",
+      "bytes": 1569,
+      "sha256": "8565c448dc17f94ed9e7afc9870c4fc7fd7b3d3873a2a2231ca7fc5205491575"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-producer-source/stdout.txt",
+      "bytes": 273,
+      "sha256": "22790ffff7e6d2b0375815a2369e53d5cc1741921b57ceba06de4209f7e8268a"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-producer-source/verification/failure-traceback.txt",
+      "bytes": 1361,
+      "sha256": "42b3f5a9fa2f17be783e5b45fa0c9a7a180a1a7a79c89fe1c16352348fb4bcfe"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-producer-source/verification/result.json",
+      "bytes": 273,
+      "sha256": "22790ffff7e6d2b0375815a2369e53d5cc1741921b57ceba06de4209f7e8268a"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/rehashed-producer-source/video_private_accounting.py",
+      "bytes": 18425,
+      "sha256": "09528652694c21f8141e3ef8fe69bb506981463c3779fcdc298a2c4caa3f1d28"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/unreviewed-static-offset-pin-file/control-result.json",
+      "bytes": 1172,
+      "sha256": "0a3fa6c107ea4a46aedbb41261279a24bae28a4e891089ea2235164329d5a11e"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/unreviewed-static-offset-pin-file/private_accounting_pins.json",
+      "bytes": 70356,
+      "sha256": "03b40d4f2a178221d3319928e351a6cd9ad21f568181bac3e0a7c4c2e753d38b"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/unreviewed-static-offset-pin-file/stderr.txt",
+      "bytes": 1165,
+      "sha256": "c45161532e4b5dce73db0659075e0448edafc8517dbc450f83e8a0518b2f6617"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/unreviewed-static-offset-pin-file/stdout.txt",
+      "bytes": 277,
+      "sha256": "b421b80625a3c0a64d039d55b4267e840ddfb841568acbedd1a117797073f207"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/unreviewed-static-offset-pin-file/verification/failure-traceback.txt",
+      "bytes": 948,
+      "sha256": "08dfb2ec9d6bd0d8ceb3a23dd9da3d3b46244ab677ba1b26e8ea4488c2b02ba3"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/unreviewed-static-offset-pin-file/verification/result.json",
+      "bytes": 277,
+      "sha256": "b421b80625a3c0a64d039d55b4267e840ddfb841568acbedd1a117797073f207"
+    },
+    {
+      "path": "private-accounting-16-guards/subprocess-controls/unreviewed-static-offset-pin-file/video_private_accounting.py",
+      "bytes": 18425,
+      "sha256": "09528652694c21f8141e3ef8fe69bb506981463c3779fcdc298a2c4caa3f1d28"
+    },
+    {
+      "path": "private-accounting-16-initial/executed-source/private_accounting_pins.json",
+      "bytes": 70347,
+      "sha256": "21ecda6da3a5791cd444e76821b5361ce5e7b458b74a500b00c30da73688ecdf"
+    },
+    {
+      "path": "private-accounting-16-initial/executed-source/video_private_accounting.py",
+      "bytes": 18105,
+      "sha256": "e32a8e46b320e8189a5012a39ef71ebbf3350d715f3d4a8d51c1798b6498918d"
+    },
+    {
+      "path": "private-accounting-16-initial/result.json",
+      "bytes": 2544,
+      "sha256": "2c1ac51967abf6b32f751cb42f3fd9f44fb275d8a5f2beeafdcca130f98f53c8"
+    },
+    {
+      "path": "private-accounting-16-initial/sealed-input-payload.json.gz",
+      "bytes": 57305,
+      "sha256": "65304b48c9632d923c6878cc10fe1399ec0c8819b2d0be9972c6be29704f3f0f"
+    },
+    {
+      "path": "private-accounting-final-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "private-accounting-final-stdout.txt",
+      "bytes": 2544,
+      "sha256": "ee4d18ee9d5ae5f2258cb836256865a60650f824479d7bc335ca5dca7e9f0321"
+    },
+    {
+      "path": "private-accounting-guards-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "private-accounting-guards-stdout.txt",
+      "bytes": 2495,
+      "sha256": "ac17fdf82210be2f74b758715d2592f294c54f044d722069fc2fa6c3e99a54f7"
+    },
+    {
+      "path": "private-accounting-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "private-accounting-stdout.txt",
+      "bytes": 2544,
+      "sha256": "2c1ac51967abf6b32f751cb42f3fd9f44fb275d8a5f2beeafdcca130f98f53c8"
+    }
+  ],
+  "evidence_bundle": {
+    "path": "/workspace/scratch/4130730d15aa/video-monitor-recovery/checkpoints/16-private-accounting-proposal-evidence.tar.gz",
+    "bytes": 3286931,
+    "sha256": "5e544c024549eeff4c16e2efd453cac9c81bf4bc4a9eada85beda430b2b9d23d"
+  },
+  "archive_members_hash_verified": true
+}

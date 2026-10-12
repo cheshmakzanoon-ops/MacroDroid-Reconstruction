@@ -1,0 +1,24 @@
+{
+  "name": "strict-storage-report-threshold",
+  "reason": "Equality at a 100MiB reduction must not emit a fresh availability report.",
+  "source_sha256": "4383c289d9b47d728bd20f28e04e50a533239f6290e764dfd768502291d8f6ab",
+  "compile_returncode": 0,
+  "expected_failure_labels": [
+    "video-exact-storage-report-threshold:0"
+  ],
+  "detected": true,
+  "execution_returncode": 2,
+  "class_sha256": "5fc0e8759e0870c67acbbf622df328e6ceea7fb473f75b549718b43543e7208b",
+  "cases": 1125,
+  "failed_cases": 4,
+  "unsupported_executions": 0,
+  "expected_result_failures": 0,
+  "failed_case_labels": [
+    "video-exact-storage-report-threshold:0",
+    "video-space:-1:104857599",
+    "video-space:0:104857600",
+    "video-space:268435456:373293056"
+  ],
+  "named_failures_observed": true,
+  "original_coverage_unchanged": true
+}

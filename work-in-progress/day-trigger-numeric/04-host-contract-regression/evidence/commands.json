@@ -1,0 +1,252 @@
+[
+  {
+    "name": "compile-unchanged-encoders-and-probe",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+      "-g:none",
+      "-cp",
+      "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+      "-d",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/common-classes",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/common/CoreParityTests.java",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/common/ParityTests.java",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/common/UiParityTests.java",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/common/VariableValueContractProbe.java"
+    ],
+    "started_utc": "2026-10-12T08:05:28.001377+00:00",
+    "ended_utc": "2026-10-12T08:05:34.691385+00:00",
+    "duration_seconds": 6.690043966998928,
+    "timeout_seconds": 120,
+    "returncode": 0,
+    "stdout": {
+      "path": "compile-unchanged-encoders-and-probe.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "compile-unchanged-encoders-and-probe.stderr.log",
+      "bytes": 110,
+      "sha256": "66bcca1c459c184393ca1ea31a078957c7f00ee39c306aba62c0f924af7bc171"
+    }
+  },
+  {
+    "name": "baseline-compile",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+      "-g:none",
+      "-d",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/baseline/classes",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/baseline/source/com/arlosoft/macrodroid/variables/VariableValue.java"
+    ],
+    "started_utc": "2026-10-12T08:05:34.704598+00:00",
+    "ended_utc": "2026-10-12T08:05:36.094018+00:00",
+    "duration_seconds": 1.389425958001084,
+    "timeout_seconds": 120,
+    "returncode": 0,
+    "stdout": {
+      "path": "baseline-compile.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "baseline-compile.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "baseline-execute",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+      "-Xverify:all",
+      "-Xmx500m",
+      "-cp",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/baseline/classes:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/common-classes:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+      "VariableValueContractProbe",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/baseline/contract.json",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/baseline/aliases.json",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/baseline/classes",
+      "false"
+    ],
+    "started_utc": "2026-10-12T08:05:36.094446+00:00",
+    "ended_utc": "2026-10-12T08:05:37.167991+00:00",
+    "duration_seconds": 1.0735613769975316,
+    "timeout_seconds": 120,
+    "returncode": 0,
+    "stdout": {
+      "path": "baseline-execute.stdout.log",
+      "bytes": 61,
+      "sha256": "5e73913004dd644b598d4055a9af54944587f7472d1c3997139a0ec665cb539d"
+    },
+    "stderr": {
+      "path": "baseline-execute.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "candidate-compile",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+      "-g:none",
+      "-d",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/candidate/classes",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/candidate/source/com/arlosoft/macrodroid/variables/VariableValue.java"
+    ],
+    "started_utc": "2026-10-12T08:05:37.192794+00:00",
+    "ended_utc": "2026-10-12T08:05:38.432046+00:00",
+    "duration_seconds": 1.2392563770008564,
+    "timeout_seconds": 120,
+    "returncode": 0,
+    "stdout": {
+      "path": "candidate-compile.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "candidate-compile.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "candidate-execute",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+      "-Xverify:all",
+      "-Xmx500m",
+      "-cp",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/candidate/classes:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/common-classes:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+      "VariableValueContractProbe",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/candidate/contract.json",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/candidate/aliases.json",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/candidate/classes",
+      "true"
+    ],
+    "started_utc": "2026-10-12T08:05:38.432622+00:00",
+    "ended_utc": "2026-10-12T08:05:39.846545+00:00",
+    "duration_seconds": 1.4139379279986315,
+    "timeout_seconds": 120,
+    "returncode": 0,
+    "stdout": {
+      "path": "candidate-execute.stdout.log",
+      "bytes": 62,
+      "sha256": "6c1d23c7e4b1d6999d835950e447e41dba57f5de0b1562cb7f4678db474817c8"
+    },
+    "stderr": {
+      "path": "candidate-execute.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "nontransient-control-compile",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+      "-g:none",
+      "-d",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/nontransient-control/classes",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/nontransient-control/source/com/arlosoft/macrodroid/variables/VariableValue.java"
+    ],
+    "started_utc": "2026-10-12T08:05:39.857614+00:00",
+    "ended_utc": "2026-10-12T08:05:41.959805+00:00",
+    "duration_seconds": 2.1021976849988278,
+    "timeout_seconds": 120,
+    "returncode": 0,
+    "stdout": {
+      "path": "nontransient-control-compile.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "nontransient-control-compile.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "nontransient-control-execute",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+      "-Xverify:all",
+      "-Xmx500m",
+      "-cp",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/nontransient-control/classes:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/common-classes:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+      "VariableValueContractProbe",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/nontransient-control/contract.json",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/nontransient-control/aliases.json",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/nontransient-control/classes",
+      "false"
+    ],
+    "started_utc": "2026-10-12T08:05:41.960578+00:00",
+    "ended_utc": "2026-10-12T08:05:43.223290+00:00",
+    "duration_seconds": 1.27668524499677,
+    "timeout_seconds": 120,
+    "returncode": 0,
+    "stdout": {
+      "path": "nontransient-control-execute.stdout.log",
+      "bytes": 61,
+      "sha256": "5e73913004dd644b598d4055a9af54944587f7472d1c3997139a0ec665cb539d"
+    },
+    "stderr": {
+      "path": "nontransient-control-execute.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "wrong-alias-control-compile",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+      "-g:none",
+      "-d",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/wrong-alias-control/classes",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/wrong-alias-control/source/com/arlosoft/macrodroid/variables/VariableValue.java"
+    ],
+    "started_utc": "2026-10-12T08:05:43.266113+00:00",
+    "ended_utc": "2026-10-12T08:05:45.775494+00:00",
+    "duration_seconds": 2.509382538999489,
+    "timeout_seconds": 120,
+    "returncode": 0,
+    "stdout": {
+      "path": "wrong-alias-control-compile.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "wrong-alias-control-compile.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "wrong-alias-control-execute",
+    "argv": [
+      "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+      "-Xverify:all",
+      "-Xmx500m",
+      "-cp",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/wrong-alias-control/classes:/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/common-classes:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/tools/classes",
+      "VariableValueContractProbe",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/wrong-alias-control/contract.json",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/wrong-alias-control/aliases.json",
+      "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/01-host-contract/wrong-alias-control/classes",
+      "true"
+    ],
+    "started_utc": "2026-10-12T08:05:45.776973+00:00",
+    "ended_utc": "2026-10-12T08:05:47.204609+00:00",
+    "duration_seconds": 1.4277622500012512,
+    "timeout_seconds": 120,
+    "returncode": 1,
+    "stdout": {
+      "path": "wrong-alias-control-execute.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "wrong-alias-control-execute.stderr.log",
+      "bytes": 186,
+      "sha256": "3ce2050be4a3961eb336bba7c7c402869c8d795b338f3a5a2b5d43c6629ad68c"
+    }
+  }
+]

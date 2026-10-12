@@ -1,0 +1,27 @@
+{
+  "name": "label-two-retry-always-suspends",
+  "reason": "A synchronous return from the retry delay after a label-two resumed Exception must enter the loop and observe false recording; only the suspension singleton suspends.",
+  "source_sha256": "8a27d4a88aca41a25f45ad6d80cdefc3531e400977e28d34daf69c06c79d313d",
+  "compile_returncode": 0,
+  "expected_failure_labels": [
+    "video-label-two-retry-delay:0",
+    "video-label-two-retry-delay:2",
+    "video-label-two-retry-delay:5",
+    "video-label-two-retry-delay:6"
+  ],
+  "detected": true,
+  "execution_returncode": 2,
+  "class_sha256": "4ccd621633f8b3144cc431e65ff02964a0ca870442dd50268d501b86f4f9e01f",
+  "cases": 1125,
+  "failed_cases": 4,
+  "unsupported_executions": 0,
+  "expected_result_failures": 0,
+  "failed_case_labels": [
+    "video-label-two-retry-delay:0",
+    "video-label-two-retry-delay:2",
+    "video-label-two-retry-delay:5",
+    "video-label-two-retry-delay:6"
+  ],
+  "named_failures_observed": true,
+  "original_coverage_unchanged": true
+}

@@ -1,0 +1,470 @@
+{
+  "passed": false,
+  "cases": 1125,
+  "failedCases": 1,
+  "unsupportedExecutions": 0,
+  "independentExpectedResultChecks": 237,
+  "expectedResultFailures": 0,
+  "originalOnlyBoundaryDiscoveryExecutions": 23,
+  "methodsCovered": 1,
+  "methodKeys": [
+    "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;"
+  ],
+  "paths": 2,
+  "androidRuntime": false,
+  "rebuiltDexCompared": false,
+  "registeredInActiveProject": false,
+  "instructionCoverage": {
+    "instructions": 262,
+    "visited": 259,
+    "unvisitedOffsets": [
+      232,
+      233,
+      235
+    ],
+    "conditionalEdges": 46,
+    "conditionalEdgesVisited": 46,
+    "unvisitedConditionalEdges": []
+  },
+  "fullInstructionAndConditionalCoverage": false,
+  "failures": [
+    {
+      "method": "Lcom/arlosoft/macrodroid/action/services/a;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "video-invalid-guard-returns-injected",
+      "original": {
+        "calls": [],
+        "coreCalls": [],
+        "videoState": {
+          "resultKind": "return",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.invalid:call to \u0027resume\u0027 before \u0027invoke\u0027 with coroutine"
+          ],
+          "boundaryStates": [
+            "19:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 1,
+          "recording": true,
+          "state": "19:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 19,
+          "saved0": "savedFlag",
+          "saved1": "file",
+          "owner": "owner",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 0,
+              "file": "file",
+              "spaceReads": 0,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [],
+          "delayCount": 0,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:null:19:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      },
+      "java": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "videoState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.invalid:call to \u0027resume\u0027 before \u0027invoke\u0027 with coroutine"
+          ],
+          "boundaryStates": [
+            "19:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "boundaryCalls": 1,
+          "recording": true,
+          "state": "19:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0",
+          "label": 19,
+          "saved0": "savedFlag",
+          "saved1": "file",
+          "owner": "owner",
+          "owners": {
+            "owner": {
+              "id": 73,
+              "v": 1024,
+              "w": 1,
+              "x": 0,
+              "file": "file",
+              "spaceReads": 0,
+              "directoryReads": 0
+            },
+            "other": {
+              "id": 109,
+              "v": 17,
+              "w": 6,
+              "x": 420478976,
+              "file": "otherFile",
+              "spaceReads": 0,
+              "directoryReads": 0
+            }
+          },
+          "files": {
+            "file": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "directory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherFile": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            },
+            "otherDirectory": {
+              "parentReads": 0,
+              "existsReads": 0,
+              "lengthReads": 0
+            }
+          },
+          "delays": [],
+          "delayCount": 0,
+          "callbacks": [],
+          "callbackCount": 0,
+          "dispatches": [],
+          "dispatchCount": 0,
+          "steps": [
+            "return:unit:19:savedFlag:file:owner:true:recordingCompanion|owner:73:file:null:1024:1:0:0:0|other:109:otherFile:null:17:6:420478976:0:0"
+          ],
+          "equalsCalls": 0,
+          "exceptionMessageReads": []
+        }
+      },
+      "expectedObservation": {
+        "videoState": {
+          "label": 19,
+          "callbackCount": 0,
+          "delayCount": 0
+        }
+      }
+    }
+  ],
+  "failedCaseLabels": [
+    "video-invalid-guard-returns-injected"
+  ],
+  "hostParentConstructorAdapters": {},
+  "hostParentConstructorAdapterCalls": {},
+  "noConstructorOwnerAdapterUsed": true,
+  "invalidLabelDefensiveReturnUsesOneInjectedReturningBoundary": true,
+  "generatedEscapedMessageExclusions": [
+    {
+      "case": "video-dead-casts:0:2",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.qnc",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:0:2",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.qnc cannot be cast to class java.io.File (defpackage.qnc is in unnamed module of loader \u0027app\u0027; java.io.File is in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:0:3",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:0:3",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class java.io.File (java.lang.String and java.io.File are in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:1:2",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.qnc",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:1:2",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.qnc cannot be cast to class java.io.File (defpackage.qnc is in unnamed module of loader \u0027app\u0027; java.io.File is in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:1:3",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:1:3",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class java.io.File (java.lang.String and java.io.File are in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:2:0",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.VideoFile",
+      "castSourceClass": "defpackage.VideoFile"
+    },
+    {
+      "case": "video-dead-casts:2:0",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.VideoFile cannot be cast to class defpackage.qnc (defpackage.VideoFile and defpackage.qnc are in unnamed module of loader \u0027app\u0027)",
+      "castSourceClass": "defpackage.VideoFile"
+    },
+    {
+      "case": "video-dead-casts:2:1",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.VideoFile",
+      "castSourceClass": "defpackage.VideoFile"
+    },
+    {
+      "case": "video-dead-casts:2:1",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.VideoFile cannot be cast to class defpackage.qnc (defpackage.VideoFile and defpackage.qnc are in unnamed module of loader \u0027app\u0027)",
+      "castSourceClass": "defpackage.VideoFile"
+    },
+    {
+      "case": "video-dead-casts:2:2",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.qnc",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:2:2",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.qnc cannot be cast to class java.io.File (defpackage.qnc is in unnamed module of loader \u0027app\u0027; java.io.File is in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:2:3",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:2:3",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class java.io.File (java.lang.String and java.io.File are in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:0",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:0",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class defpackage.qnc (java.lang.String is in module java.base of loader \u0027bootstrap\u0027; defpackage.qnc is in unnamed module of loader \u0027app\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:1",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:1",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class defpackage.qnc (java.lang.String is in module java.base of loader \u0027bootstrap\u0027; defpackage.qnc is in unnamed module of loader \u0027app\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:2",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "defpackage.qnc",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:3:2",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class defpackage.qnc cannot be cast to class java.io.File (defpackage.qnc is in unnamed module of loader \u0027app\u0027; java.io.File is in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "defpackage.qnc"
+    },
+    {
+      "case": "video-dead-casts:3:3",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-dead-casts:3:3",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class java.io.File (java.lang.String and java.io.File are in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-resumed-stop-dead-cast:0",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-resumed-stop-dead-cast:0",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class defpackage.qnc (java.lang.String is in module java.base of loader \u0027bootstrap\u0027; defpackage.qnc is in unnamed module of loader \u0027app\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-resumed-stop-dead-cast:1",
+      "path": "original",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "java.lang.String",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-resumed-stop-dead-cast:1",
+      "path": "java",
+      "exception": "java.lang.ClassCastException",
+      "rawMessage": "class java.lang.String cannot be cast to class java.io.File (java.lang.String and java.io.File are in module java.base of loader \u0027bootstrap\u0027)",
+      "castSourceClass": "java.lang.String"
+    },
+    {
+      "case": "video-companion-before-recording:false",
+      "path": "original",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot invoke \"Object.getClass()\" because \"obj\" is null"
+    },
+    {
+      "case": "video-companion-before-recording:false",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot invoke \"Object.getClass()\" because \"com.arlosoft.macrodroid.action.services.BaseVideoRecordingService.A\" is null"
+    },
+    {
+      "case": "video-companion-before-recording:true",
+      "path": "original",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot invoke \"Object.getClass()\" because \"obj\" is null"
+    },
+    {
+      "case": "video-companion-before-recording:true",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot invoke \"Object.getClass()\" because \"com.arlosoft.macrodroid.action.services.BaseVideoRecordingService.A\" is null"
+    },
+    {
+      "case": "video-null-receiver:0",
+      "path": "original",
+      "exception": "java.lang.NullPointerException"
+    },
+    {
+      "case": "video-null-receiver:0",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot read field \"label\" because \"\u003cparameter1\u003e\" is null"
+    },
+    {
+      "case": "video-null-receiver:1",
+      "path": "original",
+      "exception": "java.lang.NullPointerException"
+    },
+    {
+      "case": "video-null-receiver:1",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot read field \"label\" because \"\u003cparameter1\u003e\" is null"
+    },
+    {
+      "case": "video-null-receiver:2",
+      "path": "original",
+      "exception": "java.lang.NullPointerException"
+    },
+    {
+      "case": "video-null-receiver:2",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot read field \"label\" because \"\u003cparameter1\u003e\" is null"
+    },
+    {
+      "case": "video-null-receiver:3",
+      "path": "original",
+      "exception": "java.lang.NullPointerException"
+    },
+    {
+      "case": "video-null-receiver:3",
+      "path": "java",
+      "exception": "java.lang.NullPointerException",
+      "rawMessage": "Cannot read field \"label\" because \"\u003cparameter1\u003e\" is null"
+    }
+  ],
+  "exceptionMessageScope": "Only generated escaped cast/null wording is excluded with raw messages retained; CCE source-class identity remains compared through three exact original-oracle and four pinned-JDK forms. Unknown cast forms fail closed. Injected/external identities/messages and all logged text stay exact. Same-source-type malformed values do not distinguish cast order.",
+  "scope": "Bounded selected original method/JVM comparison with controlled File/storage/logging/coroutine boundaries; no filesystem operation, scheduler, Android service, APK build or Android execution"
+}

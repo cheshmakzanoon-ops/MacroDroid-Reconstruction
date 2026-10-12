@@ -1,0 +1,186 @@
+{
+  "status": "JOURNEY_DIFFERENCE",
+  "journey_equal": false,
+  "full_runtime_1_to_1_established": false,
+  "scope": "Nine observed intro, notification, promotion, home/editor and information-dialog stills; one OK tap and its first app surface only",
+  "screens": [
+    {
+      "name": "intro-1",
+      "hierarchy_equal": true,
+      "same_size": true,
+      "changed_pixels": 0,
+      "color_metadata_equal": true,
+      "equal": true
+    },
+    {
+      "name": "intro-2",
+      "hierarchy_equal": true,
+      "same_size": true,
+      "changed_pixels": 26,
+      "color_metadata_equal": true,
+      "equal": false
+    },
+    {
+      "name": "intro-3",
+      "hierarchy_equal": true,
+      "same_size": true,
+      "changed_pixels": 0,
+      "color_metadata_equal": true,
+      "equal": true
+    },
+    {
+      "name": "intro-4",
+      "hierarchy_equal": true,
+      "same_size": true,
+      "changed_pixels": 0,
+      "color_metadata_equal": true,
+      "equal": true
+    },
+    {
+      "name": "notification-request",
+      "hierarchy_equal": true,
+      "same_size": true,
+      "changed_pixels": 0,
+      "color_metadata_equal": true,
+      "equal": true
+    },
+    {
+      "name": "reference-promotion",
+      "hierarchy_equal": true,
+      "same_size": true,
+      "changed_pixels": 0,
+      "color_metadata_equal": true,
+      "equal": true
+    },
+    {
+      "name": "home",
+      "hierarchy_equal": true,
+      "same_size": true,
+      "changed_pixels": 0,
+      "color_metadata_equal": true,
+      "equal": true
+    },
+    {
+      "name": "empty-editor",
+      "hierarchy_equal": true,
+      "same_size": true,
+      "changed_pixels": 0,
+      "color_metadata_equal": true,
+      "equal": true
+    },
+    {
+      "name": "favourite-triggers-info",
+      "hierarchy_equal": true,
+      "same_size": true,
+      "changed_pixels": 0,
+      "color_metadata_equal": true,
+      "equal": true
+    },
+    {
+      "name": "after-favourite-info",
+      "hierarchy_equal": true,
+      "same_size": true,
+      "changed_pixels": 0,
+      "color_metadata_equal": true,
+      "equal": true
+    }
+  ],
+  "masks_used": false,
+  "android_runtime_executed": true,
+  "macros_executed": false,
+  "macros_saved": false,
+  "capture_policy": {
+    "schema": 1,
+    "handoff_after": "notification-request",
+    "handoff_to": "reference-promotion",
+    "handoff_action": {
+      "resource-id": "com.android.permissioncontroller:id/permission_deny_button"
+    },
+    "handoff_component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity",
+    "handoff_timeout_seconds": 30,
+    "settling_max_attempts": 6,
+    "settling_timeout_seconds": 30,
+    "consecutive_identical_full_frames": 2,
+    "png_and_xml_bytes_must_match": true,
+    "cross_apk_frame_selection": false
+  },
+  "process_handoff_outcomes": [
+    {
+      "pid_replaced": true,
+      "old_pid_absent_in_both_lists": true,
+      "component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity",
+      "installed_apk_identity_verified": true,
+      "cause": "RECORDED_JAVA_FATAL_EXCEPTION",
+      "crash_observation": {
+        "status": "NEW_OBSERVED_FRAGMENT_FATAL_EXCEPTION",
+        "count": 1,
+        "exception_type": "java.lang.IllegalStateException",
+        "message_pattern": "Fragment LB{hex instance} not attached to Activity",
+        "stack": [
+          "at android.app.Fragment.getResources(Fragment.java:785)",
+          "at com.zx.lbua80.onShow(Unknown Source:22)",
+          "at android.app.Dialog$ListenersHandler.handleMessage(Dialog.java:1500)",
+          "at android.os.Handler.dispatchMessage(Handler.java:107)",
+          "at android.os.Looper.loopOnce(Looper.java:232)",
+          "at android.os.Looper.loop(Looper.java:317)",
+          "at android.app.ActivityThread.main(ActivityThread.java:8705)",
+          "at java.lang.reflect.Method.invoke(Native Method)",
+          "at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)",
+          "at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)"
+        ]
+      }
+    },
+    {
+      "pid_replaced": true,
+      "old_pid_absent_in_both_lists": true,
+      "component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.homescreen.NewHomeScreenActivity",
+      "installed_apk_identity_verified": true,
+      "cause": "RECORDED_JAVA_FATAL_EXCEPTION",
+      "crash_observation": {
+        "status": "NEW_OBSERVED_FRAGMENT_FATAL_EXCEPTION",
+        "count": 1,
+        "exception_type": "java.lang.IllegalStateException",
+        "message_pattern": "Fragment LB{hex instance} not attached to Activity",
+        "stack": [
+          "at android.app.Fragment.getResources(Fragment.java:785)",
+          "at com.zx.lbua80.onShow(Unknown Source:22)",
+          "at android.app.Dialog$ListenersHandler.handleMessage(Dialog.java:1500)",
+          "at android.os.Handler.dispatchMessage(Handler.java:107)",
+          "at android.os.Looper.loopOnce(Looper.java:232)",
+          "at android.os.Looper.loop(Looper.java:317)",
+          "at android.app.ActivityThread.main(ActivityThread.java:8705)",
+          "at java.lang.reflect.Method.invoke(Native Method)",
+          "at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)",
+          "at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)"
+        ]
+      }
+    }
+  ],
+  "process_handoff_outcomes_equal": true,
+  "process_handoff_cause_established": true,
+  "crash_free_run_established": false,
+  "crash_literal_messages_compared_for_equality": false,
+  "post_crash_continuation_observed_in_both": true,
+  "terminal_surfaces": [
+    {
+      "name": "after-favourite-info",
+      "owner": "com.arlosoft.macrodroid",
+      "component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.editscreen.EditMacroActivity",
+      "surface_after_one_observed_ok": true,
+      "subsequent_inputs": 0
+    },
+    {
+      "name": "after-favourite-info",
+      "owner": "com.arlosoft.macrodroid",
+      "component": "com.arlosoft.macrodroid/com.arlosoft.macrodroid.editscreen.EditMacroActivity",
+      "surface_after_one_observed_ok": true,
+      "subsequent_inputs": 0
+    }
+  ],
+  "terminal_surface_identities_equal": true,
+  "catalog_navigation_established": false,
+  "apk_sha256": [
+    "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+    "9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2"
+  ]
+}

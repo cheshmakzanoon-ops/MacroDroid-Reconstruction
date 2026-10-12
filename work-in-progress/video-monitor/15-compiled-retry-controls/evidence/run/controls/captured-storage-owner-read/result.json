@@ -1,0 +1,23 @@
+{
+  "name": "captured-storage-owner-read",
+  "reason": "A successful c call keeps its captured owner for x reads.",
+  "source_sha256": "681503fe6f0d657e644649092c4fa755131a950b164c4de1c5b40cfbba15deb4",
+  "compile_returncode": 0,
+  "expected_failure_labels": [
+    "video-captured-storage-owner-survives-field-null"
+  ],
+  "detected": true,
+  "execution_returncode": 2,
+  "class_sha256": "0a93813d0aba2f7fc9f26bd66543e3595754c2d72fba99facb646b4344a83242",
+  "cases": 1125,
+  "failed_cases": 3,
+  "unsupported_executions": 0,
+  "expected_result_failures": 0,
+  "failed_case_labels": [
+    "video-captured-owner-x-changed-at-space-call:1",
+    "video-captured-owner-x-changed-at-space-call:104857600",
+    "video-captured-storage-owner-survives-field-null"
+  ],
+  "named_failures_observed": true,
+  "original_coverage_unchanged": true
+}

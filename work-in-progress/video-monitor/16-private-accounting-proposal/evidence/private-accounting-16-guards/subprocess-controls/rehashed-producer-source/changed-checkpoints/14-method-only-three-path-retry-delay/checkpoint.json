@@ -1,0 +1,723 @@
+{
+  "status": "THREE_PATH_SEMANTIC_MATCH_CONTROLS_PASSED_RAW_COVERAGE_GATE_FAILED",
+  "frozen_utc": "2026-10-12T07:24:28.752261+00:00",
+  "scope": "Private original/JVM/method-only rebuilt DEX semantic proof; strict raw original coverage gate remains failed.",
+  "study_result_sha256": "1ba034b79db578c689bd2d54a2bb8fd95fdf289bab19a3ebd0b72789c92dfda6",
+  "d8_compiler_passed": true,
+  "target_assembled": true,
+  "application_method_compared": true,
+  "coverage_exemption_implemented": false,
+  "active_source_changed": false,
+  "apk_built": false,
+  "android_executed": false,
+  "raw_original_coverage_gate_passed": false,
+  "raw_original_instructions_visited": 259,
+  "raw_original_instructions": 262,
+  "original_unvisited_offsets": [
+    232,
+    233,
+    235
+  ],
+  "files": [
+    {
+      "path": "METHOD_ONLY_RETRY_DELAY_PROOF.md",
+      "bytes": 3349,
+      "sha256": "4f4de52247e1e3001af9ecc1a9266fdb65d6595c03a7dddb213d6c7b438004a4"
+    },
+    {
+      "path": "PRIVATE_COVERAGE_PROPOSAL.md",
+      "bytes": 5002,
+      "sha256": "adc7faef80c33cebea2231bf3c0f4537661b638660af4a468e3d7086b1151f69"
+    },
+    {
+      "path": "REBUILT_HANDLER_DATAFLOW.md",
+      "bytes": 4754,
+      "sha256": "d8bde79fcfbbf77358399b37b01b9d0cd7ee8eeb5783e8a6e4bdf309931dd0f3"
+    },
+    {
+      "path": "collect_rebuilt_handler.py",
+      "bytes": 5774,
+      "sha256": "9a293318a5f716e3e4d4d8abeeb61ad231f59c939381ff4dfd1f9a37ae9b0116"
+    },
+    {
+      "path": "freeze_video_dex_study.py",
+      "bytes": 9204,
+      "sha256": "a309c2a4d14a63e02d2910a87763df30fed8cc0dea0c214677ffae18e8c2e1ef"
+    },
+    {
+      "path": "tests/java/VideoDexLauncher.java",
+      "bytes": 3541,
+      "sha256": "3eeefeb798ad281f1324031529bcb87515d68eb3555945fb1dd2035106557798"
+    },
+    {
+      "path": "tests/java/VideoDexStudy.java",
+      "bytes": 11657,
+      "sha256": "4a681b56f22d1a00b7af85c772f0eb26474f49178e0718b61907a5b6511469b2"
+    },
+    {
+      "path": "video_method_dex_study.py",
+      "bytes": 23983,
+      "sha256": "1d082d54f55e18ffc46f8a0e4cf2cb6826f3ac44884c9fb7bdf5993074f2e984"
+    },
+    {
+      "path": "video_method_negative_control.py",
+      "bytes": 21106,
+      "sha256": "8d90c144d624f3f4cdf4aaff1ef30b858e45b486bee56801070a4b79a7254089"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "expanded-original-jvm-checkpoint.json",
+      "bytes": 13864,
+      "sha256": "02f80d76ee2fcf9d9cacf38f4b8d0fdd9c8697934daa190aa9c3450ab7cfc6ac"
+    },
+    {
+      "path": "initial-wrapper-failure-checkpoint.json",
+      "bytes": 9225,
+      "sha256": "10a95d413d2d866f3668bff1621bf39a9c8873829e8800b135fdec6e51215dd5"
+    },
+    {
+      "path": "launcher-javac-preflight/VideoDexLauncher.java",
+      "bytes": 3541,
+      "sha256": "3eeefeb798ad281f1324031529bcb87515d68eb3555945fb1dd2035106557798"
+    },
+    {
+      "path": "launcher-javac-preflight/VideoDexStudy.java",
+      "bytes": 11657,
+      "sha256": "4a681b56f22d1a00b7af85c772f0eb26474f49178e0718b61907a5b6511469b2"
+    },
+    {
+      "path": "launcher-javac-preflight/classes/VideoDexLauncher.class",
+      "bytes": 6073,
+      "sha256": "5748ef30d1d4b5783ef5510fbe02c976bb590e32c4dd2a5cd04acbecb79f52a0"
+    },
+    {
+      "path": "launcher-javac-preflight/classes/VideoDexStudy.class",
+      "bytes": 13698,
+      "sha256": "40b4b81a9b494cbc8852188f16426f17493eafb48ff6431cf8f67f31acdf2009"
+    },
+    {
+      "path": "launcher-javac-preflight/result.json",
+      "bytes": 1952,
+      "sha256": "dcdaa3110a1d763df229d5f5ea79d807d70767a5e526ce4e4d140755f61d74cb"
+    },
+    {
+      "path": "launcher-javac-preflight/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "launcher-javac-preflight/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "method-only-retry-delay-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "method-only-retry-delay-stdout.txt",
+      "bytes": 3975,
+      "sha256": "e22cb7d7cd9ee3415c8ee644244d34679b70eb24c04d5682a040909943ecec48"
+    },
+    {
+      "path": "previous-micro-study-checkpoint.json",
+      "bytes": 23396,
+      "sha256": "1561b6af59ac41ea54da6b34df0f9c85af24d3d80c691763c8bb1de6c7c973fb"
+    },
+    {
+      "path": "rebuilt-handler-inventory/inputs/VideoHandlerInventory.java",
+      "bytes": 5279,
+      "sha256": "06d86e88dd685e53382ec6b9773a8ca9a26e6862336ddc57f5319ce7beb821e2"
+    },
+    {
+      "path": "rebuilt-handler-inventory/inputs/rebuilt-video-monitor.dex",
+      "bytes": 4484,
+      "sha256": "9a8770cfc8c438a08d6ebf87983767af878b01de39a93562e7bf9122c3c921b5"
+    },
+    {
+      "path": "rebuilt-handler-inventory/inspect-rebuilt.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "rebuilt-handler-inventory/inspect-rebuilt.stdout.txt",
+      "bytes": 95,
+      "sha256": "42eed522dbf2369ea6e4b8c8401c734bfc63bd3284b70f80d34df0744839121a"
+    },
+    {
+      "path": "rebuilt-handler-inventory/jrt-classfiles/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "rebuilt-handler-inventory/jrt-classfiles/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "rebuilt-handler-inventory/jrt-classfiles/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "rebuilt-handler-inventory/jrt-classfiles/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "rebuilt-handler-inventory/original-instructions.json",
+      "bytes": 46167,
+      "sha256": "c270e94e6afdc667399844f2ddeb5207baac0d9315ed1227b3071bb3a276fc0c"
+    },
+    {
+      "path": "rebuilt-handler-inventory/result.json",
+      "bytes": 4634,
+      "sha256": "132904ed08c64f39ebf61edf56d791c93296ba3bece8093762191305f90a8cf4"
+    },
+    {
+      "path": "rebuilt-handler-inventory/toolclasses/VideoHandlerInventory.class",
+      "bytes": 9559,
+      "sha256": "3b9fb8b04763ec8724ffb9f808165f44bd7a29ed82bfa81a21db8a2e7a5b4333"
+    },
+    {
+      "path": "rebuilt-handler-inventory-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "rebuilt-handler-inventory-stdout.txt",
+      "bytes": 4634,
+      "sha256": "132904ed08c64f39ebf61edf56d791c93296ba3bece8093762191305f90a8cf4"
+    },
+    {
+      "path": "run/assemble-one-target.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/assemble-one-target.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/compile-three-path-launcher.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/compile-three-path-launcher.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/controls/original-substituted-for-rebuilt/class-origins.json",
+      "bytes": 8649,
+      "sha256": "b119af2242952915a32931fa1beafd9d7047ec5ffe2f5fb7fa869b56cbe84af4"
+    },
+    {
+      "path": "run/controls/original-substituted-for-rebuilt/execute-three-path.stderr.txt",
+      "bytes": 191,
+      "sha256": "df59ba88c6ffe4fbf58e9d55f83929d1c0f70ae1d36d7e51d855567e27577d13"
+    },
+    {
+      "path": "run/controls/original-substituted-for-rebuilt/execute-three-path.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/controls/original-substituted-for-rebuilt/expected-class-origins.json",
+      "bytes": 7385,
+      "sha256": "285e0e64e05a9d1b3d657afab9a769954efb9d26616aec48c266a4459aee316f"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/assemble-delay-fault.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/assemble-delay-fault.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/class-origins.json",
+      "bytes": 8649,
+      "sha256": "b119af2242952915a32931fa1beafd9d7047ec5ffe2f5fb7fa869b56cbe84af4"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/execute-three-path.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/execute-three-path.stdout.txt",
+      "bytes": 102,
+      "sha256": "33d3ef62fe6d4e0fa27370de8a9ac12200d889f562278eaee14aefd57774c936"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/expected-class-origins.json",
+      "bytes": 7385,
+      "sha256": "285e0e64e05a9d1b3d657afab9a769954efb9d26616aec48c266a4459aee316f"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/after/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/after/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/after/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/after/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/after/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/after/runtime.json",
+      "bytes": 1874,
+      "sha256": "686c8e119b1fe192a230b71d8f19641b2f5a54c7b2980189c1ab79c427cfaeef"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/before/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/before/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/before/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/before/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/before/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/live-runtime/before/runtime.json",
+      "bytes": 1874,
+      "sha256": "686c8e119b1fe192a230b71d8f19641b2f5a54c7b2980189c1ab79c427cfaeef"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/execution/parity.json",
+      "bytes": 368916,
+      "sha256": "1976bbdbcca24c4609b04854cb901b26d05dab0f481fd0ae449ff0182ca4899c"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/rebuilt-delay-mutant.dex",
+      "bytes": 4484,
+      "sha256": "fc347c9cdedcfae7362e2f0396ac9a3ec160953573232935c6670ada3ab8403b"
+    },
+    {
+      "path": "run/controls/rebuilt-delay-duration/smali/a.smali",
+      "bytes": 19890,
+      "sha256": "66757fb941b7cf97a184896a685a42142cddec0ee691b092c287be9d352bf9b5"
+    },
+    {
+      "path": "run/controls/wrong-loaded-helper-hash/execute-three-path.stderr.txt",
+      "bytes": 173,
+      "sha256": "3f1e9a0b073d5662b89d28091dfcfe21c12dc54e670b862d959ca7d23daf68aa"
+    },
+    {
+      "path": "run/controls/wrong-loaded-helper-hash/execute-three-path.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/controls/wrong-loaded-helper-hash/expected-class-origins.json",
+      "bytes": 7385,
+      "sha256": "96fb3d95d2e85ac982b23877273519e22c54d460d59fb99d36bf60e501529486"
+    },
+    {
+      "path": "run/d8-one-helper.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/d8-one-helper.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/disassemble-one-helper.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/disassemble-one-helper.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/expected-class-origins.json",
+      "bytes": 7385,
+      "sha256": "285e0e64e05a9d1b3d657afab9a769954efb9d26616aec48c266a4459aee316f"
+    },
+    {
+      "path": "run/fixed-class-inventory.json",
+      "bytes": 176643,
+      "sha256": "c40d05768ae529c70fea8c99f2cd85527eff9265aacbf674d128c1f0c4101b22"
+    },
+    {
+      "path": "run/input-inventory.json",
+      "bytes": 2540,
+      "sha256": "3f970ac274d4e3a0c00c46dc4c1af5fdcf71d35bc56df0f7a15028f6502f1f71"
+    },
+    {
+      "path": "run/inputs/baseline-checkpoint.json",
+      "bytes": 13864,
+      "sha256": "02f80d76ee2fcf9d9cacf38f4b8d0fdd9c8697934daa190aa9c3450ab7cfc6ac"
+    },
+    {
+      "path": "run/inputs/fixed-harness-classes.tar.gz",
+      "bytes": 144844,
+      "sha256": "7cef9a3d6ede0728c44f39b49471ace5f723fec16f6b6fbdf79d49c7b454e212"
+    },
+    {
+      "path": "run/inputs/fixed-host-classes.tar.gz",
+      "bytes": 257767,
+      "sha256": "2640337a908f4abde2e243231d6f19b6e3de7a90088528cd710884dd2fd9fd71"
+    },
+    {
+      "path": "run/inputs/host-checkpoint.json",
+      "bytes": 7462,
+      "sha256": "38656eed5691a48b8a11dc5148dd692e813b629141cad9ece604f0588a0311ea"
+    },
+    {
+      "path": "run/inputs/original-video-monitor.dex",
+      "bytes": 4552,
+      "sha256": "940aee4861d9bd52951ccc835e91a917bb56748b4eaad5deb8a0fa1c7d2c3254"
+    },
+    {
+      "path": "run/inputs/production-pipeline/build.py",
+      "bytes": 20325,
+      "sha256": "dd599090fc075fed0835875937a2c2b76d91381936c26f4275f876edf47345f0"
+    },
+    {
+      "path": "run/inputs/production-pipeline/class-index-selected.json",
+      "bytes": 323,
+      "sha256": "4bc17becbc52aab7778adc58459c442e987e0342c594535fb32ae8a2b0493afd"
+    },
+    {
+      "path": "run/inputs/production-pipeline/constructor_owner.py",
+      "bytes": 12830,
+      "sha256": "b77672c0fb1cca53a2cb88280c2688c93fd6a95f95ee0325cabdddad00f58014"
+    },
+    {
+      "path": "run/inputs/production-pipeline/source/smali/classes/0d/a_0dfe0f87312c8ea9.smali",
+      "bytes": 25564,
+      "sha256": "05149221b78ddab67933f4aa8aba10330787889c9a3749d6d7296eaeb6cd6d4d"
+    },
+    {
+      "path": "run/inputs/proposed-method-entry.json",
+      "bytes": 422,
+      "sha256": "ecdb844cc3f114c41930a1668cba0c7979f916175edf9e3f2dc2545b632e1b01"
+    },
+    {
+      "path": "run/inputs/source/java/recovered/ui/VideoMonitorMethods.java",
+      "bytes": 7922,
+      "sha256": "67f5a47013ffbffa67859f9103d2034b3225521d10be9d96d65acd31599d45ee"
+    },
+    {
+      "path": "run/inputs/tests/java/BytecodeOracle.java",
+      "bytes": 25146,
+      "sha256": "d91ddcd8ec3d67d41d69b8252835e747c2cad2c6d5ea898323794ceec30e6b56"
+    },
+    {
+      "path": "run/inputs/tests/java/VideoDexLauncher.java",
+      "bytes": 3541,
+      "sha256": "3eeefeb798ad281f1324031529bcb87515d68eb3555945fb1dd2035106557798"
+    },
+    {
+      "path": "run/inputs/tests/java/VideoDexStudy.java",
+      "bytes": 11658,
+      "sha256": "2d0196a9ef4328e5f58cadae2e1e0b87150dd302ea1616191e36c8691d4fe536"
+    },
+    {
+      "path": "run/inputs/video_method_dex_study.py",
+      "bytes": 23983,
+      "sha256": "1d082d54f55e18ffc46f8a0e4cf2cb6826f3ac44884c9fb7bdf5993074f2e984"
+    },
+    {
+      "path": "run/inputs/video_method_negative_control.py",
+      "bytes": 21106,
+      "sha256": "8d90c144d624f3f4cdf4aaff1ef30b858e45b486bee56801070a4b79a7254089"
+    },
+    {
+      "path": "run/launcherclasses/VideoDexLauncher.class",
+      "bytes": 6073,
+      "sha256": "5748ef30d1d4b5783ef5510fbe02c976bb590e32c4dd2a5cd04acbecb79f52a0"
+    },
+    {
+      "path": "run/launcherclasses/VideoDexStudy.class",
+      "bytes": 13698,
+      "sha256": "40b4b81a9b494cbc8852188f16426f17493eafb48ff6431cf8f67f31acdf2009"
+    },
+    {
+      "path": "run/method-body-binding.json",
+      "bytes": 1603,
+      "sha256": "b3e469b788a634d864f5f89a9e123c8d6b62fc33000f7d4f3cd6565e1667e22f"
+    },
+    {
+      "path": "run/pipeline-output/d8/classes.dex",
+      "bytes": 4112,
+      "sha256": "a1f96e51a7fa35ef463b4a3b61f83d227623fcabd86ee977cf678789456f8ce8"
+    },
+    {
+      "path": "run/pipeline-output/helper-smali/recovered/ui/VideoMonitorMethods.smali",
+      "bytes": 17684,
+      "sha256": "de9ca2170869b8737620cb01d0887d4a25002bb77509f24b3e0ba9e368e2695e"
+    },
+    {
+      "path": "run/pipeline-output/host/VideoMonitorMethods.class",
+      "bytes": 4234,
+      "sha256": "80e94baecb1ed256bced1fe81d154688ceb124bda8e535483156779118006704"
+    },
+    {
+      "path": "run/pipeline-output/inputs.jar",
+      "bytes": 4155,
+      "sha256": "f9b14fd4745a12a6ccac017ee7510dfb378036d1fa2a9ae93a4ee8ed90fe9776"
+    },
+    {
+      "path": "run/pipeline-output/rebuilt-video-monitor.dex",
+      "bytes": 4484,
+      "sha256": "9a8770cfc8c438a08d6ebf87983767af878b01de39a93562e7bf9122c3c921b5"
+    },
+    {
+      "path": "run/pipeline-output/relocated/recovered/ui/VideoMonitorMethods.class",
+      "bytes": 3981,
+      "sha256": "4c53a979df8cf6c432d7fe657390efd9fe7fcf0a277ce42296966cc4ae08daae"
+    },
+    {
+      "path": "run/pipeline-output/target-smali/a.smali",
+      "bytes": 19891,
+      "sha256": "964902638ad4fbfdca44db533cb48a088e376dc4b7daf934edebb160641061e7"
+    },
+    {
+      "path": "run/positive/class-origins.json",
+      "bytes": 8649,
+      "sha256": "b119af2242952915a32931fa1beafd9d7047ec5ffe2f5fb7fa869b56cbe84af4"
+    },
+    {
+      "path": "run/positive/execute-three-path.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/positive/execute-three-path.stdout.txt",
+      "bytes": 101,
+      "sha256": "0817d355c059fc4f843797730dd6e03be0957f2594ff8dc7df4ab6cef8e39000"
+    },
+    {
+      "path": "run/positive/expected-class-origins.json",
+      "bytes": 7385,
+      "sha256": "285e0e64e05a9d1b3d657afab9a769954efb9d26616aec48c266a4459aee316f"
+    },
+    {
+      "path": "run/positive/live-runtime/after/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "run/positive/live-runtime/after/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "run/positive/live-runtime/after/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "run/positive/live-runtime/after/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "run/positive/live-runtime/after/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "run/positive/live-runtime/after/runtime.json",
+      "bytes": 1874,
+      "sha256": "686c8e119b1fe192a230b71d8f19641b2f5a54c7b2980189c1ab79c427cfaeef"
+    },
+    {
+      "path": "run/positive/live-runtime/before/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "run/positive/live-runtime/before/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "run/positive/live-runtime/before/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "run/positive/live-runtime/before/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "run/positive/live-runtime/before/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "run/positive/live-runtime/before/runtime.json",
+      "bytes": 1874,
+      "sha256": "686c8e119b1fe192a230b71d8f19641b2f5a54c7b2980189c1ab79c427cfaeef"
+    },
+    {
+      "path": "run/positive/parity.json",
+      "bytes": 24540,
+      "sha256": "d859500ad81b7ad6656a4c50e6855b45f3ab5e7ac71b702adf6a1fddd0bd2f31"
+    },
+    {
+      "path": "run/positive-restored/class-origins.json",
+      "bytes": 8649,
+      "sha256": "b119af2242952915a32931fa1beafd9d7047ec5ffe2f5fb7fa869b56cbe84af4"
+    },
+    {
+      "path": "run/positive-restored/execute-three-path.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/positive-restored/execute-three-path.stdout.txt",
+      "bytes": 101,
+      "sha256": "0817d355c059fc4f843797730dd6e03be0957f2594ff8dc7df4ab6cef8e39000"
+    },
+    {
+      "path": "run/positive-restored/expected-class-origins.json",
+      "bytes": 7385,
+      "sha256": "285e0e64e05a9d1b3d657afab9a769954efb9d26616aec48c266a4459aee316f"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/after/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/after/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/after/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/after/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/after/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/after/runtime.json",
+      "bytes": 1874,
+      "sha256": "686c8e119b1fe192a230b71d8f19641b2f5a54c7b2980189c1ab79c427cfaeef"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/before/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/before/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/before/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/before/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/before/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "run/positive-restored/live-runtime/before/runtime.json",
+      "bytes": 1874,
+      "sha256": "686c8e119b1fe192a230b71d8f19641b2f5a54c7b2980189c1ab79c427cfaeef"
+    },
+    {
+      "path": "run/positive-restored/parity.json",
+      "bytes": 24540,
+      "sha256": "d859500ad81b7ad6656a4c50e6855b45f3ab5e7ac71b702adf6a1fddd0bd2f31"
+    },
+    {
+      "path": "run/result.json",
+      "bytes": 20779,
+      "sha256": "1ba034b79db578c689bd2d54a2bb8fd95fdf289bab19a3ebd0b72789c92dfda6"
+    }
+  ],
+  "evidence_bundle": {
+    "path": "/workspace/scratch/4130730d15aa/video-monitor-recovery/checkpoints/14-method-only-three-path-retry-delay-evidence.tar.gz",
+    "bytes": 777253,
+    "sha256": "9126e2a70da4b85d2dccf4a9bd32fa967ffc73dc149f5b8e464510de14e77d2a"
+  },
+  "archive_members_hash_verified": true,
+  "positive_cases": 1125,
+  "paths": 3,
+  "semantic_mismatches": 0,
+  "unsupported_executions": 0,
+  "independent_expected_result_checks": 237,
+  "expected_result_failures": 0,
+  "original_conditional_edges_visited": 46,
+  "original_conditional_edges": 46,
+  "rebuilt_coverage": {
+    "instructions": 290,
+    "visited": 288,
+    "unvisitedOffsets": [
+      235,
+      236
+    ],
+    "conditionalEdges": 48,
+    "conditionalEdgesVisited": 48,
+    "unvisitedConditionalEdges": []
+  },
+  "class_origin_and_fixture_controls": 2,
+  "actual_rebuilt_dex_faults_detected": 1,
+  "positive_entire_report_and_inputs_restored": true
+}

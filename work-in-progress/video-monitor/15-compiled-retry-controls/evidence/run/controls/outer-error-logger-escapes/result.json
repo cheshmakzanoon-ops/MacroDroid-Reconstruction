@@ -1,0 +1,31 @@
+{
+  "name": "outer-error-logger-escapes",
+  "reason": "The error logger is not protected by another swallowing catch.",
+  "source_sha256": "ea9388699dde7e3c721f663540a7f673f952562c138bc778e0dec7909b3682fc",
+  "compile_returncode": 0,
+  "expected_failure_labels": [
+    "video-outer-logger-escapes-after-inner:0"
+  ],
+  "detected": true,
+  "execution_returncode": 2,
+  "class_sha256": "77e670d3ff630ed646fce66b8385fb0dc5a0849f479b0432c4252e15f770aab8",
+  "cases": 1125,
+  "failed_cases": 11,
+  "unsupported_executions": 0,
+  "expected_result_failures": 0,
+  "failed_case_labels": [
+    "video-fault:2:8:0",
+    "video-fault:2:8:2",
+    "video-fault:2:8:3",
+    "video-fault:8:5:0",
+    "video-fault:8:5:2",
+    "video-fault:8:5:3",
+    "video-nested-boundary-fault:8:log.error::0",
+    "video-nested-boundary-fault:8:log.error::2",
+    "video-outer-logger-escapes-after-inner:0",
+    "video-outer-logger-escapes-after-inner:2",
+    "video-resume-two-outer-error-escapes:2:3"
+  ],
+  "named_failures_observed": true,
+  "original_coverage_unchanged": true
+}
