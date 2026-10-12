@@ -38,10 +38,27 @@ results and later reconstruction changes must be reported separately.
 
 ## Separate inputs and outputs
 
-The original supplied reference APK and generated APK outputs are separate from
-the v9 source/toolchain snapshot; their preservation is tracked in subsequent
-checkpoints. Android SDK and emulator caches are reproducible environment tools,
-not project source. The development signing identity inside the historical snapshot
+The exact supplied reference APK is committed in 12 parts under `vendor/original/`.
+It is 95,725,918 bytes with SHA-256
+`84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800`.
+The current reconstructed candidate is committed in 12 parts under
+`artifacts/current/`; it is 94,683,307 bytes with SHA-256
+`2eabb2d883598254ca71f99999297e1b98fa9ea56fb24c200d5f053456cff4d6`.
+Both have been fetched back through Git and checked against their complete original
+byte streams. `scripts/assemble_artifact.py` reconstructs either file from its
+committed manifest, verifying each part and the assembled APK.
+
+The editable 1,238-body Java recovery and its build/test inputs are committed in
+`project/`, beginning at checkpoint `06bbded7b0428144a0da24308b76bc6148b97ec0`.
+The candidate APK and reproducible Android tooling were added at
+`8cb274e1e17a0563691c6accc905c9f686c3dc46`. The automated build and Android capture
+workflow was added at `5d8c6ff25503b225929eb8443f04570f872b4a08`.
+Later commits update the recorder and evidence while preserving the candidate's
+identity until application source changes require another rebuilt artifact.
+
+Android SDK and emulator caches are reproducible environment tools, not project
+source; the official package pins and setup scripts are committed under
+`tools/android/`. The development signing identity inside the historical snapshot
 is an openly distributed test identity, not the publisher's signing key.
 
 All older repository documentation, quality reports and recovered Java samples

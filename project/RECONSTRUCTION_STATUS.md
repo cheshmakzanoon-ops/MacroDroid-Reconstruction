@@ -50,6 +50,11 @@ and accepts bounded install/launch/UI command budgets for slow emulators. Extend
 a timeout does not turn a failed command into a passed test. An explicit disposable
 device and explicit package-data-removal flag are still required.
 
+It also handles ADB's normal `Performing Push Install` banner before the package
+manager's terminal `Success` line. A zero exit status and the exact final success
+line are required; explicit failure diagnostics in either output stream reject
+the install. Four regression tests cover real transport output and failure cases.
+
 JDK 21 and a pinned Android 15/API 35 emulator image with ARM64 translation have been
 installed in the current environment. Completed app execution is established only by
 actual capture reports. Historical v9 reports in this tree describe the earlier

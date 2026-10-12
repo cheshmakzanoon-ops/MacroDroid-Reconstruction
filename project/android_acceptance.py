@@ -26,6 +26,17 @@ def positive_timeout(value:str)->int:
     if not 1<=seconds<=1800:raise argparse.ArgumentTypeError('Timeout must be between 1 and 1800 seconds')
     return seconds
 
+def install_ok(code:int,stdout:str,stderr:str='')->bool:
+    """ADB prints a transport banner before the package manager's final status.
+
+    A zero exit status and an exact terminal Success line are both required.
+    Explicit failure diagnostics in either stream still reject the installation.
+    """
+    lines=[line.strip() for line in stdout.splitlines() if line.strip()]
+    if code!=0 or not lines or lines[-1]!='Success':return False
+    diagnostics=stdout.splitlines()+stderr.splitlines()
+    return not any(re.search(r'\b(?:Failure|Error|Exception|failed)\b',line,re.I) for line in diagnostics)
+
 def sha(path:Path)->str:
     with path.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 
@@ -128,7 +139,7 @@ def main()->int:
                 present=shell(['pm','path',PACKAGE]);run['after_uninstall']=save(label+'-absent',present)
                 if 'package:' in present.stdout:raise CaptureError('Target package still installed after explicit removal')
                 installed=device(['install','--no-streaming',str(apk)],timeout=args.install_timeout);run['install']=save(label+'-install',installed)
-                if installed.returncode or installed.stdout.strip()!='Success':raise CaptureError('APK installation did not succeed')
+                if not install_ok(installed.returncode,installed.stdout,installed.stderr):raise CaptureError('APK installation did not succeed')
                 run['status']='INSTALLED_NOT_EXECUTED'
                 resolved=shell(['cmd','package','resolve-activity','--brief','-a','android.intent.action.MAIN','-c','android.intent.category.LAUNCHER','-p',PACKAGE]);run['resolve']=save(label+'-resolve',resolved)
                 components=[line.strip() for line in resolved.stdout.splitlines() if re.fullmatch(re.escape(PACKAGE)+r'/[A-Za-z0-9_.$]+',line.strip())]

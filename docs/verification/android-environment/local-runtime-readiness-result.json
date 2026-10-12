@@ -1,0 +1,28 @@
+{
+  "captured_utc": "2026-10-12T00:58:51Z",
+  "result": "LOCAL_SOFTWARE_BOOT_NOT_READY_WITHIN_BOUND",
+  "readiness_wait": {
+    "program": "wait_android_ready.py",
+    "timeout_seconds": 600,
+    "exit_code": 1
+  },
+  "emulator_started_utc": "2026-10-12T00:37:42Z",
+  "serial": "emulator-5560",
+  "android_os_executed": true,
+  "boot_completed_observed": false,
+  "arm64_abi_and_native_bridge_confirmed": true,
+  "native_bridge_library_bytes": 3612288,
+  "application_runtime_test_executed": false,
+  "application_parity_established": false,
+  "service_left_running": true,
+  "diagnostics": [
+    "PackageManager scanned 282 system apps.",
+    "First-boot Trichrome, Chrome and WebView unpacking consumed multiple minutes.",
+    "OverlayManager later logged idmap daemon connection timeouts.",
+    "No cgroup OOM or OOM-kill events were observed during the bounded check."
+  ],
+  "snapshot": "local-readiness-timeout-status.json",
+  "sanitized_emulator_log": "local-emulator-diagnostics-sanitized.log",
+  "key_bearing_log_lines_omitted": 4,
+  "next_validation_route": "Run the pinned image with KVM acceleration in GitHub Actions; retain local emulator while it continues."
+}

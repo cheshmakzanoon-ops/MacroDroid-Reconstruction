@@ -1,8 +1,16 @@
 # MacroDroid Reconstruction
 
-**The complete historical v9 source and toolchain snapshot is now stored in this
-repository.** Reconstruction remains incomplete: whole-app 1:1 Android runtime
-behavior has not been established.
+**The complete source snapshot, editable recovery code, original reference APK,
+and current rebuilt APK are stored in this repository.** The current candidate
+contains 1,238 recovered Java method bodies across 602 classes and builds the
+remaining code from preserved smali. Whole-app 1:1 Android runtime behavior has
+not been established.
+
+Current progress is in [RECONSTRUCTION_STATUS.md](project/RECONSTRUCTION_STATUS.md).
+The [verification workflow](.github/workflows/reconstruction.yml) rebuilds the
+committed source and separately measures Android cold launches; its
+[actual runs](https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/actions)
+show whether those checks have completed and passed.
 
 ## Get the working source
 
@@ -24,15 +32,59 @@ to create another checkout. To inspect historical v9 without current changes, us
 `--without-overlay`. To check the archive bytes without extraction, use
 `--verify-only`.
 
+## Assemble the committed APKs
+
+The current candidate is stored as ordinary Git binary parts, with each part and
+the assembled APK checked by SHA-256. From the repository root:
+
+```sh
+python3 scripts/assemble_artifact.py artifacts/current/manifest.json
+```
+
+This produces `workspace/artifacts/MacroDroid-5.67.8-current-hybrid.apk`:
+94,683,307 bytes, SHA-256
+`2eabb2d883598254ca71f99999297e1b98fa9ea56fb24c200d5f053456cff4d6`.
+The build scripts retain their historical `v9-hybrid.apk` output filename; the
+candidate manifest and checksum identify the actual development checkpoint.
+
+For reference-device comparisons, assemble the exact supplied original separately:
+
+```sh
+python3 scripts/assemble_artifact.py vendor/original/manifest.json
+```
+
+The original is a comparison input, not a build input. See the
+[candidate manifest](artifacts/current/manifest.json),
+[reference manifest](vendor/original/manifest.json), and
+[Android runtime instructions](tools/android/README.md).
+
+## Completed current-candidate checks
+
+| Check | Measured result | Evidence |
+| --- | --- | --- |
+| Original instructions, recovered JVM code, and signed rebuilt DEX | 181,668 cases; all 1,238 registered methods covered; zero mismatches or unsupported executions | [All-path comparison](docs/verification/current/java-all-path-parity.json) |
+| Full hybrid bytecode round trip | 71,267 classes / 349,972 method definitions; no missing, extra, unexpected, or omitted method changes | [Round-trip report](docs/verification/current/hybrid-roundtrip.json) |
+| New touch-blocking recovery | 2,420 cases; all 162 original instructions and 30 conditional branch edges visited | [Recovery report](docs/verification/current/block-touches-recovery.json) |
+| UI deliberate-fault detection | All 12 controls rejected their intended defect; the restored 11,353-case UI suite passed | [Negative controls](docs/verification/current/ui-negative-controls.json) |
+
+These are bounded host and artifact checks. They do not execute Android services
+or establish complete feature parity. The complete configured acceptance run and
+actual Android comparisons have separate reports; an unstarted or incomplete run
+is not a pass.
+
 ## Repository contents
 
 | Location | Contents |
 | --- | --- |
 | `vendor/v9/` | Complete immutable v9 source/toolchain archives in 40 ordinary Git binary parts, with a checksum manifest. No LFS download is required. |
 | `project/` | Current authored source, build and verification overlay, as development checkpoints add or update it. |
+| `artifacts/current/` | Current rebuilt APK in 12 checksum-pinned ordinary Git parts. |
+| `vendor/original/` | Exact supplied original APK in 12 checksum-pinned ordinary Git parts. |
 | `scripts/materialize_v9.py` | Verified archive assembly, safe extraction and overlay application. |
 | `scripts/import_v9.py` | Import the exact historical source/toolchain ZIPs when supplied separately. |
 | `docs/verification/restored-v9/` | Fresh v9 host build and test evidence from the restored full snapshot. |
+| `docs/verification/current/` | Measured current-candidate recovery and verification results. |
+| `tools/android/` | Reproducible JDK/SDK pins, disposable emulator setup, and runtime orchestration. |
 | `docs/v9/` and `docs/history/` | Historical quality reports, delivery records, provenance and checksums. |
 | `source/java/recovered/` | Four original illustrative recovered-source samples retained from the initial repository. |
 

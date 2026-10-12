@@ -132,6 +132,26 @@ Each request leaves a JSON result containing its argv, timestamps, exit code, an
 
 Create the `queue/STOP` file to stop this disposable emulator service. That operation targets the emulator started by this service; it does not stop other devices. Remove that stop marker explicitly before starting the service again.
 
+## GitHub verification
+
+The repository's `reconstruction.yml` workflow runs two independent jobs. The source job materializes the committed inputs, runs the complete configured host acceptance suite, and compares its freshly built hybrid APK byte-for-byte against the committed candidate. The Android job uses the exact same committed candidate and original reference APK, downloads the pinned runtime, requires the runner's allocated KVM device, and records actual cold launches on a fresh disposable emulator.
+
+`run_ci_runtime.py` starts the service, waits up to 900 seconds for a completed boot and the required ARM64 bridge, runs the existing recorder through the command queue, and compares complete screenshots and UI hierarchies. It records each command's actual exit code and stops its own emulator when finished. The recorder removes the known MacroDroid package and its app data between the two installs on this disposable device. It does not accept account, payment, or permission prompts.
+
+A failed install, launch, capture, or exact comparison fails the Android job. Both successful and failed runs preserve their evidence as workflow artifacts. A successful cold-launch comparison covers only that measured screen and execution interval; it does not establish triggers, actions, constraints, scheduling, permissions, or external integrations. No screenshot regions or UI attributes are ignored by the comparator.
+
+The same orchestration can be run directly after installing the toolchain, using a new output directory:
+
+```bash
+python3 tools/android/run_ci_runtime.py \
+  --tooling /absolute/path/to/tooling \
+  --source workspace/MacroDroid_v9 \
+  --original workspace/artifacts/MacroDroid-5.67.8-original.apk \
+  --candidate workspace/artifacts/MacroDroid-5.67.8-current-hybrid.apk \
+  --output /absolute/path/to/new-runtime-evidence \
+  --acceleration on
+```
+
 ## Evidence handling
 
 Publish the authored Python files, pin manifest, setup notes, and the relevant completed validation outputs. The SDK/JDK binaries and writable AVD disks should remain outside the repository. Inspect emulator logs before publication and omit transient ADB key material or unrelated runtime noise; observed ABI properties, command outcomes, and application captures are the useful evidence.
@@ -143,3 +163,4 @@ Source references:
 - [Google APIs system-image metadata](https://dl.google.com/android/repository/sys-img/google_apis/sys-img2-3.xml)
 - [Android emulator command-line documentation](https://developer.android.com/studio/run/emulator-commandline)
 - [Android's ARM translation background](https://android-developers.googleblog.com/2020/03/run-arm-apps-on-android-emulator.html)
+- [GitHub-hosted runner hardware acceleration](https://docs.github.com/en/actions/reference/runners/github-hosted-runners)

@@ -122,7 +122,9 @@ def main() -> int:
         boot_log = environment / 'emulator-boot.log'
         if boot_log.is_file():
             lines = boot_log.read_text(errors='replace').splitlines()
-            sanitized = [line for line in lines if 'adb_auth' not in line and 'public key' not in line.lower()]
+            sanitized = [line for line in lines
+                         if 'adb_auth' not in line and 'adb.pubkey' not in line
+                         and 'public key' not in line.lower()]
             (output / 'emulator-diagnostics.log').write_text('\n'.join(sanitized) + '\n')
             report['emulator_log_lines_omitted'] = len(lines) - len(sanitized)
         report['finished_utc'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())

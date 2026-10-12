@@ -1,0 +1,278 @@
+{
+  "passed": true,
+  "target": "Lcom/arlosoft/macrodroid/action/BlockTouchesAction;->invokeAction(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)V",
+  "original_smali_method_lines": 474,
+  "original_method_sha256": "b69d03d5479f90758cbad7bdf760b881bf306b14f8482c368d9d714a71dca453",
+  "recovered_source": "source/java/recovered/ui/BlockTouchesMethods.java",
+  "registered_method_bodies": 1238,
+  "registered_classes": 602,
+  "original_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+  "test_fixture_sha256": "4a92faa0db690c1cc963e4d3a574a1657299156750e26ecd67fe92bded10c52c",
+  "candidate_apk": "dist/MacroDroid-5.67.8-v9-hybrid.apk",
+  "candidate_apk_sha256": "2eabb2d883598254ca71f99999297e1b98fa9ea56fb24c200d5f053456cff4d6",
+  "all_suite_cases": 181668,
+  "ui_cases": 11353,
+  "block_touches_cases": 2420,
+  "comparison_paths": 3,
+  "failed_cases": 0,
+  "unsupported_executions": 0,
+  "ui_independent_result_or_state_expectations": 9543,
+  "block_touches_coverage": {
+    "instructions": 162,
+    "visited": 162,
+    "unvisitedOffsets": [],
+    "conditionalEdges": 30,
+    "conditionalEdgesVisited": 30,
+    "unvisitedConditionalEdges": []
+  },
+  "python_source_and_tooling_tests_passed": 157,
+  "negative_controls": {
+    "pass": true,
+    "controls": [
+      {
+        "mutation": "cast-before-subtract",
+        "pass": true,
+        "failedCases": 112,
+        "requiredCase": "touch-numeric:0.9:1:7",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "parcel-nonzero-boolean",
+        "pass": true,
+        "failedCases": 256,
+        "requiredCase": "parcel-read:1:1",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "parcel-field-order",
+        "pass": true,
+        "failedCases": 1952,
+        "requiredCase": "parcel-write:1:0:0",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "sms-catch-must-not-swallow-error",
+        "pass": true,
+        "failedCases": 72,
+        "requiredCase": "provider:1:1:2:true",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "sound-generic-token",
+        "pass": true,
+        "failedCases": 27,
+        "requiredCase": "sound:4:0",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "block-toggle-snapshot",
+        "pass": true,
+        "failedCases": 34,
+        "requiredCase": "block:2:2:1:false:true",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "block-option-must-be-reread",
+        "pass": true,
+        "failedCases": 31,
+        "requiredCase": "block-option-after-stop:1:0:0",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "block-trigger-must-be-reread",
+        "pass": true,
+        "failedCases": 926,
+        "requiredCase": "block:0:9:0:false:true",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "block-width-payload",
+        "pass": true,
+        "failedCases": 420,
+        "requiredCase": "block:0:2:0:false:true",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "block-hidden-color-sentinel",
+        "pass": true,
+        "failedCases": 159,
+        "requiredCase": "block:0:2:0:true:false",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "block-catch-must-include-checked-exception",
+        "pass": true,
+        "failedCases": 9,
+        "requiredCase": "block-fault:accessibility:12:4",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      },
+      {
+        "mutation": "block-catch-must-not-swallow-error",
+        "pass": true,
+        "failedCases": 41,
+        "requiredCase": "block-fault:accessibility:12:3",
+        "requiredCaseRejected": true,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceFixtureAndApkUnchanged": true
+      }
+    ],
+    "positiveRestorationPassed": true,
+    "restorationCases": 11353,
+    "androidRuntime": false,
+    "sourceFixtureAndApkUnchanged": true
+  },
+  "roundtrip": {
+    "variant": "hybrid",
+    "apk_sha256": "2eabb2d883598254ca71f99999297e1b98fa9ea56fb24c200d5f053456cff4d6",
+    "baseline_source_hash_mismatches": [],
+    "classes_compared": 71267,
+    "methods_total": 349972,
+    "missing": [],
+    "extra": [],
+    "unexpected_changed_methods": [],
+    "omitted_registered_changes": [],
+    "altered_opaque_payload": [],
+    "misaligned": [],
+    "pass": true
+  },
+  "interpreter_changes_required": false,
+  "original_apk_or_dex_build_input": false,
+  "android_runtime_executed_by_this_suite": false,
+  "scope": "Registered method-body recovery with bounded host differential evidence; not complete Java reconstruction or full Android runtime equivalence.",
+  "changed_source_and_test_files": {
+    "source/java/recovered/ui/BlockTouchesMethods.java": {
+      "sha256": "b1d9f08244eeafd81b6740fdd83d101aab4794bb7db9f010b62b51028cfcd050",
+      "bytes": 4900
+    },
+    "source/ui-methods.json": {
+      "sha256": "0156995bd0ffe836721d0c3be0fdd2fbc00e437cc2828eafc5301102e836eb6f",
+      "bytes": 2625
+    },
+    "source/java-method-map.json": {
+      "sha256": "7a49b2fd1d841c2e692bb9bc3f76091f9d242a156e4cece7cf60253952441c3a",
+      "bytes": 777216
+    },
+    "test-support/java/android/content/Context.java": {
+      "sha256": "90cf802d0ff83c0117b447f47bbd7e1652415bc250d1ec9e93ca94a2f411a4b0",
+      "bytes": 1757
+    },
+    "test-support/java/android/content/Intent.java": {
+      "sha256": "7763f0a284ae39369ceafc676997d367aca3abc83dffa9de1cf71df0ddb32592",
+      "bytes": 1316
+    },
+    "test-support/java/android/content/ComponentName.java": {
+      "sha256": "1775586ae8458e25097ba08cacec97a4f0ad57a32af00150376889a2f8e84155",
+      "bytes": 116
+    },
+    "test-support/java/com/arlosoft/macrodroid/action/BlockTouchesAction.java": {
+      "sha256": "9ca94017002c3d93487332ab7b1d343e3416b92163aacd120ce9e8522bd15e71",
+      "bytes": 1011
+    },
+    "test-support/java/com/arlosoft/macrodroid/action/services/BlockTouchesService.java": {
+      "sha256": "72c98afff473550ecd75b34ca526ebb9e10f9e5ba2de61c444ca34b431757950",
+      "bytes": 251
+    },
+    "test-support/java/com/arlosoft/macrodroid/triggers/DeviceUnlockedTrigger.java": {
+      "sha256": "795cee92c55165ca36f339663e142ad3b8fc03477e5980391413dd1dd0edde2a",
+      "bytes": 96
+    },
+    "test-support/java/com/arlosoft/macrodroid/triggers/ScreenOnOffTrigger.java": {
+      "sha256": "7c3f54859aeaea25e764613e4a028ee901cde6ea1c62f76dc10aa0d05350e746",
+      "bytes": 208
+    },
+    "test-support/java/com/arlosoft/macrodroid/triggers/services/MacroDroidAccessibilityServiceJellyBean.java": {
+      "sha256": "ced373cb038bd092f306107786e01eea5fadd77daa78c476e67815ea741d5d88",
+      "bytes": 540
+    },
+    "test-support/java/com/arlosoft/macrodroid/variables/VariableWithDictionaryKeys.java": {
+      "sha256": "a644b6f552d7bd627d875e0429e7665a5926db007228fe46a8f82c93e410203b",
+      "bytes": 126
+    },
+    "test-support/java/com/arlosoft/macrodroid/variables/a.java": {
+      "sha256": "e416098dfc0c772371859e81de5ccd3c4a2cf0c9371058272ffe2911f00cd8e5",
+      "bytes": 765
+    },
+    "test-support/java/defpackage/TouchControl.java": {
+      "sha256": "63c3ae174d2da1e4d2be6aa5df7eb4babaccd984e5c7edaf3f3d031be1f15d90",
+      "bytes": 2439
+    },
+    "test-support/java/defpackage/ku1.java": {
+      "sha256": "73f45ee15feedcbe0dccc64f7e4f2ceec86f38cdfa9d070ba64713a1a7bc944f",
+      "bytes": 307
+    },
+    "tests/java/UiParityTests.java": {
+      "sha256": "d4f26dd10ffe7447cd2b06203bfdc65f1057c8c6d5fbe5fe1c27778f7d243aa6",
+      "bytes": 43546
+    },
+    "tests/fixtures/original-methods.dex": {
+      "sha256": "4a92faa0db690c1cc963e4d3a574a1657299156750e26ecd67fe92bded10c52c",
+      "bytes": 516788
+    },
+    "tests/fixtures/provenance.json": {
+      "sha256": "7aecdba3ad75b01951bad3cfe7a52baebbc738b4e805088e714a7d42982f5764",
+      "bytes": 495
+    },
+    "tests/test_build.py": {
+      "sha256": "0c8f7f847989218a8f253312570c7c727519d3d6bff12dee9860382ed826b559",
+      "bytes": 10201
+    },
+    "tests/test_v9.py": {
+      "sha256": "00bde27d7230bb22593fcca19ef0b1c16684e9b396f93bd8643e8afb6aec31a1",
+      "bytes": 15087
+    },
+    "ui_negative_control.py": {
+      "sha256": "dd5f765ea4e4df4ae7d5bbc754cd822d32e4441aaa5a20705c7024a904e3bf47",
+      "bytes": 6176
+    },
+    "UI_RECOVERY.md": {
+      "sha256": "41149a673db633f6ae653d0155a4de68d37bc54eb402a3faf199c516f549cd45",
+      "bytes": 9584
+    }
+  },
+  "own_pinned_source_files_match_release_snapshot": true,
+  "source_snapshot_at_verification": "d58f84825176561ae29e79c86e20626e65685f702e98a0198be5ea3407455925",
+  "proof_reports": [
+    "reports/java-all-path-parity.json",
+    "reports/java-ui-three-path-parity.json",
+    "reports/ui-negative-controls.json",
+    "reports/ui-positive-restoration.json",
+    "reports/hybrid-roundtrip.json",
+    "reports/migration-static-proof.json",
+    "reports/migration-linkage-check.json",
+    "reports/hybrid-build.json"
+  ]
+}
