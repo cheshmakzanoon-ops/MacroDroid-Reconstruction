@@ -1,0 +1,133 @@
+--- original_probe_73d210a6.py
++++ probe_corrected_guard.py
+@@ -10,9 +10,9 @@
+ import time
+ import traceback
+ 
+-ROOT = Path('/workspace/scratch/4130730d15aa/notification-readiness-review')
+-SOURCE = Path('/workspace/scratch/4130730d15aa/notification-readiness-forward/stage-01/repository')
+-OUTPUT = ROOT / 'reports/initial-guard-01'
++ROOT = Path('/dev/shm/macrodroid-readiness-independent-review-02')
++SOURCE = Path('/dev/shm/macrodroid-notification-readiness/stage-02/repository')
++OUTPUT = ROOT / 'reports/corrected-guard-01'
+ 
+ 
+ def ident(path):
+@@ -27,7 +27,7 @@
+ def main():
+     if OUTPUT.exists(): raise RuntimeError('Use a fresh output directory')
+     OUTPUT.mkdir(parents=True)
+-    shutil.copyfile(__file__, OUTPUT / 'probe_initial_guard.py')
++    shutil.copyfile(__file__, OUTPUT / 'probe_corrected_guard.py')
+     selected = sorted((SOURCE / 'tools/parity_journeys').glob('*.py')) + sorted((SOURCE / 'project').glob('*.py'))
+     before = {str(p): ident(p) for p in selected}
+     save(OUTPUT / 'source-identities-before.json', before)
+@@ -39,7 +39,7 @@
+     import notification_readiness as ready
+     import test_notification_readiness as tests
+     started = time.monotonic()
+-    result = {'scope': 'Synthetic guard counterexamples using the real current validator; not Android, no parity credit.',
++    result = {'scope': 'Independent replay of the closed synthetic counterexamples and precise follow-up checks against the corrected validator; not Android, no parity credit.',
+               'reviewedModule': before[str(SOURCE / 'tools/parity_journeys/notification_readiness.py')], 'cases': []}
+     case = tests.ReadinessReportControls()
+     try:
+@@ -60,6 +60,8 @@
+         case.report['commands'][:] = block + [c for i, c in enumerate(case.report['commands']) if i not in positions]
+         changed = case.fixture.result()
+         save(OUTPUT / 'whole-block-ledger-reorder-result.json', changed)
++        if changed.get('journey_equal') or 'Global command ledger is not chronological' not in changed.get('reason', ''):
++            raise RuntimeError('Whole-block ledger counterexample still accepted or rejected for the wrong reason')
+         result['cases'].append({'name': 'whole-block-ledger-reorder', 'journeyEqual': changed.get('journey_equal'),
+                                 'originalPositions': positions, 'newPositions': list(range(len(block))),
+                                 'reason': changed.get('reason')})
+@@ -72,6 +74,8 @@
+         case.edit_phase(bools)
+         changed = case.fixture.result()
+         save(OUTPUT / 'boolean-schema-indices-result.json', changed)
++        if changed.get('journey_equal'):
++            raise RuntimeError('Compound boolean mutation still accepted')
+         result['cases'].append({'name': 'boolean-schema-indices', 'journeyEqual': changed.get('journey_equal'),
+                                 'reason': changed.get('reason')})
+         case.report.clear(); case.report.update(copy.deepcopy(original_report))
+@@ -93,10 +97,59 @@
+         except Exception as error:
+             accepted, reason = False, str(error)
+         save(OUTPUT / 'row-wrapper-span-phase.json', phase)
++        if accepted or 'first eligible contiguous sequence' not in (reason or ''):
++            raise RuntimeError('Short raw command span still accepted or rejected for the wrong reason')
+         result['cases'].append({'name': 'row-wrapper-span-inflation-phase-only', 'phaseAccepted': accepted,
+                                 'rawHomeCommandSpanSeconds': command_span, 'rowWrapperSpanSeconds': wrapper_span,
+                                 'policyMinimumReadySpanSeconds': ready.POLICY['minimum_ready_span_seconds'],
+                                 'reason': reason, 'fullReportAcceptanceClaimed': False})
++        case.report.clear(); case.report.update(copy.deepcopy(original_report))
++        # Each primitive format fault is independent. Only its phase changes;
++        # original phase bytes and complete report are restored before the next.
++        for label, mutate, expected_reason in (
++            ('literal-integer-phase-schema', lambda p: p.update(schema=True), 'Incomplete or altered notification readiness phase'),
++            ('literal-integer-accepted-index', lambda p: p['accepted_sequence'].__setitem__(0, True), 'first eligible contiguous sequence'),
++            ('literal-integer-gap-index', lambda p: p['gaps'][0].update(after_index=False), 'Invalid notification readiness fixed gap')):
++            case.report.clear(); case.report.update(copy.deepcopy(original_report))
++            reference = case.report['runs'][1]['transitions'][4][ready.REFERENCE_KEY]
++            (case.folder / reference['path']).write_bytes(original_phase)
++            case.edit_phase(mutate)
++            changed = case.fixture.result()
++            save(OUTPUT / (label + '-result.json'), changed)
++            if changed.get('journey_equal') or expected_reason not in changed.get('reason', ''):
++                raise RuntimeError('Primitive format fault accepted or rejected for the wrong reason: ' + label)
++            result['cases'].append({'name': label, 'journeyEqual': False, 'reason': changed['reason']})
++        case.report.clear(); case.report.update(copy.deepcopy(original_report))
++        reference = case.report['runs'][1]['transitions'][4][ready.REFERENCE_KEY]
++        (case.folder / reference['path']).write_bytes(original_phase)
++        # A configured timeout can have been allocated before the later start.
++        # Real endpoints still fall inside the exact same bounded phase.
++        allocated = json.loads(original_phase)
++        allocated['observations'][-1]['commands'][0]['timeout_seconds'] = 10
++        save(OUTPUT / 'pre-start-timeout-allocation-phase.json', allocated)
++        ready.verify_phase(case.folder, allocated, tests.proof)
++        result['cases'].append({'name': 'pre-start-timeout-allocation', 'phaseAccepted': True,
++                                'actualPhaseSeconds': allocated['seconds'], 'configuredTimeoutSeconds': 10})
++        late = copy.deepcopy(allocated)
++        late['observations'][-1]['commands'][-1]['finished_monotonic'] = late['finished_monotonic'] + 0.01
++        save(OUTPUT / 'late-actual-command-end-phase.json', late)
++        try:
++            ready.verify_phase(case.folder, late, tests.proof)
++        except Exception as error:
++            late_reason = str(error)
++        else:
++            raise RuntimeError('A real command endpoint outside the phase was accepted')
++        if 'actual phase bound' not in late_reason:
++            raise RuntimeError('Late endpoint rejected for the wrong reason: ' + late_reason)
++        result['cases'].append({'name': 'late-actual-command-end', 'phaseAccepted': False, 'reason': late_reason})
++        # Moving a whole block is different from deleting the input's complete
++        # ledger record while leaving every remaining record in chronological order.
++        case.report['commands'].remove(case.report['runs'][0]['transitions'][4]['command'])
++        missing_input = case.fixture.result()
++        save(OUTPUT / 'missing-denial-ledger-entry-result.json', missing_input)
++        if missing_input.get('journey_equal') or 'immediately follow their unique denial input' not in missing_input.get('reason', ''):
++            raise RuntimeError('Missing input ledger binding accepted or rejected for the wrong reason')
++        result['cases'].append({'name': 'missing-denial-ledger-entry', 'journeyEqual': False, 'reason': missing_input['reason']})
+         case.report.clear(); case.report.update(copy.deepcopy(original_report))
+         restored = case.fixture.result()
+         save(OUTPUT / 'restored-result.json', restored)
+@@ -108,9 +161,10 @@
+             for name in payloads: archive.add(case.folder / name, arcname=name, recursive=False)
+         result['syntheticArtifacts'] = {'count': len(payloads), 'archive': ident(OUTPUT / 'synthetic-artifacts.tar.gz')}
+         result['exactSyntheticResultRestored'] = True
+-        result['status'] = 'COUNTEREXAMPLE_REVIEW_COMPLETED'
++        result['status'] = 'CORRECTED_GUARD_INDEPENDENT_REVIEW_PASSED'
++        result['passed'] = True
+     except BaseException as error:
+-        result.update(status='REVIEW_EXECUTION_FAILED', error=str(error))
++        result.update(status='REVIEW_EXECUTION_FAILED', passed=False, error=str(error))
+         (OUTPUT / 'failure-traceback.txt').write_text(traceback.format_exc())
+     finally:
+         case.doCleanups()
+@@ -120,6 +174,8 @@
+         result['durationSeconds'] = time.monotonic() - started
+         save(OUTPUT / 'result.json', result)
+         print(json.dumps(result, indent=2))
++    if not result.get('passed') or not result['allBoundSourceBytesUnchanged']:
++        raise SystemExit(1)
+ 
+ 
+ if __name__ == '__main__':

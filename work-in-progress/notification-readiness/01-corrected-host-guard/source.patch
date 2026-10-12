@@ -1,0 +1,869 @@
+--- parent/tools/parity_journeys/editor_journey.py
++++ readiness/tools/parity_journeys/editor_journey.py
+@@ -421,6 +421,10 @@
+                 handoffs.append(run_handoff)
+         if policy is not None:
+             observed_journey.capture_events(folder, report, proof)
++            import notification_readiness
++            if report['schema'] == notification_readiness.REPORT_SCHEMA:
++                result['notification_readiness_observations'] = notification_readiness.verify_report(folder, report, proof)
++                result['notification_readiness_policy'] = notification_readiness.POLICY
+             result['capture_policy'] = policy
+             result['process_handoff_outcomes'] = handoffs
+             result['process_handoff_outcomes_equal'] = handoffs[0] == handoffs[1]
+@@ -476,9 +480,12 @@
+     ap.add_argument('--accept-package-data-removal', action='store_true')
+     ap.add_argument('--observe-denial-handoff', action='store_true')
+     ap.add_argument('--settle-full-frames', action='store_true')
++    ap.add_argument('--observe-notification-readiness', action='store_true')
+     args = ap.parse_args()
+     if args.observe_denial_handoff != args.settle_full_frames:
+         ap.error('The observed policy requires both --observe-denial-handoff and --settle-full-frames')
++    if args.observe_notification_readiness and not args.observe_denial_handoff:
++        ap.error('Notification readiness requires the existing denial handoff and full-frame policy')
+     if any(step[2] is None for step in PLAN) and not args.observe_denial_handoff:
+         ap.error('The information-dialog adapter requires --observe-denial-handoff and --settle-full-frames')
+     sys.path.insert(0, str(args.source.resolve()))
+@@ -489,6 +496,11 @@
+     if args.observe_denial_handoff:
+         import observed_journey
+         report.update(schema=observed_journey.REPORT_SCHEMA, capture_policy=observed_journey.POLICY, capture_events=[])
++    if args.observe_notification_readiness:
++        import notification_readiness
++        notification_readiness.require_plan()
++        report.update(schema=notification_readiness.REPORT_SCHEMA,
++                      notification_readiness_policy=notification_readiness.POLICY)
+     def save():
+         (args.output / 'journey.json').write_text(json.dumps(report, indent=2) + '\n')
+     save()
+@@ -537,6 +549,8 @@
+                         run['transitions'].append(capture_transition(
+                             recorder, previous, entry['label'] + '-' + name, name, action, proof, run))
+                         time.sleep(2)
++                        if args.observe_notification_readiness and name == 'reference-promotion':
++                            notification_readiness.observe(recorder, run, run['transitions'][-1], previous)
+                     shot = (observed_journey.capture(recorder, entry['label'] + '-' + name, owner)
+                             if args.observe_denial_handoff else recorder.snapshot(entry['label'] + '-' + name, owner))
+                     shot['name'] = name
+--- parent/tools/parity_journeys/notification_readiness.py
++++ readiness/tools/parity_journeys/notification_readiness.py
+@@ -0,0 +1,380 @@
++"""Bounded, read-only lifecycle observations before notification result capture.
++
++These observations are not screenshots or continuity evidence. The existing
++full-frame and recorded-crash handoff checks remain independently required.
++"""
++from __future__ import annotations
++
++import copy
++import json
++import re
++import shlex
++import time
++
++import editor_journey as runner
++import observed_journey as observed
++
++REPORT_SCHEMA = 5
++PLAN_SHA256 = '42ece5a06a280186ddf9796a4524975d478263e545260674e2b1b4cf718d46fb'
++REFERENCE_KEY = 'pre_capture_readiness'
++POLICY_KEY = 'notification_readiness_policy'
++POLICY = {
++    'schema': 1,
++    'plan_sha256': PLAN_SHA256,
++    'after': 'notification-request',
++    'before': 'reference-promotion',
++    'action': runner.DENY,
++    'max_observations': 16,
++    'max_seconds': 10,
++    'post_input_wait_seconds': 2,
++    'observation_gap_seconds': 0.25,
++    'minimum_ready_observations': 2,
++    'minimum_ready_span_seconds': 1.05,
++    'ready_span_start': 'first_ready_pidof_command_started_monotonic',
++    'ready_span_finish': 'last_ready_pidof_command_finished_monotonic',
++    'ready_component': observed.HOME,
++    'other_allowed_component': observed.PERMISSION_ACTIVITY,
++    'commands': [['pidof', runner.PACKAGE], ['dumpsys', 'activity', 'activities'], ['pidof', runner.PACKAGE]],
++    'first_eligible_contiguous_sequence': True,
++    'frames_or_continuity_credit': False,
++    'app_restart_performed': False,
++}
++EPSILON = 0.001
++COMMAND_FIELDS = {'argv', 'returncode', 'timed_out', 'started_utc', 'started_monotonic',
++                  'finished_monotonic', 'timeout_seconds', 'stdout', 'stderr'}
++
++
++def require_plan():
++    import day_time_journey
++    day_time_journey.require_plan()
++    if runner.fingerprint(runner.PLAN) != PLAN_SHA256:
++        raise runner.JourneyError('Notification readiness requires the exact thirteen-screen plan')
++
++
++def contains_evidence(value):
++    if isinstance(value, dict):
++        return (REFERENCE_KEY in value or POLICY_KEY in value
++                or any(contains_evidence(item) for item in value.values()))
++    return isinstance(value, list) and any(contains_evidence(item) for item in value)
++
++
++def _field_count(value, name):
++    if isinstance(value, dict):
++        return int(name in value) + sum(_field_count(item, name) for item in value.values())
++    return sum(_field_count(item, name) for item in value) if isinstance(value, list) else 0
++
++
++def require_policy(report):
++    require_plan()
++    if (type(report.get('schema')) is not int or report['schema'] != REPORT_SCHEMA
++            or runner.fingerprint(report.get(POLICY_KEY)) != runner.fingerprint(POLICY)):
++        raise runner.JourneyError('Missing or altered notification readiness policy')
++
++
++def _command(folder, record, args, proof):
++    if (set(record) != COMMAND_FIELDS or record['argv'] != ['shell', shlex.join(args)]
++            or record['timed_out'] is not False or type(record['returncode']) is not int
++            or not isinstance(record['started_utc'], str) or not record['started_utc']):
++        raise runner.JourneyError('Invalid notification readiness command')
++    start, finish, timeout = (record[key] for key in
++                              ('started_monotonic', 'finished_monotonic', 'timeout_seconds'))
++    if (not all(observed.finite(item) for item in (start, finish, timeout))
++            or start > finish or not 0 < timeout <= POLICY['max_seconds']):
++        raise runner.JourneyError('Invalid notification readiness command timing')
++    return proof.artifact(folder, record['stdout']), proof.artifact(folder, record['stderr'])
++
++
++def _pid(folder, record, proof):
++    out, err = _command(folder, record, POLICY['commands'][0], proof)
++    if record['returncode'] == 1 and out == b'' and err == b'':
++        return None
++    if record['returncode'] != 0 or err != b'' or re.fullmatch(rb'[1-9][0-9]*\n?', out) is None:
++        raise runner.JourneyError('Unreviewed notification readiness PID result')
++    return out.strip().decode('ascii')
++
++
++def _foreground(folder, record, proof):
++    out, err = _command(folder, record, POLICY['commands'][1], proof)
++    if record['returncode'] != 0 or err != b'':
++        raise runner.JourneyError('Notification readiness foreground command failed')
++    front = observed.component(out, proof)
++    if front not in (observed.HOME, observed.PERMISSION_ACTIVITY):
++        raise runner.JourneyError('Unreviewed notification readiness foreground component')
++    return front
++
++
++def derive_observation(folder, commands, proof):
++    if not commands:
++        raise runner.JourneyError('Notification readiness observation has no command')
++    first = _pid(folder, commands[0], proof)
++    if first is None:
++        if len(commands) != 1:
++            raise runner.JourneyError('Absent PID observation contains additional commands')
++        return {'state': 'MAIN_PID_ABSENT', 'pid_first': None, 'pid_final': None, 'component': None}
++    if len(commands) != 3:
++        raise runner.JourneyError('Present PID observation needs exactly three commands')
++    front = _foreground(folder, commands[1], proof)
++    last = _pid(folder, commands[2], proof)
++    if last is None:
++        state = 'MAIN_PID_ABSENT_AFTER_FOREGROUND'
++    elif first != last:
++        state = 'MAIN_PID_CHANGED'
++    elif front != observed.HOME:
++        state = 'PERMISSION_STILL_FOREGROUND'
++    else:
++        state = 'HOME_WITH_SAME_PID'
++    return {'state': state, 'pid_first': first, 'pid_final': last, 'component': front}
++
++
++def _sequence(rows):
++    """Return the first eligible sequence; every non-ready sample resets it."""
++    anchor = None
++    pid = None
++    for index, row in enumerate(rows):
++        state = row['observation']
++        if state['state'] != 'HOME_WITH_SAME_PID':
++            anchor, pid = None, None
++            continue
++        if anchor is None or pid != state['pid_final']:
++            anchor, pid = index, state['pid_final']
++        if (index - anchor + 1 >= POLICY['minimum_ready_observations']
++                and row['commands'][-1]['finished_monotonic']
++                - rows[anchor]['commands'][0]['started_monotonic']
++                >= POLICY['minimum_ready_span_seconds']):
++            return [anchor, index], pid
++    return None, None
++
++
++def _boundary(folder, run, transition, prior, proof):
++    require_plan()
++    if (run.get('label') not in ('original', 'candidate')
++            or transition.get('to') != POLICY['before'] or transition.get('action') != runner.DENY
++            or prior.get('name') != POLICY['after'] or prior.get('owner') != runner.PERMISSION):
++        raise runner.JourneyError('Notification readiness is outside the reviewed denial boundary')
++    if observed.component(proof.artifact(folder, transition['preinput_artifacts']['foreground']), proof) != observed.PERMISSION_ACTIVITY:
++        raise runner.JourneyError('Readiness input did not start from the observed permission component')
++    return observed.one_pid(proof.artifact(folder, transition['preinput_artifacts']['pid']), proof)
++
++
++def observe(recorder, run, transition, prior):
++    old_pid = _boundary(recorder.folder, run, transition, prior, recorder.proof)
++    if REFERENCE_KEY in transition:
++        raise runner.JourneyError('Notification readiness was already attempted')
++    start = time.monotonic()
++    label = run['label'] + '-notification-readiness'
++    phase = {'schema': 1, 'status': 'INCOMPLETE', 'label': label, 'policy': copy.deepcopy(POLICY),
++             'old_pid': old_pid, 'started_monotonic': start, 'observations': [], 'gaps': []}
++    deadline = start + POLICY['max_seconds']
++
++    def execute(row, args):
++        count = len(recorder.log)
++        try:
++            return recorder.shell(args)[0]
++        finally:
++            row['commands'].extend(copy.deepcopy(recorder.log[count:]))
++
++    try:
++        if start + EPSILON < transition['command']['finished_monotonic'] + POLICY['post_input_wait_seconds']:
++            raise runner.JourneyError('Readiness began before the fixed post-input wait finished')
++        with observed.command_budget(recorder, POLICY['max_seconds']):
++            recorder.deadline = min(recorder.deadline, deadline)
++            for index in range(POLICY['max_observations']):
++                if time.monotonic() >= deadline:
++                    raise runner.JourneyError('Notification readiness deadline expired')
++                row = {'index': index, 'started_monotonic': time.monotonic(), 'commands': []}
++                phase['observations'].append(row)
++                try:
++                    first = execute(row, POLICY['commands'][0])
++                    if _pid(recorder.folder, first, recorder.proof) is not None:
++                        front = execute(row, POLICY['commands'][1])
++                        _foreground(recorder.folder, front, recorder.proof)
++                        execute(row, POLICY['commands'][2])
++                    row['observation'] = derive_observation(recorder.folder, row['commands'], recorder.proof)
++                finally:
++                    row['finished_monotonic'] = time.monotonic()
++                if time.monotonic() > deadline:
++                    raise runner.JourneyError('Notification readiness deadline expired')
++                sequence, pid = _sequence(phase['observations'])
++                if sequence is not None:
++                    phase.update(status='READY', accepted_sequence=sequence, ready_pid=pid)
++                    break
++                if index + 1 == POLICY['max_observations']:
++                    raise runner.JourneyError('Notification readiness observation limit exhausted')
++                if time.monotonic() + POLICY['observation_gap_seconds'] > deadline:
++                    raise runner.JourneyError('Insufficient notification readiness time for the next fixed gap')
++                gap = {'after_index': index, 'requested_seconds': POLICY['observation_gap_seconds'],
++                       'started_monotonic': time.monotonic()}
++                phase['gaps'].append(gap)
++                try:
++                    time.sleep(gap['requested_seconds'])
++                finally:
++                    gap['finished_monotonic'] = time.monotonic()
++    except Exception as error:
++        phase.update(status='FAILED', error_type=type(error).__name__, reason=str(error))
++        raise
++    finally:
++        phase['finished_monotonic'] = time.monotonic()
++        phase['seconds'] = phase['finished_monotonic'] - start
++        transition[REFERENCE_KEY] = recorder.save(label + '.json', (json.dumps(phase, indent=2) + '\n').encode())
++    return phase
++
++
++def verify_phase(folder, phase, proof):
++    """Replay a successful phase, without claiming it as app parity evidence."""
++    if (set(phase) != {'schema', 'status', 'label', 'policy', 'old_pid', 'started_monotonic',
++                      'observations', 'gaps', 'accepted_sequence', 'ready_pid', 'finished_monotonic', 'seconds'}
++            or type(phase.get('schema')) is not int or phase['schema'] != 1 or phase.get('status') != 'READY'
++            or runner.fingerprint(phase.get('policy')) != runner.fingerprint(POLICY)):
++        raise runner.JourneyError('Incomplete or altered notification readiness phase')
++    start, finish = phase['started_monotonic'], phase['finished_monotonic']
++    if (not all(observed.finite(value) for value in (start, finish, phase['seconds']))
++            or not 0 <= finish - start <= POLICY['max_seconds']
++            or abs(finish - start - phase['seconds']) > EPSILON):
++        raise runner.JourneyError('Notification readiness exceeded its time bound')
++    rows, gaps = phase['observations'], phase['gaps']
++    if not 2 <= len(rows) <= POLICY['max_observations'] or len(gaps) != len(rows) - 1:
++        raise runner.JourneyError('Invalid notification readiness observation or gap count')
++    previous = start
++    commands = []
++    for index, row in enumerate(rows):
++        first, last = row['started_monotonic'], row['finished_monotonic']
++        if (set(row) != {'index', 'started_monotonic', 'finished_monotonic', 'commands', 'observation'}
++                or type(row['index']) is not int or row['index'] != index
++                or not all(observed.finite(value) for value in (first, last))
++                or not previous <= first <= last <= finish):
++            raise runner.JourneyError('Notification readiness observations are out of order')
++        state = derive_observation(folder, row['commands'], proof)
++        if row['observation'] != state:
++            raise runner.JourneyError('Notification readiness state differs from its raw commands')
++        command_finish = first
++        for command in row['commands']:
++            command_start, end = command['started_monotonic'], command['finished_monotonic']
++            # Recorder allocates the subprocess timeout before it timestamps the
++            # command start. Prove the actual endpoints inside the bounded phase;
++            # do not infer an unavailable allocation time from start + timeout.
++            if not command_finish <= command_start <= end <= last:
++                raise runner.JourneyError('Notification readiness command is out of order or beyond its actual phase bound')
++            command_finish = end
++            commands.append(command)
++        previous = last
++        if index < len(gaps):
++            gap = gaps[index]
++            gap_start, gap_finish = gap['started_monotonic'], gap['finished_monotonic']
++            if (set(gap) != {'after_index', 'requested_seconds', 'started_monotonic', 'finished_monotonic'}
++                    or type(gap['after_index']) is not int or gap['after_index'] != index
++                    or gap['requested_seconds'] != POLICY['observation_gap_seconds']
++                    or not all(observed.finite(value) for value in (gap_start, gap_finish))
++                    or not last <= gap_start <= gap_finish <= finish
++                    or gap_finish - gap_start + EPSILON < POLICY['observation_gap_seconds']):
++                raise runner.JourneyError('Invalid notification readiness fixed gap')
++            previous = gap_finish
++    sequence, pid = _sequence(rows)
++    if (sequence is None or sequence[-1] != len(rows) - 1
++            or type(phase.get('accepted_sequence')) is not list
++            or any(type(index) is not int for index in phase['accepted_sequence'])
++            or phase['accepted_sequence'] != sequence
++            or phase.get('ready_pid') != pid):
++        raise runner.JourneyError('Notification readiness did not accept the first eligible contiguous sequence')
++    return commands
++
++
++def _artifact_references(value):
++    if isinstance(value, dict):
++        if {'path', 'bytes', 'sha256'} <= set(value):
++            yield value
++        else:
++            for item in value.values():
++                yield from _artifact_references(item)
++    elif isinstance(value, list):
++        for item in value:
++            yield from _artifact_references(item)
++
++
++def _identity(folder, item, proof):
++    path = runner.artifact_path(folder, item, proof)
++    metadata = path.stat()
++    return path, (metadata.st_dev, metadata.st_ino)
++
++
++def verify_report(folder, report, proof):
++    require_policy(report)
++    if _field_count(report, REFERENCE_KEY) != 2 or _field_count(report, POLICY_KEY) != 1:
++        raise runner.JourneyError('Missing or misplaced notification readiness evidence')
++    ledger = report['commands']
++    fingerprints = {}
++    global_owners = {}
++    previous_finish = None
++    for index, command in enumerate(ledger):
++        begin, end = command['started_monotonic'], command['finished_monotonic']
++        if (not all(observed.finite(value) for value in (begin, end)) or begin > end
++                or previous_finish is not None and begin < previous_finish):
++            raise runner.JourneyError('Global command ledger is not chronological and nonoverlapping')
++        previous_finish = end
++        fingerprints.setdefault(runner.fingerprint(command), []).append(index)
++        for stream in ('stdout', 'stderr'):
++            for identity in _identity(folder, command[stream], proof):
++                global_owners.setdefault(identity, []).append((index, stream))
++    foreign = set()
++    for key, value in report.items():
++        if key != 'commands':
++            for item in _artifact_references(value):
++                foreign.update(_identity(folder, item, proof))
++    for reference in report['capture_events']:
++        for item in _artifact_references(json.loads(proof.artifact(folder, reference))):
++            foreign.update(_identity(folder, item, proof))
++    for run in report['runs']:
++        for transition in run['transitions']:
++            if 'process_handoff' in transition:
++                for item in _artifact_references(json.loads(proof.artifact(folder, transition['process_handoff']))):
++                    foreign.update(_identity(folder, item, proof))
++    used = set()
++    outcomes = []
++    for run in report['runs']:
++        bound = [index for index, transition in enumerate(run['transitions']) if REFERENCE_KEY in transition]
++        if bound != [4]:
++            raise runner.JourneyError('Exactly one notification readiness proof is required at the denial boundary')
++        transition = run['transitions'][4]
++        prior, shot = run['screens'][4:6]
++        old_pid = _boundary(folder, run, transition, prior, proof)
++        reference = transition[REFERENCE_KEY]
++        if reference['path'] != run['label'] + '-notification-readiness.json':
++            raise runner.JourneyError('Cross-run notification readiness proof')
++        phase = json.loads(proof.artifact(folder, reference))
++        if phase['label'] != run['label'] + '-notification-readiness' or phase['old_pid'] != old_pid:
++            raise runner.JourneyError('Notification readiness process or run binding differs')
++        commands = verify_phase(folder, phase, proof)
++        result_start = json.loads(proof.artifact(folder, shot['settling']))['started_monotonic']
++        if (phase['started_monotonic'] + EPSILON < transition['command']['finished_monotonic'] + POLICY['post_input_wait_seconds']
++                or phase['finished_monotonic'] > result_start
++                or phase['ready_pid'] != observed.one_pid(proof.artifact(folder, shot['artifacts']['pid_first']), proof)):
++            raise runner.JourneyError('Notification readiness is not between its input and resulting full-frame acquisition')
++        indices = []
++        for command in commands:
++            positions = fingerprints.get(runner.fingerprint(command), [])
++            if len(positions) != 1:
++                raise runner.JourneyError('Notification readiness command is not unique in the global ledger')
++            index = positions[0]
++            indices.append(index)
++            for stream in ('stdout', 'stderr'):
++                for identity in _identity(folder, command[stream], proof):
++                    if identity in foreign or identity in used or global_owners[identity] != [(index, stream)]:
++                        raise runner.JourneyError('Notification readiness reused a command artifact from another evidence role')
++                    used.add(identity)
++        if indices != list(range(indices[0], indices[-1] + 1)):
++            raise runner.JourneyError('Unplanned command inside notification readiness')
++        input_positions = fingerprints.get(runner.fingerprint(transition['command']), [])
++        if len(input_positions) != 1 or indices[0] != input_positions[0] + 1:
++            raise runner.JourneyError('Readiness commands do not immediately follow their unique denial input in the global ledger')
++        phase_start, phase_end = phase['started_monotonic'], phase['finished_monotonic']
++        for index, command in enumerate(ledger):
++            if index in indices:
++                continue
++            begin, end = command['started_monotonic'], command['finished_monotonic']
++            if begin < phase_end and end > phase_start:
++                raise runner.JourneyError('Foreign command overlaps notification readiness')
++        outcomes.append({'label': run['label'], 'observations': len(phase['observations']),
++                         'states': [row['observation']['state'] for row in phase['observations']],
++                         'old_pid': old_pid, 'ready_pid': phase['ready_pid'],
++                         'accepted_sequence': phase['accepted_sequence'],
++                         'lifecycle_observations_only': True})
++    return outcomes
+--- parent/tools/parity_journeys/observed_journey.py
++++ readiness/tools/parity_journeys/observed_journey.py
+@@ -97,11 +97,17 @@
+ 
+ 
+ def report_policy(report):
++    import notification_readiness
++    readiness = report.get('schema') == notification_readiness.REPORT_SCHEMA
++    if readiness:
++        notification_readiness.require_policy(report)
++    elif notification_readiness.contains_evidence(report):
++        raise runner.JourneyError('Notification readiness evidence cannot use an older schema')
+     if report.get('schema') == runner.SCHEMA:
+         if 'capture_policy' in report or 'capture_events' in report:
+             raise runner.JourneyError('Observed evidence cannot use the legacy schema')
+         return None
+-    if type(report.get('schema')) is not int or report['schema'] != REPORT_SCHEMA:
++    if type(report.get('schema')) is not int or report['schema'] not in (REPORT_SCHEMA, notification_readiness.REPORT_SCHEMA):
+         raise runner.JourneyError('Unknown journey evidence schema')
+     require_plan()
+     if runner.fingerprint(report.get('capture_policy')) != runner.fingerprint(POLICY):
+--- parent/tools/parity_journeys/test_notification_readiness.py
++++ readiness/tools/parity_journeys/test_notification_readiness.py
+@@ -0,0 +1,415 @@
++"""Synthetic lifecycle and evidence faults; no Android or parity credit."""
++from __future__ import annotations
++
++import copy
++import hashlib
++import json
++import os
++from pathlib import Path
++import shlex
++import tempfile
++import unittest
++from unittest.mock import patch
++
++import day_time_journey as day
++import editor_journey as runner
++import notification_readiness as ready
++import observed_journey as observed
++from test_day_time_journey import ThirteenFixture
++from test_observed_journey import proof
++
++
++def home(pid='41'):
++    return [(0, (pid + '\n').encode(), b''),
++            (0, ('topResumedActivity=' + observed.HOME + '\n').encode(), b''),
++            (0, (pid + '\n').encode(), b'')]
++
++
++class FakeRecorder:
++    """Replay an explicit command-result queue against the real readiness runner."""
++    save = runner.Recorder.save
++
++    def __init__(self, folder, queue, clock, stem='synthetic', duration=0.05):
++        self.folder, self.queue, self.clock = folder, list(queue), clock
++        self.proof, self.log, self.deadline = proof, [], None
++        self.stem, self.duration = stem, duration
++
++    def shell(self, args):
++        if not self.queue:
++            raise AssertionError('Unexpected extra readiness command')
++        code, out, err = self.queue.pop(0)
++        start = self.clock['now']
++        timeout = min(120, self.deadline - start)
++        if timeout <= 0:
++            raise runner.JourneyError('Observed command deadline expired before execution')
++        self.clock['now'] += self.duration
++        name = self.stem + '-command-' + str(len(self.log))
++        command = {'argv': ['shell', shlex.join(args)], 'returncode': code, 'timed_out': code is None,
++                   'started_utc': '2026-01-01T00:00:00+00:00', 'started_monotonic': start,
++                   'finished_monotonic': self.clock['now'], 'timeout_seconds': timeout,
++                   'stdout': self.save(name + '.stdout', out), 'stderr': self.save(name + '.stderr', err)}
++        self.log.append(command)
++        if code is None:
++            raise runner.JourneyError('Device command timed out; partial output retained')
++        return command, out, err
++
++
++class ReadinessControls(unittest.TestCase):
++    def setUp(self):
++        context = day.configured_plan(); context.__enter__()
++        self.addCleanup(context.__exit__, None, None, None)
++        temp = tempfile.TemporaryDirectory(); self.addCleanup(temp.cleanup)
++        self.folder = Path(temp.name)
++        self.clock = {'now': 102.25}
++        self.sequence = 0
++
++    def put(self, name, data):
++        (self.folder / name).write_bytes(data)
++        return {'path': name, 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
++
++    def boundary(self):
++        self.sequence += 1
++        return {'to': 'reference-promotion', 'action': runner.DENY,
++                'command': {'finished_monotonic': 100.0},
++                'preinput_artifacts': {
++                    'pid': self.put('old-' + str(self.sequence), b'31\n'),
++                    'foreground': self.put('front-' + str(self.sequence),
++                        ('topResumedActivity=' + observed.PERMISSION_ACTIVITY + '\n').encode())}}
++
++    def run_phase(self, queue, duration=0.05):
++        self.transition = self.boundary()
++        self.recorder = FakeRecorder(self.folder, queue, self.clock, 'run-' + str(self.sequence), duration)
++        def sleep(seconds): self.clock['now'] += seconds
++        with patch.object(ready.time, 'monotonic', side_effect=lambda: self.clock['now']), \
++                patch.object(ready.time, 'sleep', side_effect=sleep):
++            return ready.observe(self.recorder, {'label': 'original'}, self.transition,
++                                 {'name': 'notification-request', 'owner': runner.PERMISSION})
++
++    def phase(self):
++        return json.loads(proof.artifact(self.folder, self.transition[ready.REFERENCE_KEY]))
++
++    def test_absence_then_first_contiguous_home_sequence_is_retained_and_replayed(self):
++        value = self.run_phase([(1, b'', b'')] + home() * 5)
++        self.assertEqual([row['observation']['state'] for row in value['observations']],
++                         ['MAIN_PID_ABSENT'] + ['HOME_WITH_SAME_PID'] * 4)
++        self.assertEqual(value['accepted_sequence'], [1, 4])
++        self.assertEqual(value['ready_pid'], '41')
++        self.assertEqual(len(self.recorder.queue), 3)
++        self.assertEqual(len(ready.verify_phase(self.folder, value, proof)), 13)
++        self.assertEqual(self.phase(), value)
++        self.assertIsNone(self.recorder.deadline)
++
++    def test_same_process_home_path_has_no_required_crash_or_restart(self):
++        value = self.run_phase(home('31') * 5)
++        self.assertEqual(value['ready_pid'], value['old_pid'])
++        self.assertEqual(value['accepted_sequence'], [0, 3])
++        self.assertTrue(all(command['argv'][1].startswith(('pidof ', 'dumpsys activity activities'))
++                            for command in ready.verify_phase(self.folder, value, proof)))
++
++    def test_permission_missing_second_pid_and_pid_change_reset_ready_sequence(self):
++        permission = home(); permission[1] = (0, ('topResumedActivity=' + observed.PERMISSION_ACTIVITY + '\n').encode(), b'')
++        missing = home(); missing[-1] = (1, b'', b'')
++        replaced = home(); replaced[-1] = (0, b'42\n', b'')
++        value = self.run_phase(home() + permission + missing + replaced + home('42') * 5)
++        self.assertEqual([row['observation']['state'] for row in value['observations'][:4]],
++                         ['HOME_WITH_SAME_PID', 'PERMISSION_STILL_FOREGROUND',
++                          'MAIN_PID_ABSENT_AFTER_FOREGROUND', 'MAIN_PID_CHANGED'])
++        self.assertEqual(value['accepted_sequence'], [4, 7])
++        ready.verify_phase(self.folder, value, proof)
++
++    def test_pid_errors_multivalue_empty_success_stderr_and_timeout_remain_failed(self):
++        for result in [(2, b'', b''), (1, b'41\n', b''), (1, b'', b'error'),
++                       (0, b'', b''), (0, b'41 42\n', b''), (0, b'0\n', b''),
++                       (0, b'41\n', b'warning'), (None, b'partial', b'timeout')]:
++            with self.subTest(result=result), self.assertRaises(runner.JourneyError):
++                self.run_phase([result])
++            self.assertEqual(self.phase()['status'], 'FAILED')
++            self.assertEqual(len(self.phase()['observations'][0]['commands']), 1)
++            self.assertIsNone(self.recorder.deadline)
++
++    def test_unknown_ambiguous_and_failed_foreground_stop_without_extra_commands(self):
++        for result in [(0, b'topResumedActivity=other.app/.Activity\n', b''),
++                       (0, b'no resumed component\n', b''),
++                       (0, ('topResumedActivity=' + observed.HOME + '\n'
++                            + 'topResumedActivity=' + observed.PERMISSION_ACTIVITY + '\n').encode(), b''),
++                       (1, b'', b''), (0, b'', b'error')]:
++            queue = home(); queue[1] = result
++            with self.subTest(result=result), self.assertRaises(runner.JourneyError):
++                self.run_phase(queue)
++            self.assertEqual(len(self.phase()['observations'][0]['commands']), 2)
++            self.assertEqual(len(self.recorder.queue), 1)
++
++    def test_observation_limit_and_time_budget_fail_with_all_attempts_preserved(self):
++        with self.assertRaisesRegex(runner.JourneyError, 'limit exhausted'):
++            self.run_phase([(1, b'', b'')] * 16)
++        self.assertEqual(len(self.phase()['observations']), 16)
++        self.assertEqual(len(self.phase()['gaps']), 15)
++        with self.assertRaisesRegex(runner.JourneyError, 'deadline expired'):
++            self.run_phase(home() * 5, duration=4.0)
++        self.assertEqual(self.phase()['status'], 'FAILED')
++
++    def test_post_input_wait_and_exact_boundary_are_required(self):
++        self.clock['now'] = 101.99
++        with self.assertRaisesRegex(runner.JourneyError, 'fixed post-input wait'):
++            self.run_phase(home())
++        self.assertEqual(self.phase()['observations'], [])
++        wrong = self.boundary(); wrong['to'] = 'home'
++        with self.assertRaises(runner.JourneyError):
++            ready._boundary(self.folder, {'label': 'original'}, wrong,
++                            {'name': 'notification-request', 'owner': runner.PERMISSION}, proof)
++
++    def test_rehashed_phase_state_order_deadline_and_first_sequence_mutations_fail(self):
++        value = self.run_phase([(1, b'', b'')] + home() * 5)
++        changes = [
++            lambda p: p.update(status='FAILED'),
++            lambda p: p.update(schema=True),
++            lambda p: p['policy'].update(max_seconds=11),
++            lambda p: p.update(finished_monotonic=p['started_monotonic'] + 11, seconds=11),
++            lambda p: p['observations'][0]['observation'].update(state='HOME_WITH_SAME_PID'),
++            lambda p: p['observations'][1].update(index=0),
++            lambda p: p['observations'][1]['commands'].reverse(),
++            lambda p: p['observations'][1]['commands'][0].update(timeout_seconds=11),
++            lambda p: p['observations'][1]['commands'][0].update(started_monotonic=0),
++            lambda p: p['gaps'][0].update(requested_seconds=0.1),
++            lambda p: p['gaps'][0].update(after_index=False),
++            lambda p: p['gaps'][0].update(finished_monotonic=p['gaps'][0]['started_monotonic']),
++            lambda p: p.update(accepted_sequence=[2, 4]),
++            lambda p: p.update(accepted_sequence=[True, 4]),
++            lambda p: p.update(ready_pid='99'),
++        ]
++        for change in changes:
++            bad = copy.deepcopy(value); change(bad)
++            with self.subTest(change=change), self.assertRaises(runner.JourneyError):
++                ready.verify_phase(self.folder, bad, proof)
++        early = copy.deepcopy(value)
++        early['observations'] = early['observations'][:3]; early['gaps'] = early['gaps'][:2]
++        early['accepted_sequence'] = [1, 2]
++        with self.assertRaises(runner.JourneyError): ready.verify_phase(self.folder, early, proof)
++        extra = copy.deepcopy(value)
++        last = copy.deepcopy(extra['observations'][-1]); last['index'] += 1
++        shift_times(last, 0, 0.4)
++        for command in last['commands']: command['timeout_seconds'] -= 0.4
++        previous_finish = extra['observations'][-1]['finished_monotonic']
++        extra['observations'].append(last)
++        extra['gaps'].append({'after_index': last['index'] - 1, 'requested_seconds': 0.25,
++                              'started_monotonic': previous_finish, 'finished_monotonic': previous_finish + 0.25})
++        extra.update(finished_monotonic=last['finished_monotonic'],
++                     seconds=last['finished_monotonic'] - extra['started_monotonic'])
++        with self.assertRaisesRegex(runner.JourneyError, 'first eligible contiguous sequence'):
++            ready.verify_phase(self.folder, extra, proof)
++
++    def test_wrapper_duration_cannot_replace_the_raw_pid_command_span(self):
++        value = self.run_phase(home() * 5)
++        short = copy.deepcopy(value)
++        short['observations'] = short['observations'][:2]
++        short['gaps'] = short['gaps'][:1]
++        short['accepted_sequence'] = [0, 1]
++        short['observations'][-1]['finished_monotonic'] = value['observations'][-1]['finished_monotonic']
++        raw_span = (short['observations'][-1]['commands'][-1]['finished_monotonic']
++                    - short['observations'][0]['commands'][0]['started_monotonic'])
++        self.assertLess(raw_span, 1.05)
++        self.assertGreater(short['observations'][-1]['finished_monotonic']
++                           - short['observations'][0]['started_monotonic'], 1.05)
++        with self.assertRaisesRegex(runner.JourneyError, 'first eligible contiguous sequence'):
++            ready.verify_phase(self.folder, short, proof)
++
++    def test_pre_start_timeout_allocation_is_not_inferred_from_a_later_timestamp(self):
++        value = self.run_phase(home() * 5)
++        value['observations'][-1]['commands'][0]['timeout_seconds'] = 10
++        ready.verify_phase(self.folder, value, proof)
++
++    def test_raw_output_tampering_is_detected_and_rehashed_wrong_output_still_fails(self):
++        value = self.run_phase(home() * 5)
++        item = value['observations'][0]['commands'][0]['stdout']
++        (self.folder / item['path']).write_bytes(b'41 42\n')
++        with self.assertRaises(ValueError): ready.verify_phase(self.folder, value, proof)
++        item.update(bytes=6, sha256=hashlib.sha256(b'41 42\n').hexdigest())
++        with self.assertRaises(runner.JourneyError): ready.verify_phase(self.folder, value, proof)
++
++
++def shift_times(value, threshold, delta):
++    if isinstance(value, dict):
++        for key, item in value.items():
++            if key.endswith('_monotonic') and isinstance(item, (int, float)) and item >= threshold:
++                value[key] += delta
++            else:
++                shift_times(item, threshold, delta)
++    elif isinstance(value, list):
++        for item in value: shift_times(item, threshold, delta)
++
++
++def command_records(value):
++    if isinstance(value, dict):
++        if {'returncode', 'stdout', 'stderr'} <= set(value):
++            yield value
++        else:
++            for item in value.values(): yield from command_records(item)
++    elif isinstance(value, list):
++        for item in value: yield from command_records(item)
++
++
++class ReadinessReportControls(unittest.TestCase):
++    def setUp(self):
++        context = day.configured_plan(); context.__enter__()
++        self.addCleanup(context.__exit__, None, None, None)
++        self.fixture = ThirteenFixture(); self.addCleanup(self.fixture.close)
++        self.folder, self.report = self.fixture.folder, self.fixture.report
++
++    def add_phases(self):
++        ledger = []
++        for run in self.report['runs']:
++            transition = run['transitions'][4]
++            cutoff = transition['command']['finished_monotonic'] + 0.01
++            shift_times(run, cutoff, 5)
++            for reference in self.report['capture_events']:
++                if reference['path'].startswith(run['label'] + '-'):
++                    value = json.loads(proof.artifact(self.folder, reference)); shift_times(value, cutoff, 5)
++                    reference.update(self.fixture.put(reference['path'], json.dumps(value).encode()))
++            reference = transition['process_handoff']
++            handoff = json.loads(proof.artifact(self.folder, reference)); shift_times(handoff, cutoff, 5)
++            reference.update(self.fixture.put(reference['path'], json.dumps(handoff).encode()))
++            old = proof.artifact(self.folder, transition['preinput_artifacts']['pid']).decode().strip()
++            pid = proof.artifact(self.folder, run['screens'][5]['artifacts']['pid_first']).decode().strip()
++            clock = {'now': transition['command']['finished_monotonic'] + 2.25}
++            recorder = FakeRecorder(self.folder, [(1, b'', b'')] + home(pid) * 5, clock, run['label'] + '-readiness')
++            def sleep(seconds): clock['now'] += seconds
++            with patch.object(ready.time, 'monotonic', side_effect=lambda: clock['now']), \
++                    patch.object(ready.time, 'sleep', side_effect=sleep):
++                ready.observe(recorder, run, transition, run['screens'][4])
++            ledger += recorder.log
++            for source in (run, handoff):
++                for index, command in enumerate(command_records(source)):
++                    row = copy.deepcopy(command)
++                    row.setdefault('started_monotonic', (990 if run['label'] == 'original' else 1990) + index * 0.01)
++                    row.setdefault('finished_monotonic', row['started_monotonic'] + 0.005)
++                    ledger.append(row)
++        self.report.update(schema=ready.REPORT_SCHEMA, notification_readiness_policy=copy.deepcopy(ready.POLICY),
++                           commands=sorted(ledger, key=lambda row: row['started_monotonic']))
++
++    def edit_phase(self, edit, update_ledger=False):
++        transition = self.report['runs'][1]['transitions'][4]
++        reference = transition[ready.REFERENCE_KEY]
++        phase = json.loads(proof.artifact(self.folder, reference))
++        old = [copy.deepcopy(command) for row in phase['observations'] for command in row['commands']]
++        edit(phase)
++        if update_ledger:
++            new = [command for row in phase['observations'] for command in row['commands']]
++            for a, b in zip(old, new):
++                for index, command in enumerate(self.report['commands']):
++                    if command == a: self.report['commands'][index] = copy.deepcopy(b)
++        reference.update(self.fixture.put(reference['path'], json.dumps(phase).encode()))
++
++    def test_complete_synthetic_pair_requires_readiness_and_keeps_thirteen_screen_scope(self):
++        self.add_phases()
++        result = self.fixture.result()
++        self.assertTrue(result['journey_equal'], result)
++        self.assertEqual(len(result['notification_readiness_observations']), 2)
++        self.assertEqual(len(result['screens']), 13)
++        self.assertFalse(result['full_runtime_1_to_1_established'])
++        self.assertFalse(result['crash_free_run_established'])
++        self.assertFalse(result['trigger_configuration_confirmed'])
++
++    def test_older_schema_unchanged_and_mixed_new_evidence_rejected(self):
++        original = self.fixture.result()
++        self.assertTrue(original['journey_equal'], original)
++        self.report[ready.POLICY_KEY] = copy.deepcopy(ready.POLICY)
++        self.assertFalse(self.fixture.result()['journey_equal'])
++        del self.report[ready.POLICY_KEY]
++        self.report['runs'][0]['transitions'][4][ready.REFERENCE_KEY] = {'path': 'missing'}
++        self.assertFalse(self.fixture.result()['journey_equal'])
++
++    def test_missing_policy_missing_phase_and_schema_downgrade_fail(self):
++        self.add_phases()
++        for field in ('policy', 'phase', 'schema'):
++            with self.subTest(field=field):
++                value = copy.deepcopy(self.report)
++                if field == 'policy': del value[ready.POLICY_KEY]
++                elif field == 'phase': del value['runs'][1]['transitions'][4][ready.REFERENCE_KEY]
++                else: value['schema'] = 3
++                self.assertFalse(runner.compare(self.folder, value, proof)['journey_equal'])
++
++    def test_wrong_boundary_run_pid_and_pre_capture_timing_fail(self):
++        self.add_phases()
++        reference = copy.deepcopy(self.report['runs'][1]['transitions'][4][ready.REFERENCE_KEY])
++        original = proof.artifact(self.folder, reference)
++        original_ledger = copy.deepcopy(self.report['commands'])
++        for change, reason in [
++                (lambda p: p.update(label='original-notification-readiness'), 'process or run binding differs'),
++                (lambda p: p.update(old_pid='999'), 'process or run binding differs'),
++                (lambda p: p.update(ready_pid='999'), 'first eligible contiguous sequence'),
++                (lambda p: p.update(started_monotonic=p['started_monotonic'] - 4, seconds=p['seconds'] + 4),
++                 'between its input and resulting full-frame acquisition'),
++                (lambda p: p.update(finished_monotonic=p['finished_monotonic'] + 4, seconds=p['seconds'] + 4),
++                 'between its input and resulting full-frame acquisition')]:
++            self.report['commands'] = copy.deepcopy(original_ledger)
++            self.edit_phase(change, update_ledger=True)
++            result = self.fixture.result()
++            self.assertFalse(result['journey_equal'])
++            self.assertIn(reason, result['reason'])
++            current = self.report['runs'][1]['transitions'][4][ready.REFERENCE_KEY]
++            current.update(self.fixture.put(current['path'], original))
++
++    def test_extra_readiness_evidence_outside_the_declared_transition_is_rejected(self):
++        self.add_phases()
++        self.report['runs'][0][ready.REFERENCE_KEY] = copy.deepcopy(
++            self.report['runs'][0]['transitions'][4][ready.REFERENCE_KEY])
++        result = self.fixture.result()
++        self.assertFalse(result['journey_equal'])
++        self.assertIn('misplaced notification readiness evidence', result['reason'])
++
++    def test_failed_semantic_or_process_frame_still_rejects_the_complete_report(self):
++        self.add_phases()
++        self.report['capture_events'].append(self.fixture.put('candidate-rejected-acquisition.json',
++            json.dumps({'status': 'FAILED', 'error_type': 'JourneyError', 'reason': 'Synthetic process gap'}).encode()))
++        result = self.fixture.result()
++        self.assertFalse(result['journey_equal'])
++        self.assertIn('rejected semantic/process acquisition', result['reason'])
++
++    def test_missing_duplicate_changed_or_interleaved_global_command_is_rejected(self):
++        self.add_phases()
++        original = copy.deepcopy(self.report['commands'])
++        phase = json.loads(proof.artifact(self.folder, self.report['runs'][1]['transitions'][4][ready.REFERENCE_KEY]))
++        command = phase['observations'][0]['commands'][0]
++        index = self.report['commands'].index(command)
++        for change in ('missing', 'duplicate', 'changed', 'interleaved'):
++            self.report['commands'] = copy.deepcopy(original)
++            if change == 'missing': del self.report['commands'][index]
++            elif change == 'duplicate': self.report['commands'].insert(index, copy.deepcopy(command))
++            elif change == 'changed': self.report['commands'][index]['argv'] = ['shell', 'input tap 2 2']
++            else: self.report['commands'].insert(index + 1, copy.deepcopy(original[0]))
++            with self.subTest(change=change), self.assertRaises(runner.JourneyError):
++                ready.verify_report(self.folder, self.report, proof)
++
++    def test_moving_a_complete_readiness_block_in_the_global_ledger_is_rejected(self):
++        self.add_phases()
++        phase = json.loads(proof.artifact(self.folder, self.report['runs'][0]['transitions'][4][ready.REFERENCE_KEY]))
++        commands = [command for row in phase['observations'] for command in row['commands']]
++        rest = [command for command in self.report['commands'] if command not in commands]
++        self.report['commands'] = commands + rest
++        result = self.fixture.result()
++        self.assertFalse(result['journey_equal'])
++        self.assertIn('Global command ledger is not chronological', result['reason'])
++
++    def test_missing_denial_input_in_an_otherwise_ordered_ledger_is_rejected(self):
++        self.add_phases()
++        input_command = self.report['runs'][0]['transitions'][4]['command']
++        self.report['commands'].remove(input_command)
++        result = self.fixture.result()
++        self.assertFalse(result['journey_equal'])
++        self.assertIn('immediately follow their unique denial input', result['reason'])
++
++    def test_rehashed_readiness_output_cannot_alias_another_evidence_file(self):
++        self.add_phases()
++        foreign = self.report['runs'][1]['screens'][5]['artifacts']['pid_first']
++        def alias(phase):
++            command = phase['observations'][1]['commands'][0]
++            path = self.folder / command['stdout']['path']
++            path.unlink(); os.link(self.folder / foreign['path'], path)
++            command['stdout'].update(bytes=foreign['bytes'], sha256=foreign['sha256'])
++        self.edit_phase(alias, update_ledger=True)
++        with self.assertRaisesRegex(runner.JourneyError, 'reused a command artifact'):
++            ready.verify_report(self.folder, self.report, proof)
++
++
++if __name__ == '__main__':
++    unittest.main()

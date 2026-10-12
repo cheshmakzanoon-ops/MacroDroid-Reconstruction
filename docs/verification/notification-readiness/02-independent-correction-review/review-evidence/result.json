@@ -1,0 +1,102 @@
+{
+  "scope": "Independent replay of the closed synthetic counterexamples and precise follow-up checks against the corrected validator; not Android, no parity credit.",
+  "reviewedModule": {
+    "bytes": 20336,
+    "sha256": "08a838681c6b3ece018240d54013996bafd4204133bdd3eaa6a6c2dddeea6f85"
+  },
+  "cases": [
+    {
+      "name": "whole-block-ledger-reorder",
+      "journeyEqual": false,
+      "originalPositions": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34
+      ],
+      "newPositions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "reason": "Global command ledger is not chronological and nonoverlapping"
+    },
+    {
+      "name": "boolean-schema-indices",
+      "journeyEqual": false,
+      "reason": "Incomplete or altered notification readiness phase"
+    },
+    {
+      "name": "row-wrapper-span-inflation-phase-only",
+      "phaseAccepted": false,
+      "rawHomeCommandSpanSeconds": 0.5499999999997272,
+      "rowWrapperSpanSeconds": 1.3499999999994543,
+      "policyMinimumReadySpanSeconds": 1.05,
+      "reason": "Notification readiness did not accept the first eligible contiguous sequence",
+      "fullReportAcceptanceClaimed": false
+    },
+    {
+      "name": "literal-integer-phase-schema",
+      "journeyEqual": false,
+      "reason": "Incomplete or altered notification readiness phase"
+    },
+    {
+      "name": "literal-integer-accepted-index",
+      "journeyEqual": false,
+      "reason": "Notification readiness did not accept the first eligible contiguous sequence"
+    },
+    {
+      "name": "literal-integer-gap-index",
+      "journeyEqual": false,
+      "reason": "Invalid notification readiness fixed gap"
+    },
+    {
+      "name": "pre-start-timeout-allocation",
+      "phaseAccepted": true,
+      "actualPhaseSeconds": 1.6499999999994088,
+      "configuredTimeoutSeconds": 10
+    },
+    {
+      "name": "late-actual-command-end",
+      "phaseAccepted": false,
+      "reason": "Notification readiness command is out of order or beyond its actual phase bound"
+    },
+    {
+      "name": "missing-denial-ledger-entry",
+      "journeyEqual": false,
+      "reason": "Readiness commands do not immediately follow their unique denial input in the global ledger"
+    }
+  ],
+  "baselinePassed": true,
+  "syntheticArtifacts": {
+    "count": 1344,
+    "archive": {
+      "bytes": 72364,
+      "sha256": "61547995b14261484c0238e6881aabc1e3b58ed2582c3e45a7981c21ddb00faf"
+    }
+  },
+  "exactSyntheticResultRestored": true,
+  "status": "CORRECTED_GUARD_INDEPENDENT_REVIEW_PASSED",
+  "passed": true,
+  "allBoundSourceBytesUnchanged": true,
+  "durationSeconds": 15.860035060999508
+}

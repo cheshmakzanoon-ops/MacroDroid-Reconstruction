@@ -1,0 +1,396 @@
+{
+  "status": "CORRECTED_READINESS_GUARD_INDEPENDENT_REVIEW_PASSED",
+  "createdUtc": "2026-10-12T09:02:55.149398+00:00",
+  "scope": "Independent nine-check synthetic replay and source review of the corrected private readiness guard. No Android, full parent-suite, app parity, active registration, or workflow activation claim.",
+  "sourceFiles": [
+    {
+      "path": "REVIEW.md",
+      "bytes": 8632,
+      "sha256": "3f56d6781551d0d2dffcf9bd9f750b3966f0e7d3d60ec287b8f568b6fba3a366",
+      "mode": "0o644"
+    },
+    {
+      "path": "probe_corrected_guard.py",
+      "bytes": 11605,
+      "sha256": "476704651ae52f2a663d9669e82c37d3f6d66898fd258c8d1b58f392adebdba9",
+      "mode": "0o644"
+    },
+    {
+      "path": "derivation.patch",
+      "bytes": 8827,
+      "sha256": "febe93577b2f32502cf6ad4bf263eff063af10575c937db3a82b298c3ba1f0e9",
+      "mode": "0o644"
+    },
+    {
+      "path": "derivation.json",
+      "bytes": 458,
+      "sha256": "6ef1f5223de29fd8157c0121b59e64bf9905a3e40203ed0c88570338f7978119",
+      "mode": "0o644"
+    },
+    {
+      "path": "reviewed-sources/editor_journey.py",
+      "bytes": 35989,
+      "sha256": "95a4c5243e54f381d7d36600b4549f66c7a1c2dac1721369ec4ac612477c76eb",
+      "mode": "0o644"
+    },
+    {
+      "path": "reviewed-sources/notification_readiness.py",
+      "bytes": 20336,
+      "sha256": "08a838681c6b3ece018240d54013996bafd4204133bdd3eaa6a6c2dddeea6f85",
+      "mode": "0o644"
+    },
+    {
+      "path": "reviewed-sources/observed_journey.py",
+      "bytes": 33799,
+      "sha256": "0aa3a7dddb13230ad05a17be7cc51a82f4b0038632babcea83c03a99828ab432",
+      "mode": "0o644"
+    },
+    {
+      "path": "reviewed-sources/test_notification_readiness.py",
+      "bytes": 23469,
+      "sha256": "55379e14694ec64b20a67cbb5af60f4ae482d79bb59d1ab39904f31b3230f45a",
+      "mode": "0o644"
+    }
+  ],
+  "readableEvidenceFiles": [
+    {
+      "path": "review-evidence/baseline-result.json",
+      "bytes": 7575,
+      "sha256": "fbb079b145fe6ecd99324e35612ce9c197eec13e9b31b944c3168a205ce68d3b",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/boolean-schema-indices-result.json",
+      "bytes": 389,
+      "sha256": "b72ab937f99e5171a651f59c3990a689b1e8bc5ab3ff66cb49bf20fe067d99d1",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/late-actual-command-end-phase.json",
+      "bytes": 14396,
+      "sha256": "560d33d54cbc03aacc319b430fb52e8697a8cea035685197459e605e15c6d114",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/literal-integer-accepted-index-result.json",
+      "bytes": 415,
+      "sha256": "ed014fa5469985660883752ae2b8e77ece41ad3df09693c58b70e377a80ca252",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/literal-integer-gap-index-result.json",
+      "bytes": 379,
+      "sha256": "cd594e61a3b2aaa119841760d854c5884dcad819f20e788b15b44f10145710a0",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/literal-integer-phase-schema-result.json",
+      "bytes": 389,
+      "sha256": "b72ab937f99e5171a651f59c3990a689b1e8bc5ab3ff66cb49bf20fe067d99d1",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/missing-denial-ledger-entry-result.json",
+      "bytes": 430,
+      "sha256": "f4d6a9d6e5e586ffdd8c0a4fbfc4cfc3c1265b2fd16f8374579399dfaa9517fc",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/pre-start-timeout-allocation-phase.json",
+      "bytes": 14396,
+      "sha256": "c1738c7e560511f00a0b887e50bb8e24a586ab3e6e84057b8003afcee54b600a",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/restored-result.json",
+      "bytes": 7575,
+      "sha256": "fbb079b145fe6ecd99324e35612ce9c197eec13e9b31b944c3168a205ce68d3b",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/result.json",
+      "bytes": 2828,
+      "sha256": "ca672cd19d21364c5158f61651494ee504836857e724f55e1c3596e8f5ecc347",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/row-wrapper-span-phase.json",
+      "bytes": 8540,
+      "sha256": "589c065270eda8dec38c2b20bfa2fce9f7563e6629484f96c2199b9ed5b538c2",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/source-identities-after.json",
+      "bytes": 10020,
+      "sha256": "7361641e14a29af861777b5c9f65ffdbb7148e1a31bf80168bcb4bc4c9fa695a",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/source-identities-before.json",
+      "bytes": 10020,
+      "sha256": "7361641e14a29af861777b5c9f65ffdbb7148e1a31bf80168bcb4bc4c9fa695a",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/synthetic-artifact-inventory.json",
+      "bytes": 203269,
+      "sha256": "9b9f314ba32483bc6f1f0c85be9e6829cc6c8ba1ea3d5951509cd7b04fa8406c",
+      "mode": "0o644"
+    },
+    {
+      "path": "review-evidence/whole-block-ledger-reorder-result.json",
+      "bytes": 400,
+      "sha256": "cf3e5486060127495bd84f588a6eceb768155eef52eee40113b6d7c5520d369a",
+      "mode": "0o644"
+    }
+  ],
+  "evidenceArchive": {
+    "path": "evidence.tar.gz",
+    "bytes": 140262,
+    "sha256": "6f5ae6aec4247a1607dc43634f810f7fb3533bc0be680db7a1344ea9a37052cb",
+    "mode": "0o644"
+  },
+  "evidenceFiles": [
+    {
+      "path": "baseline-result.json",
+      "bytes": 7575,
+      "sha256": "fbb079b145fe6ecd99324e35612ce9c197eec13e9b31b944c3168a205ce68d3b",
+      "mode": "0o644"
+    },
+    {
+      "path": "boolean-schema-indices-result.json",
+      "bytes": 389,
+      "sha256": "b72ab937f99e5171a651f59c3990a689b1e8bc5ab3ff66cb49bf20fe067d99d1",
+      "mode": "0o644"
+    },
+    {
+      "path": "late-actual-command-end-phase.json",
+      "bytes": 14396,
+      "sha256": "560d33d54cbc03aacc319b430fb52e8697a8cea035685197459e605e15c6d114",
+      "mode": "0o644"
+    },
+    {
+      "path": "literal-integer-accepted-index-result.json",
+      "bytes": 415,
+      "sha256": "ed014fa5469985660883752ae2b8e77ece41ad3df09693c58b70e377a80ca252",
+      "mode": "0o644"
+    },
+    {
+      "path": "literal-integer-gap-index-result.json",
+      "bytes": 379,
+      "sha256": "cd594e61a3b2aaa119841760d854c5884dcad819f20e788b15b44f10145710a0",
+      "mode": "0o644"
+    },
+    {
+      "path": "literal-integer-phase-schema-result.json",
+      "bytes": 389,
+      "sha256": "b72ab937f99e5171a651f59c3990a689b1e8bc5ab3ff66cb49bf20fe067d99d1",
+      "mode": "0o644"
+    },
+    {
+      "path": "missing-denial-ledger-entry-result.json",
+      "bytes": 430,
+      "sha256": "f4d6a9d6e5e586ffdd8c0a4fbfc4cfc3c1265b2fd16f8374579399dfaa9517fc",
+      "mode": "0o644"
+    },
+    {
+      "path": "pre-start-timeout-allocation-phase.json",
+      "bytes": 14396,
+      "sha256": "c1738c7e560511f00a0b887e50bb8e24a586ab3e6e84057b8003afcee54b600a",
+      "mode": "0o644"
+    },
+    {
+      "path": "probe_corrected_guard.py",
+      "bytes": 11605,
+      "sha256": "476704651ae52f2a663d9669e82c37d3f6d66898fd258c8d1b58f392adebdba9",
+      "mode": "0o644"
+    },
+    {
+      "path": "restored-result.json",
+      "bytes": 7575,
+      "sha256": "fbb079b145fe6ecd99324e35612ce9c197eec13e9b31b944c3168a205ce68d3b",
+      "mode": "0o644"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2828,
+      "sha256": "ca672cd19d21364c5158f61651494ee504836857e724f55e1c3596e8f5ecc347",
+      "mode": "0o644"
+    },
+    {
+      "path": "reviewed-sources/editor_journey.py",
+      "bytes": 35989,
+      "sha256": "95a4c5243e54f381d7d36600b4549f66c7a1c2dac1721369ec4ac612477c76eb",
+      "mode": "0o644"
+    },
+    {
+      "path": "reviewed-sources/notification_readiness.py",
+      "bytes": 20336,
+      "sha256": "08a838681c6b3ece018240d54013996bafd4204133bdd3eaa6a6c2dddeea6f85",
+      "mode": "0o644"
+    },
+    {
+      "path": "reviewed-sources/observed_journey.py",
+      "bytes": 33799,
+      "sha256": "0aa3a7dddb13230ad05a17be7cc51a82f4b0038632babcea83c03a99828ab432",
+      "mode": "0o644"
+    },
+    {
+      "path": "reviewed-sources/test_notification_readiness.py",
+      "bytes": 23469,
+      "sha256": "55379e14694ec64b20a67cbb5af60f4ae482d79bb59d1ab39904f31b3230f45a",
+      "mode": "0o644"
+    },
+    {
+      "path": "row-wrapper-span-phase.json",
+      "bytes": 8540,
+      "sha256": "589c065270eda8dec38c2b20bfa2fce9f7563e6629484f96c2199b9ed5b538c2",
+      "mode": "0o644"
+    },
+    {
+      "path": "source-identities-after.json",
+      "bytes": 10020,
+      "sha256": "7361641e14a29af861777b5c9f65ffdbb7148e1a31bf80168bcb4bc4c9fa695a",
+      "mode": "0o644"
+    },
+    {
+      "path": "source-identities-before.json",
+      "bytes": 10020,
+      "sha256": "7361641e14a29af861777b5c9f65ffdbb7148e1a31bf80168bcb4bc4c9fa695a",
+      "mode": "0o644"
+    },
+    {
+      "path": "synthetic-artifact-inventory.json",
+      "bytes": 203269,
+      "sha256": "9b9f314ba32483bc6f1f0c85be9e6829cc6c8ba1ea3d5951509cd7b04fa8406c",
+      "mode": "0o644"
+    },
+    {
+      "path": "synthetic-artifacts.tar.gz",
+      "bytes": 72364,
+      "sha256": "61547995b14261484c0238e6881aabc1e3b58ed2582c3e45a7981c21ddb00faf",
+      "mode": "0o644"
+    },
+    {
+      "path": "synthetic-positive-report.json",
+      "bytes": 276110,
+      "sha256": "893f614dabe3a69d1c9cae8c264614dd1f6c1c7498c63135a00d08539509c8b7",
+      "mode": "0o644"
+    },
+    {
+      "path": "whole-block-ledger-reorder-result.json",
+      "bytes": 400,
+      "sha256": "cf3e5486060127495bd84f588a6eceb768155eef52eee40113b6d7c5520d369a",
+      "mode": "0o644"
+    }
+  ],
+  "counterexampleCheckpointSha256": "dcbb18a66a636718edc2bb680298e82db8464fb0d4905e6d2e73563ab039658a",
+  "syntheticArtifactMembersVerified": 1344,
+  "result": {
+    "scope": "Independent replay of the closed synthetic counterexamples and precise follow-up checks against the corrected validator; not Android, no parity credit.",
+    "reviewedModule": {
+      "bytes": 20336,
+      "sha256": "08a838681c6b3ece018240d54013996bafd4204133bdd3eaa6a6c2dddeea6f85"
+    },
+    "cases": [
+      {
+        "name": "whole-block-ledger-reorder",
+        "journeyEqual": false,
+        "originalPositions": [
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34
+        ],
+        "newPositions": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "reason": "Global command ledger is not chronological and nonoverlapping"
+      },
+      {
+        "name": "boolean-schema-indices",
+        "journeyEqual": false,
+        "reason": "Incomplete or altered notification readiness phase"
+      },
+      {
+        "name": "row-wrapper-span-inflation-phase-only",
+        "phaseAccepted": false,
+        "rawHomeCommandSpanSeconds": 0.5499999999997272,
+        "rowWrapperSpanSeconds": 1.3499999999994543,
+        "policyMinimumReadySpanSeconds": 1.05,
+        "reason": "Notification readiness did not accept the first eligible contiguous sequence",
+        "fullReportAcceptanceClaimed": false
+      },
+      {
+        "name": "literal-integer-phase-schema",
+        "journeyEqual": false,
+        "reason": "Incomplete or altered notification readiness phase"
+      },
+      {
+        "name": "literal-integer-accepted-index",
+        "journeyEqual": false,
+        "reason": "Notification readiness did not accept the first eligible contiguous sequence"
+      },
+      {
+        "name": "literal-integer-gap-index",
+        "journeyEqual": false,
+        "reason": "Invalid notification readiness fixed gap"
+      },
+      {
+        "name": "pre-start-timeout-allocation",
+        "phaseAccepted": true,
+        "actualPhaseSeconds": 1.6499999999994088,
+        "configuredTimeoutSeconds": 10
+      },
+      {
+        "name": "late-actual-command-end",
+        "phaseAccepted": false,
+        "reason": "Notification readiness command is out of order or beyond its actual phase bound"
+      },
+      {
+        "name": "missing-denial-ledger-entry",
+        "journeyEqual": false,
+        "reason": "Readiness commands do not immediately follow their unique denial input in the global ledger"
+      }
+    ],
+    "baselinePassed": true,
+    "syntheticArtifacts": {
+      "count": 1344,
+      "archive": {
+        "bytes": 72364,
+        "sha256": "61547995b14261484c0238e6881aabc1e3b58ed2582c3e45a7981c21ddb00faf"
+      }
+    },
+    "exactSyntheticResultRestored": true,
+    "status": "CORRECTED_GUARD_INDEPENDENT_REVIEW_PASSED",
+    "passed": true,
+    "allBoundSourceBytesUnchanged": true,
+    "durationSeconds": 15.860035060999508
+  },
+  "allArchiveMembersVerified": true,
+  "overlayBytesChanged": false,
+  "activeSourceChanged": false,
+  "activeRegistryChanged": false,
+  "androidExecuted": false
+}
