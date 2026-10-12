@@ -1,0 +1,29 @@
+def run(folder, name, argv, expected=0, timeout=120):
+        folder.mkdir(parents=True, exist_ok=True)
+        stdout, stderr = folder / (name + '.stdout.log'), folder / (name + '.stderr.log')
+        require(not stdout.exists() and not stderr.exists(), 'Lookup command output already exists')
+        started = datetime.now(timezone.utc).isoformat(); tick = time.monotonic_ns(); code = None
+        witnesses = {}
+        try:
+            with stdout.open('xb') as out, stderr.open('xb') as err:
+                for role, stream in [('stdout', out), ('stderr', err)]:
+                    stat = os.fstat(stream.fileno())
+                    witnesses[role] = {'device': stat.st_dev, 'inode': stat.st_ino}
+                code = subprocess.run(list(map(str, argv)), cwd=root, stdout=out, stderr=err, timeout=timeout).returncode
+        finally:
+            finished_tick = time.monotonic_ns()
+            outputs = {}
+            for role, path in [('stdout', stdout), ('stderr', stderr)]:
+                stat = path.stat()
+                require(witnesses.get(role) == {'device': stat.st_dev, 'inode': stat.st_ino},
+                        'Lookup command output path no longer names its exclusively created stream')
+                outputs[role] = {'path': path.relative_to(root).as_posix(), **identity(path),
+                                 'exclusive_stream_witness': witnesses[role]}
+            row = {'name': name, 'argv': list(map(str, argv)), 'started_utc': started,
+                   'ended_utc': datetime.now(timezone.utc).isoformat(),
+                   'started_monotonic_ns': tick, 'finished_monotonic_ns': finished_tick,
+                   'duration_nanoseconds': finished_tick - tick, 'timeout_seconds': timeout,
+                   'returncode': code, **outputs}
+            report['commands'].append(row); write_json(destination, report)
+        require(code == expected, 'Lookup command failed: ' + name)
+        return row

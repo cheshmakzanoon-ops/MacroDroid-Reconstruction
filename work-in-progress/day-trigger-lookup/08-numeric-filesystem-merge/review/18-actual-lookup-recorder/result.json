@@ -1,0 +1,504 @@
+{
+  "actual_narrow_contract": "Exclusive xb creation; same device/inode after the child; exact file size/hash; integer monotonic duration; bounded subprocess; no same-filesystem timestamp witnesses, regular-single-link postcondition or per-stream I/O lifecycle receipts.",
+  "androidRuntime": false,
+  "app_input_validation_executed": false,
+  "application_executions": 0,
+  "cases": [
+    {
+      "acceptance_report": {
+        "bytes": 1821,
+        "commands_recorded": 1,
+        "mode": 420,
+        "passed": false,
+        "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/empty-zero/reports/day-lookup-dex-controls.json",
+        "sha256": "b9e874f1769d83b3269cf196927867580b55e572c1ec137831ebc68ce1b48231",
+        "status": "LOOKUP_DEX_CONTROL_FAILED"
+      },
+      "after_files": {
+        "extra_hardlink": null,
+        "stderr": {
+          "bytes": 0,
+          "ctime_ns": 1791801197589294189,
+          "device": 26,
+          "inode": 345001,
+          "is_symlink": false,
+          "links": 1,
+          "mode": 420,
+          "mtime_ns": 1791801197589294189,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/empty-zero/command-output/actual.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 0,
+          "ctime_ns": 1791801197589294189,
+          "device": 26,
+          "inode": 345000,
+          "is_symlink": false,
+          "links": 1,
+          "mode": 420,
+          "mtime_ns": 1791801197589294189,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/empty-zero/command-output/actual.stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/empty-zero/child-source.py",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/empty-zero/command-output/actual.stdout.log"
+      ],
+      "caught_error": "Bounded recorder probe stopped before every application input and signed-proof gate",
+      "caught_type": "StopBeforeApplicationProof",
+      "expected_child_exit": 0,
+      "expected_outcome": "sentinel",
+      "finished_monotonic_ns": 38918454755154,
+      "hook_calls": 1,
+      "live_recorder_entered": true,
+      "live_recorder_returned": true,
+      "name": "empty-zero",
+      "planned_source": {
+        "bytes": 5,
+        "mode": 420,
+        "sha256": "9f56e761d79bfdb34304a012586cb04d16b435ef6130091a97702e559260a2f2"
+      },
+      "started_monotonic_ns": 38918383421383,
+      "timeout_seconds": 5
+    },
+    {
+      "acceptance_report": {
+        "bytes": 1845,
+        "commands_recorded": 1,
+        "mode": 420,
+        "passed": false,
+        "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/nonempty-both-streams/reports/day-lookup-dex-controls.json",
+        "sha256": "ff1f03504ff70bae9ead62cb316c769df81159b1b0c99a3d7caf88a533edcb2c",
+        "status": "LOOKUP_DEX_CONTROL_FAILED"
+      },
+      "after_files": {
+        "extra_hardlink": null,
+        "stderr": {
+          "bytes": 15,
+          "ctime_ns": 1791801197702566657,
+          "device": 26,
+          "inode": 345012,
+          "is_symlink": false,
+          "links": 1,
+          "mode": 420,
+          "mtime_ns": 1791801197702566657,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/nonempty-both-streams/command-output/actual.stderr.log",
+          "sha256": "005c741784a0357ca423b7c2d061d9fc6285a896a81ea07dac084f930ab8a703"
+        },
+        "stdout": {
+          "bytes": 15,
+          "ctime_ns": 1791801197702566657,
+          "device": 26,
+          "inode": 345011,
+          "is_symlink": false,
+          "links": 1,
+          "mode": 420,
+          "mtime_ns": 1791801197702566657,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/nonempty-both-streams/command-output/actual.stdout.log",
+          "sha256": "8f0b58191ceb2634a45be4295f7ad9f13540e19b8180e9bec8d4370b541c1a90"
+        }
+      },
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/nonempty-both-streams/child-source.py",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/nonempty-both-streams/command-output/actual.stdout.log"
+      ],
+      "caught_error": "Bounded recorder probe stopped before every application input and signed-proof gate",
+      "caught_type": "StopBeforeApplicationProof",
+      "expected_child_exit": 0,
+      "expected_outcome": "sentinel",
+      "finished_monotonic_ns": 38918530068602,
+      "hook_calls": 1,
+      "live_recorder_entered": true,
+      "live_recorder_returned": true,
+      "name": "nonempty-both-streams",
+      "planned_source": {
+        "bytes": 102,
+        "mode": 420,
+        "sha256": "cc17acb62275bc134c12673b06439d7817c83b0a32db081d483843867560f660"
+      },
+      "started_monotonic_ns": 38918461962188,
+      "timeout_seconds": 5
+    },
+    {
+      "acceptance_report": {
+        "bytes": 1840,
+        "commands_recorded": 1,
+        "mode": 420,
+        "passed": false,
+        "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/expected-exit-seven/reports/day-lookup-dex-controls.json",
+        "sha256": "1f487fe4fd6764cf4d67ea68b07c1b9cc0d4139cf83c2901aeb2be71f0ca7b77",
+        "status": "LOOKUP_DEX_CONTROL_FAILED"
+      },
+      "after_files": {
+        "extra_hardlink": null,
+        "stderr": {
+          "bytes": 18,
+          "ctime_ns": 1791801197766563792,
+          "device": 26,
+          "inode": 345023,
+          "is_symlink": false,
+          "links": 1,
+          "mode": 420,
+          "mtime_ns": 1791801197766563792,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/expected-exit-seven/command-output/actual.stderr.log",
+          "sha256": "047eab79ea8e41d341b872e87df38483aaad687562f289472bcf3a7aa7cb33e3"
+        },
+        "stdout": {
+          "bytes": 0,
+          "ctime_ns": 1791801197736906552,
+          "device": 26,
+          "inode": 345022,
+          "is_symlink": false,
+          "links": 1,
+          "mode": 420,
+          "mtime_ns": 1791801197736906552,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/expected-exit-seven/command-output/actual.stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/expected-exit-seven/child-source.py",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/expected-exit-seven/command-output/actual.stdout.log"
+      ],
+      "caught_error": "Bounded recorder probe stopped before every application input and signed-proof gate",
+      "caught_type": "StopBeforeApplicationProof",
+      "expected_child_exit": 7,
+      "expected_outcome": "sentinel",
+      "finished_monotonic_ns": 38918573071813,
+      "hook_calls": 1,
+      "live_recorder_entered": true,
+      "live_recorder_returned": true,
+      "name": "expected-exit-seven",
+      "planned_source": {
+        "bytes": 81,
+        "mode": 420,
+        "sha256": "7d70beaf81b8b0f679ab389f12f54691a2e32ac00ccaae047fd0ce62dfc6dfd7"
+      },
+      "started_monotonic_ns": 38918531168799,
+      "timeout_seconds": 5
+    },
+    {
+      "acceptance_report": {
+        "bytes": 1776,
+        "commands_recorded": 1,
+        "mode": 420,
+        "passed": false,
+        "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/unexpected-exit-seven/reports/day-lookup-dex-controls.json",
+        "sha256": "5d0b2bb62e14eb1fa5b19ce63e6896cdb599ea317d3d3a876fb5bb647edda3ad",
+        "status": "LOOKUP_DEX_CONTROL_FAILED"
+      },
+      "after_files": {
+        "extra_hardlink": null,
+        "stderr": {
+          "bytes": 17,
+          "ctime_ns": 1791801197806562003,
+          "device": 26,
+          "inode": 345034,
+          "is_symlink": false,
+          "links": 1,
+          "mode": 420,
+          "mtime_ns": 1791801197806562003,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/unexpected-exit-seven/command-output/actual.stderr.log",
+          "sha256": "67cc7d5bf1c7f9b64c26966edfc24cce394bdb29d06b214dea1d9a78e1706158"
+        },
+        "stdout": {
+          "bytes": 0,
+          "ctime_ns": 1791801197780648287,
+          "device": 26,
+          "inode": 345033,
+          "is_symlink": false,
+          "links": 1,
+          "mode": 420,
+          "mtime_ns": 1791801197780648287,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/unexpected-exit-seven/command-output/actual.stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/unexpected-exit-seven/child-source.py",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/unexpected-exit-seven/command-output/actual.stdout.log"
+      ],
+      "caught_error": "Lookup command failed: actual",
+      "caught_type": "RuntimeError",
+      "expected_child_exit": 0,
+      "expected_outcome": "unexpected-exit",
+      "finished_monotonic_ns": 38918642141195,
+      "hook_calls": 1,
+      "live_recorder_entered": true,
+      "name": "unexpected-exit-seven",
+      "planned_source": {
+        "bytes": 80,
+        "mode": 420,
+        "sha256": "19b3fe6174b437781db1ec2744a8d3366c28c2e2a05af74aaea4b002c941dd7d"
+      },
+      "started_monotonic_ns": 38918575028623,
+      "timeout_seconds": 5
+    },
+    {
+      "acceptance_report": {
+        "bytes": 2084,
+        "commands_recorded": 1,
+        "mode": 420,
+        "passed": false,
+        "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/bounded-timeout/reports/day-lookup-dex-controls.json",
+        "sha256": "2afb4ac4819c5794a25e3d4e5cbd0d0825ef2377ea8fbf6046c544bbe0f5cb44",
+        "status": "LOOKUP_DEX_CONTROL_FAILED"
+      },
+      "after_files": {
+        "extra_hardlink": null,
+        "stderr": {
+          "bytes": 0,
+          "ctime_ns": 1791801197849684874,
+          "device": 26,
+          "inode": 345045,
+          "is_symlink": false,
+          "links": 1,
+          "mode": 420,
+          "mtime_ns": 1791801197849684874,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/bounded-timeout/command-output/actual.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 23,
+          "ctime_ns": 1791801197895824828,
+          "device": 26,
+          "inode": 345044,
+          "is_symlink": false,
+          "links": 1,
+          "mode": 420,
+          "mtime_ns": 1791801197895824828,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/bounded-timeout/command-output/actual.stdout.log",
+          "sha256": "78422f2becda3acf892af8fb6f05edfafc76deb34747d0f07ad8044a0ce357f1"
+        }
+      },
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/bounded-timeout/child-source.py",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/bounded-timeout/command-output/actual.stdout.log"
+      ],
+      "caught_error": "Command '['/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python', '-B', '/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/bounded-timeout/child-source.py', '/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/bounded-timeout/command-output/actual.stdout.log']' timed out after 0.3999887320023845 seconds",
+      "caught_type": "TimeoutExpired",
+      "expected_child_exit": 0,
+      "expected_outcome": "timeout",
+      "finished_monotonic_ns": 38919062646392,
+      "hook_calls": 1,
+      "live_recorder_entered": true,
+      "name": "bounded-timeout",
+      "owned_child_pid": 9,
+      "planned_source": {
+        "bytes": 150,
+        "mode": 420,
+        "sha256": "72afe77f06b6bc10d4450d6aa2324b477c99b46696faa157f0e7a8177f16e120"
+      },
+      "started_monotonic_ns": 38918643639363,
+      "timed_out_child_reaped": true,
+      "timeout_seconds": 0.4
+    },
+    {
+      "acceptance_report": {
+        "bytes": 491,
+        "commands_recorded": 0,
+        "mode": 420,
+        "passed": false,
+        "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/preexisting-stdout/reports/day-lookup-dex-controls.json",
+        "sha256": "cb0adda510e94573a9b78cdcabe99e2943107f4e7bd22a9b404cc279c9e7ff2d",
+        "status": "LOOKUP_DEX_CONTROL_FAILED"
+      },
+      "after_files": {
+        "extra_hardlink": null,
+        "stderr": null,
+        "stdout": {
+          "bytes": 34,
+          "ctime_ns": 1791801198277015942,
+          "device": 26,
+          "inode": 345053,
+          "is_symlink": false,
+          "links": 1,
+          "mode": 420,
+          "mtime_ns": 1791801198277015942,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/preexisting-stdout/command-output/actual.stdout.log",
+          "sha256": "99d02c6db17871019e0fb12717528b071412e9e5865b969e5fbd6a3db0072d68"
+        }
+      },
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/preexisting-stdout/child-source.py",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/preexisting-stdout/command-output/actual.stdout.log"
+      ],
+      "caught_error": "Lookup command output already exists",
+      "caught_type": "RuntimeError",
+      "expected_child_exit": 0,
+      "expected_outcome": "preexisting",
+      "finished_monotonic_ns": 38919073834606,
+      "hook_calls": 1,
+      "live_recorder_entered": true,
+      "name": "preexisting-stdout",
+      "planned_source": {
+        "bytes": 73,
+        "mode": 420,
+        "sha256": "2075e82431d576d149bc5eadf9228b6e6d45fcb3386abee7194f6ed87243f6ed"
+      },
+      "started_monotonic_ns": 38919071954355,
+      "timeout_seconds": 5
+    },
+    {
+      "acceptance_report": {
+        "bytes": 528,
+        "commands_recorded": 0,
+        "mode": 420,
+        "passed": false,
+        "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-replaces-stdout-path/reports/day-lookup-dex-controls.json",
+        "sha256": "5ab8347251218237e765e8f5ce4e352d58a393a93a89f3c78d8018a94648a109",
+        "status": "LOOKUP_DEX_CONTROL_FAILED"
+      },
+      "after_files": {
+        "extra_hardlink": null,
+        "stderr": {
+          "bytes": 0,
+          "ctime_ns": 1791801198283374781,
+          "device": 26,
+          "inode": 345068,
+          "is_symlink": false,
+          "links": 1,
+          "mode": 420,
+          "mtime_ns": 1791801198283374781,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-replaces-stdout-path/command-output/actual.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 21,
+          "ctime_ns": 1791801198358006015,
+          "device": 26,
+          "inode": 345069,
+          "is_symlink": false,
+          "links": 1,
+          "mode": 420,
+          "mtime_ns": 1791801198358006015,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-replaces-stdout-path/command-output/actual.stdout.log",
+          "sha256": "cfdcdbf3a6f08ee9d84cfc31c8ae75f753011b00f13382bb123827c8bc1e2549"
+        }
+      },
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-replaces-stdout-path/child-source.py",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-replaces-stdout-path/command-output/actual.stdout.log"
+      ],
+      "caught_error": "Lookup command output path no longer names its exclusively created stream",
+      "caught_type": "RuntimeError",
+      "expected_child_exit": 0,
+      "expected_outcome": "replacement",
+      "finished_monotonic_ns": 38919198817441,
+      "hook_calls": 1,
+      "live_recorder_entered": true,
+      "missing_final_command_row_after_ownership_rejection": true,
+      "name": "child-replaces-stdout-path",
+      "planned_source": {
+        "bytes": 154,
+        "mode": 420,
+        "sha256": "37f0348650c79a31f6ce975645e590d8a7f8fdb25d31479c98e839797504a86c"
+      },
+      "started_monotonic_ns": 38919075997465,
+      "timeout_seconds": 5
+    },
+    {
+      "acceptance_report": {
+        "bytes": 1855,
+        "commands_recorded": 1,
+        "mode": 420,
+        "passed": false,
+        "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-adds-stdout-hardlink/reports/day-lookup-dex-controls.json",
+        "sha256": "5c01f8049ebc794771d6794fcb87b76260f34d82f89d03b08fab6537e6b8ec8a",
+        "status": "LOOKUP_DEX_CONTROL_FAILED"
+      },
+      "additional_hardlink_not_rejected_by_production_recorder": true,
+      "after_files": {
+        "extra_hardlink": {
+          "bytes": 27,
+          "ctime_ns": 1791801198501040312,
+          "device": 26,
+          "inode": 345079,
+          "is_symlink": false,
+          "links": 2,
+          "mode": 420,
+          "mtime_ns": 1791801198501040312,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-adds-stdout-hardlink/command-output/extra-hardlink.txt",
+          "sha256": "802a8df13e1ea1b19fec8f89e0d6db35c20d3c577ac7dfcb5bc2e43e706642de"
+        },
+        "stderr": {
+          "bytes": 0,
+          "ctime_ns": 1791801198419504806,
+          "device": 26,
+          "inode": 345080,
+          "is_symlink": false,
+          "links": 1,
+          "mode": 420,
+          "mtime_ns": 1791801198419504806,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-adds-stdout-hardlink/command-output/actual.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 27,
+          "ctime_ns": 1791801198501040312,
+          "device": 26,
+          "inode": 345079,
+          "is_symlink": false,
+          "links": 2,
+          "mode": 420,
+          "mtime_ns": 1791801198501040312,
+          "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-adds-stdout-hardlink/command-output/actual.stdout.log",
+          "sha256": "802a8df13e1ea1b19fec8f89e0d6db35c20d3c577ac7dfcb5bc2e43e706642de"
+        }
+      },
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-adds-stdout-hardlink/child-source.py",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-adds-stdout-hardlink/command-output/actual.stdout.log"
+      ],
+      "caught_error": "Bounded recorder probe stopped before every application input and signed-proof gate",
+      "caught_type": "StopBeforeApplicationProof",
+      "expected_child_exit": 0,
+      "expected_outcome": "hardlink-accepted",
+      "finished_monotonic_ns": 38919331821959,
+      "hook_calls": 1,
+      "live_recorder_entered": true,
+      "live_recorder_returned": true,
+      "name": "child-adds-stdout-hardlink",
+      "planned_source": {
+        "bytes": 156,
+        "mode": 420,
+        "sha256": "da2e431a4f7fff45a4436c219bb05f2bd8e8744b0cb121290d083c7bda7c9070"
+      },
+      "started_monotonic_ns": 38919204727973,
+      "timeout_seconds": 5
+    }
+  ],
+  "cases_observed": 8,
+  "concrete_limitations": [
+    "An additional hardlink to the exclusively created stdout inode is accepted. The production recorder does not enforce single-link ownership.",
+    "Replacing stdout with a different inode is rejected, but the finally block raises before appending the final command row; only the failed overall report, raw files and this independent diagnostic retain that attempt.",
+    "A timeout preserves the TimeoutExpired exception and a command row with returncode null; timeout type/reaped PID are not fields in that production command row. The independent diagnostic records both."
+  ],
+  "exercise_completed": true,
+  "finished_utc": "2026-10-12T10:33:18.553004+00:00",
+  "full_signed_acceptance_executed": false,
+  "method_or_instruction_coverage_credit": 0,
+  "numeric_filesystem_witness_contract_inherited": false,
+  "production_acceptance_reports_passed": 0,
+  "scope": "Exercise the actual production nested lookup recorder, then stop explicitly.\n\nThe sole test hook replaces target_entry at the first application-input boundary.\nIt retrieves the live nested run closure from its real run_controls caller, runs\none bounded Python child, then raises a sentinel. No application inputs, Java,\nDEX, APK, signing, method coverage, or successful acceptance are involved.\n",
+  "source_inputs_unchanged": true,
+  "started_utc": "2026-10-12T10:33:17.480332+00:00",
+  "status": "ACTUAL_LOOKUP_RECORDER_EXERCISE_COMPLETE_ACCEPTANCE_REMAINS_FAILED"
+}

@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "passed": false,
+  "status": "LOOKUP_DEX_CONTROL_FAILED",
+  "androidRuntime": false,
+  "started_utc": "2026-10-12T10:33:17.588955+00:00",
+  "commands": [
+    {
+      "name": "actual",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/empty-zero/child-source.py",
+        "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/empty-zero/command-output/actual.stdout.log"
+      ],
+      "started_utc": "2026-10-12T10:33:17.589458+00:00",
+      "ended_utc": "2026-10-12T10:33:17.655205+00:00",
+      "started_monotonic_ns": 38918384129243,
+      "finished_monotonic_ns": 38918449246683,
+      "duration_nanoseconds": 65117440,
+      "timeout_seconds": 5,
+      "returncode": 0,
+      "stdout": {
+        "path": "command-output/actual.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "exclusive_stream_witness": {
+          "device": 26,
+          "inode": 345000
+        }
+      },
+      "stderr": {
+        "path": "command-output/actual.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "exclusive_stream_witness": {
+          "device": 26,
+          "inode": 345001
+        }
+      }
+    }
+  ],
+  "evidence_directory": "reports/day-lookup-dex-ep4m5gnd",
+  "primary_recovered_methods": 1,
+  "original_dependency_methods": 2,
+  "expected_java_faults": 10,
+  "expected_actual_dex_faults": 2,
+  "error": "StopBeforeApplicationProof('Bounded recorder probe stopped before every application input and signed-proof gate')",
+  "finished_utc": "2026-10-12T10:33:17.655427+00:00"
+}

@@ -1,0 +1,555 @@
+--- parent/prepare_trigger_journey.py
++++ successor/prepare_trigger_journey.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Prepare pinned tools and APKs for the thirteen-screen trigger-category journey."""
++"""Prepare pinned tools and APKs for the fourteen-screen exact-alarm navigation journey."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -12,10 +12,10 @@
+ import re
+ import sys
+ 
+-GUARD = 'work-in-progress/notification-readiness/01-corrected-host-guard'
++GUARD = 'work-in-progress/exact-alarm-navigation/03-corrected-source-and-host-controls'
+ ANIMATION = 'work-in-progress/trigger-category/07-zero-animation-source'
+-WORKFLOW = '.github/workflows/editor-day-time-readiness.yml'
+-PACKAGE = 'work-in-progress/notification-readiness-workflow/01-thirteen-screen'
++WORKFLOW = '.github/workflows/editor-exact-alarm-navigation.yml'
++PACKAGE = 'work-in-progress/exact-alarm-navigation-workflow/01-fourteen-screen'
+ PINS = {
+     'scripts/materialize_v9.py': '99a2a50a1518bf7f960ba8bc07b9e4c25bbb882118494cc4b82d0cc87f94be0c',
+     'scripts/import_v9.py': '11a1890a9e60d3905181189df6f28963c7c59b2046bc759a28b975d9b309ffa1',
+@@ -30,11 +30,12 @@
+     'tools/android/wait_android_ready.py': '72cb3bcd56df72cd901ee724c48a44b0254235e1d7cdda6c991b985e572f34af',
+     'tools/android/configure_capture_device.py': '50b93f00b68147323be46c8311ee32d3f201683a40b1825d17a02bc51ce25ec8',
+     'tools/android/test_download_retry.py': 'bd5d871951fbf1e5f7aa3093c8c155b1c599d84ae008b90e1eda53bf3a60948a',
+-    GUARD + '/checkpoint.json': 'b9d069a653b3ecc483f8e6579ccfb13e5a70450c00015f9a3a31c5277c9a84b3',
++    GUARD + '/checkpoint.json': '8deeece1c51d4320a72b065679f22a56242ea6769ed526e0c6436df405430857',
+     ANIMATION + '/checkpoint.json': '5cb124753f8acb7cf8e0ec070f1ddf2b2f9b49d99ad144dea6f2b37047258a48',
+ }
+-REPORT_SCHEMA = 5
+-READINESS_POLICY_SHA256 = 'bec477b5b3792d6270dec999dfb5d08094a01fc3a9ad186a2a44b38d8f6967a4'
++REPORT_SCHEMA = 6
++READINESS_POLICY_SHA256 = 'ddcaa7d3751e701b923d382a2a4662514f79b9bdc9096f1e62600dffef5f3583'
++NAVIGATION_POLICY_SHA256 = 'db0c6bc7802788fc649b47909500b050d173da62d0eb7bc9d226e4b824b63994'
+ APKS = [
+     ('vendor/original/manifest.json', 'MacroDroid-5.67.8-original.apk', 95725918,
+      '84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800'),
+@@ -89,7 +90,7 @@
+ 
+     for name, digest in PINS.items():
+         add(name, digest)
+-    for package, count in [(GUARD, 140), (ANIMATION, 9)]:
++    for package, count in [(GUARD, 166), (ANIMATION, 9)]:
+         checkpoint = json.loads(checked_file(root, package + '/checkpoint.json').read_text())
+         files = checkpoint['files']
+         if (type(files) is not list or len(files) != count
+@@ -130,16 +131,17 @@
+ 
+ def verify_prepared_inputs(root, output, report):
+     """Require exact membership and identities before executing copied code."""
+-    if report.get('passed') is not True or report.get('status') != 'FROZEN_DAY_TIME_READINESS_INPUTS_VERIFIED':
++    if report.get('passed') is not True or report.get('status') != 'FROZEN_EXACT_ALARM_NAVIGATION_INPUTS_VERIFIED':
+         raise ValueError('Successful frozen input preflight required')
+     expected = expected_inputs(root)
+     if type(report.get('files')) is not list or report['files'] != expected:
+         raise ValueError('Prepared input inventory is not the complete independently pinned inventory')
+-    if (report.get('plan_sha256') != '42ece5a06a280186ddf9796a4524975d478263e545260674e2b1b4cf718d46fb'
++    if (report.get('plan_sha256') != '4133e9410db84ac5636ece780b67331bf139afaa2de6b5c110c5ef5679fda85c'
+             or report.get('requested_scales') != '0'
+             or type(report.get('requested_report_schema')) is not int
+             or report['requested_report_schema'] != REPORT_SCHEMA
+             or report.get('notification_readiness_policy_sha256') != READINESS_POLICY_SHA256
++            or report.get('exact_alarm_navigation_policy_sha256') != NAVIGATION_POLICY_SHA256
+             or report.get('android_executed') is not False):
+         raise ValueError('Frozen diagnostic plan or preparation scope changed')
+     for row in expected:
+@@ -171,10 +173,11 @@
+     try:
+         for row in expected_inputs(root):
+             copy(row)
+-        report.update(status='FROZEN_DAY_TIME_READINESS_INPUTS_VERIFIED', passed=True,
+-                      plan_sha256='42ece5a06a280186ddf9796a4524975d478263e545260674e2b1b4cf718d46fb',
++        report.update(status='FROZEN_EXACT_ALARM_NAVIGATION_INPUTS_VERIFIED', passed=True,
++                      plan_sha256='4133e9410db84ac5636ece780b67331bf139afaa2de6b5c110c5ef5679fda85c',
+                       requested_scales='0', requested_report_schema=REPORT_SCHEMA,
+                       notification_readiness_policy_sha256=READINESS_POLICY_SHA256,
++                      exact_alarm_navigation_policy_sha256=NAVIGATION_POLICY_SHA256,
+                       full_runtime_1_to_1_established=False)
+     except Exception as error:
+         report.update(status='FROZEN_INPUT_PREFLIGHT_FAILED', reason=type(error).__name__ + ': ' + str(error))
+--- parent/verify_trigger_journey.py
++++ successor/verify_trigger_journey.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Verify the declared thirteen-screen trigger-category observation at scale zero."""
++"""Verify the declared fourteen-screen exact-alarm navigation observation at scale zero."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -13,22 +13,23 @@
+ 
+ 
+ 
+-def require_notification_policy(report):
++def require_workflow_policies(report):
+     """Require this workflow's schema even if a legacy comparison could pass.
+ 
+     This checks the requested policy format only. Actual phase artifacts,
+     chronology, commands, ownership and both references are verified by compare.
+     """
+-    import day_time_journey
+-    import notification_readiness
+-    with day_time_journey.configured_plan():
+-        notification_readiness.require_policy(report)
++    import exact_alarm_journey
++    import exact_alarm_readiness
++    with exact_alarm_journey.configured_plan():
++        exact_alarm_journey.require_navigation_policy(report)
++        exact_alarm_readiness.require_policy(report)
+ 
+ 
+ def verify(root, output):
+-    result = {'status': 'DAY_TIME_READINESS_EVIDENCE_INCOMPLETE', 'evidence_valid': False,
++    result = {'status': 'EXACT_ALARM_NAVIGATION_EVIDENCE_INCOMPLETE', 'evidence_valid': False,
+               'full_runtime_1_to_1_established': False, 'animation_timing_parity_established': False,
+-              'scope': 'Two fixed APKs, thirteen full-frame still observations and twelve inputs each at animation scale zero, with bounded notification readiness',
++              'scope': 'Two fixed APKs, fourteen full-frame still observations and thirteen inputs each at animation scale zero, with bounded notification readiness',
+               'verified_at_utc': datetime.now(timezone.utc).isoformat()}
+     try:
+         preflight = json.loads((output / 'input-preflight.json').read_text())
+@@ -51,7 +52,7 @@
+         sys.path[:0] = [str(output / 'reviewed-source/tools/parity_journeys'),
+                        str(output / 'reviewed-source/project'), str(root / preparation.ANIMATION)]
+         import enable_still_animations as scales
+-        import day_time_journey as category
++        import exact_alarm_journey as category
+         import editor_journey as runner
+         import android_compare as proof
+         folder = output / 'animation-settings'
+@@ -66,14 +67,14 @@
+             raise ValueError('The declared radio and demo-clock preparation differs')
+         journey = output / 'journey'
+         report = json.loads((journey / 'journey.json').read_text())
+-        require_notification_policy(report)
++        require_workflow_policies(report)
+         captured = json.loads((journey / 'comparison.json').read_text())
+         if (report.get('status') != 'RECORDED_NOT_PARITY' or len(report.get('runs', [])) != 2
+                 or [run['apk_sha256'] for run in report['runs']] != [row[3] for row in preparation.APKS]
+                 or report.get('plan_sha256') != preflight['plan_sha256']):
+-            raise ValueError('The exact two-APK thirteen-screen observation is incomplete')
++            raise ValueError('The exact two-APK fourteen-screen observation is incomplete')
+         for run in report['runs']:
+-            if (run.get('status') != 'COMPLETE' or len(run['screens']) != 13 or len(run['transitions']) != 12
++            if (run.get('status') != 'COMPLETE' or len(run['screens']) != 14 or len(run['transitions']) != 13
+                     or settings['finished_monotonic'] > run['launch']['started_monotonic']):
+                 raise ValueError('Configuration and complete journey are not in order')
+             for name in ('environment', 'environment_after'):
+@@ -85,23 +86,32 @@
+                     raise ValueError('Zero animation settings or pinned device changed during a run')
+         with category.configured_plan():
+             replayed = runner.compare(journey, report, proof)
+-        if (replayed != captured or len(replayed.get('screens', [])) != 13
++        if (replayed != captured or len(replayed.get('screens', [])) != 14
+                 or 'reason' in replayed or replayed.get('android_runtime_executed') is not True
+                 or replayed.get('catalog_navigation_established') is not True
+                 or replayed.get('trigger_type_tapped') is not True
+                 or replayed.get('trigger_configuration_confirmed') is not False
++                or replayed.get('exact_alarm_explanation_ok_tapped') is not True
++                or replayed.get('settings_navigation_observed') is not True
++                or replayed.get('settings_inputs') != 0
++                or replayed.get('permission_granted') is not False
++                or replayed.get(category.POLICY_KEY) != category.POLICY
++                or replayed.get('global_command_observations', {}).get('planned_inputs') != 26
++                or replayed.get('global_command_observations', {}).get('setup_mutations') != 6
++                or replayed.get('global_command_observations', {}).get('unbound_mutations') != 0
++                or replayed.get('global_command_observations', {}).get('settings_inputs') != 0
+                 or replayed.get('status') not in ('JOURNEY_DIFFERENCE',
+-                    'EXACT_DAY_TIME_TRIGGER_OBSERVATION_ONLY', 'MATCHED_POST_CRASH_CONTINUATION_ONLY')):
++                    'EXACT_ALARM_SETTINGS_OBSERVATION_ONLY', 'MATCHED_POST_CRASH_CONTINUATION_ONLY')):
+             raise ValueError('Independent full-frame replay differs from the recorded comparison')
+-        result.update(status=('DAY_TIME_READINESS_THIRTEEN_SCREEN_MATCH_ONLY' if replayed['journey_equal']
+-                              else 'DAY_TIME_READINESS_THIRTEEN_SCREEN_DIFFERENCE'), evidence_valid=True,
++        result.update(status=('EXACT_ALARM_NAVIGATION_FOURTEEN_SCREEN_MATCH_ONLY' if replayed['journey_equal']
++                              else 'EXACT_ALARM_NAVIGATION_FOURTEEN_SCREEN_DIFFERENCE'), evidence_valid=True,
+                       journey_equal=replayed['journey_equal'], comparison=replayed,
+                       changed_pixels=[row['changed_pixels'] for row in replayed['screens']],
+                       animation_configuration_sha256=hashlib.sha256((folder / 'animation-scales.json').read_bytes()).hexdigest(),
+                       historical_results_rewritten=False)
+     except Exception as error:
+         result['reason'] = type(error).__name__ + ': ' + str(error)
+-    (output / 'day-time-readiness-verification.json').write_text(json.dumps(result, indent=2) + '\n')
++    (output / 'exact-alarm-navigation-verification.json').write_text(json.dumps(result, indent=2) + '\n')
+     return result
+ 
+ 
+--- parent/build_workflow.py
++++ successor/build_workflow.py
+@@ -20,40 +20,40 @@
+     steps = old['jobs']['widget-method-probe']['steps']
+     bootstrap = next(step['run'] for step in steps if step['name'] == 'Install the checksum-pinned disposable Android runtime')
+     runtime = next(step['run'] for step in steps if step['name'] == 'Run both exact APKs through the independent Widget method probe')
+-    for before, after in [('ci-widget-method', 'ci-day-time-readiness'),
+-                          ('macrodroid-widget-tooling', 'macrodroid-day-time-readiness-tooling'),
++    for before, after in [('ci-widget-method', 'ci-exact-alarm-navigation'),
++                          ('macrodroid-widget-tooling', 'macrodroid-exact-alarm-navigation-tooling'),
+                           ('widget_', 'trigger_'), ('Widget runtime', 'Day/Time readiness runtime'),
+                           ('probe_step_exit_code', 'journey_step_exit_code')]:
+         bootstrap, runtime = bootstrap.replace(before, after), runtime.replace(before, after)
+-    boundary = 'python3 tools/android/runtime_job.py --queue ci-day-time-readiness/environment/queue'
++    boundary = 'python3 tools/android/runtime_job.py --queue ci-exact-alarm-navigation/environment/queue'
+     if runtime.count(boundary) != 1:
+         raise ValueError('Reviewed runtime command boundary changed')
+-    runtime = runtime.split(boundary, 1)[0] + '''python3 tools/android/runtime_job.py --queue ci-day-time-readiness/environment/queue \
+-  --id day-time-readiness-radio-clock --timeout 240 -- \
++    runtime = runtime.split(boundary, 1)[0] + '''python3 tools/android/runtime_job.py --queue ci-exact-alarm-navigation/environment/queue \
++  --id exact-alarm-navigation-radio-clock --timeout 240 -- \
+   python3 "$GITHUB_WORKSPACE/tools/android/configure_capture_device.py" \
+-    --adb "$RUNNER_TEMP/macrodroid-day-time-readiness-tooling/android/platform-tools/adb" \
+-    --serial emulator-5560 --output "$GITHUB_WORKSPACE/ci-day-time-readiness/device" --demo-clock 1200 \
+-  2>&1 | tee ci-day-time-readiness/device-job.log
+-python3 tools/android/runtime_job.py --queue ci-day-time-readiness/environment/queue \
+-  --id day-time-readiness-settings --timeout 360 -- \
++    --adb "$RUNNER_TEMP/macrodroid-exact-alarm-navigation-tooling/android/platform-tools/adb" \
++    --serial emulator-5560 --output "$GITHUB_WORKSPACE/ci-exact-alarm-navigation/device" --demo-clock 1200 \
++  2>&1 | tee ci-exact-alarm-navigation/device-job.log
++python3 tools/android/runtime_job.py --queue ci-exact-alarm-navigation/environment/queue \
++  --id exact-alarm-navigation-settings --timeout 360 -- \
+   python3 "$GITHUB_WORKSPACE/work-in-progress/trigger-category/07-zero-animation-source/enable_still_animations.py" \
+-    --adb "$RUNNER_TEMP/macrodroid-day-time-readiness-tooling/android/platform-tools/adb" \
+-    --serial emulator-5560 --output "$GITHUB_WORKSPACE/ci-day-time-readiness/animation-settings" \
+-  2>&1 | tee ci-day-time-readiness/animation-job.log
+-python3 tools/android/runtime_job.py --queue ci-day-time-readiness/environment/queue \
+-  --id day-time-readiness-thirteen-screen --timeout 2400 -- \
+-  python3 "$GITHUB_WORKSPACE/ci-day-time-readiness/reviewed-source/tools/parity_journeys/day_time_journey.py" \
+-    --source "$GITHUB_WORKSPACE/ci-day-time-readiness/reviewed-source/project" \
++    --adb "$RUNNER_TEMP/macrodroid-exact-alarm-navigation-tooling/android/platform-tools/adb" \
++    --serial emulator-5560 --output "$GITHUB_WORKSPACE/ci-exact-alarm-navigation/animation-settings" \
++  2>&1 | tee ci-exact-alarm-navigation/animation-job.log
++python3 tools/android/runtime_job.py --queue ci-exact-alarm-navigation/environment/queue \
++  --id exact-alarm-navigation-fourteen-screen --timeout 2400 -- \
++  python3 "$GITHUB_WORKSPACE/ci-exact-alarm-navigation/reviewed-source/tools/parity_journeys/exact_alarm_journey.py" \
++    --source "$GITHUB_WORKSPACE/ci-exact-alarm-navigation/reviewed-source/project" \
+     --original "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-original.apk" \
+     --candidate "$GITHUB_WORKSPACE/workspace/artifacts/MacroDroid-5.67.8-combined-plugin-widget-hybrid.apk" \
+-    --output "$GITHUB_WORKSPACE/ci-day-time-readiness/journey" --serial emulator-5560 \
++    --output "$GITHUB_WORKSPACE/ci-exact-alarm-navigation/journey" --serial emulator-5560 \
+     --accept-package-data-removal --observe-denial-handoff --settle-full-frames --observe-notification-readiness \
+-  2>&1 | tee ci-day-time-readiness/journey-job.log
++  2>&1 | tee ci-exact-alarm-navigation/journey-job.log
+ '''
+     home = Path(__file__).resolve().parent
+     def sha(name):
+         return hashlib.sha256((home / name).read_bytes()).hexdigest()
+-    package = 'work-in-progress/notification-readiness-workflow/01-thirteen-screen'
++    package = 'work-in-progress/exact-alarm-navigation-workflow/01-fourteen-screen'
+     preflight = f'''set -euo pipefail
+ python3 - <<'PY'
+ from pathlib import Path
+@@ -67,42 +67,42 @@
+     if path.is_symlink() or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+         raise RuntimeError('Reviewed diagnostic helper changed: ' + name)
+ PY
+-python3 {package}/prepare_trigger_journey.py --root "$GITHUB_WORKSPACE" --output ci-day-time-readiness
++python3 {package}/prepare_trigger_journey.py --root "$GITHUB_WORKSPACE" --output ci-exact-alarm-navigation
+ '''
+     host = '''set -euo pipefail
+-python3 -B -m unittest discover -s tools/android -p 'test_download_retry.py' -v 2>&1 | tee ci-day-time-readiness/download-tests.log
+-python3 -B -m unittest discover -s ci-day-time-readiness/reviewed-source/tools/parity_journeys -p 'test_*.py' -v 2>&1 | tee ci-day-time-readiness/journey-host-tests.log
+-python3 -B -m unittest discover -s work-in-progress/trigger-category/07-zero-animation-source -p 'test_enable_still_animations.py' -v 2>&1 | tee ci-day-time-readiness/animation-host-tests.log
++python3 -B -m unittest discover -s tools/android -p 'test_download_retry.py' -v 2>&1 | tee ci-exact-alarm-navigation/download-tests.log
++python3 -B -m unittest discover -s ci-exact-alarm-navigation/reviewed-source/tools/parity_journeys -p 'test_*.py' -v 2>&1 | tee ci-exact-alarm-navigation/journey-host-tests.log
++python3 -B -m unittest discover -s work-in-progress/trigger-category/07-zero-animation-source -p 'test_enable_still_animations.py' -v 2>&1 | tee ci-exact-alarm-navigation/animation-host-tests.log
+ '''
+     materialize = f'''set -euo pipefail
+-python3 scripts/materialize_v9.py --without-overlay 2>&1 | tee ci-day-time-readiness/materialize-toolchain.log
+-python3 scripts/assemble_artifact.py vendor/original/manifest.json 2>&1 | tee ci-day-time-readiness/materialize-original.log
+-python3 scripts/assemble_artifact.py work-in-progress/combined-recovery/05-full-acceptance/apk/manifest.json 2>&1 | tee ci-day-time-readiness/materialize-candidate.log
+-python3 {package}/prepare_trigger_journey.py --root "$GITHUB_WORKSPACE" --output ci-day-time-readiness --materialized 2>&1 | tee ci-day-time-readiness/apk-preflight.log
++python3 scripts/materialize_v9.py --without-overlay 2>&1 | tee ci-exact-alarm-navigation/materialize-toolchain.log
++python3 scripts/assemble_artifact.py vendor/original/manifest.json 2>&1 | tee ci-exact-alarm-navigation/materialize-original.log
++python3 scripts/assemble_artifact.py work-in-progress/combined-recovery/05-full-acceptance/apk/manifest.json 2>&1 | tee ci-exact-alarm-navigation/materialize-candidate.log
++python3 {package}/prepare_trigger_journey.py --root "$GITHUB_WORKSPACE" --output ci-exact-alarm-navigation --materialized 2>&1 | tee ci-exact-alarm-navigation/apk-preflight.log
+ '''
+     final = f'''set -euo pipefail
+-mkdir -p ci-day-time-readiness
+-python3 {package}/verify_trigger_journey.py --root "$GITHUB_WORKSPACE" --output ci-day-time-readiness 2>&1 | tee ci-day-time-readiness/independent-comparison.log
++mkdir -p ci-exact-alarm-navigation
++python3 {package}/verify_trigger_journey.py --root "$GITHUB_WORKSPACE" --output ci-exact-alarm-navigation 2>&1 | tee ci-exact-alarm-navigation/independent-comparison.log
+ '''
+-    document = '''name: Independent Day/Time thirteen-screen comparison with notification readiness
++    document = '''name: Independent exact-alarm fourteen-screen comparison with bounded notification readiness
+ 
+ on:
+   push:
+     branches: [main]
+     paths:
+-      - '.github/workflows/editor-day-time-readiness.yml'
+-      - 'work-in-progress/notification-readiness-workflow/01-thirteen-screen/**'
++      - '.github/workflows/editor-exact-alarm-navigation.yml'
++      - 'work-in-progress/exact-alarm-navigation-workflow/01-fourteen-screen/**'
+   workflow_dispatch:
+ 
+ permissions:
+   contents: read
+ 
+ concurrency:
+-  group: editor-day-time-readiness-${{ github.ref }}
++  group: editor-exact-alarm-navigation-${{ github.ref }}
+   cancel-in-progress: false
+ 
+ jobs:
+-  editor-day-time-readiness:
++  editor-exact-alarm-navigation:
+     runs-on: ubuntu-24.04
+     timeout-minutes: 75
+     env:
+@@ -114,11 +114,11 @@
+           persist-credentials: false
+ '''
+     for title, script, always in [
+-            ('Verify and copy the frozen readiness guard and thirteen-screen source', preflight, False),
++            ('Verify and copy the frozen exact-alarm guard and fourteen-screen source', preflight, False),
+             ('Run the frozen capture, animation and downloader host controls', host, False),
+             ('Inspect both exact APKs using the preserved AAPT2 tool', materialize, False),
+             ('Install the pinned disposable runtime and preserve toolchain identities', bootstrap, False),
+-            ('Observe the thirteen declared screens with bounded notification readiness', runtime, False),
++            ('Observe the fourteen declared screens with bounded notification readiness', runtime, False),
+             ('Recheck raw readiness, animation settings, ordered captures and exact pixels', final, True)]:
+         document += '\n      - name: ' + title + '\n'
+         if always:
+@@ -130,10 +130,10 @@
+         if: always()
+         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+         with:
+-          name: editor-day-time-readiness-${{ github.sha }}
++          name: editor-exact-alarm-navigation-${{ github.sha }}
+           retention-days: 30
+           if-no-files-found: error
+-          path: ci-day-time-readiness/
++          path: ci-exact-alarm-navigation/
+           include-hidden-files: true
+ '''
+     args.output.parent.mkdir(parents=True, exist_ok=True)
+--- parent/validate_workflow.py
++++ successor/validate_workflow.py
+@@ -35,8 +35,9 @@
+               'commands': [], 'checks': [], 'started_utc': datetime.now(timezone.utc).isoformat()}
+     root = output / 'private-inputs'
+     root.mkdir()
++    temporary = output / 'host-temporary'; temporary.mkdir()
+     env = {**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'GITHUB_WORKSPACE': str(root),
+-           'GITHUB_SHA': 'offline-control-no-git-or-android-execution'}
++           'GITHUB_SHA': 'offline-control-no-git-or-android-execution', 'TMPDIR': str(temporary)}
+     def execute(label, argv, *, cwd=root, extra=None, timeout=60):
+         folder = output / 'commands' / label
+         folder.mkdir(parents=True, exist_ok=False)
+@@ -70,17 +71,17 @@
+         workflow = home / preparation.WORKFLOW
+         report['workflow_sha256'] = preparation.identity(workflow)['sha256']
+         parsed = yaml.load(workflow.read_text(), Loader=yaml.BaseLoader)
+-        job = parsed['jobs']['editor-day-time-readiness']
++        job = parsed['jobs']['editor-exact-alarm-navigation']
+         steps = job['steps']
+         if parsed['permissions'] != {'contents': 'read'} or job['timeout-minutes'] != '75':
+             raise ValueError('Workflow permission or timeout differs')
+         if parsed['on'] != {'push': {'branches': ['main'], 'paths': [preparation.WORKFLOW,
+                          preparation.PACKAGE + '/**']}, 'workflow_dispatch': ''}:
+             raise ValueError('Unexpected workflow trigger scope')
+-        if (steps[-1].get('if') != 'always()' or steps[-1]['with']['path'] != 'ci-day-time-readiness/'
++        if (steps[-1].get('if') != 'always()' or steps[-1]['with']['path'] != 'ci-exact-alarm-navigation/'
+                 or steps[-1]['with']['include-hidden-files'] != 'true'
+                 or '--disable-animations' in workflow.read_text()
+-                or 'day_time_journey.py"' not in workflow.read_text()
++                or 'exact_alarm_journey.py"' not in workflow.read_text()
+                 or 'favourite_info_journey.py"' in workflow.read_text()
+                 or workflow.read_text().count('--observe-notification-readiness') != 1):
+             raise ValueError('Diagnostic scope or complete evidence preservation changed')
+@@ -116,7 +117,7 @@
+         row = execute('exact-frozen-preflight', ['bash', str(output / 'step-01.sh')])
+         if row['exit_code']:
+             raise ValueError('Exact real input preflight did not pass')
+-        clean = json.loads((root / 'ci-day-time-readiness/input-preflight.json').read_text())
++        clean = json.loads((root / 'ci-exact-alarm-navigation/input-preflight.json').read_text())
+         if not clean['passed']:
+             raise ValueError('Input report disagrees')
+         report['prepared_input_copies'] = len(clean['files'])
+@@ -127,7 +128,9 @@
+             ('changed-active-manifest', 'work-in-progress/combined-recovery/05-full-acceptance/apk/manifest.json', 'bytes'),
+             ('changed-chronology-guard', preparation.GUARD + '/replay-source/tools/parity_journeys/capture_chronology.py', 'bytes'),
+             ('changed-animation-helper', preparation.ANIMATION + '/enable_still_animations.py', 'bytes'),
+-            ('changed-readiness-guard', preparation.GUARD + '/replay-source/tools/parity_journeys/notification_readiness.py', 'bytes'),
++            ('changed-readiness-guard', preparation.GUARD + '/replay-source/tools/parity_journeys/exact_alarm_readiness.py', 'bytes'),
++            ('changed-navigation-guard', preparation.GUARD + '/replay-source/tools/parity_journeys/exact_alarm_journey.py', 'bytes'),
++            ('changed-observed-dialog', preparation.GUARD + '/replay-source/tools/parity_journeys/fixtures/exact-alarm/dialog-contract.json', 'bytes'),
+             ('symlinked-runtime-input', 'tools/android/runtime_job.py', 'symlink'),
+             ('changed-reviewed-finalizer', preparation.PACKAGE + '/verify_trigger_journey.py', 'bytes'),
+         ]
+@@ -174,7 +177,7 @@
+             runtime_before.append({'source': str(original), 'path': relative, **preparation.identity(original)})
+         save(output / 'runtime-inputs-before.json', runtime_before)
+         row = execute('exact-offline-apk-preflight', [sys.executable, str(home / 'prepare_trigger_journey.py'),
+-            '--root', str(root), '--output', str(root / 'ci-day-time-readiness'), '--materialized'], timeout=120)
++            '--root', str(root), '--output', str(root / 'ci-exact-alarm-navigation'), '--materialized'], timeout=120)
+         if row['exit_code']:
+             raise ValueError('Exact offline APK and AAPT2 inspection did not pass')
+ 
+@@ -198,10 +201,13 @@
+             ('boolean-readiness-schema', 'schema-bool', False, False),
+             ('missing-readiness-policy-pin', 'omit-policy', False, False),
+             ('changed-readiness-policy-pin', 'changed-policy', False, False),
++            ('missing-navigation-policy-pin', 'omit-navigation', False, False),
++            ('changed-navigation-policy-pin', 'changed-navigation', False, False),
++            ('older-thirteen-plan-pin', 'older-plan', False, False),
+         ]
+         inventory_names = {entry['path'] for entry in inputs + runtime_before}
+-        inventory_names.update('ci-day-time-readiness/' + entry['copy'] for entry in clean['files'])
+-        inventory_names.add('ci-day-time-readiness/input-preflight.json')
++        inventory_names.update('ci-exact-alarm-navigation/' + entry['copy'] for entry in clean['files'])
++        inventory_names.add('ci-exact-alarm-navigation/input-preflight.json')
+         fault_name = 'tools/android/bootstrap_android_runtime.py'
+         fault_copy = next(entry['copy'] for entry in clean['files'] if entry['path'] == fault_name)
+         fault_bytes = (root / fault_name).read_bytes() + b'\n# DELIBERATE OFFLINE INVENTORY MUTATION\n'
+@@ -215,7 +221,7 @@
+                 target = case / name
+                 target.parent.mkdir(parents=True, exist_ok=True)
+                 os.link(root / name, target)
+-            case_output = case / 'ci-day-time-readiness'
++            case_output = case / 'ci-exact-alarm-navigation'
+             declared = json.loads(json.dumps(clean))
+             if change_source:
+                 replace_bytes(case / fault_name, fault_bytes)
+@@ -243,6 +249,12 @@
+                 del declared['notification_readiness_policy_sha256']
+             elif mode == 'changed-policy':
+                 declared['notification_readiness_policy_sha256'] = '0' * 64
++            elif mode == 'omit-navigation':
++                del declared['exact_alarm_navigation_policy_sha256']
++            elif mode == 'changed-navigation':
++                declared['exact_alarm_navigation_policy_sha256'] = '0' * 64
++            elif mode == 'older-plan':
++                declared['plan_sha256'] = '42ece5a06a280186ddf9796a4524975d478263e545260674e2b1b4cf718d46fb'
+             elif mode == 'omit-reviewed':
+                 role = next(entry['copy'] for entry in declared['files'] if entry['copy'].startswith('reviewed-source/'))
+                 declared['files'] = [entry for entry in declared['files'] if entry['copy'] != role]
+@@ -250,7 +262,7 @@
+             outcomes = []
+             for phase, script, suffix, report_name in [
+                     ('materialized', 'prepare_trigger_journey.py', ['--materialized'], 'materialized-inputs.json'),
+-                    ('final', 'verify_trigger_journey.py', [], 'day-time-readiness-verification.json')]:
++                    ('final', 'verify_trigger_journey.py', [], 'exact-alarm-navigation-verification.json')]:
+                 command = execute('inventory-' + label + '-' + phase,
+                     [sys.executable, str(home / script), '--root', str(case), '--output', str(case_output)] + suffix)
+                 value = json.loads((case_output / report_name).read_text())
+@@ -267,40 +279,40 @@
+                                      'rejected_before_copied_code_or_aapt2_execution': True})
+ 
+         policy_script = output / 'workflow-policy-controls.py'
+-        policy_script.write_text("import copy\nimport json\nfrom pathlib import Path\nimport sys\nsys.path[:0] = [sys.argv[1], sys.argv[2], sys.argv[3]]\nimport verify_trigger_journey as verifier\nimport notification_readiness as readiness\npositive = {'schema': 5, readiness.POLICY_KEY: copy.deepcopy(readiness.POLICY)}\nverifier.require_notification_policy(positive)\ncontrols = []\nfor label in ['legacy-schema', 'unregistered-schema', 'boolean-schema', 'missing-policy', 'changed-policy']:\n    value = copy.deepcopy(positive)\n    if label == 'legacy-schema':\n        value['schema'] = 3\n    elif label == 'unregistered-schema':\n        value['schema'] = 4\n    elif label == 'boolean-schema':\n        value['schema'] = True\n    elif label == 'missing-policy':\n        del value[readiness.POLICY_KEY]\n    else:\n        value[readiness.POLICY_KEY]['max_seconds'] = 11\n    try:\n        verifier.require_notification_policy(value)\n    except Exception as error:\n        if 'Missing or altered notification readiness policy' not in str(error):\n            raise\n        controls.append({'label': label, 'rejected': True, 'reason': str(error)})\n    else:\n        raise AssertionError('Workflow policy downgrade accepted: ' + label)\nverifier.require_notification_policy(positive)\nresult = {'passed': True, 'android_executed': False, 'scope': 'Workflow-required policy format only; complete raw evidence is independently required by compare', 'positive_and_restore': True, 'negative_controls': controls}\nPath(sys.argv[4]).write_text(json.dumps(result, indent=2) + '\\n')\nprint(json.dumps(result, indent=2))\n")
++        policy_script.write_text("import copy\nimport json\nfrom pathlib import Path\nimport sys\nsys.path[:0] = [sys.argv[1], sys.argv[2], sys.argv[3]]\nimport verify_trigger_journey as verifier\nimport exact_alarm_journey as alarm\nimport exact_alarm_readiness as readiness\npositive = {'schema': 6, 'plan': alarm.expected_plan(), 'plan_sha256': alarm.PLAN_SHA256,\n            alarm.POLICY_KEY: copy.deepcopy(alarm.POLICY), readiness.POLICY_KEY: copy.deepcopy(readiness.POLICY)}\nverifier.require_workflow_policies(positive)\ncontrols = []\nfor label in ['legacy-schema', 'unregistered-schema', 'boolean-schema', 'missing-readiness', 'changed-readiness',\n              'missing-navigation', 'changed-navigation', 'nested-navigation', 'changed-plan', 'changed-plan-hash']:\n    value = copy.deepcopy(positive)\n    if label == 'legacy-schema': value['schema'] = 5\n    elif label == 'unregistered-schema': value['schema'] = 7\n    elif label == 'boolean-schema': value['schema'] = True\n    elif label == 'missing-readiness': del value[readiness.POLICY_KEY]\n    elif label == 'changed-readiness': value[readiness.POLICY_KEY]['max_seconds'] = 11\n    elif label == 'missing-navigation': del value[alarm.POLICY_KEY]\n    elif label == 'changed-navigation': value[alarm.POLICY_KEY]['settings_inputs'] = 1\n    elif label == 'nested-navigation': value['unexpected'] = {alarm.POLICY_KEY: copy.deepcopy(alarm.POLICY)}\n    elif label == 'changed-plan': value['plan'][-1][1] = 'com.example.foreign'\n    elif label == 'changed-plan-hash': value['plan_sha256'] = '0' * 64\n    try:\n        verifier.require_workflow_policies(value)\n    except Exception as error:\n        if not any(text in str(error) for text in ['Missing or altered notification readiness policy',\n                                                  'Missing, altered or misplaced exact-alarm navigation policy or plan']):\n            raise\n        controls.append({'label': label, 'rejected': True, 'reason': str(error)})\n    else:\n        raise AssertionError('Workflow policy substitution accepted: ' + label)\nverifier.require_workflow_policies(positive)\nresult = {'passed': True, 'android_executed': False,\n          'scope': 'Required complete plan and both policy formats only; compare separately requires complete raw evidence and every command role.',\n          'positive_and_restore': True, 'negative_controls': controls}\nPath(sys.argv[4]).write_text(json.dumps(result, indent=2) + '\\n')\nprint(json.dumps(result, indent=2))\n")
+         policy_result = output / 'workflow-policy-controls.json'
+         row = execute('workflow-policy-controls', [sys.executable, '-B', str(policy_script), str(home),
+-            str(root / 'ci-day-time-readiness/reviewed-source/tools/parity_journeys'),
+-            str(root / 'ci-day-time-readiness/reviewed-source/project'), str(policy_result)])
++            str(root / 'ci-exact-alarm-navigation/reviewed-source/tools/parity_journeys'),
++            str(root / 'ci-exact-alarm-navigation/reviewed-source/project'), str(policy_result)])
+         if row['exit_code'] or json.loads(policy_result.read_text()).get('passed') is not True:
+             raise ValueError('Workflow readiness policy controls failed')
+         report['checks'].append(json.loads(policy_result.read_text()))
+ 
+         host = next(step['run'] for step in steps if step['name'].startswith('Run the frozen capture'))
+         for index, script in enumerate(host.splitlines()[1:]):
+-            row = execute('packaged-host-controls-' + str(index), ['bash', '-o', 'pipefail', '-c', script], timeout=300)
++            row = execute('packaged-host-controls-' + str(index), ['bash', '-o', 'pipefail', '-c', script], timeout=600)
+             if row['exit_code']:
+                 raise ValueError('Packaged host controls failed')
+-        runtime = next(step['run'] for step in steps if step['name'].startswith('Observe the thirteen declared'))
++        runtime = next(step['run'] for step in steps if step['name'].startswith('Observe the fourteen declared'))
+         start = runtime.index('cleanup_trigger_runtime() {')
+         stop = runtime.index("trap 'exit 143' TERM") + len("trap 'exit 143' TERM")
+         cleanup = runtime[start:stop]
+         for label, step_status, service_status in [('clean', 0, 0), ('failed-journey', 7, 0), ('failed-service', 0, 5)]:
+             case = output / 'cleanup-controls' / label
+-            queue = case / 'ci-day-time-readiness/environment/queue'
++            queue = case / 'ci-exact-alarm-navigation/environment/queue'
+             queue.mkdir(parents=True)
+-            adb = case / 'tooling/macrodroid-day-time-readiness-tooling/android/platform-tools/adb'
++            adb = case / 'tooling/macrodroid-exact-alarm-navigation-tooling/android/platform-tools/adb'
+             adb.parent.mkdir(parents=True)
+             adb.write_text('#!/bin/sh\nprintf "SIMULATED OFFLINE DIAGNOSTIC ONLY\\n"\nexit 0\n')
+             adb.chmod(0o755)
+             script = output / ('cleanup-' + label + '.sh')
+             script.write_text('set -euo pipefail\n' +
+-                "bash -c 'for ((n=0;n<200;n++)); do if test -e ci-day-time-readiness/environment/queue/STOP; then exit \"$1\"; fi; sleep 0.01; done; exit 99' _ " + str(service_status) + ' &\n' +
++                "bash -c 'for ((n=0;n<200;n++)); do if test -e ci-exact-alarm-navigation/environment/queue/STOP; then exit \"$1\"; fi; sleep 0.01; done; exit 99' _ " + str(service_status) + ' &\n' +
+                 'trigger_service_pid=$!\n' + cleanup + '\nexit ' + str(step_status) + '\n')
+             row = execute('owned-cleanup-' + label, ['bash', str(script)], cwd=case,
+                           extra={'RUNNER_TEMP': str(case / 'tooling')}, timeout=10)
+             expected = step_status or (1 if service_status else 0)
+-            value = json.loads((case / 'ci-day-time-readiness/runtime-cleanup.json').read_text())
++            value = json.loads((case / 'ci-exact-alarm-navigation/runtime-cleanup.json').read_text())
+             if (row['exit_code'] != expected or not (queue / 'STOP').is_file()
+                     or value['service_cleanup_confirmed'] is not (service_status == 0)):
+                 raise ValueError('Owned cleanup status or evidence mismatch')
+@@ -309,10 +321,10 @@
+                 raise ValueError('Baseline input changed during validation: ' + entry['source'])
+         if preparation.identity(workflow)['sha256'] != report['workflow_sha256']:
+             raise ValueError('Workflow changed during validation')
+-        report.update(status='OFFLINE_DAY_TIME_READINESS_WORKFLOW_VALIDATED', passed=True,
++        report.update(status='OFFLINE_EXACT_ALARM_NAVIGATION_WORKFLOW_VALIDATED', passed=True,
+                       source_apks_and_preserved_tool_bytes_unchanged=True)
+     except Exception as error:
+-        report.update(status='OFFLINE_DAY_TIME_READINESS_WORKFLOW_REJECTED', reason=type(error).__name__ + ': ' + str(error))
++        report.update(status='OFFLINE_EXACT_ALARM_NAVIGATION_WORKFLOW_REJECTED', reason=type(error).__name__ + ': ' + str(error))
+     finally:
+         report['finished_utc'] = datetime.now(timezone.utc).isoformat()
+         save(output / 'result.json', report)
+--- parent/freeze_readiness_workflow.py
++++ successor/freeze_alarm_workflow.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Freeze the separate zero-scale thirteen-screen workflow and exact offline evidence."""
++"""Freeze the separate zero-scale fourteen-screen workflow and exact offline evidence."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -37,9 +37,9 @@
+         raise ValueError('The exact published candidate commit is required')
+     source, evidence, output = [path.resolve() for path in (args.source, args.evidence, args.output)]
+     result = json.loads((evidence / 'result.json').read_text())
+-    if result.get('passed') is not True or result.get('status') != 'OFFLINE_DAY_TIME_READINESS_WORKFLOW_VALIDATED':
++    if result.get('passed') is not True or result.get('status') != 'OFFLINE_EXACT_ALARM_NAVIGATION_WORKFLOW_VALIDATED':
+         raise ValueError('A complete closed positive offline validation is required')
+-    workflow = source / '.github/workflows/editor-day-time-readiness.yml'
++    workflow = source / '.github/workflows/editor-exact-alarm-navigation.yml'
+     if identity(workflow)['sha256'] != result['workflow_sha256']:
+         raise ValueError('Workflow differs from the measured validation')
+     originals = json.loads((evidence / 'inputs-before.json').read_text())
+@@ -60,10 +60,10 @@
+         files.append({'path': relative, **expected})
+ 
+     for name in ('prepare_trigger_journey.py', 'verify_trigger_journey.py', 'build_workflow.py',
+-                 'validate_workflow.py', '.github/workflows/editor-day-time-readiness.yml',
++                 'validate_workflow.py', '.github/workflows/editor-exact-alarm-navigation.yml',
+                  'parent-source-identities.json', 'derivation.patch', 'derive_workflow.py'):
+         copy(source / name, name)
+-    copy(Path(__file__), 'freeze_readiness_workflow.py')
++    copy(Path(__file__), 'freeze_alarm_workflow.py')
+     copy(evidence / 'result.json', 'offline-validation.json')
+ 
+     external = {row['sha256']: {key: row[key] for key in ('source', 'path', 'bytes', 'sha256')}
+@@ -135,10 +135,10 @@
+                     'restoration': 'For each regular file, copy its archive_member bytes or exact external_input_sha256 bytes to path with mode; never restore symlink controls automatically.'})
+     files.append({'path': manifest.name, **identity(manifest)})
+     readme = output / 'README.md'
+-    readme.write_text('# Day/Time trigger: thirteen screens with bounded notification readiness\n\nThis additive workflow retains the exact thirteen-screen plan and both frozen APKs. After the observed notification-denial input and its existing two-second wait, it records a bounded read-only process/foreground phase before the original full-frame capture. The first eligible contiguous HOME/same-PID sequence must span at least 1.05 seconds between actual raw PID command endpoints; the phase stops within sixteen observations and ten seconds. No readiness sample receives screenshot or process-continuity credit.\n\nThe workflow explicitly requires schema 5 and the exact policy. Both phase references, all raw commands and streams, global chronology and exclusive evidence ownership remain independently checked. The existing full-frame stability, known-crash continuation and zero changed-pixel checks remain required for every paired screen. Input coordinates, APK identities, API35 runtime, zero animation settings, demo clock and owned cleanup are inherited from the exact parent workflow.\n\nThe original thirteen-screen run 38221713675 failed when its main PID was absent after the notification boundary; the candidate reached an exact-alarm explanation. The earlier twelve-screen run 38216299675 retains its five-pixel introduction difference. Neither historical outcome is rewritten. This workflow has not tapped the exact-alarm OK control or configured a trigger.\n\nThe guard checkpoint preserves the initial false-acceptance counterexamples and corrected focused tests. This workflow capsule preserves the complete packaged host regression, raw input and policy fault controls, real offline APK inspections, and owned cleanup controls. These are host/offline results; fresh Android execution and whole-application parity remain separate claims. Exact APK/tool duplicates retain durable manifest references; every other raw offline file is mapped to verified archive bytes and mode, while deliberate symlink controls remain inert metadata.\n')
++    readme.write_text("# Exact-alarm explanation: one observed OK tap and a Settings observation\n\nThis additive workflow extends the unchanged thirteen-screen Day/Time prefix by one observed OK tap and one full Settings observation. It requires the exact schema-6 plan, complete observed dialog contract, bounded notification readiness, stable full frames and main-app PID continuity. No Settings class, Settings control, permission grant, trigger configuration, saved macro or macro execution is assumed.\n\nThe whole global command log is independently checked. Every one of the 26 paired planned inputs and six setup mutations must match its exact declared run role in order; other commands must match the finite evidence grammar. Both APKs, API35 runtime, zero animation settings, demo clock and owned cleanup are inherited from the closed readiness workflow. The raw full-image comparison retains every changed pixel, XML attribute and recorded process-boundary outcome.\n\nThe source capsule preserves the first extra-input false acceptance, its independent correction, all closed host attempts and the two corrected historical-fixture tests. This workflow's offline validation additionally runs the complete 209-test source package together with both exact historical ZIPs, validates required plan/policy pins and complete preparation membership, inspects both actual APKs with preserved AAPT2, and measures the owned cleanup behavior. All offline attempts and original evidence bytes remain retained. Large already-published APK/tool copies are referenced by their exact durable manifest identities.\n\nThe historical run 38230072388 remains a thirteen-screen visual difference with 26 changed introduction-indicator pixels and the recorded known crash continuation. It is not rewritten by this new workflow. Host and offline results do not establish the next actual Android destination or whole-application parity.\n")
+ 
+     files.append({'path': readme.name, **identity(readme)})
+-    checkpoint = {'status': 'DAY_TIME_READINESS_WORKFLOW_OFFLINE_CONTROLS_PASSED_REVIEW_PENDING',
++    checkpoint = {'status': 'EXACT_ALARM_NAVIGATION_WORKFLOW_OFFLINE_CONTROLS_PASSED_REVIEW_PENDING',
+                   'created_utc': datetime.now(timezone.utc).isoformat(), 'android_executed': False,
+                   'active_changes': False, 'workflow_sha256': identity(workflow)['sha256'],
+                   'offline_validation': result, 'evidence_files': len(entries),

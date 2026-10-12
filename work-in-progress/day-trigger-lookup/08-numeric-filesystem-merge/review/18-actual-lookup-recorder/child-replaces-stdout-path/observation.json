@@ -1,0 +1,60 @@
+{
+  "acceptance_report": {
+    "bytes": 528,
+    "commands_recorded": 0,
+    "mode": 420,
+    "passed": false,
+    "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-replaces-stdout-path/reports/day-lookup-dex-controls.json",
+    "sha256": "5ab8347251218237e765e8f5ce4e352d58a393a93a89f3c78d8018a94648a109",
+    "status": "LOOKUP_DEX_CONTROL_FAILED"
+  },
+  "after_files": {
+    "extra_hardlink": null,
+    "stderr": {
+      "bytes": 0,
+      "ctime_ns": 1791801198283374781,
+      "device": 26,
+      "inode": 345068,
+      "is_symlink": false,
+      "links": 1,
+      "mode": 420,
+      "mtime_ns": 1791801198283374781,
+      "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-replaces-stdout-path/command-output/actual.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout": {
+      "bytes": 21,
+      "ctime_ns": 1791801198358006015,
+      "device": 26,
+      "inode": 345069,
+      "is_symlink": false,
+      "links": 1,
+      "mode": 420,
+      "mtime_ns": 1791801198358006015,
+      "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-replaces-stdout-path/command-output/actual.stdout.log",
+      "sha256": "cfdcdbf3a6f08ee9d84cfc31c8ae75f753011b00f13382bb123827c8bc1e2549"
+    }
+  },
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-replaces-stdout-path/child-source.py",
+    "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-replaces-stdout-path/command-output/actual.stdout.log"
+  ],
+  "caught_error": "Lookup command output path no longer names its exclusively created stream",
+  "caught_type": "RuntimeError",
+  "expected_child_exit": 0,
+  "expected_outcome": "replacement",
+  "finished_monotonic_ns": 38919198817441,
+  "hook_calls": 1,
+  "live_recorder_entered": true,
+  "missing_final_command_row_after_ownership_rejection": true,
+  "name": "child-replaces-stdout-path",
+  "planned_source": {
+    "bytes": 154,
+    "mode": 420,
+    "sha256": "37f0348650c79a31f6ce975645e590d8a7f8fdb25d31479c98e839797504a86c"
+  },
+  "started_monotonic_ns": 38919075997465,
+  "timeout_seconds": 5
+}

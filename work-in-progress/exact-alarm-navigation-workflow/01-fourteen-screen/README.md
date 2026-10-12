@@ -1,0 +1,9 @@
+# Exact-alarm explanation: one observed OK tap and a Settings observation
+
+This additive workflow extends the unchanged thirteen-screen Day/Time prefix by one observed OK tap and one full Settings observation. It requires the exact schema-6 plan, complete observed dialog contract, bounded notification readiness, stable full frames and main-app PID continuity. No Settings class, Settings control, permission grant, trigger configuration, saved macro or macro execution is assumed.
+
+The whole global command log is independently checked. Every one of the 26 paired planned inputs and six setup mutations must match its exact declared run role in order; other commands must match the finite evidence grammar. Both APKs, API35 runtime, zero animation settings, demo clock and owned cleanup are inherited from the closed readiness workflow. The raw full-image comparison retains every changed pixel, XML attribute and recorded process-boundary outcome.
+
+The source capsule preserves the first extra-input false acceptance, its independent correction, all closed host attempts and the two corrected historical-fixture tests. This workflow's offline validation additionally runs the complete 209-test source package together with both exact historical ZIPs, validates required plan/policy pins and complete preparation membership, inspects both actual APKs with preserved AAPT2, and measures the owned cleanup behavior. All offline attempts and original evidence bytes remain retained. Large already-published APK/tool copies are referenced by their exact durable manifest identities.
+
+The historical run 38230072388 remains a thirteen-screen visual difference with 26 changed introduction-indicator pixels and the recorded known crash continuation. It is not rewritten by this new workflow. Host and offline results do not establish the next actual Android destination or whole-application parity.

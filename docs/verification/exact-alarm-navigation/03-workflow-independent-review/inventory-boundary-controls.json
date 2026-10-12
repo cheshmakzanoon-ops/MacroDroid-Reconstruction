@@ -1,0 +1,65 @@
+{
+  "scope": "Actual verifier functions over exact virtual file bytes; no device or copied program execution.",
+  "controls": [
+    {
+      "label": "exact-positive",
+      "accepted": true,
+      "roles": 295
+    },
+    {
+      "label": "omitted-row",
+      "accepted": false,
+      "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+    },
+    {
+      "label": "empty-rows",
+      "accepted": false,
+      "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+    },
+    {
+      "label": "reordered-rows",
+      "accepted": false,
+      "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+    },
+    {
+      "label": "duplicated-row",
+      "accepted": false,
+      "reason": "ValueError: Prepared input inventory is not the complete independently pinned inventory"
+    },
+    {
+      "label": "changed-source-and-copy-retained",
+      "accepted": false,
+      "reason": "ValueError: Pinned input changed: tools/android/bootstrap_android_runtime.py"
+    },
+    {
+      "label": "changed-copy-retained",
+      "accepted": false,
+      "reason": "ValueError: Prepared input changed before execution: tools/android/bootstrap_android_runtime.py"
+    },
+    {
+      "label": "legacy-schema",
+      "accepted": false,
+      "reason": "ValueError: Frozen diagnostic plan or preparation scope changed"
+    },
+    {
+      "label": "boolean-schema",
+      "accepted": false,
+      "reason": "ValueError: Frozen diagnostic plan or preparation scope changed"
+    },
+    {
+      "label": "changed-navigation-pin",
+      "accepted": false,
+      "reason": "ValueError: Frozen diagnostic plan or preparation scope changed"
+    },
+    {
+      "label": "changed-readiness-pin",
+      "accepted": false,
+      "reason": "ValueError: Frozen diagnostic plan or preparation scope changed"
+    },
+    {
+      "label": "exact-positive-restoration",
+      "accepted": true,
+      "roles": 295
+    }
+  ]
+}

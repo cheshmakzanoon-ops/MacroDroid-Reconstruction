@@ -1,0 +1,81 @@
+--- lookup08/day_lookup_dex_controls.py
++++ recorder-successor/day_lookup_dex_controls.py
+@@ -384,40 +384,42 @@
+     root = root.resolve(); reports = root / 'reports'; reports.mkdir(exist_ok=True)
+     output = Path(tempfile.mkdtemp(prefix='day-lookup-dex-', dir=reports))
+     destination = reports / 'day-lookup-dex-controls.json'
+-    report = {'schema': 1, 'passed': False, 'status': 'RUNNING', 'androidRuntime': False,
+-              'started_utc': datetime.now(timezone.utc).isoformat(), 'commands': [],
++    started = numeric.command_clock()
++    report = {'schema': 2, 'passed': False, 'status': 'RUNNING', 'androidRuntime': False,
++              'command_stream_evidence_schema': 2,
++              'command_stream_evidence_provider': 'day_numeric_dex_controls.CommandStreamEvidence',
++              'started_utc': started['utc'], 'started_unix_ns': started['unix_ns'],
++              'started_monotonic_ns': started['monotonic_ns'], 'commands': [],
+               'evidence_directory': output.relative_to(root).as_posix(), 'primary_recovered_methods': 1,
+               'original_dependency_methods': 2, 'expected_java_faults': 10, 'expected_actual_dex_faults': 2}
+     write_json(destination, report)
+ 
+     def run(folder, name, argv, expected=0, timeout=120):
+-        folder.mkdir(parents=True, exist_ok=True)
+         stdout, stderr = folder / (name + '.stdout.log'), folder / (name + '.stderr.log')
+-        require(not stdout.exists() and not stderr.exists(), 'Lookup command output already exists')
+-        started = datetime.now(timezone.utc).isoformat(); tick = time.monotonic_ns(); code = None
+-        witnesses = {}
++        observation = numeric.CommandStreamEvidence(root, stdout, stderr)
++        code = None; failure = None
+         try:
+-            with stdout.open('xb') as out, stderr.open('xb') as err:
+-                for role, stream in [('stdout', out), ('stderr', err)]:
+-                    stat = os.fstat(stream.fileno())
+-                    witnesses[role] = {'device': stat.st_dev, 'inode': stat.st_ino}
+-                code = subprocess.run(list(map(str, argv)), cwd=root, stdout=out, stderr=err, timeout=timeout).returncode
++            folder.mkdir(parents=True, exist_ok=True)
++            require(not stdout.exists() and not stderr.exists(), 'Lookup command output already exists')
++            with observation as streams:
++                code = subprocess.run(list(map(str, argv)), cwd=root, stdout=streams.handles['stdout'],
++                                      stderr=streams.handles['stderr'], timeout=timeout).returncode
++            require(code == expected, 'Lookup command failed: ' + name)
++        except BaseException as error:
++            failure = error
++            raise
+         finally:
+-            finished_tick = time.monotonic_ns()
+-            outputs = {}
+-            for role, path in [('stdout', stdout), ('stderr', stderr)]:
+-                stat = path.stat()
+-                require(witnesses.get(role) == {'device': stat.st_dev, 'inode': stat.st_ino},
+-                        'Lookup command output path no longer names its exclusively created stream')
+-                outputs[role] = {'path': path.relative_to(root).as_posix(), **identity(path),
+-                                 'exclusive_stream_witness': witnesses[role]}
+-            row = {'name': name, 'argv': list(map(str, argv)), 'started_utc': started,
+-                   'ended_utc': datetime.now(timezone.utc).isoformat(),
+-                   'started_monotonic_ns': tick, 'finished_monotonic_ns': finished_tick,
+-                   'duration_nanoseconds': finished_tick - tick, 'timeout_seconds': timeout,
+-                   'returncode': code, **outputs}
++            row = {'name': name, 'argv': list(map(str, argv)), 'timeout_seconds': timeout,
++                   'expected_returncode': expected, 'returncode': code,
++                   'timed_out': isinstance(failure, subprocess.TimeoutExpired),
++                   'error_type': None if failure is None else type(failure).__module__ + '.' + type(failure).__qualname__,
++                   'error': None if failure is None else repr(failure)}
++            observation.add_to(row)
++            # This is the observed wrapper finalization clock, not a fabricated
++            # stream-context exit. Precondition failures never enter that context.
++            row['recording_finalized'] = numeric.command_clock()
++            row['stream_context_entered'] = 'invocation_started' in observation.value
+             report['commands'].append(row); write_json(destination, report)
+-        require(code == expected, 'Lookup command failed: ' + name)
+         return row
+ 
+     try:
+@@ -507,6 +509,9 @@
+         report.update(status='LOOKUP_DEX_CONTROL_FAILED', error=repr(error))
+         raise
+     finally:
+-        report['finished_utc'] = datetime.now(timezone.utc).isoformat(); write_json(destination, report)
++        finished = numeric.command_clock()
++        report.update(finished_utc=finished['utc'], finished_unix_ns=finished['unix_ns'],
++                      finished_monotonic_ns=finished['monotonic_ns'])
++        write_json(destination, report)
+     return report
+ 

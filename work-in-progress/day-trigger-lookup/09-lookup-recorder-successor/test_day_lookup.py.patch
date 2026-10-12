@@ -1,0 +1,270 @@
+--- lookup08/tests/test_day_lookup.py
++++ recorder-successor/tests/test_day_lookup.py
+@@ -275,4 +275,267 @@
+             lookup.validate_observer_controls({'observerRecordControls': control}, [injected_input()])
+ 
+ 
++# These controls enter the real production run_controls function and its actual
++# nested recorder. A test-only first-boundary hook stops before all application
++# input validation. Every generated acceptance report must remain explicitly
++# failed. Optional retained output is used by the independent source study.
++import os
++import subprocess
++import sys
++import time
++import traceback
++
++
++class _LookupRecorderBoundaryStop(RuntimeError):
++    pass
++
++
++class _LookupRecorderFaultHandle:
++    def __init__(self, underlying, flush_error=None, close_error=None):
++        self.underlying = underlying
++        self.flush_error = flush_error
++        self.close_error = close_error
++
++    @property
++    def closed(self):
++        return self.underlying.closed
++
++    def fileno(self):
++        return self.underlying.fileno()
++
++    def flush(self):
++        if self.flush_error is not None:
++            raise self.flush_error
++        self.underlying.flush()
++
++    def close(self):
++        self.underlying.close()
++        if self.close_error is not None:
++            raise self.close_error
++
++
++class DayLookupRecorderTests(unittest.TestCase):
++    """Actual bounded children and explicit I/O faults; zero app-proof credit."""
++
++    def setUp(self):
++        retained = os.environ.get('LOOKUP_RECORDER_TEST_REPORT_ROOT')
++        if retained:
++            self.folder = Path(retained) / self._testMethodName
++            self.folder.mkdir(parents=True, exist_ok=False)
++        else:
++            self.temporary = tempfile.TemporaryDirectory(prefix='lookup-recorder-control-')
++            self.folder = Path(self.temporary.name)
++            self.addCleanup(self.temporary.cleanup)
++        self.commands = self.folder / 'commands'; self.commands.mkdir()
++        self.stdout = self.commands / 'actual.stdout.log'
++        self.stderr = self.commands / 'actual.stderr.log'
++        self.contexts = []
++        self.original_context = numeric.CommandStreamEvidence
++
++    def invoke(self, code='pass', expected=0, timeout=5, fault=None, executable=None):
++        source = self.folder / 'child.py'; source.write_text(code + '\n')
++        argv = [str(executable or sys.executable), '-B', str(source), str(self.stdout)]
++        evidence = {'scope': 'Real production recorder only; no application proof.',
++                    'application_executions': 0, 'application_coverage_credit': 0,
++                    'argv': argv, 'timeout_seconds': timeout, 'expected_returncode': expected,
++                    'source_sha256': hashlib.sha256(source.read_bytes()).hexdigest(), 'boundary_calls': 0}
++        original_entry = lookup.target_entry
++        nested = [value for value in lookup.run_controls.__code__.co_consts
++                  if hasattr(value, 'co_name') and value.co_name == 'run']
++        self.assertEqual(1, len(nested))
++
++        def boundary(root):
++            evidence['boundary_calls'] += 1
++            self.assertEqual(self.folder.resolve(), root)
++            caller = sys._getframe(1)
++            self.assertIs(caller.f_code, lookup.run_controls.__code__)
++            run = caller.f_locals['run']
++            self.assertIs(run.__code__, nested[0])
++            self.assertIs(run.__globals__, lookup.__dict__)
++            run(self.commands, 'actual', argv, expected=expected, timeout=timeout)
++            raise _LookupRecorderBoundaryStop('Stopped before every application input and signed-proof gate')
++
++        def context_factory(*arguments, **keywords):
++            context = self.original_context(*arguments, **keywords)
++            self.assertIs(type(context), self.original_context)
++            self.contexts.append(context)
++            if fault is not None:
++                fault(context)
++            return context
++
++        caught = None
++        lookup.target_entry = boundary
++        if fault is not None:
++            numeric.CommandStreamEvidence = context_factory
++        try:
++            lookup.run_controls(self.folder, [])
++        except BaseException as error:
++            caught = error
++            evidence.update(caught_type=type(error).__module__ + '.' + type(error).__qualname__, caught_error=repr(error))
++            (self.folder / 'actual.traceback.txt').write_text(traceback.format_exc())
++        finally:
++            lookup.target_entry = original_entry
++            numeric.CommandStreamEvidence = self.original_context
++            path = self.folder / 'reports/day-lookup-dex-controls.json'
++            if path.exists():
++                evidence['acceptance_report'] = read(path)
++            evidence['context_handles_closed'] = [all(handle.closed for handle in context.handles.values()) for context in self.contexts]
++            files = {}
++            for role, path in [('stdout', self.stdout), ('stderr', self.stderr),
++                               ('extra_hardlink', self.commands / 'extra-hardlink.txt')]:
++                if path.exists():
++                    st = path.stat()
++                    files[role] = {'bytes': st.st_size, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
++                                   'device': st.st_dev, 'inode': st.st_ino, 'links': st.st_nlink,
++                                   'mtime_ns': st.st_mtime_ns, 'ctime_ns': st.st_ctime_ns}
++            evidence['observed_files'] = files
++            (self.folder / 'observation.json').write_text(json.dumps(evidence, indent=2) + '\n')
++        self.assertIsNotNone(caught)
++        self.assertEqual(1, evidence['boundary_calls'])
++        report = evidence['acceptance_report']
++        self.assertIs(report['passed'], False)
++        self.assertEqual('LOOKUP_DEX_CONTROL_FAILED', report['status'])
++        self.assertEqual(2, report['schema'])
++        self.assertEqual(2, report['command_stream_evidence_schema'])
++        self.assertEqual('day_numeric_dex_controls.CommandStreamEvidence', report['command_stream_evidence_provider'])
++        self.assertNotIn('positive_signed_apk_instruction_match', report)
++        self.assertEqual(1, len(report['commands']), 'Every entered recorder attempt needs a finalized row, including failures')
++        row = report['commands'][0]
++        self.assertEqual(argv, row['argv']); self.assertEqual(timeout, row['timeout_seconds'])
++        self.assertEqual(expected, row['expected_returncode'])
++        self.assertEqual(2, row['stream_evidence']['schema'])
++        self.assertIs(type(row['recording_finalized']['monotonic_ns']), int)
++        self.assertLessEqual(row['started_monotonic_ns'], row['recording_finalized']['monotonic_ns'])
++        self.assertLessEqual(row['recording_finalized']['monotonic_ns'], report['finished_monotonic_ns'])
++        self.assertTrue(all(evidence['context_handles_closed']))
++        if isinstance(caught, _LookupRecorderBoundaryStop):
++            self.assertIsNone(row['error']); self.assertIsNone(row['error_type']); self.assertIs(row['timed_out'], False)
++            self.assertIs(row['stream_context_entered'], True)
++            self.assertTrue(row['stream_evidence']['filesystem_bracket_complete'])
++            self.assertNotIn('cleanup_errors', row['stream_evidence'])
++            for role, path in [('stdout', self.stdout), ('stderr', self.stderr)]:
++                self.assertEqual(path.stat().st_size, row[role]['bytes'])
++                self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), row[role]['sha256'])
++        else:
++            self.assertEqual(type(caught).__module__ + '.' + type(caught).__qualname__, row['error_type'])
++            self.assertEqual(repr(caught), row['error'])
++            self.assertIs(row['timed_out'], isinstance(caught, subprocess.TimeoutExpired))
++        return caught, report, row
++
++    def io_fault(self, flush=None, close=None, second_open=None):
++        def install(context):
++            original = context.open_file
++            def open_file(path):
++                if path == self.stderr and second_open is not None:
++                    raise second_open
++                handle, row = original(path)
++                if path == self.stderr and (flush is not None or close is not None):
++                    return _LookupRecorderFaultHandle(handle, flush, close), row
++                return handle, row
++            context.open_file = open_file
++        return install
++
++    def assert_owned_timeout_reaped(self):
++        pid = int((self.folder / 'child.pid').read_text())
++        with self.assertRaises(ProcessLookupError):
++            os.kill(pid, 0)
++        (self.folder / 'child-reaped.json').write_text(json.dumps({'owned_child_pid': pid, 'reaped': True}) + '\n')
++
++    def test_real_empty_streams_keep_actual_filesystem_witnesses(self):
++        error, _, row = self.invoke()
++        self.assertIsInstance(error, _LookupRecorderBoundaryStop)
++        self.assertEqual(b'', self.stdout.read_bytes()); self.assertEqual(b'', self.stderr.read_bytes())
++        self.assertEqual(0, row['returncode'])
++
++    def test_real_nonempty_streams_keep_exact_bytes(self):
++        error, _, _ = self.invoke('import sys; print("exact stdout"); print("exact stderr", file=sys.stderr)')
++        self.assertIsInstance(error, _LookupRecorderBoundaryStop)
++        self.assertEqual(b'exact stdout\n', self.stdout.read_bytes()); self.assertEqual(b'exact stderr\n', self.stderr.read_bytes())
++
++    def test_expected_nonzero_exit_is_recorded_without_child_error(self):
++        error, _, row = self.invoke('raise SystemExit(7)', expected=7)
++        self.assertIsInstance(error, _LookupRecorderBoundaryStop); self.assertEqual(7, row['returncode'])
++
++    def test_unexpected_nonzero_exit_retains_failed_command_row(self):
++        error, _, row = self.invoke('raise SystemExit(7)')
++        self.assertIs(type(error), RuntimeError); self.assertEqual('Lookup command failed: actual', str(error))
++        self.assertEqual(7, row['returncode'])
++
++    def test_timeout_is_actual_and_owned_child_is_reaped(self):
++        error, _, row = self.invoke('from pathlib import Path; import os,time; Path("child.pid").write_text(str(os.getpid())); print("before timeout", flush=True); time.sleep(10)', timeout=0.4)
++        self.assertIsInstance(error, subprocess.TimeoutExpired); self.assertIsNone(row['returncode'])
++        self.assert_owned_timeout_reaped()
++
++    def test_preexisting_stdout_rejects_before_child_and_still_records_failure(self):
++        self.stdout.write_bytes(b'owned previous stdout')
++        error, _, row = self.invoke('from pathlib import Path; Path("child-ran").write_text("bad")')
++        self.assertEqual('Lookup command output already exists', str(error)); self.assertIs(row['stream_context_entered'], False)
++        self.assertEqual(b'owned previous stdout', self.stdout.read_bytes())
++        self.assertFalse(self.stderr.exists()); self.assertFalse((self.folder / 'child-ran').exists())
++
++    def test_preexisting_stderr_rejects_before_child_and_still_records_failure(self):
++        self.stderr.write_bytes(b'owned previous stderr')
++        error, _, row = self.invoke('from pathlib import Path; Path("child-ran").write_text("bad")')
++        self.assertEqual('Lookup command output already exists', str(error)); self.assertIs(row['stream_context_entered'], False)
++        self.assertEqual(b'owned previous stderr', self.stderr.read_bytes())
++        self.assertFalse(self.stdout.exists()); self.assertFalse((self.folder / 'child-ran').exists())
++
++    def test_actual_launch_failure_retains_original_exception_and_row(self):
++        error, _, row = self.invoke(executable=self.folder / 'intentionally-absent-executable')
++        self.assertIsInstance(error, FileNotFoundError); self.assertIsNone(row['returncode'])
++        self.assertIs(row['stream_context_entered'], True)
++
++    def test_second_stream_open_failure_closes_first_and_preserves_identity(self):
++        injected = OSError('controlled second stream open failure')
++        error, _, row = self.invoke(fault=self.io_fault(second_open=injected))
++        self.assertIs(error, injected); self.assertIs(row['stream_context_entered'], False)
++        self.assertIsNone(row['returncode']); self.assertTrue(self.stdout.exists()); self.assertFalse(self.stderr.exists())
++        self.assertIn('finished', row['stream_evidence'])
++
++    def test_existing_filesystem_witness_is_not_overwritten(self):
++        witness = self.commands / 'actual.filesystem-before.log'; witness.write_bytes(b'existing witness')
++        error, _, row = self.invoke()
++        self.assertIsInstance(error, FileExistsError); self.assertIsNone(row['returncode'])
++        self.assertEqual(b'existing witness', witness.read_bytes())
++        self.assertTrue(row['stream_evidence']['failed_file_operations'])
++
++    def test_actual_stdout_inode_replacement_keeps_the_failed_command_row(self):
++        error, _, row = self.invoke('from pathlib import Path; import os,sys; p=Path(sys.argv[1]); q=p.with_name("replacement.txt"); q.write_bytes(b"replacement"); os.replace(q,p)')
++        self.assertIs(type(error), RuntimeError); self.assertIn('changed inode or metadata', str(error))
++        self.assertEqual(0, row['returncode']); self.assertTrue(row['stream_evidence']['cleanup_errors'])
++
++    def test_actual_additional_hardlink_is_rejected_and_retained(self):
++        error, _, row = self.invoke('from pathlib import Path; import os,sys; p=Path(sys.argv[1]); os.link(p,p.with_name("extra-hardlink.txt")); print("two links", flush=True)')
++        self.assertIs(type(error), RuntimeError); self.assertIn('ownership changed', str(error))
++        self.assertEqual(2, self.stdout.stat().st_nlink); self.assertEqual(0, row['returncode'])
++        self.assertTrue(row['stream_evidence']['cleanup_errors'])
++
++    def test_flush_failure_retains_identity_closes_handles_and_finalizes_row(self):
++        injected = OSError('controlled flush failure')
++        error, _, row = self.invoke(fault=self.io_fault(flush=injected))
++        self.assertIs(error, injected); self.assertEqual(0, row['returncode'])
++        self.assertTrue(row['stream_evidence']['cleanup_errors'])
++
++    def test_close_failure_retains_identity_closes_handles_and_finalizes_row(self):
++        injected = OSError('controlled close failure after actual closure')
++        error, _, row = self.invoke(fault=self.io_fault(close=injected))
++        self.assertIs(error, injected); self.assertEqual(0, row['returncode'])
++        self.assertTrue(row['stream_evidence']['cleanup_errors'])
++
++    def test_both_flush_and_close_failures_keep_first_error_and_other_cleanup(self):
++        flush, close = OSError('controlled first flush failure'), OSError('controlled second close failure')
++        error, _, row = self.invoke(fault=self.io_fault(flush=flush, close=close))
++        self.assertIs(error, flush); self.assertEqual(0, row['returncode'])
++        self.assertTrue(any(repr(close) == value for value in row['stream_evidence']['cleanup_errors']))
++
++    def test_timeout_is_not_masked_by_flush_and_close_errors(self):
++        flush, close = OSError('controlled timeout cleanup flush'), OSError('controlled timeout cleanup close')
++        error, _, row = self.invoke('from pathlib import Path; import os,time; Path("child.pid").write_text(str(os.getpid())); time.sleep(10)',
++                                  timeout=0.4, fault=self.io_fault(flush=flush, close=close))
++        self.assertIsInstance(error, subprocess.TimeoutExpired); self.assertIsNone(row['returncode'])
++        self.assertTrue(any(repr(flush) == value for value in row['stream_evidence']['cleanup_errors']))
++        self.assertTrue(any(repr(close) == value for value in row['stream_evidence']['cleanup_errors']))
++        self.assert_owned_timeout_reaped()
++
++
+ if __name__ == '__main__': unittest.main()

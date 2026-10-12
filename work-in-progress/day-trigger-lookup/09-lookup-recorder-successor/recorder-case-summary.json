@@ -1,0 +1,301 @@
+[
+  {
+    "cleanup_errors": [
+      "RuntimeError('Exclusive command file ownership changed')"
+    ],
+    "context_finished": true,
+    "error_type": "builtins.RuntimeError",
+    "injected_context_handles_closed": [],
+    "observation": {
+      "bytes": 12626,
+      "mode": 420,
+      "sha256": "113804766d38fa5d4b5d122e1e8dcf61ab86b43475b751f3cccec7b9a16d5400"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": 0,
+    "stream_context_entered": true,
+    "test": "test_actual_additional_hardlink_is_rejected_and_retained",
+    "timed_out": false
+  },
+  {
+    "cleanup_errors": [],
+    "context_finished": true,
+    "error_type": "builtins.FileNotFoundError",
+    "injected_context_handles_closed": [],
+    "observation": {
+      "bytes": 13047,
+      "mode": 420,
+      "sha256": "ca9163dfc64a5b48811d7b8fd699c85d0d0ad82dab6ed6c3ab3e9ba7990a78f1"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": null,
+    "stream_context_entered": true,
+    "test": "test_actual_launch_failure_retains_original_exception_and_row",
+    "timed_out": false
+  },
+  {
+    "cleanup_errors": [
+      "RuntimeError('Command file changed inode or metadata during closure')"
+    ],
+    "context_finished": true,
+    "error_type": "builtins.RuntimeError",
+    "injected_context_handles_closed": [],
+    "observation": {
+      "bytes": 12441,
+      "mode": 420,
+      "sha256": "4d12ff1e625edbb06ac08450e6165da891fb0610909123ffb87c4a6ccaa7808c"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": 0,
+    "stream_context_entered": true,
+    "test": "test_actual_stdout_inode_replacement_keeps_the_failed_command_row",
+    "timed_out": false
+  },
+  {
+    "cleanup_errors": [
+      "OSError('controlled first flush failure')",
+      "OSError('controlled second close failure')",
+      "KeyError('final_stat')"
+    ],
+    "context_finished": true,
+    "error_type": "builtins.OSError",
+    "injected_context_handles_closed": [
+      true
+    ],
+    "observation": {
+      "bytes": 9813,
+      "mode": 420,
+      "sha256": "2af400a42063ff5d809f3764c995801670af48bf3ac3c43a3028c3f536367dd6"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": 0,
+    "stream_context_entered": true,
+    "test": "test_both_flush_and_close_failures_keep_first_error_and_other_cleanup",
+    "timed_out": false
+  },
+  {
+    "cleanup_errors": [
+      "OSError('controlled close failure after actual closure')"
+    ],
+    "context_finished": true,
+    "error_type": "builtins.OSError",
+    "injected_context_handles_closed": [
+      true
+    ],
+    "observation": {
+      "bytes": 12204,
+      "mode": 420,
+      "sha256": "155faf034d16e98c03c37a8e8e720396ef9baadaa93adf97d564205d71674458"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": 0,
+    "stream_context_entered": true,
+    "test": "test_close_failure_retains_identity_closes_handles_and_finalizes_row",
+    "timed_out": false
+  },
+  {
+    "cleanup_errors": [],
+    "context_finished": true,
+    "error_type": "builtins.FileExistsError",
+    "injected_context_handles_closed": [],
+    "observation": {
+      "bytes": 4253,
+      "mode": 420,
+      "sha256": "35841784da5dbffcbbf55b706c786a90704b8b324877b219cf05bd3416c3a9dc"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": null,
+    "stream_context_entered": false,
+    "test": "test_existing_filesystem_witness_is_not_overwritten",
+    "timed_out": false
+  },
+  {
+    "cleanup_errors": [],
+    "context_finished": true,
+    "error_type": null,
+    "injected_context_handles_closed": [],
+    "observation": {
+      "bytes": 12744,
+      "mode": 420,
+      "sha256": "40487ef9553262429c1af9b9242a542ff74cf60d96924555cdab67b22daecf5f"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": 7,
+    "stream_context_entered": true,
+    "test": "test_expected_nonzero_exit_is_recorded_without_child_error",
+    "timed_out": false
+  },
+  {
+    "cleanup_errors": [
+      "OSError('controlled flush failure')",
+      "KeyError('final_stat')"
+    ],
+    "context_finished": true,
+    "error_type": "builtins.OSError",
+    "injected_context_handles_closed": [
+      true
+    ],
+    "observation": {
+      "bytes": 9727,
+      "mode": 420,
+      "sha256": "d1207081f354484a2c5ff63c84c7d6d128bb88ff5fdeb8c3f2f686993b5b81dd"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": 0,
+    "stream_context_entered": true,
+    "test": "test_flush_failure_retains_identity_closes_handles_and_finalizes_row",
+    "timed_out": false
+  },
+  {
+    "cleanup_errors": [],
+    "context_finished": false,
+    "error_type": "builtins.RuntimeError",
+    "injected_context_handles_closed": [],
+    "observation": {
+      "bytes": 3774,
+      "mode": 420,
+      "sha256": "7cf5de38fc898e2c8300bf88d5d7a079629dcb7d8565595a27b30e020f0adb19"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": null,
+    "stream_context_entered": false,
+    "test": "test_preexisting_stderr_rejects_before_child_and_still_records_failure",
+    "timed_out": false
+  },
+  {
+    "cleanup_errors": [],
+    "context_finished": false,
+    "error_type": "builtins.RuntimeError",
+    "injected_context_handles_closed": [],
+    "observation": {
+      "bytes": 3774,
+      "mode": 420,
+      "sha256": "8cf8902c9396118794d44e77fccdd587e07044a5d5370b1d24b94ca5d2fda6c2"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": null,
+    "stream_context_entered": false,
+    "test": "test_preexisting_stdout_rejects_before_child_and_still_records_failure",
+    "timed_out": false
+  },
+  {
+    "cleanup_errors": [],
+    "context_finished": true,
+    "error_type": null,
+    "injected_context_handles_closed": [],
+    "observation": {
+      "bytes": 12736,
+      "mode": 420,
+      "sha256": "dded81b8a12ca5ea8c28e72772fef3fd1544370dc2de5f5e00fbb810d346b20a"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": 0,
+    "stream_context_entered": true,
+    "test": "test_real_empty_streams_keep_actual_filesystem_witnesses",
+    "timed_out": false
+  },
+  {
+    "cleanup_errors": [],
+    "context_finished": true,
+    "error_type": null,
+    "injected_context_handles_closed": [],
+    "observation": {
+      "bytes": 12692,
+      "mode": 420,
+      "sha256": "bf9386c52eedd888e34696a1ed270ff59cde4adb7f7512ba7461eb4cbcf37211"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": 0,
+    "stream_context_entered": true,
+    "test": "test_real_nonempty_streams_keep_exact_bytes",
+    "timed_out": false
+  },
+  {
+    "cleanup_errors": [],
+    "context_finished": true,
+    "error_type": "builtins.OSError",
+    "injected_context_handles_closed": [
+      true
+    ],
+    "observation": {
+      "bytes": 8140,
+      "mode": 420,
+      "sha256": "1d104ddc8cb9745a6926fc911f7339c98cb65089634954637188eec6eeb8134b"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": null,
+    "stream_context_entered": false,
+    "test": "test_second_stream_open_failure_closes_first_and_preserves_identity",
+    "timed_out": false
+  },
+  {
+    "cleanup_errors": [],
+    "context_finished": true,
+    "error_type": "subprocess.TimeoutExpired",
+    "injected_context_handles_closed": [],
+    "observation": {
+      "bytes": 14406,
+      "mode": 420,
+      "sha256": "a43ceff1e2e01c488289fd53bb16732b3bdd0409437ed3a948858b43f26d0918"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": null,
+    "stream_context_entered": true,
+    "test": "test_timeout_is_actual_and_owned_child_is_reaped",
+    "timed_out": true
+  },
+  {
+    "cleanup_errors": [
+      "OSError('controlled timeout cleanup flush')",
+      "OSError('controlled timeout cleanup close')",
+      "KeyError('final_stat')"
+    ],
+    "context_finished": true,
+    "error_type": "subprocess.TimeoutExpired",
+    "injected_context_handles_closed": [
+      true
+    ],
+    "observation": {
+      "bytes": 11552,
+      "mode": 420,
+      "sha256": "fb690b25ffc9475ca5b7b134dd501127845af3ebcb32ebed79f99ef58e354372"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": null,
+    "stream_context_entered": true,
+    "test": "test_timeout_is_not_masked_by_flush_and_close_errors",
+    "timed_out": true
+  },
+  {
+    "cleanup_errors": [],
+    "context_finished": true,
+    "error_type": "builtins.RuntimeError",
+    "injected_context_handles_closed": [],
+    "observation": {
+      "bytes": 12680,
+      "mode": 420,
+      "sha256": "70d101da92542956c12c7a6ffd446093ef5be0fdbf629cb63c370fe76317c86a"
+    },
+    "recorded_commands": 1,
+    "report_status": "LOOKUP_DEX_CONTROL_FAILED",
+    "returncode": 7,
+    "stream_context_entered": true,
+    "test": "test_unexpected_nonzero_exit_retains_failed_command_row",
+    "timed_out": false
+  }
+]

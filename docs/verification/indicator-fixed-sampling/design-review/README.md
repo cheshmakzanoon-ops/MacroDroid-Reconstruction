@@ -1,0 +1,5 @@
+# Independent fixed indicator design review
+
+The frozen eight-install design passes this bounded read-only review. The review rehashed all 15 design payloads and 69 bound local inputs before and after inspection; independently parsed both observed NEXT targets and their full ancestor chains; reconstructed the O/C/C/O order for scales 0 then 1; and enumerated all 60 cross-run and 32 temporal comparison roles. It checked the fixed completion-gap schedule and the 16 parent pin declarations. The agent's earlier fetched-Git verification remains the evidence for those parent blobs; this review did not fetch them again.
+
+This is a design review. It runs no Android actions, tests no future implementation, and makes no new pixel-parity or causal claim. The separate original and candidate full frames, failed slots, actual latencies, and all differences must remain visible in the eventual fixed diagnostic. The user's existing instruction authorizes the next inactive implementation and its disposable CI verification.

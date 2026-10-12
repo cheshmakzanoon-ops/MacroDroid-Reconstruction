@@ -1,0 +1,329 @@
+{
+  "scope": "Real production recorder only; no application proof.",
+  "application_executions": 0,
+  "application_coverage_credit": 0,
+  "argv": [
+    "/dev/shm/macrodroid-day-lookup-integration/reports/20-lookup-recorder-focused-controls/recorder-cases/test_actual_launch_failure_retains_original_exception_and_row/intentionally-absent-executable",
+    "-B",
+    "/dev/shm/macrodroid-day-lookup-integration/reports/20-lookup-recorder-focused-controls/recorder-cases/test_actual_launch_failure_retains_original_exception_and_row/child.py",
+    "/dev/shm/macrodroid-day-lookup-integration/reports/20-lookup-recorder-focused-controls/recorder-cases/test_actual_launch_failure_retains_original_exception_and_row/commands/actual.stdout.log"
+  ],
+  "timeout_seconds": 5,
+  "expected_returncode": 0,
+  "source_sha256": "9f56e761d79bfdb34304a012586cb04d16b435ef6130091a97702e559260a2f2",
+  "boundary_calls": 1,
+  "caught_type": "builtins.FileNotFoundError",
+  "caught_error": "FileNotFoundError(2, 'No such file or directory')",
+  "acceptance_report": {
+    "schema": 2,
+    "passed": false,
+    "status": "LOOKUP_DEX_CONTROL_FAILED",
+    "androidRuntime": false,
+    "command_stream_evidence_schema": 2,
+    "command_stream_evidence_provider": "day_numeric_dex_controls.CommandStreamEvidence",
+    "started_utc": "2026-10-12T10:41:05.702782+00:00",
+    "started_unix_ns": 1791801665702782991,
+    "started_monotonic_ns": 39386497446197,
+    "commands": [
+      {
+        "name": "actual",
+        "argv": [
+          "/dev/shm/macrodroid-day-lookup-integration/reports/20-lookup-recorder-focused-controls/recorder-cases/test_actual_launch_failure_retains_original_exception_and_row/intentionally-absent-executable",
+          "-B",
+          "/dev/shm/macrodroid-day-lookup-integration/reports/20-lookup-recorder-focused-controls/recorder-cases/test_actual_launch_failure_retains_original_exception_and_row/child.py",
+          "/dev/shm/macrodroid-day-lookup-integration/reports/20-lookup-recorder-focused-controls/recorder-cases/test_actual_launch_failure_retains_original_exception_and_row/commands/actual.stdout.log"
+        ],
+        "timeout_seconds": 5,
+        "expected_returncode": 0,
+        "returncode": null,
+        "timed_out": false,
+        "error_type": "builtins.FileNotFoundError",
+        "error": "FileNotFoundError(2, 'No such file or directory')",
+        "started_unix_ns": 1791801665703700029,
+        "started_monotonic_ns": 39386498363148,
+        "started_utc": "2026-10-12T10:41:05.703700+00:00",
+        "ended_unix_ns": 1791801665707142408,
+        "ended_monotonic_ns": 39386501805480,
+        "ended_utc": "2026-10-12T10:41:05.707142+00:00",
+        "duration_seconds": 0.003442332,
+        "stdout": {
+          "path": "commands/actual.stdout.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "commands/actual.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stream_evidence": {
+          "schema": 2,
+          "started": {
+            "unix_ns": 1791801665703700029,
+            "monotonic_ns": 39386498363148,
+            "utc": "2026-10-12T10:41:05.703700+00:00"
+          },
+          "streams": {
+            "stdout": {
+              "path": "commands/actual.stdout.log",
+              "exclusive_mode": "xb",
+              "open_started": {
+                "unix_ns": 1791801665703999958,
+                "monotonic_ns": 39386498662845,
+                "utc": "2026-10-12T10:41:05.703999+00:00"
+              },
+              "initial_stat": {
+                "device": 26,
+                "inode": 377192,
+                "mode": 33188,
+                "links": 1,
+                "bytes": 0,
+                "mtime_ns": 1791801665703278841,
+                "ctime_ns": 1791801665703278841
+              },
+              "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "opened": {
+                "unix_ns": 1791801665704021477,
+                "monotonic_ns": 39386498684348,
+                "utc": "2026-10-12T10:41:05.704021+00:00"
+              },
+              "closing": {
+                "unix_ns": 1791801665706400158,
+                "monotonic_ns": 39386501063014,
+                "utc": "2026-10-12T10:41:05.706400+00:00"
+              },
+              "final_stat": {
+                "device": 26,
+                "inode": 377192,
+                "mode": 33188,
+                "links": 1,
+                "bytes": 0,
+                "mtime_ns": 1791801665703278841,
+                "ctime_ns": 1791801665703278841
+              },
+              "closed": {
+                "unix_ns": 1791801665706406911,
+                "monotonic_ns": 39386501069775,
+                "utc": "2026-10-12T10:41:05.706406+00:00"
+              },
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "hashed": {
+                "unix_ns": 1791801665706461549,
+                "monotonic_ns": 39386501124438,
+                "utc": "2026-10-12T10:41:05.706461+00:00"
+              }
+            },
+            "stderr": {
+              "path": "commands/actual.stderr.log",
+              "exclusive_mode": "xb",
+              "open_started": {
+                "unix_ns": 1791801665704183840,
+                "monotonic_ns": 39386498846768,
+                "utc": "2026-10-12T10:41:05.704183+00:00"
+              },
+              "initial_stat": {
+                "device": 26,
+                "inode": 377193,
+                "mode": 33188,
+                "links": 1,
+                "bytes": 0,
+                "mtime_ns": 1791801665703278841,
+                "ctime_ns": 1791801665703278841
+              },
+              "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "opened": {
+                "unix_ns": 1791801665704208905,
+                "monotonic_ns": 39386498871773,
+                "utc": "2026-10-12T10:41:05.704208+00:00"
+              },
+              "closing": {
+                "unix_ns": 1791801665706268116,
+                "monotonic_ns": 39386500931036,
+                "utc": "2026-10-12T10:41:05.706268+00:00"
+              },
+              "final_stat": {
+                "device": 26,
+                "inode": 377193,
+                "mode": 33188,
+                "links": 1,
+                "bytes": 0,
+                "mtime_ns": 1791801665703278841,
+                "ctime_ns": 1791801665703278841
+              },
+              "closed": {
+                "unix_ns": 1791801665706288985,
+                "monotonic_ns": 39386500951955,
+                "utc": "2026-10-12T10:41:05.706288+00:00"
+              },
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "hashed": {
+                "unix_ns": 1791801665706390277,
+                "monotonic_ns": 39386501053169,
+                "utc": "2026-10-12T10:41:05.706390+00:00"
+              }
+            }
+          },
+          "after_witnesses": [
+            {
+              "path": "commands/actual.filesystem-after-00.log",
+              "exclusive_mode": "xb",
+              "open_started": {
+                "unix_ns": 1791801665706546573,
+                "monotonic_ns": 39386501209460,
+                "utc": "2026-10-12T10:41:05.706546+00:00"
+              },
+              "initial_stat": {
+                "device": 26,
+                "inode": 377194,
+                "mode": 33188,
+                "links": 1,
+                "bytes": 0,
+                "mtime_ns": 1791801665703278841,
+                "ctime_ns": 1791801665703278841
+              },
+              "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "opened": {
+                "unix_ns": 1791801665706688011,
+                "monotonic_ns": 39386501350991,
+                "utc": "2026-10-12T10:41:05.706688+00:00"
+              },
+              "closing": {
+                "unix_ns": 1791801665706698199,
+                "monotonic_ns": 39386501361054,
+                "utc": "2026-10-12T10:41:05.706698+00:00"
+              },
+              "final_stat": {
+                "device": 26,
+                "inode": 377194,
+                "mode": 33188,
+                "links": 1,
+                "bytes": 0,
+                "mtime_ns": 1791801665703278841,
+                "ctime_ns": 1791801665703278841
+              },
+              "closed": {
+                "unix_ns": 1791801665706706178,
+                "monotonic_ns": 39386501369019,
+                "utc": "2026-10-12T10:41:05.706706+00:00"
+              },
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "hashed": {
+                "unix_ns": 1791801665706845991,
+                "monotonic_ns": 39386501508977,
+                "utc": "2026-10-12T10:41:05.706845+00:00"
+              }
+            }
+          ],
+          "after_witness_attempt_limit": 16,
+          "after_witness_poll_ns": 5000000,
+          "filesystem_bracket_complete": true,
+          "before_witness": {
+            "path": "commands/actual.filesystem-before.log",
+            "exclusive_mode": "xb",
+            "open_started": {
+              "unix_ns": 1791801665703810141,
+              "monotonic_ns": 39386498473030,
+              "utc": "2026-10-12T10:41:05.703810+00:00"
+            },
+            "initial_stat": {
+              "device": 26,
+              "inode": 377191,
+              "mode": 33188,
+              "links": 1,
+              "bytes": 0,
+              "mtime_ns": 1791801665703278841,
+              "ctime_ns": 1791801665703278841
+            },
+            "initial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "opened": {
+              "unix_ns": 1791801665703838513,
+              "monotonic_ns": 39386498501396,
+              "utc": "2026-10-12T10:41:05.703838+00:00"
+            },
+            "closing": {
+              "unix_ns": 1791801665703844125,
+              "monotonic_ns": 39386498506961,
+              "utc": "2026-10-12T10:41:05.703844+00:00"
+            },
+            "final_stat": {
+              "device": 26,
+              "inode": 377191,
+              "mode": 33188,
+              "links": 1,
+              "bytes": 0,
+              "mtime_ns": 1791801665703278841,
+              "ctime_ns": 1791801665703278841
+            },
+            "closed": {
+              "unix_ns": 1791801665703850437,
+              "monotonic_ns": 39386498513307,
+              "utc": "2026-10-12T10:41:05.703850+00:00"
+            },
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "hashed": {
+              "unix_ns": 1791801665703924518,
+              "monotonic_ns": 39386498587481,
+              "utc": "2026-10-12T10:41:05.703924+00:00"
+            }
+          },
+          "invocation_started": {
+            "unix_ns": 1791801665704214296,
+            "monotonic_ns": 39386498877182,
+            "utc": "2026-10-12T10:41:05.704214+00:00"
+          },
+          "invocation_finished": {
+            "unix_ns": 1791801665706224451,
+            "monotonic_ns": 39386500887707,
+            "utc": "2026-10-12T10:41:05.706224+00:00"
+          },
+          "error": "FileNotFoundError(2, 'No such file or directory')",
+          "finished": {
+            "unix_ns": 1791801665707142408,
+            "monotonic_ns": 39386501805480,
+            "utc": "2026-10-12T10:41:05.707142+00:00"
+          }
+        },
+        "recording_finalized": {
+          "unix_ns": 1791801665707171611,
+          "monotonic_ns": 39386501834466,
+          "utc": "2026-10-12T10:41:05.707171+00:00"
+        },
+        "stream_context_entered": true
+      }
+    ],
+    "evidence_directory": "reports/day-lookup-dex-26jviuq9",
+    "primary_recovered_methods": 1,
+    "original_dependency_methods": 2,
+    "expected_java_faults": 10,
+    "expected_actual_dex_faults": 2,
+    "error": "FileNotFoundError(2, 'No such file or directory')",
+    "finished_utc": "2026-10-12T10:41:05.707895+00:00",
+    "finished_unix_ns": 1791801665707895484,
+    "finished_monotonic_ns": 39386502558645
+  },
+  "context_handles_closed": [],
+  "observed_files": {
+    "stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "device": 26,
+      "inode": 377192,
+      "links": 1,
+      "mtime_ns": 1791801665703278841,
+      "ctime_ns": 1791801665703278841
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "device": 26,
+      "inode": 377193,
+      "links": 1,
+      "mtime_ns": 1791801665703278841,
+      "ctime_ns": 1791801665703278841
+    }
+  }
+}

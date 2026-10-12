@@ -1,0 +1,72 @@
+{
+  "acceptance_report": {
+    "bytes": 1855,
+    "commands_recorded": 1,
+    "mode": 420,
+    "passed": false,
+    "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-adds-stdout-hardlink/reports/day-lookup-dex-controls.json",
+    "sha256": "5c01f8049ebc794771d6794fcb87b76260f34d82f89d03b08fab6537e6b8ec8a",
+    "status": "LOOKUP_DEX_CONTROL_FAILED"
+  },
+  "additional_hardlink_not_rejected_by_production_recorder": true,
+  "after_files": {
+    "extra_hardlink": {
+      "bytes": 27,
+      "ctime_ns": 1791801198501040312,
+      "device": 26,
+      "inode": 345079,
+      "is_symlink": false,
+      "links": 2,
+      "mode": 420,
+      "mtime_ns": 1791801198501040312,
+      "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-adds-stdout-hardlink/command-output/extra-hardlink.txt",
+      "sha256": "802a8df13e1ea1b19fec8f89e0d6db35c20d3c577ac7dfcb5bc2e43e706642de"
+    },
+    "stderr": {
+      "bytes": 0,
+      "ctime_ns": 1791801198419504806,
+      "device": 26,
+      "inode": 345080,
+      "is_symlink": false,
+      "links": 1,
+      "mode": 420,
+      "mtime_ns": 1791801198419504806,
+      "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-adds-stdout-hardlink/command-output/actual.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout": {
+      "bytes": 27,
+      "ctime_ns": 1791801198501040312,
+      "device": 26,
+      "inode": 345079,
+      "is_symlink": false,
+      "links": 2,
+      "mode": 420,
+      "mtime_ns": 1791801198501040312,
+      "path": "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-adds-stdout-hardlink/command-output/actual.stdout.log",
+      "sha256": "802a8df13e1ea1b19fec8f89e0d6db35c20d3c577ac7dfcb5bc2e43e706642de"
+    }
+  },
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-adds-stdout-hardlink/child-source.py",
+    "/dev/shm/macrodroid-day-lookup-integration/reports/18-actual-lookup-recorder/child-adds-stdout-hardlink/command-output/actual.stdout.log"
+  ],
+  "caught_error": "Bounded recorder probe stopped before every application input and signed-proof gate",
+  "caught_type": "StopBeforeApplicationProof",
+  "expected_child_exit": 0,
+  "expected_outcome": "hardlink-accepted",
+  "finished_monotonic_ns": 38919331821959,
+  "hook_calls": 1,
+  "live_recorder_entered": true,
+  "live_recorder_returned": true,
+  "name": "child-adds-stdout-hardlink",
+  "planned_source": {
+    "bytes": 156,
+    "mode": 420,
+    "sha256": "da2e431a4f7fff45a4436c219bb05f2bd8e8744b0cb121290d083c7bda7c9070"
+  },
+  "started_monotonic_ns": 38919204727973,
+  "timeout_seconds": 5
+}

@@ -1,0 +1,12 @@
+{
+  "status": "PUBLICATION_PREPARATION_STOPPED_ON_DUPLICATE_OPERATION_PATH",
+  "observed_utc": "2026-10-12T10:58:15.493746+00:00",
+  "configuration_sha256": "8fc22b08408e5bd7aa68d186357f541a096139c798865828646f569eb01ca722",
+  "preparer_sha256": "128a9fc9a9ea44c6ebadbad67a7b993706f9490abe963c1d0e4a8cd4c15a6064",
+  "exit_code": 1,
+  "reason": "Configuration explicitly listed configuration.json although the preparer already includes it automatically; duplicate path guard stopped staging.",
+  "captured_tool_stderr": "Traceback (most recent call last):\n  File \"/dev/shm/macrodroid-transfer-space-20261012/prepare_standard_capsules.py\", line 73, in <module>\n    staged(source, ops + \"/\" + safe(row[\"name\"]))\n  File \"/dev/shm/macrodroid-transfer-space-20261012/prepare_standard_capsules.py\", line 31, in staged\n    assert name.startswith((\"docs/\", \"work-in-progress/\")) and name not in names\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+  "stderr_note": "The exact exception, file/line locations and predicate are retained from tool output; quotation style in this JSON representation is normalized.",
+  "capsule_source_or_git_changed": false,
+  "correction": "Remove the duplicate explicit configuration operation; use fresh staging/export directories. All frozen capsule bytes remain unchanged."
+}

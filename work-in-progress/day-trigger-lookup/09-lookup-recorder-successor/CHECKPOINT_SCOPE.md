@@ -1,0 +1,33 @@
+# Lookup recorder: explicit shared schema-2 evidence and retained failure rows
+
+This inactive successor changes exactly **two paths** from frozen Lookup08 checkpoint `56aa7bfc05286d9fc474d24e6afc33fbd3a664e9dc731f70912df1a9e375b350`: day_lookup_dex_controls.py and tests/test_day_lookup.py. It repairs the two measured recorder limitations while preserving the exact application proof and command inputs. **All 57 focused tests passed** in 2.541998 seconds. Every recorder exercise still produces a deliberately failed acceptance report; this is not a signed or full-project acceptance result.
+
+## Source changes and provider contract
+
+The lookup source is 35,479 bytes, SHA-256 `0b72325dbdaf60525f07a7b72708b9096d1e585ef5e1601332ceaac9aa67c8c9`. The old `aaf53f9c105727c7b68f7e78b5bed0d0b89ff7772452fc6aaf51315cb73bd208` source and its real accepted-hardlink/missing-row evidence remain untouched in Lookup08. The updated 49-test lookup module is 32,426 bytes, SHA-256 `b819d42007f3345023420b5cfac4c4463309eed7c62b5bc654fdbc2ce1413972`.
+
+The nested production recorder directly uses **numeric.CommandStreamEvidence** and **numeric.command_clock**. Their exact 40,949-byte provider file remains SHA-256 `2608a9a0a9d5b44627595fcbb696f2ec3f70213eb6af88a7282ec818d53e92f4`; no shared implementation was copied, modified or weakened. Outer lookup evidence now explicitly declares schema 2, command stream schema 2, and the provider's fully qualified name. The ordinary Java/DEX harness reports retain their prior schema and exact validation rules.
+
+The shared context records exclusive regular single-link files, descriptor/path identity through closure, hashes, integer wall and monotonic clocks, and actual bounded before/after filesystem witnesses. An additional hardlink changes ownership and is rejected. The lookup wrapper finalizes and saves one failed command row after open, child, flush and close errors instead of losing the row when cleanup raises.
+
+Each row adds the actual expected exit code, observed error type/repr and an observed TimeoutExpired flag. A separate recording_finalized clock records the wrapper's actual finalization. Pre-existing-output failures preserve the prior RuntimeError and never enter the shared stream context; their stream_context_entered flag is false and no context-finish timestamp is invented. This distinction is visible in the retained rows and must remain visible to future evidence validation.
+
+The complete application try body and handlers are AST-identical. Every other top-level lookup definition is unchanged. All application run-call ASTs and the subprocess argv/cwd/timeout arguments are exact; the only subprocess redirection change is to the shared context's real handles. All application expectations, Java/D8 commands, nonzero expectations, coverage gates, source checks, signed-primary comparison and positive restoration remain intact. The shared numeric file and all other 23 small source-subset files are byte-identical to Lookup08. The old 33 lookup tests are an exact source prefix; 16 recording controls were appended.
+
+## What actually executed
+
+The focused test run measured **49 lookup tests and eight numeric catalog/dependency tests**, or 57. The original planned scope string's nine-test numeric count was wrong; MEASURED_COUNT_CORRECTION.md explains it without changing the closed driver/result. No Java, D8, APK, application method or Android process ran in this study. All loaded modules, original sources and copied test inputs were checked unchanged after execution.
+
+Sixteen tests enter the actual production run_controls function. A private hook at its first application-input boundary obtains and checks the live nested recorder's code identity. Real bounded Python children cover empty and nonempty output, expected and unexpected exit 7, timeout, missing executable, inode replacement and an extra hardlink. Explicit controlled I/O failures cover the second stream open, flush, close, both flush and close, and timeout combined with both cleanup failures. The fault factory still constructs the exact original numeric context class; only the designated test file-operation handle fails. Injected exception object identity, primary-error priority and closure of every captured handle are checked.
+
+Both actual timeout cases independently confirm the owned child has exited and been reaped. All 16 attempts retain exactly one finalized command row. In all 16 production reports, passed is false and status is LOOKUP_DEX_CONTROL_FAILED. Successful recorder calls stop with an explicit boundary sentinel; no application-input validation or signed-proof gate is bypassed into success. These tests earn zero application-case or instruction credit.
+
+The real additional-hardlink case is now rejected with an ownership error. The replaced-inode case retains its failed command row. Partial stream receipts and cleanup errors remain present on failures; they are never upgraded to complete passing evidence. Report-file write/storage failure itself was not fault-injected here, and no durability claim beyond the successfully retained files is made.
+
+## Exact future integration
+
+The total future application overlay remains **21 paths**; this successor changes only two of them. complete-future-overlay-manifest.json binds those two payloads here and the other 19 unchanged payloads to Lookup08. The complete future manifest changes two existing entries, preserves the other 81,302 rows and remains **81,304 files**. Its new snapshot SHA-256 is `b981dd67fd84ddf8dc026b2aed0ede7f1770c48ef64acc9009f5eaa076f34a0c`; the decompressed JSON is 14,505,034 bytes, SHA-256 `cd89966dae610579966c7d0ebfd62861ce3468c43c25427c738b369d98727b1a`. This is a guarded complete-inventory derivation, not a freshly materialized full checkout.
+
+The inherited 371-input original/JVM/micro-D8 proof and compiled semantic fault results remain bound to unchanged helper, harness and fixture sources. No new application case total is claimed. The future 1,244-body/605-class source still requires a fresh full build, actual signed-primary binding for both ordinary DayTrigger methods, all 101 Java faults, both numeric and lookup D8/provenance/restoration gates and all 16 acceptance commands. Those gates remain pending.
+
+The full evidence archive preserves every source and command attempt, including deliberately failed acceptance reports, raw stdout/stderr, clocks, inode/link observations, witness files, injected I/O traces and closed source manifests. It stores independent byte copies of intentional hardlinks; the raw study retains the original physical links and their exact observed metadata.
