@@ -6,7 +6,10 @@ contains 1,239 recovered Java method bodies across 602 classes and builds the
 remaining code from preserved smali. Whole-app 1:1 Android runtime behavior has
 not been established.
 
-Current progress is in [RECONSTRUCTION_STATUS.md](project/RECONSTRUCTION_STATUS.md).
+The current source checkpoint is described in
+[RECONSTRUCTION_STATUS.md](project/RECONSTRUCTION_STATUS.md); completed hosted
+results are recorded below. The latest hosted checkpoint passed all 16 source
+acceptance gates and exact cold-launch/four-page intro still comparisons.
 The [verification workflow](.github/workflows/reconstruction.yml) rebuilds the
 committed source and separately measures Android cold launches and four English
 intro pages; its
@@ -67,14 +70,17 @@ The original is a comparison input, not a build input. See the
 
 ## What has actually passed
 
-The new scene method passed the following checks in its isolated recovery build.
-Its executable source is now included in the current overlay. **Full acceptance
-of the combined scene, recorder and device-helper checkpoint remains pending**
-until a fresh configured run completes. The isolated proof and the previous
-successful CI run remain separate evidence.
+The combined 1,239-body scene, recorder and device-helper checkpoint
+`95077fcb1d3c86f3b1c91026619642d99198f149` passed all 16 configured hosted source
+acceptance gates on 12 October 2026. Its fresh-built APK exactly matches the
+committed `be1138a5…` candidate. The separate Android job also passed the declared
+cold-launch and four-page still scope. Complete original reports are preserved
+for both jobs; the isolated recovery proof remains separately identified.
 
 | Check | Measured result | Evidence |
 | --- | --- | --- |
+| Current source checkpoint on GitHub | All 16 configured acceptance gates; 185,738 three-path cases; all 1,239 methods; zero mismatches/unsupported executions; 203 Python tests passed | [Fresh source CI evidence](docs/verification/source-ci-95077fc/) |
+| Current hosted UI deliberate-fault checks | All 22 controls passed; the restored 15,423-case UI suite passed; inputs unchanged | [Actual control report](docs/verification/source-ci-95077fc/reports/ui-negative-controls.json) |
 | Isolated scene build: original instructions, recovered JVM code, and signed rebuilt DEX | 185,738 cases; all 1,239 registered methods covered; zero mismatches or unsupported executions | [Signed scene recovery report](work-in-progress/custom-scene/02-signed-proof-evidence/custom-scene-recovery.json) |
 | New custom-scene recovery | 4,070 cases; all 405 original instructions and 40 conditional branch edges visited | [Source and recovery account](project/SCENE_RECOVERY.md) |
 | Isolated scene build: full hybrid bytecode round trip | 71,267 classes / 349,972 method definitions; exactly 1,239 intended body changes and no unexpected changes | [Signed scene recovery report](work-in-progress/custom-scene/02-signed-proof-evidence/custom-scene-recovery.json) |
@@ -87,24 +93,36 @@ or establish complete feature parity. The complete configured acceptance run and
 actual Android comparisons have separate reports; an unstarted or incomplete run
 is not a pass.
 
-## Android capture results and next measurement
+## Measured Android cold launch and four intro stills
 
-The first hosted comparison installed and launched both earlier APKs. Their intro
-hierarchies matched, but the complete screenshots differed by 75 pixels in the
-signal-strength icon. Its recorded result remains
-[`CAPTURE_DIFFERENCE`](docs/verification/android-ci-ba52fd6/). The next hosted
-Android run booted successfully, then failed the device-preparation signal gate
-before either APK was installed; the exact failure and measurements are retained
-in [android-ci-bebf448](docs/verification/android-ci-bebf448/).
+[The latest hosted Android evidence](docs/verification/android-ci-95077fc/) records
+one fresh installation of each APK on the same API 35 emulator configuration.
+The recorder verified the distinct original and candidate APK identities on the
+device, then captured `MACRODROID`, `TRIGGERS`, `ACTIONS` and `CONSTRAINTS`. All four
+pairs of complete 720 × 1280 PNG screenshots and UI hierarchy XML files are
+byte-identical. Each full image contains 921,600 pixels; every paired comparison
+found zero changed pixels, including the status and navigation bars.
 
-The updated helper checks the primary radio's computed signal level and records
-all raw measurements. It can also disable the three Android animation scales
-for explicitly scoped still captures. The schema-3 recorder verifies the installed
-APK checksum, fresh package state, foreground activity and live process samples,
-then records `MACRODROID`, `TRIGGERS`, `ACTIONS` and `CONSTRAINTS` using three observed
-Next buttons. Every full screenshot and UI hierarchy remains part of the comparison.
-These new checks need an actual device result; they do not establish animation,
-feature or whole-app parity. See [capture scope and evidence rules](project/RUNTIME_CAPTURE.md).
+All three observed Next-button taps reached matching next-page stills. Before
+each tap, fresh hierarchy evidence, the foreground intro activity and the live
+process were checked. The complete screenshots use no masks, crops, resizes or
+pixel tolerance. Independent comparison replay reproduced both original CI
+reports exactly, and a separate image decode confirmed the zero-pixel result.
+
+This is a declared still-capture configuration: Android animation scales were
+set to zero and read back, and SystemUI demo mode displayed 12:00 for both apps.
+The helper recorded stable computed signal level and retained all raw signal
+measurements. Those controls are part of the published environment evidence;
+animation motion and timing were not compared. Final intro completion, app home,
+permissions, macro execution, services, persistence, other screens and other
+devices remain outside this result. See the
+[precise capture account](docs/verification/android-ci-95077fc/README.md) and
+[capture evidence rules](project/RUNTIME_CAPTURE.md).
+
+The earlier [75-pixel status-icon difference](docs/verification/android-ci-ba52fd6/)
+and subsequent [pre-installation signal-preparation failure](docs/verification/android-ci-bebf448/)
+remain preserved with their actual failed outcomes. The latest success does not
+rewrite either historical run or establish whole-app 1:1 behavior.
 
 ## Repository contents
 
@@ -119,8 +137,9 @@ feature or whole-app parity. See [capture scope and evidence rules](project/RUNT
 | `scripts/import_v9.py` | Import the exact historical source/toolchain ZIPs when supplied separately. |
 | `docs/verification/restored-v9/` | Fresh v9 host build and test evidence from the restored full snapshot. |
 | `docs/verification/current/` | Earlier 1,238-body recovery and verification results; report identities retain their original scope. |
+| `docs/verification/source-ci-95077fc/` | Successful 16-gate hosted source acceptance for the current 1,239-body scene/runtime checkpoint. |
 | `docs/verification/source-ci-bebf448/` | Successful 16-gate hosted source acceptance for the previous 1,238-body checkpoint. |
-| `docs/verification/android-ci-*/` | Exact hosted Android evidence and explicit comparison or preparation failures. |
+| `docs/verification/android-ci-*/` | Exact hosted Android evidence, including the latest cold-launch/four-page still match and earlier failed comparisons or preparation. |
 | `work-in-progress/` | Immutable recovery checkpoints and proof archives, including incomplete work; the materializer does not apply these directories. |
 | `tools/android/` | Reproducible JDK/SDK pins, disposable emulator setup, and runtime orchestration. |
 | `docs/v9/` and `docs/history/` | Historical quality reports, delivery records, provenance and checksums. |

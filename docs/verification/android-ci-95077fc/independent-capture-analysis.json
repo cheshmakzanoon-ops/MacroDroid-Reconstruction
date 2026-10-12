@@ -1,0 +1,510 @@
+{
+  "schema_version": 1,
+  "scope": "Independent read-only verification of one hosted cold launch, four English intro page stills, and three observed Next transitions for each distinct APK",
+  "checked_utc": "2026-10-12T02:33:22.586485+00:00",
+  "source_checkpoint": "95077fcb1d3c86f3b1c91026619642d99198f149",
+  "workflow_run_id": 38194498356,
+  "workflow_job_id": 114634085047,
+  "workflow_job_conclusion": "success",
+  "workflow_run_url": "https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/actions/runs/38194498356",
+  "artifact": {
+    "id": 11723551688,
+    "name": "android-cold-launch-95077fcb1d3c86f3b1c91026619642d99198f149",
+    "bytes": 803571,
+    "sha256": "0f82b5480cf7a3d38c766cfed81a9a2f47087e057d03329c7953cb8df5608739",
+    "matches_github_artifact_digest": true,
+    "files": 296,
+    "uncompressed_bytes": 1846979,
+    "all_extracted_files_byte_identical_to_archive": true,
+    "source_artifact_modified": false
+  },
+  "input_identities": [
+    {
+      "label": "original",
+      "apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+      "bytes": 95725918,
+      "metadata": {
+        "package": "com.arlosoft.macrodroid",
+        "version_code": "896700008",
+        "version_name": "5.67.8",
+        "min_sdk": 23,
+        "target_sdk": 36
+      }
+    },
+    {
+      "label": "candidate",
+      "apk_sha256": "be1138a5cb72c5f79efaa1490b4b9c74ccb637fbb6d0975f6680da48435c50ce",
+      "bytes": 94683342,
+      "metadata": {
+        "package": "com.arlosoft.macrodroid",
+        "version_code": "896700008",
+        "version_name": "5.67.8",
+        "min_sdk": 23,
+        "target_sdk": 36
+      }
+    }
+  ],
+  "observed_installed_apk_sha256": {
+    "original": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+    "candidate": "be1138a5cb72c5f79efaa1490b4b9c74ccb637fbb6d0975f6680da48435c50ce"
+  },
+  "comparison_report_identities": [
+    {
+      "path": "capture/cold-launch-comparison.json",
+      "bytes": 636,
+      "sha256": "03e23968da338d07803b201748a2b344d42db72974dbb4a3f92421db0aba7a16"
+    },
+    {
+      "path": "capture/intro-comparison.json",
+      "bytes": 2377,
+      "sha256": "60983e7b8078588e3eaabf061c4d22d795a2c2ef4fb6994cfec4a2180c6428fd"
+    }
+  ],
+  "read_only_verification": {
+    "recorded_artifact_reference_checks": 202,
+    "unique_referenced_files": 186,
+    "all_referenced_lengths_and_sha256_verified": true,
+    "comparison_functions_reexecuted_without_writing_artifacts": true,
+    "cold_comparison_exactly_reproduces_ci_json": true,
+    "intro_comparison_exactly_reproduces_ci_json": true,
+    "comparator_sources": [
+      {
+        "path": "project/android_compare.py",
+        "sha256": "24da5bedb4a6e4650f83e58cff735323596522468096891efd4cb8e6c6c58b85",
+        "matches_published_checkpoint": true
+      },
+      {
+        "path": "project/android_intro.py",
+        "sha256": "5d08ff52092496e85372542b45cd1b0f50cd59f0bc33c88700996bf428a28268",
+        "matches_published_checkpoint": true
+      }
+    ],
+    "independent_decoder": "Pillow 12.3.0 Image.open(...).convert(RGBA)",
+    "decoded_comparison": "Every RGBA pixel in the complete 720x1280 image was compared; no crop, mask, resize, or tolerance. All four pairs had zero changed pixels.",
+    "independent_pixel_check_exec_session": 21741,
+    "independent_pixel_check_exit_code": 0
+  },
+  "pages": [
+    {
+      "page": 1,
+      "title": "MACRODROID",
+      "size": [
+        720,
+        1280
+      ],
+      "pixel_count": 921600,
+      "independently_decoded_changed_pixels": 0,
+      "png_files_byte_identical": true,
+      "xml_files_byte_identical": true,
+      "original_png": {
+        "path": "capture/original.png",
+        "bytes": 83895,
+        "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+      },
+      "candidate_png": {
+        "path": "capture/candidate.png",
+        "bytes": 83895,
+        "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+      },
+      "original_xml": {
+        "path": "capture/original-hierarchy.xml",
+        "bytes": 5939,
+        "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+      },
+      "candidate_xml": {
+        "path": "capture/candidate-hierarchy.xml",
+        "bytes": 5939,
+        "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+      },
+      "owned_ui_nodes": [
+        16,
+        16
+      ]
+    },
+    {
+      "page": 2,
+      "title": "TRIGGERS",
+      "size": [
+        720,
+        1280
+      ],
+      "pixel_count": 921600,
+      "independently_decoded_changed_pixels": 0,
+      "png_files_byte_identical": true,
+      "xml_files_byte_identical": true,
+      "original_png": {
+        "path": "capture/original-intro-2.png",
+        "bytes": 75367,
+        "sha256": "d3dd1a3b8560b47569be67cac2bc98c37ec4f453dd520af6f48224c53d94c65b"
+      },
+      "candidate_png": {
+        "path": "capture/candidate-intro-2.png",
+        "bytes": 75367,
+        "sha256": "d3dd1a3b8560b47569be67cac2bc98c37ec4f453dd520af6f48224c53d94c65b"
+      },
+      "original_xml": {
+        "path": "capture/original-intro-2-hierarchy.xml",
+        "bytes": 6689,
+        "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+      },
+      "candidate_xml": {
+        "path": "capture/candidate-intro-2-hierarchy.xml",
+        "bytes": 6689,
+        "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+      },
+      "owned_ui_nodes": [
+        18,
+        18
+      ]
+    },
+    {
+      "page": 3,
+      "title": "ACTIONS",
+      "size": [
+        720,
+        1280
+      ],
+      "pixel_count": 921600,
+      "independently_decoded_changed_pixels": 0,
+      "png_files_byte_identical": true,
+      "xml_files_byte_identical": true,
+      "original_png": {
+        "path": "capture/original-intro-3.png",
+        "bytes": 79359,
+        "sha256": "b3410bed78ab5591cc3ed8797eb7e62d050f1aae4ce64d8762981f73bfe839f8"
+      },
+      "candidate_png": {
+        "path": "capture/candidate-intro-3.png",
+        "bytes": 79359,
+        "sha256": "b3410bed78ab5591cc3ed8797eb7e62d050f1aae4ce64d8762981f73bfe839f8"
+      },
+      "original_xml": {
+        "path": "capture/original-intro-3-hierarchy.xml",
+        "bytes": 6685,
+        "sha256": "0d213e7057f57c885997ea2da8840c982d8f1e6b7a266adadb1c33ff894f9fe9"
+      },
+      "candidate_xml": {
+        "path": "capture/candidate-intro-3-hierarchy.xml",
+        "bytes": 6685,
+        "sha256": "0d213e7057f57c885997ea2da8840c982d8f1e6b7a266adadb1c33ff894f9fe9"
+      },
+      "owned_ui_nodes": [
+        18,
+        18
+      ]
+    },
+    {
+      "page": 4,
+      "title": "CONSTRAINTS",
+      "size": [
+        720,
+        1280
+      ],
+      "pixel_count": 921600,
+      "independently_decoded_changed_pixels": 0,
+      "png_files_byte_identical": true,
+      "xml_files_byte_identical": true,
+      "original_png": {
+        "path": "capture/original-intro-4.png",
+        "bytes": 70512,
+        "sha256": "35c1bea0a4aa3cdadbb47903c5fea87f980d5b99bb0ff97322deb845b5b25971"
+      },
+      "candidate_png": {
+        "path": "capture/candidate-intro-4.png",
+        "bytes": 70512,
+        "sha256": "35c1bea0a4aa3cdadbb47903c5fea87f980d5b99bb0ff97322deb845b5b25971"
+      },
+      "original_xml": {
+        "path": "capture/original-intro-4-hierarchy.xml",
+        "bytes": 6682,
+        "sha256": "f05632a504ab0a6aab8608de15b95bc4f41f2bb9212879026f14927bea5af89b"
+      },
+      "candidate_xml": {
+        "path": "capture/candidate-intro-4-hierarchy.xml",
+        "bytes": 6682,
+        "sha256": "f05632a504ab0a6aab8608de15b95bc4f41f2bb9212879026f14927bea5af89b"
+      },
+      "owned_ui_nodes": [
+        18,
+        18
+      ]
+    }
+  ],
+  "observed_transitions": {
+    "original": [
+      {
+        "from_page": 1,
+        "to_page": 2,
+        "selector": "com.arlosoft.macrodroid:id/button_next",
+        "coordinates": [
+          640,
+          1152
+        ],
+        "precondition_age_seconds": 2.229710115000046,
+        "shell_argv": [
+          "input",
+          "tap",
+          "640",
+          "1152"
+        ]
+      },
+      {
+        "from_page": 2,
+        "to_page": 3,
+        "selector": "com.arlosoft.macrodroid:id/button_next",
+        "coordinates": [
+          640,
+          1152
+        ],
+        "precondition_age_seconds": 2.0880082239999638,
+        "shell_argv": [
+          "input",
+          "tap",
+          "640",
+          "1152"
+        ]
+      },
+      {
+        "from_page": 3,
+        "to_page": 4,
+        "selector": "com.arlosoft.macrodroid:id/button_next",
+        "coordinates": [
+          640,
+          1152
+        ],
+        "precondition_age_seconds": 2.103336549000005,
+        "shell_argv": [
+          "input",
+          "tap",
+          "640",
+          "1152"
+        ]
+      }
+    ],
+    "candidate": [
+      {
+        "from_page": 1,
+        "to_page": 2,
+        "selector": "com.arlosoft.macrodroid:id/button_next",
+        "coordinates": [
+          640,
+          1152
+        ],
+        "precondition_age_seconds": 2.1052635969999756,
+        "shell_argv": [
+          "input",
+          "tap",
+          "640",
+          "1152"
+        ]
+      },
+      {
+        "from_page": 2,
+        "to_page": 3,
+        "selector": "com.arlosoft.macrodroid:id/button_next",
+        "coordinates": [
+          640,
+          1152
+        ],
+        "precondition_age_seconds": 2.1129165020000187,
+        "shell_argv": [
+          "input",
+          "tap",
+          "640",
+          "1152"
+        ]
+      },
+      {
+        "from_page": 3,
+        "to_page": 4,
+        "selector": "com.arlosoft.macrodroid:id/button_next",
+        "coordinates": [
+          640,
+          1152
+        ],
+        "precondition_age_seconds": 2.094751893000023,
+        "shell_argv": [
+          "input",
+          "tap",
+          "640",
+          "1152"
+        ]
+      }
+    ]
+  },
+  "device_environment_equal_between_captures": true,
+  "device_environment": {
+    "serial": "emulator-5560",
+    "ro.product.cpu.abilist": "x86_64,arm64-v8a",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.build.version.sdk": "35",
+    "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "ro.kernel.qemu": "1",
+    "ro.hardware": "ranchu",
+    "ro.dalvik.vm.native.bridge": "libndk_translation.so",
+    "ro.dalvik.vm.isa.arm64": "x86_64",
+    "persist.sys.locale": "",
+    "persist.sys.timezone": "Etc/UTC",
+    "display_size": "Physical size: 720x1280",
+    "display_density": "Physical density: 320",
+    "font_scale": "1.0",
+    "airplane_mode_on": "0",
+    "wifi_on": "1",
+    "mobile_data": "1",
+    "sysui_demo_allowed": "1",
+    "sysui_tuner_demo_on": "1",
+    "animator_duration_scale": "0",
+    "window_animation_scale": "0",
+    "transition_animation_scale": "0"
+  },
+  "device_preparation": {
+    "status": "CAPTURE_DEVICE_CONFIGURED",
+    "report": {
+      "path": "capture-device/capture-device.json",
+      "bytes": 42220,
+      "sha256": "94e2825efdc20dc284798099a114aa294bac53e065c54d6fe4107b140643ac89"
+    },
+    "signal_stability_fields": [
+      "primary",
+      "level"
+    ],
+    "signal_stable_seconds": 15.108,
+    "confirmed_primary_type": "CellSignalStrengthWcdma",
+    "confirmed_level": 4,
+    "observations": [
+      {
+        "observed_utc": "2026-10-12T02:25:53Z",
+        "signals": [
+          {
+            "primary": "CellSignalStrengthLte",
+            "level": 4,
+            "primary_measurements": "rssi=2147483647 rsrp=-64 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=4 parametersUseForLevel=0"
+          }
+        ]
+      },
+      {
+        "observed_utc": "2026-10-12T02:25:58Z",
+        "signals": [
+          {
+            "primary": "CellSignalStrengthLte",
+            "level": 4,
+            "primary_measurements": "rssi=2147483647 rsrp=-44 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=4 parametersUseForLevel=0"
+          }
+        ]
+      },
+      {
+        "observed_utc": "2026-10-12T02:26:03Z",
+        "signals": [
+          {
+            "primary": "CellSignalStrengthWcdma",
+            "level": 4,
+            "primary_measurements": "ss=-55 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4"
+          }
+        ]
+      },
+      {
+        "observed_utc": "2026-10-12T02:26:08Z",
+        "signals": [
+          {
+            "primary": "CellSignalStrengthWcdma",
+            "level": 4,
+            "primary_measurements": "ss=-55 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4"
+          }
+        ]
+      },
+      {
+        "observed_utc": "2026-10-12T02:26:13Z",
+        "signals": [
+          {
+            "primary": "CellSignalStrengthWcdma",
+            "level": 4,
+            "primary_measurements": "ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4"
+          }
+        ]
+      },
+      {
+        "observed_utc": "2026-10-12T02:26:18Z",
+        "signals": [
+          {
+            "primary": "CellSignalStrengthWcdma",
+            "level": 4,
+            "primary_measurements": "ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4"
+          }
+        ]
+      }
+    ],
+    "before_animation_scales": {
+      "animator_duration_scale": "null",
+      "window_animation_scale": "1.0",
+      "transition_animation_scale": "1.0"
+    },
+    "after_animation_scales": {
+      "animator_duration_scale": "0",
+      "window_animation_scale": "0",
+      "transition_animation_scale": "0"
+    },
+    "requested_animation_scales_observed": true,
+    "before_demo": {
+      "sysui_demo_allowed": "null",
+      "sysui_tuner_demo_on": "0"
+    },
+    "after_demo": {
+      "sysui_demo_allowed": "1",
+      "sysui_tuner_demo_on": "1"
+    },
+    "systemui_demo_mode_observed": true,
+    "demo_clock_requested": "1200",
+    "before_device_utc": "2026-10-12T02:25:52Z",
+    "after_device_utc": "2026-10-12T02:26:19Z",
+    "battery_before_after_equal": true,
+    "battery_modified": false,
+    "device_wall_clock_modified": false
+  },
+  "timings_seconds": {
+    "boot-readiness": 42.082,
+    "configure-and-observe-capture-device": 27.739,
+    "capture-original-and-candidate": 98.382,
+    "compare-complete-captures": 1.316,
+    "compare-four-intro-pages-and-transitions": 6.275
+  },
+  "key_material_review": {
+    "files_scanned": 296,
+    "matched_paths": [],
+    "tested_patterns": [
+      "adb.pubkey / [adb_keys] / adb_auth",
+      "BEGIN ... PRIVATE KEY",
+      "standalone ssh-rsa or ssh-ed25519 public-key line",
+      "GitHub token prefixes gh[pousr]_ and github_pat_"
+    ],
+    "scope": "Pattern-based review of downloaded artifact bytes; no matching material found for these patterns.",
+    "raw_emulator_key_lines_omitted_by_ci": 2,
+    "download_url_persisted": false
+  },
+  "visual_inspection": {
+    "viewed_unmodified_original_pngs": 4,
+    "clock_presentation": "12:00 on every observed page",
+    "distinct_titles": [
+      "MACRODROID",
+      "TRIGGERS",
+      "ACTIONS",
+      "CONSTRAINTS"
+    ],
+    "candidate_pngs_byte_identical_to_viewed_originals": true
+  },
+  "outcome": {
+    "cold_launch_capture_equal": true,
+    "four_intro_page_stills_equal": true,
+    "three_observed_next_transitions_equal": true,
+    "android_runtime_executed": true,
+    "full_runtime_1_to_1_established": false,
+    "feature_parity_established": false,
+    "animation_parity_established": false
+  },
+  "limitations": [
+    "Only one device configuration and one fresh installation per APK were recorded in this workflow job.",
+    "SystemUI demo clock presentation was fixed at 12:00; demo mode can also hold other status indicators at entry.",
+    "Global animator, window, and transition animation scales were zero. Rendered stills were compared; animation timing and motion were not tested.",
+    "No final Done tap, first landing dialog, app home, permissions workflow, macro execution, background service, sensor event, persistence behavior, or other screen is established by this capture.",
+    "This analysis does not turn prior failed or canceled runs into passes."
+  ]
+}

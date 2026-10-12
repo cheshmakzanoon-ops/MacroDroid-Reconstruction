@@ -76,8 +76,23 @@ The active overlay now contains 1,239 recovered bodies across 602 classes. Its
 The candidate manifest binds the new APK bytes to that input snapshot and the
 [exact integration checkpoint](verification/scene-runtime-integration/checkpoint.json).
 The isolated scene proof passed 185,738 three-path host cases and all 22 UI
-negative controls. Full acceptance of the combined scene, strict four-page
-recorder and corrected device helper remains pending a fresh completed run.
+negative controls. The combined source checkpoint `95077fcb` subsequently passed
+all 16 configured hosted acceptance gates, with 185,738 three-path cases, all
+1,239 methods covered, 203 Python tests and the exact committed candidate APK.
+All 105 source-job reports are preserved at
+[source-ci-95077fc](verification/source-ci-95077fc/), commit
+`3b2b7e8f539e746c9b99fbeb9a093bda1074fb92`. All 16 command-log hashes and
+19 pinned fresh-evidence hashes matched the downloaded artifact bytes.
+
+The separate Android job of workflow run `38194498356` passed the declared cold
+launch and four English intro stills on its recorded API 35 configuration. All
+four complete PNG/XML pairs were byte-identical, and the three observed Next taps
+reached matching next-page stills. The exact 803,571-byte artifact, all 296
+extracted files and independently reproduced comparison results are preserved
+at [android-ci-95077fc](verification/android-ci-95077fc/). Its archive SHA-256 is
+`0f82b5480cf7a3d38c766cfed81a9a2f47087e057d03329c7953cb8df5608739`.
+Animation scales were zero and SystemUI demo state was recorded; this does not
+establish animation, feature or whole-app parity.
 
 The previous 1,238-body source checkpoint already passed all 16 configured hosted
 acceptance gates. Its complete report files, verified output identities and job
@@ -100,3 +115,12 @@ roundtrip; its exact APK and complete closed evidence are now preserved beside
 the source. All 37 control executions were still pending at that checkpoint.
 All three plugin checkpoints retain inactive registries. The materializer applies only `project/`, so
 preserving unfinished work does not adopt it as active application source.
+
+The inactive constructor-owner prototype and its exact original/Java/D8 outputs
+are preserved under `work-in-progress/constructor-owner/`; all 20 focused host
+regressions and the standalone DEX roundtrip passed, while Android proof remains
+pending. The generated-directory cleanup proposal and subsequent local failed
+acceptance are retained under `work-in-progress/staging-cleanup/`. Both were
+published at `56327dd3ddd04c78ebf461cdf810e209fd571f10` without changing active
+application inputs. Their frozen reports retain their actual failure and pending
+scopes even though the separate clean hosted checkpoint succeeded.

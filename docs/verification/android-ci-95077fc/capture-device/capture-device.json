@@ -1,0 +1,1198 @@
+{
+  "started_utc": "2026-10-12T02:25:52Z",
+  "status": "CAPTURE_DEVICE_CONFIGURED",
+  "serial": "emulator-5560",
+  "expected_avd": "MacroDroid_API35_Disposable",
+  "requested_signal_profile": 4,
+  "required_stable_seconds": 15,
+  "signal_timeout_seconds": 90,
+  "signal_stability_fields": [
+    "primary",
+    "level"
+  ],
+  "demo_clock_requested": "1200",
+  "systemui_demo_mode_requested": true,
+  "disable_animations_requested": true,
+  "animation_scales_requested": {
+    "animator_duration_scale": "0",
+    "window_animation_scale": "0",
+    "transition_animation_scale": "0"
+  },
+  "requested_animation_scales_observed": true,
+  "animation_timing_and_motion_parity_tested": false,
+  "battery_modified": false,
+  "device_wall_clock_modified": false,
+  "app_apk_modified": false,
+  "app_resources_modified": false,
+  "screenshots_modified": false,
+  "full_runtime_1_to_1_established": false,
+  "sources": [
+    "https://developer.android.com/studio/run/emulator-console#telephony-emulation",
+    "https://android.googlesource.com/platform/external/qemu/+/refs/heads/emu-master-dev/android/android-emu/android/console.cpp",
+    "https://android.googlesource.com/platform/external/qemu/+/refs/heads/emu-master-dev/android/emu/telephony/src/android/telephony/modem.c",
+    "https://android.googlesource.com/platform/frameworks/base/+/refs/tags/android-15.0.0_r1/telephony/java/android/telephony/SignalStrength.java",
+    "https://android.googlesource.com/platform/frameworks/base/+/refs/tags/android-15.0.0_r1/telephony/java/android/telephony/CellSignalStrengthLte.java",
+    "https://android.googlesource.com/platform/frameworks/base/+/refs/tags/android-15.0.0_r1/packages/SystemUI/docs/demo_mode.md",
+    "https://android.googlesource.com/platform/frameworks/base/+/refs/tags/android-15.0.0_r1/packages/SystemUI/src/com/android/systemui/demomode/DemoModeController.kt",
+    "https://developer.android.com/reference/android/provider/Settings.Global#ANIMATOR_DURATION_SCALE",
+    "https://developer.android.com/reference/android/provider/Settings.Global#WINDOW_ANIMATION_SCALE",
+    "https://developer.android.com/reference/android/provider/Settings.Global#TRANSITION_ANIMATION_SCALE"
+  ],
+  "commands": [
+    {
+      "label": "emulator-check",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop",
+        "ro.kernel.qemu"
+      ],
+      "started_utc": "2026-10-12T02:25:52Z",
+      "stdout": {
+        "path": "001-emulator-check.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "001-emulator-check.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.061
+    },
+    {
+      "label": "boot-check",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "started_utc": "2026-10-12T02:25:52Z",
+      "stdout": {
+        "path": "002-boot-check.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "002-boot-check.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.051
+    },
+    {
+      "label": "avd-name",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "avd",
+        "name"
+      ],
+      "started_utc": "2026-10-12T02:25:52Z",
+      "stdout": {
+        "path": "003-avd-name.stdout.txt",
+        "bytes": 31,
+        "sha256": "62a1e4b000e2ac5515b17b01343573dc503548c479fa3d76f9c673672fd0ed21"
+      },
+      "stderr": {
+        "path": "003-avd-name.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.005
+    },
+    {
+      "label": "before-gsm",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "status"
+      ],
+      "started_utc": "2026-10-12T02:25:52Z",
+      "stdout": {
+        "path": "004-before-gsm.stdout.txt",
+        "bytes": 47,
+        "sha256": "789e286291b09f4414c6645a2aa5220ebd8e63f8f425f59d2f67a1e118a764ce"
+      },
+      "stderr": {
+        "path": "004-before-gsm.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "label": "before-power",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "power",
+        "display"
+      ],
+      "started_utc": "2026-10-12T02:25:52Z",
+      "stdout": {
+        "path": "005-before-power.stdout.txt",
+        "bytes": 72,
+        "sha256": "e4c69616c2e1a4c794f2749d55dc6e8c9446629124191524ed0a0e07aef8c640"
+      },
+      "stderr": {
+        "path": "005-before-power.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.006
+    },
+    {
+      "label": "before-battery",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "battery"
+      ],
+      "started_utc": "2026-10-12T02:25:52Z",
+      "stdout": {
+        "path": "006-before-battery.stdout.txt",
+        "bytes": 370,
+        "sha256": "62647c8633411cff11ba336c3c99ac02a1be43920b1811a4f6ac8277db859464"
+      },
+      "stderr": {
+        "path": "006-before-battery.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.044
+    },
+    {
+      "label": "before-clock",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "date",
+        "-u",
+        "+%Y-%m-%dT%H:%M:%SZ"
+      ],
+      "started_utc": "2026-10-12T02:25:52Z",
+      "stdout": {
+        "path": "007-before-clock.stdout.txt",
+        "bytes": 21,
+        "sha256": "b5b010d4b4b3de711395a08510651429a9959a32122b13d4a56af9cbaee2bd00"
+      },
+      "stderr": {
+        "path": "007-before-clock.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.028
+    },
+    {
+      "label": "before-demo-allowed",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "sysui_demo_allowed"
+      ],
+      "started_utc": "2026-10-12T02:25:52Z",
+      "stdout": {
+        "path": "008-before-demo-allowed.stdout.txt",
+        "bytes": 5,
+        "sha256": "38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed"
+      },
+      "stderr": {
+        "path": "008-before-demo-allowed.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.034
+    },
+    {
+      "label": "before-demo-on",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "sysui_tuner_demo_on"
+      ],
+      "started_utc": "2026-10-12T02:25:53Z",
+      "stdout": {
+        "path": "009-before-demo-on.stdout.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      "stderr": {
+        "path": "009-before-demo-on.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.033
+    },
+    {
+      "label": "before-animator_duration_scale",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "animator_duration_scale"
+      ],
+      "started_utc": "2026-10-12T02:25:53Z",
+      "stdout": {
+        "path": "010-before-animator_duration_scale.stdout.txt",
+        "bytes": 5,
+        "sha256": "38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed"
+      },
+      "stderr": {
+        "path": "010-before-animator_duration_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.023
+    },
+    {
+      "label": "before-window_animation_scale",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "window_animation_scale"
+      ],
+      "started_utc": "2026-10-12T02:25:53Z",
+      "stdout": {
+        "path": "011-before-window_animation_scale.stdout.txt",
+        "bytes": 4,
+        "sha256": "5717e7c840171019a4eeab5b79a7f894a4986eaff93d04ec5b12c9a189f594bf"
+      },
+      "stderr": {
+        "path": "011-before-window_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.038
+    },
+    {
+      "label": "before-transition_animation_scale",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "transition_animation_scale"
+      ],
+      "started_utc": "2026-10-12T02:25:53Z",
+      "stdout": {
+        "path": "012-before-transition_animation_scale.stdout.txt",
+        "bytes": 4,
+        "sha256": "5717e7c840171019a4eeab5b79a7f894a4986eaff93d04ec5b12c9a189f594bf"
+      },
+      "stderr": {
+        "path": "012-before-transition_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.032
+    },
+    {
+      "label": "before-telephony",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "started_utc": "2026-10-12T02:25:53Z",
+      "stdout": {
+        "path": "013-before-telephony.stdout.txt",
+        "bytes": 55678,
+        "sha256": "b64c771c8f83636ee6ae5bc782cd7baa72f80944ceecaf365b36f56c5bb04450"
+      },
+      "stderr": {
+        "path": "013-before-telephony.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.055
+    },
+    {
+      "label": "signal-profile-help",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "help",
+        "gsm",
+        "signal-profile"
+      ],
+      "started_utc": "2026-10-12T02:25:53Z",
+      "stdout": {
+        "path": "014-signal-profile-help.stdout.txt",
+        "bytes": 110,
+        "sha256": "2a7edfcc86a08e34eafc51843fd66b82bd07ac735a05017d2881a83f95aca84b"
+      },
+      "stderr": {
+        "path": "014-signal-profile-help.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "label": "voice-home",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "voice",
+        "home"
+      ],
+      "started_utc": "2026-10-12T02:25:53Z",
+      "stdout": {
+        "path": "015-voice-home.stdout.txt",
+        "bytes": 3,
+        "sha256": "a12b7cb43c9d9134b5bb1b35e9096b66775d9e92e7611d1cc92b02edd6782a87"
+      },
+      "stderr": {
+        "path": "015-voice-home.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "data-home",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "data",
+        "home"
+      ],
+      "started_utc": "2026-10-12T02:25:53Z",
+      "stdout": {
+        "path": "016-data-home.stdout.txt",
+        "bytes": 3,
+        "sha256": "a12b7cb43c9d9134b5bb1b35e9096b66775d9e92e7611d1cc92b02edd6782a87"
+      },
+      "stderr": {
+        "path": "016-data-home.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "label": "signal-profile-four",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "signal-profile",
+        "4"
+      ],
+      "started_utc": "2026-10-12T02:25:53Z",
+      "stdout": {
+        "path": "017-signal-profile-four.stdout.txt",
+        "bytes": 3,
+        "sha256": "a12b7cb43c9d9134b5bb1b35e9096b66775d9e92e7611d1cc92b02edd6782a87"
+      },
+      "stderr": {
+        "path": "017-signal-profile-four.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.002
+    },
+    {
+      "label": "telephony",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "started_utc": "2026-10-12T02:25:53Z",
+      "stdout": {
+        "path": "018-telephony.stdout.txt",
+        "bytes": 55677,
+        "sha256": "e6d256b954167cb434cf6740ce717f6fc6f7e1c75d9a36973179753a6376bf9e"
+      },
+      "stderr": {
+        "path": "018-telephony.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.028
+    },
+    {
+      "label": "telephony",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "started_utc": "2026-10-12T02:25:58Z",
+      "stdout": {
+        "path": "019-telephony.stdout.txt",
+        "bytes": 61955,
+        "sha256": "00e607c42d38fee7fca8c7d8d9973a18f57abd5c797e90f4a345062667d5fedf"
+      },
+      "stderr": {
+        "path": "019-telephony.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.056
+    },
+    {
+      "label": "telephony",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "started_utc": "2026-10-12T02:26:03Z",
+      "stdout": {
+        "path": "020-telephony.stdout.txt",
+        "bytes": 66814,
+        "sha256": "2a85127e9968b7b0e687d6a1b5367f54bd49bbab8a41c6f07d4796f851d61ea3"
+      },
+      "stderr": {
+        "path": "020-telephony.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.066
+    },
+    {
+      "label": "telephony",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "started_utc": "2026-10-12T02:26:08Z",
+      "stdout": {
+        "path": "021-telephony.stdout.txt",
+        "bytes": 68482,
+        "sha256": "a480d15e35d56bad254a3368fe9f0fe20fca96d38af671c4b912d554ac7e0e36"
+      },
+      "stderr": {
+        "path": "021-telephony.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.022
+    },
+    {
+      "label": "telephony",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "started_utc": "2026-10-12T02:26:13Z",
+      "stdout": {
+        "path": "022-telephony.stdout.txt",
+        "bytes": 69248,
+        "sha256": "e2c13da8944e8a7819cffa339ced328409498b4c4cac56094acb537833ed99b5"
+      },
+      "stderr": {
+        "path": "022-telephony.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.045
+    },
+    {
+      "label": "telephony",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "started_utc": "2026-10-12T02:26:18Z",
+      "stdout": {
+        "path": "023-telephony.stdout.txt",
+        "bytes": 70196,
+        "sha256": "4f200d470f4ff2a5f1642cee3b86f052cff5816da6fef1cadff085724e439bb1"
+      },
+      "stderr": {
+        "path": "023-telephony.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.029
+    },
+    {
+      "label": "confirmed-gsm",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "status"
+      ],
+      "started_utc": "2026-10-12T02:26:18Z",
+      "stdout": {
+        "path": "024-confirmed-gsm.stdout.txt",
+        "bytes": 47,
+        "sha256": "789e286291b09f4414c6645a2aa5220ebd8e63f8f425f59d2f67a1e118a764ce"
+      },
+      "stderr": {
+        "path": "024-confirmed-gsm.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.005
+    },
+    {
+      "label": "disable-animator_duration_scale",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "animator_duration_scale",
+        "0"
+      ],
+      "started_utc": "2026-10-12T02:26:18Z",
+      "stdout": {
+        "path": "025-disable-animator_duration_scale.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "025-disable-animator_duration_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.029
+    },
+    {
+      "label": "disable-window_animation_scale",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "window_animation_scale",
+        "0"
+      ],
+      "started_utc": "2026-10-12T02:26:18Z",
+      "stdout": {
+        "path": "026-disable-window_animation_scale.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "026-disable-window_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.029
+    },
+    {
+      "label": "disable-transition_animation_scale",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "transition_animation_scale",
+        "0"
+      ],
+      "started_utc": "2026-10-12T02:26:18Z",
+      "stdout": {
+        "path": "027-disable-transition_animation_scale.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "027-disable-transition_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.033
+    },
+    {
+      "label": "allow-demo",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "sysui_demo_allowed",
+        "1"
+      ],
+      "started_utc": "2026-10-12T02:26:18Z",
+      "stdout": {
+        "path": "028-allow-demo.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "028-allow-demo.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.033
+    },
+    {
+      "label": "start-demo",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "sysui_tuner_demo_on",
+        "1"
+      ],
+      "started_utc": "2026-10-12T02:26:18Z",
+      "stdout": {
+        "path": "029-start-demo.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "029-start-demo.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.032
+    },
+    {
+      "label": "demo-controller",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "activity",
+        "service",
+        "com.android.systemui/.SystemUIService",
+        "DemoModeController"
+      ],
+      "started_utc": "2026-10-12T02:26:18Z",
+      "stdout": {
+        "path": "030-demo-controller.stdout.txt",
+        "bytes": 1497,
+        "sha256": "e77fd20efe6dd45f99145799c5d4b631cf09e3e16252c37bb9e70e263dbdb652"
+      },
+      "stderr": {
+        "path": "030-demo-controller.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.069
+    },
+    {
+      "label": "demo-clock",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "am",
+        "broadcast",
+        "-a",
+        "com.android.systemui.demo",
+        "-e",
+        "command",
+        "clock",
+        "-e",
+        "hhmm",
+        "1200"
+      ],
+      "started_utc": "2026-10-12T02:26:18Z",
+      "stdout": {
+        "path": "031-demo-clock.stdout.txt",
+        "bytes": 111,
+        "sha256": "7a6c83f579f25f54b24b0ee589a08d3aa758d6f90dd6f1df6180828f148998e8"
+      },
+      "stderr": {
+        "path": "031-demo-clock.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.112
+    },
+    {
+      "label": "after-gsm",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "status"
+      ],
+      "started_utc": "2026-10-12T02:26:19Z",
+      "stdout": {
+        "path": "032-after-gsm.stdout.txt",
+        "bytes": 47,
+        "sha256": "789e286291b09f4414c6645a2aa5220ebd8e63f8f425f59d2f67a1e118a764ce"
+      },
+      "stderr": {
+        "path": "032-after-gsm.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "after-power",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "power",
+        "display"
+      ],
+      "started_utc": "2026-10-12T02:26:19Z",
+      "stdout": {
+        "path": "033-after-power.stdout.txt",
+        "bytes": 72,
+        "sha256": "e4c69616c2e1a4c794f2749d55dc6e8c9446629124191524ed0a0e07aef8c640"
+      },
+      "stderr": {
+        "path": "033-after-power.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "after-battery",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "battery"
+      ],
+      "started_utc": "2026-10-12T02:26:19Z",
+      "stdout": {
+        "path": "034-after-battery.stdout.txt",
+        "bytes": 370,
+        "sha256": "62647c8633411cff11ba336c3c99ac02a1be43920b1811a4f6ac8277db859464"
+      },
+      "stderr": {
+        "path": "034-after-battery.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.019
+    },
+    {
+      "label": "after-clock",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "date",
+        "-u",
+        "+%Y-%m-%dT%H:%M:%SZ"
+      ],
+      "started_utc": "2026-10-12T02:26:19Z",
+      "stdout": {
+        "path": "035-after-clock.stdout.txt",
+        "bytes": 21,
+        "sha256": "5ff23617d0d05cc83f192de15d60132b90fab82197bb0bfafc7ff86f561ef6ec"
+      },
+      "stderr": {
+        "path": "035-after-clock.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.027
+    },
+    {
+      "label": "after-demo-allowed",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "sysui_demo_allowed"
+      ],
+      "started_utc": "2026-10-12T02:26:19Z",
+      "stdout": {
+        "path": "036-after-demo-allowed.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "036-after-demo-allowed.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.029
+    },
+    {
+      "label": "after-demo-on",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "sysui_tuner_demo_on"
+      ],
+      "started_utc": "2026-10-12T02:26:19Z",
+      "stdout": {
+        "path": "037-after-demo-on.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "037-after-demo-on.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.027
+    },
+    {
+      "label": "after-animator_duration_scale",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "animator_duration_scale"
+      ],
+      "started_utc": "2026-10-12T02:26:19Z",
+      "stdout": {
+        "path": "038-after-animator_duration_scale.stdout.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      "stderr": {
+        "path": "038-after-animator_duration_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.033
+    },
+    {
+      "label": "after-window_animation_scale",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "window_animation_scale"
+      ],
+      "started_utc": "2026-10-12T02:26:19Z",
+      "stdout": {
+        "path": "039-after-window_animation_scale.stdout.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      "stderr": {
+        "path": "039-after-window_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.044
+    },
+    {
+      "label": "after-transition_animation_scale",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "transition_animation_scale"
+      ],
+      "started_utc": "2026-10-12T02:26:20Z",
+      "stdout": {
+        "path": "040-after-transition_animation_scale.stdout.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      "stderr": {
+        "path": "040-after-transition_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.041
+    },
+    {
+      "label": "after-telephony",
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "started_utc": "2026-10-12T02:26:20Z",
+      "stdout": {
+        "path": "041-after-telephony.stdout.txt",
+        "bytes": 69313,
+        "sha256": "cebc88e900f508219a6e89c1b9a7160784fb29c9d2296d00488d24ffa0861540"
+      },
+      "stderr": {
+        "path": "041-after-telephony.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.071
+    }
+  ],
+  "signal_observations": [
+    {
+      "observed_utc": "2026-10-12T02:25:53Z",
+      "signals": [
+        {
+          "primary": "CellSignalStrengthLte",
+          "level": 4,
+          "primary_measurements": "rssi=2147483647 rsrp=-64 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=4 parametersUseForLevel=0",
+          "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=2147483647 ber=2147483647 rscp=2147483647 ecno=2147483647 level=0,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=-64 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=4 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthLte}"
+        }
+      ]
+    },
+    {
+      "observed_utc": "2026-10-12T02:25:58Z",
+      "signals": [
+        {
+          "primary": "CellSignalStrengthLte",
+          "level": 4,
+          "primary_measurements": "rssi=2147483647 rsrp=-44 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=4 parametersUseForLevel=0",
+          "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=2147483647 ber=2147483647 rscp=2147483647 ecno=2147483647 level=0,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=-44 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=4 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthLte}"
+        }
+      ]
+    },
+    {
+      "observed_utc": "2026-10-12T02:26:03Z",
+      "signals": [
+        {
+          "primary": "CellSignalStrengthWcdma",
+          "level": 4,
+          "primary_measurements": "ss=-55 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4",
+          "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=-55 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=2147483647 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=0 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthWcdma}"
+        }
+      ]
+    },
+    {
+      "observed_utc": "2026-10-12T02:26:08Z",
+      "signals": [
+        {
+          "primary": "CellSignalStrengthWcdma",
+          "level": 4,
+          "primary_measurements": "ss=-55 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4",
+          "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=-55 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=2147483647 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=0 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthWcdma}"
+        }
+      ]
+    },
+    {
+      "observed_utc": "2026-10-12T02:26:13Z",
+      "signals": [
+        {
+          "primary": "CellSignalStrengthWcdma",
+          "level": 4,
+          "primary_measurements": "ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4",
+          "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=2147483647 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=0 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthWcdma}"
+        }
+      ]
+    },
+    {
+      "observed_utc": "2026-10-12T02:26:18Z",
+      "signals": [
+        {
+          "primary": "CellSignalStrengthWcdma",
+          "level": 4,
+          "primary_measurements": "ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4",
+          "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=2147483647 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=0 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthWcdma}"
+        }
+      ]
+    }
+  ],
+  "before": {
+    "gsm_status": "gsm voice state: home\ngsm data state:  home\nOK\n",
+    "power_state": "AC: online\nstatus: Charging\nhealth: Good\npresent: true\ncapacity: 100\nOK\n",
+    "android_battery": "Current Battery Service state:\n  AC powered: true\n  USB powered: false\n  Wireless powered: false\n  Dock powered: false\n  Max charging current: 5000000\n  Max charging voltage: 5000000\n  Charge counter: 10000\n  status: 2\n  health: 2\n  present: true\n  level: 100\n  scale: 100\n  voltage: 5000\n  temperature: 250\n  technology: Li-ion\n  Charging state: 0\n  Charging policy: 0\n",
+    "device_utc": "2026-10-12T02:25:52Z",
+    "sysui_demo_allowed": "null",
+    "sysui_tuner_demo_on": "0",
+    "animation_scales": {
+      "animator_duration_scale": "null",
+      "window_animation_scale": "1.0",
+      "transition_animation_scale": "1.0"
+    },
+    "primary_signals": [
+      {
+        "primary": "CellSignalStrengthLte",
+        "level": 4,
+        "primary_measurements": "rssi=2147483647 rsrp=-64 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=4 parametersUseForLevel=0",
+        "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=2147483647 ber=2147483647 rscp=2147483647 ecno=2147483647 level=0,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=-64 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=4 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthLte}"
+      }
+    ]
+  },
+  "signal_stable_seconds": 15.108,
+  "confirmed_primary_signal": {
+    "primary": "CellSignalStrengthWcdma",
+    "level": 4,
+    "primary_measurements": "ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4",
+    "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=2147483647 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=0 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthWcdma}"
+  },
+  "systemui_demo_mode_observed": true,
+  "after": {
+    "gsm_status": "gsm voice state: home\ngsm data state:  home\nOK\n",
+    "power_state": "AC: online\nstatus: Charging\nhealth: Good\npresent: true\ncapacity: 100\nOK\n",
+    "android_battery": "Current Battery Service state:\n  AC powered: true\n  USB powered: false\n  Wireless powered: false\n  Dock powered: false\n  Max charging current: 5000000\n  Max charging voltage: 5000000\n  Charge counter: 10000\n  status: 2\n  health: 2\n  present: true\n  level: 100\n  scale: 100\n  voltage: 5000\n  temperature: 250\n  technology: Li-ion\n  Charging state: 0\n  Charging policy: 0\n",
+    "device_utc": "2026-10-12T02:26:19Z",
+    "sysui_demo_allowed": "1",
+    "sysui_tuner_demo_on": "1",
+    "animation_scales": {
+      "animator_duration_scale": "0",
+      "window_animation_scale": "0",
+      "transition_animation_scale": "0"
+    },
+    "primary_signals": [
+      {
+        "primary": "CellSignalStrengthWcdma",
+        "level": 4,
+        "primary_measurements": "ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4",
+        "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=2147483647 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=0 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthWcdma}"
+      }
+    ]
+  },
+  "finished_utc": "2026-10-12T02:26:20Z"
+}
