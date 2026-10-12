@@ -13,6 +13,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 import editor_journey as runner
 from robust_capture import EvidenceRecorder
+from session_evidence import verify_session_evidence
 
 HOME_CLASS = runner.PACKAGE + '.homescreen.NewHomeScreenActivity'
 END = 'editor-after-constraint-back'
@@ -118,7 +119,7 @@ def checked_transition(folder, run, prior, transition, step, anchor, prior_state
 
 
 def compare_session(folder: Path, report: dict, plan: list, proof) -> dict:
-    result = {'schema': 1, 'status': 'REJECTED', 'editor_session_equal': False,
+    result = {'schema': 2, 'status': 'REJECTED', 'editor_session_equal': False,
               'scope': 'Observed home through empty-editor catalog navigation, AFTER onboarding only',
               'scope_start': 'home', 'scope_end': END, 'startup_parity_established': False,
               'full_runtime_1_to_1_established': False, 'masks_used': False,
@@ -175,6 +176,7 @@ def compare_session(folder: Path, report: dict, plan: list, proof) -> dict:
                                        step, anchor, series[-1], proof)
                 series.append(state)
             states.append(series)
+        result['evidence_identity_check'] = verify_session_evidence(folder, runs, start, proof)
         for step, left, right in zip(plan[start:], *states):
             same_size = left[1:3] == right[1:3]
             changes = sum(left[3][i:i+4] != right[3][i:i+4] for i in range(0, len(left[3]), 4)) if same_size else None
