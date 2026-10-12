@@ -1,0 +1,73 @@
+{
+  "historical_source_commit": "934c6543dce0897975f52457717b3a70bd27ce00",
+  "historical_blob": "639159b34062f528b2f7901954672d43ded99317",
+  "synthetic_only": true,
+  "android_executed": false,
+  "full_runtime_1_to_1_established": false,
+  "cases": [
+    {
+      "name": "endpoint-identity-reuse",
+      "baseline_old_accepted": true,
+      "baseline_new_accepted": true,
+      "before": {
+        "status": "EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY",
+        "editor_session_equal": true
+      },
+      "after": {
+        "status": "REJECTED",
+        "editor_session_equal": false,
+        "reason": "Reused session evidence: candidate/screen-15/endpoint/package_path/stdout aliases candidate/screen-6/endpoint/package_path/stdout"
+      }
+    },
+    {
+      "name": "preinput-evidence-reuse",
+      "baseline_old_accepted": true,
+      "baseline_new_accepted": true,
+      "before": {
+        "status": "EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY",
+        "editor_session_equal": true
+      },
+      "after": {
+        "status": "REJECTED",
+        "editor_session_equal": false,
+        "reason": "Reused session evidence: candidate/screen-8/preinput/foreground aliases candidate/screen-7/preinput/foreground"
+      }
+    },
+    {
+      "name": "preinput-resolved-alias-reuse",
+      "baseline_old_accepted": true,
+      "baseline_new_accepted": true,
+      "before": {
+        "status": "EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY",
+        "editor_session_equal": true
+      },
+      "after": {
+        "status": "REJECTED",
+        "editor_session_equal": false,
+        "reason": "Reused session evidence: candidate/screen-8/preinput/foreground aliases candidate/screen-7/preinput/foreground"
+      }
+    },
+    {
+      "name": "wrong-endpoint-digest-control",
+      "baseline_old_accepted": true,
+      "baseline_new_accepted": true,
+      "before": {
+        "status": "REJECTED",
+        "editor_session_equal": false,
+        "reason": "Session endpoint APK differs from the intended input"
+      },
+      "after": {
+        "status": "REJECTED",
+        "editor_session_equal": false,
+        "reason": "Session endpoint APK differs from the intended input"
+      }
+    }
+  ],
+  "all_review_cases_corrected": true,
+  "current_sources": {
+    "session_evidence.py": "b092700f6caa5db41919d878a18208a692bf9b6566c447d1bfddcd914dbadda8",
+    "post_onboarding.py": "1191dedd5d233b14ad89c4978ef7f8c52ee2d0c47cc8650d21f79685f8a1b7d2",
+    "test_session_evidence.py": "efde20d3eff026ae90e3fc27de1ae27a0a4572ae20d86cb58af18acdaab2c404",
+    "recheck_guard_regressions.py": "5a25f436d055f969ec4f628131f18781896654ba3dcbce52a92b8de386fcf53f"
+  }
+}
