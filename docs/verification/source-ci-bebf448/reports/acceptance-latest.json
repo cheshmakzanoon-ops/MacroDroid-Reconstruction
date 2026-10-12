@@ -1,0 +1,261 @@
+{
+  "started_utc": "2026-10-12T01:30:55.983449+00:00",
+  "input_snapshot_before": "db8959566d0d31e2f36f1d9be16c09b18b4b8e298abbd622cdfd423c6884bafb",
+  "input_files": 81191,
+  "commands": [
+    {
+      "label": "input-integrity",
+      "command": [
+        "/usr/bin/python3",
+        "release_integrity.py",
+        "verify"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/01-input-integrity.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 7.436,
+      "log_sha256": "30ae76f2b2fe57949e225a2ffeb7263048370cd46ced53bbe2a9009a868a2986"
+    },
+    {
+      "label": "baseline-build",
+      "command": [
+        "/usr/bin/python3",
+        "build.py",
+        "build",
+        "--variant",
+        "baseline"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/02-baseline-build.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 94.492,
+      "log_sha256": "3cc2e1eb270c842420f8a76c55a1d89a8ca2c99a8680bacb790084e25a548a16"
+    },
+    {
+      "label": "hybrid-build",
+      "command": [
+        "/usr/bin/python3",
+        "build.py",
+        "build",
+        "--variant",
+        "hybrid"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/03-hybrid-build.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 62.315,
+      "log_sha256": "fe1951552911735511c0401b32d7b770a1fed30b1754b69e88b25e9c883e44db"
+    },
+    {
+      "label": "baseline-code",
+      "command": [
+        "/usr/bin/python3",
+        "build.py",
+        "verify",
+        "--variant",
+        "baseline"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/04-baseline-code.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 40.858,
+      "log_sha256": "a82ee71c10de50427deee7d8ceaecc7acfd19d68642324fbf07e26ccdd04a232"
+    },
+    {
+      "label": "hybrid-code",
+      "command": [
+        "/usr/bin/python3",
+        "build.py",
+        "verify",
+        "--variant",
+        "hybrid"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/05-hybrid-code.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 40.146,
+      "log_sha256": "997777c84b510847ce44c69221affa33c384f289a597362a06cdc941af877fc0"
+    },
+    {
+      "label": "baseline-resources",
+      "command": [
+        "/usr/bin/python3",
+        "resource_verify.py",
+        "--variant",
+        "baseline"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/06-baseline-resources.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 10.004,
+      "log_sha256": "f570b9dd243be220d60f1ba5a944573f9f0de97c31ed165ef597ecec6e711fea"
+    },
+    {
+      "label": "hybrid-resources",
+      "command": [
+        "/usr/bin/python3",
+        "resource_verify.py",
+        "--variant",
+        "hybrid"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/07-hybrid-resources.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 8.85,
+      "log_sha256": "821424d8d69ac2aabd1f51b2cc77dd0a0d331341999dde133d0eb97faac59b9f"
+    },
+    {
+      "label": "positive-host-tests",
+      "command": [
+        "/usr/bin/python3",
+        "test.py",
+        "--three-way"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/08-positive-host-tests.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 105.709,
+      "log_sha256": "7aac4edfa306fd2ee18e815efa649e7b7c327d8b2d9967483de916240cda390c"
+    },
+    {
+      "label": "reference-status",
+      "command": [
+        "/usr/bin/python3",
+        "reference_status.py"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/09-reference-status.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.415,
+      "log_sha256": "8fedf76322d0fe9f3443008d9f90602b714311e2082b1b69485f23b086e00498"
+    },
+    {
+      "label": "engine-negative-controls",
+      "command": [
+        "/usr/bin/python3",
+        "engine_negative_control.py"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/10-engine-negative-controls.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 16.385,
+      "log_sha256": "9fcecf607c59b40d4132e220c74d6b384060096d3a0d65236b98c40bc0d09a8d"
+    },
+    {
+      "label": "ui-negative-controls",
+      "command": [
+        "/usr/bin/python3",
+        "ui_negative_control.py"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/11-ui-negative-controls.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 75.251,
+      "log_sha256": "aa3233a7602ad08906eb4c24e4bf5e185df5a690007ab68af178963a79677481"
+    },
+    {
+      "label": "core-negative-controls",
+      "command": [
+        "/usr/bin/python3",
+        "core_negative_control.py"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/12-core-negative-controls.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 18.732,
+      "log_sha256": "ca716316a69f355527f045b037ced485c63653b04dd04acfcff53e8191d7a0ba"
+    },
+    {
+      "label": "environment-negative-controls",
+      "command": [
+        "/usr/bin/python3",
+        "environment_negative_control.py"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/13-environment-negative-controls.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 65.664,
+      "log_sha256": "76227388bc8db13b33c0e9eeacf70324f90824e477d2ab9ce4b82c89dc766ee5"
+    },
+    {
+      "label": "legacy-negative-control",
+      "command": [
+        "/usr/bin/python3",
+        "negative_control.py"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/14-legacy-negative-control.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 109.069,
+      "log_sha256": "1aea8360155182d7ff2c7bb103493c1e380cd52bcbcbfd99e2e46ce3d687070a"
+    },
+    {
+      "label": "signed-source-edit",
+      "command": [
+        "/usr/bin/python3",
+        "full_apk_edit_probe.py"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/15-signed-source-edit.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 67.25,
+      "log_sha256": "487f084ab7be840bf5a6493b934d70e09fa6d11a268a18b0bc5a1fc5b03a942d"
+    },
+    {
+      "label": "final-positive-host-tests",
+      "command": [
+        "/usr/bin/python3",
+        "test.py",
+        "--three-way"
+      ],
+      "log": "reports/acceptance-20261012T013048705584Z/16-final-positive-host-tests.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 103.391,
+      "log_sha256": "7aac4edfa306fd2ee18e815efa649e7b7c327d8b2d9967483de916240cda390c"
+    }
+  ],
+  "host_acceptance_passed": true,
+  "android_runtime_executed": false,
+  "full_runtime_1_to_1_established": false,
+  "complete_high_level_java_kotlin_source": false,
+  "source_edit_probe_skipped": false,
+  "input_snapshot_after": "db8959566d0d31e2f36f1d9be16c09b18b4b8e298abbd622cdfd423c6884bafb",
+  "build_inputs_unchanged": true,
+  "android_probe_exit_code": 2,
+  "android_status": "BLOCKED",
+  "apks": {
+    "baseline": {
+      "bytes": 94677674,
+      "sha256": "aa8ad3013ad211c8a39d083943b0a671d75e0bbbedccc924ea0093c590c9a096",
+      "path": "dist/MacroDroid-5.67.8-v9-baseline.apk"
+    },
+    "hybrid": {
+      "bytes": 94683307,
+      "sha256": "2eabb2d883598254ca71f99999297e1b98fa9ea56fb24c200d5f053456cff4d6",
+      "path": "dist/MacroDroid-5.67.8-v9-hybrid.apk"
+    }
+  },
+  "fresh_evidence_sha256": {
+    "baseline-roundtrip.json": "65df2516932c8fb6971b5a6625521af18108c222b1ceca1775f0aa85a9b0c80f",
+    "hybrid-roundtrip.json": "8c9ece3488fe4f4f2032648a6055a6f8378c98932f0a9b1381d4f9d57071f872",
+    "baseline-resource-parity.json": "29ef896b451e39ce5a9c507d5cbdb56d8caa367b580581bafe8660dbd83ea14f",
+    "hybrid-resource-parity.json": "2b4ad2ef5866bc0ec0d36c04cc321cf5ccdb4770bf8aa51095baa5b4357ad814",
+    "java-all-path-parity.json": "7aac4edfa306fd2ee18e815efa649e7b7c327d8b2d9967483de916240cda390c",
+    "java-ui-three-path-parity.json": "76a65d077f865224c78db3c2c3bdcadf288f5511a168cfa7dcab9389fe861815",
+    "ui-oracle-semantics.json": "a33dc35354c849da5cd91038342eee424375d8f1176ffc02ee17fd36a6d2b1f9",
+    "ui-negative-controls.json": "aa3233a7602ad08906eb4c24e4bf5e185df5a690007ab68af178963a79677481",
+    "java-engine-three-path-parity.json": "ac3831d4a895d34f33fbda12c34b7709779e8cc23aebf1688e5d7037877eba9f",
+    "oracle-semantics.json": "4114dc8bee417402fb1064b92d43891c257890b4f9663766b00bd071b339a57f",
+    "engine-oracle-semantics.json": "efc253aea23a98a5549623021127861b67e032b143639974d7661fd6a29e55be",
+    "engine-negative-controls.json": "9fcecf607c59b40d4132e220c74d6b384060096d3a0d65236b98c40bc0d09a8d",
+    "core-negative-controls.json": "ea8e7e4432e773e15759c8c76c33ca8cb0c02fd6ef6f43838ae8c97f5fd5aaa8",
+    "environment-negative-controls.json": "b35795948541f857f395733ee1d581c9cda94c2f0ae6b4376b7aeefbc2934b28",
+    "negative-control.json": "c9d0deb0e2c14e2e7f5a5343452a54e9b1ef403b4de170a28d1c01f62a9fdfca",
+    "migration-static-proof.json": "8865b0601957f65af1b9c3414d3a087a4194fbfc3deebc64829ba5e7701c8a2d",
+    "migration-linkage-check.json": "38423656112b33e456308d9425a2156145e0efb2f337f84c6df402899051ddc0",
+    "reference-failures-status-v9.json": "65332145e17f3e612571b92871e90db18ffec53099daf095e6a630e57547c8f9",
+    "full-apk-edit-probe.json": "487f084ab7be840bf5a6493b934d70e09fa6d11a268a18b0bc5a1fc5b03a942d"
+  },
+  "finished_utc": "2026-10-12T01:44:49.308836+00:00"
+}

@@ -1,0 +1,25 @@
+{
+  "pass": true,
+  "scope": "Actual Java-source edit -> rebuilt DEX -> signed APK, with isolated class/method change and bounded host rejection, NOT Android execution",
+  "application_source_edit": "Intentionally terminate immediately after pause handoff",
+  "original_release_apk_sha256": "ebd8628eb69f71fc54d70bf87889a11d7b9a673e20b318233c7c30b489d8ff31",
+  "experimental_apk_sha256": "54c1f034b4dc6b75051b44c2c7ba6c7327f5a7d12351c0d9b242e17a1f218e4a",
+  "experimental_apk_not_distributed": true,
+  "payload_entries_compared": 9243,
+  "changed_non_signature_entries": [
+    "classes3.dex"
+  ],
+  "classes_compared_in_changed_partition": 9842,
+  "changed_classes": [
+    "Lcom/arlosoft/macrodroid/macro/Macro;"
+  ],
+  "changed_methods": [
+    "invokeActions(Ljava/util/List;ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V"
+  ],
+  "negative_exit_code": 1,
+  "negative_failed_cases": 113,
+  "unsupported_executions": 0,
+  "required_pause_case_rejected": true,
+  "release_inputs_and_apk_unchanged": true,
+  "android_runtime_executed": false
+}
