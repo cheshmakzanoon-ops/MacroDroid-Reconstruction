@@ -1,0 +1,164 @@
+--- draft/.github/workflows/day-trigger-wip-acceptance.yml
++++ validated/.github/workflows/day-trigger-wip-acceptance.yml
+@@ -22,7 +22,7 @@
+ env:
+   PYTHONUTF8: '1'
+   PYTHONDONTWRITEBYTECODE: '1'
+-  DAY_TRIGGER_RUNTIME_MANIFEST_SHA256: '4da614a2b88b7cf3c8739cbc40ea9d5eff63fdec42c17e2343a27694aff852f8'
++  DAY_TRIGGER_RUNTIME_MANIFEST_SHA256: '07b58ce29d4db875ef349d23aa05b8b75145ea4f7338b7dd2943db10129a0d32'
+ 
+ jobs:
+   isolated-day-trigger-source:
+--- draft/tools/day_trigger_acceptance/runtime-files.json
++++ validated/tools/day_trigger_acceptance/runtime-files.json
+@@ -26,9 +26,9 @@
+       "sha256": "0f0f60e929391f4b7bdfe3c97e6d90fcc716fb62f59291e23c737a100668852f"
+     },
+     {
+-      "bytes": 90590,
++      "bytes": 98392,
+       "path": "test_day_trigger_acceptance.py",
+-      "sha256": "9a4908c6fd3f0ce076294852633d9df8f9106e25af33feb964e90dc7af8b520a"
++      "sha256": "11369a314b1bf79169efb27dd0a3cd81afa0fc05206691a7f2c4d8894d84596f"
+     },
+     {
+       "bytes": 80980,
+--- draft/tools/day_trigger_acceptance/test_day_trigger_acceptance.py
++++ validated/tools/day_trigger_acceptance/test_day_trigger_acceptance.py
+@@ -289,7 +289,7 @@
+         return verify.verify_gates(self.latest, self.execution, self.pins, verify.Artifacts(self.root, self.start, self.end))
+ 
+     def test_synthetic_complete_fresh_gate_envelope_is_accepted_only_as_policy_fixture(self):
+-        self.assertEqual(23, len(self.check()))
++        self.assertEqual(24, len(self.check()))
+ 
+     def test_omitted_gate_rejects(self):
+         self.latest['commands'].pop()
+@@ -1320,6 +1320,71 @@
+             inputs.verify_prepared_boundaries(self.pins,prepared,self.output,self.context)
+ 
+ 
++    def retained_receipt(self):
++        records = self.apply()
++        for row in self.pins['source_changes']:
++            self.put('proof/inputs/overlay/' + row['source'], (self.numeric_root / row['source']).read_bytes())
++        for filename, expected in [('source-checkpoint.json', self.pins['overlay_checkpoint']),
++                                   ('lookup-merge-checkpoint.json', self.pins['lookup_capsules']['merge']['checkpoint']),
++                                   ('lookup-successor-checkpoint.json', self.pins['lookup_capsules']['successor']['checkpoint'])]:
++            p = self.put('proof/inputs/' + filename, ('SYNTHETIC CHECKPOINT ' + filename).encode())
++            expected.clear(); expected.update(inputs.identity(p))
++        p = self.put('proof/inputs/baseline-input-snapshot.json', inputs.encoded(self.base))
++        self.pins['baseline_manifest'].update(inputs.identity(p))
++        self.put('proof/inputs/future-input-snapshot.json', inputs.encoded(self.future))
++        for row in self.pins['baseline_repository_files']:
++            p = self.put('proof/inputs/baseline-tools/' + row['path'], ('SYNTHETIC BASELINE TOOL ' + row['path']).encode())
++            row.update(inputs.identity(p))
++        for name, value in [('source-changes.json', self.pins['source_changes']),
++                            ('lookup-source-changes.json', self.pins['lookup_source_changes']), ('pins.json', self.pins)]:
++            inputs.write_json(self.output / 'inputs' / name, value)
++        return {'passed': True, 'status': 'EXACT_NUMERIC19_THEN_LOOKUP21_WIP_PREPARED', 'source_stages': records,
++                'complete_baseline_files_checked': self.base['files'], 'complete_numeric_files_checked': self.middle['files'],
++                'complete_future_files_checked': self.future['files'], 'numeric_source_changes_applied': 19,
++                'lookup_source_changes_applied': 21, 'distinct_final_source_paths': 25, 'new_files': 13}
++
++    def test_all_retained_source_and_scan_boundaries_are_rechecked_after_preparation(self):
++        prepared = self.retained_receipt()
++        self.assertEqual(prepared['source_stages'], inputs.verify_prepared_boundaries(self.pins, prepared, self.output, self.context))
++
++    def test_mutated_retained_intermediate_scan_rejects_despite_unchanged_final_tree(self):
++        prepared = self.retained_receipt()
++        (self.output / 'inputs/numeric-complete-inputs.json').write_bytes(inputs.encoded(self.base))
++        inputs.compare_inputs(inputs.scan_inputs(self.project), self.future)
++        with self.assertRaisesRegex(ValueError, 'Exact file identity differs: inputs/numeric-complete-inputs.json'):
++            inputs.verify_prepared_boundaries(self.pins, prepared, self.output, self.context)
++
++    def test_missing_numeric_copy_rejects_despite_all_lookup_copies(self):
++        prepared = self.retained_receipt(); row = self.pins['source_changes'][0]
++        (self.output / 'inputs/overlay' / row['source']).unlink()
++        with self.assertRaisesRegex(ValueError, 'Missing regular file'):
++            inputs.verify_prepared_boundaries(self.pins, prepared, self.output, self.context)
++
++    def test_changed_lookup_copy_rejects_despite_unchanged_final_tree(self):
++        prepared = self.retained_receipt(); row = self.pins['lookup_source_changes'][-1]
++        (self.output / 'inputs/lookup-overlay' / row['source']).write_bytes(b'WRONG RETAINED RECORDER')
++        with self.assertRaisesRegex(ValueError, 'Exact file identity differs: inputs/lookup-overlay/'):
++            inputs.verify_prepared_boundaries(self.pins, prepared, self.output, self.context)
++
++    def test_rehashed_retained_checkpoint_does_not_change_its_frozen_pin(self):
++        prepared = self.retained_receipt()
++        (self.output / 'inputs/lookup-successor-checkpoint.json').write_bytes(b'ANOTHER CHECKPOINT')
++        with self.assertRaisesRegex(ValueError, 'Exact file identity differs: inputs/lookup-successor-checkpoint.json'):
++            inputs.verify_prepared_boundaries(self.pins, prepared, self.output, self.context)
++
++    def test_retained_lookup_policy_cannot_drop_a_stage_role(self):
++        prepared = self.retained_receipt()
++        (self.output / 'inputs/lookup-source-changes.json').write_bytes(inputs.encoded(self.pins['lookup_source_changes'][:-1]))
++        with self.assertRaisesRegex(ValueError, 'Retained source-stage policy differs'):
++            inputs.verify_prepared_boundaries(self.pins, prepared, self.output, self.context)
++
++    def test_retained_baseline_tool_identity_stays_required(self):
++        prepared = self.retained_receipt(); row = self.pins['baseline_repository_files'][0]
++        (self.output / 'inputs/baseline-tools' / row['path']).write_bytes(b'CHANGED MATERIALIZER')
++        with self.assertRaisesRegex(ValueError, 'Exact file identity differs: inputs/baseline-tools/'):
++            inputs.verify_prepared_boundaries(self.pins, prepared, self.output, self.context)
++
++
+ class LookupCapsuleControls(OwnedTemporary):
+     def setUp(self):
+         super().setUp();self.capsule=self.root/'capsule';self.capsule.mkdir()
+@@ -1450,6 +1515,8 @@
+     def test_replaced_lookup_inode_rejects_same_bytes(self):
+         source=self.root/self.folder/'positive-pipeline/d8-helper.stdout.log';raw=source.read_bytes()
+         replacement=self.put('replacement.log',raw);os.replace(replacement,source)
++        # Keep this synthetic outer interval open so the intended inode guard is reached.
++        self.end=max(self.end,source.stat().st_ctime_ns,source.stat().st_mtime_ns)
+         with self.assertRaisesRegex(ValueError,'Live file differs'):self.check()
+ 
+     def test_lookup_witness_bracket_and_cleanup_fields_are_still_required(self):
+@@ -1592,5 +1659,46 @@
+         with self.assertRaisesRegex(ValueError,'cwd expression differs'):self.check()
+ 
+ 
++class CombinedWorkflowControls(unittest.TestCase):
++    def setUp(self):
++        self.root = Path(__file__).resolve().parents[2]
++        self.workflow = (self.root / '.github/workflows/day-trigger-wip-acceptance.yml').read_text()
++
++    def test_workflow_runtime_pin_binds_all_seven_actual_runtime_siblings(self):
++        line = next(value for value in self.workflow.splitlines() if 'DAY_TRIGGER_RUNTIME_MANIFEST_SHA256:' in value)
++        digest = line.split("'")[1]
++        value = inputs.verify_runtime_manifest(digest)
++        self.assertEqual(7, len(value['files']))
++        self.assertEqual(9, sum(p.is_file() for p in self.root.rglob('*')))
++
++    def test_exact_lookup_checkout_and_all_three_required_cli_boundaries(self):
++        pins = inputs.load_pins()
++        block = self.workflow.split('- name: Check out both immutable lookup source capsules\n', 1)[1].split('      - name:', 1)[0]
++        self.assertIn('ref: ' + pins['lookup_commit'] + '\n', block)
++        for row in pins['lookup_capsules'].values():
++            self.assertIn('            ' + row['path'] + '\n', block)
++        self.assertEqual(3, self.workflow.count('--lookup-repository lookup-repository'))
++        self.assertIn('--destination combined-workspace', self.workflow)
++        self.assertIn('timeout 300s python3 -B -m unittest discover', self.workflow)
++
++    def test_only_the_two_new_paths_trigger_this_additive_job(self):
++        trigger = self.workflow.split('on:\n', 1)[1].split('\npermissions:', 1)[0]
++        paths = [line.strip() for line in trigger.splitlines() if line.strip().startswith('- ')]
++        self.assertEqual(["- 'tools/day_trigger_acceptance/**'", "- '.github/workflows/day-trigger-wip-acceptance.yml'"] * 2, paths)
++        self.assertIn('  workflow_dispatch:\n', trigger)
++        self.assertIn('cancel-in-progress: false', self.workflow)
++
++    def test_actual_failure_verification_and_complete_owned_artifacts_remain_unconditional(self):
++        verifier = self.workflow.split('- name: Independently verify the actual complete result and preserve any failure\n', 1)[1].split('      - name:', 1)[0]
++        self.assertIn("if: always() && steps.tool-inputs.outcome == 'success'", verifier)
++        upload = self.workflow.split('- name: Preserve complete WIP inputs, reports, APKs and literal outcomes\n', 1)[1]
++        self.assertIn('if: always()\n', upload)
++        self.assertIn('include-hidden-files: true\n', upload)
++        self.assertIn('if-no-files-found: error\n', upload)
++        self.assertIn('job-source/.github/workflows/day-trigger-wip-acceptance.yml', upload)
++        self.assertIn('combined-workspace/MacroDroid_v9/reports/', upload)
++        self.assertIn('hosted-tool-control-evidence/', upload)
++
++
+ if __name__ == '__main__':
+     unittest.main()

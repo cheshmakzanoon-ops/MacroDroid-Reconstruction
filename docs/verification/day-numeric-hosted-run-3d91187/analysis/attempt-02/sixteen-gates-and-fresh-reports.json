@@ -1,0 +1,256 @@
+{
+  "gates": [
+    {
+      "label": "input-integrity",
+      "command": [
+        "/usr/bin/python3",
+        "release_integrity.py",
+        "verify"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/01-input-integrity.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 5.074,
+      "log_sha256": "bb805a6dadc088d657a7df2aa0ac4f5e062207ca436f084dda15fafb90c23175"
+    },
+    {
+      "label": "baseline-build",
+      "command": [
+        "/usr/bin/python3",
+        "build.py",
+        "build",
+        "--variant",
+        "baseline"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/02-baseline-build.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 63.725,
+      "log_sha256": "b25152682394ed44621649c21d02d3ea9f87d29386b382540c7ad152571607d4"
+    },
+    {
+      "label": "hybrid-build",
+      "command": [
+        "/usr/bin/python3",
+        "build.py",
+        "build",
+        "--variant",
+        "hybrid"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/03-hybrid-build.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 43.419,
+      "log_sha256": "425df8ea14ddc45b7be30835c259e57944050e593ea2e95832e5bb84c550a493"
+    },
+    {
+      "label": "baseline-code",
+      "command": [
+        "/usr/bin/python3",
+        "build.py",
+        "verify",
+        "--variant",
+        "baseline"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/04-baseline-code.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 31.096,
+      "log_sha256": "a82ee71c10de50427deee7d8ceaecc7acfd19d68642324fbf07e26ccdd04a232"
+    },
+    {
+      "label": "hybrid-code",
+      "command": [
+        "/usr/bin/python3",
+        "build.py",
+        "verify",
+        "--variant",
+        "hybrid"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/05-hybrid-code.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 33.593,
+      "log_sha256": "8bd938290b94ed2589a2336c04f3b2a7080bd2c3d3c02b273dee8682a21868cc"
+    },
+    {
+      "label": "baseline-resources",
+      "command": [
+        "/usr/bin/python3",
+        "resource_verify.py",
+        "--variant",
+        "baseline"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/06-baseline-resources.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 7.941,
+      "log_sha256": "f570b9dd243be220d60f1ba5a944573f9f0de97c31ed165ef597ecec6e711fea"
+    },
+    {
+      "label": "hybrid-resources",
+      "command": [
+        "/usr/bin/python3",
+        "resource_verify.py",
+        "--variant",
+        "hybrid"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/07-hybrid-resources.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 6.939,
+      "log_sha256": "821424d8d69ac2aabd1f51b2cc77dd0a0d331341999dde133d0eb97faac59b9f"
+    },
+    {
+      "label": "positive-host-tests",
+      "command": [
+        "/usr/bin/python3",
+        "test.py",
+        "--three-way"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/08-positive-host-tests.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 95.061,
+      "log_sha256": "acb245e3f0079f8debccc50c1710f6d57b60397cf1c84a6b29871545996ea784"
+    },
+    {
+      "label": "reference-status",
+      "command": [
+        "/usr/bin/python3",
+        "reference_status.py"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/09-reference-status.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 0.264,
+      "log_sha256": "518184919e15cbd7e910640f928a6cf3acb55f75b477fcce67205a622eaff6df"
+    },
+    {
+      "label": "engine-negative-controls",
+      "command": [
+        "/usr/bin/python3",
+        "engine_negative_control.py"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/10-engine-negative-controls.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 11.97,
+      "log_sha256": "9fcecf607c59b40d4132e220c74d6b384060096d3a0d65236b98c40bc0d09a8d"
+    },
+    {
+      "label": "ui-negative-controls",
+      "command": [
+        "/usr/bin/python3",
+        "ui_negative_control.py"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/11-ui-negative-controls.log",
+      "timeout_seconds": 5400,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 851.282,
+      "log_sha256": "cb75920ff3f4228f6ea15770fc532a16c91ed7f674eb38a12b5ba06d85d1b337"
+    },
+    {
+      "label": "core-negative-controls",
+      "command": [
+        "/usr/bin/python3",
+        "core_negative_control.py"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/12-core-negative-controls.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 14.163,
+      "log_sha256": "ca716316a69f355527f045b037ced485c63653b04dd04acfcff53e8191d7a0ba"
+    },
+    {
+      "label": "environment-negative-controls",
+      "command": [
+        "/usr/bin/python3",
+        "environment_negative_control.py"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/13-environment-negative-controls.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 50.896,
+      "log_sha256": "181d67cca6e8eb8326af9e393158b93c611d7a4d7f5728355ce81476167c713a"
+    },
+    {
+      "label": "legacy-negative-control",
+      "command": [
+        "/usr/bin/python3",
+        "negative_control.py"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/14-legacy-negative-control.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 92.781,
+      "log_sha256": "1aea8360155182d7ff2c7bb103493c1e380cd52bcbcbfd99e2e46ce3d687070a"
+    },
+    {
+      "label": "signed-source-edit",
+      "command": [
+        "/usr/bin/python3",
+        "full_apk_edit_probe.py"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/15-signed-source-edit.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 48.574,
+      "log_sha256": "74c218da3cad25e5c0ed789e933d11424c3acdf44d5136d7f46de0b8ac16db51"
+    },
+    {
+      "label": "final-positive-host-tests",
+      "command": [
+        "/usr/bin/python3",
+        "test.py",
+        "--three-way"
+      ],
+      "log": "reports/acceptance-20261012T105228709429Z/16-final-positive-host-tests.log",
+      "timeout_seconds": 1200,
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 95.129,
+      "log_sha256": "acb245e3f0079f8debccc50c1710f6d57b60397cf1c84a6b29871545996ea784"
+    }
+  ],
+  "fresh_reports": {
+    "baseline-roundtrip.json": "65df2516932c8fb6971b5a6625521af18108c222b1ceca1775f0aa85a9b0c80f",
+    "hybrid-roundtrip.json": "f780f326a1546c8862ef9901ccea6a8616fbc07a1d887c145bd9285a62a61fed",
+    "baseline-resource-parity.json": "29ef896b451e39ce5a9c507d5cbdb56d8caa367b580581bafe8660dbd83ea14f",
+    "hybrid-resource-parity.json": "8dbec2310b8a78a9e0e95d48eb80da98eaaad33eb158ab9635606621dba3e64d",
+    "java-all-path-parity.json": "acb245e3f0079f8debccc50c1710f6d57b60397cf1c84a6b29871545996ea784",
+    "java-ui-three-path-parity.json": "e66dc9840c4f1d4361f1669ceded8fa55e7399b2ccfd13ad11d33f68d0cada3a",
+    "ui-oracle-semantics.json": "a33dc35354c849da5cd91038342eee424375d8f1176ffc02ee17fd36a6d2b1f9",
+    "ui-negative-controls.json": "eff5c333b3959b4faa1f2ed1193de69b251e060e0464cb0d597fd2482c9a83d9",
+    "java-engine-three-path-parity.json": "e39ee7d6be0fa5c09958226329b81fb30fb83c8d1cc0ba14e88bace7c172c6e8",
+    "oracle-semantics.json": "4114dc8bee417402fb1064b92d43891c257890b4f9663766b00bd071b339a57f",
+    "engine-oracle-semantics.json": "efc253aea23a98a5549623021127861b67e032b143639974d7661fd6a29e55be",
+    "engine-negative-controls.json": "9fcecf607c59b40d4132e220c74d6b384060096d3a0d65236b98c40bc0d09a8d",
+    "core-negative-controls.json": "ea8e7e4432e773e15759c8c76c33ca8cb0c02fd6ef6f43838ae8c97f5fd5aaa8",
+    "environment-negative-controls.json": "0e8677030167cf04bc57ea2576d8ed17ff40a4690c63bc44a87085b0cb1e5b53",
+    "negative-control.json": "c9d0deb0e2c14e2e7f5a5343452a54e9b1ef403b4de170a28d1c01f62a9fdfca",
+    "migration-static-proof.json": "7d5c39a8660590911115c097ddd789278e1a47007c8983d35622d66e32a61e68",
+    "migration-linkage-check.json": "a66305f8c8f87845e0a3f39a40206b3641ecef2403badc7e325e63c9929cbef0",
+    "reference-failures-status-v9.json": "8ffbc1ac5b72d7de2a5e712ae179ff6caf1a556b52a8d003d6e56ea2edb0a282",
+    "constructor-oracle-conformance.json": "7eef8e090f3da731e03613b15dbefc4b34b204e3878ffcfaa25b95ad094b5b5f",
+    "widget-bitwise-oracle-conformance.json": "9622fab805a5a6b1e6ddbf6fab6c947cecfae36fb98df4fee66d5fdeac390975",
+    "ui-runtime-policy.json": "82fefe0c84175519c43acae34f8b22f1a5b843a521855d45921c7bad8c08733d",
+    "day-numeric-dex-controls.json": "a7cabfa11b5533b7ad872c0e4dd51f0dc49203d0cd27574431b0ed7d2257d22d",
+    "full-apk-edit-probe.json": "74c218da3cad25e5c0ed789e933d11424c3acdf44d5136d7f46de0b8ac16db51"
+  }
+}

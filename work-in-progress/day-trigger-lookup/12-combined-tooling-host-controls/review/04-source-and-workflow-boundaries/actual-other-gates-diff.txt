@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -15,7 +15,7 @@
+     for name, field in [('migration-static-proof.json', 'methods_registered'), ('migration-linkage-check.json', 'registered_methods')]:
+         row = reports[name]
+         flags(row, {'pass': True}, 'Migration static/linkage gate did not pass')
+-        count(row.get(field), 1243, 'Static/linkage gate omitted the numeric method')
++        count(row.get(field), 1244, 'Static/linkage gate omitted a recovered DayTrigger method')
+         inputs.require(row.get('errors') == [], 'Static/linkage gate contains errors')
+     for name, key, cases in [('oracle-semantics.json', 'pass', 2458), ('engine-oracle-semantics.json', 'pass', 4145),
+                              ('ui-oracle-semantics.json', 'passed', 6270), ('constructor-oracle-conformance.json', 'passed', 16),

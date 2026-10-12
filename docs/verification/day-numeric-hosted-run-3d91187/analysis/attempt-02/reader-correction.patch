@@ -1,0 +1,32 @@
+--- attempt-01/analyze.py
++++ attempt-02/analyze.py
+@@ -116,10 +116,17 @@
+     strings = []
+     for index in range(string_count):
+         pointer = struct.unpack_from('<I', raw, strings_at + index * 4)[0]
+-        _, pointer = uleb(pointer)
++        utf16_length, pointer = uleb(pointer)
+         stop = raw.index(b'\0', pointer)
+-        strings.append(raw[pointer:stop].decode('utf-8'))
+-    types_ = [strings[struct.unpack_from('<I', raw, types_at + index * 4)[0]] for index in range(type_count)]
++        strings.append((raw[pointer:stop], utf16_length))
++    def ascii_role(index):
++        # Only descriptor and method-name roles are decoded. Unrelated DEX
++        # literals remain raw MUTF-8 bytes covered by the complete DEX hash.
++        encoded, utf16_length = strings[index]
++        decoded = encoded.decode('ascii')
++        require(len(encoded) == utf16_length, 'ASCII DEX role length differs')
++        return decoded
++    types_ = [ascii_role(struct.unpack_from('<I', raw, types_at + index * 4)[0]) for index in range(type_count)]
+     protos = []
+     for index in range(proto_count):
+         _, result, arguments = struct.unpack_from('<3I', raw, protos_at + index * 12)
+@@ -132,7 +139,7 @@
+     method_ids = []
+     for index in range(method_count):
+         owner, proto, name = struct.unpack_from('<HHI', raw, methods_at + index * 8)
+-        method_ids.append(types_[owner] + '->' + strings[name] + protos[proto])
++        method_ids.append(types_[owner] + '->' + ascii_role(name) + protos[proto])
+     declared, classes = [], []
+     for index in range(class_count):
+         fields = struct.unpack_from('<8I', raw, classes_at + index * 32)

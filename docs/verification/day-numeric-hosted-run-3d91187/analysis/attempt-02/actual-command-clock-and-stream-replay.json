@@ -1,0 +1,817 @@
+{
+  "scope": "Exact saved bytes and original serialized metadata through unchanged predicates; no live-host stat recreation",
+  "production_verifier": {
+    "bytes": 57942,
+    "sha256": "242f016afdacce4231580b92cfa8b01bc3a6420d3456d3370340a5864e971649"
+  },
+  "numeric_commands": 17,
+  "outer_commands": 3,
+  "rows": [
+    {
+      "group": "outer",
+      "argv": [
+        "java",
+        "-version"
+      ],
+      "returncode": 0,
+      "duration_seconds": 1.021748414,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "java-version.stdout.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -95388,
+          "final_mtime_minus_command_start_ns": -95388,
+          "initial_and_final_equal": true
+        },
+        {
+          "role": "stderr",
+          "path": "java-version.stderr.log",
+          "bytes": 205,
+          "initial_ctime_minus_command_start_ns": -95388,
+          "final_mtime_minus_command_start_ns": 997927069,
+          "initial_and_final_equal": false
+        }
+      ]
+    },
+    {
+      "group": "outer",
+      "argv": [
+        "javac",
+        "-version"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.515933396,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "javac-version.stdout.log",
+          "bytes": 16,
+          "initial_ctime_minus_command_start_ns": 61883,
+          "final_mtime_minus_command_start_ns": 427091486,
+          "initial_and_final_equal": false
+        },
+        {
+          "role": "stderr",
+          "path": "javac-version.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": 61883,
+          "final_mtime_minus_command_start_ns": 61883,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "outer",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "acceptance.py"
+      ],
+      "returncode": 0,
+      "duration_seconds": 1462.148440553,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "acceptance.stdout.log",
+          "bytes": 1444,
+          "initial_ctime_minus_command_start_ns": -438283,
+          "final_mtime_minus_command_start_ns": 1462134111038,
+          "initial_and_final_equal": false
+        },
+        {
+          "role": "stderr",
+          "path": "acceptance.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -438283,
+          "final_mtime_minus_command_start_ns": -438283,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/positive-pipeline/d8",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/positive-pipeline/inputs.jar"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.41580859,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/positive-pipeline/d8-helper.stdout.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": 101673,
+          "final_mtime_minus_command_start_ns": 101673,
+          "initial_and_final_equal": true
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/positive-pipeline/d8-helper.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": 101673,
+          "final_mtime_minus_command_start_ns": 101673,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/positive-pipeline/helper-smali",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/positive-pipeline/d8/classes.dex"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.215559697,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/positive-pipeline/disassemble-helper.stdout.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -295056,
+          "final_mtime_minus_command_start_ns": -295056,
+          "initial_and_final_equal": true
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/positive-pipeline/disassemble-helper.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -295056,
+          "final_mtime_minus_command_start_ns": -295056,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-j",
+        "2",
+        "-o",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/positive-pipeline/numeric-target.dex",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/positive-pipeline/target-smali"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.417888539,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/positive-pipeline/assemble-target.stdout.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -143147,
+          "final_mtime_minus_command_start_ns": -143147,
+          "initial_and_final_equal": true
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/positive-pipeline/assemble-target.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -143147,
+          "final_mtime_minus_command_start_ns": -143147,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/build/java/hostclasses:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/classes",
+        "InspectMethod",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/build/hybrid/classes3.dex",
+        "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/signed-apk-instructions.json"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.315821576,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/signed-apk-instructions.stdout.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -169276,
+          "final_mtime_minus_command_start_ns": -169276,
+          "initial_and_final_equal": true
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/signed-apk-instructions.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -169276,
+          "final_mtime_minus_command_start_ns": -169276,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/build/java/hostclasses:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/classes",
+        "InspectMethod",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/positive-pipeline/numeric-target.dex",
+        "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/positive-transplant-instructions.json"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.164990317,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/positive-transplant-instructions.stdout.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -226723,
+          "final_mtime_minus_command_start_ns": -226723,
+          "initial_and_final_equal": true
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/positive-transplant-instructions.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -226723,
+          "final_mtime_minus_command_start_ns": -226723,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/build/java/hostclasses:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/classes",
+        "DayNumericControlHarness",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/positive/config.json",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/positive/result.json"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.868032871,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/positive/execute.stdout.log",
+          "bytes": 97,
+          "initial_ctime_minus_command_start_ns": -127302,
+          "final_mtime_minus_command_start_ns": 844562476,
+          "initial_and_final_equal": false
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/positive/execute.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -127302,
+          "final_mtime_minus_command_start_ns": -127302,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/integer-zero-pipeline/d8",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/integer-zero-pipeline/inputs.jar"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.466037013,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/integer-zero-pipeline/d8-helper.stdout.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -277492,
+          "final_mtime_minus_command_start_ns": -277492,
+          "initial_and_final_equal": true
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/integer-zero-pipeline/d8-helper.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -277492,
+          "final_mtime_minus_command_start_ns": -277492,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/integer-zero-pipeline/helper-smali",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/integer-zero-pipeline/d8/classes.dex"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.215103536,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/integer-zero-pipeline/disassemble-helper.stdout.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -302858,
+          "final_mtime_minus_command_start_ns": -302858,
+          "initial_and_final_equal": true
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/integer-zero-pipeline/disassemble-helper.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -302858,
+          "final_mtime_minus_command_start_ns": -302858,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-j",
+        "2",
+        "-o",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/integer-zero-pipeline/numeric-target.dex",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/integer-zero-pipeline/target-smali"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.416281247,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/integer-zero-pipeline/assemble-target.stdout.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -147183,
+          "final_mtime_minus_command_start_ns": -147183,
+          "initial_and_final_equal": true
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/integer-zero-pipeline/assemble-target.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -147183,
+          "final_mtime_minus_command_start_ns": -147183,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/build/java/hostclasses:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/classes",
+        "DayNumericControlHarness",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/integer-zero-dex-fault/config.json",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/integer-zero-dex-fault/result.json"
+      ],
+      "returncode": 3,
+      "duration_seconds": 0.816765108,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/integer-zero-dex-fault/execute.stdout.log",
+          "bytes": 102,
+          "initial_ctime_minus_command_start_ns": -112080,
+          "final_mtime_minus_command_start_ns": 773104210,
+          "initial_and_final_equal": false
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/integer-zero-dex-fault/execute.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -112080,
+          "final_mtime_minus_command_start_ns": -112080,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/decimal-zero-pipeline/d8",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/decimal-zero-pipeline/inputs.jar"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.467573076,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/decimal-zero-pipeline/d8-helper.stdout.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": 98779,
+          "final_mtime_minus_command_start_ns": 98779,
+          "initial_and_final_equal": true
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/decimal-zero-pipeline/d8-helper.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": 98779,
+          "final_mtime_minus_command_start_ns": 98779,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/decimal-zero-pipeline/helper-smali",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/decimal-zero-pipeline/d8/classes.dex"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.21568073,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/decimal-zero-pipeline/disassemble-helper.stdout.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -312352,
+          "final_mtime_minus_command_start_ns": -312352,
+          "initial_and_final_equal": true
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/decimal-zero-pipeline/disassemble-helper.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -312352,
+          "final_mtime_minus_command_start_ns": -312352,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-j",
+        "2",
+        "-o",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/decimal-zero-pipeline/numeric-target.dex",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/decimal-zero-pipeline/target-smali"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.416353266,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/decimal-zero-pipeline/assemble-target.stdout.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -148395,
+          "final_mtime_minus_command_start_ns": -148395,
+          "initial_and_final_equal": true
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/decimal-zero-pipeline/assemble-target.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -148395,
+          "final_mtime_minus_command_start_ns": -148395,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/build/java/hostclasses:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/classes",
+        "DayNumericControlHarness",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/decimal-zero-dex-fault/config.json",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/decimal-zero-dex-fault/result.json"
+      ],
+      "returncode": 3,
+      "duration_seconds": 0.869246596,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/decimal-zero-dex-fault/execute.stdout.log",
+          "bytes": 102,
+          "initial_ctime_minus_command_start_ns": -120993,
+          "final_mtime_minus_command_start_ns": 815760000,
+          "initial_and_final_equal": false
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/decimal-zero-dex-fault/execute.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -120993,
+          "final_mtime_minus_command_start_ns": -120993,
+          "initial_and_final_equal": true
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/build/java/hostclasses:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/classes",
+        "DayNumericControlHarness",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/original-as-rebuilt-rejected/config.json",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/original-as-rebuilt-rejected/result.json"
+      ],
+      "returncode": 1,
+      "duration_seconds": 0.215008062,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/original-as-rebuilt-rejected/execute.stdout.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -165150,
+          "final_mtime_minus_command_start_ns": -165150,
+          "initial_and_final_equal": true
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/original-as-rebuilt-rejected/execute.stderr.log",
+          "bytes": 252,
+          "initial_ctime_minus_command_start_ns": -165150,
+          "final_mtime_minus_command_start_ns": 178679116,
+          "initial_and_final_equal": false
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/build/java/hostclasses:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/classes",
+        "DayNumericControlHarness",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/wrong-helper-class-rejected/config.json",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/wrong-helper-class-rejected/result.json"
+      ],
+      "returncode": 1,
+      "duration_seconds": 0.317888289,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/wrong-helper-class-rejected/execute.stdout.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -108444,
+          "final_mtime_minus_command_start_ns": -108444,
+          "initial_and_final_equal": true
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/wrong-helper-class-rejected/execute.stderr.log",
+          "bytes": 411,
+          "initial_ctime_minus_command_start_ns": -108444,
+          "final_mtime_minus_command_start_ns": 279753360,
+          "initial_and_final_equal": false
+        }
+      ]
+    },
+    {
+      "group": "numeric",
+      "argv": [
+        "/usr/lib/jvm/temurin-21-jdk-amd64/bin/java",
+        "-XX:-OmitStackTraceInFastThrow",
+        "-XX:+ShowCodeDetailsInExceptionMessages",
+        "-Xmx512m",
+        "-cp",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/build/java/hostclasses:/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/tools/classes",
+        "DayNumericControlHarness",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/positive-restoration/config.json",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/numeric-workspace/MacroDroid_v9/reports/day-numeric-dex-v5s2mjuo/positive-restoration/result.json"
+      ],
+      "returncode": 0,
+      "duration_seconds": 0.867788221,
+      "after_witness_count": 1,
+      "filesystem_bracket_complete": true,
+      "streams": [
+        {
+          "role": "stdout",
+          "path": "reports/day-numeric-dex-v5s2mjuo/positive-restoration/execute.stdout.log",
+          "bytes": 97,
+          "initial_ctime_minus_command_start_ns": -115585,
+          "final_mtime_minus_command_start_ns": 826817456,
+          "initial_and_final_equal": false
+        },
+        {
+          "role": "stderr",
+          "path": "reports/day-numeric-dex-v5s2mjuo/positive-restoration/execute.stderr.log",
+          "bytes": 0,
+          "initial_ctime_minus_command_start_ns": -115585,
+          "final_mtime_minus_command_start_ns": -115585,
+          "initial_and_final_equal": true
+        }
+      ]
+    }
+  ],
+  "pure_numeric_validator_source": {
+    "bytes": 39491,
+    "sha256": "10bd78a41dcc9f16e0a301229e7b714189fd3bf7e497c5b35c49c7ccbcfd9e7c"
+  },
+  "selected_validators": [
+    {
+      "name": "METHOD",
+      "bytes": 27,
+      "sha256": "003ad90f2704cace226597eaecd10054b0e0df2026a4b7e7451903706a04875e"
+    },
+    {
+      "name": "GETTERS",
+      "bytes": 530,
+      "sha256": "38d36f89156357c05684a7e10743d894bd8e7d2c823c15d6ed944fd1cd8e3178"
+    },
+    {
+      "name": "JAVA_FAILURE_COUNTS",
+      "bytes": 347,
+      "sha256": "b73a556cb19d36572501ae389138c80935bf04ca923f87271c512b0a46af9e41"
+    },
+    {
+      "name": "require",
+      "bytes": 82,
+      "sha256": "38ad9d5b50be85439928ad1d2e69734961c31e0ac4840c0eff7f80003b4cebb5"
+    },
+    {
+      "name": "same_inputs",
+      "bytes": 218,
+      "sha256": "4ef48bde85d30e5319209737b51fa0112feb8a36d93c591b94d6cd54768c0374"
+    },
+    {
+      "name": "require_counts",
+      "bytes": 197,
+      "sha256": "346389c887354dc5105a7de8f702837857e035fadff6fa107a0b6f6fa2a20ace"
+    },
+    {
+      "name": "validate_report_identity",
+      "bytes": 604,
+      "sha256": "374960886247d5a050880fea0b972c6fc6f90affd86ab259e8959686ccc82ddf"
+    },
+    {
+      "name": "validate_positive_coverage",
+      "bytes": 2357,
+      "sha256": "4652db1b0fae77311fea363ba1fcec27d45673288bce3b6271f869acf96771c6"
+    },
+    {
+      "name": "validate_observations",
+      "bytes": 3731,
+      "sha256": "d4debcf16f5fca34926ad7c477184ed1596a32df9184fa51f82f4d0408cc01f6"
+    },
+    {
+      "name": "validate_positive",
+      "bytes": 872,
+      "sha256": "f30fa4f2102602f8dc3b4e4da7736c1e14d35a413c23d78538589b19ed5a2160"
+    },
+    {
+      "name": "validate_fault",
+      "bytes": 1291,
+      "sha256": "58df263f4dacfbd39f063a36b422876c13c0e17290062e50cbd7cf214c6cab01"
+    }
+  ],
+  "actual_faults": [
+    {
+      "name": "integer-zero",
+      "actual_failed_cases": 509,
+      "required_cases": [
+        "day-numeric:integer-boundary-1"
+      ]
+    },
+    {
+      "name": "decimal-zero",
+      "actual_failed_cases": 406,
+      "required_cases": [
+        "day-numeric:decimal-boundary-6"
+      ]
+    }
+  ],
+  "actual_signed_getter_dex_sha256": "2b049cbb1831880444a5b56e70ddb820dc187b72b65f135a44d69550c3451979"
+}

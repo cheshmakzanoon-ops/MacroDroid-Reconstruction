@@ -1,0 +1,902 @@
+{
+  "actual_literal_preflight_controls": [
+    {
+      "actual_exit": 0,
+      "case": "clean",
+      "intended_exit": 0,
+      "scope": "Tooling bootstrap fixture; no app commands"
+    },
+    {
+      "actual_exit": 1,
+      "case": "changed-runtime-source",
+      "intended_exit": 1,
+      "scope": "Tooling bootstrap fixture; no app commands"
+    },
+    {
+      "actual_exit": 1,
+      "case": "extra-runtime-file",
+      "intended_exit": 1,
+      "scope": "Tooling bootstrap fixture; no app commands"
+    },
+    {
+      "actual_exit": 1,
+      "case": "changed-runtime-manifest",
+      "intended_exit": 1,
+      "scope": "Tooling bootstrap fixture; no app commands"
+    },
+    {
+      "actual_exit": 1,
+      "case": "wrong-workflow-pin",
+      "intended_exit": 1,
+      "scope": "Tooling bootstrap fixture; no app commands"
+    },
+    {
+      "actual_exit": 1,
+      "case": "symlink-runtime-source",
+      "intended_exit": 1,
+      "scope": "Tooling bootstrap fixture; no app commands"
+    }
+  ],
+  "all_bound_reads_unchanged": true,
+  "application_executions": 0,
+  "bound_read_files": 569,
+  "combined_registry": {
+    "registered_class_mappings": [
+      {
+        "expected": {
+          "kind": "integer",
+          "return": "Z",
+          "value": 1
+        },
+        "helper": "Lrecovered/constants/DayTrigger_74d1108d;",
+        "helper_descriptor": "requiresScheduleExactAlarm_4dd28cf8(Ljava/lang/Object;)Z",
+        "helper_method": "requiresScheduleExactAlarm_4dd28cf8",
+        "instance": true,
+        "java_source": "source/java/recovered/constants/DayTrigger_74d1108d.java",
+        "method": "requiresScheduleExactAlarm()Z",
+        "original_method_sha256": "1ccf6c201fbed5ac9d75483a666e283eca0204688ac1dc87df2d0734762220ad",
+        "proof_family": "constant",
+        "target": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;"
+      },
+      {
+        "helper": "Lrecovered/ui/DayTriggerValueMethods;",
+        "helper_method": "numericValue",
+        "instance": false,
+        "java_source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+        "method": "r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+        "original_method_sha256": "8383c90ebe3d35afa63d52cf92cd4c92b54ed4525ca0d8a31a29fe603f9eef21",
+        "proof_family": "v9-ui",
+        "target": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;"
+      },
+      {
+        "helper": "Lrecovered/ui/DayTriggerLookupMethods;",
+        "helper_method": "findEntry",
+        "instance": false,
+        "java_source": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+        "method": "p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+        "original_method_sha256": "afdaa9b0977db46a2f333cccb0de57a401b77e2e3b66b535b2bff50991e4614e",
+        "proof_family": "v9-ui",
+        "target": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;"
+      }
+    ],
+    "uncredited_dependency_keys": [
+      "Lcom/arlosoft/macrodroid/variables/VariableValue$DecimalValue;->getDecimalValue()D",
+      "Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;->getEntries()Ljava/util/List;",
+      "Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;->getKey()Ljava/lang/String;",
+      "Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;->getVariable()Lcom/arlosoft/macrodroid/variables/VariableValue;",
+      "Lcom/arlosoft/macrodroid/variables/VariableValue$IntegerValue;->getIntValue()J"
+    ]
+  },
+  "commands": [
+    {
+      "argv": [
+        "bash",
+        "-n",
+        "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected/shell/05.sh"
+      ],
+      "cwd": "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected",
+      "expected_returncode": 0,
+      "finished_unix_ns": 1791804375438063670,
+      "name": "shell-syntax-05",
+      "returncode": 0,
+      "started_unix_ns": 1791804375420072530,
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 15
+    },
+    {
+      "argv": [
+        "bash",
+        "-n",
+        "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected/shell/06.sh"
+      ],
+      "cwd": "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected",
+      "expected_returncode": 0,
+      "finished_unix_ns": 1791804375447640003,
+      "name": "shell-syntax-06",
+      "returncode": 0,
+      "started_unix_ns": 1791804375438497449,
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 15
+    },
+    {
+      "argv": [
+        "bash",
+        "-n",
+        "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected/shell/07.sh"
+      ],
+      "cwd": "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected",
+      "expected_returncode": 0,
+      "finished_unix_ns": 1791804375452619846,
+      "name": "shell-syntax-07",
+      "returncode": 0,
+      "started_unix_ns": 1791804375447988982,
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 15
+    },
+    {
+      "argv": [
+        "bash",
+        "-n",
+        "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected/shell/08.sh"
+      ],
+      "cwd": "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected",
+      "expected_returncode": 0,
+      "finished_unix_ns": 1791804375462067052,
+      "name": "shell-syntax-08",
+      "returncode": 0,
+      "started_unix_ns": 1791804375452894486,
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 15
+    },
+    {
+      "argv": [
+        "bash",
+        "-n",
+        "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected/shell/09.sh"
+      ],
+      "cwd": "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected",
+      "expected_returncode": 0,
+      "finished_unix_ns": 1791804375467534114,
+      "name": "shell-syntax-09",
+      "returncode": 0,
+      "started_unix_ns": 1791804375462547155,
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 15
+    },
+    {
+      "argv": [
+        "bash",
+        "-euo",
+        "pipefail",
+        "-c",
+        "python3 -B - <<'PY'\nimport hashlib, json, os\nfrom pathlib import Path\nroot = Path('job-source/tools/day_trigger_acceptance')\nmanifest = root / 'runtime-files.json'\nif hashlib.sha256(manifest.read_bytes()).hexdigest() != os.environ['DAY_TRIGGER_RUNTIME_MANIFEST_SHA256']:\n    raise SystemExit('Exact hosted tooling manifest differs')\nvalue = json.loads(manifest.read_text())\nnames = {row['path'] for row in value['files']}\nif len(names) != len(value['files']) or names != {path.name for path in root.iterdir() if path.is_file() and path.name != 'runtime-files.json'}:\n    raise SystemExit('Hosted tooling inventory differs')\nfor row in value['files']:\n    path = root / row['path']\n    if path.is_symlink() or not path.is_file() or path.parent != root:\n        raise SystemExit('Invalid hosted tooling file')\n    raw = path.read_bytes()\n    if len(raw) != row['bytes'] or hashlib.sha256(raw).hexdigest() != row['sha256']:\n        raise SystemExit('Hosted tooling bytes differ: ' + row['path'])\nPath('hosted-tool-source-verification.json').write_text(json.dumps({'passed': True, 'manifest_sha256': os.environ['DAY_TRIGGER_RUNTIME_MANIFEST_SHA256'], 'files': value['files']}, indent=2) + '\\n')\nPY\n"
+      ],
+      "cwd": "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected/preflight/clean",
+      "expected_returncode": 0,
+      "finished_unix_ns": 1791804375584223895,
+      "name": "literal-preflight-clean",
+      "returncode": 0,
+      "started_unix_ns": 1791804375469178417,
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 15
+    },
+    {
+      "argv": [
+        "bash",
+        "-euo",
+        "pipefail",
+        "-c",
+        "python3 -B - <<'PY'\nimport hashlib, json, os\nfrom pathlib import Path\nroot = Path('job-source/tools/day_trigger_acceptance')\nmanifest = root / 'runtime-files.json'\nif hashlib.sha256(manifest.read_bytes()).hexdigest() != os.environ['DAY_TRIGGER_RUNTIME_MANIFEST_SHA256']:\n    raise SystemExit('Exact hosted tooling manifest differs')\nvalue = json.loads(manifest.read_text())\nnames = {row['path'] for row in value['files']}\nif len(names) != len(value['files']) or names != {path.name for path in root.iterdir() if path.is_file() and path.name != 'runtime-files.json'}:\n    raise SystemExit('Hosted tooling inventory differs')\nfor row in value['files']:\n    path = root / row['path']\n    if path.is_symlink() or not path.is_file() or path.parent != root:\n        raise SystemExit('Invalid hosted tooling file')\n    raw = path.read_bytes()\n    if len(raw) != row['bytes'] or hashlib.sha256(raw).hexdigest() != row['sha256']:\n        raise SystemExit('Hosted tooling bytes differ: ' + row['path'])\nPath('hosted-tool-source-verification.json').write_text(json.dumps({'passed': True, 'manifest_sha256': os.environ['DAY_TRIGGER_RUNTIME_MANIFEST_SHA256'], 'files': value['files']}, indent=2) + '\\n')\nPY\n"
+      ],
+      "cwd": "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected/preflight/changed-runtime-source",
+      "expected_returncode": 1,
+      "finished_unix_ns": 1791804375701360779,
+      "name": "literal-preflight-changed-runtime-source",
+      "returncode": 1,
+      "started_unix_ns": 1791804375585975838,
+      "stderr": {
+        "bytes": 39,
+        "sha256": "14c916ab6e0d626b687f1870ae7f57151302d9c7aa8a8b3e44e3cdb65beb7141"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 15
+    },
+    {
+      "argv": [
+        "bash",
+        "-euo",
+        "pipefail",
+        "-c",
+        "python3 -B - <<'PY'\nimport hashlib, json, os\nfrom pathlib import Path\nroot = Path('job-source/tools/day_trigger_acceptance')\nmanifest = root / 'runtime-files.json'\nif hashlib.sha256(manifest.read_bytes()).hexdigest() != os.environ['DAY_TRIGGER_RUNTIME_MANIFEST_SHA256']:\n    raise SystemExit('Exact hosted tooling manifest differs')\nvalue = json.loads(manifest.read_text())\nnames = {row['path'] for row in value['files']}\nif len(names) != len(value['files']) or names != {path.name for path in root.iterdir() if path.is_file() and path.name != 'runtime-files.json'}:\n    raise SystemExit('Hosted tooling inventory differs')\nfor row in value['files']:\n    path = root / row['path']\n    if path.is_symlink() or not path.is_file() or path.parent != root:\n        raise SystemExit('Invalid hosted tooling file')\n    raw = path.read_bytes()\n    if len(raw) != row['bytes'] or hashlib.sha256(raw).hexdigest() != row['sha256']:\n        raise SystemExit('Hosted tooling bytes differ: ' + row['path'])\nPath('hosted-tool-source-verification.json').write_text(json.dumps({'passed': True, 'manifest_sha256': os.environ['DAY_TRIGGER_RUNTIME_MANIFEST_SHA256'], 'files': value['files']}, indent=2) + '\\n')\nPY\n"
+      ],
+      "cwd": "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected/preflight/extra-runtime-file",
+      "expected_returncode": 1,
+      "finished_unix_ns": 1791804375819831838,
+      "name": "literal-preflight-extra-runtime-file",
+      "returncode": 1,
+      "started_unix_ns": 1791804375704217571,
+      "stderr": {
+        "bytes": 33,
+        "sha256": "c24e63d1cff1a91bdd2dcff5aadd9b0777740bf98f2721df6ecafa3600a87aa4"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 15
+    },
+    {
+      "argv": [
+        "bash",
+        "-euo",
+        "pipefail",
+        "-c",
+        "python3 -B - <<'PY'\nimport hashlib, json, os\nfrom pathlib import Path\nroot = Path('job-source/tools/day_trigger_acceptance')\nmanifest = root / 'runtime-files.json'\nif hashlib.sha256(manifest.read_bytes()).hexdigest() != os.environ['DAY_TRIGGER_RUNTIME_MANIFEST_SHA256']:\n    raise SystemExit('Exact hosted tooling manifest differs')\nvalue = json.loads(manifest.read_text())\nnames = {row['path'] for row in value['files']}\nif len(names) != len(value['files']) or names != {path.name for path in root.iterdir() if path.is_file() and path.name != 'runtime-files.json'}:\n    raise SystemExit('Hosted tooling inventory differs')\nfor row in value['files']:\n    path = root / row['path']\n    if path.is_symlink() or not path.is_file() or path.parent != root:\n        raise SystemExit('Invalid hosted tooling file')\n    raw = path.read_bytes()\n    if len(raw) != row['bytes'] or hashlib.sha256(raw).hexdigest() != row['sha256']:\n        raise SystemExit('Hosted tooling bytes differ: ' + row['path'])\nPath('hosted-tool-source-verification.json').write_text(json.dumps({'passed': True, 'manifest_sha256': os.environ['DAY_TRIGGER_RUNTIME_MANIFEST_SHA256'], 'files': value['files']}, indent=2) + '\\n')\nPY\n"
+      ],
+      "cwd": "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected/preflight/changed-runtime-manifest",
+      "expected_returncode": 1,
+      "finished_unix_ns": 1791804375886571496,
+      "name": "literal-preflight-changed-runtime-manifest",
+      "returncode": 1,
+      "started_unix_ns": 1791804375821868002,
+      "stderr": {
+        "bytes": 38,
+        "sha256": "61327d03da11807f51e4db72fb760ed934309c764e825778967fe1b856f1bc52"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 15
+    },
+    {
+      "argv": [
+        "bash",
+        "-euo",
+        "pipefail",
+        "-c",
+        "python3 -B - <<'PY'\nimport hashlib, json, os\nfrom pathlib import Path\nroot = Path('job-source/tools/day_trigger_acceptance')\nmanifest = root / 'runtime-files.json'\nif hashlib.sha256(manifest.read_bytes()).hexdigest() != os.environ['DAY_TRIGGER_RUNTIME_MANIFEST_SHA256']:\n    raise SystemExit('Exact hosted tooling manifest differs')\nvalue = json.loads(manifest.read_text())\nnames = {row['path'] for row in value['files']}\nif len(names) != len(value['files']) or names != {path.name for path in root.iterdir() if path.is_file() and path.name != 'runtime-files.json'}:\n    raise SystemExit('Hosted tooling inventory differs')\nfor row in value['files']:\n    path = root / row['path']\n    if path.is_symlink() or not path.is_file() or path.parent != root:\n        raise SystemExit('Invalid hosted tooling file')\n    raw = path.read_bytes()\n    if len(raw) != row['bytes'] or hashlib.sha256(raw).hexdigest() != row['sha256']:\n        raise SystemExit('Hosted tooling bytes differ: ' + row['path'])\nPath('hosted-tool-source-verification.json').write_text(json.dumps({'passed': True, 'manifest_sha256': os.environ['DAY_TRIGGER_RUNTIME_MANIFEST_SHA256'], 'files': value['files']}, indent=2) + '\\n')\nPY\n"
+      ],
+      "cwd": "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected/preflight/wrong-workflow-pin",
+      "expected_returncode": 1,
+      "finished_unix_ns": 1791804376056668188,
+      "name": "literal-preflight-wrong-workflow-pin",
+      "returncode": 1,
+      "started_unix_ns": 1791804375889061013,
+      "stderr": {
+        "bytes": 38,
+        "sha256": "61327d03da11807f51e4db72fb760ed934309c764e825778967fe1b856f1bc52"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 15
+    },
+    {
+      "argv": [
+        "bash",
+        "-euo",
+        "pipefail",
+        "-c",
+        "python3 -B - <<'PY'\nimport hashlib, json, os\nfrom pathlib import Path\nroot = Path('job-source/tools/day_trigger_acceptance')\nmanifest = root / 'runtime-files.json'\nif hashlib.sha256(manifest.read_bytes()).hexdigest() != os.environ['DAY_TRIGGER_RUNTIME_MANIFEST_SHA256']:\n    raise SystemExit('Exact hosted tooling manifest differs')\nvalue = json.loads(manifest.read_text())\nnames = {row['path'] for row in value['files']}\nif len(names) != len(value['files']) or names != {path.name for path in root.iterdir() if path.is_file() and path.name != 'runtime-files.json'}:\n    raise SystemExit('Hosted tooling inventory differs')\nfor row in value['files']:\n    path = root / row['path']\n    if path.is_symlink() or not path.is_file() or path.parent != root:\n        raise SystemExit('Invalid hosted tooling file')\n    raw = path.read_bytes()\n    if len(raw) != row['bytes'] or hashlib.sha256(raw).hexdigest() != row['sha256']:\n        raise SystemExit('Hosted tooling bytes differ: ' + row['path'])\nPath('hosted-tool-source-verification.json').write_text(json.dumps({'passed': True, 'manifest_sha256': os.environ['DAY_TRIGGER_RUNTIME_MANIFEST_SHA256'], 'files': value['files']}, indent=2) + '\\n')\nPY\n"
+      ],
+      "cwd": "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected/preflight/symlink-runtime-source",
+      "expected_returncode": 1,
+      "finished_unix_ns": 1791804376190592810,
+      "name": "literal-preflight-symlink-runtime-source",
+      "returncode": 1,
+      "started_unix_ns": 1791804376060875616,
+      "stderr": {
+        "bytes": 28,
+        "sha256": "5a1902d6ecce70436278554cbb0d8dc28561fdd20014f415fb0f331899f12e5f"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 15
+    }
+  ],
+  "cwd_source_guard": {
+    "resolved_project": "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/05-source-and-workflow-boundaries-corrected/actual-producer-source-copy",
+    "scope": "Exact producer/caller AST and explicit outer acceptance cwd; individual method rows do not independently record cwd",
+    "scope_note": "Source-policy-only copy of four exact production files; no producer subprocess/app execution",
+    "sources": {
+      "build.py": {
+        "root_expression": "Path(__file__).resolve().parent",
+        "source": {
+          "bytes": 20325,
+          "sha256": "dd599090fc075fed0835875937a2c2b76d91381936c26f4275f876edf47345f0"
+        }
+      },
+      "day_lookup_dex_controls.py": {
+        "cwd_expression": "root",
+        "individual_child_cwd_recorded": false,
+        "resolved_root_expression": "root.resolve()",
+        "source": {
+          "bytes": 35479,
+          "sha256": "0b72325dbdaf60525f07a7b72708b9096d1e585ef5e1601332ceaac9aa67c8c9"
+        }
+      },
+      "day_numeric_dex_controls.py": {
+        "cwd_expression": "root",
+        "individual_child_cwd_recorded": false,
+        "resolved_root_expression": "root.resolve()",
+        "source": {
+          "bytes": 40949,
+          "sha256": "2608a9a0a9d5b44627595fcbb696f2ec3f70213eb6af88a7282ec818d53e92f4"
+        }
+      },
+      "ui_negative_control.py": {
+        "calls": [
+          "day_numeric_dex_controls.run_controls(build.ROOT, records)",
+          "day_lookup_dex_controls.run_controls(build.ROOT, records)"
+        ],
+        "source": {
+          "bytes": 25574,
+          "sha256": "460d8c3626e13123d02b636b962b262996be33eed84e2cb4ad7c70c6f4ed814d"
+        }
+      }
+    }
+  },
+  "exact_preserved_definitions": [
+    {
+      "definition": "require",
+      "path": "inputs.py",
+      "sha256": "c40d3ac8196e4ffcd6b0aab606bca6595c6543ec0f53f3274de08d4dd26b8445"
+    },
+    {
+      "definition": "pairs",
+      "path": "inputs.py",
+      "sha256": "2538f0212b12ec94f21becafceb82e7b31f58f87d147d0fc34222e1e29b65fe0"
+    },
+    {
+      "definition": "document",
+      "path": "inputs.py",
+      "sha256": "a6ca416410a16dd5809af24a2e858966e191a05281e84ece53379deed126cc3d"
+    },
+    {
+      "definition": "read_json",
+      "path": "inputs.py",
+      "sha256": "5f88da9372904d07fc1bc0513e795a0095b32f277bb0d80da3f4309b4a516a80"
+    },
+    {
+      "definition": "encoded",
+      "path": "inputs.py",
+      "sha256": "f27c3c4da109c96613fd1da341c7464dc410de6e53553c12c55e359afef0951e"
+    },
+    {
+      "definition": "write_json",
+      "path": "inputs.py",
+      "sha256": "9e27667bc3dbcdfcafbd726a3fb90d26b43e0b26bdd3e2033694e2eb644bdad7"
+    },
+    {
+      "definition": "byte_identity",
+      "path": "inputs.py",
+      "sha256": "a221e493432329e26b2f2dc9064605a62dd9e8c715fa330ef4192188c4941aeb"
+    },
+    {
+      "definition": "identity",
+      "path": "inputs.py",
+      "sha256": "7917c957214bdd06e7ddbb2272a23328f95875f2f223c6aeb2e30ab7c58624c9"
+    },
+    {
+      "definition": "relative",
+      "path": "inputs.py",
+      "sha256": "78fa8dba3f93fadf0423221727f0760b97d1d081879aed8f2062abd6b78f0038"
+    },
+    {
+      "definition": "regular",
+      "path": "inputs.py",
+      "sha256": "7afd09b5cddd132259706611e0d9ba5b2013948973bf6ffab1a07989fea7c8e5"
+    },
+    {
+      "definition": "checked_identity",
+      "path": "inputs.py",
+      "sha256": "51f49cace6a3ae71006a14d7da82e1cc770ccac7b0f4c72396069ed7f060a888"
+    },
+    {
+      "definition": "metadata",
+      "path": "inputs.py",
+      "sha256": "4b6bb6923984f72462f1258c6ffb671d170e7e2d8a2d5371a3617af5fc4cbaf9"
+    },
+    {
+      "definition": "snapshot",
+      "path": "inputs.py",
+      "sha256": "82a3163d6811214f7d0aae61662c7e87b8d30a4f0477211624751f10bbed17a2"
+    },
+    {
+      "definition": "validate_snapshot",
+      "path": "inputs.py",
+      "sha256": "a9a5b0b167a2b9876d2c57c0fc816262fe7153467e4d6605c827c45ac8a1f56e"
+    },
+    {
+      "definition": "input_name",
+      "path": "inputs.py",
+      "sha256": "6687c9ee5f5c9543b8c3c54bbcb5089473bb6efa4a8f90bb8690d48a73371b79"
+    },
+    {
+      "definition": "derive",
+      "path": "inputs.py",
+      "sha256": "2f1e855d542a8c8ffd58a7fc34275245280cbf60b583e2e54bd54a5b66d2cd3e"
+    },
+    {
+      "definition": "scan_inputs",
+      "path": "inputs.py",
+      "sha256": "a61c4ac5f46c45a15861457e6b0770043f296d47fbab97740ac6c1c65a4d2a67"
+    },
+    {
+      "definition": "compare_inputs",
+      "path": "inputs.py",
+      "sha256": "f7a40e151a2dad7411b0d96b2a7e89613b3dc0e6077d6bf3b5c52b0e0e980256"
+    },
+    {
+      "definition": "atomic_bytes",
+      "path": "inputs.py",
+      "sha256": "3466fe40d3f17a9fda2ff1b75b9d8bdf93da0775e0d8d2bdb8cfcf421b4788ca"
+    },
+    {
+      "definition": "apply_changes",
+      "path": "inputs.py",
+      "sha256": "ec879b19e32f2238417d468adfc8613f07aed026fc4d0c100f782132ee9c5888"
+    },
+    {
+      "definition": "load_pins",
+      "path": "inputs.py",
+      "sha256": "3682482dc08e6ccb13b13c17239d303173a79832651172a8457c8750938d2e2b"
+    },
+    {
+      "definition": "verify_git_commit",
+      "path": "inputs.py",
+      "sha256": "a4653c3990650031a9244abdcc767f9def696f2490b55790987b767393afef11"
+    },
+    {
+      "definition": "verify_runtime_manifest",
+      "path": "inputs.py",
+      "sha256": "4b8f3151e05d04feb20ded1032a8fd20c61405877ae0a58fcb3a298481127ee5"
+    },
+    {
+      "definition": "command_clock",
+      "path": "run_acceptance.py",
+      "sha256": "715b0998f67925a95bda492517e1410ae25d13bde587008364a3a56cc8cf87a2"
+    },
+    {
+      "definition": "command_file_stat",
+      "path": "run_acceptance.py",
+      "sha256": "19abc0be3a4584491bd81ac8e6f211e6e71e34c9661afa5a15334ba004221534"
+    },
+    {
+      "definition": "CommandStreamEvidence",
+      "path": "run_acceptance.py",
+      "sha256": "a86d9206e9c818835daeabac631e4057d2e13193a2b7c4fb95d83715c2bdf568"
+    },
+    {
+      "definition": "stop_owned_group",
+      "path": "run_acceptance.py",
+      "sha256": "659e6c61feb999eac32fd49404da039d66dc0c04fd28982020fdcae272c60cdb"
+    },
+    {
+      "definition": "run_child",
+      "path": "run_acceptance.py",
+      "sha256": "b6a8ff39f45e9735a3ffcc8a0dd4520c6d448acd8d0b8b4aec574abbe670c832"
+    },
+    {
+      "definition": "count",
+      "path": "verify.py",
+      "sha256": "1a6e11a41fda6eb47ebcf4ef8979ac2e4caed2620c94811d089202876ce6e3f1"
+    },
+    {
+      "definition": "flags",
+      "path": "verify.py",
+      "sha256": "81b161372df5a1e42e1696044eea398a6b709374b8cf691a959f1fcf66578dac"
+    },
+    {
+      "definition": "epoch_ns",
+      "path": "verify.py",
+      "sha256": "fc39bd09abb8f2bf0c84bea452c059b1ce3c25d7672fdf3c28181f683522ad4f"
+    },
+    {
+      "definition": "Artifacts",
+      "path": "verify.py",
+      "sha256": "3b3c0afe90c327924e326c4e840b2ad7a538222798e4cff057b3cd35834da8b3"
+    },
+    {
+      "definition": "checked_clock",
+      "path": "verify.py",
+      "sha256": "8e58f3a0ebcd5486ed8887773ac25a610a63dc083ae9bdeb87f97ed7902c03bb"
+    },
+    {
+      "definition": "row_clock",
+      "path": "verify.py",
+      "sha256": "a41f6cce1178190cf47251615962eb5e27dfe472c5f6f5aabe25891de3657776"
+    },
+    {
+      "definition": "clocks_ordered",
+      "path": "verify.py",
+      "sha256": "46e71b6e1d26519a69bb6b8d32a1131beabf6deb81d16dabbd22c0f74fd60cac"
+    },
+    {
+      "definition": "checked_stat",
+      "path": "verify.py",
+      "sha256": "4f3aac7f00a1e442a89de6a2cb982cb57eedcfdd022a98a76c394bbe2c376654"
+    },
+    {
+      "definition": "verify_file_creation",
+      "path": "verify.py",
+      "sha256": "959ab7acec43bd7dce2606e56b8a5090768c49b2f17228578a38e95b542d4feb"
+    },
+    {
+      "definition": "verify_command_stream_evidence",
+      "path": "verify.py",
+      "sha256": "f4b57a1f0b0a187530142f98c825592e684f2a61436d3cbaed4eca79e0bc9e55"
+    },
+    {
+      "definition": "verify_execution",
+      "path": "verify.py",
+      "sha256": "b90353ad754779c6cd1cfc0d5296ae614afd3aafa6228ac8713473bf79841648"
+    },
+    {
+      "definition": "verify_wrapper_streams",
+      "path": "verify.py",
+      "sha256": "970199ef3994192beabaa7e0a5dc26eab5660fe1d6cc125ad283714fb7d6adbf"
+    },
+    {
+      "definition": "verify_python",
+      "path": "verify.py",
+      "sha256": "a090ab548cf6ffe63fcbb6a8f5a32ca292dadf295d993e02e3f16ebf6a29871c"
+    },
+    {
+      "definition": "verify_apks",
+      "path": "verify.py",
+      "sha256": "c725c292d61bf6a8bb153cf0afea49303381ed9cc37bcaac153e9241e43e3787"
+    },
+    {
+      "definition": "verify_suite_scope",
+      "path": "verify.py",
+      "sha256": "f98b51003b38fa4c281b10b80951f375308d059be4a5f89b8b2e58158934c20a"
+    },
+    {
+      "definition": "retain_class",
+      "path": "verify.py",
+      "sha256": "e6d433d27c5d46e7028f3cd1b178193cb06e728dc5a01af5ba36537d10407638"
+    },
+    {
+      "definition": "expected_numeric_commands",
+      "path": "verify.py",
+      "sha256": "1a6c7387147080a33540066b1707123116362237645b1bd2f199e361ab820e4f"
+    },
+    {
+      "definition": "verify_numeric_commands",
+      "path": "verify.py",
+      "sha256": "b8be9d189f13347227ec845dcb043827975e21c58c8192902eca82e6ba677602"
+    },
+    {
+      "definition": "verify_java_policy",
+      "path": "verify.py",
+      "sha256": "3aa83845da1b8f2acb1e6b9119e106b224ee4f3ea54d81f233ef9c14d63e3f37"
+    },
+    {
+      "definition": "expected_provenance_config",
+      "path": "verify.py",
+      "sha256": "c452d7e29dbd66d4c8e9744bc580dd6a46a32208879cd7bbeec311bdb216e32b"
+    },
+    {
+      "definition": "verify_provenance_config",
+      "path": "verify.py",
+      "sha256": "20e33420d08831f9c69144a4181623d3a76749ce8ccdf0cfea9bdb04998ecfb6"
+    },
+    {
+      "definition": "verify_numeric",
+      "path": "verify.py",
+      "sha256": "e556fecda03e2a5dd941c8e1470664f71e2e6e8fca67e70bc41217975633fdf7"
+    }
+  ],
+  "finished_utc": "2026-10-12T11:26:16.483319+00:00",
+  "fresh_report_only_gate_change": "23 to 24",
+  "full_host_acceptance_executed": false,
+  "full_project_materializations": 0,
+  "git_checkout_not_locally_repeated": true,
+  "inherited_test_changes": [
+    {
+      "diff": "--- numeric-parent/GateEvidenceControls.test_synthetic_complete_fresh_gate_envelope_is_accepted_only_as_policy_fixture\n+++ combined/GateEvidenceControls.test_synthetic_complete_fresh_gate_envelope_is_accepted_only_as_policy_fixture\n@@ -1,2 +1,2 @@\n def test_synthetic_complete_fresh_gate_envelope_is_accepted_only_as_policy_fixture(self):\n-        self.assertEqual(23, len(self.check()))+        self.assertEqual(24, len(self.check()))",
+      "test": "GateEvidenceControls.test_synthetic_complete_fresh_gate_envelope_is_accepted_only_as_policy_fixture"
+    },
+    {
+      "diff": "--- numeric-parent/JavaObservationFailureControls.test_zero_exit_with_evidence_error_stops_before_long_acceptance_child\n+++ combined/JavaObservationFailureControls.test_zero_exit_with_evidence_error_stops_before_long_acceptance_child\n@@ -5,17 +5,18 @@\n         output = self.root / 'output'\n         output.mkdir()\n         manifest = 'a' * 64\n-        preparation = {'passed': True, 'status': 'EXACT_19_FILE_WIP_PREPARED', 'output': str(output),\n+        preparation = {'passed': True, 'status': 'EXACT_NUMERIC19_THEN_LOOKUP21_WIP_PREPARED', 'output': str(output),\n                        'project': str(project), 'runtime_source': {'manifest': {'sha256': manifest}}}\n         inputs.write_json(output / 'preparation.json', preparation)\n         argv = ['run_acceptance.py', '--baseline-repository', str(self.root / 'baseline'),\n-                '--overlay-repository', str(self.root / 'overlay'), '--output', str(output),\n+                '--overlay-repository', str(self.root / 'overlay'), '--lookup-repository', str(self.root / 'lookup'), '--output', str(output),\n                 '--runtime-manifest-sha256', manifest]\n         failure = {'returncode': 0, 'timed_out': False, 'error': 'SYNTHETIC unbracketed witness'}\n         inventory = lambda path: ([{'path': 'release-input-snapshot.json', **pins['future_manifest']}]\n                                   if path.name == 'reports' else [])\n         with patch.object(sys, 'argv', argv), patch.object(inputs, 'verify_runtime_manifest'), \\\n              patch.object(inputs, 'contract', return_value=(pins, {}, expected, None)), \\\n+             patch.object(inputs, 'verify_prepared_boundaries'), \\\n              patch.object(inputs, 'scan_inputs', return_value=expected), \\\n              patch.object(inputs, 'compare_inputs'), patch.object(run_acceptance, 'inventory', side_effect=inventory), \\\n              patch.object(run_acceptance, 'run_child', return_value=failure) as child:\n",
+      "test": "JavaObservationFailureControls.test_zero_exit_with_evidence_error_stops_before_long_acceptance_child"
+    }
+  ],
+  "inherited_test_count": 92,
+  "new_test_count": 61,
+  "numeric_only_files": [
+    {
+      "path": "source/java/recovered/ui/DayTriggerValueMethods.java",
+      "sha256": "b99984c0ca9128f9def8658d874f98d9a8e4529433d0f76f7f86e9e8299cc792",
+      "size": 651
+    },
+    {
+      "path": "tests/fixtures/day-numeric-mutants.json",
+      "sha256": "1e008b16aa92c2e7c42aa88ecea9913391ee4f41b95ed73cd7a4ea17c914f4de",
+      "size": 6366
+    },
+    {
+      "path": "tests/java/DayNumericControlHarness.java",
+      "sha256": "01db7b22f414527e516b9e7da1685e778a13c737c719358f86defe901ebbb4b9",
+      "size": 10394
+    },
+    {
+      "path": "tools/src/ExtractOracle.java",
+      "sha256": "5ebe80c06ddd26a5d495d2a3a3c0bd4056846b231e30127cba90026ec26842ae",
+      "size": 7703
+    }
+  ],
+  "passed": true,
+  "resolved_lookup_payloads": [
+    {
+      "bytes": 567,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/source/java/recovered/ui/DayTriggerLookupMethods.java",
+      "path": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+      "sha256": "020256ed2d78740183aa9ac8d92e8c775db0d4fc647dfc12f1bea0a6881243e5"
+    },
+    {
+      "bytes": 780301,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/source/java-method-map.json",
+      "path": "source/java-method-map.json",
+      "sha256": "fd126ac2477d6dc7ab5ec2ef1e2cb30a017fe9ef711ff61df9867a4ff003b33e"
+    },
+    {
+      "bytes": 5710,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/source/ui-methods.json",
+      "path": "source/ui-methods.json",
+      "sha256": "4c4dfbb6d0598a91a2b9013ef6962b47ef0a92dc2ad8c3e8f65a7f8f53a98104"
+    },
+    {
+      "bytes": 1751,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+      "path": "test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+      "sha256": "63586460fc9d7444701c6351680e98e08eb6ad5903a0543ba12ad3df27d1d959"
+    },
+    {
+      "bytes": 2232,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/fixtures/original-dependencies.json",
+      "path": "tests/fixtures/original-dependencies.json",
+      "sha256": "159061ce552e3364c113f28e72e5a4c1bc091a21153d0d5e0a793d2f773b0229"
+    },
+    {
+      "bytes": 531256,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/fixtures/original-methods.dex",
+      "path": "tests/fixtures/original-methods.dex",
+      "sha256": "410ebd6bd6455863812b1c3b34148f6717c6824cb2bdf8d8490323832543f802"
+    },
+    {
+      "bytes": 1284,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/fixtures/provenance.json",
+      "path": "tests/fixtures/provenance.json",
+      "sha256": "c30dd6c0e2525ca13fb2b342457d503a120c94bc8f8eeeb34943b6c9eaf1e8e1"
+    },
+    {
+      "bytes": 24697,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/java/DayLookupParityCases.java",
+      "path": "tests/java/DayLookupParityCases.java",
+      "sha256": "e620cbafbee0aead7ba80112bb4a4a5f95a99183805e34ce838e439df5874b9a"
+    },
+    {
+      "bytes": 11342,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/java/DayLookupControlHarness.java",
+      "path": "tests/java/DayLookupControlHarness.java",
+      "sha256": "cfc3460fcb29d08781989750de2e486ac452c5a64c3367edeac7af3f36fd6b3d"
+    },
+    {
+      "bytes": 48308,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/java/UiParityTests.java",
+      "path": "tests/java/UiParityTests.java",
+      "sha256": "f7e77395b4983bf786225829e6e1edfa3b997c9e947881163328196151f15b0c"
+    },
+    {
+      "bytes": 19941,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/java/DayTriggerParityCases.java",
+      "path": "tests/java/DayTriggerParityCases.java",
+      "sha256": "ca21d396fef1f8e2f2cd94683cfb96a9c3d5d0fb850ec383d19e4ff14cdfe03b"
+    },
+    {
+      "bytes": 6585,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/fixtures/day-lookup-mutants.json",
+      "path": "tests/fixtures/day-lookup-mutants.json",
+      "sha256": "2865811594ad3a04b133e1bcbfe9d6c3e5fafbb9288d4d946aaf37777a6245e8"
+    },
+    {
+      "bytes": 35479,
+      "capsule": "successor",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/05-lookup-recorder-successor/project/day_lookup_dex_controls.py",
+      "path": "day_lookup_dex_controls.py",
+      "sha256": "0b72325dbdaf60525f07a7b72708b9096d1e585ef5e1601332ceaac9aa67c8c9"
+    },
+    {
+      "bytes": 40949,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/day_numeric_dex_controls.py",
+      "path": "day_numeric_dex_controls.py",
+      "sha256": "2608a9a0a9d5b44627595fcbb696f2ec3f70213eb6af88a7282ec818d53e92f4"
+    },
+    {
+      "bytes": 9867,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/ui_mutation_catalog.py",
+      "path": "ui_mutation_catalog.py",
+      "sha256": "9c7067db8965450f1df4a2a03b26806bbae5d8492b561717e97d81b73252bf52"
+    },
+    {
+      "bytes": 25574,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/ui_negative_control.py",
+      "path": "ui_negative_control.py",
+      "sha256": "460d8c3626e13123d02b636b962b262996be33eed84e2cb4ad7c70c6f4ed814d"
+    },
+    {
+      "bytes": 32426,
+      "capsule": "successor",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/05-lookup-recorder-successor/project/tests/test_day_lookup.py",
+      "path": "tests/test_day_lookup.py",
+      "sha256": "b819d42007f3345023420b5cfac4c4463309eed7c62b5bc654fdbc2ce1413972"
+    },
+    {
+      "bytes": 17095,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/test_day_numeric.py",
+      "path": "tests/test_day_numeric.py",
+      "sha256": "9ac9634ebe162c852298e74ae75fb5758a16275f86a921921e01c9cd953c0fe3"
+    },
+    {
+      "bytes": 10591,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/test_build.py",
+      "path": "tests/test_build.py",
+      "sha256": "526f32fa56d670e92e9a3329978a145da0237ce9054d4dcb693477194ad1e932"
+    },
+    {
+      "bytes": 15431,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/test_v9.py",
+      "path": "tests/test_v9.py",
+      "sha256": "4dc4a7114466261a496ffa4e55689f37855217aa3b2e12591578a35f066851bd"
+    },
+    {
+      "bytes": 6247,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/acceptance.py",
+      "path": "acceptance.py",
+      "sha256": "03a9ddb47d7d3652b3d393a52b550830585f1ba12bf172e7d2068c0f85e79eec"
+    }
+  ],
+  "runtime_manifest": {
+    "bytes": 1183,
+    "sha256": "07b58ce29d4db875ef349d23aa05b8b75145ea4f7338b7dd2943db10129a0d32"
+  },
+  "schema": 1,
+  "scope": "Actual frozen source bytes/full entry-map derivation, small source-policy copies, literal hosted tooling preflight, shell syntax, and explicit preflight faults only",
+  "source_after": [
+    {
+      "bytes": 6912,
+      "path": ".github/workflows/day-trigger-wip-acceptance.yml",
+      "sha256": "443e184bc3185593e1a8c268d60200ada2b1cdb6df2b8e551e51ae52dae0c6eb"
+    },
+    {
+      "bytes": 10712,
+      "path": "tools/day_trigger_acceptance/README.md",
+      "sha256": "22a7fdaf4803d156461643ff1d8b6c26914f4e48fafdc526e052c7d5b61ae5f7"
+    },
+    {
+      "bytes": 20867,
+      "path": "tools/day_trigger_acceptance/inputs.py",
+      "sha256": "411ecfc5fb0b6142b9a89c03a2a07a21987f68d2876a6658604462c26ec4b3c2"
+    },
+    {
+      "bytes": 105027,
+      "path": "tools/day_trigger_acceptance/pins.json",
+      "sha256": "699a393a94843446f79b46c6c74ebde118a4d16cc3f255c8aa7a9cf8885ea7a0"
+    },
+    {
+      "bytes": 10083,
+      "path": "tools/day_trigger_acceptance/prepare.py",
+      "sha256": "59a33611498625df732f60d62ef3665e3f8c5776302cb48c63399bc06495deb9"
+    },
+    {
+      "bytes": 16212,
+      "path": "tools/day_trigger_acceptance/run_acceptance.py",
+      "sha256": "0f0f60e929391f4b7bdfe3c97e6d90fcc716fb62f59291e23c737a100668852f"
+    },
+    {
+      "bytes": 1183,
+      "path": "tools/day_trigger_acceptance/runtime-files.json",
+      "sha256": "07b58ce29d4db875ef349d23aa05b8b75145ea4f7338b7dd2943db10129a0d32"
+    },
+    {
+      "bytes": 98392,
+      "path": "tools/day_trigger_acceptance/test_day_trigger_acceptance.py",
+      "sha256": "11369a314b1bf79169efb27dd0a3cd81afa0fc05206691a7f2c4d8894d84596f"
+    },
+    {
+      "bytes": 80980,
+      "path": "tools/day_trigger_acceptance/verify.py",
+      "sha256": "a6981668796055645a6f934b9d7a3fa1e9f0f8a3e385301c6b1e45273e3b8531"
+    }
+  ],
+  "source_boundaries": [
+    {
+      "files": 81291,
+      "snapshot_sha256": "b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553"
+    },
+    {
+      "files": 81298,
+      "snapshot_sha256": "f8fc1cadac8213468e42ac99a2cd5d807827dcdeee25166b8025620ff39a6545"
+    },
+    {
+      "files": 81304,
+      "snapshot_sha256": "b981dd67fd84ddf8dc026b2aed0ede7f1770c48ef64acc9009f5eaa076f34a0c"
+    }
+  ],
+  "started_utc": "2026-10-12T11:26:06.026257+00:00",
+  "status": "COMBINED_TOOLING_SOURCE_AND_LITERAL_WORKFLOW_PREFLIGHT_PASSED_NO_APP_EXECUTION",
+  "workflow": {
+    "bytes": 6912,
+    "sha256": "443e184bc3185593e1a8c268d60200ada2b1cdb6df2b8e551e51ae52dae0c6eb"
+  }
+}

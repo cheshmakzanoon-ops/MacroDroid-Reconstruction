@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/dev/shm/day-numeric-run-38238858564-review/analyze.py", line 401, in <module>
+    main()
+  File "/dev/shm/day-numeric-run-38238858564-review/analyze.py", line 277, in main
+    fixture = fixture_methods((project / 'tests/fixtures/original-methods.dex').read_bytes())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/day-numeric-run-38238858564-review/analyze.py", line 121, in fixture_methods
+    strings.append(raw[pointer:stop].decode('utf-8'))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xc0 in position 0: invalid start byte

@@ -1,0 +1,288 @@
+{
+  "application_executions": 0,
+  "combined_registry": {
+    "registered_class_mappings": [
+      {
+        "expected": {
+          "kind": "integer",
+          "return": "Z",
+          "value": 1
+        },
+        "helper": "Lrecovered/constants/DayTrigger_74d1108d;",
+        "helper_descriptor": "requiresScheduleExactAlarm_4dd28cf8(Ljava/lang/Object;)Z",
+        "helper_method": "requiresScheduleExactAlarm_4dd28cf8",
+        "instance": true,
+        "java_source": "source/java/recovered/constants/DayTrigger_74d1108d.java",
+        "method": "requiresScheduleExactAlarm()Z",
+        "original_method_sha256": "1ccf6c201fbed5ac9d75483a666e283eca0204688ac1dc87df2d0734762220ad",
+        "proof_family": "constant",
+        "target": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;"
+      },
+      {
+        "helper": "Lrecovered/ui/DayTriggerValueMethods;",
+        "helper_method": "numericValue",
+        "instance": false,
+        "java_source": "source/java/recovered/ui/DayTriggerValueMethods.java",
+        "method": "r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+        "original_method_sha256": "8383c90ebe3d35afa63d52cf92cd4c92b54ed4525ca0d8a31a29fe603f9eef21",
+        "proof_family": "v9-ui",
+        "target": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;"
+      },
+      {
+        "helper": "Lrecovered/ui/DayTriggerLookupMethods;",
+        "helper_method": "findEntry",
+        "instance": false,
+        "java_source": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+        "method": "p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+        "original_method_sha256": "afdaa9b0977db46a2f333cccb0de57a401b77e2e3b66b535b2bff50991e4614e",
+        "proof_family": "v9-ui",
+        "target": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;"
+      }
+    ],
+    "uncredited_dependency_keys": [
+      "Lcom/arlosoft/macrodroid/variables/VariableValue$DecimalValue;->getDecimalValue()D",
+      "Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;->getEntries()Ljava/util/List;",
+      "Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;->getKey()Ljava/lang/String;",
+      "Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;->getVariable()Lcom/arlosoft/macrodroid/variables/VariableValue;",
+      "Lcom/arlosoft/macrodroid/variables/VariableValue$IntegerValue;->getIntValue()J"
+    ]
+  },
+  "commands": [],
+  "cwd_source_guard": {
+    "resolved_project": "/dev/shm/macrodroid-day-lookup-integration/combined-host-01/reports/04-source-and-workflow-boundaries/actual-producer-source-copy",
+    "scope": "Exact producer/caller AST and explicit outer acceptance cwd; individual method rows do not independently record cwd",
+    "scope_note": "Source-policy-only copy of four exact production files; no producer subprocess/app execution",
+    "sources": {
+      "build.py": {
+        "root_expression": "Path(__file__).resolve().parent",
+        "source": {
+          "bytes": 20325,
+          "sha256": "dd599090fc075fed0835875937a2c2b76d91381936c26f4275f876edf47345f0"
+        }
+      },
+      "day_lookup_dex_controls.py": {
+        "cwd_expression": "root",
+        "individual_child_cwd_recorded": false,
+        "resolved_root_expression": "root.resolve()",
+        "source": {
+          "bytes": 35479,
+          "sha256": "0b72325dbdaf60525f07a7b72708b9096d1e585ef5e1601332ceaac9aa67c8c9"
+        }
+      },
+      "day_numeric_dex_controls.py": {
+        "cwd_expression": "root",
+        "individual_child_cwd_recorded": false,
+        "resolved_root_expression": "root.resolve()",
+        "source": {
+          "bytes": 40949,
+          "sha256": "2608a9a0a9d5b44627595fcbb696f2ec3f70213eb6af88a7282ec818d53e92f4"
+        }
+      },
+      "ui_negative_control.py": {
+        "calls": [
+          "day_numeric_dex_controls.run_controls(build.ROOT, records)",
+          "day_lookup_dex_controls.run_controls(build.ROOT, records)"
+        ],
+        "source": {
+          "bytes": 25574,
+          "sha256": "460d8c3626e13123d02b636b962b262996be33eed84e2cb4ad7c70c6f4ed814d"
+        }
+      }
+    }
+  },
+  "error": "AssertionError()",
+  "finished_utc": "2026-10-12T11:25:31.216991+00:00",
+  "full_host_acceptance_executed": false,
+  "full_project_materializations": 0,
+  "git_checkout_not_locally_repeated": true,
+  "numeric_only_files": [
+    {
+      "path": "source/java/recovered/ui/DayTriggerValueMethods.java",
+      "sha256": "b99984c0ca9128f9def8658d874f98d9a8e4529433d0f76f7f86e9e8299cc792",
+      "size": 651
+    },
+    {
+      "path": "tests/fixtures/day-numeric-mutants.json",
+      "sha256": "1e008b16aa92c2e7c42aa88ecea9913391ee4f41b95ed73cd7a4ea17c914f4de",
+      "size": 6366
+    },
+    {
+      "path": "tests/java/DayNumericControlHarness.java",
+      "sha256": "01db7b22f414527e516b9e7da1685e778a13c737c719358f86defe901ebbb4b9",
+      "size": 10394
+    },
+    {
+      "path": "tools/src/ExtractOracle.java",
+      "sha256": "5ebe80c06ddd26a5d495d2a3a3c0bd4056846b231e30127cba90026ec26842ae",
+      "size": 7703
+    }
+  ],
+  "passed": false,
+  "resolved_lookup_payloads": [
+    {
+      "bytes": 567,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/source/java/recovered/ui/DayTriggerLookupMethods.java",
+      "path": "source/java/recovered/ui/DayTriggerLookupMethods.java",
+      "sha256": "020256ed2d78740183aa9ac8d92e8c775db0d4fc647dfc12f1bea0a6881243e5"
+    },
+    {
+      "bytes": 780301,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/source/java-method-map.json",
+      "path": "source/java-method-map.json",
+      "sha256": "fd126ac2477d6dc7ab5ec2ef1e2cb30a017fe9ef711ff61df9867a4ff003b33e"
+    },
+    {
+      "bytes": 5710,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/source/ui-methods.json",
+      "path": "source/ui-methods.json",
+      "sha256": "4c4dfbb6d0598a91a2b9013ef6962b47ef0a92dc2ad8c3e8f65a7f8f53a98104"
+    },
+    {
+      "bytes": 1751,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+      "path": "test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+      "sha256": "63586460fc9d7444701c6351680e98e08eb6ad5903a0543ba12ad3df27d1d959"
+    },
+    {
+      "bytes": 2232,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/fixtures/original-dependencies.json",
+      "path": "tests/fixtures/original-dependencies.json",
+      "sha256": "159061ce552e3364c113f28e72e5a4c1bc091a21153d0d5e0a793d2f773b0229"
+    },
+    {
+      "bytes": 531256,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/fixtures/original-methods.dex",
+      "path": "tests/fixtures/original-methods.dex",
+      "sha256": "410ebd6bd6455863812b1c3b34148f6717c6824cb2bdf8d8490323832543f802"
+    },
+    {
+      "bytes": 1284,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/fixtures/provenance.json",
+      "path": "tests/fixtures/provenance.json",
+      "sha256": "c30dd6c0e2525ca13fb2b342457d503a120c94bc8f8eeeb34943b6c9eaf1e8e1"
+    },
+    {
+      "bytes": 24697,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/java/DayLookupParityCases.java",
+      "path": "tests/java/DayLookupParityCases.java",
+      "sha256": "e620cbafbee0aead7ba80112bb4a4a5f95a99183805e34ce838e439df5874b9a"
+    },
+    {
+      "bytes": 11342,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/java/DayLookupControlHarness.java",
+      "path": "tests/java/DayLookupControlHarness.java",
+      "sha256": "cfc3460fcb29d08781989750de2e486ac452c5a64c3367edeac7af3f36fd6b3d"
+    },
+    {
+      "bytes": 48308,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/java/UiParityTests.java",
+      "path": "tests/java/UiParityTests.java",
+      "sha256": "f7e77395b4983bf786225829e6e1edfa3b997c9e947881163328196151f15b0c"
+    },
+    {
+      "bytes": 19941,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/java/DayTriggerParityCases.java",
+      "path": "tests/java/DayTriggerParityCases.java",
+      "sha256": "ca21d396fef1f8e2f2cd94683cfb96a9c3d5d0fb850ec383d19e4ff14cdfe03b"
+    },
+    {
+      "bytes": 6585,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/fixtures/day-lookup-mutants.json",
+      "path": "tests/fixtures/day-lookup-mutants.json",
+      "sha256": "2865811594ad3a04b133e1bcbfe9d6c3e5fafbb9288d4d946aaf37777a6245e8"
+    },
+    {
+      "bytes": 35479,
+      "capsule": "successor",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/05-lookup-recorder-successor/project/day_lookup_dex_controls.py",
+      "path": "day_lookup_dex_controls.py",
+      "sha256": "0b72325dbdaf60525f07a7b72708b9096d1e585ef5e1601332ceaac9aa67c8c9"
+    },
+    {
+      "bytes": 40949,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/day_numeric_dex_controls.py",
+      "path": "day_numeric_dex_controls.py",
+      "sha256": "2608a9a0a9d5b44627595fcbb696f2ec3f70213eb6af88a7282ec818d53e92f4"
+    },
+    {
+      "bytes": 9867,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/ui_mutation_catalog.py",
+      "path": "ui_mutation_catalog.py",
+      "sha256": "9c7067db8965450f1df4a2a03b26806bbae5d8492b561717e97d81b73252bf52"
+    },
+    {
+      "bytes": 25574,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/ui_negative_control.py",
+      "path": "ui_negative_control.py",
+      "sha256": "460d8c3626e13123d02b636b962b262996be33eed84e2cb4ad7c70c6f4ed814d"
+    },
+    {
+      "bytes": 32426,
+      "capsule": "successor",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/05-lookup-recorder-successor/project/tests/test_day_lookup.py",
+      "path": "tests/test_day_lookup.py",
+      "sha256": "b819d42007f3345023420b5cfac4c4463309eed7c62b5bc654fdbc2ce1413972"
+    },
+    {
+      "bytes": 17095,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/test_day_numeric.py",
+      "path": "tests/test_day_numeric.py",
+      "sha256": "9ac9634ebe162c852298e74ae75fb5758a16275f86a921921e01c9cd953c0fe3"
+    },
+    {
+      "bytes": 10591,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/test_build.py",
+      "path": "tests/test_build.py",
+      "sha256": "526f32fa56d670e92e9a3329978a145da0237ce9054d4dcb693477194ad1e932"
+    },
+    {
+      "bytes": 15431,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/tests/test_v9.py",
+      "path": "tests/test_v9.py",
+      "sha256": "4dc4a7114466261a496ffa4e55689f37855217aa3b2e12591578a35f066851bd"
+    },
+    {
+      "bytes": 6247,
+      "capsule": "merge",
+      "input": "/dev/shm/macrodroid-day-lookup-integration/checkpoints/04-numeric-filesystem-merge/project/acceptance.py",
+      "path": "acceptance.py",
+      "sha256": "03a9ddb47d7d3652b3d393a52b550830585f1ba12bf172e7d2068c0f85e79eec"
+    }
+  ],
+  "schema": 1,
+  "scope": "Actual frozen source bytes/full entry-map derivation, small source-policy copies, literal hosted tooling preflight, shell syntax, and explicit preflight faults only",
+  "source_boundaries": [
+    {
+      "files": 81291,
+      "snapshot_sha256": "b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553"
+    },
+    {
+      "files": 81298,
+      "snapshot_sha256": "f8fc1cadac8213468e42ac99a2cd5d807827dcdeee25166b8025620ff39a6545"
+    },
+    {
+      "files": 81304,
+      "snapshot_sha256": "b981dd67fd84ddf8dc026b2aed0ede7f1770c48ef64acc9009f5eaa076f34a0c"
+    }
+  ],
+  "started_utc": "2026-10-12T11:25:19.838759+00:00",
+  "status": "COMBINED_SOURCE_WORKFLOW_VALIDATION_PENDING"
+}
