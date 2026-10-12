@@ -1,0 +1,49 @@
+{
+  "pass": true,
+  "controls": [
+    {
+      "mutation": "pause-must-not-terminate",
+      "pass": true,
+      "failedCases": 113,
+      "requiredCase": "fixed-pause",
+      "requiredCaseRejected": true,
+      "unsupportedExecutions": 0,
+      "exitCode": 1,
+      "sourceFixtureAndApkUnchanged": true
+    },
+    {
+      "mutation": "group-marker-must-dispatch",
+      "pass": true,
+      "failedCases": 2,
+      "requiredCase": "group-end-boundary-preserves-conditional-stack",
+      "requiredCaseRejected": true,
+      "unsupportedExecutions": 0,
+      "exitCode": 1,
+      "sourceFixtureAndApkUnchanged": true
+    },
+    {
+      "mutation": "goto-must-respect-scopes",
+      "pass": true,
+      "failedCases": 2,
+      "requiredCase": "goto-cannot-enter-if",
+      "requiredCaseRejected": true,
+      "unsupportedExecutions": 0,
+      "exitCode": 1,
+      "sourceFixtureAndApkUnchanged": true
+    },
+    {
+      "mutation": "strict-sixty-second-boundary",
+      "pass": true,
+      "failedCases": 25,
+      "requiredCase": "sixty-seconds-not-aborted",
+      "requiredCaseRejected": true,
+      "unsupportedExecutions": 0,
+      "exitCode": 1,
+      "sourceFixtureAndApkUnchanged": true
+    }
+  ],
+  "positiveRestorationPassed": true,
+  "restorationCases": 9616,
+  "androidRuntime": false,
+  "sourceFixtureAndApkUnchanged": true
+}

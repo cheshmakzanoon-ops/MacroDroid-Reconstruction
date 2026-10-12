@@ -1,0 +1,42 @@
+--- a/project/README.md
++++ b/project/README.md
+@@ -12,12 +12,13 @@
+ 
+ ## Current candidate and evidence
+ 
+-This private combined candidate adds plugin upload and Widget update bodies to the
+-published 1,240-method source. Its fresh original-method fixture and complete source
+-copy are verified; full combined acceptance and the separate Android method/journey
+-measurements are pending. The isolated methods have their own passing signed proofs.
+-See `RECONSTRUCTION_STATUS.md` and `COMBINED_RECOVERY.md` for exact boundaries and
+-the distinction between current, inherited and still-pending evidence.
++This combined candidate adds plugin upload and Widget update bodies to the prior
++1,240-method source. Its complete configured acceptance passed on 12 October 2026:
++all 16 gates, 193,489 three-path cases across 1,242 methods, 273 Python tests, all 78
++UI faults with exact positive restoration, and the signed source-edit experiment.
++The [closed proof](../work-in-progress/combined-recovery/05-full-acceptance/result.json) binds the exact source and signed APK.
++Android observations for this new combined APK remain pending. See
++`RECONSTRUCTION_STATUS.md` and `COMBINED_RECOVERY.md` for measured scopes.
+ 
+ ## Extract and build
+ 
+@@ -104,12 +105,13 @@
+ accounts, purchases and remote services may behave differently. No licensing,
+ authentication, payment or integrity bypass is introduced.
+ 
+-The historical local environment lacked ADB/emulator execution. A later hosted run
+-installed and cold-launched both APKs with complete captures; exact comparison
+-reported 75 differing pixels in Android's signal-strength icon. Actual macro execution,
+-permissions, accessibility, background work, persistence/reboot, native loading and
+-performance have not been verified by that capture.
+-The host interpreter is not ART, and host test doubles are not Android services.
++The historical Android runs retain their exact source/APK identities. The prior
++9108 candidate's ten-screen observation completed and retained a 26-pixel indicator
++difference on the second intro page; all ten XML pairs matched. Both APKs also
++encountered the supplied promotion-listener exception. The isolated Widget APK
++passed a separate eight-case ART method probe. Those results do not execute this
++new combined APK or establish full macro, service, persistence or device behavior.
++The host interpreter and controlled dependencies have their own explicit scope.
+ 
+ `android_acceptance.py` is a separate explicit cold-launch recorder for a disposable ARM64
+ device. It requires an explicit serial and consent to removal of this package's data;

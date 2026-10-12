@@ -1,0 +1,69 @@
+--- a/project/COMBINED_RECOVERY.md
++++ b/project/COMBINED_RECOVERY.md
+@@ -21,7 +21,7 @@
+ constructor reference back to the original direct-parent `rff` owner. Allocation
+ type and original constructors remain unchanged. Build, static and linkage checks
+ share the existing source/domain/descriptor/occurrence guards. This is the first
+-active mapping proposed for the published registry; earlier methods had zero.
++active mapping in this registry; earlier published methods had zero.
+ 
+ ## Independent completed evidence
+ 
+@@ -38,11 +38,15 @@
+ The earlier independent study rejected 24 actual compiled method faults plus two
+ class-origin controls. These finite host studies are not Android feature execution.
+ 
+-The original constructor-only ART probe already succeeded with `-Xverify:all` on
+-the pinned API 35 emulator. It executed the original allocation only. The separate
+-eight-case actual Widget method wrapper has its own pending device run against
+-the exact original and isolated Widget APK; it does not render a Widget or cover
+-nonempty lists, services, scheduling or real device lifecycle behavior.
++The original constructor-only ART probe succeeded with `-Xverify:all` on the
++pinned API 35 emulator. The separate original/isolated-Widget method probe also
++passed all eight cases in hosted run 38209599059: each guest exited zero, with
++379 bytes of identical stdout and empty stderr. All 7,214 artifact members,
++including the exact hidden workflow, and all 19 executed input copies were
++independently verified. See [the complete ART proof](../work-in-progress/widget-art/08-hosted-complete-proof/).
++These cases cover empty/resumed lists, invalid labels, saved-field casts and a
++null list; they do not render a Widget or cover nonempty lists, services,
++scheduling, complete lifecycle behavior, or this new combined APK.
+ 
+ ## Host exception policy and execution budgets
+ 
+@@ -66,15 +70,28 @@
+ allows 120 minutes and preserves every report, nested mutant artifact and final APK.
+ Changing a time budget does not change any required outcome or comparison rule.
+ 
+-## Combined proof still required
++## Completed combined host and artifact proof
+ 
+-The new copy verifies all 81,245 baseline input files before/after independent
+-copying, overlays only the frozen reviewed sources, and extracts a fresh complete
+-original fixture for exactly 1,242 methods across 605 classes. Both prior isolated
+-fixtures remain historical. The expected combined inventory is 193,489 cases,
+-23,174 UI cases across ten methods, 15,326 independent UI expectations, 273 Python
+-tests and all 78 deliberate UI faults. Full configured acceptance, including the
+-signed source-edit experiment and final complete positive run, remains pending.
++The independent source preparation verified all 81,245 baseline inputs before
++and after copying, applied only the frozen reviewed changes, and freshly extracted
++the original fixture for 1,242 methods across 605 classes. The resulting 81,291
++inputs retained the same pin before and after all 16 configured acceptance gates:
++
++`b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553`
++
++The complete run passed 193,489 cases on all three paths, including 23,174 UI cases
++across ten methods, 15,326 independent UI expectations, 273 Python tests and all
++78 deliberate UI faults. The signed source-edit experiment and final complete
++positive run both passed. The wrapper independently checked all 16 gate logs,
++22 fresh report hashes, every retained mutant source/class pair, and both final
++signed APK identities. The closed [result](../work-in-progress/combined-recovery/05-full-acceptance/result.json) and
++[complete report manifest](../work-in-progress/combined-recovery/05-full-acceptance/complete-reports-manifest.json) preserve
++the actual outcomes; the configured acceptance subprocess took 4,800.347 seconds.
++
++The 94,683,119-byte combined APK SHA256 is
++`5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182`.
++Its separate Android measurements and clean hosted reproduction remain pending.
++The isolated Widget and upload reports retain their own source/APK identities.
+ 
+ The reference APK, original selected fixture, historical reference Java and host
+ stubs remain separate from application build inputs. Most application logic is

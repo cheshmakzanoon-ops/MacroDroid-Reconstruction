@@ -1,0 +1,663 @@
+{
+  "status": "COMBINED_ALL_16_ACCEPTANCE_GATES_PASSED",
+  "passed": true,
+  "frozen_utc": "2026-10-12T06:24:35.966814+00:00",
+  "preparation_checkpoint_sha256": "da0a1a8944e24f2d559083ac7232634be257756a5073ea1755eb5006761191e6",
+  "source_snapshot_sha256": "b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553",
+  "input_files_rehashed": 81291,
+  "cases": 193489,
+  "registered_methods": 1242,
+  "registry_classes": 605,
+  "paths": 3,
+  "python_tests": 273,
+  "ui_cases": 23174,
+  "ui_methods": 10,
+  "independent_ui_checks": 15326,
+  "ui_fault_controls": 78,
+  "full_acceptance_executed": true,
+  "android_executed": false,
+  "active_source_changed": false,
+  "active_apk_changed": false,
+  "whole_application_1_to_1_established": false,
+  "apks": {
+    "baseline": {
+      "path": "dist/MacroDroid-5.67.8-v9-baseline.apk",
+      "bytes": 94677674,
+      "sha256": "aa8ad3013ad211c8a39d083943b0a671d75e0bbbedccc924ea0093c590c9a096"
+    },
+    "hybrid": {
+      "path": "dist/MacroDroid-5.67.8-v9-hybrid.apk",
+      "bytes": 94683119,
+      "sha256": "5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182"
+    }
+  },
+  "reports": 551,
+  "fresh_report_hashes_verified": 22,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1925,
+      "sha256": "18f42190c95fdc06c96de41e0fe19b620a47faff5ab3adfe71b7327979d04ae4"
+    },
+    {
+      "path": "apk/manifest.json",
+      "bytes": 3878,
+      "sha256": "459960a6afc81fc0119cd66f3a9f6be823f7947ae90cd74c902d1a8a1e010afc"
+    },
+    {
+      "path": "apk/part-0001.bin",
+      "bytes": 8388608,
+      "sha256": "1463aea284b0e9478a1d21f9f10e250ac8aff945a063a5744f9821d72319fb94"
+    },
+    {
+      "path": "apk/part-0002.bin",
+      "bytes": 8388608,
+      "sha256": "90cb532e136fef62bf05bdf389ad4574cb8386aef770b612b7524aa34f0e7db9"
+    },
+    {
+      "path": "apk/part-0003.bin",
+      "bytes": 8388608,
+      "sha256": "f21934769c0ace7055eb0cbb8582d765b4a91546121c34883db763872f938703"
+    },
+    {
+      "path": "apk/part-0004.bin",
+      "bytes": 8388608,
+      "sha256": "2d2737629e5fa425e95429ec2e7ca18dfc49eefd79e735c21977c3054709c24b"
+    },
+    {
+      "path": "apk/part-0005.bin",
+      "bytes": 8388608,
+      "sha256": "d91c17667f5f29ff3068ca028702514f37fa584262481cb9ad94f2a1a79b4061"
+    },
+    {
+      "path": "apk/part-0006.bin",
+      "bytes": 8388608,
+      "sha256": "1230a412c24ace703f2e2e9c309a2247a980c119814deadabb750107336a7120"
+    },
+    {
+      "path": "apk/part-0007.bin",
+      "bytes": 8388608,
+      "sha256": "08906caeea7f703c20f678b8c397618ec25fc59d5cc25b65e68b1dedf250f90d"
+    },
+    {
+      "path": "apk/part-0008.bin",
+      "bytes": 8388608,
+      "sha256": "d6a1240a3fff117635c8b8959caa581e01c3a2a38894466ab2182147341210bc"
+    },
+    {
+      "path": "apk/part-0009.bin",
+      "bytes": 8388608,
+      "sha256": "31ea2fce036e98ff0dc79222b5fd4d266da83bc8678a5c6b7fc11d4e33641b36"
+    },
+    {
+      "path": "apk/part-0010.bin",
+      "bytes": 8388608,
+      "sha256": "4187594c0171f6e7c2d356971dfc23de3b7cb73452e555763344e10f2af84741"
+    },
+    {
+      "path": "apk/part-0011.bin",
+      "bytes": 8388608,
+      "sha256": "332eaed82b468ce453933a8abc81a7a357eaefdc4108d25356acced2113b03a0"
+    },
+    {
+      "path": "apk/part-0012.bin",
+      "bytes": 2408431,
+      "sha256": "2def01e9eca907dffa87cbeda68dd315e893c55a8a7b59411b301460c177ad49"
+    },
+    {
+      "path": "commands/01-input-integrity.log",
+      "bytes": 183,
+      "sha256": "f595d4a4b1649835674cba80e0b7ad0a536d68286519469b8482a2a9ede2879f"
+    },
+    {
+      "path": "commands/02-baseline-build.log",
+      "bytes": 460,
+      "sha256": "b3858803786effeb9c336a3aed1b2448d51ad162c6d2b911f3cf53cf9efc2e9b"
+    },
+    {
+      "path": "commands/03-hybrid-build.log",
+      "bytes": 446,
+      "sha256": "765ddd463d8ddeabc703be947dbfe88cf72b061e2d192024f8a6b7c00f97b624"
+    },
+    {
+      "path": "commands/04-baseline-code.log",
+      "bytes": 381,
+      "sha256": "a82ee71c10de50427deee7d8ceaecc7acfd19d68642324fbf07e26ccdd04a232"
+    },
+    {
+      "path": "commands/05-hybrid-code.log",
+      "bytes": 379,
+      "sha256": "2d1c64ed8eaa034d4e0b4122ea5b6f6b36ae7607b3b76552cb3b703c8e27291e"
+    },
+    {
+      "path": "commands/06-baseline-resources.log",
+      "bytes": 66,
+      "sha256": "f570b9dd243be220d60f1ba5a944573f9f0de97c31ed165ef597ecec6e711fea"
+    },
+    {
+      "path": "commands/07-hybrid-resources.log",
+      "bytes": 64,
+      "sha256": "821424d8d69ac2aabd1f51b2cc77dd0a0d331341999dde133d0eb97faac59b9f"
+    },
+    {
+      "path": "commands/08-positive-host-tests.log",
+      "bytes": 646,
+      "sha256": "9d703cf3937284598ce668f0d5b8931f166226120d8cd4102a83e5ce80647ef5"
+    },
+    {
+      "path": "commands/09-reference-status.log",
+      "bytes": 354,
+      "sha256": "518184919e15cbd7e910640f928a6cf3acb55f75b477fcce67205a622eaff6df"
+    },
+    {
+      "path": "commands/10-engine-negative-controls.log",
+      "bytes": 1334,
+      "sha256": "9fcecf607c59b40d4132e220c74d6b384060096d3a0d65236b98c40bc0d09a8d"
+    },
+    {
+      "path": "commands/11-ui-negative-controls.log",
+      "bytes": 76101,
+      "sha256": "355b7ade132bcdaf6805f2869bce257b293cf5600a8fd58f9e5e07db75e314ea"
+    },
+    {
+      "path": "commands/12-core-negative-controls.log",
+      "bytes": 522,
+      "sha256": "ca716316a69f355527f045b037ced485c63653b04dd04acfcff53e8191d7a0ba"
+    },
+    {
+      "path": "commands/13-environment-negative-controls.log",
+      "bytes": 1351,
+      "sha256": "ad7ed8c0c38917ce0fc316f2a05d2eda9b9f899fd437652e93b8b92915eed847"
+    },
+    {
+      "path": "commands/14-legacy-negative-control.log",
+      "bytes": 268,
+      "sha256": "1aea8360155182d7ff2c7bb103493c1e380cd52bcbcbfd99e2e46ce3d687070a"
+    },
+    {
+      "path": "commands/15-signed-source-edit.log",
+      "bytes": 1115,
+      "sha256": "46fd25765dfb47a66c9287cf502bef521e2cc7970f59075f09209b457488dbb0"
+    },
+    {
+      "path": "commands/16-final-positive-host-tests.log",
+      "bytes": 646,
+      "sha256": "9d703cf3937284598ce668f0d5b8931f166226120d8cd4102a83e5ce80647ef5"
+    },
+    {
+      "path": "commands/complete-acceptance.log",
+      "bytes": 1548,
+      "sha256": "940aa1a23ecb95357a5e28b99e720b20885b5f709407029f61921ca8059d9f9e"
+    },
+    {
+      "path": "complete-reports-manifest.json",
+      "bytes": 102551,
+      "sha256": "f8604b823244b170fa4bf845364917ce1ce37c6fa46ad8be077658ed40bef815"
+    },
+    {
+      "path": "complete-reports.tar.gz",
+      "bytes": 22556868,
+      "sha256": "a28998f55b333503050320465e1c977bcca11be7a81374169a810878476bca90"
+    },
+    {
+      "path": "freeze_full_acceptance.py",
+      "bytes": 12313,
+      "sha256": "b08fe9e18e9864c52e5298b196c12e1d08f6c940c39a4a5282cccc2bce24c110"
+    },
+    {
+      "path": "prepare_merge_overlay.py",
+      "bytes": 16608,
+      "sha256": "609a8ad32e9520d9c9ac368ca18da853e415acbf38d8edf9e0a7db542e778fa3"
+    },
+    {
+      "path": "project/acceptance.py",
+      "bytes": 6172,
+      "sha256": "6a8a81ea5b928194466bc2c873dfde4d572119e4ac7396bdc93d2d631f1b2933"
+    },
+    {
+      "path": "project/reports/release-input-snapshot.json",
+      "bytes": 14502990,
+      "sha256": "ca3bed290f18a378c7a3d6cc70d924c8d6ec85481e236b4e7561c31fedafdfbe"
+    },
+    {
+      "path": "project/source/java-method-map.json",
+      "bytes": 779273,
+      "sha256": "73a37f1ac4148c03a1dc0df9810e899ebb8ff7bcc6f1df7c1672fd525d66a20e"
+    },
+    {
+      "path": "project/source/java/recovered/ui/PluginUploadMethods.java",
+      "bytes": 6128,
+      "sha256": "51ff522fa350fe832aca87ceba718ec30dd06687a51238062f4d14f70c20b3d4"
+    },
+    {
+      "path": "project/source/java/recovered/ui/WidgetUpdateMethods.java",
+      "bytes": 6169,
+      "sha256": "dbcb1a98d25ae4637531644da37d24f6e1bc494f941d4212da03c360fe315d79"
+    },
+    {
+      "path": "project/source/ui-methods.json",
+      "bytes": 4682,
+      "sha256": "24e5d5d013c88ec67f6e7c94d5494f691309608c7fca478c8687c3945b6f4005"
+    },
+    {
+      "path": "project/test-support/java/android/appwidget/AppWidgetManager.java",
+      "bytes": 653,
+      "sha256": "3cee71a251b807a16a5405cf49f2b762a556049fca93ea0e10ce74a323c15572"
+    },
+    {
+      "path": "project/test-support/java/android/appwidget/AppWidgetProviderInfo.java",
+      "bytes": 101,
+      "sha256": "7eed1d92c615151d1591f8241d973fabfff9477ed33e42076b8746ec8a658266"
+    },
+    {
+      "path": "project/test-support/java/android/graphics/Bitmap$CompressFormat.java",
+      "bytes": 74,
+      "sha256": "a56dbbd375f181d0e2ad55e7b59c083c907259576ac9ffa22a71f90e17ffda3c"
+    },
+    {
+      "path": "project/test-support/java/android/graphics/Bitmap.java",
+      "bytes": 946,
+      "sha256": "5b4765d32cd713e5ff62f417944510a68ee5cdc5e48d7c3a8db380af71b7d297"
+    },
+    {
+      "path": "project/test-support/java/android/graphics/drawable/Drawable.java",
+      "bytes": 196,
+      "sha256": "c57b351aee1d1f861cfaed1143f4c3071f7509b17ec20f5b871925f3c9bab044"
+    },
+    {
+      "path": "project/test-support/java/com/arlosoft/macrodroid/plugins/api/PluginListApi.java",
+      "bytes": 389,
+      "sha256": "292730762057e77c468a201cedf42e6b595be855ae9c216831b8e63b3981dc8b"
+    },
+    {
+      "path": "project/test-support/java/com/arlosoft/macrodroid/plugins/api/UploadPluginBody.java",
+      "bytes": 1175,
+      "sha256": "22630bc9e2d1fb38d702743cb5fb8022598ba50112eb9a7271294f68fc77248a"
+    },
+    {
+      "path": "project/test-support/java/com/arlosoft/macrodroid/plugins/b.java",
+      "bytes": 1563,
+      "sha256": "29526e07373c96313f5c97900b6b4be70957a24c14c35a6c9b0576a988bb4cb2"
+    },
+    {
+      "path": "project/test-support/java/com/arlosoft/macrodroid/plugins/f.java",
+      "bytes": 252,
+      "sha256": "b42422f10932de84e3a230fc643272a735a3a22daa68abd3adb21a7861d588e0"
+    },
+    {
+      "path": "project/test-support/java/com/arlosoft/macrodroid/plugins/k.java",
+      "bytes": 482,
+      "sha256": "fe765d512ad5411583028e88580503e5549e1e03babce4befd6af25e57070d44"
+    },
+    {
+      "path": "project/test-support/java/com/arlosoft/macrodroid/templatestore/model/User.java",
+      "bytes": 283,
+      "sha256": "03a157bdbfe7b2e0d33048d90fa88ab1752539f36a6f558793a7be8e24ef1abc"
+    },
+    {
+      "path": "project/test-support/java/com/arlosoft/macrodroid/widget/custom/WidgetUpdateManager.java",
+      "bytes": 567,
+      "sha256": "db562037eeeb86ffb4065d85a14108ba3814086a811502bc8980e3f9fa668500"
+    },
+    {
+      "path": "project/test-support/java/com/arlosoft/macrodroid/widget/custom/b.java",
+      "bytes": 818,
+      "sha256": "27d241cdef2698ad4cc647a804fbf0144b144d19190ac9239054e8fe0f0f18b3"
+    },
+    {
+      "path": "project/test-support/java/defpackage/PluginControl.java",
+      "bytes": 4883,
+      "sha256": "52b4fa91a509d629d6b98aaf29da1ff875c81bfb788d9b92d4fbf1915c22659a"
+    },
+    {
+      "path": "project/test-support/java/defpackage/PluginUploadControl.java",
+      "bytes": 2566,
+      "sha256": "bd7bc9304dce8b11bc1a2a18356ae9fb180695f053b92f0206ff0eb688cdd913"
+    },
+    {
+      "path": "project/test-support/java/defpackage/WidgetControl.java",
+      "bytes": 4652,
+      "sha256": "d55189ad8badcfe4d5e20234d3b520d7494ed680fad32ba2b21630d8fdf75b53"
+    },
+    {
+      "path": "project/test-support/java/defpackage/agd.java",
+      "bytes": 223,
+      "sha256": "be61a9a0254cc3879db083bd13c1b871ba67dbf517acb8a4519399c74b0e093f"
+    },
+    {
+      "path": "project/test-support/java/defpackage/e6d.java",
+      "bytes": 377,
+      "sha256": "850cf30f1633d3ab8e60a3d574b885f66aaa5b41fce765d1d8e63b4ed56b6615"
+    },
+    {
+      "path": "project/test-support/java/defpackage/gy6.java",
+      "bytes": 78,
+      "sha256": "e5488937cad975c9649ff6f1d78fd2714e2a0602fbd53f15fafe8c673b58bc34"
+    },
+    {
+      "path": "project/test-support/java/defpackage/hn9.java",
+      "bytes": 309,
+      "sha256": "709dd4a483961034fb13e711996893a3286faf0f984b2aa787896d4d0fa55904"
+    },
+    {
+      "path": "project/test-support/java/defpackage/jn6.java",
+      "bytes": 128,
+      "sha256": "52104ff1420b47b7ba141641b8bb0bd3bb4c261f55dcaab0e6a3ec9e85c5e0a5"
+    },
+    {
+      "path": "project/test-support/java/defpackage/jsg.java",
+      "bytes": 283,
+      "sha256": "a93d1aeb492d58d4a65327a92c5043bee7d58ae9318a37d711a65b862620cc99"
+    },
+    {
+      "path": "project/test-support/java/defpackage/kjf.java",
+      "bytes": 948,
+      "sha256": "f3f3e0ecb3c2f4ea8802eb1feeda9f283d5c93aa9a13f8e6e3f20f53ae5d3ccd"
+    },
+    {
+      "path": "project/test-support/java/defpackage/l1g.java",
+      "bytes": 84,
+      "sha256": "ce1f118d9f3f63fca27323ddae83178b9ff134c968ebdf7c9b88ea8ebf47b534"
+    },
+    {
+      "path": "project/test-support/java/defpackage/mh0.java",
+      "bytes": 387,
+      "sha256": "58c107092e6b672541e7452bb03446f1fd2877e773b3904468b72d3209d747f5"
+    },
+    {
+      "path": "project/test-support/java/defpackage/nx4.java",
+      "bytes": 278,
+      "sha256": "410e1754210a9a817fe3fadd507a1a6d150ec519ef1e216bec9ddcd6232ca43a"
+    },
+    {
+      "path": "project/test-support/java/defpackage/rff.java",
+      "bytes": 493,
+      "sha256": "2a31169d848e43960025df4d47904cc8c077aec5fed61b79231ae76311b69e38"
+    },
+    {
+      "path": "project/test-support/java/defpackage/rjb.java",
+      "bytes": 699,
+      "sha256": "992f468722dc60b333e8fc1962c1e0f019fb4a592db5c65a53d599e587599438"
+    },
+    {
+      "path": "project/test-support/java/defpackage/rx6.java",
+      "bytes": 630,
+      "sha256": "ededaad8d858cee88deb5b68a323de97ff7d7777191c49d3824ad7d941abc0bb"
+    },
+    {
+      "path": "project/test-support/java/defpackage/u2f.java",
+      "bytes": 327,
+      "sha256": "608ba40725cb0d25c29834a4e14d6a26307afed56a5924539676ad6b86ff4233"
+    },
+    {
+      "path": "project/test-support/java/defpackage/wx6.java",
+      "bytes": 554,
+      "sha256": "c1f033da84ff2fb581161fef523abe2cc4f4a767cf2145dce8457e2038dc1486"
+    },
+    {
+      "path": "project/test-support/java/defpackage/zhh.java",
+      "bytes": 241,
+      "sha256": "6deced8b64997c4ebc8e10c912c7ca550acd66d963eef5717413c1091d2f95e2"
+    },
+    {
+      "path": "project/test-support/java/okhttp3/MediaType$Companion.java",
+      "bytes": 442,
+      "sha256": "88a179280cc3be249654231e7a341695649c3dc9d4aca2119385519713c32e57"
+    },
+    {
+      "path": "project/test-support/java/okhttp3/MediaType.java",
+      "bytes": 144,
+      "sha256": "618d9a43707d539285fb56b987c7c57ef85ccb6da43ac25a2999c618e42e6613"
+    },
+    {
+      "path": "project/test-support/java/okhttp3/MultipartBody$Part$Companion.java",
+      "bytes": 504,
+      "sha256": "e56073de9813da28606030bb787e2a8128cfcb453518b614cb68677c9e4af492"
+    },
+    {
+      "path": "project/test-support/java/okhttp3/MultipartBody$Part.java",
+      "bytes": 146,
+      "sha256": "bdac3b77b6a5af0ed9cf508e5d85bb9fcd34bdd5e2c36bc95096a875c5be5cbb"
+    },
+    {
+      "path": "project/test-support/java/okhttp3/RequestBody$Companion$toRequestBody$2.java",
+      "bytes": 97,
+      "sha256": "7950bd2a966988113a9cbc42669fed1570125461d8ec1269a9a0e65ff0a3c53c"
+    },
+    {
+      "path": "project/test-support/java/okhttp3/RequestBody$Companion.java",
+      "bytes": 736,
+      "sha256": "9862e0fb8189d5712510daf8feba38a364bad7b5ed12ad40809134b1923599f7"
+    },
+    {
+      "path": "project/test-support/java/okhttp3/RequestBody.java",
+      "bytes": 136,
+      "sha256": "c6fa9c71b46bb12164da23a6589d2e4dfb3bb52d2a09128c6341cc4fadcd22a5"
+    },
+    {
+      "path": "project/test.py",
+      "bytes": 8938,
+      "sha256": "bd9984250b943807cc76a68a52c37e3493d0b3221212c3c6aec8b6ebe18519e3"
+    },
+    {
+      "path": "project/tests/fixtures/constructor-owner-opcodes.smali",
+      "bytes": 969,
+      "sha256": "1cd51ecf03135f228bdc5dba6b52b44ee034524be667bd89064d9660da7a7eaf"
+    },
+    {
+      "path": "project/tests/fixtures/original-methods.dex",
+      "bytes": 528076,
+      "sha256": "bfc27193f5fcd067e374ba2715e52e9eac067ea78c752189dba8c0ab0c7bb27e"
+    },
+    {
+      "path": "project/tests/fixtures/provenance.json",
+      "bytes": 538,
+      "sha256": "6a895dcbdff44a09632344bbe97cfa8a5e3cca02790a5e0100aeb836a56a4284"
+    },
+    {
+      "path": "project/tests/fixtures/widget-bitwise-opcodes.smali",
+      "bytes": 507,
+      "sha256": "53ac2f5ef8d4e8bb7fdfbba0a1f84447101d8b9a4d5533436fba5f0125c23762"
+    },
+    {
+      "path": "project/tests/fixtures/widget-method-mutants.json",
+      "bytes": 10370,
+      "sha256": "01f3b482ff62378d78d295eaf96e96cf54de7c165e7edbc2f2f4b8f0bd0b6159"
+    },
+    {
+      "path": "project/tests/java/BytecodeOracle.java",
+      "bytes": 25146,
+      "sha256": "d91ddcd8ec3d67d41d69b8252835e747c2cad2c6d5ea898323794ceec30e6b56"
+    },
+    {
+      "path": "project/tests/java/ConstructorOracleConformance.java",
+      "bytes": 6312,
+      "sha256": "afc76afcd2ecb163f71b05bb2e66d260b017aed686dbcdd3fc625efb495fb2a7"
+    },
+    {
+      "path": "project/tests/java/PluginUploadParityCases.java",
+      "bytes": 33605,
+      "sha256": "2db300d133f8bfd7a7b5bec42c3ab84345b2cb09292aee2cfe54ec41dd9eef6a"
+    },
+    {
+      "path": "project/tests/java/UiParityTests.java",
+      "bytes": 46991,
+      "sha256": "2f248dc08e902bcb8cb256b7c4d32298649225a0f0b0766242db450e3a2bf84e"
+    },
+    {
+      "path": "project/tests/java/WidgetOracleOpcodeConformance.java",
+      "bytes": 3226,
+      "sha256": "0cc5368c8c47a79e2b5bb3a18dbf1b2e03da2489f0c7d5d75cc17e016ca93e4a"
+    },
+    {
+      "path": "project/tests/java/WidgetParityCases.java",
+      "bytes": 41158,
+      "sha256": "7b1c1affdb2d347405ed2d35a9cf3e7ebc8ab878f75b5be728d9970281374d70"
+    },
+    {
+      "path": "project/tests/test_build.py",
+      "bytes": 10201,
+      "sha256": "d81bb57b499e50fccb1f8acc1311f1b93300af96f56cabfbe6beee5faa9605ed"
+    },
+    {
+      "path": "project/tests/test_ui_mutation_catalog.py",
+      "bytes": 2799,
+      "sha256": "d03282b5c1eda20ea46d9cebbeb716987d978c6dfdace3f8f81bcd74692b12f8"
+    },
+    {
+      "path": "project/tests/test_ui_runtime_policy.py",
+      "bytes": 1651,
+      "sha256": "4cfa092b94bb19ffab0ff873366db570fcf9e95081c79bd6c62b2742d9c87693"
+    },
+    {
+      "path": "project/tests/test_v9.py",
+      "bytes": 15421,
+      "sha256": "2c154ef4ac334358c5e69dad82d9b84540104981340ffa8b4e6ccb9a17be779d"
+    },
+    {
+      "path": "project/ui_mutation_catalog.py",
+      "bytes": 3606,
+      "sha256": "2d9822c98c73ce4f9dc6240560e1f6046bebe616a7ff44ddca9a047692fc52f0"
+    },
+    {
+      "path": "project/ui_negative_control.py",
+      "bytes": 21424,
+      "sha256": "62d2ba93cd7234fd89d3cf77504358e68fc26ed0d8fef7407b97b18c55aea751"
+    },
+    {
+      "path": "project/ui_runtime_policy.py",
+      "bytes": 2793,
+      "sha256": "9f1a70bd67ef37d7fc19edd521bc060ced4e09dcee262606d550e779d83c6d15"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2293,
+      "sha256": "6f78508bfe25556b6ef86326377f00b47b717a0e7ff19cc0b68109960c330282"
+    },
+    {
+      "path": "reviewable/acceptance-latest.json",
+      "bytes": 11125,
+      "sha256": "ec92e9b7328b4f2d2fd68c33599ea7c4202a1c20b88797b79a60e2ee878e6202"
+    },
+    {
+      "path": "reviewable/baseline-resource-parity.json",
+      "bytes": 15628,
+      "sha256": "29ef896b451e39ce5a9c507d5cbdb56d8caa367b580581bafe8660dbd83ea14f"
+    },
+    {
+      "path": "reviewable/baseline-roundtrip.json",
+      "bytes": 430,
+      "sha256": "65df2516932c8fb6971b5a6625521af18108c222b1ceca1775f0aa85a9b0c80f"
+    },
+    {
+      "path": "reviewable/constructor-oracle-conformance.json",
+      "bytes": 1132,
+      "sha256": "7eef8e090f3da731e03613b15dbefc4b34b204e3878ffcfaa25b95ad094b5b5f"
+    },
+    {
+      "path": "reviewable/core-negative-controls.json",
+      "bytes": 521,
+      "sha256": "ea8e7e4432e773e15759c8c76c33ca8cb0c02fd6ef6f43838ae8c97f5fd5aaa8"
+    },
+    {
+      "path": "reviewable/engine-negative-controls.json",
+      "bytes": 1334,
+      "sha256": "9fcecf607c59b40d4132e220c74d6b384060096d3a0d65236b98c40bc0d09a8d"
+    },
+    {
+      "path": "reviewable/engine-oracle-semantics.json",
+      "bytes": 313,
+      "sha256": "efc253aea23a98a5549623021127861b67e032b143639974d7661fd6a29e55be"
+    },
+    {
+      "path": "reviewable/environment-negative-controls.json",
+      "bytes": 860,
+      "sha256": "6e206c6881ea2e925fde24ad2fc56f9cfdf55cc3a245a0eaf7f9f91eecd6c1b8"
+    },
+    {
+      "path": "reviewable/full-apk-edit-probe.json",
+      "bytes": 1115,
+      "sha256": "46fd25765dfb47a66c9287cf502bef521e2cc7970f59075f09209b457488dbb0"
+    },
+    {
+      "path": "reviewable/hybrid-resource-parity.json",
+      "bytes": 15626,
+      "sha256": "d59258ec811ea54403f8d460bdb4b05ce43adc521d0fba1053844beddcc439b9"
+    },
+    {
+      "path": "reviewable/hybrid-roundtrip.json",
+      "bytes": 183854,
+      "sha256": "05a696b0722bc618c3db3998ee0b99fe1911d62dae9d4de97f9b541b60400de8"
+    },
+    {
+      "path": "reviewable/java-all-path-parity.json",
+      "bytes": 646,
+      "sha256": "9d703cf3937284598ce668f0d5b8931f166226120d8cd4102a83e5ce80647ef5"
+    },
+    {
+      "path": "reviewable/java-engine-three-path-parity.json",
+      "bytes": 7033,
+      "sha256": "faad536f4f373b20eac54b83e4115ca272c7de4c94416553c10adc90eea88390"
+    },
+    {
+      "path": "reviewable/java-ui-three-path-parity.json",
+      "bytes": 8131,
+      "sha256": "7432935adfac312c8eda689f1f1bdcb6747aa2369a588d48986ba4fc8be201df"
+    },
+    {
+      "path": "reviewable/migration-linkage-check.json",
+      "bytes": 1791,
+      "sha256": "6a4ffd1e3104a06beefd0c79034232c1f4c305bc912ac2a1a8ce3b56ea29ebc2"
+    },
+    {
+      "path": "reviewable/migration-static-proof.json",
+      "bytes": 1390,
+      "sha256": "9f9e9dd04c432ebdee265a250750f49832b2786ddc95cbd3aee73cf358e32584"
+    },
+    {
+      "path": "reviewable/negative-control.json",
+      "bytes": 267,
+      "sha256": "c9d0deb0e2c14e2e7f5a5343452a54e9b1ef403b4de170a28d1c01f62a9fdfca"
+    },
+    {
+      "path": "reviewable/oracle-semantics.json",
+      "bytes": 406,
+      "sha256": "4114dc8bee417402fb1064b92d43891c257890b4f9663766b00bd071b339a57f"
+    },
+    {
+      "path": "reviewable/python-unit-tests.log",
+      "bytes": 33266,
+      "sha256": "970f7f627ecdcf97c94d8b517154321b1ce719e9b64ab0138f0497ffdace2f50"
+    },
+    {
+      "path": "reviewable/reference-failures-status-v9.json",
+      "bytes": 18885,
+      "sha256": "8ffbc1ac5b72d7de2a5e712ae179ff6caf1a556b52a8d003d6e56ea2edb0a282"
+    },
+    {
+      "path": "reviewable/ui-negative-controls.json",
+      "bytes": 72784,
+      "sha256": "73454346600b878fc4939319de5a24f2453c9c0b131d3b825dfa41ada1cc03bd"
+    },
+    {
+      "path": "reviewable/ui-oracle-semantics.json",
+      "bytes": 176,
+      "sha256": "a33dc35354c849da5cd91038342eee424375d8f1176ffc02ee17fd36a6d2b1f9"
+    },
+    {
+      "path": "reviewable/ui-runtime-policy.json",
+      "bytes": 917,
+      "sha256": "885cd3e71515c0006b75433ec65e0643ed90dc1592a019e79ecdbb998e422e70"
+    },
+    {
+      "path": "reviewable/widget-bitwise-oracle-conformance.json",
+      "bytes": 541,
+      "sha256": "9622fab805a5a6b1e6ddbf6fab6c947cecfae36fb98df4fee66d5fdeac390975"
+    },
+    {
+      "path": "run_combined_acceptance.py",
+      "bytes": 9377,
+      "sha256": "21c63ab7902c6c23c896bcadb59f466261c1191c67dec7530b99616561e31a2a"
+    }
+  ]
+}

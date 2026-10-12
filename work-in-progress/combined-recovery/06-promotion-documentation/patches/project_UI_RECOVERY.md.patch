@@ -1,0 +1,32 @@
+--- a/project/UI_RECOVERY.md
++++ b/project/UI_RECOVERY.md
+@@ -2,7 +2,7 @@
+ 
+ Ten existing method bodies in this family are registered for compilation from readable
+ Java. The combined registry has 1,242 bodies across 605 classes; 1,119 are prior
+-constant/no-op bodies. Combined acceptance is still pending for this source copy.
++constant/no-op bodies. All 16 configured acceptance gates passed for this source copy.
+ This is not a complete Java/Kotlin application or Android runtime equivalence.
+ 
+ | Original method | Recovered helper | Scope |
+@@ -103,12 +103,14 @@
+ The Widget signed five-gate proof passed 191,133 total cases and 265 Python tests.
+ These are separate source/APK identities, not an executed combined result.
+ 
+-The combined source prepares 23,174 UI cases, 15,326 independent expected-result
+-checks, and all 78 actual Java fault controls. It retains multi-edit occurrence
+-counts, every required case label, the same original instruction coverage, actual
+-mutant source/classes, and exact full positive restoration. The complete run has
+-not executed yet. `COMBINED_RECOVERY.md` describes both methods and the host runtime
+-policy; the original message normalizer remains unchanged.
++The combined source passed 23,174 UI cases, 15,326 independent expected-result
++checks, and all 78 actual Java fault controls. Every required case rejected its
++intended defect, with zero unsupported executions and unchanged original coverage;
++the final clean UI run restored the complete positive baseline exactly. The actual
++78-control gate took 2,661.218 seconds. All retained mutant sources/classes and
++the [fresh control report](../work-in-progress/combined-recovery/05-full-acceptance/reviewable/ui-negative-controls.json) are
++bound in the closed proof. `COMBINED_RECOVERY.md` describes both methods and the
++host runtime policy; the original message normalizer remains unchanged.
+ 
+ ## Inherited eight-method host comparisons
+ 

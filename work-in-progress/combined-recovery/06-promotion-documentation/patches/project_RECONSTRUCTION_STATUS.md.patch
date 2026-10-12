@@ -1,0 +1,140 @@
+--- a/project/RECONSTRUCTION_STATUS.md
++++ b/project/RECONSTRUCTION_STATUS.md
+@@ -1,67 +1,93 @@
+ # Current reconstruction progress
+ 
+-This source copy is the **private combined candidate: 1,242 registered Java method
+-bodies across 605 classes**, including ten UI-family methods. The full combined
+-acceptance run is pending. The currently published APK remains the separately
+-verified 1,240-method candidate until a coherent new source/APK promotion.
++The current combined source compiles **1,242 registered Java method bodies across
++605 classes**, including ten UI-family methods. It adds plugin upload and Widget
++update to the prior 1,240-method candidate. **All 16 configured host acceptance
++gates passed** for this exact source and APK on 12 October 2026. Whole-application
++1:1 Android behavior remains unestablished.
+ 
+ The comparison target is the supplied MacroDroid 5.67.8 APK, package
+-`com.arlosoft.macrodroid`, version code `896700008`. Most application code still
+-builds from preserved smali; native libraries and opaque assets remain binary
+-dependencies. Method counts do not measure the percentage of application parity.
++`com.arlosoft.macrodroid`, version code `896700008`. Most executable logic still
++builds from preserved editable smali; native libraries and opaque assets remain
++original binaries. The number of recovered Java methods is not a parity percentage.
++
++## Current source and signed artifact
++
++| Identity | Exact value |
++| --- | --- |
++| Source input files | 81,291; rehashed before/after acceptance and freezing |
++| Input snapshot SHA256 | `b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553` |
++| Registered bodies / classes | 1,242 / 605 |
++| Fresh original-method fixture SHA256 | `bfc27193f5fcd067e374ba2715e52e9eac067ea78c752189dba8c0ab0c7bb27e` |
++| Signed combined APK bytes | 94,683,119 |
++| Signed combined APK SHA256 | `5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182` |
++| Preserved baseline SHA256 | `aa8ad3013ad211c8a39d083943b0a671d75e0bbbedccc924ea0093c590c9a096` |
++
++The [complete acceptance report](../work-in-progress/combined-recovery/05-full-acceptance/reviewable/acceptance-latest.json)
++records all commands, limits, exits and evidence hashes. The
++[independent closing check](../work-in-progress/combined-recovery/05-full-acceptance/result.json) verifies the source boundaries,
++16 gate logs, 22 fresh reports, 78 retained mutant source/class pairs and exact
++signed APKs. All 551 closed reports and the signed candidate bytes are preserved
++in the [immutable checkpoint](../work-in-progress/combined-recovery/05-full-acceptance/).
+ 
+ ## Evidence by exact scope
+ 
+ | Scope | Completed measurement | Remaining requirement |
+ | --- | --- | --- |
+-| Published 1,240-method source | Two hosted runs passed all 16 gates, 188,791 three-path cases, 259 Python tests, all 37 UI faults and clean restoration | Those reports retain their original source/APK identity |
+-| Isolated plugin upload | Signed build, full code/resources, 191,147 three-path cases and all 54 UI faults passed | Actual plugin/network behavior on Android |
+-| Isolated Widget | Five planned signed/host/integrity gates, 191,133 three-path cases and 265 Python tests passed; prior 24 compiled faults rejected | Separate actual Android method probe and Widget feature behavior |
+-| Combined source copy | All 81,245 baseline inputs independently copied and verified; fresh 1,242-method original fixture; exact source delta pinned | Full 16-gate combined acceptance and all 78 actual UI faults |
+-| Original constructor ART probe | Exact original allocation succeeded on the pinned API 35 emulator with verification enabled | This does not execute the Widget method |
+-| Editor journey | Actual original and candidate captures, installed hashes and lifecycle/crash records retained | Strict full comparison rejected PID changes and one observed intro-frame difference; updated bounded policy has its own device run |
++| Current combined host/artifact acceptance | All 16 gates; 193,489 original/JVM/rebuilt cases over all 1,242 methods; zero mismatches and unsupported executions; 273 Python tests | Clean hosted reproduction and Android execution of this exact new APK |
++| Current combined UI controls | 23,174 cases / ten methods; 15,326 independent expectations; all 78 compiled faults detected; exact positive restoration | Real UI feature, lifecycle and integration behavior |
++| Signed source-edit experiment | Fresh controlled source edit reached the signed APK; complete final positive run passed | This proves the editable build path within its measured scope |
++| Prior 1,240-method hosted source | Two complete hosted 16-gate successes; 188,791 cases and 259 Python tests each | Historical source/APK identities remain separate |
++| Isolated plugin upload | 191,147 three-path cases; all 163 original instructions and 26 conditional edges; 54 UI faults and exact restoration | Actual plugin/network behavior on Android |
++| Isolated Widget source | 191,133 three-path cases; all 194 original instructions and 20 conditional edges; 265 Python tests; prior 24 compiled faults rejected | Real nonempty Widget rendering, scheduling and service behavior |
++| Original/isolated Widget ART probe | Eight cases per APK under verification; identical stdout, zero exits, complete 7,214-member hosted archive | This limited probe does not execute the combined APK or a nonempty Widget |
++| Prior 9108 ten-screen Android observation | Both runs complete; all ten XML pairs match; changed pixels `[0,26,0,0,0,0,0,0,0,0]` | The second-page indicator difference and broader Android scope remain unresolved |
+ 
+-The current source input pin covers 81,291 files:
+-
+-`b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553`
+-
+-The combined build is expected to execute 193,489 cases across all 1,242 methods
+-and three paths, including 23,174 UI cases and 15,326 independent UI expectations.
+-All 78 deliberate UI faults, 273 Python tests, the signed source-edit experiment
+-and final positive run remain required. Expected counts are not reported as passes.
++The original/isolated Widget Android record is
++[run 38209599059](../work-in-progress/widget-art/08-hosted-complete-proof/).
++The prior ten-screen observation is
++[run 38205737183](../docs/verification/editor-journey/run-38205737183-attempt-1/).
++Neither result is relabelled as a measurement of the new combined APK.
+ 
+ ## Reproduction
+ 
+ The repository materializer verifies the committed multipart source/toolchain
+-archives and applies only the active `project/` overlay. Historical
+-`work-in-progress/` checkpoints are never applied automatically. From a fresh
+-materialized source tree with Python 3.11+ and JDK 21:
++archives and applies the active `project/` overlay. Historical `work-in-progress/`
++checkpoints are not applied automatically. From a fresh materialized source tree
++with Python 3.11+ and JDK 21:
+ 
+ ```sh
+ python3 release_integrity.py verify
+ python3 acceptance.py
+ ```
+ 
+-`acceptance.py` records each subprocess, budget, exit code and evidence hash. UI
+-fault execution receives the measured 5,400-second suite budget and individual
+-300-second execution limits. All other gate budgets remain 1,200 seconds. A failed
+-gate stops acceptance and retains its evidence. The Android availability probe is
+-not an Android feature test.
++The UI fault suite has a measured 5,400-second outer budget and each individual
++UI execution is limited to 300 seconds. Other acceptance gates retain 1,200-second
++budgets. The source CI job allows 120 minutes. A failure stops acceptance and
++retains raw evidence; no comparison threshold is relaxed by these time budgets.
+ 
+-## Limits and next measurements
++## Android differences and further work
+ 
+-Both observed APKs encountered the same supplied promotion-listener exception
+-after notification denial. The saved raw stack reports a Fragment not attached to
+-Activity in `com.zx.lbua80.onShow`. Matching stack evidence does not make this
+-crash-free behavior. The new opt-in journey policy preserves raw crash logs and
+-verifies an installed-identity/process boundary before subsequent observations.
+-It uses full consecutive byte-identical PNG and XML captures, without cropping,
+-masking, cross-APK frame selection or pixel tolerance.
++The prior original and 9108 candidate both encountered the supplied promotion
++listener's Fragment-not-attached exception after notification denial. That shared
++stack does not establish a crash-free or identical complete lifecycle. The
++bounded continuation policy preserves raw crash records and checks installed
++identity, process boundaries and fresh observations before each further input.
+ 
+-The app uses the openly distributed development signing identity, not the
+-publisher's. Complete high-level Java/Kotlin and native source recovery, the
+-publisher's signing identity and full application runtime equivalence remain
+-unestablished. Real macro execution, permissions/services, persistence/reboot,
+-widgets, integrations, locales/devices/API versions and performance each require
+-their own observed evidence. See `COMBINED_RECOVERY.md`, `UI_RECOVERY.md` and the
+-immutable verification checkpoints for method and test details.
++The ten-screen scale-zero run retained a stable 26-pixel indicator difference on
++the second intro page. The original APK itself produced both observed indicator
++renderings across preserved runs. The cause remains unestablished. A separately
++pinned scale-one diagnostic compares the same original and 9108 APKs using the
++unchanged full-PNG/XML rule; its result must remain distinct from this source proof.
++No crop, mask, pixel tolerance or cross-APK frame selection is used to claim a match.
++
++The shared capture guard now has a reviewed correction for stale chronology and
++physical file reuse; the scoped session verifier also checks capture/input timing
++and paired foreground activity components. Their fresh Android results must be
++measured with the exact activated verifier, while historical reports remain intact.
++
++Complete high-level Java/Kotlin recovery, native source, the publisher's signing
++identity and full runtime equivalence remain unestablished. Macro execution,
++permissions/services, persistence and reboot, widgets, integrations, locales,
++devices/API versions and performance require their own observed evidence.
++See `COMBINED_RECOVERY.md` and `UI_RECOVERY.md` for the current recovered bodies.
