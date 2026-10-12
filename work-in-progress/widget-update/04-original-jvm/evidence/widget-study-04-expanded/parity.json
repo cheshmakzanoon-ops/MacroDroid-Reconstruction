@@ -1,0 +1,237 @@
+{
+  "passed": false,
+  "cases": 2340,
+  "failedCases": 1,
+  "unsupportedExecutions": 0,
+  "independentExpectedResultChecks": 196,
+  "expectedResultFailures": 0,
+  "methodsCovered": 1,
+  "methodKeys": [
+    "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;-\u003em(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;"
+  ],
+  "paths": 2,
+  "androidRuntime": false,
+  "rebuiltDexCompared": false,
+  "registeredInActiveProject": false,
+  "instructionCoverage": {
+    "instructions": 194,
+    "visited": 194,
+    "unvisitedOffsets": [],
+    "conditionalEdges": 20,
+    "conditionalEdgesVisited": 20,
+    "unvisitedConditionalEdges": []
+  },
+  "fullInstructionAndConditionalCoverage": true,
+  "failures": [
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;-\u003em(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;",
+      "case": "widget-saved-cast:1:3:false",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.error:Failed to update custom widget instance 417: Cannot invoke \"Object.getClass()\" because \"obj\" is null"
+        ],
+        "widgetState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "log.error:Failed to update custom widget instance 417: Cannot invoke \"Object.getClass()\" because \"obj\" is null",
+            "iterator.hasNext:iterator:0"
+          ],
+          "boundaryStates": [
+            "1:13:417:-9:context:other-ids:manager0:null:other-ids:iterator:unread-L6:identifier0:unit:other-owner:completion",
+            "2:13:417:-9:context:null:manager0:null:null:iterator:null:null:unit:other-owner:completion",
+            "2:13:417:-9:context:null:manager0:null:null:iterator:null:null:unit:other-owner:completion"
+          ],
+          "boundaryCalls": 3,
+          "firstCalls": [],
+          "secondCalls": [],
+          "firstCount": 0,
+          "secondCount": 0,
+          "continuations": [
+            "2:13:417:-9:context:null:manager0:null:null:iterator:null:null:unit:other-owner:completion"
+          ],
+          "currentState": "2:13:417:-9:context:null:manager0:null:null:iterator:null:null:unit:other-owner:completion",
+          "label": 2,
+          "savedIndex": 13,
+          "savedId": 417,
+          "savedPhase": -9,
+          "factories": [],
+          "factoryArities": [],
+          "factoryCompletions": [],
+          "factoryClasses": [],
+          "identifiers": [
+            {
+              "identity": "identifier0",
+              "widgetId": 417
+            }
+          ],
+          "managers": [
+            {
+              "identity": "manager0",
+              "context": "context",
+              "backend": "backend"
+            }
+          ],
+          "renderers": [
+            "renderer0"
+          ],
+          "logs": [
+            "Failed to update custom widget instance 417: Cannot invoke \"Object.getClass()\" because \"obj\" is null"
+          ],
+          "logCount": 1,
+          "ownerInitializationContexts": [],
+          "otherOwnerInitializationContexts": [],
+          "backendReads": [],
+          "otherBackendReads": [],
+          "listEmptyReads": 0,
+          "listIteratorReads": 0,
+          "otherListEmptyReads": 0,
+          "otherListIteratorReads": 0,
+          "iterator": {
+            "present": true,
+            "position": 0,
+            "hasNextReads": 1,
+            "nextReads": 0,
+            "values": []
+          },
+          "otherIterator": {
+            "present": true,
+            "position": 0,
+            "hasNextReads": 0,
+            "nextReads": 0,
+            "values": [
+              "91"
+            ]
+          },
+          "steps": [
+            "return:unit:2:13:417:-9:context:null:manager0:null:null:iterator:null:null:unit:other-owner:completion"
+          ],
+          "newContinuations": 0,
+          "newManagers": 0,
+          "newRenderers": 0,
+          "newIdentifiers": 0,
+          "newFactories": 0,
+          "markerEqualsCalls": 0,
+          "suppliedContinuationReused": true,
+          "observedMessages": [],
+          "numbers": []
+        }
+      },
+      "java": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [
+          "log.error:Failed to update custom widget instance 417: Cannot invoke \"defpackage.hn9.d(android.content.Context, defpackage.gy6, defpackage.o73)\" because \"\u003clocal13\u003e\" is null"
+        ],
+        "widgetState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "log.error:Failed to update custom widget instance 417: Cannot invoke \"defpackage.hn9.d(android.content.Context, defpackage.gy6, defpackage.o73)\" because \"\u003clocal13\u003e\" is null",
+            "iterator.hasNext:iterator:0"
+          ],
+          "boundaryStates": [
+            "1:13:417:-9:context:other-ids:manager0:null:other-ids:iterator:unread-L6:identifier0:unit:other-owner:completion",
+            "2:13:417:-9:context:null:manager0:null:null:iterator:null:null:unit:other-owner:completion",
+            "2:13:417:-9:context:null:manager0:null:null:iterator:null:null:unit:other-owner:completion"
+          ],
+          "boundaryCalls": 3,
+          "firstCalls": [],
+          "secondCalls": [],
+          "firstCount": 0,
+          "secondCount": 0,
+          "continuations": [
+            "2:13:417:-9:context:null:manager0:null:null:iterator:null:null:unit:other-owner:completion"
+          ],
+          "currentState": "2:13:417:-9:context:null:manager0:null:null:iterator:null:null:unit:other-owner:completion",
+          "label": 2,
+          "savedIndex": 13,
+          "savedId": 417,
+          "savedPhase": -9,
+          "factories": [],
+          "factoryArities": [],
+          "factoryCompletions": [],
+          "factoryClasses": [],
+          "identifiers": [
+            {
+              "identity": "identifier0",
+              "widgetId": 417
+            }
+          ],
+          "managers": [
+            {
+              "identity": "manager0",
+              "context": "context",
+              "backend": "backend"
+            }
+          ],
+          "renderers": [
+            "renderer0"
+          ],
+          "logs": [
+            "Failed to update custom widget instance 417: Cannot invoke \"defpackage.hn9.d(android.content.Context, defpackage.gy6, defpackage.o73)\" because \"\u003clocal13\u003e\" is null"
+          ],
+          "logCount": 1,
+          "ownerInitializationContexts": [],
+          "otherOwnerInitializationContexts": [],
+          "backendReads": [],
+          "otherBackendReads": [],
+          "listEmptyReads": 0,
+          "listIteratorReads": 0,
+          "otherListEmptyReads": 0,
+          "otherListIteratorReads": 0,
+          "iterator": {
+            "present": true,
+            "position": 0,
+            "hasNextReads": 1,
+            "nextReads": 0,
+            "values": []
+          },
+          "otherIterator": {
+            "present": true,
+            "position": 0,
+            "hasNextReads": 0,
+            "nextReads": 0,
+            "values": [
+              "91"
+            ]
+          },
+          "steps": [
+            "return:unit:2:13:417:-9:context:null:manager0:null:null:iterator:null:null:unit:other-owner:completion"
+          ],
+          "newContinuations": 0,
+          "newManagers": 0,
+          "newRenderers": 0,
+          "newIdentifiers": 0,
+          "newFactories": 0,
+          "markerEqualsCalls": 0,
+          "suppliedContinuationReused": true,
+          "observedMessages": [],
+          "numbers": []
+        }
+      }
+    }
+  ],
+  "failedCaseLabels": [
+    "widget-saved-cast:1:3:false"
+  ],
+  "hostParentConstructorAdapters": {
+    "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;-\u003em(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;": [
+      "Lzhh;-\u003eLrff;-\u003e\u003cinit\u003e(ILm73;)V"
+    ]
+  },
+  "hostParentConstructorAdapterCalls": {
+    "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;-\u003em(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;:Lzhh;-\u003eLrff;-\u003e\u003cinit\u003e(ILm73;)V": 2460
+  },
+  "constructorScope": "Exact method-scoped DEX owner validation with a compile-only child reflection adapter; not ART verification",
+  "invalidLabelDefensiveReturnUsesOneInjectedReturningBoundary": true,
+  "scope": "Bounded selected original method/JVM comparison; no widget service, rendering, coroutine scheduler, application build or Android execution"
+}

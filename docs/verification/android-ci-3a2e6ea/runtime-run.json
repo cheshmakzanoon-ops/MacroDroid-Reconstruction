@@ -1,0 +1,273 @@
+{
+  "schema_version": 2,
+  "scope": "Cold launch, four English intro stills, first surface after one completion tap, and separate ART constructor allocation",
+  "status": "REQUESTED_RUNTIME_SCOPES_INCOMPLETE_OR_DIFFERENT",
+  "started_utc": "2026-10-12T03:40:36Z",
+  "original_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+  "candidate_sha256": "9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2",
+  "serial": "emulator-5560",
+  "expected_avd": "MacroDroid_API35_Disposable",
+  "boot_ready": true,
+  "capture_device_configured": true,
+  "systemui_demo_clock_requested": "1200",
+  "zero_device_animation_scales_requested": true,
+  "post_intro_requested": true,
+  "constructor_probe_sha256": "85f53ad51a1a85fd2161bd485db9f12556f737b0745f6e26ffdff31a927d5281",
+  "cold_launch_capture_equal": true,
+  "intro_sequence_equal": false,
+  "post_intro_surface_equal": false,
+  "android_runtime_executed": true,
+  "installed_apk_identities_verified": true,
+  "complete_intro_sequences_observed": true,
+  "complete_post_intro_captures_observed": true,
+  "requested_capture_gate_passed": false,
+  "constructor_allocation_on_art_verified": true,
+  "constructor_probe_gate_passed": true,
+  "all_requested_runtime_checks_passed": false,
+  "animation_parity_established": false,
+  "home_feature_parity_established": false,
+  "full_runtime_1_to_1_established": false,
+  "commands": [
+    {
+      "label": "boot-readiness",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/tools/android/wait_android_ready.py",
+        "--evidence",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-runtime/environment",
+        "--timeout",
+        "900"
+      ],
+      "timeout_seconds": 930,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": {
+        "path": "stages/boot-readiness.stdout.txt",
+        "bytes": 1629,
+        "sha256": "bc3592b9693b47e8555addca9ae414d760977a5710fc736b9106daecf0e65e3b"
+      },
+      "stderr": {
+        "path": "stages/boot-readiness.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "seconds": 42.06
+    },
+    {
+      "label": "configure-and-observe-capture-device",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/tools/android/runtime_job.py",
+        "--queue",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-runtime/environment/queue",
+        "--timeout",
+        "240",
+        "--cwd",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/MacroDroid_v9",
+        "--",
+        "/usr/bin/python3",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/tools/android/configure_capture_device.py",
+        "--serial",
+        "emulator-5560",
+        "--output",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-runtime/capture-device",
+        "--demo-clock",
+        "1200",
+        "--disable-animations"
+      ],
+      "timeout_seconds": 280,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": {
+        "path": "stages/configure-and-observe-capture-device.stdout.txt",
+        "bytes": 189,
+        "sha256": "d2d2545bc2a62ed63cf440c3172100fb02ed6989bc9736aaaced4ff749afee63"
+      },
+      "stderr": {
+        "path": "stages/configure-and-observe-capture-device.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "seconds": 19.109
+    },
+    {
+      "label": "verify-independent-constructor-allocation-on-art",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/tools/android/runtime_job.py",
+        "--queue",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-runtime/environment/queue",
+        "--timeout",
+        "780",
+        "--cwd",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/MacroDroid_v9",
+        "--",
+        "/usr/bin/python3",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/tools/android/android_constructor_probe.py",
+        "--adb",
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "--serial",
+        "emulator-5560",
+        "--original",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-original.apk",
+        "--probe",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/tools/android/probes/constructor-probe.dex",
+        "--provenance",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/tools/android/probes/constructor-probe.json",
+        "--timeout",
+        "120",
+        "--output",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-runtime/constructor-probe"
+      ],
+      "timeout_seconds": 820,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": {
+        "path": "stages/verify-independent-constructor-allocation-on-art.stdout.txt",
+        "bytes": 28248,
+        "sha256": "622ee3aa495d82076defbbe545e3cda77d27d1a2caeba20a765f539e56976c83"
+      },
+      "stderr": {
+        "path": "stages/verify-independent-constructor-allocation-on-art.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "seconds": 3.279
+    },
+    {
+      "label": "capture-original-and-candidate",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/tools/android/runtime_job.py",
+        "--queue",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-runtime/environment/queue",
+        "--timeout",
+        "1800",
+        "--cwd",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/MacroDroid_v9",
+        "--",
+        "/usr/bin/python3",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/MacroDroid_v9/android_acceptance.py",
+        "--serial",
+        "emulator-5560",
+        "--original",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-original.apk",
+        "--candidate",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-current-hybrid.apk",
+        "--accept-package-data-removal",
+        "--intro-pages",
+        "--post-intro",
+        "--install-timeout",
+        "600",
+        "--launch-timeout",
+        "180",
+        "--ui-timeout",
+        "120",
+        "--output",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-runtime/capture"
+      ],
+      "timeout_seconds": 1840,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": {
+        "path": "stages/capture-original-and-candidate.stdout.txt",
+        "bytes": 52636,
+        "sha256": "680182a6fda056c95c1a4e334edcc276239bcf54e55c1b4071bae1e541d63987"
+      },
+      "stderr": {
+        "path": "stages/capture-original-and-candidate.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "seconds": 111.6
+    },
+    {
+      "label": "compare-complete-cold-captures",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/MacroDroid_v9/android_compare.py",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-runtime/capture"
+      ],
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout": {
+        "path": "stages/compare-complete-cold-captures.stdout.txt",
+        "bytes": 636,
+        "sha256": "b0f9e176dabe3d07d25c0418f785da6a91f4314e3c76ed0ee641e52570a81d3e"
+      },
+      "stderr": {
+        "path": "stages/compare-complete-cold-captures.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "seconds": 1.662
+    },
+    {
+      "label": "compare-four-intro-pages-and-transitions",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/MacroDroid_v9/android_intro.py",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-runtime/capture"
+      ],
+      "timeout_seconds": 120,
+      "exit_code": 2,
+      "timed_out": false,
+      "stdout": {
+        "path": "stages/compare-four-intro-pages-and-transitions.stdout.txt",
+        "bytes": 2364,
+        "sha256": "32d6e2ecc6d6a5c49098388b1cb2056bf278869798ec2ae834714071f5514aca"
+      },
+      "stderr": {
+        "path": "stages/compare-four-intro-pages-and-transitions.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "seconds": 7.179
+    },
+    {
+      "label": "compare-first-surface-after-intro",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/MacroDroid_v9/android_post_intro.py",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/ci-runtime/capture"
+      ],
+      "timeout_seconds": 120,
+      "exit_code": 2,
+      "timed_out": false,
+      "stdout": {
+        "path": "stages/compare-first-surface-after-intro.stdout.txt",
+        "bytes": 4137,
+        "sha256": "5a6248585687cb102b09817b4706606c5978969bde341d982a3ad881a91011fc"
+      },
+      "stderr": {
+        "path": "stages/compare-first-surface-after-intro.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "seconds": 9.743
+    }
+  ],
+  "failures": [
+    "intro-comparison",
+    "post_intro-comparison",
+    "capture-or-comparison"
+  ],
+  "report_errors": {},
+  "boot_report_sha256": "b379f4686a10bd972b86eda539b8ce80f495a4f3fcf3b7663f0cbc231b782863",
+  "boot_status": null,
+  "capture_device_report_sha256": "8c27a9c2499c2fadf316a4f0851f4dd42da6c72f49cc3deeff18d9e2b0817f07",
+  "capture_device_status": "CAPTURE_DEVICE_CONFIGURED",
+  "constructor_probe_report_sha256": "622ee3aa495d82076defbbe545e3cda77d27d1a2caeba20a765f539e56976c83",
+  "constructor_probe_status": "ART_CONSTRUCTOR_ALLOCATION_VERIFIED",
+  "cold_launch_comparison_report_sha256": "b0f9e176dabe3d07d25c0418f785da6a91f4314e3c76ed0ee641e52570a81d3e",
+  "cold_launch_comparison_status": "EXACT_COLD_LAUNCH_MATCH_ONLY",
+  "intro_comparison_report_sha256": "32d6e2ecc6d6a5c49098388b1cb2056bf278869798ec2ae834714071f5514aca",
+  "intro_comparison_status": "INTRO_DIFFERENCE",
+  "post_intro_comparison_report_sha256": "5a6248585687cb102b09817b4706606c5978969bde341d982a3ad881a91011fc",
+  "post_intro_comparison_status": "POST_INTRO_SURFACE_DIFFERENCE",
+  "capture_recorder_exit_code": 0,
+  "service_exit_code": 0,
+  "emulator_log_lines_omitted": 2,
+  "finished_utc": "2026-10-12T03:43:52Z"
+}

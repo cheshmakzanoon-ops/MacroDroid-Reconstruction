@@ -1,0 +1,573 @@
+{
+  "status": "ART_VERIFIED_COLD_EXACT_INTRO_DIFFERENCE",
+  "analyzed_utc": "2026-10-12T03:55:26.315405+00:00",
+  "run_id": 38200503458,
+  "commit": "3a2e6ea9ef9e18d38d5921bb18c77e1c2eb13677",
+  "archive": {
+    "bytes": 1016845,
+    "sha256": "fb22f6daa60ae9806b6c1e1980e3e129c7454337100779b5ac79f278c06471db"
+  },
+  "all_archive_files_verified": 426,
+  "recorded_artifact_hashes_verified": {
+    "capture": 136,
+    "constructor": 48
+  },
+  "all_six_runtime_report_bindings_verified": true,
+  "boot_ready_binding": {
+    "source_path": "stages/boot-readiness.stdout.txt",
+    "literal_byte_offset": 148,
+    "literal_bytes": 1481,
+    "sha256": "b379f4686a10bd972b86eda539b8ce80f495a4f3fcf3b7663f0cbc231b782863",
+    "exact_literal_bytes_match_recorded_ready_hash": true,
+    "final_live_status_file_is_expected_stopped_state": true
+  },
+  "source_verifier_pins": {
+    "android_compare.py": "0b9a50cec26d0cc97a2b8c5592aaf614a40b5dc339bccf85d85f1d753500126f",
+    "android_intro.py": "5af591694ff06ae1518345fdc6510d58183f07d54cddff8899c03a9a8c85bd83",
+    "android_post_intro.py": "941e4703467afedba33445575c4611c9afc0238ba79b46f43ff4f8683a6281c9",
+    "tools/android/android_constructor_probe.py": "f2ce05d3e5e50b76876b2761221c7dd796b97ce27a1207c8e5fda2ee7313afcd"
+  },
+  "all_three_exact_comparator_replays_match": true,
+  "constructor_probe_independent_verify_result": true,
+  "constructor": {
+    "status": "ART_CONSTRUCTOR_ALLOCATION_VERIFIED",
+    "probe_sha256": "85f53ad51a1a85fd2161bd485db9f12556f737b0745f6e26ffdff31a927d5281",
+    "original_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+    "environment": {
+      "ro.kernel.qemu": "1",
+      "sys.boot_completed": "1",
+      "ro.build.version.sdk": "35",
+      "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+      "ro.product.cpu.abi": "x86_64",
+      "ro.product.cpu.abilist": "x86_64,arm64-v8a",
+      "ro.dalvik.vm.native.bridge": "libndk_translation.so"
+    },
+    "art_binary_sha256": "f96a70a7360448b0178f9e8b745b5362663f437116e17ff541cfc0e482c08a18",
+    "device_inputs": {
+      "probe": {
+        "path": "/data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/constructor-probe.dex",
+        "sha256": "85f53ad51a1a85fd2161bd485db9f12556f737b0745f6e26ffdff31a927d5281",
+        "mode": "444"
+      },
+      "original": {
+        "path": "/data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/original.apk",
+        "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+        "mode": "444"
+      }
+    },
+    "art_command": {
+      "label": "execute-constructor-probe",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "/system/bin/timeout -s KILL 120 /apex/com.android.art/bin/dalvikvm64 -Xverify:all -cp /data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/constructor-probe.dex:/data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/original.apk recovered.probe.ConstructorProbe"
+      ],
+      "started_utc": "2026-10-12T03:41:39.767103+00:00",
+      "timeout_seconds": 150,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.209,
+      "stdout": {
+        "path": "022-execute-constructor-probe.stdout.txt",
+        "bytes": 44,
+        "sha256": "ce8fe4cba45159d4c1598d28f4e1329148caa24841ee3695bdbe0903757c36bb"
+      },
+      "stderr": {
+        "path": "022-execute-constructor-probe.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "art_argv": [
+      "/system/bin/timeout",
+      "-s",
+      "KILL",
+      "120",
+      "/apex/com.android.art/bin/dalvikvm64",
+      "-Xverify:all",
+      "-cp",
+      "/data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/constructor-probe.dex:/data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/original.apk",
+      "recovered.probe.ConstructorProbe"
+    ],
+    "cleanup_complete": true,
+    "compile_only_stubs_on_classpath": false,
+    "app_apk_modified": false,
+    "app_installed": false,
+    "widget_behavior_verified": false
+  },
+  "capture_original_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+  "capture_candidate_sha256": "9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2",
+  "capture_device_environment": {
+    "serial": "emulator-5560",
+    "ro.product.cpu.abilist": "x86_64,arm64-v8a",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.build.version.sdk": "35",
+    "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "ro.kernel.qemu": "1",
+    "ro.hardware": "ranchu",
+    "ro.dalvik.vm.native.bridge": "libndk_translation.so",
+    "ro.dalvik.vm.isa.arm64": "x86_64",
+    "persist.sys.locale": "",
+    "persist.sys.timezone": "Etc/UTC",
+    "display_size": "Physical size: 720x1280",
+    "display_density": "Physical density: 320",
+    "font_scale": "1.0",
+    "airplane_mode_on": "0",
+    "wifi_on": "1",
+    "mobile_data": "1",
+    "sysui_demo_allowed": "1",
+    "sysui_tuner_demo_on": "1",
+    "animator_duration_scale": "0",
+    "window_animation_scale": "0",
+    "transition_animation_scale": "0"
+  },
+  "capture_status": "CAPTURES_RECORDED_NOT_PARITY",
+  "full_unmasked_pairs": [
+    {
+      "name": "cold",
+      "size": [
+        720,
+        1280
+      ],
+      "changed_rgba_pixels": 0,
+      "bounds_exclusive": null,
+      "png_bytes_equal": true,
+      "xml_bytes_equal": true,
+      "pngs": [
+        {
+          "path": "capture/original.png",
+          "bytes": 83895,
+          "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+        },
+        {
+          "path": "capture/candidate.png",
+          "bytes": 83895,
+          "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+        }
+      ],
+      "xmls": [
+        {
+          "path": "capture/original-hierarchy.xml",
+          "bytes": 5939,
+          "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+        },
+        {
+          "path": "capture/candidate-hierarchy.xml",
+          "bytes": 5939,
+          "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+        }
+      ]
+    },
+    {
+      "name": "intro-2",
+      "size": [
+        720,
+        1280
+      ],
+      "changed_rgba_pixels": 34,
+      "bounds_exclusive": [
+        313,
+        1184,
+        352,
+        1200
+      ],
+      "png_bytes_equal": false,
+      "xml_bytes_equal": true,
+      "pngs": [
+        {
+          "path": "capture/original-intro-2.png",
+          "bytes": 75316,
+          "sha256": "6e98d2ba0e7d3bd76b15f3e9f6de6ab698f763caa6d89f43672d00a75067a845"
+        },
+        {
+          "path": "capture/candidate-intro-2.png",
+          "bytes": 75368,
+          "sha256": "92a14136c68347341c9dd190adef81f5453a91190dc857585b04ce8a65e1e25e"
+        }
+      ],
+      "xmls": [
+        {
+          "path": "capture/original-intro-2-hierarchy.xml",
+          "bytes": 6689,
+          "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+        },
+        {
+          "path": "capture/candidate-intro-2-hierarchy.xml",
+          "bytes": 6689,
+          "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+        }
+      ]
+    },
+    {
+      "name": "intro-3",
+      "size": [
+        720,
+        1280
+      ],
+      "changed_rgba_pixels": 0,
+      "bounds_exclusive": null,
+      "png_bytes_equal": true,
+      "xml_bytes_equal": true,
+      "pngs": [
+        {
+          "path": "capture/original-intro-3.png",
+          "bytes": 79359,
+          "sha256": "b3410bed78ab5591cc3ed8797eb7e62d050f1aae4ce64d8762981f73bfe839f8"
+        },
+        {
+          "path": "capture/candidate-intro-3.png",
+          "bytes": 79359,
+          "sha256": "b3410bed78ab5591cc3ed8797eb7e62d050f1aae4ce64d8762981f73bfe839f8"
+        }
+      ],
+      "xmls": [
+        {
+          "path": "capture/original-intro-3-hierarchy.xml",
+          "bytes": 6685,
+          "sha256": "0d213e7057f57c885997ea2da8840c982d8f1e6b7a266adadb1c33ff894f9fe9"
+        },
+        {
+          "path": "capture/candidate-intro-3-hierarchy.xml",
+          "bytes": 6685,
+          "sha256": "0d213e7057f57c885997ea2da8840c982d8f1e6b7a266adadb1c33ff894f9fe9"
+        }
+      ]
+    },
+    {
+      "name": "intro-4",
+      "size": [
+        720,
+        1280
+      ],
+      "changed_rgba_pixels": 0,
+      "bounds_exclusive": null,
+      "png_bytes_equal": true,
+      "xml_bytes_equal": true,
+      "pngs": [
+        {
+          "path": "capture/original-intro-4.png",
+          "bytes": 70512,
+          "sha256": "35c1bea0a4aa3cdadbb47903c5fea87f980d5b99bb0ff97322deb845b5b25971"
+        },
+        {
+          "path": "capture/candidate-intro-4.png",
+          "bytes": 70512,
+          "sha256": "35c1bea0a4aa3cdadbb47903c5fea87f980d5b99bb0ff97322deb845b5b25971"
+        }
+      ],
+      "xmls": [
+        {
+          "path": "capture/original-intro-4-hierarchy.xml",
+          "bytes": 6682,
+          "sha256": "f05632a504ab0a6aab8608de15b95bc4f41f2bb9212879026f14927bea5af89b"
+        },
+        {
+          "path": "capture/candidate-intro-4-hierarchy.xml",
+          "bytes": 6682,
+          "sha256": "f05632a504ab0a6aab8608de15b95bc4f41f2bb9212879026f14927bea5af89b"
+        }
+      ]
+    },
+    {
+      "name": "post-intro",
+      "size": [
+        720,
+        1280
+      ],
+      "changed_rgba_pixels": 0,
+      "bounds_exclusive": null,
+      "png_bytes_equal": true,
+      "xml_bytes_equal": true,
+      "pngs": [
+        {
+          "path": "capture/original-post-intro.png",
+          "bytes": 70017,
+          "sha256": "9142bae1c48456abcb24bf3aab61231fa1d2578baed37d19161c77d4a9ae1a1a"
+        },
+        {
+          "path": "capture/candidate-post-intro.png",
+          "bytes": 70017,
+          "sha256": "9142bae1c48456abcb24bf3aab61231fa1d2578baed37d19161c77d4a9ae1a1a"
+        }
+      ],
+      "xmls": [
+        {
+          "path": "capture/original-post-intro-hierarchy.xml",
+          "bytes": 5071,
+          "sha256": "e76b1770090c9aa8d0c3458c9664bbb3d50e020f62585183fcd6fd085bc39772"
+        },
+        {
+          "path": "capture/candidate-post-intro-hierarchy.xml",
+          "bytes": 5071,
+          "sha256": "e76b1770090c9aa8d0c3458c9664bbb3d50e020f62585183fcd6fd085bc39772"
+        }
+      ]
+    }
+  ],
+  "comparisons": {
+    "cold": {
+      "scope": "Exact cold-launch capture comparison only",
+      "cold_launch_capture_equal": true,
+      "full_runtime_1_to_1_established": false,
+      "feature_parity_established": false,
+      "android_runtime_executed": true,
+      "installed_apk_identities_verified": true,
+      "status": "EXACT_COLD_LAUNCH_MATCH_ONLY",
+      "hierarchy_equal": true,
+      "screen_size_equal": true,
+      "changed_pixels": 0,
+      "color_metadata_equal": true,
+      "masks_used": false,
+      "ignored_app_attributes": [],
+      "apk_sha256": [
+        "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+        "9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2"
+      ]
+    },
+    "intro": {
+      "scope": "Exact four English intro page stills and three observed Next transitions only",
+      "intro_sequence_equal": false,
+      "full_runtime_1_to_1_established": false,
+      "feature_parity_established": false,
+      "android_runtime_executed": true,
+      "complete_intro_sequences_observed": true,
+      "animation_parity_established": false,
+      "status": "INTRO_DIFFERENCE",
+      "pages": [
+        {
+          "page": 1,
+          "title": "MACRODROID",
+          "hierarchy_equal": true,
+          "screen_size_equal": true,
+          "changed_pixels": 0,
+          "color_metadata_equal": true,
+          "owned_nodes": [
+            16,
+            16
+          ],
+          "equal": true
+        },
+        {
+          "page": 2,
+          "title": "TRIGGERS",
+          "hierarchy_equal": true,
+          "screen_size_equal": true,
+          "changed_pixels": 34,
+          "color_metadata_equal": true,
+          "owned_nodes": [
+            18,
+            18
+          ],
+          "equal": false
+        },
+        {
+          "page": 3,
+          "title": "ACTIONS",
+          "hierarchy_equal": true,
+          "screen_size_equal": true,
+          "changed_pixels": 0,
+          "color_metadata_equal": true,
+          "owned_nodes": [
+            18,
+            18
+          ],
+          "equal": true
+        },
+        {
+          "page": 4,
+          "title": "CONSTRAINTS",
+          "hierarchy_equal": true,
+          "screen_size_equal": true,
+          "changed_pixels": 0,
+          "color_metadata_equal": true,
+          "owned_nodes": [
+            18,
+            18
+          ],
+          "equal": true
+        }
+      ],
+      "masks_used": false,
+      "ignored_app_attributes": [],
+      "cold_launch": {
+        "scope": "Exact cold-launch capture comparison only",
+        "cold_launch_capture_equal": true,
+        "full_runtime_1_to_1_established": false,
+        "feature_parity_established": false,
+        "android_runtime_executed": true,
+        "installed_apk_identities_verified": true,
+        "status": "EXACT_COLD_LAUNCH_MATCH_ONLY",
+        "hierarchy_equal": true,
+        "screen_size_equal": true,
+        "changed_pixels": 0,
+        "color_metadata_equal": true,
+        "masks_used": false,
+        "ignored_app_attributes": [],
+        "apk_sha256": [
+          "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+          "9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2"
+        ]
+      },
+      "transitions_equal": true,
+      "apk_sha256": [
+        "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+        "9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2"
+      ]
+    },
+    "post_intro": {
+      "scope": "Exact first resulting surface after one observed intro completion tap per APK",
+      "post_intro_surface_equal": false,
+      "android_runtime_executed": true,
+      "complete_post_intro_captures_observed": true,
+      "full_runtime_1_to_1_established": false,
+      "feature_parity_established": false,
+      "home_feature_parity_established": false,
+      "animation_parity_established": false,
+      "permission_actions_taken": 0,
+      "masks_used": false,
+      "ignored_app_attributes": [],
+      "status": "POST_INTRO_SURFACE_DIFFERENCE",
+      "intro": {
+        "scope": "Exact four English intro page stills and three observed Next transitions only",
+        "intro_sequence_equal": false,
+        "full_runtime_1_to_1_established": false,
+        "feature_parity_established": false,
+        "android_runtime_executed": true,
+        "complete_intro_sequences_observed": true,
+        "animation_parity_established": false,
+        "status": "INTRO_DIFFERENCE",
+        "pages": [
+          {
+            "page": 1,
+            "title": "MACRODROID",
+            "hierarchy_equal": true,
+            "screen_size_equal": true,
+            "changed_pixels": 0,
+            "color_metadata_equal": true,
+            "owned_nodes": [
+              16,
+              16
+            ],
+            "equal": true
+          },
+          {
+            "page": 2,
+            "title": "TRIGGERS",
+            "hierarchy_equal": true,
+            "screen_size_equal": true,
+            "changed_pixels": 34,
+            "color_metadata_equal": true,
+            "owned_nodes": [
+              18,
+              18
+            ],
+            "equal": false
+          },
+          {
+            "page": 3,
+            "title": "ACTIONS",
+            "hierarchy_equal": true,
+            "screen_size_equal": true,
+            "changed_pixels": 0,
+            "color_metadata_equal": true,
+            "owned_nodes": [
+              18,
+              18
+            ],
+            "equal": true
+          },
+          {
+            "page": 4,
+            "title": "CONSTRAINTS",
+            "hierarchy_equal": true,
+            "screen_size_equal": true,
+            "changed_pixels": 0,
+            "color_metadata_equal": true,
+            "owned_nodes": [
+              18,
+              18
+            ],
+            "equal": true
+          }
+        ],
+        "masks_used": false,
+        "ignored_app_attributes": [],
+        "cold_launch": {
+          "scope": "Exact cold-launch capture comparison only",
+          "cold_launch_capture_equal": true,
+          "full_runtime_1_to_1_established": false,
+          "feature_parity_established": false,
+          "android_runtime_executed": true,
+          "installed_apk_identities_verified": true,
+          "status": "EXACT_COLD_LAUNCH_MATCH_ONLY",
+          "hierarchy_equal": true,
+          "screen_size_equal": true,
+          "changed_pixels": 0,
+          "color_metadata_equal": true,
+          "masks_used": false,
+          "ignored_app_attributes": [],
+          "apk_sha256": [
+            "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+            "9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2"
+          ]
+        },
+        "transitions_equal": true,
+        "apk_sha256": [
+          "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+          "9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2"
+        ]
+      },
+      "surfaces": [
+        {
+          "kind": "notification_permission_dialog",
+          "component": "com.google.android.permissioncontroller/com.android.permissioncontroller.permission.ui.GrantPermissionsActivity",
+          "owner_package": "com.google.android.permissioncontroller",
+          "owned_nodes": 13,
+          "message": "Allow MacroDroid to send you notifications?"
+        },
+        {
+          "kind": "notification_permission_dialog",
+          "component": "com.google.android.permissioncontroller/com.android.permissioncontroller.permission.ui.GrantPermissionsActivity",
+          "owner_package": "com.google.android.permissioncontroller",
+          "owned_nodes": 13,
+          "message": "Allow MacroDroid to send you notifications?"
+        }
+      ],
+      "screen_size_equal": true,
+      "hierarchy_equal": true,
+      "changed_pixels": 0,
+      "color_metadata_equal": true,
+      "surface_identity_equal": true,
+      "completion_targets_equal": true,
+      "apk_sha256": [
+        "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+        "9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2"
+      ]
+    }
+  },
+  "runtime_status": "REQUESTED_RUNTIME_SCOPES_INCOMPLETE_OR_DIFFERENT",
+  "runtime_failures": [
+    "intro-comparison",
+    "post_intro-comparison",
+    "capture-or-comparison"
+  ],
+  "constructor_probe_gate_passed": true,
+  "cold_launch_capture_equal": true,
+  "intro_sequence_equal": false,
+  "post_intro_surface_equal": false,
+  "post_intro_raw_notification_pixels_and_xml_equal": true,
+  "post_intro_gate_retains_unequal_intro_prerequisite": true,
+  "requested_capture_gate_passed": false,
+  "full_runtime_1_to_1_established": false,
+  "tooling_host_tests": {
+    "count": 27,
+    "individual_ok_lines": 27,
+    "seconds": 1.165,
+    "path": "android-tooling-host-tests.log",
+    "bytes": 4708,
+    "sha256": "5a4b1fb906c0a74c17205a827a1344f350055c3490dc0c85d236d22ebcbfccc4"
+  },
+  "new_android_actions_performed_by_analysis": false
+}

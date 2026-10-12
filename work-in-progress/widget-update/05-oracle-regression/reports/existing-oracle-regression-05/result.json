@@ -1,0 +1,4593 @@
+{
+  "status": "PASSED",
+  "started_utc": "2026-10-12T03:39:54.070907+00:00",
+  "scope": "Stricter constructor oracle over the existing 1,240 bodies; no Widget body; not a fresh application build or Android execution",
+  "android_executed": false,
+  "baseline_snapshot_sha256": "19ea47f8563262c255b1d11632bfc404eb68819f332ececdf68d0a686643c183",
+  "oracle_sha256": "d91ddcd8ec3d67d41d69b8252835e747c2cad2c6d5ea898323794ceec30e6b56",
+  "baseline_apk_sha256": "9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2",
+  "copied_study_root": "/tmp/macrodroid-oracle-regression-muc1efyz",
+  "study_inputs": [
+    {
+      "path": "source/java-method-map.json",
+      "bytes": 778169,
+      "sha256": "c1f244811f24c60deb3383348a04e074c018bc0e45371e072a60096190b9b1e3"
+    },
+    {
+      "path": "source/core-methods.json",
+      "bytes": 4447,
+      "sha256": "071f0b88b55c00dcb67ea9ffa660d5abdf42f257b867711cc9aa64ff03fbd30c"
+    },
+    {
+      "path": "source/environment-methods.json",
+      "bytes": 6736,
+      "sha256": "582b86363bafed16847a0c777913690a2d28ae814cc29f99efc3ba10f698ac51"
+    },
+    {
+      "path": "source/engine-methods.json",
+      "bytes": 6113,
+      "sha256": "2afe9661aec3bfd484d6c1851d19c70f3efa686856606d4372442dbcb9994a81"
+    },
+    {
+      "path": "source/ui-methods.json",
+      "bytes": 3578,
+      "sha256": "b8ceedae0561f1f07201e041b34a977109162455fb5cafe30a23ad26921879bb"
+    },
+    {
+      "path": "source/partitions.json",
+      "bytes": 834,
+      "sha256": "83bf3dad2e282d481244852743a8283d8e37c0b406da84956617f910443baeb2"
+    },
+    {
+      "path": "tests/fixtures/original-methods.dex",
+      "bytes": 522988,
+      "sha256": "d2a5e077f11552b462abbe9e10c96a0b1702dca479c8b8d7aeb081ad209d669c"
+    },
+    {
+      "path": "tests/fixtures/provenance.json",
+      "bytes": 518,
+      "sha256": "82d683ff234ce4f0ac3a461e96481cee8ee43b1555d08a5e58294d6f81f349b5"
+    },
+    {
+      "path": "build/oracle-conformance.dex",
+      "bytes": 2136,
+      "sha256": "8ca993abd71d4fdc04c7d65dd2ebd980be1c32ed5ce801d4489e10c33895b325"
+    },
+    {
+      "path": "build/engine-opcodes.dex",
+      "bytes": 1648,
+      "sha256": "a8b49d2f4a7eedf59c59a7a1c53bd4752d856f9124a5c043f194892c93233ac8"
+    },
+    {
+      "path": "build/ui-opcodes.dex",
+      "bytes": 524,
+      "sha256": "293a637b522b227a4f0eafb8b9efd8e624f20e94b143b623d3fa6cf4fecc66a9"
+    },
+    {
+      "path": "build/hybrid/embedded_audience.dex",
+      "bytes": 5410468,
+      "sha256": "48504692190872d9fd7beb10554c42f0a3401d1a1ca5fecd8c417605768f9623"
+    },
+    {
+      "path": "build/hybrid/classes.dex",
+      "bytes": 13008568,
+      "sha256": "1ef8d92e53f7c617091dfc9146d0cc4a643eb893cb1cddfee1792a27474c49ae"
+    },
+    {
+      "path": "build/hybrid/classes2.dex",
+      "bytes": 611772,
+      "sha256": "92383261753f7095a15e7c01adb902b2c34ac9fb380e7ede053ba60028d9feab"
+    },
+    {
+      "path": "build/hybrid/classes3.dex",
+      "bytes": 12842296,
+      "sha256": "4ce5de9baa469962d5bdc20fa4ac0afda316068c0240d2956cd78631971fa856"
+    },
+    {
+      "path": "build/hybrid/classes4.dex",
+      "bytes": 11118676,
+      "sha256": "6cbd78cae75302bb3c5be64c0b31c66c5ce9773e6536a8b27e49716c946e5b30"
+    },
+    {
+      "path": "build/hybrid/classes5.dex",
+      "bytes": 10209404,
+      "sha256": "0042d7a1518ca1db544fc727fd8e313cc1bfe988f9a3828b80c0ce0e718312e9"
+    },
+    {
+      "path": "build/hybrid/classes6.dex",
+      "bytes": 11427956,
+      "sha256": "6e99b92a8e19b7419c945d51b1cd40b6a65191a400622a621b41a5e205761cb8"
+    },
+    {
+      "path": "build/hybrid/classes7.dex",
+      "bytes": 9309628,
+      "sha256": "7c778aec1959f5aa8698635f34019dfab97f70ac524143d21806e2dd46d72b55"
+    },
+    {
+      "path": "build/hybrid/classes8.dex",
+      "bytes": 67996,
+      "sha256": "209ea28e8741400759f89aa4f42bd9995b6fa8fa91c5d8c3d6c1a1664468c406"
+    }
+  ],
+  "classpath_class_inputs": [
+    {
+      "path": "build/java/hostclasses/android/animation/LayoutTransition.class",
+      "bytes": 149,
+      "sha256": "3fde4faeb9fd459c2e1c2039a74b1d10d431ba4489ce2891ff640dfb65bc7b6f"
+    },
+    {
+      "path": "build/java/hostclasses/android/animation/ValueAnimator.class",
+      "bytes": 146,
+      "sha256": "0a5dcea0872aee5e4f715837c11a385e2a509fcf3ba5909ccfe891085ff1c40d"
+    },
+    {
+      "path": "build/java/hostclasses/android/app/Activity.class",
+      "bytes": 1138,
+      "sha256": "cb172dac4aa65b6c7bcba44ae17e0cdf53c7544672639a6d8b7ca7aa420c6833"
+    },
+    {
+      "path": "build/java/hostclasses/android/content/ComponentName.class",
+      "bytes": 144,
+      "sha256": "1ee67784a3b01f5c4257a3442120091c0e3c23e75641b52097999965630f45c2"
+    },
+    {
+      "path": "build/java/hostclasses/android/content/ContentResolver.class",
+      "bytes": 1871,
+      "sha256": "e660da547a31a12042d76e4d8ef0379da5d871a32dfe9f303ce18a351fd28b36"
+    },
+    {
+      "path": "build/java/hostclasses/android/content/Context.class",
+      "bytes": 2582,
+      "sha256": "ab316c90656ada8187c8568baddc587ddab9ef289c8942ae792cc0e8454aab0e"
+    },
+    {
+      "path": "build/java/hostclasses/android/content/Intent.class",
+      "bytes": 3505,
+      "sha256": "c213ecbe0003276120f730967ccbc7150a44763c171f4c945afdfc1d46139f43"
+    },
+    {
+      "path": "build/java/hostclasses/android/content/res/Resources.class",
+      "bytes": 539,
+      "sha256": "27eb2e4fec3094ffa1e3e5026f44134e6ff7ee6a942ccb7b098df9b4425d19ea"
+    },
+    {
+      "path": "build/java/hostclasses/android/database/Cursor.class",
+      "bytes": 122,
+      "sha256": "753de510626e3e5f0ff7302328c7ce8a3fb92b3824a7313b2ee47051b1049d5b"
+    },
+    {
+      "path": "build/java/hostclasses/android/net/Uri.class",
+      "bytes": 270,
+      "sha256": "50b46f01e7c254b164291ff4b4465e6edc230b5f2552ee88fccbcfc107557c98"
+    },
+    {
+      "path": "build/java/hostclasses/android/net/wifi/SupplicantState.class",
+      "bytes": 1525,
+      "sha256": "37ce4302c6ba23e2a9b340ba3f7a87637e3530086529f63adadd715ab624ee22"
+    },
+    {
+      "path": "build/java/hostclasses/android/net/wifi/WifiInfo.class",
+      "bytes": 516,
+      "sha256": "93f72388bdd7fdb8c07f196cd45a67fce2742267209794f3e62dda417fa3330a"
+    },
+    {
+      "path": "build/java/hostclasses/android/net/wifi/WifiManager.class",
+      "bytes": 729,
+      "sha256": "02876799f202003e71fcd8e7f7481f7c3d1033449e3952942d01a51654d38265"
+    },
+    {
+      "path": "build/java/hostclasses/android/os/BaseBundle.class",
+      "bytes": 922,
+      "sha256": "da89b9e68d3d5967d55a9035793b3b28d57acd77d354c783d6877603a317a1d0"
+    },
+    {
+      "path": "build/java/hostclasses/android/os/Build$VERSION.class",
+      "bytes": 277,
+      "sha256": "8811fb70f30bc47f8cd6a00597c98297c31f1b13219eacefa87ea38ed1e49059"
+    },
+    {
+      "path": "build/java/hostclasses/android/os/Build.class",
+      "bytes": 202,
+      "sha256": "6703f564bff13b35847ce3e12b23eb02b07b17ec0e2a8d46363a48ccf0bb09b5"
+    },
+    {
+      "path": "build/java/hostclasses/android/os/Bundle.class",
+      "bytes": 724,
+      "sha256": "d57a4ea064101e2bd2801d618c94a530af5dc6e6deec1433a0c1f11b7c4b85d2"
+    },
+    {
+      "path": "build/java/hostclasses/android/os/Handler.class",
+      "bytes": 465,
+      "sha256": "5bbd9f309ecbb3f74f8dad09ec1af6fbb95914c839774a51f8c9a6423092fec1"
+    },
+    {
+      "path": "build/java/hostclasses/android/os/Looper.class",
+      "bytes": 590,
+      "sha256": "dda1a8b5c3123fd9dea1d6d241b115eec3d910ffdffa2337aa12eed3fa289113"
+    },
+    {
+      "path": "build/java/hostclasses/android/os/Parcel.class",
+      "bytes": 2296,
+      "sha256": "d63385ddf0b9268859c4d0eb6671a6eb069ec257fd1ea7ab4ffee532008b5ca6"
+    },
+    {
+      "path": "build/java/hostclasses/android/os/Parcelable$Creator.class",
+      "bytes": 378,
+      "sha256": "c21a2c8c174a653d8d67107b3422331fd1ef27796f4afd472d6f9ecded5c008d"
+    },
+    {
+      "path": "build/java/hostclasses/android/os/Parcelable.class",
+      "bytes": 232,
+      "sha256": "1a4b53730d2b44745242bc3b9775fd1bca8967f1ecc0979363f231d8c8f4f490"
+    },
+    {
+      "path": "build/java/hostclasses/android/provider/ContactsContract$Groups.class",
+      "bytes": 450,
+      "sha256": "e772d5255e2d32bdc3b53933a08509b9453d0c89a703bdd4447b998ce33416e9"
+    },
+    {
+      "path": "build/java/hostclasses/android/provider/ContactsContract.class",
+      "bytes": 234,
+      "sha256": "e2a07be4ccb03aaf6a57dbf78fe115374073c0aac06635ed5ccddb3a2ea19708"
+    },
+    {
+      "path": "build/java/hostclasses/android/provider/Settings$Global.class",
+      "bytes": 1081,
+      "sha256": "83589e2f19acabc07ceabcbb2133239a3753fcfdfe2300d4064f73b41fd74bba"
+    },
+    {
+      "path": "build/java/hostclasses/android/provider/Settings$Secure.class",
+      "bytes": 1081,
+      "sha256": "14fede52b2677005469cf01ce7a46b913f391214ca5c64e010a49eb53f499e7d"
+    },
+    {
+      "path": "build/java/hostclasses/android/provider/Settings$SettingNotFoundException.class",
+      "bytes": 276,
+      "sha256": "42eb920c06de1142356b73170e346af25bb3d2a3d70b3bb9c08186d5c1b47f29"
+    },
+    {
+      "path": "build/java/hostclasses/android/provider/Settings$System.class",
+      "bytes": 1081,
+      "sha256": "0cdd04dfeacc28faf686f0f30afd21f8fb0a1c6a7db2887b956a008746963798"
+    },
+    {
+      "path": "build/java/hostclasses/android/provider/Settings.class",
+      "bytes": 419,
+      "sha256": "445889d6e5a2fbe2779234f43f8788150a7b2525bb1687c4cab9ff0a1fd5a540"
+    },
+    {
+      "path": "build/java/hostclasses/android/text/TextUtils.class",
+      "bytes": 303,
+      "sha256": "dda9b604dff6e36621e6142bed5fce61239d667350efa0bb7f673c8528000830"
+    },
+    {
+      "path": "build/java/hostclasses/android/view/MotionEvent.class",
+      "bytes": 1021,
+      "sha256": "f9d8aa72dc2cc7f8d84869d87aed4ca81ef89dfbddefff1f34233acb5b2b2378"
+    },
+    {
+      "path": "build/java/hostclasses/android/view/View.class",
+      "bytes": 622,
+      "sha256": "ec94884c2117b4738274bbabda18fd12b8b26cd15b13e5e2d52bae4de72dd7a3"
+    },
+    {
+      "path": "build/java/hostclasses/android/view/ViewGroup.class",
+      "bytes": 1276,
+      "sha256": "b3e4c4576faa13fa8d2de44534a6116064214b1f6b04a8eafddecc36ed6bc86f"
+    },
+    {
+      "path": "build/java/hostclasses/android/widget/LinearLayout.class",
+      "bytes": 148,
+      "sha256": "3fb1d71516df3a9061bcfaaf87b1f13956a739d3029ab43c511c12e0034260d3"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/R$string.class",
+      "bytes": 325072,
+      "sha256": "2d67a1b35b28d3ba19844459092c27a018f2f1c827f2a64a7638797ed52adb7c"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/R.class",
+      "bytes": 218,
+      "sha256": "ba0b7902321e4882024bb9c3b1df7b768d39cb0b2754350b9214bccabcbc22f1"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/Action$a.class",
+      "bytes": 373,
+      "sha256": "ca186c9f0f9de69f1d439d678afe9f27653d54933e0e21a5a91b7863b87b9637"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/Action.class",
+      "bytes": 1932,
+      "sha256": "ada63580c99619718b92af6632381b147c50d4c0674036b4134392908b450139"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/ActionGroupAction.class",
+      "bytes": 190,
+      "sha256": "f6d260c7b34806fd2738d6a2bd66e6b6ac98fe587bffd0167be08107a3aa5fde"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/ActionGroupEndAction.class",
+      "bytes": 196,
+      "sha256": "8595183ea1b4e249008b2f40ae5c60bf9c2ec231f6ef6736fcd3f33f4fc854c4"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/BlockTouchesAction.class",
+      "bytes": 1324,
+      "sha256": "550c944d602888ba91e2f1445b3cf08919058d0ef4ad83184f24cfd8c6672c7d"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/BreakFromLoopAction.class",
+      "bytes": 186,
+      "sha256": "02268bf006c2e14bc689fd65526f5a250cc3cbbe6322d4695bb3552e3c9a8cba"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/CancelActiveMacroAction.class",
+      "bytes": 661,
+      "sha256": "b8656c10657975d01f7b9ccc7bc2bc3966f2c3103a5673b85bf61002e2d2892d"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/ConditionAction.class",
+      "bytes": 182,
+      "sha256": "7ed744ee4210d4ea33194c8e544153dfdcbe9addbf47ec7fd3b51046a3b0955d"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/ContinueLoopAction.class",
+      "bytes": 185,
+      "sha256": "d2e0ea94f9c303df54fd02bfe36343c5dd99dc61ba3bca6c8094dc44d072de20"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/CustomSceneAction.class",
+      "bytes": 2136,
+      "sha256": "a13fa705cbd0cb86b710b45ab743cb6327bea1e91eede1e1fc456828b9e490d2"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/ElseAction.class",
+      "bytes": 187,
+      "sha256": "febd339d6caa75c03310b80258d1ed36afddac823933f063ce7941377d0c0a63"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/ElseIfConditionAction.class",
+      "bytes": 198,
+      "sha256": "5805cbdfd9e377367456ba484780d67db93f1460f1109c9569360ec5e864ee67"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/ElseIfConfirmedThenAction.class",
+      "bytes": 1161,
+      "sha256": "958cf1cd44be58ef53c6eb693e9061ad47431976e9edfdebdbd8573308e95bde"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/ElseParentAction.class",
+      "bytes": 192,
+      "sha256": "6c6e63cd3ff0d39f7fbc7ee3518f0fa4df5223967cb66c9554c7f09a501da72c"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/EndIfAction.class",
+      "bytes": 187,
+      "sha256": "b183c37fef81b4f2c0b03d8fec0a233c37c7ad5d73edbd9dcb249332157ce535"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/EndLoopAction.class",
+      "bytes": 189,
+      "sha256": "faecfb788887995675e31933dc3446050da5eb28d049414a3f15737a2ae328de"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/EndParentAction.class",
+      "bytes": 182,
+      "sha256": "0456193083dab4c3e76423050de1b59576cf5afce2075f907dba7371dc619973"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/GotoAction.class",
+      "bytes": 556,
+      "sha256": "0072b2a76986f40fabcce216dd3f02d75e1d1e9eb64f272feaaca7925f574b88"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/IfConditionAction.class",
+      "bytes": 190,
+      "sha256": "a178dd27014918703e9439887d488f7a4436f5ae9e78bdc01df358530a97bdcd"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/IfConfirmedThenAction.class",
+      "bytes": 1180,
+      "sha256": "e9d883513662b35206cae35f0988c49c948289d0e97b5ad21c685c561e975391"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/IterateDictionaryAction.class",
+      "bytes": 805,
+      "sha256": "eeef3375a75117027411b809a54f4f1ce6a8dfe64a9479db02eb9992aaccef76"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/LoopAction.class",
+      "bytes": 1489,
+      "sha256": "049c2114baaf8ec8d5721f7eebac385e427a09ee074abecc94463793317601ef"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/ParentAction.class",
+      "bytes": 188,
+      "sha256": "bbbb7c426697f1105a88a19b7bd6c677bdd3860bab591d94dc9de4f37754c25e"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/PauseAction.class",
+      "bytes": 1184,
+      "sha256": "7cbd828f1aed5904770ba0e96d247d2341b36366164165158a17dde6f3df5d87"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/PlaySoundAction.class",
+      "bytes": 182,
+      "sha256": "92b8b744a1a61a5eaa6577d99d6eee4d71141e951f5ce6e3156083e38a784716"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/SeparatorAction.class",
+      "bytes": 182,
+      "sha256": "694d3d4190972d8f98cb81fb975a73de0189c29dea15bd53b5a5f262dc9e7e73"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/SetVariableAction.class",
+      "bytes": 1157,
+      "sha256": "92e7f28e217eaf67d853db607da5efd46867e294166b86d67962c4aeae5ea254"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/ShellScriptAction.class",
+      "bytes": 1165,
+      "sha256": "49662ea1064d1c20981c54a65f0b35a4ad1a745104976baaab4cd89c72473b90"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/TerminateRunningAction.class",
+      "bytes": 189,
+      "sha256": "6f9a8f5daa460cc40da204eeee85dced68613d01a197b4c58cb6205accfddfe0"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/WaitUntilTriggerAction.class",
+      "bytes": 414,
+      "sha256": "82305af1a092169fd0099cb3d7e96a1ed84eb9f0b3446988d07f9d3b2a0a7627"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/services/BlockTouchesService$a.class",
+      "bytes": 276,
+      "sha256": "59678d7f6eaea92a40e71b45af5cf3dbd949be11c19d47dd2ab000198d96d0e6"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/services/BlockTouchesService.class",
+      "bytes": 433,
+      "sha256": "37b58f0fb23b88f0c5aaec3b492e42b80fa4cf92b4878217b44eaf94038085c7"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/textmanipulation/ExtractTextManipulation.class",
+      "bytes": 393,
+      "sha256": "e2045d862366cc1ee15afd1d714c0834842287dff269359dc9e98bccc67668d6"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/textmanipulation/LowerCaseManipulation.class",
+      "bytes": 391,
+      "sha256": "08b2fa3587682986c805cc6eb96a4a52f085e4a81fbdd911c53d5e7423c3028a"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/textmanipulation/RemoveTextManipulation.class",
+      "bytes": 392,
+      "sha256": "9c68e1268376c9949ae7aaa90c2456eae86498045c2bb8eb41faaf35ed97c84d"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/textmanipulation/ReplaceAllManipulation.class",
+      "bytes": 392,
+      "sha256": "f3e99de3467ebd1145d90435fd332fb3b8d11dcc948b95759d39a2fdb1f46ecc"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/textmanipulation/SplitManipulation.class",
+      "bytes": 387,
+      "sha256": "d49770dc266433151038fd8f7ed87f443ab3670245c5305bf131690695defd38"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/textmanipulation/SubstringManipulation.class",
+      "bytes": 391,
+      "sha256": "edafd214d6aa508e0425f246bc4276da7ed4dac4404f4dbf3cebed2bccbfba89"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/textmanipulation/TextManipulation$a.class",
+      "bytes": 1364,
+      "sha256": "c3306b40df023b1655310c7d8c44c5fcd3ac93c6b8e76f428a6b8faccbf86c5e"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/textmanipulation/TextManipulation.class",
+      "bytes": 1091,
+      "sha256": "9442fc40d9b279593254c63077aa3e113733b2fa1eb907044c3568dd7d56c3a6"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/textmanipulation/TrimManipulation.class",
+      "bytes": 386,
+      "sha256": "13b72ffa72b0fae282a77efd5c9ff46a9f08cfe938826c7ac1084a5236020a09"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/action/textmanipulation/UpperCaseManipulation.class",
+      "bytes": 391,
+      "sha256": "219c2b8c846bf3f3a498b91d1bb2eef2cd8e34ce0cc44f5b78a53efd4eb3b2f2"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/actionblock/data/ActionBlock.class",
+      "bytes": 1065,
+      "sha256": "f671d7f43f7fa8f8d12cab571d50166edd0883c39a1bb1337c52cab9a8247a3c"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/app/MacroDroidApplication$a.class",
+      "bytes": 256,
+      "sha256": "010c2e99e78f0219cc5e6cdfef472fd2c937d3de28304e547eddb207e53166ac"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/app/MacroDroidApplication.class",
+      "bytes": 722,
+      "sha256": "0a81d3c0e4b020eb9cd60a03f0efd5546d02548717cfef6f762ea9210538e36e"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/common/Contact.class",
+      "bytes": 440,
+      "sha256": "9fe1eef66dfe5b1e317ff81d5472b25aa1a886145bad7634f043c63e122b384d"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/common/MacroDroidVariable.class",
+      "bytes": 557,
+      "sha256": "775b7d9ada835fe453b2c5aab9f5f808dd89b4b715442c82aec6a7d6e5f7664e"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/common/SelectableItem.class",
+      "bytes": 4506,
+      "sha256": "06a8fad6186dfd80619d753ad7d903ccc6b9583b6a8a695dd84775787f9ec168"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/constraint/Constraint.class",
+      "bytes": 772,
+      "sha256": "b96c6e6ed162252212f69b69b5f505852c640a6bb5e8b22f1d535fd2ccf24484"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/constraint/LightLevelConstraint.class",
+      "bytes": 315,
+      "sha256": "e6757ee08f5832933a3c309ac7e79679420335a90b0e38fed5930b35dc99c7b0"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/constraint/MacroRunningConstraint.class",
+      "bytes": 329,
+      "sha256": "619de2c10b1937aba5f25f2d765c9af50d4fccc3e5cc7ba83cb10072eb5a9a63"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/constraint/SunsetSunriseConstraint.class",
+      "bytes": 508,
+      "sha256": "d5c4c050179141df88fab02b33998024f6a92b08b61b08664321cf24a6b22f14"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/constraint/SystemSettingConstraint.class",
+      "bytes": 1398,
+      "sha256": "ff2a6b99be6d624b52dc0a149fdd9fab6f3ebc65bb1968c4cfe08efd89b5e7d5"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/constraint/WifiConstraint.class",
+      "bytes": 618,
+      "sha256": "55c9d117cfc5a1e0fa20cbb95cd24a0241991544f36a0499b336674525d07f2f"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/constraint/WifiHotSpotConstraint.class",
+      "bytes": 849,
+      "sha256": "113f9db650fa5a928b1e506f68e11681a3b8d616113f7f1f869b5c9d033673f3"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/data/ResumeMacroInfo.class",
+      "bytes": 794,
+      "sha256": "5704b53776d09aa75ec6a4464cfad41abb249373f25b8ee99457fa934130e50a"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/data/b$a.class",
+      "bytes": 252,
+      "sha256": "9799aca590d85d4b2a72380a96c6b5e53934346b356ecfd46bb9c9cfa40b05c5"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/data/b.class",
+      "bytes": 519,
+      "sha256": "1927a9228da53a15a65e6aa5827d4a85b336ffb4d8832ae9ee189030559189c3"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/debug/events/DebugActionExecutingEvent.class",
+      "bytes": 537,
+      "sha256": "92a2b6a5d9060c0e3e98656bd903c97c9e3d36036f784a8cab869cf270056331"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/events/ClearSceneByExactNameEvent.class",
+      "bytes": 842,
+      "sha256": "ba2b440dda8442c7e24a440e9adf27014613e8c21a78ab77f5dd6e17055d358c"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/events/ShowActionBlockTestSummaryEvent.class",
+      "bytes": 289,
+      "sha256": "23ceea71d444e11625db947d98ee99ea964e789ec8e816a35532ed51c22cdb11"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/macro/ContinuePausedActionsHandler.class",
+      "bytes": 1164,
+      "sha256": "251c5d1d947aae95d84acdbd70130616a5622e9e21788d86574a5b96173260eb"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/macro/Macro$b.class",
+      "bytes": 1100,
+      "sha256": "219a027cbd7262e7362aaeb051a86c0c94914f1adced1e1cb2afb2decc2742bb"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/macro/Macro.class",
+      "bytes": 4882,
+      "sha256": "a1537ee0e932039fa47e4d7f14b000f4f3673050716c44a9f424e9773d25b7b3"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/macro/a.class",
+      "bytes": 1070,
+      "sha256": "add862722f902e144b9fb07ea262748c4999404d836c5d447a10f205d1cf9b39"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/macro/b.class",
+      "bytes": 1403,
+      "sha256": "93fda0c96522913af1c22ee63e62c40b04758390e59d7d1b6d4af3a6a74339ca"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/plugins/api/AppBrainApi.class",
+      "bytes": 191,
+      "sha256": "113c2ab997519d100776443f81b5a7b5d4a0508b9b969d4b670e348177812bad"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/plugins/b$a.class",
+      "bytes": 150,
+      "sha256": "7ecc38a90ee65d0fc538996f3a98db753f686959ec0be52654c511febd5b5bb7"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/plugins/b$b$a.class",
+      "bytes": 269,
+      "sha256": "15f67bf864d609bbed3d7edee0bb6f6ab09f1fed3a7a6b7a7eb78355d4e651a5"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/plugins/b$b$b.class",
+      "bytes": 269,
+      "sha256": "5af48b232850515b396726ca28b02b1173531dcb2495584aefb035cdfe8d68d2"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/plugins/b$c.class",
+      "bytes": 994,
+      "sha256": "9759dfde278da301da78eeaa1722ec6868a2c58496640d7ff186431b0f645493"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/plugins/b.class",
+      "bytes": 1705,
+      "sha256": "385ebc6138c088b5a974fdd8450fa9ef52cc734051f7ac6a50b4f9545dcdd4be"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/plugins/c.class",
+      "bytes": 403,
+      "sha256": "e2903936294729c0b23478eca4257c753f8895323f8df63547faab37dd0960e2"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/plugins/d.class",
+      "bytes": 480,
+      "sha256": "2951b58ec9629bdebadb1c4db627ba0d5199b25a3ec9d5be70170f0804549b40"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/plugins/data/AppBrainPackageInfo.class",
+      "bytes": 244,
+      "sha256": "79f309795a5ee2124bff4bc7c2321ec9ac798d91fc9135818f4e46efb8560c36"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/plugins/g.class",
+      "bytes": 439,
+      "sha256": "234e55c518362428af9a1cceee4be1380ec37dc15e2b3a4bfca87b7952dc8af6"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/plugins/j.class",
+      "bytes": 293,
+      "sha256": "42c1cace3f9bfaa5b2a5e20d9eb44569ac94e6eb092aabcb5c5942b53f382097"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/components/SceneTextConfig$a.class",
+      "bytes": 1017,
+      "sha256": "dee54f801d08b86eae4129c05cba721408c1386fe11871cf97a2c0ecbc5d9f8f"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/components/SceneTextConfig.class",
+      "bytes": 2158,
+      "sha256": "3a1690fdcb17255b08d92127fa69302038625d294252094c6b907918af6c5037"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/data/ButtonClickConfig.class",
+      "bytes": 506,
+      "sha256": "3c204514d27fd99d2db1de46dd67912ef7217d4071d18458fa6743d4f7f29460"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/data/SceneAlignment.class",
+      "bytes": 503,
+      "sha256": "deb4ab03d7e92a51107fd299127c43653fa1001db166d18b3c6b4c661be1b0cc"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/data/SceneConfig.class",
+      "bytes": 1692,
+      "sha256": "5c182f489bf0637bf4654cf2032374593b7905326f05547ffc7b93447aa66c69"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/data/SceneDescription.class",
+      "bytes": 1358,
+      "sha256": "c6fd27e5d5a21ce18b74453f9f39a3743bc4b2117bc1fc33e91f283305edc672"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/data/SceneDisplayOption$Dialog.class",
+      "bytes": 252,
+      "sha256": "313123944632f24489c79196cbe8e4caff9f3e535a1f41a2c82cfff934ba42eb"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/data/SceneDisplayOption$FullScreen.class",
+      "bytes": 260,
+      "sha256": "eec14c9aff5c93e7441638b30069e16300d48d37cd6da146fcbcade8f3fd2e1b"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/data/SceneDisplayOption$Overlay.class",
+      "bytes": 715,
+      "sha256": "81e5c6fe59c9de3ecb7beda5f6072f640d11353fedcbd85eee8619c57b45c1a0"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/data/SceneDisplayOption.class",
+      "bytes": 735,
+      "sha256": "7e62d5b5bcf36ecaa2730dfe7a856e4ffce654a9255e26484b1d512c7785b2fd"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/data/SceneVariableData.class",
+      "bytes": 506,
+      "sha256": "a6f240c57958fbf027acf1cdd213f903b32246b94b77478a105e752c0a9b01d7"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/data/SceneVariableUpdateValue.class",
+      "bytes": 513,
+      "sha256": "003d10d5f4f3e66500009eba96bf0a665e0272c4de661156ddd2aca98a40197b"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/display/SceneBaseActivity$a.class",
+      "bytes": 268,
+      "sha256": "f39eaf789d0b567a0fa1aa6888082222c12ce1a96a143c07807863ad206bc2eb"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/display/SceneBaseActivity.class",
+      "bytes": 480,
+      "sha256": "e0c02ae0134060d2fce43dea7282b179d0abbc6cd04a247caf3e3ae17c429610"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/display/SceneDialogActivity$a.class",
+      "bytes": 272,
+      "sha256": "217d977c6238439d7c77584ebbe30e4206b6b61cd57aa8981da3bf2933c57214"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/display/SceneDialogActivity.class",
+      "bytes": 453,
+      "sha256": "fa59a82371f43b912abc0eec9a7ded82a20936440c473a7f4dad4d14815f20d3"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/display/SceneDisplayActivity$a.class",
+      "bytes": 274,
+      "sha256": "18019f6914a9f0603c377518803af9c9425889098da9fc3d6c4918e5fb90c9c6"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/display/SceneDisplayActivity.class",
+      "bytes": 573,
+      "sha256": "3ca66a0096435956201cb3dbe62f43d9455244952ec3a4c20aa44a65124857d5"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/display/SceneOverlayDisplayService$a.class",
+      "bytes": 286,
+      "sha256": "5919e43b5907c33d6a72414ea69201f32cbf25bb85552eceb712b9f0e8fa5fc9"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/scene/display/SceneOverlayDisplayService.class",
+      "bytes": 432,
+      "sha256": "ced6bd2b701da7ebd853d04596058a46b9268c0efe5d8c3eaca1d5bde0061e83"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/settings/c.class",
+      "bytes": 376,
+      "sha256": "0acb78079758603fe1d5b32b14c7bd200fa6e0c7dbad8724f91cf8743d79ae66"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/triggers/DeviceUnlockedTrigger.class",
+      "bytes": 193,
+      "sha256": "d9e1cd54a92452a633f82313cbd3f4b419e9ca2cb7ca30da4c5662162ba4c439"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/triggers/IncomingSMSTrigger.class",
+      "bytes": 444,
+      "sha256": "aa5d911dfe7d2eda19e341522db3b434dd9aa2d5c874f7c788228d2eaa0592e9"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/triggers/ScreenOnOffTrigger.class",
+      "bytes": 356,
+      "sha256": "5cc3671b19966d359b4ace4428f10390f3e6bc49e9131c9c87e2f28c72fc822e"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/triggers/Trigger.class",
+      "bytes": 184,
+      "sha256": "85c9a74e3444147095b864d2a97a1e7b6b5c9d80f7dfd6eca7370cd63781df55"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/triggers/TriggerContextInfo.class",
+      "bytes": 785,
+      "sha256": "2f703b39a37daa5d6aad6263bba5c14cd894fb5d18150556ce8ff035c69e67b0"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/triggers/WeatherTrigger.class",
+      "bytes": 547,
+      "sha256": "bb5daaf411f732dbfd59a6820cec93665eef318fecfddb1e5e3a748ca634525b"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/triggers/services/MacroDroidAccessibilityServiceJellyBean$a.class",
+      "bytes": 784,
+      "sha256": "f2cee9c3c8b3e96e156b0dec056ca19fb61a572115476acd34332112052833e2"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/triggers/services/MacroDroidAccessibilityServiceJellyBean.class",
+      "bytes": 499,
+      "sha256": "f262d774171a84f94ddd7fb81fdf0b35ea9992844865851b6ceb3c460a8363d1"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/variables/DictionaryKeys.class",
+      "bytes": 163,
+      "sha256": "d0f2d0c8ab32e114f3a09a7fb9a31503026c902b91f3d7f5775bf9ed0084de4b"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/variables/VariableValue$BooleanValue.class",
+      "bytes": 373,
+      "sha256": "2889f3f1d3e8357e9c8becdbe724ac7ea714ebc98559136cbf557d59cd08da69"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/variables/VariableValue$DecimalValue.class",
+      "bytes": 373,
+      "sha256": "debfaebaffd0f2653f4694f20597d258e6a56e41cbad50665fdacfa8e58f2af2"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/variables/VariableValue$Dictionary.class",
+      "bytes": 786,
+      "sha256": "8965789e80462f840e1f4aefc48b1a7a3777cc0d1ca516b7a6e0324647e1e863"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry.class",
+      "bytes": 802,
+      "sha256": "d0338c3c4f9a47f254a2870a8f0408aeaded3fbce0010f7fe7729d84dac215a6"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/variables/VariableValue$IntegerValue.class",
+      "bytes": 373,
+      "sha256": "ed0e888ddd0a6dd1f426fd3bf7050f917a48060cbad92c3b9f6781686272db4f"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/variables/VariableValue$StringValue.class",
+      "bytes": 422,
+      "sha256": "16087b89f315fe6f4fdb4234970a9a3cc00545978e7ecd7a4f3dea77446f1e79"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/variables/VariableValue.class",
+      "bytes": 719,
+      "sha256": "388a0aa669d1c945a0022c47f8d2e5ee7cc4103981d64de61dde59bc7399f244"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/variables/VariableWithDictionaryKeys.class",
+      "bytes": 249,
+      "sha256": "20a09f566dbced8416d007218889bd8287f08391b1862ab9002618d620166ef1"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/variables/a.class",
+      "bytes": 1349,
+      "sha256": "3293b6f94e1e7e61e231ac2a79dcde630b2ec7c2d5de7bd6e0f2417170c7bc67"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/variables/s0.class",
+      "bytes": 451,
+      "sha256": "276ff93c2538931a8642bb303cf199a77a45f690ef3668170b8bed48ab4980dc"
+    },
+    {
+      "path": "build/java/hostclasses/com/arlosoft/macrodroid/widget/DragLinearLayout.class",
+      "bytes": 1033,
+      "sha256": "c7beabf14ee9d671a9d9ca165eac5bfe97e7acc9388773878a215cd423135312"
+    },
+    {
+      "path": "build/java/hostclasses/com/google/firebase/analytics/FirebaseAnalytics.class",
+      "bytes": 892,
+      "sha256": "b15d5ad79d24f12304adaa07055b8497bceec52b34bc8ff044c13a0c7239e996"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/CoreTrace.class",
+      "bytes": 552,
+      "sha256": "a8c5629aa0326c6ccc86b87afa308b48f544b69970b444dd399e917ac9ee8fc5"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/EngineRuntime$Dispatch.class",
+      "bytes": 396,
+      "sha256": "a81e99198f16dee7b114a84637e4bca12cb3bc29fece8689e33f32fe1f219f39"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/EngineRuntime.class",
+      "bytes": 4319,
+      "sha256": "e1a71f4f4096dff280d19e699dd6b7e26c926492d0f5102d78ef2d780799a937"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/EnvironmentControl.class",
+      "bytes": 752,
+      "sha256": "f3f2d5c2e05591d3fba40b207a31eb2f02a91de89e470b8e7c6e138b74fde6b0"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/PluginControl$Analytics.class",
+      "bytes": 790,
+      "sha256": "940e7dcdd2366ec1e772fa542f057470acd9518d6955ce9d7544b5c8a20dc068"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/PluginControl$Constructed.class",
+      "bytes": 421,
+      "sha256": "e270b820dc687b4de8ab57524388e53c1f1efb66e18fd0d71a14612d2a2f76f1"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/PluginControl$Publication.class",
+      "bytes": 354,
+      "sha256": "fb6c15fd101a7bd17c9cf306e248eb0eeaee7875d05a71fae3b5d6db1bc42976"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/PluginControl.class",
+      "bytes": 4757,
+      "sha256": "f7f3b716b0942449f33e5607ce9287c7f2113998d0cd0d719d4fc9a24c1af810"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/SceneControl.class",
+      "bytes": 3635,
+      "sha256": "7046033a30a85fa800859ee1305fdebd3b605c092496caf8a1247e6bad52c8ef"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/TestClock.class",
+      "bytes": 632,
+      "sha256": "7ca457160056560cc7565072d3f472adc90bcc5f9bfca63f5f939f2f84c999d7"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/TouchControl.class",
+      "bytes": 2428,
+      "sha256": "58caf2d4570b1bfde5d380264358848cc1a18d40ea3107da3708a6ae20235067"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/UiCursor.class",
+      "bytes": 529,
+      "sha256": "f4b53071e4a5384274ed92190511fa875167b507f33d04d863c71990d872379f"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/UiTrace.class",
+      "bytes": 808,
+      "sha256": "78ed67d3f767a1dbf7be27427fe0caeae53a08c155437c9b1606e358d283d388"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/aj5.class",
+      "bytes": 867,
+      "sha256": "889b7ba710352558f0bec944fd4ee3f88ba61432c14ea7dbced6f625bb01a44f"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/aq9.class",
+      "bytes": 674,
+      "sha256": "1112fc98567b0a6b9f2f2b2f56a39c1389621be94ca08ff313701559ebc8c9b5"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/aqc.class",
+      "bytes": 921,
+      "sha256": "03721d4740b19dc3cb6176e61d1aeeccd345cb700598116a2c55f059d939231f"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/bl5.class",
+      "bytes": 547,
+      "sha256": "2a67a566e72aa837eba8a1f40b9023a57f1ffce05e0299b92a3382da145c64f1"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/blg.class",
+      "bytes": 223,
+      "sha256": "7ab2bfe73dce92e016fda4e266d2eb4cc803c1996128cfef9b3c8c304be599d6"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/bz9.class",
+      "bytes": 299,
+      "sha256": "c62b25eccb0f206c43f68145a4fbf735ec838efd718517cecf02af02c876a52d"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/cah.class",
+      "bytes": 319,
+      "sha256": "1aa006316dbf1dd9b5334920fb3ff430e235fb12f071e2fe8f30a93a196bab37"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/cg9.class",
+      "bytes": 354,
+      "sha256": "5016bad08ad78e44a65840385a01807e014215c05d8bf2ce74fb83cae30ac39d"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/cj5.class",
+      "bytes": 479,
+      "sha256": "ddcb48d1760bb1fd155803d3026b2e5a4e837f17350d9e8f23111835e88bd166"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/cne.class",
+      "bytes": 127,
+      "sha256": "9a2af71b2faa580ea181d9433dbd2dda289c37bf37801a1a816ead39f748b0f5"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/e3g.class",
+      "bytes": 808,
+      "sha256": "78b8a5407f82c4034c2cb98f0b88e1a5dfc20d281f36a730d4b75a980db8adaf"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/e6.class",
+      "bytes": 707,
+      "sha256": "5d97e406b8b6e26220ddd7c37ff99af9dd95a0df5d83f688b75da8250102e30f"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/e6d.class",
+      "bytes": 544,
+      "sha256": "7d72bb8b5a32c8aaf11fc0004ee4b9331b011afe5236eeab4d0f1e87640803f0"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/eld.class",
+      "bytes": 1652,
+      "sha256": "cb08d42d26a3ea490ebb584e8a606e39353580640700a8151233f6d01acdd5c5"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/f9f.class",
+      "bytes": 694,
+      "sha256": "b985d95af96d6bccaa52b791ef75d5501cb4a89ca721dbd754d3e408ab3a5e82"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/g3d.class",
+      "bytes": 215,
+      "sha256": "2cb4adb4e0f8f37ccb4897345cbe96637436c0ec56939e4fe7a906fffba3405d"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/g94.class",
+      "bytes": 301,
+      "sha256": "8b10e55f65fe34de93956a000fee313b2cb4cdfaf58f83f4429a2fb0c2fbd2ed"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/g9f.class",
+      "bytes": 275,
+      "sha256": "5bdf8e81ed985ee5d8f27ed4a435fb1853b3c351814c290730658e82734ba91d"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/h13.class",
+      "bytes": 985,
+      "sha256": "5cdcd79d18fe88863701cc84865f245a0ffe2c0dc6576785a4814686cd127262"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/hb9.class",
+      "bytes": 818,
+      "sha256": "b4d3185942bcbc33cb40d5d8de87af2b46f530d7023017e293e0a5af1c747cf5"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/htg.class",
+      "bytes": 1326,
+      "sha256": "84b79262780603052af8397ec77cdff19158d37007d292084287819b10fe31cc"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/j68.class",
+      "bytes": 901,
+      "sha256": "99c6ef5ced7781b804dd41244cc841c5e948de8985f091fe716e023c0f708dd7"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/jb3.class",
+      "bytes": 410,
+      "sha256": "974a8e64b1cd16d7d8306ee130b673c1b14284a9cb3d5743fb6539f6f3be2cd3"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/kjf.class",
+      "bytes": 1490,
+      "sha256": "a20bb70e06c92a81e5fb7fccd1e6e86280316e032bf236579f3d6ae2beff886d"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/ku1.class",
+      "bytes": 762,
+      "sha256": "9e05edb355fd50352671049b4f3eeb68827f4ec33211ff7377e33c6c9c40edab"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/lob.class",
+      "bytes": 1078,
+      "sha256": "341f723fa76d602705bd2b2bc07cf10be73a759c1f39eee1745e6186fe8f9792"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/m73.class",
+      "bytes": 66,
+      "sha256": "e6348e846c77654ff0b77069ad2700f6a5abfa68067998790824ed8ab1765cc2"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/n7b.class",
+      "bytes": 800,
+      "sha256": "27a949536b38833c25af37962c85438720061824b382bb66d001bc60ca0da972"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/nc5.class",
+      "bytes": 447,
+      "sha256": "ee4d584cb7a000fde92f2bbfbe67c2a2a1c6fd726a4286f381ab44ba30b5558e"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/o73.class",
+      "bytes": 151,
+      "sha256": "fd4ce3476ff5051d57c2c2d3b047c17e7cb669e9f3e6515d0419ba32cea7a1d5"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/q77.class",
+      "bytes": 734,
+      "sha256": "da1629e221bd46de153acbfc400ca0e8f3c7c07a02d642e4e348d4662a6e351d"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/rff.class",
+      "bytes": 127,
+      "sha256": "d47e084586787ff1da42bf1cacb513b7eb51cf90fdd2057ec7a0737e7e2ca1e5"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/rl9.class",
+      "bytes": 1509,
+      "sha256": "d26508843c2078e51a2f25a63ce32ecdcfe2019228d2536eb521df03ea392283"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/sr9.class",
+      "bytes": 1118,
+      "sha256": "29d15522eeeace670597e7007f0582f69b63124b6167b19ebed93e7a82bd0fc9"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/srh.class",
+      "bytes": 376,
+      "sha256": "82ec7efd8a7ba5c44b00844e16a49e276aca857280d33ee0b4043ed3b54a858a"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/sz5.class",
+      "bytes": 737,
+      "sha256": "0b3cd611fc27695abbf354eeb949b67f6cb5d0e5b2eddef3cbb69b7ed8bc2d6d"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/u2f.class",
+      "bytes": 656,
+      "sha256": "244c737672820b9f832cfc87f499c89e6d313550a80ad7beb5ebb5bc6eaf1303"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/ud1.class",
+      "bytes": 214,
+      "sha256": "bccf53eaad26bdc8a8af83854abdf2ceec8c9790e6b664c050fc47dd90ee6b23"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/v93.class",
+      "bytes": 857,
+      "sha256": "0f372b79d7cc996e63a78cb4abf4f9cd9b5b27e339eb73d925cbfc6734e0f748"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/vdg.class",
+      "bytes": 346,
+      "sha256": "6f4e712276b61cec198fa6b1664bdffd9a882c4687ed9875ee1087783ccf7f82"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/vq9.class",
+      "bytes": 408,
+      "sha256": "eb6e96e0fce045e342a2ce8a76d2be7e1c2107d5df136c16792f67a11d097182"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/w63.class",
+      "bytes": 542,
+      "sha256": "23d2be14de7fa2b39a7b041f1d8e58356795f9286b658e7b6626d64d6ea4a21b"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/xj2.class",
+      "bytes": 800,
+      "sha256": "b5567609634252df7c784dda9eb4e46a7f520d9592b275dcd641b20015567259"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/yc.class",
+      "bytes": 1201,
+      "sha256": "db4636b3adf63bc56af03ee9011224b64c81329bd23702f339948c0e4049e7ed"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/yih.class",
+      "bytes": 1541,
+      "sha256": "571644d5ec309901dd8592acd78a0164f0145860bdab71c71dd8b3052adfd80d"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/zc.class",
+      "bytes": 1155,
+      "sha256": "dfbe0424b4fdbc30badde31b9ce1e8ecb5cb7557d7420bbf56a00ad640c7f2d7"
+    },
+    {
+      "path": "build/java/hostclasses/defpackage/zt2.class",
+      "bytes": 524,
+      "sha256": "ebe62af644bb79f0d9d6446e63bf411ee930fa9ac4654165db34bda650430d1e"
+    },
+    {
+      "path": "build/java/hostclasses/j$/util/Objects.class",
+      "bytes": 246,
+      "sha256": "edcd1cea31b0cbba2cfe9bce2eaf969e7588d1196910776ffaf5ba060d5fdd56"
+    },
+    {
+      "path": "build/java/hostclasses/j$/util/concurrent/ConcurrentHashMap.class",
+      "bytes": 707,
+      "sha256": "e0daeca0085ae0e01e0a195e20d565ebd2011a9d74d425dd18de15b031cbd1d6"
+    },
+    {
+      "path": "build/java/hostclasses/kotlin/UninitializedPropertyAccessException.class",
+      "bytes": 187,
+      "sha256": "14734c9a8cdfa68a2df3c64ebf417c091d85306a99582d662f1b0f2f7648ee06"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AccessibilityServiceStateConstraintInfo_fa067f15.class",
+      "bytes": 260,
+      "sha256": "f6dcfb02519df9311ab797444f18446e30f75e4532962b749deb4792afb7c493"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ActionBlockAction_08377f61.class",
+      "bytes": 254,
+      "sha256": "b86126fffee7b6a797b86149a219ad344aae7d78b2046ce703c3e21f9ababb0e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ActionBlockData_ee1c2add.class",
+      "bytes": 239,
+      "sha256": "e9bb20df1ab60db81cc2260ada99afbf58a67e545e05c8710fac3fe31ca1e72e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ActionBlockInvocationMethodConstraintInfo_3be9ecfb.class",
+      "bytes": 372,
+      "sha256": "e5e05896021a75e841a8b34b1d060345e9d35a1aab678847753d2075173f31ab"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ActionGroupAction_544c7532.class",
+      "bytes": 328,
+      "sha256": "060059d6441113c223c354c986cd2449454994abc79ce286156acd29bec42beb"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ActionGroupEndAction_7a35a682.class",
+      "bytes": 331,
+      "sha256": "b8ae215343c952173821d49b1b3b742dd245c13591f793da6d7421f91f987bfa"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/Action_bd586129.class",
+      "bytes": 546,
+      "sha256": "6a33a9f8cc7382145d7cc539a15ce8a90ea412ee88b6120761bb13e07980855a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ActiveApplicationConstraintInfo_7d88050f.class",
+      "bytes": 309,
+      "sha256": "d9329a063268db2c1e286b8594fc836ac8eb03fe127df9a6dbdd715ededf4a31"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ActivityRecognitionTriggerInfo_2234beef.class",
+      "bytes": 375,
+      "sha256": "e8ab65d24c2fa5ce98849131d1c0851c7d1ffbcd6fa1fde9a8f3fdc455308cfa"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ActivityRecognitionTrigger_b7d28247.class",
+      "bytes": 354,
+      "sha256": "d0c923eb8a7a986644b3d4e6b3f183da501d5c3434a4d15f8d49e32581562d14"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AddActionActivity_d0f2297f.class",
+      "bytes": 323,
+      "sha256": "4b87008f075ba3d1b7715b194a73408b2a0064232fad1b3157b16011becb7ecb"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AddCalendarEntryActionInfo_ab89c534.class",
+      "bytes": 357,
+      "sha256": "96ab6b5346210e923746d4c05b4f2e06c704ff1ead60a118f6eeca9110d37137"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AddCalendarEntryAction_f85079f8.class",
+      "bytes": 251,
+      "sha256": "8244f513952ea9d791d92c0df9c1b9c21f642b8d5fa3851b50aecb56a8798953"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AddConditionActivity_cc15035c.class",
+      "bytes": 230,
+      "sha256": "d13c4af143dc5fe14697a1b02b5fbe26d000d8ad4d693a99eb9e24af9fe26ff7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AddConstraintActivity_e0bb0eca.class",
+      "bytes": 285,
+      "sha256": "f0fd2830a4d1d28a2b9df4ab383f8b11b10ba0a9588eaab872028faa99ed3789"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AddSelectableItemActivity_101d6f33.class",
+      "bytes": 318,
+      "sha256": "5580163e8c7d9264a071becf6d07a6e4759583f01a55d12ae7a76f90c1a6f2c1"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AddTriggerActivity_c1a6e6cb.class",
+      "bytes": 324,
+      "sha256": "4376fdf365986c64b5b2604ad56b5c00e691795fa2c65fc894c10137a87a956d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AiLlmQueryAction_4a521a87.class",
+      "bytes": 253,
+      "sha256": "7139f5bd1185076ab69b166bb752c0472a04896e065fdc9861788332ae1ea75f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AirplaneModeConstraintInfo_3f400170.class",
+      "bytes": 421,
+      "sha256": "fb785034454e237cacdbdf5cb7242d88d3f4a8759595dd755c642f2de858a799"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AllowLEDNotificationLightActionInfo_67a1c10f.class",
+      "bytes": 256,
+      "sha256": "c38251ba8bdc614ba422dcb43877628dcb727ad35d253ad186d0c2afe1f1e673"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AmbientDisplayActionInfo_b5a951ff.class",
+      "bytes": 297,
+      "sha256": "7e9c6c5e1a4d9dc11166699bf1f1a6601a56d0fb6fec613088c69eeafb104150"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AmbientDisplayStateConstraintInfo_625e2c9c.class",
+      "bytes": 307,
+      "sha256": "0ff2de7eee1421ffe6a8aca46137bdb5d3752554fb02d88b3869c88adeb7172e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AndroidShortcutsActionInfo_d131c467.class",
+      "bytes": 358,
+      "sha256": "8216edc10aad6a574d90908523d9ffa486330a15f422233efea6005b29736b34"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AndroidWearActionInfo_0d296d96.class",
+      "bytes": 299,
+      "sha256": "6844cd5d5eb59d5ddf6d1ae4fdeb81356ebbb29bbead62faf8de11da5c81052a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AndroidWearTriggerInfo_783097d5.class",
+      "bytes": 353,
+      "sha256": "29357feae301ebcdb4ebaa7db094e4a2ac7ce1ae0133d1b31015e9cb8d7e8f4a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AnswerCallActionInfo_46fd9ee2.class",
+      "bytes": 413,
+      "sha256": "76ae62b1ac4608ac3f316783ffdb6072cdcc139c7d7eb1eefb62d2e87bb8847d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AppActivityLaunchedTriggerInfo_46be9bb5.class",
+      "bytes": 306,
+      "sha256": "174d007dc919c5ab14170422b43590c219ae64914d88ed76316f152d58ee2a3e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AppEnabledConstraintInfo_73f4bd7d.class",
+      "bytes": 298,
+      "sha256": "70896cb3538f2abf31e59c9e4d2364336bf31b33d01bd3223a7de2dc0fbe1d32"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AppEnabledTriggerInfo_a8b98b9e.class",
+      "bytes": 299,
+      "sha256": "c1d2f26b355082f4450a13c0edf9af637ee5cb8dd4032c1bf92c2c4b714bfc3e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ApplicationInstalledConstraintInfo_0501cd71.class",
+      "bytes": 255,
+      "sha256": "aab869da7e1a54ba3b02fe76f23555e2e6f7ab902a312875462e9b8df6cf4205"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ApplicationInstalledRemovedTriggerInfo_c2ecd496.class",
+      "bytes": 445,
+      "sha256": "6713c84a29aa4a8cfbea9e3798f01e68763c857d9a56ac518ad631e36497c624"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ApplicationLaunchedTriggerInfo_5ed29e09.class",
+      "bytes": 308,
+      "sha256": "598f8119d553fae1139cb863a99990f2d1053acc2d90e6d46d19e7b0fb01eac6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AssistantActivatedTrigger_0679ee13.class",
+      "bytes": 254,
+      "sha256": "0b7e3e995d41fbe1ca5a0811ed78e34dac5b52a418c6d0c0635ca34bb43eedfd"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AuthenticateUserAction_961a4273.class",
+      "bytes": 352,
+      "sha256": "48378e8ca7425c85140db3332f61c9c4fc2fc46c1611366ff1d76b2dbbc7e540"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AutoRotateChangeTriggerInfo_c5cb106e.class",
+      "bytes": 358,
+      "sha256": "2e225b891b627af80dc501836c72b40ebb4af066bb7942ae865115be24233f61"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AutoRotateConstraintInfo_646189a5.class",
+      "bytes": 360,
+      "sha256": "bf09f3811e34261ddab58a8c675b15bbcdf20e495b2f3858bc0129205051481e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AutoSyncChangeTriggerInfo_4a98a4f5.class",
+      "bytes": 419,
+      "sha256": "45ce1e2b03e04640e654e00e647a12dfb49bb03a24d4324b2da28625d1621362"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/AutoSyncConstraintInfo_9adf6019.class",
+      "bytes": 243,
+      "sha256": "56332156e06eabe69960fc5956ce454e55a16ad0d4875ef52c6c77e92c74b9b6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BasePurchaseActivity_60003108.class",
+      "bytes": 229,
+      "sha256": "28f2fb79fc7f5baaeb8f04c6ccb518b0042b6b263bff70024ecbe19f919720d6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BatteryLevelConstraintInfo_63071c56.class",
+      "bytes": 368,
+      "sha256": "7680a9d6c629d7e7d962d86bb07b7d126b100f72e2e361acc4fde448e90dfe44"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BatteryLevelTriggerInfo_33f6fbe9.class",
+      "bytes": 301,
+      "sha256": "f2c3d40e499eabef765249a3158b4c64621643dd51137559697929e377411a6f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BatterySaverActionInfo_73825c74.class",
+      "bytes": 243,
+      "sha256": "a3756c2b2463350f5c198c978b455cd0bc9f3f83207278e1b14cba77a95d1867"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BatterySaverStateConstraintInfo_c2e2ac51.class",
+      "bytes": 256,
+      "sha256": "332107a7ea8d5f2cee9fa35bd3287daad171183fe05eb164650a2b315a674919"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BatterySaverTriggerInfo_0d5c1b07.class",
+      "bytes": 244,
+      "sha256": "c217b9d79b9ce07ad2d1182256d0c4df5dd1549227d838e48be5890ab896ff76"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BatteryTemperatureConstraintInfo_f156ddec.class",
+      "bytes": 299,
+      "sha256": "02f021feb53a373ad0005c84d2efbc430813eb730147f07155af11a3d5a62a78"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BatteryTemperatureTriggerInfo_f0071674.class",
+      "bytes": 307,
+      "sha256": "da2f0138bc4ac336bb3818904a792cec6ffc576d786f211f785edcb87d893210"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BeaconWithName_f8e4fa9f.class",
+      "bytes": 238,
+      "sha256": "dd8f1394f0b1c397fd88c0b46945ef0e0bcc115c53ce6ab78309c82836aef433"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BlockTouchesAction_d0583c50.class",
+      "bytes": 249,
+      "sha256": "903124d55870e95e078ea3913498a72734e58656f97d8237f601df39be452436"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BluetoothBeaconTrigger_6414d2c0.class",
+      "bytes": 261,
+      "sha256": "3b7cbdd40817453fbbd7a58ad37e06e3cdd5235f03457635b31c5475f22674ea"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BluetoothConstraintInfo_f8b75b41.class",
+      "bytes": 473,
+      "sha256": "46e4806b33f3e57f02d43c8fe5a5627a3a4cc5de8b9535964527645a5d3ebe1f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BluetoothTetheringActionInfo_48aae04e.class",
+      "bytes": 250,
+      "sha256": "e7e54dc7d6dadcd8e2cd35a600f84e97dfb104f0d347d8b2cb8cd4a9e749c00c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BluetoothTriggerInfo_497a9526.class",
+      "bytes": 417,
+      "sha256": "d4c082b3e31c390fe72d4a1ca4b4d5eaa53f85fb1cf74bf2b08d6b839f2729a5"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BootTriggerInfo_67715eb4.class",
+      "bytes": 293,
+      "sha256": "7c1571a3235b235659ca072d0e184a2daa022d2185820e0d9611e4b41bd40ca9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BootTrigger_e857a865.class",
+      "bytes": 220,
+      "sha256": "622132c705c521a2e151458f4dbdd48fc98224cf3c48ca2dc094059f394b6e78"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BreakFromLoopAction_867e2255.class",
+      "bytes": 256,
+      "sha256": "63604181f5a2acf1105ae46268ca1f5a7dcc0245bb8478a933a61dd4f5d15e2e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BrightnessConstraintInfo_7d5692c4.class",
+      "bytes": 416,
+      "sha256": "c530ef46ba585c5c70117ef3c579127223f25e9ceb3d096ffe23a5e9ea94755e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BubbleNotificationActionInfo_42f7adc7.class",
+      "bytes": 250,
+      "sha256": "6bb2551b6ee817a448bfad7aff7e90934d072177bd9c9659c588b154b2a76b8d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/BubbleNotificationAction_85e863f1.class",
+      "bytes": 234,
+      "sha256": "f248d32c5b2984024d63bc6dfef1865610386091af1bb02769675c94aa25e603"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ButtonClickConfig_7cb73064.class",
+      "bytes": 227,
+      "sha256": "38018994caa47f2a337d5a0943e7bf7c1cd7702d2e250d8c5e043ddfb41534fc"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CalendarConstraintInfo_87afac0e.class",
+      "bytes": 284,
+      "sha256": "d2306b705c4114c12fb7183170d00dd8433f2122a06820d1977c59941ffd5ee3"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CalendarTriggerInfo_09a466a6.class",
+      "bytes": 350,
+      "sha256": "8c048a67f44ee147212f3a72e901dd39392a3cce53bb1c22a4ce08786035e4b2"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CallActiveTriggerInfo_e01446e0.class",
+      "bytes": 299,
+      "sha256": "37f431cfd5f0b2c40ab518144b6a74dd21180e0d2ac5aa2e32d177f3ae2e61a2"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CallEndedTriggerInfo_8ad62d2c.class",
+      "bytes": 245,
+      "sha256": "ce6ae8291c7dd56e984eb3b7a49554a300fe1a32317d7fb0c2ed62ddd0aab0a8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CallEndedTrigger_82b2358a.class",
+      "bytes": 243,
+      "sha256": "8636d643c212505fca8a51d730715f2178c3508d9b64e0246f18c043de39d3e9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CallMissedTriggerInfo_90cbf7da.class",
+      "bytes": 242,
+      "sha256": "81b4d6e9c5c5092aacf4794f9ad95f15c92ac2784ba9d6ef47888891e7eaa951"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CameraFlashLightActionInfo_84edb44d.class",
+      "bytes": 247,
+      "sha256": "e5ca8bd6fc4a8b2f2a9dac889fcd698e6f54e2c08e5b2c2210349c5a3ced7874"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CameraInUseConstraintInfo_e3e8936f.class",
+      "bytes": 353,
+      "sha256": "edb07be1eb941a85b71dd9b9df0ef89cecf047e9033b31182e4bd36813c9e8f4"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CameraNotificationCircleAction_5776bc97.class",
+      "bytes": 261,
+      "sha256": "ca7d589d465bbdb3158cd1be92066a1ff17e56397fafab0773e7d1eb40448c71"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CancelActiveMacroActionInfo_3de86064.class",
+      "bytes": 252,
+      "sha256": "dd59ba15bf5c116a1269014aed1201d85693fae3bb0b30a2368edb8c27d40f26"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CaptureNextClickXYAction_7d2866a6.class",
+      "bytes": 335,
+      "sha256": "38c31fd2000a6e5bfaf22b02ab2920ea2bdfdb36ed156093effdbbf12e5f1c2e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CarModeActionInfo_2530c55c.class",
+      "bytes": 238,
+      "sha256": "9b76417fd25885d5907d7f4947361265a89e2bec976fc64778cab478b81a6c4a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CategoryEnabledConstraintInfo_5d0b5706.class",
+      "bytes": 360,
+      "sha256": "27784a930860474fffaab9b62bc32c1dec4dbc1ef917425818aeb9e050e5dc15"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CellTowerBackgroundScanService_eec2e089.class",
+      "bytes": 279,
+      "sha256": "7b8413adf8d5fea159cc922f7fc022044659dc8f004e7b80579eccf6e6e5f91f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CellTowerConstraintInfo_7e87c127.class",
+      "bytes": 359,
+      "sha256": "6d3683495a37b771d39ef0c1696a25e6f429ea2dca7756a805106181a2bef7d8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CellTowerTriggerInfo_1fe169c8.class",
+      "bytes": 241,
+      "sha256": "c11709e677bf9fa2258e57f169bc80b6012feac8623940258c2ef130598b63da"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CellTowerTrigger_4a5024ff.class",
+      "bytes": 250,
+      "sha256": "652ea0b0f77e392b6e0cb38df31ab814a0b2bed73df1c7c3cf4d485638119814"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CheckImageOnScreenAction_8bb9cda5.class",
+      "bytes": 261,
+      "sha256": "4f866a69fac3d1c68c2f9df8e7e1ee87e47462a15838fc3bd6b00b9975f2d15d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CheckPixelColorActionInfo_fa004737.class",
+      "bytes": 247,
+      "sha256": "e0d422fdd97929c84a0a5392b893549b3cee61542acf894034a63c5ff0e6e940"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CheckPixelColorAction_9639f9e8.class",
+      "bytes": 343,
+      "sha256": "17126ee98a1c2f5bc6257b3095a1fa08cd89d2fcc584935c45c2f967828c44b7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CheckTextInScreenshotActionInfo_e725573e.class",
+      "bytes": 253,
+      "sha256": "367d5206f5336d479bcc201c50209e0b9b9329346920f77a60c91d669a9d329b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CheckTextInScreenshotAction_e6121dff.class",
+      "bytes": 264,
+      "sha256": "74aca64005a8c198d9bd81fd1b221e4e04d2806664f0970b479382bb509c4230"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CheckTextOnScreenAction_f218ea96.class",
+      "bytes": 260,
+      "sha256": "4958b288c50a53fffdb38c8ba9e9d4e2423da660a36029426f4235e35e0fffbd"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ClearAppDataActionInfo_dc2de922.class",
+      "bytes": 353,
+      "sha256": "e63983532bc2b92d533fbe6c48d7bf387716912d57cbd651cb4a97ba72837f21"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ClearCallLogActionInfo_ac6b7403.class",
+      "bytes": 296,
+      "sha256": "00ed1a29a8f916850968219205747cbd6631debe06619e08829bc02d97bb34fc"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ClearDialogActionInfo_b521a2c0.class",
+      "bytes": 426,
+      "sha256": "fa617ddc53bf12542a6cc8c2635a6c80b0c4e3bbe3af469acb0cc423c19f4090"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ClearDialogAction_0d61239b.class",
+      "bytes": 235,
+      "sha256": "3669336337adc8e5f3af6b5b4dc21d14d94752351b0aabfd38c3f5da2424e066"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ClearLogActionInfo_1295a911.class",
+      "bytes": 292,
+      "sha256": "0f606695bd8c5b46ecc213d45e72cdd3e62ba7be1e267324b4190c400f30c8e4"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ClearLogAction_84f77a0e.class",
+      "bytes": 251,
+      "sha256": "3775b7b024fcc9db1c64f212cb96baf2dff6195a680051d7e1a3e06017352d34"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ClearNotificationsActionInfo_d2f0adfe.class",
+      "bytes": 413,
+      "sha256": "34454fe6a47ef8a3869e6246f6ac27df18c46a1924c75d8e94b9bac4099d2104"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ClipboardActionInfo_8c1bc682.class",
+      "bytes": 240,
+      "sha256": "634a79caf8a45503b38ae45dcb439a322298be262a50b6062dcf3212ed9e6b7c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ClipboardChangeTriggerInfo_f33a240a.class",
+      "bytes": 304,
+      "sha256": "01a434a5eac07e8cc11bb2e4404e9bff22c2343b4dfc4c382164b898b314a77a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ClipboardConstraintInfo_873b1cfe.class",
+      "bytes": 301,
+      "sha256": "08e616bfb0468c0af931d41e8ac4f2869d01889dfc37156661da6595476dda6a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CloseApplicationActionInfo_d35ed8e3.class",
+      "bytes": 476,
+      "sha256": "f07d8af46db4b0a30faba7fb3dc937b3191c47928f86460140042eae14b8a454"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/Comment_d69430d3.class",
+      "bytes": 231,
+      "sha256": "6f0609906d5e08936c343dcc973aaec39b8f45832944c7e466e3c192b0e7fbf8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CompareValueConstraintInfo_6361dd71.class",
+      "bytes": 300,
+      "sha256": "8c7d5ffac5988002448f4156c7871c5bad646eaad6b66395ca278b1720ed9db6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ConfigureAppNotificationsActionInfo_38a245b9.class",
+      "bytes": 454,
+      "sha256": "f40a55783d77e930f783352e61d340c69f69a715b5ee017f33aeb15c80fc33ee"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ConfigureWidgetButtonActionInfo_f5847108.class",
+      "bytes": 309,
+      "sha256": "c8bbc9b35af4a5063a653a2d0904756b9a74a4a54e839b406853a31b2c4c0956"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ConfiguredActionData_de4f6549.class",
+      "bytes": 310,
+      "sha256": "92ac1f0a44c77e3dd0562c08b0514991f36ab115e1403dbb7c931c7bf5247332"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ConfirmNextActionInfo_a5198e79.class",
+      "bytes": 468,
+      "sha256": "34fc7fddecb14853a9a6e27d88d7de482659612399d54a19d8e2f58f1f2d5e63"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ConfirmNextAction_4158fb8e.class",
+      "bytes": 254,
+      "sha256": "211e286a82cc1d153304e0405a19ce3ab41610e8532436489852337d0b34209d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ConnectivityCheckAction_a0eebae8.class",
+      "bytes": 260,
+      "sha256": "65799f74e18ae5785a39b32aeae1a9ced977e934a2d69e34f86015c374259066"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/Constraint_87753a02.class",
+      "bytes": 284,
+      "sha256": "7ea6680b97017fb1773c572d4f4a130c9e4e2a7ec03ae259d0a662e6dc6a5f3e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ContinueLoopAction_c4acf41c.class",
+      "bytes": 329,
+      "sha256": "7b530037892e933f9c8fc799f4c4a395fb22987201355cfb2e0155f9db8284d2"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ControlMediaActionInfo_9debced6.class",
+      "bytes": 360,
+      "sha256": "a9f9ecb8de10034080af9e0bc105c1d98a97570657d6e032836894c7daec88e7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CreateChartAction_75073104.class",
+      "bytes": 254,
+      "sha256": "b70fb2f01b7ce9e1dba9a139001e1ef7ee7a092f5f0576c56d612e846e9d7495"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CustomDrawerHandleService_8a614d9d.class",
+      "bytes": 274,
+      "sha256": "2dfc6a9af6552f7408407be5d7638651946c56db3fd40b8e9633609bc3b62273"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CustomEntry_3ff23053.class",
+      "bytes": 235,
+      "sha256": "0862e66abd3f05f0ceb2f4aa6d3790eb12e6b8c160d1a4798d8750126dd73596"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CustomSceneAction_07d523cc.class",
+      "bytes": 254,
+      "sha256": "c314806de205303b38a5bf81959366f83a558b61c34d103130c8711baf506bb2"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CustomSceneConstraintInfo_87e76877.class",
+      "bytes": 246,
+      "sha256": "1a195a9332da9478e49ea3d81c79c7eb7d270e9533836480f1d7938abedd86d6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CustomSceneTrigger_f86b4b1f.class",
+      "bytes": 267,
+      "sha256": "ae8b9b44cba4894dfb86e2715c22d6b990479d7c2ab896f9b29429c752a9c68d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/CustomWidgetEditActivity_ec2a6c0a.class",
+      "bytes": 1060,
+      "sha256": "a7084d318cbd4025d7332c9899d1c50e51c5c1c0cf45c7a6bdc6296772497cb4"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DarkThemeConstraintInfo_965cd169.class",
+      "bytes": 355,
+      "sha256": "99f4f575d75562ed27885dd736e49af72d4a906640c6c3e466a12537b03661f0"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DataOnOffConstraintInfo_7567626e.class",
+      "bytes": 244,
+      "sha256": "6c836384ec8d264a6040f3825407245c5085c67c59e3ab2c8343d1a951da9746"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DataOnOffTriggerInfo_66ec50c9.class",
+      "bytes": 373,
+      "sha256": "aeea4257334e0c6931fc4a1581931c362d5481b2a956bf250662a62736b1b278"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DataUsedConstraintInfo_cfa2f1b5.class",
+      "bytes": 296,
+      "sha256": "94a9999ecdff0b961361373731e09489ad6f52cdda9ebaf4c94a3beb45111f6b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DataUsedTriggerInfo_144b6e82.class",
+      "bytes": 244,
+      "sha256": "5bbe4f6e16bb8bd24780d31e6ff4630f455baa0c84282171b8fc8fb0439c177c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DayDreamActionInfo_5db67a61.class",
+      "bytes": 457,
+      "sha256": "54bbbce83609a96275348647b753715c018c5095a4de3e07bd148cf87d27d110"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DayDreamTriggerInfo_19b7c3df.class",
+      "bytes": 359,
+      "sha256": "d38e76c4e753f05190676a580bd34c8f9709fa84f3d9c2c2e3f65873ffa7db43"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DayOfMonthConstraintInfo_cb6ac3b3.class",
+      "bytes": 365,
+      "sha256": "725f085bff5ed705d862cd0da415ae2002e5b52e4e75fedd5c952e0177bbf15a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DayOfWeekConstraintInfo_9d8b04df.class",
+      "bytes": 363,
+      "sha256": "a3c90911d20d5c4e94c317fdaeaaa0da31b42703238add12c33828368286e72f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DayTriggerInfo_db5f6ebd.class",
+      "bytes": 239,
+      "sha256": "96991b0504964caf90db4f7b24dfa3adcf89e1c3a63584792b748eb965b7becd"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DayTrigger_74d1108d.class",
+      "bytes": 244,
+      "sha256": "b3d34e61ba4a2e666cfd66861803d87e54a6dec21155ae7dddeb35a67a359cd8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DecimalRangeValue_f6c15d59.class",
+      "bytes": 241,
+      "sha256": "86342ef8ddfd23e6dd8534e6e62fada290c85eaf7fdfc7c2ca18d279785ae153"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DecimalValue_14c33068.class",
+      "bytes": 236,
+      "sha256": "4771861f0e34c4cfc48b7795d9ddfe901ad331bbc13043687916e98443f8fc8c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DeleteMacroActionInfo_c5bc4cb7.class",
+      "bytes": 299,
+      "sha256": "2e72d46a3fbd7c9eede82fab4298a01a1a3b9e6a8aa85b34f0708481be274c94"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DeleteSMSActionInfo_bc764ccd.class",
+      "bytes": 404,
+      "sha256": "493b2ee26e5afd19e4f80156b2f9a9147122522586a454de6b3a6aa98432f3c7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DeleteSMSAction_0627cff6.class",
+      "bytes": 233,
+      "sha256": "8cbf565107b3f9182968ee580d2196d5188aa5e5f853458f188e427e937e9cf6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DeviceLockedConstraintInfo_3c553884.class",
+      "bytes": 300,
+      "sha256": "1ef3a7be8a9b5d82844f1fa3e867caf7e6bec16aa0328d9030e1f11b65484aa7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DeviceOrientationConstraintInfo_98783a5d.class",
+      "bytes": 362,
+      "sha256": "068c22c7b97659866edf75cf0ece98f7618d96b3133ab652e1946b937a6e75a6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DeviceUnlockedTriggerInfo_7359cd97.class",
+      "bytes": 299,
+      "sha256": "f201ee91383c3b34578bbdbd057e935f0c13aa4982ffca9cbd57cc169f7d9c8b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DeviceUnlockedTrigger_2091e228.class",
+      "bytes": 239,
+      "sha256": "719544dc0568c1ae445ad57c458a92624e84b24b1ae88154ebf01ef2122c533e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DimScreenActionInfo_184dfcd4.class",
+      "bytes": 297,
+      "sha256": "748b5379befdfa8d8b6e866e74abd2cf1f68bb44809a0abc5cbb977c0bfccc74"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DimScreenAction_981f01f6.class",
+      "bytes": 250,
+      "sha256": "cf252c9f38cdaae2adc1a888429fa2382452dba97328689adf0d6df80c76f4c5"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DisableAppActionInfo_c0696ec5.class",
+      "bytes": 351,
+      "sha256": "c0ef9305fc6982d5371b01c0a3ffd309cdb31ef2f1a0fba3717c44f513cf7e9e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DisableMacroActionInfo_a110a122.class",
+      "bytes": 296,
+      "sha256": "9ea64e775c94189e93e767409e73d7207519a5a6f3fe1156ffae9959604f3fd5"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DockTriggerInfo_58250c7f.class",
+      "bytes": 289,
+      "sha256": "83f1b3480823d62d7d2dbf7b3d8f7701cc6579b70570afd35de09219a1bab68a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/DrawerStateConstraintInfo_26d76bb3.class",
+      "bytes": 303,
+      "sha256": "0566af8770c3fe4d413df056877073a959b6b9d2aa900001fe000b0ebf152f84"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/EdgeLightingAction_090e0445.class",
+      "bytes": 249,
+      "sha256": "49e4bccc1fe5485c6c303acc672cb92ee6313d410868a3857345ba818b1731e4"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ElseActionInfo_7bd1797b.class",
+      "bytes": 288,
+      "sha256": "bb3435c16cc9c320974d5a7bcfea0719ce46d2a848ecc6acc439376731853929"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ElseAction_98a3dcc6.class",
+      "bytes": 247,
+      "sha256": "1e7b12bdb7d5b7508584b3df68e55d6e293422fdc108288523d935cb130aefb3"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ElseIfConditionActionInfo_8568e32d.class",
+      "bytes": 356,
+      "sha256": "37c4bf41f67947818bb22a1d0ad42c83bf73282edb2bc1ddbcbf612886dbad31"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ElseIfConditionAction_1e582e60.class",
+      "bytes": 258,
+      "sha256": "69f67e9f4529166b9b92341a7ffce482721140d4e919a140f196e275a96d7265"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ElseIfConfirmedThenAction_795b3112.class",
+      "bytes": 352,
+      "sha256": "e19fdc583d7bb82457b0a5d1763edc8b6b08be0f11d15cae90f8dfef8cc1fe0d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ElseParentAction_864cef6b.class",
+      "bytes": 253,
+      "sha256": "c13a0ee9a44bf704ed0840e72be9046b67b971930e23ada788ece4d1f26ea995"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/EmailServerStore_de71477c.class",
+      "bytes": 240,
+      "sha256": "66e0c6fc1df216dc40f73cf95cd6b30af47230acbe1fae9b38d6e41ac256df8f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/EmptyAction_41cc4751.class",
+      "bytes": 248,
+      "sha256": "3d378f969506969ec8ad8c0a24fc579a5ad814cd45ba9cb89779ab545607e04d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/EmptyTriggerInfo_9e4bb8e4.class",
+      "bytes": 464,
+      "sha256": "9e1b0002d00c8ba379660425427f8501985d6437d9d14a1fca9eaba23baefbd7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/EmptyTrigger_a2161bae.class",
+      "bytes": 221,
+      "sha256": "d96e46f5c180d4d62732dd485c85312dc6276f5634113da09b6dcd1790336a86"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/EndIfActionInfo_9347e061.class",
+      "bytes": 367,
+      "sha256": "16006ed094b5109fe1fa39b4c6a2381b25e6e3572f1f79703cb6e00ad33c0a08"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/EndIfAction_02082661.class",
+      "bytes": 248,
+      "sha256": "ccda3087974656cd08db62dacf544de562d758bf17a2419a462f888572e5ba2b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/EndLoopActionInfo_ee2e629f.class",
+      "bytes": 238,
+      "sha256": "8fafd7ed352b3543082973cc6cf08239acaaaee0626e2ad71e3a1faae3cb3fa8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/EndLoopAction_86688389.class",
+      "bytes": 250,
+      "sha256": "e6b77dab8b0e21a3602fe969e786c9caa23c7f4050acd4ca4be0c441a85be656"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ExpandCollapseStatusBarActionInfo_60130cae.class",
+      "bytes": 494,
+      "sha256": "e8687e269c1979632f77af6b5476dd98f11a9cdd0d2ef73a782363e0f1079605"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ExportImportActivity_4c1c29ea.class",
+      "bytes": 228,
+      "sha256": "30f20a58d5a88a66b77ce14b3e506b825a0368be47d6311991271c730e41e766"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ExportMacrosActionInfo_0186d2fd.class",
+      "bytes": 470,
+      "sha256": "8ad5e8901059dc4797060420eb0c0a18d9793fbbef306a0ecd4a05791ba71f09"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ExportMacrosAction_c8beffe0.class",
+      "bytes": 255,
+      "sha256": "134127ad8803788d742c17e8f9e0508a37c3c64b475304627f257de411ef1191"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ExpressionValueDecimal_ebc5d545.class",
+      "bytes": 246,
+      "sha256": "5b89af25d566af44021eff9d93b2ff9210c0bc543f2e947e8ba24706c71e66bc"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ExpressionValue_edb16cf3.class",
+      "bytes": 239,
+      "sha256": "ab0711948ed005d82f6c109da33463280c20f5441410bf3b61ff04a3bec4fa33"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ExternalPowerConstraintInfo_93206fac.class",
+      "bytes": 305,
+      "sha256": "4607843c5a7ed80c66fdbce843ba33805198b1a2eacadeb43b3b4a66064a513f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ExternalPowerTriggerInfo_4fcd4aac.class",
+      "bytes": 298,
+      "sha256": "8e26ca8e40c393bc08fe96f8e98725c416a53940032e73bfc50f64d213bc7ce6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FaceUpDownConstraintInfo_05f85b84.class",
+      "bytes": 362,
+      "sha256": "2b74f35ef2c291c8c3e1b0ab42df9c46d96a6b50717318daa73dee8962423478"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FailedLoginTriggerInfo_9696c171.class",
+      "bytes": 300,
+      "sha256": "5ff1ce30f7f572aadcefe45895c542461a5c4246bc15ac6216e757f0fd409ecb"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FailedLoginTrigger_b645e96d.class",
+      "bytes": 227,
+      "sha256": "3ffa49f67f67fc506600c313d18f85b7120e54e61b6a6af8059d029fed724043"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FavouriteActionItemInfo_6b72cef0.class",
+      "bytes": 301,
+      "sha256": "f1257155bb8eadad1d2ee65bea3e5e29e5942d594ccb935634c64f962d6b2a73"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FavouriteTriggerItemInfo_c5dff89f.class",
+      "bytes": 302,
+      "sha256": "b6d33cfed921db7ce7c61517ab2cb5933cffb8073c6d45b9d6e3cb70f0eb24a9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FileChangedTrigger_4e269fba.class",
+      "bytes": 248,
+      "sha256": "4a2b3d845b0159e26733c5b7cc27f0aceaedb6bf9108ade98fb4451e3674022f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FileOperationActionInfo_7a01780b.class",
+      "bytes": 354,
+      "sha256": "1e4b43f36489c2f4c85c38b0439f7d14ae1c0ddda9d0cf5eb42f38c24ede6db9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FileOperationAllFilesActionInfo_da790ecd.class",
+      "bytes": 309,
+      "sha256": "b9e3a8e1b88e3da6a5d33395de29928fa9f993cf95927d68e927cbad6373b35a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FileOperationAllFilesAction_b4229126.class",
+      "bytes": 350,
+      "sha256": "9106baaba5e7adef0cf9154b9f1e05426a58f3c215dca03f623dab0addbf8d12"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FileOperationV21ActionInfo_7e2b8ce2.class",
+      "bytes": 247,
+      "sha256": "3a2ae848452bc8b983da43431aeedd1ecc416c3aef35ab3cb5727c35b8086a25"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FileOperationV21Action_b4ea74f5.class",
+      "bytes": 340,
+      "sha256": "39e39ce31892971fca61d73dcccfdaef3a6a1af671fdccc4d3bff80622181aa0"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FingerprintGestureTriggerInfo_6f48f0f1.class",
+      "bytes": 377,
+      "sha256": "20bd16f538a041e6d89a5226e836a969b6ca4dbadfffa9a3c4ce1c9b2452e34f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FingerprintGestureTrigger_03b32333.class",
+      "bytes": 318,
+      "sha256": "d3397fc39d7d9aa2cfd3bcd41c1294af11ee77fd00e098ef282e6184882cfee2"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FlipDeviceTriggerInfo_8fcb2a41.class",
+      "bytes": 246,
+      "sha256": "e3de2cb94cff7ba492ed8377826c5ab4a8178081b86ca89e87c86e088ec19850"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FloatingButtonConstraintInfo_7fc68f3d.class",
+      "bytes": 253,
+      "sha256": "f7f6d560ed7b30f1ee9ead8a9bb0a648454aa8b27e65a1fd268d7026a54c95d3"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FloatingButtonTriggerInfo_e59a45dc.class",
+      "bytes": 365,
+      "sha256": "c3c078cc086b38cb017a3ac90282e231ba8a16e7db1eb4790968ae91e2aae3ae"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FloatingTextAction_fa7f8636.class",
+      "bytes": 249,
+      "sha256": "17689db5b3e1e7b908c867e13cbe904f78c1c24abed90876583f4f50922d0200"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/FoldAngleConstraintInfo_4dcad334.class",
+      "bytes": 298,
+      "sha256": "90ec621774c989ff33b73ffe6f29027a31276eea60fd35e58bfc2e6009ffe8b0"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ForceLocationUpdateActionInfo_5549c822.class",
+      "bytes": 360,
+      "sha256": "b972db9545aa454b959395177bc3325d4fc3dd2c1e3fe6ca6029dc663483e7b6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ForceLocationUpdateAction_6d2fcfd1.class",
+      "bytes": 262,
+      "sha256": "f11339016486a0bc9e5211a46465b9264be24d0ffb746dd16fd1914ec56e3cec"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ForceMacroRunActionInfo_a558ffb9.class",
+      "bytes": 414,
+      "sha256": "faf5e557763b4938ee79a4900246480b3be263fcb32d9fc77e2d1fd64c54e77f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ForceMacroRunAction_82d691f2.class",
+      "bytes": 334,
+      "sha256": "e5633b171fe62ecf5ac82e6dc25e839a104f73b37171057e8cf1bfb24e85e2bf"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ForceScreenRotationActionInfo_6c327cb4.class",
+      "bytes": 250,
+      "sha256": "6b3f0e8a1e902a56e4103b1cb3de809d62bfa0a188f137bfc9e1a88ac166102d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ForceScreenRotationAction_8b7a427d.class",
+      "bytes": 256,
+      "sha256": "3fb5cd02ea733826545c5b411e7e2050f29107b40b7ef7412fd5df2b3017abc7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ForwardSMSActionInfo_7c890727.class",
+      "bytes": 351,
+      "sha256": "3d25f388508e00c2c1f1647c5fa82a68cf61039f2fe4f9a12d5f12414b93e252"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/GPSEnabledConstraintInfo_62fe3eb0.class",
+      "bytes": 468,
+      "sha256": "bd13f64a9c995f2d058f2d0fdbf0fd3b8af693899668fa2dfaa2bbff13751b3b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/GPSEnabledTriggerInfo_807ab43a.class",
+      "bytes": 352,
+      "sha256": "67bff89778910e2b120c275a3c42214c737b5e54ecd02faa99c3b60a8e9b4e94"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/GenerateQRCodeAction_a70bc024.class",
+      "bytes": 257,
+      "sha256": "d7b269b243c52a4ade5eaf7bce22ceb57c92ae13674a8c9b7fcab4848445643e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/GeofenceConstraintInfo_077c0b88.class",
+      "bytes": 300,
+      "sha256": "86acc2f2080ef2275169ddf8f2abac374fbd982f7653fa365b0a8db32b860d9d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/GeofenceConstraint_aa40baae.class",
+      "bytes": 257,
+      "sha256": "7604077bf1e68106e3f83dfcd2513f5b4c1fb7b13aa766065ad4dfe5d41cafb9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/GeofenceTriggerInfo_2eca92ce.class",
+      "bytes": 240,
+      "sha256": "791a4a1d59d987d8ded1eac1b9eae15206b95c666271b9d1eec9a8e7a0132313"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/GetCalendarEventsAction_5df8e60e.class",
+      "bytes": 260,
+      "sha256": "e6d9b7662be1f134c333c5484d136ee93a958eedb60d568fed77ffc00aaddd78"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/GetContactsAction_9d5cfcb1.class",
+      "bytes": 254,
+      "sha256": "268a7aaf38f808381939dbc29913367c61b3be55d0bac2a03176e8171569d695"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/GetDataUsedAction_2e731078.class",
+      "bytes": 244,
+      "sha256": "a3937383f9132b5e768c7f6e655a006f7f9d99b42506dbb7e5162a2a03f09eb6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/GetInstalledAppsAction_1a32aa8c.class",
+      "bytes": 259,
+      "sha256": "abdb052bf9b5a43beb8ef3b25d2766807b70a23cb311f4352b8b590a50a8e28a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/GetLightLevelAction_032ca73a.class",
+      "bytes": 256,
+      "sha256": "b267eb7e51261e6aad86fd5e46b97d2585d6e714b6a4fc15a5aa634dce440cea"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/GetTextByViewIdAction_453c7bc8.class",
+      "bytes": 356,
+      "sha256": "0b27ecdfba30881a6a579d34ef6704f495eca927852a7201ed6a068c0ca6c301"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/GoogleAssistantTrigger_4b46af29.class",
+      "bytes": 231,
+      "sha256": "7b4975611f8481303715f6536495dc7e71fd9b916ab0239039e6591a9a8adeb7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/GotoAction_ad7e59be.class",
+      "bytes": 247,
+      "sha256": "f1162c279985fae63b8525186cd09de25f7ca1f60e48b2d51ce1c2b560211b12"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/HeadphonesConnectionConstraintInfo_722e2982.class",
+      "bytes": 432,
+      "sha256": "00b9faedb2915fe6a07dfc050b64f3fec61ff11abd526bc80516d3f436dc5551"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/HeadphonesTriggerInfo_9c8e026d.class",
+      "bytes": 370,
+      "sha256": "5689a6c206dce9220a4e25f653f8e38c7b38b140c19165a97f55269d91f45bd8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/HeadsUpNotificationsActionInfo_46c7dae7.class",
+      "bytes": 489,
+      "sha256": "5e89540bf0d5cbb9c7366faf627dc36642f0d4d9ed343bf88e314b95786a9313"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/HomeButtonLongPressTriggerInfo_e521960d.class",
+      "bytes": 252,
+      "sha256": "bfe2499dc545386f25a095d526170341947b07b85d8afa575cf0b8d8a58cb4a7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/HomeButtonLongPressTrigger_e55aad08.class",
+      "bytes": 244,
+      "sha256": "cade8cdb53ebdb6321570655cea69c98cfb68564d48767ec30404f75523b19b4"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/HotspotTriggerInfo_d481e25a.class",
+      "bytes": 296,
+      "sha256": "3ac5618061611d6c8d868ab171410bd7c138219505e2a4be54818e88b62456ae"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/HtmlTextView_4ef62dbc.class",
+      "bytes": 259,
+      "sha256": "82dad71c04aa45764bcf00eb1f624470530aaf5751c8b5423eed726239292e2c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/HttpRequestAction_5e2ed339.class",
+      "bytes": 254,
+      "sha256": "cf5cc4f4aa9be807912f985ff12835cdefb878bb62aa8e04eb802348f2399a5a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/HttpRequestConfig_fe3c94c1.class",
+      "bytes": 241,
+      "sha256": "5cbed8dfbccbc9777ca2730e3022d12818e2e3de016a5e302624bedf5150939c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/IfConditionActionInfo_2b6743c7.class",
+      "bytes": 242,
+      "sha256": "0cfa14a6ab8e0682532597083fd1843e4fbae96e7dbaa43769e1af856d6ba04b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/IfConditionAction_38039761.class",
+      "bytes": 254,
+      "sha256": "7b018afe820aa4acb586812114a3b6bf32d6f37a39a3b4042119ea7a45d5b627"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/IfConfirmedThenAction_8b8fffa7.class",
+      "bytes": 398,
+      "sha256": "2cc2c61605237d939604ad90c471228fdec9fbfd15d92011548ccbe9e0d0253f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ImageDescriptionAction_8f9df8e2.class",
+      "bytes": 333,
+      "sha256": "6e8f9e87f08f41e7e4983751e1eb7704649f0b6372e9bb40ae27d1fe345883bc"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ImmersiveModeActionInfo_2e83e2fb.class",
+      "bytes": 298,
+      "sha256": "f6d844cc63abe6bb918c4b24e935120c988d300786a20637191f5cf5bcec0512"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/InCallConstraintInfo_a9038775.class",
+      "bytes": 278,
+      "sha256": "639119e3e4738e03f8faf76f296a4a96538486c964680b4b13fe7dc89cefd8e3"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/IncomingCallTriggerInfo_ab76c93e.class",
+      "bytes": 418,
+      "sha256": "0f0444071b9d02151e21113e5e687ab8661279da93848451cad0a7290c4dc58e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/IncomingSMSTriggerInfo_5b9b0d16.class",
+      "bytes": 247,
+      "sha256": "63ed0ab064a8b1660f735495b777623c2ff1d92fd5ae35918ed09d3f1d9fac26"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/InvertColoursActionInfo_d9604cbd.class",
+      "bytes": 297,
+      "sha256": "d1b68a50d0b2e01495c3d4efb397d4741e38eaced396a726879a1945eb942dc9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/InvocationMethodConstraintInfo_3ad56031.class",
+      "bytes": 255,
+      "sha256": "bfeb8796b82c5ed85815a5c852c4bf63c0058e38968570b5aedbe4c426e5b76e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/InvokedByAnimationOverlayTrigger_282a4f73.class",
+      "bytes": 355,
+      "sha256": "3368553ade38f384470477ae254f20bb9470cbd679509258a6b429fc32f4ea82"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/InvokedByDrawerTrigger_78522c55.class",
+      "bytes": 348,
+      "sha256": "ce32c33dc51a25aad68855dcb00b65b41647ffe9dcec94b3d027e57f50f7f781"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/InvokedByFloatingTextTrigger_9759b14b.class",
+      "bytes": 351,
+      "sha256": "ebe80f0f12f6d1a11f9204ab131fa2f8014efdb6d548aa3825f5d610022df5e4"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/InvokedByNotificationTrigger_9f478889.class",
+      "bytes": 372,
+      "sha256": "7bbd516c0eba45a4de6724f9bdea87a902164e3870d3500c6b05bfcf44298ab3"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/InvokedByOptionDialogTrigger_aa38c03c.class",
+      "bytes": 450,
+      "sha256": "34bac0b26ab2638954ee5058a3c0e70b1441e3ff53314229a1a0335871a11edf"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/InvokedByOverlayBarTrigger_cc093f14.class",
+      "bytes": 525,
+      "sha256": "75b73e020e210d503320923c545fe9c8a7904961b387e259620943fa6d9d266d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/InvokedByPowerMenuTrigger_7e0d8a80.class",
+      "bytes": 348,
+      "sha256": "b613729c88d60bc86e1c8bea953e761553dfa5970cfcb23281ef57053beef11f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/InvokedByQuickRunTrigger_200aea5e.class",
+      "bytes": 449,
+      "sha256": "3194ff3f51cbdc756d7b883fe4aeab0f7e7cd5d94170dec2424a9f2cb4f2366b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/InvokedByRunMacroTrigger_aa079c8a.class",
+      "bytes": 350,
+      "sha256": "fb322cbbc9b0d0682207023edf3797536270bf3cea112061ca34253f67ca0536"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/InvokedBySceneTrigger_42abc6e1.class",
+      "bytes": 402,
+      "sha256": "605c36e716009ee10d723d73d0ae731f2b47adcf7226c6688aa2d944924bb030"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/InvokedByTestActionsTrigger_da3bb026.class",
+      "bytes": 448,
+      "sha256": "1373e8792d17d9b211679950262703afca3f2be027854cfee6d46965c7750c07"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/InvokedByTestMacroTrigger_6528f40d.class",
+      "bytes": 425,
+      "sha256": "b6140738eea7b93e5e1ff7eae7902150de54a5fe3421af32c40af17ea70144c0"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/IsAdbHackedConstraintInfo_3129665f.class",
+      "bytes": 303,
+      "sha256": "1b9a7f116f319183199254d8c1081b176654d48e3f7e122fa04826f1e554c31b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/IsRoamingConstraintInfo_cf83d4ae.class",
+      "bytes": 358,
+      "sha256": "86a964f28a2641bc7cefd06821c88bf99f818d6c2ee89bd712c0ab8cab6e6292"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/IsRootedConstraintInfo_d4f26cac.class",
+      "bytes": 353,
+      "sha256": "285e9db5c6edb14bf7972934ec8c29431f0d649f6ed1a42112211fce92cac5c7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ItemContext_e1eeb737.class",
+      "bytes": 222,
+      "sha256": "cf3d2b9b5cd15094b54d116e1c499c15e40f1971a81af34af6fc6b17f992b915"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/IterateDictionaryActionInfo_0933630d.class",
+      "bytes": 358,
+      "sha256": "179bdb6d3e0ecddba3efe269aecc99107713668cbb0390eb88b2519c41a8c4e3"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/IterateDictionaryAction_d524c1d8.class",
+      "bytes": 260,
+      "sha256": "381a78915d28c8f47b228a61f8db56842378ef44e6f5851e0c4dbc5974b887b5"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/JavaAction_871dca0b.class",
+      "bytes": 247,
+      "sha256": "94f0ab720818ac2b0a4753eb9e4b824337f30e19ca6caf1d050b17742effb7d2"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/JavaScriptAction_ae3728f3.class",
+      "bytes": 253,
+      "sha256": "a87348d379f6cf7e76fe73b88802d4dc1b24e238acb2e09df1c391715c68a098"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/JsonParseAction_dbe0064e.class",
+      "bytes": 252,
+      "sha256": "bfbb409e1e48cdabe4382b493222cb6e3300832c427d2cc466a81a53848c3ef4"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/KeepAwakeActionInfo_8441a382.class",
+      "bytes": 297,
+      "sha256": "3886af3a941957f0fd632e2b75726197cb9a686757c012e4560a9b8ba59902b7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/KeyboardShowingConstraintInfo_99b83130.class",
+      "bytes": 307,
+      "sha256": "6724c420e6ebcecda659e82f1829df7de1c202dcac9316066de1096dc40290dd"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/KillBackgroundAppActionInfo_87e40d3d.class",
+      "bytes": 248,
+      "sha256": "5c68cf262c90eddca06f27a0949b0a67d7357d2a3fccdc56211afa41b0fe72f3"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LastRunTimeConstraintInfo_2f5ad79e.class",
+      "bytes": 444,
+      "sha256": "05bf6be4d123721293b33941ea5431aa4ed608c575e08ba7c7ea77baf440f589"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LaunchActivityActionInfo_23ffb9ce.class",
+      "bytes": 371,
+      "sha256": "b9ad4b93e0200acf1fd508378c43b9ce890faf435fe63e739441e02b62f490db"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LaunchActivityAction_21072620.class",
+      "bytes": 257,
+      "sha256": "407b4caad3f253ec32f0426835540bcb2e977ad6b4722d8d9dbc0f42d5ca2e15"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LaunchAndPressActionInfo_cc9b9c01.class",
+      "bytes": 495,
+      "sha256": "121aa21850f0637361c79ed3d682ed305e46e71de03ca647d8137fed79967521"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LaunchAndPressAction_73c0461e.class",
+      "bytes": 251,
+      "sha256": "506558acce19f17ed35c12011b796488cbc52b5ef449771743c83848eef0f295"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LaunchAppActivityActionInfo_1730f613.class",
+      "bytes": 428,
+      "sha256": "ba039c17a889bad2d15f2ef4cbe3d097e9ea1a8e450a01fa5d3fbef56a5b989f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LaunchAppActivityAction_2311f2b4.class",
+      "bytes": 260,
+      "sha256": "55182c9e1d56bc047dbb6198a34df9d85cbc33c43cb641b4022df4c23513f56f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LaunchHomeScreenActionInfo_e8545641.class",
+      "bytes": 426,
+      "sha256": "558d1ed3967e391065d19347f38b4837c7aa3f552237d61e7acaac943228ec1f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LaunchHomeScreenAction_2b6601e8.class",
+      "bytes": 240,
+      "sha256": "b17a6b1d12f6250f9cc5e627bd39bcec9d82711785d2389aa26b75c1dcc053ca"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LaunchShortcutActionInfo_ac151065.class",
+      "bytes": 298,
+      "sha256": "f8152a333b7db68d7fdf8056a53fc697c87ec52b7ee9e4eaa410842b1fdfb281"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LauncherActivity_6343cc3e.class",
+      "bytes": 226,
+      "sha256": "5165df2074a206992cfb92b45fd38a61bdc7fe30bcf3f72cb1b4957235939e19"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LauncherIsInForegroundConstraintInfo_0becd448.class",
+      "bytes": 440,
+      "sha256": "c28d9a5ae91031eb65be310bde07f42904d1137e3524a808bcb02d4096e18802"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LightLevelConstraintInfo_5a4e3a61.class",
+      "bytes": 355,
+      "sha256": "99357c499147cf9d0226b9abfadd1543c2f5ed704311ba8ebc739906a585acbb"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LightSensorTriggerInfo_f9d6c469.class",
+      "bytes": 469,
+      "sha256": "33f7fc7bad2e12b4c1a51959f01633fad83a217117e276f94f5f83ac53246aff"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LightSensorTrigger_cff692ba.class",
+      "bytes": 252,
+      "sha256": "142436be71971b575672c04a2127bc3dcff83c339a85ae385e14cf12f3250d2e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LocalePluginActionInfo_44786c03.class",
+      "bytes": 367,
+      "sha256": "d8621c6cc2886e0dd985cbcb59b79f1b77147f87fc391bda6ae52e2cc4d12ebf"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LocalePluginAction_fe78c764.class",
+      "bytes": 255,
+      "sha256": "91a49631d43521e635afccac59065611110ddd85bbbc2437c05e26970676e586"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LocalePluginTriggerInfo_c47d6e42.class",
+      "bytes": 248,
+      "sha256": "8ba97f83b3011385658c83a51d5585e2a2dbca6816793d6a2644758a9e9555ff"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LocationModeConstraintInfo_88fdf047.class",
+      "bytes": 358,
+      "sha256": "e5edc06fa840f437d56dc527976a6e9c93030edf9a186cab9662f5368095f85b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LocationTriggerInfo_d09380d8.class",
+      "bytes": 240,
+      "sha256": "e3266a898de6fbac79db7801f160aa6efb95ef98288c614409c228388b908803"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LocationTrigger_a_ee539a7e.class",
+      "bytes": 431,
+      "sha256": "4b7ce1691c04d22abe4cd97ca53abf2e4a890fbbd6ce18d479bc4f4f725a235c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LocationTrigger_d2a9f754.class",
+      "bytes": 320,
+      "sha256": "fd4b06b6040e1fde5f36bf13c37163958495ac51ec70c4e1030da7afbdfcbde8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LogActionInfo_e1b34566.class",
+      "bytes": 457,
+      "sha256": "5279df2fd4716595142a169f580fa62fca41fbf0fb3bc762caa498596584e21e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LoopActionInfo_1603a136.class",
+      "bytes": 477,
+      "sha256": "bab5c836df14d2c57a8b8755831d86fb90861a433b141fafca05d2e1223cf6a6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LoopAction_8b8b6e42.class",
+      "bytes": 247,
+      "sha256": "ff843edb0db6a993b9cc8e98ab655919be7231ead3e1f9c1c414fff0402af24c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/LottieAnimation_e7f61e7d.class",
+      "bytes": 239,
+      "sha256": "596ec8f6f6c1d1b573d31a2c58a63f1203ab4b6dccd3e28c94184a71da5d7ebf"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MacroDroidAccessibilityServiceJellyBean_64762fa3.class",
+      "bytes": 257,
+      "sha256": "2b0d26f8f6e8e69471bc0485f30abfe4f91f6bbb05fa9e0d17b281fa26033cc8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MacroDroidDeviceAdminReceiver_5e84af0e.class",
+      "bytes": 386,
+      "sha256": "03a6c8d79d34dae6c5a5a2dcade022a6dbe775d588971e0ef17202894323ba07"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MacroDroidDrawerActionInfo_1fb50fd5.class",
+      "bytes": 247,
+      "sha256": "06ac93c53f379dcbd598c09eb4a0581f81055f80165fc18058a06ceb19810b06"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MacroDroidDrawerAction_e7dfe2d1.class",
+      "bytes": 253,
+      "sha256": "723ce0f595a071c8fc4278bb39c7ee058cff11ba72eefe9675c90c2a89697232"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MacroDroidEnabledTrigger_c193c386.class",
+      "bytes": 233,
+      "sha256": "4c7680349c08c6d4410f3d2c0dc9e53f05e20051e03693cc97dc27847239ba61"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MacroDroidInitialisedTriggerInfo_e93d2276.class",
+      "bytes": 436,
+      "sha256": "fd261560602ef9bc7cac0e397f81a50f6e266f96fa6e6fcfbec155a2d6d34c80"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MacroDroidInitialisedTrigger_6db41643.class",
+      "bytes": 311,
+      "sha256": "fc852b6672264b5d5e9ffaa974863a5790db97e06916e8dd69c4039fab41f73c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MacroDroidSettingActionInfo_cbd95abb.class",
+      "bytes": 252,
+      "sha256": "f7b55efa5ed3281877d2604720eb9375cbb13a846a2df60b4418a9adeddd982b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MacroDroidVariableConstraintInfo_ecf32966.class",
+      "bytes": 306,
+      "sha256": "9adade49f8f75676a032073ffcd31345803f06634bdbc7df03f412447f05eb08"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MacroEnabledConstraintInfo_15942c53.class",
+      "bytes": 247,
+      "sha256": "319ba81e11d4e144f61e4b1bbd1420d1aef037f491f69de2be6be5dfb7cedf8d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MacroFinishedTrigger_d5081072.class",
+      "bytes": 269,
+      "sha256": "360eaeec0a4a9c25bf1d7e4d45a2d4a2b0eecc3dd42ae4cd0dac5bcbb6bc86ce"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MacroRunningConstraintInfo_fe8554bc.class",
+      "bytes": 304,
+      "sha256": "d3be430d51dd8cedb46321cd800bcbb623e9e5df2e94f793b9d7b3b5053fa023"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MakeCallActionInfo_57d3c23f.class",
+      "bytes": 296,
+      "sha256": "99162b88b6158d03493deced5d244f0146e2a17460a81b36c16f11755e28071b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MediaButtonPressedTriggerInfo_48ebde50.class",
+      "bytes": 303,
+      "sha256": "554f7766df7ea0675feceefbe812f218d7d08505dfb952d1ba348e79f65bafae"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MediaButtonV2TriggerInfo_7dae75ee.class",
+      "bytes": 316,
+      "sha256": "e0c831ab67865ce4c12a36fb0d184c16b5018ce9449d7f01b296faf2778ca3d2"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MediaButtonV2Trigger_aa63cac7.class",
+      "bytes": 254,
+      "sha256": "50f7714994aff86c2045d628c727a75ae5e269289d8ff86ce3a4b01dfb975492"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MediaTrackChangedTrigger_64b30711.class",
+      "bytes": 373,
+      "sha256": "0210e4635221a6ea61aeb8a75c5f0f00380131429b0ceaeeea97af093258f147"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MessageDialogActionInfo_785e2093.class",
+      "bytes": 297,
+      "sha256": "174b870f6049912169b12650a997518187882f9d01380d15a1705b6ab331d3f0"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MessageDialogAction_41913267.class",
+      "bytes": 364,
+      "sha256": "6a823a168fcdcb8c13243561b9e3e10d9cf475ecc415f0a9c59511e54b5d9200"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MicrophoneRecordingConstraintInfo_4d8cc7ca.class",
+      "bytes": 311,
+      "sha256": "e6bb8f6e1863362c11fe008d4d613c1c8955803a25066f9f4fcae26162762b58"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ModeConstraintInfo_bb6e132b.class",
+      "bytes": 411,
+      "sha256": "dfa295c79edf1181d453a803e0d4f6e4a5eb4bb5fabc83d2108ee22564d7142e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ModeEnterExitTrigger_2dd23211.class",
+      "bytes": 269,
+      "sha256": "da02f5e02b10cbae9c842179c4c8b007072fb81e06364a26f165aaa7be368668"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MonthOfYearConstraintInfo_a334912f.class",
+      "bytes": 299,
+      "sha256": "730d20c2fdb42a3e09e9ece514ac8df07e414dbd43e121aea4ddbd5626f2e707"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MusicActiveConstraintInfo_4cf1b9ab.class",
+      "bytes": 362,
+      "sha256": "d3067a2a1fb358849ce2b78a0c3cc20a2f20c6633a350e2369d17036c423e191"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MusicPlayingTriggerInfo_6da2c154.class",
+      "bytes": 301,
+      "sha256": "c151eb3db85de47d44c9a871ff87bcd02ca0311fdf31a965541728e3c1d159e9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/MuteMicrophoneActionInfo_ab887f2d.class",
+      "bytes": 302,
+      "sha256": "9885a087ae576949b2076b30ef805dac81472fd69c107d5d21778df9f428488a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NFCStateConstraintInfo_9738b224.class",
+      "bytes": 243,
+      "sha256": "fdbcc27a949c03b5c7c724805603260563136197d4423b6eb49fe5e784f739d8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NFCTriggerInfo_96ab708d.class",
+      "bytes": 235,
+      "sha256": "f8e031b5bc77e45801d2c4575deb1f77fe01424d773b568ab90780aa2a79cb0b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NFCTrigger_158fefcc.class",
+      "bytes": 219,
+      "sha256": "62495bd5996cd4d81bbe35d9d609b5c552afc4e5503f673be967e35d2ec964bc"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NetworkRoamingChangedTriggerInfo_c4bbc39f.class",
+      "bytes": 303,
+      "sha256": "643cdf7e1da2e95412393ca8e7e288937cc1e2f93bba6b3cd7044b6eac61a9f1"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NotificationActionButton_82650c81.class",
+      "bytes": 314,
+      "sha256": "317bfee70f7a77ba77b0730d4c8c176fa7280a886f8182cbbcef0f8d426194f8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NotificationActionInfo_16bb42c3.class",
+      "bytes": 367,
+      "sha256": "d81dbfe3478c193cdf0a1e30217bf5d70d06e02c8151120ab331cb443a431b84"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NotificationAction_b8f757ae.class",
+      "bytes": 234,
+      "sha256": "9378fbf9889bfd8ef86c9395cac03f2d8f4007592b4abf67fe3e4201965170a7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NotificationButtonTriggerInfo_1cae5b57.class",
+      "bytes": 381,
+      "sha256": "17f51ea66baf3fe421f431a642cfaef5710836f020c5db22cb226f74d1311a7f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NotificationButtonTrigger_eb32ad0d.class",
+      "bytes": 234,
+      "sha256": "c4e62cd808ef07e97e28eab899bf235d4f89efc0a65e68c0c75ec98b7f7bca0f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NotificationInteractionActionInfo_bdb9b088.class",
+      "bytes": 255,
+      "sha256": "c71285f666eb98841717d955302eb33b7253701c000f6e94c5d5f4bba1d36886"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NotificationPresentConstraintInfo_4ee2871f.class",
+      "bytes": 254,
+      "sha256": "f4696f7f3aa94884d73d2a5b9c1f8af495d310f77974d8df249034d3ca611078"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NotificationReplyActionInfo_aa651d88.class",
+      "bytes": 249,
+      "sha256": "0f11060ae5d61c6f9919f9482d5fa1a91185372a26670942f06be40faa2c5487"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NotificationReplyAction_93060430.class",
+      "bytes": 257,
+      "sha256": "66ea96153bed781691ab1bbfa163439e4849db7c17687a05f4c85fca4baa5a14"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NotificationTriggerInfo_a1f7af56.class",
+      "bytes": 301,
+      "sha256": "b927c834952c2cc3583158544a881f127850b65d7ff609ff24990d6ca5115395"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NotificationTrigger_1a29e2d3.class",
+      "bytes": 268,
+      "sha256": "e144820e5102b0250c267d168d6382bdf2b3e5f41a92567fe7a6a7aea88f6306"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/NotificationVolumeConstraintInfo_8c14c993.class",
+      "bytes": 253,
+      "sha256": "85721e67bd616ffb9c385d37969ba8c3eab7aa9259757bf8cb9c984ce5f0d111"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/OCRAction_30cd44e6.class",
+      "bytes": 320,
+      "sha256": "15da216abea9c5ac5a24dd938a170591bb057b0974e551a98cc323342d3fd079"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/OpenCallLogActionInfo_979eec96.class",
+      "bytes": 412,
+      "sha256": "8902b8fe3566aa304ed53050c9456b8c6b9890f1075dea4bd6eacab8eb77b5ba"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/OpenFileActionInfo_6dce4629.class",
+      "bytes": 239,
+      "sha256": "de505068f9efe38d896e7e11649e5f3cdb386664eef4b45edb2b3b1b6eaa032b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/OpenFileAction_9ddd8fcb.class",
+      "bytes": 251,
+      "sha256": "31fe97cac9e7d4833ab86a15627ec2cafffbd57e7fbbdddbd1bb399fc0498cf5"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/OpenLastPhotoAction_4cd3ce89.class",
+      "bytes": 237,
+      "sha256": "61fe4fdacf8fb5df076d186de999fc1ca3eaa20659c4960f3836c6a4c4cd57bd"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/OpenMacroDroidLogActionInfo_aa333102.class",
+      "bytes": 358,
+      "sha256": "4d91d9c3da6b1441d1a647bf328cfafeddb5b849ee9bca9be7e94a0a94ff6419"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/OpenWebPageActionInfo_fec51edd.class",
+      "bytes": 415,
+      "sha256": "e00c116775f4d6d17912edd9304ae5e87b87814ce29f302fe76e052a1d1ff8c8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/OpenWebPageAction_a_ace63ae5.class",
+      "bytes": 280,
+      "sha256": "231525f722c2ae3387db6263e9f404e15926f51f2808ffed326f524dee8b5539"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/OptionDialogActionInfo_74174b54.class",
+      "bytes": 417,
+      "sha256": "021be430351cbb703faa802f47cc6eeb3ec7ba5125645aad02eb3a799abfa3e1"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/OptionDialogAction_ed7ffb7a.class",
+      "bytes": 348,
+      "sha256": "a6a118faffba587098d5ae8435d3042b1a9cb623bb6db6bb29cbd851babdfde3"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/OutgoingCallTriggerInfo_9c101641.class",
+      "bytes": 244,
+      "sha256": "a69f52dc2e18269d1370cd821925695bf96cf26b8f9f6b972f610fad8abbf48f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/OverlayDialogAction_7218a45f.class",
+      "bytes": 424,
+      "sha256": "a3005dd24fba5181118cb5df5b7ff75d386f1e422765edd77ff2f46e5942f3ed"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/PauseActionInfo_51d804f6.class",
+      "bytes": 367,
+      "sha256": "7c1b4c13e77d56078b5d0d8f338eb9576740d501fdaebc0d7654b68d91f932dc"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/PauseAction_a5b580c5.class",
+      "bytes": 248,
+      "sha256": "0c250f42a851cab117794395465797d24f2eedf65446fd74b443d35b54fe1377"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/PebbleActionInfo_5584b15b.class",
+      "bytes": 290,
+      "sha256": "dd49753dbbf1ed4e7f609cd36276656d571b928888ec02c7111e6dd2e6266861"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/PebbleConstraintInfo_1497cfa9.class",
+      "bytes": 351,
+      "sha256": "898e159ae4afe16f102d07ce7b08748671b87baa7dcfd03529e8e02959c584c9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/PebbleTriggerInfo_f21619a4.class",
+      "bytes": 295,
+      "sha256": "2c8bed68a45e671ac6795e39abe94a6200f9a349951bb9b869d6dc154c52ef56"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/PhoneRingingConstraintInfo_8f8c2882.class",
+      "bytes": 364,
+      "sha256": "0b3a0cfd644a2955a648df6484630a3810feac1389e9a5d9f6f0172a25e8af3c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/PhotoJobService_c7e1cb15.class",
+      "bytes": 250,
+      "sha256": "3144501f6e10fb35b3b5298da6a66c6b2ca77a2e9381a04740a4a3c73a0a6cc2"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/PlaySoundActionInfo_1217a6ba.class",
+      "bytes": 282,
+      "sha256": "94e63e2d32b17cdb26330fdb5141cdd3f225c49dc07fb6f6c623da1bff8a189e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/PlaySoundAction_be9b1273.class",
+      "bytes": 252,
+      "sha256": "90d29d107a4a011ace2a5462559eba8b0c8c6cc77d295c239c7794e3dc830921"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/PluginDetail_795e0e71.class",
+      "bytes": 236,
+      "sha256": "cf340bc006e1736536043c17e12808b7662ecf1deb7d5abae8b735eaf5c7117e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/PowerButtonLongPressTriggerInfo_8e8417e3.class",
+      "bytes": 253,
+      "sha256": "12496b52ca445c48c0d22b2e5a80d97b06901ecb4d01b199e404f913ddc0c72c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/PowerButtonLongPressTrigger_f0014c8c.class",
+      "bytes": 310,
+      "sha256": "57543decdfff4c4968d4e5d155daf795825131f986db818f38c921e411e5ded0"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/PowerButtonToggleTriggerInfo_286762e1.class",
+      "bytes": 253,
+      "sha256": "9a6de600c93eac9901b244965844fb27dbc52af5f8509baacce015d2e5d69d8d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/PressBackActionInfo_7bdae66b.class",
+      "bytes": 351,
+      "sha256": "eff1996f5cfc230b84ee7d0fe627dc2fe30c51352abda2ab280574ca206262f1"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/PriorityModeConstraintInfo_f351ed08.class",
+      "bytes": 438,
+      "sha256": "64a69c22e9a03790115c099c406050ac04ac0e637788ab1436eabe4b37102a2b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ProximitySensorConstraintInfo_8b72ac52.class",
+      "bytes": 370,
+      "sha256": "ee4583e71ec03ddfc7bec6e3f83c57922ecc441125012eb21cb6b69550a3eb05"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ProximityTriggerInfo_b866759e.class",
+      "bytes": 284,
+      "sha256": "3c0ba9597ab11cb3831908e805f3b1d3ee10e3e4f5d31447996cf162a0dd15d2"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/QuickSettingsTileTrigger_a1432f44.class",
+      "bytes": 356,
+      "sha256": "3b3f2a346d6b2d6cced1fc54902436cf5cb724cbf0a321516fb12fe0f672833b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/QuickTileStateConstraintInfo_4759bf6d.class",
+      "bytes": 356,
+      "sha256": "bbc21db5620b8e1a2cef58790d6778a5f7adb52c7a65adf4305ccb1b88f5e6f9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ReadFileAction_d3c672f6.class",
+      "bytes": 251,
+      "sha256": "10cf631f5cf689e6041c1df339b2bd5eddb33938adbcfe97fd3a771a596df8d8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ReadQRCodeAction_e0336d5f.class",
+      "bytes": 327,
+      "sha256": "f4d61bfd97839ee43cb7c04d3cdd57399a711d06efe2a5577d9fff1d45dd013f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ReadScreenContentsAction_403838db.class",
+      "bytes": 359,
+      "sha256": "818dfc223a0cef59f3dcc46cb2ccc2b944666681f88de2149eb55c35dce9f369"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ReadScreenshotContentsActionInfo_250d9b97.class",
+      "bytes": 254,
+      "sha256": "2b72a29b8f2e2d52c5f58c645b94dbcd24a8d6836687bf0e5a375a98ed35470a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ReadScreenshotContentsAction_f55456c3.class",
+      "bytes": 339,
+      "sha256": "95d1b0cecfec02726eb68f272084283199eff37369503fd796c85e803c3b6b06"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ReadSoundLevelAction_3188b4a8.class",
+      "bytes": 257,
+      "sha256": "1d72b040ff62df1d1886eaf1638d9e0a6c861a48867413d0378cde582a61431e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/RebootActionInfo_8e4de8dc.class",
+      "bytes": 382,
+      "sha256": "0e7dfd02139d92571024b5ee119ea5bd3345602187c0941ce47de522ecd3e9ac"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/RecentAppsTriggerInfo_96d026a8.class",
+      "bytes": 419,
+      "sha256": "12ebaa2e58620e042236caee9a3469177409de111305ab2e798c4811cc988c2b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/RecentAppsTrigger_95cec976.class",
+      "bytes": 340,
+      "sha256": "bb6d49556adbc720510bd01503b73453c94d4c404640f7e990783b25b0857ba8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/RecordMicrophoneActionInfo_0dcede20.class",
+      "bytes": 357,
+      "sha256": "e031e2ef7de6794094acf28795ec0468711d3ec9c3df5c5d7c3fc0186a7940f5"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/RecordMicrophoneAction_9b58248c.class",
+      "bytes": 247,
+      "sha256": "b3c61bba5c236b4322b3a3fdfa463aff10cae196af4f44357180756f69cd6e40"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/RegularIntervalTriggerInfo_63355b37.class",
+      "bytes": 357,
+      "sha256": "2b03a961bfdd120b771a66d624bbac297480b22c329371f893d31b1e698ffbc5"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/RejectCallActionInfo_2b6aa74a.class",
+      "bytes": 298,
+      "sha256": "8664ee6af53c548c310d36842da2b89d3595dbb1547a2a646c91f2271e9d3be4"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/RemoteControlWebSocketService_1ed14b64.class",
+      "bytes": 278,
+      "sha256": "d074772002ce25399af566264d875893cd62ccda6a48f188df2b0c3882c24c2d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/RestoreNotificationsAction_df089610.class",
+      "bytes": 260,
+      "sha256": "74241bd2e9ff48da72e514833c048da44a3a74a78eabfa224fab47ef4897c64e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/RoamingOnOffConstraintInfo_87cefe22.class",
+      "bytes": 419,
+      "sha256": "d378cc89b6e7584b5ce50a0f41aa23ad2df25792532f5a6a3bf02e28798f44b5"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/RunningApplicationServiceV22_27eeca33.class",
+      "bytes": 277,
+      "sha256": "7079756dd2e45afc5e92fcdd13a496a3e80666699348a69f06f9808d9a3f1658"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SMSReceivedDetectService_43527b85.class",
+      "bytes": 273,
+      "sha256": "f493a069fda11e43de7e8a9c85afbfd70e933d5ad19ff39bf2ca6b8f49d5c949"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SMSSentTriggerInfo_580ee386.class",
+      "bytes": 296,
+      "sha256": "c02e743303fcd318fb5a88872a00f94d6be5a99e1fb3dbd8300e567a43af6b23"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SamsungRoutinesActionInfo_c1117215.class",
+      "bytes": 303,
+      "sha256": "d6a7678f45edd80ce3412242810e67babd192ce9010af1f85585fe1353ac67d6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SayTimeActionInfo_f0dca4f4.class",
+      "bytes": 295,
+      "sha256": "0cd9d633499dc72cc345b0366b42935dbde29e75ba1679a8be449cf1b99cadc6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneBaseActivity_1212c205.class",
+      "bytes": 616,
+      "sha256": "80d43b4e8f9af2cf22c1f8be31c866bc55995a49e9c8694e019ef5b2a4e1f215"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneButtonConfig_e5e149d3.class",
+      "bytes": 241,
+      "sha256": "b10f16932472197c48ed09b45165dc7c55fd5726bcf845295baca6ead024ba5d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneButton_6e2fcace.class",
+      "bytes": 302,
+      "sha256": "926bcd6758385a366b4df7bb17394d950e5cff042f7608453590390b96ec0e0c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneCheckBox_2df59d88.class",
+      "bytes": 290,
+      "sha256": "78130b18b934ca6eab1774a2068b0c1e6244aa97729cd54035cbe3717ddcacb6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneContainer_05711629.class",
+      "bytes": 254,
+      "sha256": "b839022dfef249fdba71fc165be61ac3abdf6b0baca5c3eb284106d7354608a3"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneDatePickerConfig_3e545cde.class",
+      "bytes": 245,
+      "sha256": "11f2cb39dec2ef5853622c7e418940e5d50ec08c3163e958fc9b1557710f2ab0"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneDatePicker_d71db93d.class",
+      "bytes": 504,
+      "sha256": "9623b3457770378757b2fa232ce4c062fa3f18aeffc24b5ca39b1a358d401ba8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneDesignerActivity_ff24a6b6.class",
+      "bytes": 248,
+      "sha256": "a5e67f083551e8fc8ff95b122b1e537e7fab0e6d0b64a939e6a0473cd0ec38db"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneDisplayActivity_94f5bcd4.class",
+      "bytes": 431,
+      "sha256": "05dc1ad3264ca3db83fb1f42e60f868cfd5c271930ae5d23c4cdad08c532a186"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneDropDownSelection_cece8daa.class",
+      "bytes": 313,
+      "sha256": "87b9b209edfea747495842ef5b8d31b7faa832c3a4541c28a35633697843f2d7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneEditTextConfig_3e91dd27.class",
+      "bytes": 243,
+      "sha256": "b4cd0f6141fde3e51817aad07186e3e0558c6171dc741ae80219e3afb1d0f914"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneEditText_d1d8a712.class",
+      "bytes": 306,
+      "sha256": "8e19b3dc8974b65b9ab101610aa958ce3f5792502d2aa349c55873bf46dc5aac"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneGridLayoutConfig_332183e4.class",
+      "bytes": 245,
+      "sha256": "47a8b4491e225773b5afed186c4ac3cecd54bb1caab37690ed80fdb5198965eb"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneGridLayout_78fd5a9f.class",
+      "bytes": 308,
+      "sha256": "077bc2f06fabf4bce9a3bc54f8408f45e4f084f1486d23dec0578d929749e1f5"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneHorizontalDivider_e0d860bc.class",
+      "bytes": 400,
+      "sha256": "fb705add423f3667b79cc0bb6c2916c6d69efe27bc698f96de3ba89fcb5c0c0c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneHorizontalLayout_2fd1c410.class",
+      "bytes": 314,
+      "sha256": "48fd390f154da7234c3f2cd0014cb7b1adf19343f59649b8f81688d9025ffb1e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneHorizontalPagerConfig_4ba14359.class",
+      "bytes": 250,
+      "sha256": "26c4e3469f8565c75c85f00bcfbfec46e7e13fd2739e372c0634a82e0866e579"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneHorizontalPager_ef1ce307.class",
+      "bytes": 527,
+      "sha256": "24b48a1e482a22d31571bc19c2818f682182e4534af948d45eca18949a791dd5"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneIcon_cc102616.class",
+      "bytes": 363,
+      "sha256": "3471db2a03552f6a19d729fdb2b94b7114b342f30dc6e7c52b10619cf69dabfd"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneImageConfig_f37cfb06.class",
+      "bytes": 240,
+      "sha256": "ef5ea92eac7864455bdd6e75ce4f3768a483481846167cde8e580847a1e824d8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneImageData_25039f15.class",
+      "bytes": 238,
+      "sha256": "b893b03deb192eba8128c08c67291d52a89012bae2c9324c98ce3af21ec0bef6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneImage_27500475.class",
+      "bytes": 359,
+      "sha256": "0f7a8c2833b80c3e38f50b2a5ec52095bea785040ed66e8b449a8ef35974d859"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneItemList_94fd2c09.class",
+      "bytes": 237,
+      "sha256": "5973e0dbc6e5aa05266d43a2d3de24b2a2d038375c31d8dd7013d9bf6f7b4fc6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneItem_6d011974.class",
+      "bytes": 1134,
+      "sha256": "c8620f411da6221445d91a119e884cd1ac94faff8c7e0036faceb5e4559a626f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneMapViewConfig_190fcafa.class",
+      "bytes": 242,
+      "sha256": "431dd5e0a857d47b0eef8ac1fc2eb12998a0e0fca97e1d168e6b660d110a73f3"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneMapView_146f05c9.class",
+      "bytes": 367,
+      "sha256": "80f25ec43871e410b9ceb7af864e603770426b7d11f89b635402abef63f75cca"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneOptionSelectorConfig_4649d0d4.class",
+      "bytes": 249,
+      "sha256": "38d05ed90410c2a5d89d8b4b193ee7eddc0b391b781187ec316725665151ab03"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneOptionSelector_22ce2a3f.class",
+      "bytes": 431,
+      "sha256": "90239b2d51fddb20a00423b9933034556674c3df11b326d92e67e8fe5ab4f7e0"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneProgressIndicatorConfig_b85b2ea8.class",
+      "bytes": 252,
+      "sha256": "1a5c977ee819d5af1c4d08eb6bc6ee8f5d436021141990ad6543dbe0cb6a86e7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneProgressIndicator_b792df0c.class",
+      "bytes": 371,
+      "sha256": "7d476ece60f1d73257d9b47968a035d1c415d2c4d9949be4f9e25c2cdf16fafe"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneSlider_6bc7a6b1.class",
+      "bytes": 369,
+      "sha256": "c6648396a4bbfb64fbb0ae99b54fa43059d73984b12034eae2ea20c0dc6c7073"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneSpacer_e6211342.class",
+      "bytes": 222,
+      "sha256": "e3643429e3eeca47c635f487eb656888394079c7902403dfbe2eb8419cea5ae9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneSwitch_9c207204.class",
+      "bytes": 360,
+      "sha256": "df3b19cd30ac1fc7d415b1669c227525ccd17b9fdf5c9ebf7c8b672a2160a2d2"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneTableLayoutConfig_e5008695.class",
+      "bytes": 246,
+      "sha256": "6ff449aaafc8605775c0f71fec651df6197ca0ba711fc462e2f19a791bad9c42"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneTableLayout_978a6ec4.class",
+      "bytes": 307,
+      "sha256": "1890fd839c6848852659b47649c23456e773fbbb7e466babc480561051996b83"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneTextConfig_57618d7d.class",
+      "bytes": 239,
+      "sha256": "5f92e1b252fc111c0349091f1b46fed849be8ef0b33e37dc980078cd63a87067"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneText_c5d4e581.class",
+      "bytes": 300,
+      "sha256": "3368da027459c0d484791d3d805431c8ea6005c1ed0019b8b1686b19da20dc3b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneTimePicker_9d15c8ed.class",
+      "bytes": 360,
+      "sha256": "c534927347ce73898aeeda116f6d2ec9d89191d20f968dfdf1d0ccd499465020"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneVerticalLayoutConfig_5be451f8.class",
+      "bytes": 249,
+      "sha256": "c66aedd335734929e0169c98a65809a1efdc1e04904febcd7860c610a08b8f00"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneVerticalLayout_c55c9594.class",
+      "bytes": 310,
+      "sha256": "86137b84811fa642ebebf04367db2e2a22770f24732c20929972d1a638fcd9a1"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneVerticalSliderConfig_af7a6036.class",
+      "bytes": 249,
+      "sha256": "4a8cf593de2f3eaa7e5472104192aef67d424336f04af40f019c732f759077ca"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneVerticalSlider_d55b83bc.class",
+      "bytes": 377,
+      "sha256": "462bfcacf472d79fcda98df1ba279bdfdd30891066611b8e9eb5a12acb9cece3"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneWebViewConfig_003598f0.class",
+      "bytes": 242,
+      "sha256": "47c872b452076c8f8677e957f68a591886b9646185b73d41bc0ca15641c9e8a3"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SceneWebView_82d6d485.class",
+      "bytes": 420,
+      "sha256": "04fd7d238a9a8bf376a2e8754c7f6a085ca0d7048ee6ab66f3f457cfda2a48ca"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ScreenOnActionInfo_4fae850a.class",
+      "bytes": 349,
+      "sha256": "1250178ed87216f2745f961b15d141046742bb084046d0bb28c4b67e2fcc58bc"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ScreenOnOffConstraintInfo_346612cc.class",
+      "bytes": 303,
+      "sha256": "12598b9f1ea1e06c727a2e7616df2b07ab9ce659cf6db80eb571eee605a30650"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ScreenOnOffTriggerInfo_1fa10958.class",
+      "bytes": 470,
+      "sha256": "f4ea520f89f78f7cb151c5ef5461576c3bc1be5629c57f62ca112eff0966cbb3"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SecureSettingsActionInfo_69ba3719.class",
+      "bytes": 249,
+      "sha256": "f6b62b10066ff8dd2f9e980b4730804d485dadadaabe71ec6c2dd0bb77e2b901"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SelectableItem_b56b52a3.class",
+      "bytes": 2144,
+      "sha256": "9e109462529f9032b7e89fa7e8a4be2ef5e67f4f3b1fb9ff3fc6670b653917a9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SelectionDialogAction_469dd9c2.class",
+      "bytes": 351,
+      "sha256": "7228518da461e3fc71504a68486503561add2e9c1898f701b1b97861bb00b770"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SendEmailActionInfo_dbc59613.class",
+      "bytes": 297,
+      "sha256": "84c32b7de8d2237b5bca62eab52dabe8103e68609cb4c7aeb135eb592e480ee2"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SendEmailAction_344edb4d.class",
+      "bytes": 252,
+      "sha256": "ccd46c0f701ec0ab5b357f84358738c2bbd482086ebe041089d713d0b507788c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SendEmailService_93c5208b.class",
+      "bytes": 284,
+      "sha256": "9726288093ba67901795820682125616ac365abc4a229513a14b2a3a8e82db9e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SendIntentActionInfo_51821d44.class",
+      "bytes": 413,
+      "sha256": "836ec8b7d0e305b987729f55eac65731fd97192177102234548d1bf0f4b8016f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SendIntentAction_c2d6c140.class",
+      "bytes": 237,
+      "sha256": "942f187f82414752726eb864d9d3f7364146fb72d95cfa298b2b098310e6048b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SendSMSActionInfo_240df92c.class",
+      "bytes": 295,
+      "sha256": "380941d72d5f63194b4f150c6598a6876ae714ba14ab740a4328151302f46aa4"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SensorReadAction_e8b878f3.class",
+      "bytes": 253,
+      "sha256": "317513dfcf2cb6c939450eeab503a468e5121e7f079ae4a77ed9963d79e6f3bb"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SeparatorAction_97fa5357.class",
+      "bytes": 326,
+      "sha256": "29045c559c46b5fb9776530cb26138b9a49db2c1ad2dee20a86a410d56615686"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SeparatorConstraint_f39462b6.class",
+      "bytes": 246,
+      "sha256": "aaab3c58d92a002e24c78bd65928c46bff79d603881e7ddfe8fc1498028a1af0"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SeparatorTrigger_b1e6e15a.class",
+      "bytes": 265,
+      "sha256": "364daac705def8a8f1222190110de61093e61b620bf0b5895fa725f60ba16b38"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetAirplaneModeActionInfo_85ad269d.class",
+      "bytes": 356,
+      "sha256": "25957309c88150a89e72ecfd207ef243f40ce78ad2bf9b040907d0083190ea07"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetAlarmClockActionInfo_f0fa7139.class",
+      "bytes": 416,
+      "sha256": "c7d028379e9706ec32e395a6b1f3b4820878f24a628b43dd20e9f7df088db3cd"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetAutoRotateActionInfo_32694b3c.class",
+      "bytes": 366,
+      "sha256": "3b5fd2b51938a76dbcf95a2152fe5b174f2545bf4786bd35897c789b13c1a12e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetAutoSyncActionInfo_f497b217.class",
+      "bytes": 362,
+      "sha256": "a198ff29bb43dca081ecae6f4d13e210bc577e98383eefb3f46810b4574093a3"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetBluetoothActionInfo_360e2d66.class",
+      "bytes": 247,
+      "sha256": "e02263021c2105f3837ba045129ecd5023efa33000aa9672581eadc178797c09"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetBrightnessActionInfo_16126f1a.class",
+      "bytes": 358,
+      "sha256": "6aafab91a8a82f330fa21e8fae867251b76a4ec77f5f497ea35d9e76ef69b3db"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetBrightnessAction_27b39d43.class",
+      "bytes": 248,
+      "sha256": "4ea97792c3f508c874a389982c5388da1b249395f75769966a43b122d36818f6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetDataActionInfo_b39f32ff.class",
+      "bytes": 401,
+      "sha256": "06fe4123ab18ae73b87a2fd91a554defc3bef9bef3e4372fd8b82d3192e9ec33"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetGPSActionInfo_71e37125.class",
+      "bytes": 359,
+      "sha256": "7a21809f0b89d430032946c180068986d23a362259427a3a19771da82e1b1707"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetHotspotActionInfo_c6435467.class",
+      "bytes": 245,
+      "sha256": "d25c54887b30c853929eb04c198067335829114ae39857ec528d7df14ffacfba"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetHotspotAction_e42a0048.class",
+      "bytes": 245,
+      "sha256": "a85fdad18502fd39b36f860cb74fba76b7e5a93918fc8031f0272c9b6f9b808b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetKeyboardActionInfo_fb365cc3.class",
+      "bytes": 361,
+      "sha256": "0821a8f929405a2414fe889b63b985ea347555f19d136a32ac19c3690004c19e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetKeyguardActionInfo_43038f6b.class",
+      "bytes": 242,
+      "sha256": "e8431c1c65dcd7b3a28e3e3523c985d8f74316afdae17fac56234ddccde92854"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetLanguageActionInfo_2f7844e8.class",
+      "bytes": 374,
+      "sha256": "a2ac2ed5336d35ce0327a89b0e109fd66950625da5d2c466d92212685c7b0952"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetLocationModeActionInfo_05e12041.class",
+      "bytes": 415,
+      "sha256": "6c5eda46bfbb4518b0c789cc16c9a2b3a6ac5e8d8edf3966422f00aa167aba75"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetLocationUpdateRateActionInfo_fd2bdc55.class",
+      "bytes": 309,
+      "sha256": "ed8ee2d45a45aae8245fc60f5b2509bf0a524b055fdb7a28da66046e13a63207"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetMacroDroidIconActionInfo_c9793cd4.class",
+      "bytes": 305,
+      "sha256": "8e57d29e8a65f21f693f7829f09da833d6361a86fe323e01eaccac063e8fd654"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetModeActionInfo_4a09b3c5.class",
+      "bytes": 418,
+      "sha256": "eadb094ed2eea7185d63f33e85866db2a63e7ed7dadf9348f9482a27024b7fbe"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetModeAction_da544269.class",
+      "bytes": 250,
+      "sha256": "b8bbd2d7836dfb75afaf0065edd17159de0052bc80d5a22a8f370246b0ff27a8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetNFCActionInfo_728a35de.class",
+      "bytes": 282,
+      "sha256": "59c2156d2aeb8aedbaf8e7ebcf53935adf17fa98737e66c7bd1a9d351bf070d2"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetNotificationBarIconActionInfo_44ee8e1e.class",
+      "bytes": 377,
+      "sha256": "c087e19fa5acd66aec4e93cf89310be30ec527905e7e90082d2cf2c4e1d9e4c5"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetNotificationSoundActionInfo_5dc191d2.class",
+      "bytes": 361,
+      "sha256": "0c4835850263674f97a174327dc910b57738303010c65ccbf08cd6e692501de8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetNotificationSoundAction_4a288c51.class",
+      "bytes": 255,
+      "sha256": "640567d078b9f08a2e36975a863ef54148a60707cee09da4b3042ba5f45247d3"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetQuickSettingsStateActionInfo_baba202b.class",
+      "bytes": 306,
+      "sha256": "39f1327c84593b247e1bf90519bff11e52b068a7b565be81e8ae73e8dc5c9a2f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetRingtoneActionInfo_9f3c4de0.class",
+      "bytes": 295,
+      "sha256": "dcb6a83ae8d89cc431d49ae877571f9fd1f77aa55ce859aaec1fdbf8bfe6104b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetScreenTimeoutActionInfo_64ece272.class",
+      "bytes": 357,
+      "sha256": "b181997e2c268ceb0d9c8e6a9f0b3b4496677d66df0a7394724d2c8c289849e5"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetScreenTimeoutAction_9467fb55.class",
+      "bytes": 251,
+      "sha256": "4b5efe1e50fb50d2099a9687e491c62aacfd1fd5ff4e3425028a95ba7f17793d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetVariableActionInfo_24b1335e.class",
+      "bytes": 246,
+      "sha256": "7f4c5bd624a28deb854f7506b37929fb461ddaad94012d014997390c02dde83e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetVibrateActionInfo_6e4de625.class",
+      "bytes": 351,
+      "sha256": "17d2abb773ed3390c7f7062d8c4513e517976c45d0bd88b33f9a684f4f996b29"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetVolumeActionInfo_3919e5dd.class",
+      "bytes": 414,
+      "sha256": "f508ecaa905d83245c913dc99d66f621fae025dfdd52df54ba14d2cc7d0e770a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SetWallpaperActionInfo_2e4995d8.class",
+      "bytes": 360,
+      "sha256": "e51d13278a8ba7d37325d54829b08a5bc4d852f36314dd210b8cf0b3e0e774aa"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ShakeDeviceTriggerInfo_d55a2593.class",
+      "bytes": 300,
+      "sha256": "2164b30c3bdbcfe854df19c2979a43e7b8b5694c614407960a2c6eb6466cf2f9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ShakeDeviceTrigger_5dfffa69.class",
+      "bytes": 236,
+      "sha256": "72250fa4e81e349a33a3e99b9105177b84b438d0980755294c8113cf8c02435d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ShareFileTrigger_2f4f4d5e.class",
+      "bytes": 265,
+      "sha256": "6a5f0039144f8ea70c11e5a50ee275b6a46ed27bb36518b8d1d6cbcbedf760d5"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ShareLocationActionInfo_8aa33717.class",
+      "bytes": 366,
+      "sha256": "c9dde24ec4410300acda51b57157813989b68960293f073d99ac632491585616"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ShareLocationAction_83f5bd39.class",
+      "bytes": 256,
+      "sha256": "acbccdba7e6f22f38173a9d0d9e189c3296ce834d469ee082d3d26445e9f6714"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ShareTextActionInfo_b465bb86.class",
+      "bytes": 411,
+      "sha256": "38e8f0f8534512aa413b96debd5082338f7c04ef151868c3360068cb0748eaaa"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ShareTextTrigger_6a701b38.class",
+      "bytes": 265,
+      "sha256": "f02ceb756589772a8d396d43b30b39929d79c6d24379918b318faed0b898d8f2"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ShellScriptActionInfo_8498e795.class",
+      "bytes": 411,
+      "sha256": "106138e394eabbee7b4536e280e5bc8a345e4ac33f82be48f88a20c9868f0f47"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ShellScriptAction_364925dc.class",
+      "bytes": 280,
+      "sha256": "8ed37546923b1aa87425d662fe221e37fd133d65287ae61295b9d0716445a897"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ShizukuStateConstraintInfo_617b316a.class",
+      "bytes": 304,
+      "sha256": "c8b3f4e62b6aa2060e15a97ffd95794796f4330d5d4ac0f08c0e4ba1c23bc9d6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ShortcutTriggerInfo_7c4b97a7.class",
+      "bytes": 418,
+      "sha256": "61512b7e8bfaa455736a4d32377cff7ca52af0da35c05a6b4d5458bba63a1548"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ShortcutTrigger_ac9f61af.class",
+      "bytes": 224,
+      "sha256": "5d019f5f33f478a0eb131ff816b7ff9e29b40169286b728e89f9106394c9a595"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SignalOnOffConstraintInfo_e1caaea5.class",
+      "bytes": 356,
+      "sha256": "a5100eab1dda48d5fb5c4712f9d65bf958cfc48437d99973a5db2bef81f1a106"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SignalOnOffTriggerInfo_e3d37c19.class",
+      "bytes": 300,
+      "sha256": "bd5529bd35fe0c1b934dba2dd20aec12b5eea028201deac6f78039e1aed57ba9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SilentModeTriggerInfo_11f49e62.class",
+      "bytes": 295,
+      "sha256": "326d40d6c53fb600d4b4f9fccedc50773b047a49ec1fd46d7d0593ab24fe44ad"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SleepTriggerInfo_439a0353.class",
+      "bytes": 238,
+      "sha256": "e01fe413e7676eca7ab5506f01d95aa95f7699f817e6c28f3b539b2f06d85000"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SmartMaterialSpinner_b3a5ca12.class",
+      "bytes": 339,
+      "sha256": "43e8174a22381af25efdbff7841f7f7cb86cea9f8e62f070843f34435d24d8b7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SpeakTextActionInfo_3c8fe05c.class",
+      "bytes": 411,
+      "sha256": "3ab8cede75df3165ac07f9b52ce2b432ac7d8f5b5db184d093f27eec67fa457d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SpeakTextAction_3f9cb648.class",
+      "bytes": 252,
+      "sha256": "eea7b414db2c4d7a33b3b1c4d32e79ba36047da8bc50416dbf5adf5e6cb43184"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SpeakerPhoneActionInfo_ba698236.class",
+      "bytes": 247,
+      "sha256": "9f2abea5bc5b53e0d733641f567fef28eb32b6f90f93c96fe4a1ef46896abb58"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SpeakerPhoneConstraintInfo_469bb1a5.class",
+      "bytes": 304,
+      "sha256": "e1e5d83208f20d812fc7b8f8735a956e5b91aa7f465bd277264e63cf64bc1782"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SpeakingTextConstraintInfo_29c2e9c7.class",
+      "bytes": 300,
+      "sha256": "6e3fe2eee9fe2d9fd459df16fdb7d98281f71b9e56c3579ae184d1a41e72b5e5"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/StopWatchActionInfo_c9715ffc.class",
+      "bytes": 297,
+      "sha256": "0bc40748fa35ca2cbb26ddc814fbceb6d52b1082c4586e8a305132995953a894"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/StopWatchConstraintInfo_254946ea.class",
+      "bytes": 361,
+      "sha256": "4584cc7774faee0a36e0349bbd4a66c092254a84873631e083fec0c150edddbe"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/StopwatchTriggerInfo_95489788.class",
+      "bytes": 241,
+      "sha256": "e72a4cfffd2e2e02936299f40caf472f7e202c84aee2d78159dbc6af6ff40469"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SummariseMacrosAction_78758e23.class",
+      "bytes": 258,
+      "sha256": "f6630ae0e10abee231f4d933c890b26a55e76fa2765899e1d87ae531184d458e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SunriseSunsetTriggerInfo_63ae9bdc.class",
+      "bytes": 416,
+      "sha256": "f04063158ccbffe0284add7dc7164f6d09bad596277e47459b37ec6be060d1e9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SunsetSunriseConstraintInfo_5b494af3.class",
+      "bytes": 301,
+      "sha256": "ff857df3583501699c20df98cd62eb7a5f2ef05c08fe3b4ce3d50c978d2ef901"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SwipeHandleConfig_00e740f5.class",
+      "bytes": 241,
+      "sha256": "88e9b431a4e6288cfa2a0ded7f5fb2c9264b3978d42f688fa762e93457f20f50"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SyncAccountActionInfo_12661ac7.class",
+      "bytes": 295,
+      "sha256": "24629f600e86ff5d098cafad7c8b4d17f31c06962850bc777979e04c7bff6346"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SystemLogTrigger_973cbba3.class",
+      "bytes": 225,
+      "sha256": "dd52376decf715bd7cdf154b4dcd21920ccc5f987cf5f919283ae4ef4ff0a145"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/SystemSettingConstraintInfo_024b55ca.class",
+      "bytes": 252,
+      "sha256": "11c441b402b9991ea4e96ccbab2318d14dd72eec7175f40752d11cd4331f6796"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TakePictureActionInfo_81b0b9eb.class",
+      "bytes": 246,
+      "sha256": "860a5fd64bf5721a0b865d0b28d2cc0a217c03f7904ead5a8023ec1928815690"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TakePictureAction_ab96caa8.class",
+      "bytes": 254,
+      "sha256": "a5336a4a279ece767f574069a81000413e0dd59e57cfead55e28d8029c0b252e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TakeScreenshotActionInfo_58f66c78.class",
+      "bytes": 245,
+      "sha256": "493ac30e31f0ecc02e4f5c6a4063d06fb0b1f9fb7312babe3bc91ed1ff528100"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TerminateRunningAction_f075a64d.class",
+      "bytes": 333,
+      "sha256": "09f6198f6b7db60697e02861a979fc14fdf06c722c009f6d551cb961166b716a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TextManipulationActionInfo_ca789544.class",
+      "bytes": 251,
+      "sha256": "b87da0161c04a7b020d0b17ce0c3f7db4b6387034741b72ae821e69ab4ef3f45"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TextPosition_86ee65ac.class",
+      "bytes": 236,
+      "sha256": "e8a44acdbfe49a04f9b74bf4b2606eb62dd33dfe03ae2312ed9ca7bde606c29e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TimeOfDayConstraintInfo_e05374ae.class",
+      "bytes": 301,
+      "sha256": "d3a1f6488ceaf6bf75ebe552e7da26a55d12e43905ec43ca43c62438b9da6531"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TimeSinceBootConstraintInfo_84e949b9.class",
+      "bytes": 248,
+      "sha256": "e610ef8ab523eb8b987a9110215972697e006ef5394b411b8620f5ef47472836"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TimerTriggerInfo_db346521.class",
+      "bytes": 402,
+      "sha256": "855f13de19cba4f18232e5bee7f6bade1982c755f5df66d49a28c259264ee51d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TimerTrigger_f06fb1d0.class",
+      "bytes": 246,
+      "sha256": "6701efc158b78230c877286fef6829f846b2befbde755781684ece2f3bfd816a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ToastActionInfo_6073d28a.class",
+      "bytes": 406,
+      "sha256": "2911ed9d6c4cd72300c348de22dc1a669c017fab18c399dd6b7878347c423659"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/ToastTrigger_5cd4ddbc.class",
+      "bytes": 261,
+      "sha256": "1414ba3a97e3d4d35faa3f1f00b79ec86b09fe714b7666d7ac51e82b6f3fa55a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TorchActivity_f4d3c216.class",
+      "bytes": 255,
+      "sha256": "5adca7505b4f44c08c7b2afecbf748755352a68f220f1792173ad839cf0e0266"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TorchConstraintInfo_2cc23961.class",
+      "bytes": 298,
+      "sha256": "ccee23dc00277574c503e3fe73d5394ff62b1d5d18a8ac552aeca9d4c4e7c1a8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TorchConstraint_67efaf9d.class",
+      "bytes": 223,
+      "sha256": "3195fcee98e9412ba9ddc71189e8d41fbc1ce131a6119209986753ab51dd2bfb"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TouchScreenActionInfo_c31d6d58.class",
+      "bytes": 429,
+      "sha256": "74dc5a6afb870ba40edf98df999b756d23b7bfe447e94dd5825dd1a9203beb27"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TouchScreenAction_90facd63.class",
+      "bytes": 246,
+      "sha256": "aeb73f82385ab18795f6714e816a69a84dcef9c3f5b4cd199ddc18c5eda98c51"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TranslateTextAction_38ead925.class",
+      "bytes": 256,
+      "sha256": "3612340429a0a65bfe120b50d173d9f3e6ab58f83dc1bc9a0c106c5925d4f0c2"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/TriggerThatInvokedConstraintInfo_c7160c0c.class",
+      "bytes": 363,
+      "sha256": "a27276fe85668ef26978613db7639e5e52902aa8130d7b375b528e6265da666d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/Trigger_29f8a26e.class",
+      "bytes": 305,
+      "sha256": "8f069bc6616369336ea44b79ac677ee29dd7f52eabb36e9120ed02b27f7c8df7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/UDPCommandActionInfo_933e4adc.class",
+      "bytes": 466,
+      "sha256": "559e8281c2ba594f3fa78cf0340c48cab8a8dcfd180a031f2fb1f713567c1548"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/UIInteractionAccessibilityService_5579214f.class",
+      "bytes": 251,
+      "sha256": "07e9225e7cb8978fa80a6cadc23943a13066ab6c25beb3443d218a41ae78287f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/UIInteractionAction_f95f5006.class",
+      "bytes": 261,
+      "sha256": "eeff58c7afbca27752d8062bb8d733b850ee96cc6b17cacc05f7c2482a5e1b07"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/USBTetheringActionInfo_cd27e3fe.class",
+      "bytes": 465,
+      "sha256": "08aeaca1c45043dc2a096da2e919f5c61fdc772eaa2d21b44efc7a26d28b637a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/USBTetheringConstraintInfo_dd4193f7.class",
+      "bytes": 247,
+      "sha256": "9fc4ad4946bca6b37077a632cd81a1797810a3296989e2f2c2e7e99e6e72bc80"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/UiInteractionConfiguration_33552de9.class",
+      "bytes": 249,
+      "sha256": "aa8092305af75eb1d367ff7917ae4d0331bce737c9a6462b53517d0106f0f74a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/UiInteractionConfiguration_Gesture_aedb64df.class",
+      "bytes": 258,
+      "sha256": "ff596abc9fd6cb38d7e29199bd13ddb50b44c304d00ba1a3e4f9a24487509a7a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/UiInteractionConfiguration_Paste_cab08724.class",
+      "bytes": 256,
+      "sha256": "6cd023374856fe1bcf07d8a02cbf4afc1c4695af1fec1368f2115a218a534cab"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/UpdateClipboardActionInfo_8d574c78.class",
+      "bytes": 247,
+      "sha256": "11d8c8b9f1850902e1acb8a96f3ede7ec73d0f63e40dcaeb808d27ca203c2435"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/UpdateClipboardAction_1d6ee831.class",
+      "bytes": 414,
+      "sha256": "68a21409bb32dbe21b2bb87acc7a7b8b2e73b297d15896192986a7ea7ce1cd43"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/UploadPhotoService_de51ea01.class",
+      "bytes": 375,
+      "sha256": "faf295f611f2a89dfd455652ef27dcbbfc0320d932be8a6702790a22b707cdc0"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/UploadService_2f810307.class",
+      "bytes": 221,
+      "sha256": "8a81d2b8ad21dbb668b93a67fce55bda75e134f2686f4c3b8ba0aa485abe4175"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VariableTriggerInfo_069e7443.class",
+      "bytes": 370,
+      "sha256": "98e0f9984f0e8fca899b60c3609f76429dece28a12391c7da8f5e9c744973829"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VariableValue_BooleanValue_65fb3557.class",
+      "bytes": 250,
+      "sha256": "e8d9de66d571361da4d46a11e88e0f2c3ef2aa8ad9d15eaaacc254db11609c4a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VariableValue_Dictionary_adf3cfe2.class",
+      "bytes": 249,
+      "sha256": "d8a619203bf83b969d19507bb847a8f174e4975e5f651e67817c907f8e2299de"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VariableValue_Empty_7d14ae98.class",
+      "bytes": 324,
+      "sha256": "62f137ee68b313180db23744211398aad0e77aeb6c6fac5370bc5caf2d53460f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VariableValue_IntegerValue_586aebe3.class",
+      "bytes": 250,
+      "sha256": "a19655d5956b9a7b6dcf5e04524b1da2e58d59b257b6cee257e02fe392048e5b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VariableWithDictionaryKeys_dcf6d547.class",
+      "bytes": 250,
+      "sha256": "2341329f9a1c51f7c3095d3fddb506fc88889c2cebe7c230ad50d145cceec395"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VibrateActionInfo_9ae490b0.class",
+      "bytes": 295,
+      "sha256": "063d3ae5ec265c6f08754e85a05588cf97d029004ca9f1ab522f17600624d13a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VibrateAction_28514411.class",
+      "bytes": 250,
+      "sha256": "e1f82442fb579dd5c0e576a2cbe4f6b9ceb3d34a7f1a9b1ebf8932947d57b873"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VoiceInputAction_2fa1fc7a.class",
+      "bytes": 253,
+      "sha256": "5b5b9d0bc1553950650a277cf32c94e872e8826eeae5f20fdfec356d3c1926b6"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VoiceSearchActionInfo_fd7c1b34.class",
+      "bytes": 242,
+      "sha256": "8daf27fdeeb9ad8093adb0b96038315e626e278ef41c74a373b9a700e5ae5e84"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VoiceSearchAction_0ab1f7cf.class",
+      "bytes": 235,
+      "sha256": "692cdf5bd2257ce852303ca86590b58511a7c110bcf25024052ab681ee35bc4c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VolumeButtonTriggerInfo_444e2bab.class",
+      "bytes": 244,
+      "sha256": "33a5683529ac9c6d587f45faf1443bce84fa36aca68e75c11affddd219c64976"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VolumeConstraintInfo_6c801cad.class",
+      "bytes": 411,
+      "sha256": "ba938ee15f39ec4146f9c2f547675db6ae2a9d7f34e63ca67eb800e3511081c9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VolumeIncrementDecrementActionInfo_51a39475.class",
+      "bytes": 373,
+      "sha256": "c4ee7bc0906256ec58d1778ebe4df50f3c406d5e20080d67f2bb7b13bc3d479b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VolumeLevelConstraintInfo_f49c40d9.class",
+      "bytes": 303,
+      "sha256": "6529c9d1fe15c817400425c1ec77812479673756348bbe67c4f9080368d1d764"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VolumeLongPressTriggerInfo_32418dd8.class",
+      "bytes": 248,
+      "sha256": "abfb81b77336ad9590cf7834b606b99539499984d72ad0e539ec0ddc5877443a"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VpnConstraintInfo_b6410265.class",
+      "bytes": 238,
+      "sha256": "40035840f957064cda20ac9be1cdd8c7a892392204d5632cdad2b7ed5439cfa7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/VpnTriggerInfo_ca39ebcf.class",
+      "bytes": 236,
+      "sha256": "77d4c9c2437628a15022421ec36e9665ddd8ed5ed303927b6da3f9fcbc7eba45"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WearOSComplicationClickTriggerInfo_6c3c8906.class",
+      "bytes": 385,
+      "sha256": "4582ff9286b394b60cdd7549807d9182e38ff09d49130d835d0473cc870dd207"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WearOSComplicationClickTrigger_49720766.class",
+      "bytes": 239,
+      "sha256": "a0b1cd610d39fa8cec12228d8a0e21784f85c784c4e5194c481569cedacbfc18"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WeatherTriggerInfo_543d362d.class",
+      "bytes": 239,
+      "sha256": "2ce4c7feb803e0633571ffaf45f55a74cd476f4fda4831c9ae6ea2565781276d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WhatsAppAction_785d40f1.class",
+      "bytes": 251,
+      "sha256": "b81716b740d55d7c737974245877493258d4dbb67642b7cddba1b669c555b8c8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetButton_de9b58f3.class",
+      "bytes": 238,
+      "sha256": "585d07ec13406e13216a1b835529bdded8b4a6512631489d173e23359f5437ef"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetCheckBox_1d7c496a.class",
+      "bytes": 240,
+      "sha256": "a8a0a6d3e0348ac306f25558f665fdf2ff2f7f5af328546f3ae6f7bfc7fcd492"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetColumn_f30b3442.class",
+      "bytes": 296,
+      "sha256": "e458ccbbdd070cd61afb1e4a445d79bd4cab4ae7526f308c064e597e2aeb3fbc"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetContainer_72c01838.class",
+      "bytes": 429,
+      "sha256": "58056de4040653436b2819ce69a940a08c22f3342944651d5b3df59ced1a8e02"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetDummyMacro_14293993.class",
+      "bytes": 290,
+      "sha256": "03138cb0009b3dd6f479a853afce47e5769c0503497a3641f855eaa640d14cbd"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetGrid_2890a22a.class",
+      "bytes": 424,
+      "sha256": "c2e6cd3be3fcd8b25f08c835c3776f8a7a5e3e4db2df467b913c736bdbbcc23d"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetIcon_d4dad139.class",
+      "bytes": 236,
+      "sha256": "59d043a7aa6c1127ab5583934f98f1610afb3f3c174de68800c678a54ddc3c17"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetImage_c44cea43.class",
+      "bytes": 237,
+      "sha256": "4451998ad2ed2ec91a215985d84645b79dadcf4bf89a7dfd7c32ab84f9354d6c"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetItem_08a7b884.class",
+      "bytes": 674,
+      "sha256": "6447e4d79148549326be193b15df0f779a6e522fef74e736ab0a893e29f94457"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetList_b9681a94.class",
+      "bytes": 236,
+      "sha256": "2d9e6e5e332e895e4fa721ad367f117586af2a78ad7ca9fc69d2e64fe2080f79"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetPressedTriggerInfo_972837be.class",
+      "bytes": 302,
+      "sha256": "7a5366cc170f3a607b655a19694d7a8fb584f873622c38f45d2ebc7174b7df00"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetPressedTrigger_6825cd01.class",
+      "bytes": 269,
+      "sha256": "b467b3932891be67cf1282c3b1e0173c2d97557de9a123c0b29c85e51e19e220"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetProgressBar_5adcbfe0.class",
+      "bytes": 243,
+      "sha256": "8a0de781f20ed82ae1f84e4d1f4b4c0c57dd3c40a860740a259603b11ca5fa91"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetRow_8c00fec5.class",
+      "bytes": 371,
+      "sha256": "8550c4d456affe96a32f239cfdc5d2ca677bbb25d550ff72ac67bd6bae266ebb"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetSwitch_7e24004a.class",
+      "bytes": 238,
+      "sha256": "782d9747540555baaa304f375de59082061439947a34f88c5d0e5495f4e23d18"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WidgetText_77de3874.class",
+      "bytes": 236,
+      "sha256": "5fa97e52088b5835f49aeee703292e81b4e7e22d9638735aab1e29d0ae1ad2cf"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WifiCellInfo_50ec1fd6.class",
+      "bytes": 236,
+      "sha256": "a3d762254ef4335d1f81199ec80f690b8fa93ad4a8a7cba5661ecf011471df38"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WifiConnectionTriggerInfo_46aaa36a.class",
+      "bytes": 367,
+      "sha256": "19b5ca537ea2c636e8175389efadead7349a9875a73f3ad947b75c9a3762e717"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WifiConstraintInfo_6eacd244.class",
+      "bytes": 410,
+      "sha256": "0034b96717496b42e4f1f972be3d447227d2a0106e27b4c6d77584e22de609a1"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WifiHotSpotConstraintInfo_c08fb89f.class",
+      "bytes": 291,
+      "sha256": "cf9a9cf369e1838673a26e175a725c67247a49a43e3a583483b1e0ade1c05ef1"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WifiSSIDScanAction_50af04a9.class",
+      "bytes": 255,
+      "sha256": "ce2438238883b89f7d24c6b278ff081b1552eb2824e657b75397a9392def62ec"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WifiSSIDTriggerInfo_348816a2.class",
+      "bytes": 417,
+      "sha256": "2af68253d8b9a0e822b62bf0bc175646bdb1051e2c66dcac898c381590c1ad96"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WorkProfileConstraintInfo_b56fdd11.class",
+      "bytes": 300,
+      "sha256": "5182da90cb086cd6afd3c1776618a56d295db55b8afe9e632a8554f3438688b9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WorkProfileTriggerInfo_7c4a6f67.class",
+      "bytes": 244,
+      "sha256": "785da28d118e9c20f86cc0b7113d4e9d27fec189f7520c28b35bb49926c557ae"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WriteToFileActionInfo_0dcb7211.class",
+      "bytes": 282,
+      "sha256": "e2d52b1c87071d812c227faea6650476e7aaba5e84cc0103382bcb4088025fbe"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/WriteToFileAction_3da3b6e7.class",
+      "bytes": 254,
+      "sha256": "35d895dc4a138509e2378908ecf14140e02c6e67846aa46bd29c1d0c7d0126a9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/a_7892c901.class",
+      "bytes": 216,
+      "sha256": "1171a175b93394848611f1665d77a58766e9aa4ef79c01f43645fd889e90d34f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/c_395f4836.class",
+      "bytes": 248,
+      "sha256": "12bb1e80044c565d7bdd48998865e36bdf96725ce39630f488c948fd7af83e54"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/j_4c7e447c.class",
+      "bytes": 243,
+      "sha256": "85a4d9fe9f4983fdc67386560bc61396de31ec911110af62dc0164ff2a2465f8"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/o_69e5cec0.class",
+      "bytes": 304,
+      "sha256": "1ad23050bd176307860bde6a4bab5430fe5721abc7693c652464a0bd2acc299e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/q0_f452f912.class",
+      "bytes": 350,
+      "sha256": "d19fe15b8e3a8560989b23bc5d5b943797767e8ecab1b5c8eb752395d5b88357"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/constants/r0_7f13562d.class",
+      "bytes": 250,
+      "sha256": "667da8ae888201397876fc5238698a99a29023d0f4c43c0dab02fb6f635d16a7"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/core/LightLevelMethods.class",
+      "bytes": 1127,
+      "sha256": "d429c61b59044d10af9026caa27a5df5e897c81531abac489eca638364bedd8e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/core/MacroInvocationMethods.class",
+      "bytes": 4069,
+      "sha256": "22efb283079754fef4b753c90c2a95d738f45070b118690e0f6a49ebe041a063"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/core/MacroRunningMethods.class",
+      "bytes": 2547,
+      "sha256": "cc039aa0085db6a45b3a581494c4e367aa91ede886c11e3161ce9f8a1fc8a711"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/core/ValueEqualityMethods.class",
+      "bytes": 1204,
+      "sha256": "5744da72f98ad44a05e09d66c81a830c5d8de87e1ee8092288398df053e7b8e1"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/core/WeatherMethods.class",
+      "bytes": 2185,
+      "sha256": "1488f16e567e637babb46dd727427658fee61ad1a350ff9760320b4f0ad82617"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/engine/ActionDispatchMethods.class",
+      "bytes": 14445,
+      "sha256": "3da59e1daa3bf735a1f559458e12d8d37d208779fdc5f8fda5fc2b874def3c16"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/engine/ActionNavigationMethods.class",
+      "bytes": 1986,
+      "sha256": "85aa1255e6c48914aa3c603435e74fdeecb1ef5eddbeb95ede2b7860144e0942"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/engine/ActionScopeMethods.class",
+      "bytes": 1733,
+      "sha256": "c777b7bc779284dc427db77c71b2b4e129db2bf6b7352555d5b3eec2ea631b78"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/engine/LoopGuardMethods.class",
+      "bytes": 2222,
+      "sha256": "6ed0303d2814f855682adb4464f523c991a01804d783944b267f3589aca5b199"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/environment/IntegerParsingMethods.class",
+      "bytes": 862,
+      "sha256": "245cd63660edaac3b8f4ff405a7560880b19c4d3d7f3c39a303989cdd134ce83"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/environment/MatchingMethods.class",
+      "bytes": 1841,
+      "sha256": "e080b2bd4daaf2a9f8f526e0c4220aef35c2c9265d7920ebea19409c1bcb9b28"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/environment/SolarConstraintMethods.class",
+      "bytes": 3069,
+      "sha256": "7ab5a830b783623f2f4892cef35b863e5b9b2335e0cf996c9cbb81595feb7144"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/environment/SolarMethods.class",
+      "bytes": 3809,
+      "sha256": "6fee28e177cb557721ff28d6982ee9d34db3fd73e8bca910be4687a9211badf9"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/environment/SystemSettingMethods.class",
+      "bytes": 4439,
+      "sha256": "9fd7d39130a053b0af90bbe3a0a92b5c21fa177369a045e6a7769e542411c0ee"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/environment/WifiMethods.class",
+      "bytes": 4677,
+      "sha256": "eb8c6d80d8332b12ebfdbba7313c886855aa4e03de379c8a0ed84d00b109c21e"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/strings/LegacyStrings.class",
+      "bytes": 1116,
+      "sha256": "b14d465c1890c55c637b93edd2ddfe91e03b3a7accc09e5d3e976fb5b1ea06ea"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/text/ExtractTextManipulationMethods.class",
+      "bytes": 3322,
+      "sha256": "6618653767f79c578faba820af70a8b127119d7b68e83f17c54541fc030ac604"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/text/LowerCaseManipulationMethods.class",
+      "bytes": 1913,
+      "sha256": "f6e2eaf42f5eeeb5254af9cc592ed69b4c54f71f2c25a3dc4b0bb2c39bf7fe2f"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/text/RemoveTextManipulationMethods.class",
+      "bytes": 2913,
+      "sha256": "37b4118033638df72a0daad1deaad5d129523ca4496a4cf236c4efef62a4c16b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/text/ReplaceAllManipulationMethods.class",
+      "bytes": 3369,
+      "sha256": "a107b6c43569a5a56e63657a3cbfcabc4130d34d39f0ba1f7959460da2d8cd7b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/text/SplitManipulationMethods.class",
+      "bytes": 4923,
+      "sha256": "1195f0de719fd59264aefff1cd4f71ef4ff1c81d859a8cf4bb08b8e2aea8e410"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/text/SubstringManipulationMethods.class",
+      "bytes": 2432,
+      "sha256": "56298bfa16c669de2d2860501f31e79616ab069e176a8a039a909bf14c5f376b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/text/TextManipulationMethods.class",
+      "bytes": 3353,
+      "sha256": "a8f63e5b9c8d1adfe75f8c8a2e9295503457c2f27a7452d5dfbdb67f3e79ea8b"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/text/TrimManipulationMethods.class",
+      "bytes": 1909,
+      "sha256": "4b0d3526d2a256e32d2498fa41fa8da8eea9d6658f3661fa583b43a8a31f1b64"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/text/UpperCaseManipulationMethods.class",
+      "bytes": 1912,
+      "sha256": "af01ee5d5ca197bdbf944adcbf643714b8f0e257dd828476e63c8685eec80601"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/ui/BlockTouchesMethods.class",
+      "bytes": 3387,
+      "sha256": "dbc24a356756c19c9bfd5cd79ae76ac6a8910b3d0d2923208807a4ef02db5538"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/ui/CustomSceneMethods.class",
+      "bytes": 6989,
+      "sha256": "8856147e5bbd83398d2beec41a20534de96e004a69d163c356ba98e05f6420da"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/ui/InteractionMethods.class",
+      "bytes": 1338,
+      "sha256": "b9dcce480b01724b17db6e6f809ab6c414768dd20172d3170d8b115d8cef8e46"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/ui/PluginLookupMethods.class",
+      "bytes": 3495,
+      "sha256": "a3f25e87fd4d2eefd9fc69595956f60a6d8055463ae8ffdc1722d73308cc7eff"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/ui/SceneStateMethods.class",
+      "bytes": 3863,
+      "sha256": "bc489de80f0d2c55f6d610fad8a91915fa52aa8b896b5bc4308d3d9ea49b4c82"
+    },
+    {
+      "path": "build/java/hostclasses/recovered/ui/SelectionMethods.class",
+      "bytes": 2203,
+      "sha256": "30e03a81d25031673714a20137548d22a36c64c73d7f87cf006a9bd8b9f3cca1"
+    },
+    {
+      "path": "build/java/hostclasses/retrofit2/HttpException.class",
+      "bytes": 724,
+      "sha256": "38c55437f37145f343c8b9b65cb5d481658d9d3b7b2fa3079ea4da7bc46a7d3d"
+    },
+    {
+      "path": "tools/classes/BuildSupport.class",
+      "bytes": 5594,
+      "sha256": "66ea7bba9ec6ca5e2d86de246d3e75d978426b65d51862551fa8d9a73b43c72c"
+    },
+    {
+      "path": "tools/classes/BytecodeOracle$Bits.class",
+      "bytes": 326,
+      "sha256": "701c4bac5d8b5f0e1745d79260eb0c4d847ea01273515662f8dff1d3fff6ceb6"
+    },
+    {
+      "path": "tools/classes/BytecodeOracle$Escaped.class",
+      "bytes": 420,
+      "sha256": "dfed67af5384e7b608b49981ccac79de3f8301364fa77b42e70bd7bc304bf0da"
+    },
+    {
+      "path": "tools/classes/BytecodeOracle$Frame.class",
+      "bytes": 1240,
+      "sha256": "783816c88eea1dfc71de0b9d28d296a1f0bc101269687db33c0d9af0944c58ed"
+    },
+    {
+      "path": "tools/classes/BytecodeOracle$Pending.class",
+      "bytes": 440,
+      "sha256": "9e1d4ffac1fef936d0d32fa6258315f1a6ce1efd0e9de0d72ccf680b24e4a26b"
+    },
+    {
+      "path": "tools/classes/BytecodeOracle$Ref.class",
+      "bytes": 358,
+      "sha256": "fc3cdd194282e66ec8346d0d54d6f5c7d67336c36f6f91ca785c4172a2442069"
+    },
+    {
+      "path": "tools/classes/BytecodeOracle$Unsupported.class",
+      "bytes": 316,
+      "sha256": "832bd02eb9e1bb13bc0862321eada9397f55504c37d500a91145c12445b13b3c"
+    },
+    {
+      "path": "tools/classes/BytecodeOracle.class",
+      "bytes": 30842,
+      "sha256": "cb60d533a4cbac450ab76b2a0023a63b774d90da9c29721b18348eb4006c1593"
+    },
+    {
+      "path": "tools/classes/CoreParityTests.class",
+      "bytes": 30679,
+      "sha256": "8d970752e9e31d2edf271a0acfe5388ec7990cf002d92b047fd2ceccc0f5f0c5"
+    },
+    {
+      "path": "tools/classes/EngineOracleConformance.class",
+      "bytes": 8578,
+      "sha256": "348c814766a39f3e2ad5a25cd7a2f5c16498c10403f56730216228f74164f767"
+    },
+    {
+      "path": "tools/classes/EngineParityTests$Expected.class",
+      "bytes": 356,
+      "sha256": "1fdaacca49f3e5aa3076a59d7b68c46c57121458b8d6354ae39262afeb126809"
+    },
+    {
+      "path": "tools/classes/EngineParityTests$Factory.class",
+      "bytes": 296,
+      "sha256": "84730f091cee91b484989bec5b239ad1d107db455049e0b9edd25859642f98b4"
+    },
+    {
+      "path": "tools/classes/EngineParityTests$FlipEnabledIf.class",
+      "bytes": 985,
+      "sha256": "38f3440f15e05153b13e92320f262626dcb23ed2e6ac5c23eae6b9681a21d1a7"
+    },
+    {
+      "path": "tools/classes/EngineParityTests$World.class",
+      "bytes": 1049,
+      "sha256": "918cc562684fac7cff26b05f2cb92e58481ea2a3b9a39247e41d3c4a9bb0d050"
+    },
+    {
+      "path": "tools/classes/EngineParityTests.class",
+      "bytes": 54781,
+      "sha256": "00ed5cc8b2146e4f1019f6f57b725779e00ed139587d4dee7a2c064d75f8dbc6"
+    },
+    {
+      "path": "tools/classes/EnvironmentParityTests$InheritedManager.class",
+      "bytes": 344,
+      "sha256": "c5bfd568b9e15f62f73644fdf50cd2d65a02f48689c453dcb2ac9ac94489c96f"
+    },
+    {
+      "path": "tools/classes/EnvironmentParityTests.class",
+      "bytes": 49947,
+      "sha256": "0147cab58e5d959d07bbcd5639565a9dc1789143c3008ce9a6bdce41642265a3"
+    },
+    {
+      "path": "tools/classes/ExtractOracle.class",
+      "bytes": 5992,
+      "sha256": "bd00ff2953f1c2c42a66b2f952f1f04bd8f2971ffef264f60dbc8ff4cff5db1f"
+    },
+    {
+      "path": "tools/classes/InspectMethod.class",
+      "bytes": 6749,
+      "sha256": "d3a9fa74dc21f7fe3288c0b5c118323bc72086e7816881cc17f60a5300f7a4b9"
+    },
+    {
+      "path": "tools/classes/OracleSemanticsTests.class",
+      "bytes": 8542,
+      "sha256": "305601913d131e9c23b239d8bae5f3d966922a2700a31516994fb53739a8906b"
+    },
+    {
+      "path": "tools/classes/ParityTests.class",
+      "bytes": 19888,
+      "sha256": "e3a01d554e678c46587fafd58fea13d8eec6abd86a6efdc9a845b44e535149cf"
+    },
+    {
+      "path": "tools/classes/PluginParityCases$ApiCall.class",
+      "bytes": 1190,
+      "sha256": "69fdb4313de093369e9037e30d4d2ee2cb7e8f3875afa05c53548645fb3c8527"
+    },
+    {
+      "path": "tools/classes/PluginParityCases$EqualSuspended.class",
+      "bytes": 552,
+      "sha256": "e3c7ac7f5c3f9fc2eeb95ea29aa320753a248f5b4a9a33c641a2e61e271a03fa"
+    },
+    {
+      "path": "tools/classes/PluginParityCases$FakeApi.class",
+      "bytes": 1891,
+      "sha256": "b2ae87ff7b2faaa305be4b2821cfb54f8d9d153a053e07f9445042cb135f52d9"
+    },
+    {
+      "path": "tools/classes/PluginParityCases$Fixture.class",
+      "bytes": 6628,
+      "sha256": "e14b8872e5e56a36e968a5990288233eba5d331df5440e45e4745dbb0bc23657"
+    },
+    {
+      "path": "tools/classes/PluginParityCases$Keys.class",
+      "bytes": 1411,
+      "sha256": "b146173349733b9b17bd8f43288f9e7aa689aef5e5e80d1ee3a7d702b7eb02c4"
+    },
+    {
+      "path": "tools/classes/PluginParityCases$KnownList.class",
+      "bytes": 1329,
+      "sha256": "6f11b82cd90ca36d6bb6a4a09c8c604a571aeff1b17a7089603db66b8374b6e5"
+    },
+    {
+      "path": "tools/classes/PluginParityCases.class",
+      "bytes": 31461,
+      "sha256": "7ae2acf606bc5fd2933223492639e98cf10d6b4f64a3d6e8a7bdb68149fc8d95"
+    },
+    {
+      "path": "tools/classes/SceneParityCases$Fixture.class",
+      "bytes": 1883,
+      "sha256": "06ea85abee5b41da44661d3592a58e5ae20a6be08e5e12ab5c25a7f3e2300f3d"
+    },
+    {
+      "path": "tools/classes/SceneParityCases.class",
+      "bytes": 34805,
+      "sha256": "16d888c5498efa49f8ee56d6f874a09d1c3d26347bc7daccf4c5e8f0b57012ad"
+    },
+    {
+      "path": "tools/classes/TestClockAgent$1$1$1.class",
+      "bytes": 2111,
+      "sha256": "58854accc6a26dedf9fb3b4806282503d8f4c3009a3206ab59071c94918394e4"
+    },
+    {
+      "path": "tools/classes/TestClockAgent$1$1.class",
+      "bytes": 1055,
+      "sha256": "9fd6e5f325678b20f83fb53dad0bd317563f7e8a6b0a33c40e5e5a1845a22127"
+    },
+    {
+      "path": "tools/classes/TestClockAgent$1.class",
+      "bytes": 1815,
+      "sha256": "a0f90e0492e40c39d9155375724059b5a37f1dc9bc364c78214a62136d955fc2"
+    },
+    {
+      "path": "tools/classes/TestClockAgent.class",
+      "bytes": 950,
+      "sha256": "55139b8099f98ff2340aad68aa5abb16cfb6fbc6745771816d0eda4d7a262220"
+    },
+    {
+      "path": "tools/classes/UiOracleConformance.class",
+      "bytes": 4113,
+      "sha256": "c0a9e5f7090737e75863f54ed7c4d9210fd4da7aae6fb7cfb8fc93bc2e49181e"
+    },
+    {
+      "path": "tools/classes/UiParityTests$TouchInfo.class",
+      "bytes": 1156,
+      "sha256": "7411c6db721322aa0a4c705624e611acf95938384f3879517676a3ba207970ed"
+    },
+    {
+      "path": "tools/classes/UiParityTests.class",
+      "bytes": 52893,
+      "sha256": "ee85544444a7f7081e8518310ac2ea530e854cc7c1e463f5f1127badc5ac7a6e"
+    }
+  ],
+  "tool_jar_sha256": "354b10af74c09f5d2ab139def4231f0906dc6cc75738b1057e5a8263a412848e",
+  "clock_agent_sha256": "cf6fda289b679422e3ea73b998d006efac2de5c02331027def0d5b358f8ea959",
+  "commands": [
+    {
+      "label": "compile-strict-oracle",
+      "command": [
+        "javac",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/classes",
+        "-d",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/source/BytecodeOracle.java",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/source/OracleRegressionLauncher.java"
+      ],
+      "exit_code": 0,
+      "seconds": 2.436,
+      "log": "compile-strict-oracle.log",
+      "log_sha256": "a4db0ed1649a5d3b641df58a2e7d30e71c5a7a3ca06b0091f8937c308f45c3e0"
+    },
+    {
+      "label": "conformance",
+      "command": [
+        "java",
+        "-Xmx1200m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/classes",
+        "OracleRegressionLauncher",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes",
+        "OracleSemanticsTests",
+        "/tmp/macrodroid-oracle-regression-muc1efyz"
+      ],
+      "exit_code": 0,
+      "seconds": 0.519,
+      "log": "conformance.log",
+      "log_sha256": "18ee7aadc8257b89b07c1121707eb1a3b5814676456154b49c4ddac493225208"
+    },
+    {
+      "label": "engine-conformance",
+      "command": [
+        "java",
+        "-Xmx1200m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/classes",
+        "OracleRegressionLauncher",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes",
+        "EngineOracleConformance",
+        "/tmp/macrodroid-oracle-regression-muc1efyz"
+      ],
+      "exit_code": 0,
+      "seconds": 0.617,
+      "log": "engine-conformance.log",
+      "log_sha256": "e738518d4c0e353bd084c501539d25ee039b04cfde54e1d3974faf30d4996e36"
+    },
+    {
+      "label": "ui-conformance",
+      "command": [
+        "java",
+        "-Xmx1200m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/classes",
+        "OracleRegressionLauncher",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes",
+        "UiOracleConformance",
+        "/tmp/macrodroid-oracle-regression-muc1efyz"
+      ],
+      "exit_code": 0,
+      "seconds": 0.848,
+      "log": "ui-conformance.log",
+      "log_sha256": "df3cd526cae68096ae5f4138d2bc430506a7394784ccc6e4803c6d71ea6d6cfe"
+    },
+    {
+      "label": "legacy",
+      "command": [
+        "java",
+        "-Xmx1200m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/classes",
+        "OracleRegressionLauncher",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes",
+        "ParityTests",
+        "/tmp/macrodroid-oracle-regression-muc1efyz",
+        "/tmp/macrodroid-oracle-regression-muc1efyz/build/hybrid"
+      ],
+      "exit_code": 0,
+      "seconds": 147.783,
+      "log": "legacy.log",
+      "log_sha256": "a3b0823e78e7bf58039141c87bc76ba91a45f125b054969d54e3a7900192be4b"
+    },
+    {
+      "label": "core",
+      "command": [
+        "java",
+        "-Xmx1200m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/classes",
+        "OracleRegressionLauncher",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes",
+        "CoreParityTests",
+        "/tmp/macrodroid-oracle-regression-muc1efyz",
+        "/tmp/macrodroid-oracle-regression-muc1efyz/build/hybrid"
+      ],
+      "exit_code": 0,
+      "seconds": 16.157,
+      "log": "core.log",
+      "log_sha256": "fa181fdac0ee9a6262c524cb68f8a434898b62298f0b303d29a96306ff5e3957"
+    },
+    {
+      "label": "environment",
+      "command": [
+        "java",
+        "-Xmx1200m",
+        "-javaagent:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/build/test-clock-agent.jar",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/classes",
+        "OracleRegressionLauncher",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes",
+        "EnvironmentParityTests",
+        "/tmp/macrodroid-oracle-regression-muc1efyz",
+        "/tmp/macrodroid-oracle-regression-muc1efyz/build/hybrid"
+      ],
+      "exit_code": 0,
+      "seconds": 56.912,
+      "log": "environment.log",
+      "log_sha256": "229ffe445512d91f61380a05f73dabeba6876fd870558a6e458d94239ffacb90"
+    },
+    {
+      "label": "engine",
+      "command": [
+        "java",
+        "-Xmx1200m",
+        "-javaagent:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/build/test-clock-agent.jar",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/classes",
+        "OracleRegressionLauncher",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes",
+        "EngineParityTests",
+        "/tmp/macrodroid-oracle-regression-muc1efyz",
+        "/tmp/macrodroid-oracle-regression-muc1efyz/reports/java-engine-three-path-parity.json",
+        "all"
+      ],
+      "exit_code": 0,
+      "seconds": 16.637,
+      "log": "engine.log",
+      "log_sha256": "ab64a9710ad172f5c1bf73856ed6f56654455cdea17f582691b90782de7b25a1"
+    },
+    {
+      "label": "ui",
+      "command": [
+        "java",
+        "-Xmx1200m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/build/java/hostclasses:/tmp/macrodroid-combined-i26k2hre/MacroDroid_v9/tools/classes",
+        "OracleRegressionLauncher",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/existing-oracle-regression-05/classes",
+        "UiParityTests",
+        "/tmp/macrodroid-oracle-regression-muc1efyz",
+        "/tmp/macrodroid-oracle-regression-muc1efyz/build/hybrid"
+      ],
+      "exit_code": 0,
+      "seconds": 32.683,
+      "log": "ui.log",
+      "log_sha256": "522035908643fac86df48d252a9ba8e75225d45ee08ab52f9235b4d7ad25f29a"
+    }
+  ],
+  "passed": true,
+  "aggregate": {
+    "passed": true,
+    "cases": 188791,
+    "methodsCovered": 1240,
+    "methodsExpected": 1240,
+    "paths": 3,
+    "schemaValid": true,
+    "failedCases": 0,
+    "unsupportedExecutions": 0,
+    "androidRuntime": false,
+    "suiteCases": {
+      "legacy": 95262,
+      "core": 34753,
+      "environment": 30684,
+      "engine": 9616,
+      "ui": 18476
+    },
+    "scope": "Bounded host comparison only; not Android execution"
+  },
+  "exact_method_key_partition_verified": true,
+  "baseline_classpath_unchanged": true,
+  "parent_adapter_rules_configured": 0,
+  "parent_adapter_calls": 0,
+  "finished_utc": "2026-10-12T03:44:29.598068+00:00"
+}

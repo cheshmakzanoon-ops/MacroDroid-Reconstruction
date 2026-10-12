@@ -1,0 +1,191 @@
+{
+  "started_at_utc": "2026-10-12T03:45:04.103456+00:00",
+  "status": "ORIGINAL_JVM_COVERAGE_PASSED",
+  "project_read_only": "/workspace/scratch/4130730d15aa/current/MacroDroid_v9",
+  "private_work": "/tmp/macrodroid-widget-study-q0x2ly_t",
+  "target_method": "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;",
+  "active_registry_modified": false,
+  "apk_built": false,
+  "android_executed": false,
+  "rebuilt_dex_compared": false,
+  "mutable_hardlinks": false,
+  "commands": [
+    {
+      "label": "compile-host",
+      "argv": [
+        "javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-Xlint:-options",
+        "-d",
+        "/tmp/macrodroid-widget-study-q0x2ly_t/hostclasses",
+        "@/tmp/macrodroid-widget-study-q0x2ly_t/host-sources.args"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 5.648,
+      "timeout_seconds": 300,
+      "log": "compile-host.log",
+      "log_sha256": "66bcca1c459c184393ca1ea31a078957c7f00ee39c306aba62c0f924af7bc171"
+    },
+    {
+      "label": "compile-extractor",
+      "argv": [
+        "javac",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "-d",
+        "/tmp/macrodroid-widget-study-q0x2ly_t/toolclasses",
+        "/tmp/macrodroid-widget-study-q0x2ly_t/inputs/tools/src/ExtractOracle.java"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 1.428,
+      "timeout_seconds": 300,
+      "log": "compile-extractor.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "compile-harness",
+      "argv": [
+        "javac",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-widget-study-q0x2ly_t/hostclasses",
+        "-d",
+        "/tmp/macrodroid-widget-study-q0x2ly_t/harnessclasses",
+        "/tmp/macrodroid-widget-study-q0x2ly_t/inputs/tests/java/BytecodeOracle.java",
+        "/tmp/macrodroid-widget-study-q0x2ly_t/inputs/tests/java/ParityTests.java",
+        "/tmp/macrodroid-widget-study-q0x2ly_t/inputs/tests/java/UiParityTests.java",
+        "/tmp/macrodroid-widget-study-q0x2ly_t/inputs/tests/java/SceneParityCases.java",
+        "/tmp/macrodroid-widget-study-q0x2ly_t/inputs/tests/java/PluginParityCases.java",
+        "/tmp/macrodroid-widget-study-q0x2ly_t/inputs/tests/java/WidgetParityCases.java",
+        "/tmp/macrodroid-widget-study-q0x2ly_t/inputs/tests/java/WidgetParityStudy.java"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 4.737,
+      "timeout_seconds": 300,
+      "log": "compile-harness.log",
+      "log_sha256": "f80ae5fd7dbcdc97eeef4c7ab07a7d1316e3de1c76fdcc1e29d929b4f006968f"
+    },
+    {
+      "label": "extract-original-fixture",
+      "argv": [
+        "java",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-widget-study-q0x2ly_t/toolclasses",
+        "ExtractOracle",
+        "/tmp/macrodroid-widget-study-q0x2ly_t/fixture-project",
+        "/workspace/scratch/4130730d15aa/recovered/automation android app"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 3.576,
+      "timeout_seconds": 300,
+      "log": "extract-original-fixture.log",
+      "log_sha256": "1af734a99250876685484357dccf26e45ded0120047a3659d7aebaddfb3c4961"
+    },
+    {
+      "label": "original-jvm",
+      "argv": [
+        "java",
+        "-Xmx1000m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar:/tmp/macrodroid-widget-study-q0x2ly_t/harnessclasses:/tmp/macrodroid-widget-study-q0x2ly_t/hostclasses",
+        "WidgetParityStudy",
+        "/tmp/macrodroid-widget-study-q0x2ly_t/proposed-method-entry.json",
+        "/tmp/macrodroid-widget-study-q0x2ly_t/fixture-project/tests/fixtures/original-methods.dex",
+        "/workspace/scratch/4130730d15aa/widget-recovery/reports/widget-study-04-final/parity.json"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 5.261,
+      "timeout_seconds": 300,
+      "log": "original-jvm.log",
+      "log_sha256": "53c6e1c12abad23d210f6f30bba8f7e4a7711241e1df272c95ec32978d1f36b1"
+    }
+  ],
+  "original_apk": {
+    "path": "/workspace/scratch/4130730d15aa/recovered/automation android app",
+    "bytes": 95725918,
+    "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+  },
+  "preserved_original": {
+    "path": "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/source/smali/classes/67/WidgetUpdateManager_6791e8994482f6df.smali",
+    "class_sha256": "3ad59b363eaf1f1816d31a951867dcbf202702152148f6404d3426a8ed68818d",
+    "method_sha256": "a1dd490bbfd6837fa72e6bf8ae4c75736612989fcba050fe2f0582aa03640e34"
+  },
+  "tool_jar": {
+    "path": "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+    "bytes": 80076986,
+    "sha256": "354b10af74c09f5d2ab139def4231f0906dc6cc75738b1057e5a8263a412848e"
+  },
+  "host_java_inputs": 802,
+  "overlay_java_inputs": 18,
+  "fixture": {
+    "path": "original-widget-method.dex",
+    "bytes": 4220,
+    "sha256": "21fa3b34730a902713b14ee8ada375d4fdca3edf481dc3caabcd7bd1d3f22a0a",
+    "source_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+    "classes": 1,
+    "methods": 1,
+    "test_only_not_apk_input": true
+  },
+  "parity": {
+    "passed": true,
+    "cases": 2342,
+    "failedCases": 0,
+    "unsupportedExecutions": 0,
+    "independentExpectedResultChecks": 198,
+    "expectedResultFailures": 0,
+    "methodsCovered": 1,
+    "methodKeys": [
+      "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;"
+    ],
+    "paths": 2,
+    "androidRuntime": false,
+    "rebuiltDexCompared": false,
+    "registeredInActiveProject": false,
+    "instructionCoverage": {
+      "instructions": 194,
+      "visited": 194,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 20,
+      "conditionalEdgesVisited": 20,
+      "unvisitedConditionalEdges": []
+    },
+    "fullInstructionAndConditionalCoverage": true,
+    "hostParentConstructorAdapters": {
+      "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;": [
+        "Lzhh;->Lrff;-><init>(ILm73;)V"
+      ]
+    },
+    "hostParentConstructorAdapterCalls": {
+      "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;->m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;:Lzhh;->Lrff;-><init>(ILm73;)V": 2460
+    },
+    "constructorScope": "Exact method-scoped DEX owner validation with a compile-only child reflection adapter; not ART verification",
+    "invalidLabelDefensiveReturnUsesOneInjectedReturningBoundary": true,
+    "generatedNullMessageExclusions": [
+      {
+        "case": "widget-saved-cast:1:3:false",
+        "path": "original",
+        "rawLog": "Failed to update custom widget instance 417: Cannot invoke \"Object.getClass()\" because \"obj\" is null",
+        "excludedText": "Cannot invoke \"Object.getClass()\" because \"obj\" is null",
+        "reason": "Only VM-generated NPE wording for the deliberately null saved renderer; no injected or external exception is present"
+      },
+      {
+        "case": "widget-saved-cast:1:3:false",
+        "path": "java",
+        "rawLog": "Failed to update custom widget instance 417: Cannot invoke \"defpackage.rx6.d(android.content.Context, defpackage.gy6, defpackage.o73)\" because \"<local13>\" is null",
+        "excludedText": "Cannot invoke \"defpackage.rx6.d(android.content.Context, defpackage.gy6, defpackage.o73)\" because \"<local13>\" is null",
+        "reason": "Only VM-generated NPE wording for the deliberately null saved renderer; no injected or external exception is present"
+      }
+    ],
+    "exceptionMessageScope": "Only VM-generated escaped null/cast wording, plus the exact recognized VM-generated logged NPE wording in one deliberately null saved-renderer fixture. Raw excluded log text is preserved. Injected/external messages remain exact.",
+    "scope": "Bounded selected original method/JVM comparison; no widget service, rendering, coroutine scheduler, application build or Android execution"
+  },
+  "pass": true,
+  "copied_inputs_unchanged_after_execution": true,
+  "compiled_class_archive": {
+    "path": "compiled-host-harness.tar.gz",
+    "bytes": 353058,
+    "sha256": "092505eb2dba167a4597b5068ee51a3f77016140831241a50c7c9172d4e0f7d1"
+  },
+  "finished_at_utc": "2026-10-12T03:45:31.305979+00:00"
+}

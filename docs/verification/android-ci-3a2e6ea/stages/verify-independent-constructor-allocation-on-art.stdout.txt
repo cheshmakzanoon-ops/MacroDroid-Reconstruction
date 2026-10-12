@@ -1,0 +1,786 @@
+{
+  "schema_version": 1,
+  "scope": "Pinned Lzhh allocation through Lrff constructor on Android 15 ART only",
+  "started_utc": "2026-10-12T03:41:38.114177+00:00",
+  "status": "ART_CONSTRUCTOR_ALLOCATION_VERIFIED",
+  "commands": [
+    {
+      "label": "device-state",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "get-state"
+      ],
+      "started_utc": "2026-10-12T03:41:38.212718+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.002,
+      "stdout": {
+        "path": "001-device-state.stdout.txt",
+        "bytes": 7,
+        "sha256": "c98373c1abef78070f6beef6b4ae4fbf3de348dac280195c7f93441920584af9"
+      },
+      "stderr": {
+        "path": "001-device-state.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "property-ro-kernel-qemu",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.kernel.qemu"
+      ],
+      "started_utc": "2026-10-12T03:41:38.215357+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.024,
+      "stdout": {
+        "path": "002-property-ro-kernel-qemu.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "002-property-ro-kernel-qemu.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "property-sys-boot_completed",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop sys.boot_completed"
+      ],
+      "started_utc": "2026-10-12T03:41:38.240355+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.02,
+      "stdout": {
+        "path": "003-property-sys-boot_completed.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "003-property-sys-boot_completed.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "property-ro-build-version-sdk",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.build.version.sdk"
+      ],
+      "started_utc": "2026-10-12T03:41:38.261021+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.02,
+      "stdout": {
+        "path": "004-property-ro-build-version-sdk.stdout.txt",
+        "bytes": 3,
+        "sha256": "90d7ec0f0acef104d8b6252794295f661a0149634868d02a1ae0c358099638f5"
+      },
+      "stderr": {
+        "path": "004-property-ro-build-version-sdk.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "property-ro-build-fingerprint",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.build.fingerprint"
+      ],
+      "started_utc": "2026-10-12T03:41:38.281572+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.017,
+      "stdout": {
+        "path": "005-property-ro-build-fingerprint.stdout.txt",
+        "bytes": 82,
+        "sha256": "633fbfc3b92b012914165717ce367282664c75ad9f6e533b4a1ad6e2418ec93a"
+      },
+      "stderr": {
+        "path": "005-property-ro-build-fingerprint.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "property-ro-product-cpu-abi",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.product.cpu.abi"
+      ],
+      "started_utc": "2026-10-12T03:41:38.299825+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.013,
+      "stdout": {
+        "path": "006-property-ro-product-cpu-abi.stdout.txt",
+        "bytes": 7,
+        "sha256": "aaf631698ae5160ceb04a97681a14887fdcab47cd6e0f163c87485b3b1340b62"
+      },
+      "stderr": {
+        "path": "006-property-ro-product-cpu-abi.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "property-ro-product-cpu-abilist",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.product.cpu.abilist"
+      ],
+      "started_utc": "2026-10-12T03:41:38.314312+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.023,
+      "stdout": {
+        "path": "007-property-ro-product-cpu-abilist.stdout.txt",
+        "bytes": 17,
+        "sha256": "79861d534dd25845f4329d0546f2202124ad6e6af060fdcd362e176faf1f0b14"
+      },
+      "stderr": {
+        "path": "007-property-ro-product-cpu-abilist.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "property-ro-dalvik-vm-native-bridge",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop ro.dalvik.vm.native.bridge"
+      ],
+      "started_utc": "2026-10-12T03:41:38.338598+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.019,
+      "stdout": {
+        "path": "008-property-ro-dalvik-vm-native-bridge.stdout.txt",
+        "bytes": 22,
+        "sha256": "6b483b07df1cb35eb07d9f3578c45a109ab8e548c214dc15731ed722ceaa9cae"
+      },
+      "stderr": {
+        "path": "008-property-ro-dalvik-vm-native-bridge.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "avd-name",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "avd",
+        "name"
+      ],
+      "started_utc": "2026-10-12T03:41:38.358454+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.003,
+      "stdout": {
+        "path": "009-avd-name.stdout.txt",
+        "bytes": 33,
+        "sha256": "8522ad4bd14867dd505fdecb0e0657c506a22c36d86c8a8634fdfda384bae977"
+      },
+      "stderr": {
+        "path": "009-avd-name.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "art-executable",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "test -x /apex/com.android.art/bin/dalvikvm64"
+      ],
+      "started_utc": "2026-10-12T03:41:38.362024+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.016,
+      "stdout": {
+        "path": "010-art-executable.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "010-art-executable.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "guest-timeout-executable",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "test -x /system/bin/timeout"
+      ],
+      "started_utc": "2026-10-12T03:41:38.379617+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.012,
+      "stdout": {
+        "path": "011-guest-timeout-executable.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "011-guest-timeout-executable.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "art-binary-sha256",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "sha256sum /apex/com.android.art/bin/dalvikvm64"
+      ],
+      "started_utc": "2026-10-12T03:41:38.392330+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.024,
+      "stdout": {
+        "path": "012-art-binary-sha256.stdout.txt",
+        "bytes": 103,
+        "sha256": "59109d5992c48c4c9516cf5818f3017e7bf3af605a99416d25e8017a1c25fcf0"
+      },
+      "stderr": {
+        "path": "012-art-binary-sha256.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "create-owned-directory",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "mkdir -m 700 /data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde"
+      ],
+      "started_utc": "2026-10-12T03:41:38.418030+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.071,
+      "stdout": {
+        "path": "013-create-owned-directory.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "013-create-owned-directory.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "push-probe",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "push",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/tools/android/probes/constructor-probe.dex",
+        "/data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/constructor-probe.dex"
+      ],
+      "started_utc": "2026-10-12T03:41:38.490936+00:00",
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.044,
+      "stdout": {
+        "path": "014-push-probe.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "014-push-probe.stderr.txt",
+        "bytes": 172,
+        "sha256": "d8c28b03f5358b7fc7328a165752245ae597e96770613c3421833eda7ee90038"
+      }
+    },
+    {
+      "label": "readonly-probe",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "chmod 444 /data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/constructor-probe.dex"
+      ],
+      "started_utc": "2026-10-12T03:41:38.536722+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.018,
+      "stdout": {
+        "path": "015-readonly-probe.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "015-readonly-probe.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "mode-probe",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "stat -c %a /data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/constructor-probe.dex"
+      ],
+      "started_utc": "2026-10-12T03:41:38.555533+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.029,
+      "stdout": {
+        "path": "016-mode-probe.stdout.txt",
+        "bytes": 4,
+        "sha256": "07d961b4441af9213b46b56dbf0727702888a63ad1952ff3616430f09c8170be"
+      },
+      "stderr": {
+        "path": "016-mode-probe.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "sha256-probe",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "sha256sum /data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/constructor-probe.dex"
+      ],
+      "started_utc": "2026-10-12T03:41:38.585718+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.014,
+      "stdout": {
+        "path": "017-sha256-probe.stdout.txt",
+        "bytes": 152,
+        "sha256": "41c89b48e74e440ccae92c5a33e579e7afdb9951349c29ab455e55f3a9caf629"
+      },
+      "stderr": {
+        "path": "017-sha256-probe.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "push-original",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "push",
+        "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-original.apk",
+        "/data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/original.apk"
+      ],
+      "started_utc": "2026-10-12T03:41:38.601925+00:00",
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.431,
+      "stdout": {
+        "path": "018-push-original.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "018-push-original.stderr.txt",
+        "bytes": 186,
+        "sha256": "43be668ceb81524b52c025c7ec7c537c9b3afe10fe9bd1cdd57bb7b2e0ab6f0b"
+      }
+    },
+    {
+      "label": "readonly-original",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "chmod 444 /data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/original.apk"
+      ],
+      "started_utc": "2026-10-12T03:41:39.140432+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.017,
+      "stdout": {
+        "path": "019-readonly-original.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "019-readonly-original.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "mode-original",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "stat -c %a /data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/original.apk"
+      ],
+      "started_utc": "2026-10-12T03:41:39.169709+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.023,
+      "stdout": {
+        "path": "020-mode-original.stdout.txt",
+        "bytes": 4,
+        "sha256": "07d961b4441af9213b46b56dbf0727702888a63ad1952ff3616430f09c8170be"
+      },
+      "stderr": {
+        "path": "020-mode-original.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "sha256-original",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "sha256sum /data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/original.apk"
+      ],
+      "started_utc": "2026-10-12T03:41:39.194115+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.549,
+      "stdout": {
+        "path": "021-sha256-original.stdout.txt",
+        "bytes": 143,
+        "sha256": "4971ed4eee7890a730b5e9e7cd3be27db3167203f00577a445a59f7ce8785d95"
+      },
+      "stderr": {
+        "path": "021-sha256-original.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "execute-constructor-probe",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "/system/bin/timeout -s KILL 120 /apex/com.android.art/bin/dalvikvm64 -Xverify:all -cp /data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/constructor-probe.dex:/data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/original.apk recovered.probe.ConstructorProbe"
+      ],
+      "started_utc": "2026-10-12T03:41:39.767103+00:00",
+      "timeout_seconds": 150,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.209,
+      "stdout": {
+        "path": "022-execute-constructor-probe.stdout.txt",
+        "bytes": 44,
+        "sha256": "ce8fe4cba45159d4c1598d28f4e1329148caa24841ee3695bdbe0903757c36bb"
+      },
+      "stderr": {
+        "path": "022-execute-constructor-probe.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "remove-owned-directory",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "rm -rf -- /data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde"
+      ],
+      "started_utc": "2026-10-12T03:41:40.977843+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.032,
+      "stdout": {
+        "path": "023-remove-owned-directory.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "023-remove-owned-directory.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "confirm-owned-directory-absent",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "test '!' -e /data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde"
+      ],
+      "started_utc": "2026-10-12T03:41:41.011226+00:00",
+      "timeout_seconds": 15,
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.012,
+      "stdout": {
+        "path": "024-confirm-owned-directory-absent.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "024-confirm-owned-directory-absent.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "art_execution_attempted": true,
+  "android_runtime_executed": true,
+  "constructor_allocation_on_art_verified": true,
+  "full_runtime_1_to_1_established": false,
+  "widget_behavior_verified": false,
+  "app_apk_modified": false,
+  "app_installed": false,
+  "app_ui_interaction": false,
+  "compile_only_stubs_on_classpath": false,
+  "probe_sha256": "85f53ad51a1a85fd2161bd485db9f12556f737b0745f6e26ffdff31a927d5281",
+  "original_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+  "serial": "emulator-5560",
+  "expected_avd": "MacroDroid_API35_Disposable",
+  "expected_stdout": "CONSTRUCTOR_ALLOCATION_OK class=zhh arity=2",
+  "guest_timeout_seconds": 120,
+  "verification_mode": "-Xverify:all",
+  "cleanup_complete": true,
+  "inputs": {
+    "original": {
+      "path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/workspace/artifacts/MacroDroid-5.67.8-original.apk",
+      "bytes": 95725918,
+      "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800"
+    },
+    "probe": {
+      "path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/tools/android/probes/constructor-probe.dex",
+      "bytes": 1436,
+      "sha256": "85f53ad51a1a85fd2161bd485db9f12556f737b0745f6e26ffdff31a927d5281",
+      "runtime_class_count": 1,
+      "runtime_class": "Lrecovered/probe/ConstructorProbe;",
+      "compile_only_stub_classes_in_probe": 0
+    },
+    "provenance": {
+      "path": "/home/runner/work/MacroDroid-Reconstruction/MacroDroid-Reconstruction/tools/android/probes/constructor-probe.json",
+      "sha256": "a81ede985d76d816bc1f2785f15aa57758691defdf9112dcdd77a59024de46c6",
+      "content": {
+        "schema_version": 1,
+        "scope": "One standalone Lzhh allocation through the original public Lrff constructor; runtime status is recorded separately",
+        "probe_sha256": "85f53ad51a1a85fd2161bd485db9f12556f737b0745f6e26ffdff31a927d5281",
+        "probe_bytes": 1436,
+        "original_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+        "original_apk_bytes": 95725918,
+        "main_class": "recovered.probe.ConstructorProbe",
+        "runtime_classes": [
+          "Lrecovered/probe/ConstructorProbe;"
+        ],
+        "compile_only_stub_classes_in_runtime_dex": 0,
+        "constructor_checkpoint": {
+          "repository_path": "work-in-progress/constructor-owner/02-pipeline-proof/checkpoint.json",
+          "manifest_sha256": "98d73cb9f3c73731e2a376bfdb446704674b2019e996a59483263f0d37b31e9a",
+          "proof_files": [
+            {
+              "path": "probe/source/recovered/probe/ConstructorProbe.java",
+              "bytes": 560,
+              "sha256": "5f2a9f080a3c812db23aa180c0630c0724f59265b101e53349cec51b354d1528"
+            },
+            {
+              "path": "reports/probe-03/constructor-probe.dex",
+              "bytes": 1436,
+              "sha256": "85f53ad51a1a85fd2161bd485db9f12556f737b0745f6e26ffdff31a927d5281"
+            },
+            {
+              "path": "reports/probe-03/result.json",
+              "bytes": 3633,
+              "sha256": "436735096f51b73e5a64150942b4014c4e4413a6d76f6a3cace533740ed402b4"
+            },
+            {
+              "path": "reports/probe-03/roundtrip-smali/recovered/probe/ConstructorProbe.smali",
+              "bytes": 2122,
+              "sha256": "f532a831fed9b1cf875a4aa8be9d9c6cab90b828dd24d5af0188c202208e40d4"
+            }
+          ],
+          "commit": "c7abf086ebffbc70cb3143f909a7f48648de22bc"
+        },
+        "allocation": {
+          "allocated_type": "Lzhh;",
+          "constructor_owner": "Lrff;",
+          "constructor_signature": "<init>(ILm73;)V",
+          "arguments": [
+            2,
+            null
+          ],
+          "expected_stdout": "CONSTRUCTOR_ALLOCATION_OK class=zhh arity=2"
+        },
+        "runtime_classpath": [
+          "tools/android/probes/constructor-probe.dex",
+          "unchanged exact original APK"
+        ],
+        "required_verification_option": "-Xverify:all",
+        "android_execution_established_by_this_provenance": false,
+        "full_runtime_1_to_1_established": false,
+        "app_apk_modified": false,
+        "primary_sources": [
+          {
+            "url": "https://android.googlesource.com/platform/art/+/refs/tags/android-15.0.0_r1/runtime/parsed_options.cc",
+            "bytes": 33939,
+            "sha256": "d2f297f90c0fb1efa36815995dcdce1337b3b28b32e672e8b0fc8104b3ba31c8",
+            "observation": "-Xverify:all maps to VerifyMode::kEnable"
+          },
+          {
+            "url": "https://android.googlesource.com/platform/art/+/refs/tags/android-15.0.0_r1/dalvikvm/dalvikvm.cc",
+            "bytes": 7328,
+            "sha256": "b685e53f81650df930723193f74e125747801216160fdd527eedb3bb1191a52f",
+            "observation": "The VM accepts -classpath/-cp with the following classpath argument; unrecognized VM options are not ignored"
+          },
+          {
+            "url": "https://android.googlesource.com/platform/external/toybox/+/refs/tags/android-15.0.0_r1/toys/other/timeout.c",
+            "bytes": 2870,
+            "sha256": "aec05810836d18782417ff227897ea5d1e8f188bbbc45861eec2272f1887e277",
+            "observation": "timeout accepts -s SIGNAL DURATION COMMAND; KILL terminates the command group at the guest deadline"
+          }
+        ]
+      }
+    }
+  },
+  "adb_path": "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+  "adb_sha256": "a902be8f45c6c62e76c9efaf6947a0fa747c9cabd89a2ac8e0d16ecb30b3ed01",
+  "environment": {
+    "ro.kernel.qemu": "1",
+    "sys.boot_completed": "1",
+    "ro.build.version.sdk": "35",
+    "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.product.cpu.abilist": "x86_64,arm64-v8a",
+    "ro.dalvik.vm.native.bridge": "libndk_translation.so"
+  },
+  "art_binary_sha256": "f96a70a7360448b0178f9e8b745b5362663f437116e17ff541cfc0e482c08a18",
+  "owned_device_directory": "/data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde",
+  "device_inputs": {
+    "probe": {
+      "path": "/data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/constructor-probe.dex",
+      "sha256": "85f53ad51a1a85fd2161bd485db9f12556f737b0745f6e26ffdff31a927d5281",
+      "mode": "444"
+    },
+    "original": {
+      "path": "/data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/original.apk",
+      "sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+      "mode": "444"
+    }
+  },
+  "art_argv": [
+    "/system/bin/timeout",
+    "-s",
+    "KILL",
+    "120",
+    "/apex/com.android.art/bin/dalvikvm64",
+    "-Xverify:all",
+    "-cp",
+    "/data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/constructor-probe.dex:/data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/original.apk",
+    "recovered.probe.ConstructorProbe"
+  ],
+  "art_command": {
+    "label": "execute-constructor-probe",
+    "argv": [
+      "/home/runner/work/_temp/macrodroid-tooling/android/platform-tools/adb",
+      "-s",
+      "emulator-5560",
+      "shell",
+      "/system/bin/timeout -s KILL 120 /apex/com.android.art/bin/dalvikvm64 -Xverify:all -cp /data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/constructor-probe.dex:/data/local/tmp/md-constructor-9490046b38004d37be188495b943cbde/original.apk recovered.probe.ConstructorProbe"
+    ],
+    "started_utc": "2026-10-12T03:41:39.767103+00:00",
+    "timeout_seconds": 150,
+    "returncode": 0,
+    "timed_out": false,
+    "seconds": 1.209,
+    "stdout": {
+      "path": "022-execute-constructor-probe.stdout.txt",
+      "bytes": 44,
+      "sha256": "ce8fe4cba45159d4c1598d28f4e1329148caa24841ee3695bdbe0903757c36bb"
+    },
+    "stderr": {
+      "path": "022-execute-constructor-probe.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "finished_utc": "2026-10-12T03:41:41.024194+00:00"
+}

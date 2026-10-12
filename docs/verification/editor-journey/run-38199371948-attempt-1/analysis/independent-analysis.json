@@ -1,0 +1,1156 @@
+{
+  "status": "MEASURED_PARTIAL_CAPTURES_WITH_DIFFERENCES",
+  "analyzed_utc": "2026-10-12T03:42:07.137181+00:00",
+  "run_id": 38199371948,
+  "head_sha": "3f584e6c958958a5d823e33f8facd0dcdae906f8",
+  "archive_commit": "4f7e19d4d63c2f6ac4b3eba2cfa2de8604099ebb",
+  "archive": {
+    "bytes": 4058327,
+    "sha256": "5edc5aa2a46b2281432c082046400474f53a466ed8c77f6747c5e11a2f0adc70"
+  },
+  "all_archive_members_verified": 740,
+  "all_referenced_artifact_paths_verified": 628,
+  "artifact_references_checked": 668,
+  "host_tests": {
+    "actual_count": 23,
+    "seconds": 2.167,
+    "passed": true
+  },
+  "preserved_comparison": {
+    "status": "REJECTED",
+    "journey_equal": false,
+    "full_runtime_1_to_1_established": false,
+    "scope": "Fresh install, notification denial, home and empty-editor catalog navigation only",
+    "screens": [],
+    "masks_used": false,
+    "android_runtime_executed": false,
+    "macros_executed": false,
+    "macros_saved": false,
+    "reason": "Incomplete run or changed environment"
+  },
+  "exact_pinned_comparator_replay_matches": true,
+  "actual_android_install_and_capture_observed": true,
+  "requested_editor_journey_passed": false,
+  "full_runtime_1_to_1_established": false,
+  "environment_before_runs_equal": true,
+  "environment": {
+    "serial": "emulator-5560",
+    "ro.build.fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "ro.build.version.sdk": "35",
+    "ro.product.cpu.abilist": "x86_64,arm64-v8a",
+    "ro.kernel.qemu": "1",
+    "persist.sys.locale": "",
+    "persist.sys.timezone": "Etc/UTC",
+    "system:font_scale": "1.0",
+    "global:animator_duration_scale": "0",
+    "global:window_animation_scale": "0",
+    "global:transition_animation_scale": "0",
+    "global:airplane_mode_on": "0",
+    "global:wifi_on": "1",
+    "global:mobile_data": "1",
+    "global:sysui_demo_allowed": "1",
+    "global:sysui_tuner_demo_on": "1",
+    "display_size": "Physical size: 720x1280",
+    "display_density": "Physical density: 320"
+  },
+  "runs": [
+    {
+      "label": "original",
+      "installed_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+      "fresh_install_and_launch_verified": true,
+      "status": "FAILED",
+      "current_step": "home",
+      "reason": "Missing or ambiguous selector: {'resource-id': 'com.arlosoft.macrodroid:id/navigation_home'}",
+      "environment_after_recorded": false,
+      "screens": [
+        {
+          "name": "intro-1",
+          "owner": "com.arlosoft.macrodroid",
+          "pids": [
+            "4062",
+            "4062"
+          ],
+          "resumed_components": [
+            "com.arlosoft.macrodroid/.intro.IntroActivity"
+          ],
+          "artifacts": {
+            "pid_first": {
+              "path": "original-intro-1-pid-first.txt",
+              "bytes": 5,
+              "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+            },
+            "foreground": {
+              "path": "original-intro-1-foreground.txt",
+              "bytes": 30465,
+              "sha256": "307b4d1144774af4783818a88c2b30da8327d2a105a785853c7897855af2531e"
+            },
+            "hierarchy": {
+              "path": "original-intro-1.xml",
+              "bytes": 5939,
+              "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+            },
+            "screenshot": {
+              "path": "original-intro-1.png",
+              "bytes": 83895,
+              "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+            },
+            "pid_final": {
+              "path": "original-intro-1-pid-final.txt",
+              "bytes": 5,
+              "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+            }
+          }
+        },
+        {
+          "name": "intro-2",
+          "owner": "com.arlosoft.macrodroid",
+          "pids": [
+            "4062",
+            "4062"
+          ],
+          "resumed_components": [
+            "com.arlosoft.macrodroid/.intro.IntroActivity"
+          ],
+          "artifacts": {
+            "pid_first": {
+              "path": "original-intro-2-pid-first.txt",
+              "bytes": 5,
+              "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+            },
+            "foreground": {
+              "path": "original-intro-2-foreground.txt",
+              "bytes": 30726,
+              "sha256": "cb3dcdb37983ab6078b11824b4b57993eeadeed842f26e89fbbba6507fde59a2"
+            },
+            "hierarchy": {
+              "path": "original-intro-2.xml",
+              "bytes": 6689,
+              "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+            },
+            "screenshot": {
+              "path": "original-intro-2.png",
+              "bytes": 75316,
+              "sha256": "6e98d2ba0e7d3bd76b15f3e9f6de6ab698f763caa6d89f43672d00a75067a845"
+            },
+            "pid_final": {
+              "path": "original-intro-2-pid-final.txt",
+              "bytes": 5,
+              "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+            }
+          }
+        },
+        {
+          "name": "intro-3",
+          "owner": "com.arlosoft.macrodroid",
+          "pids": [
+            "4062",
+            "4062"
+          ],
+          "resumed_components": [
+            "com.arlosoft.macrodroid/.intro.IntroActivity"
+          ],
+          "artifacts": {
+            "pid_first": {
+              "path": "original-intro-3-pid-first.txt",
+              "bytes": 5,
+              "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+            },
+            "foreground": {
+              "path": "original-intro-3-foreground.txt",
+              "bytes": 30985,
+              "sha256": "9d81f2f66b334c503fd78fb7bd49f7b6b933b58d302c04e256a246527bbff13c"
+            },
+            "hierarchy": {
+              "path": "original-intro-3.xml",
+              "bytes": 6685,
+              "sha256": "0d213e7057f57c885997ea2da8840c982d8f1e6b7a266adadb1c33ff894f9fe9"
+            },
+            "screenshot": {
+              "path": "original-intro-3.png",
+              "bytes": 79359,
+              "sha256": "b3410bed78ab5591cc3ed8797eb7e62d050f1aae4ce64d8762981f73bfe839f8"
+            },
+            "pid_final": {
+              "path": "original-intro-3-pid-final.txt",
+              "bytes": 5,
+              "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+            }
+          }
+        },
+        {
+          "name": "intro-4",
+          "owner": "com.arlosoft.macrodroid",
+          "pids": [
+            "4062",
+            "4062"
+          ],
+          "resumed_components": [
+            "com.arlosoft.macrodroid/.intro.IntroActivity"
+          ],
+          "artifacts": {
+            "pid_first": {
+              "path": "original-intro-4-pid-first.txt",
+              "bytes": 5,
+              "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+            },
+            "foreground": {
+              "path": "original-intro-4-foreground.txt",
+              "bytes": 31247,
+              "sha256": "55a561a66e06e88d8e6d9af4977a42985ddc106c56659f699a6007fea31d7a8f"
+            },
+            "hierarchy": {
+              "path": "original-intro-4.xml",
+              "bytes": 6682,
+              "sha256": "f05632a504ab0a6aab8608de15b95bc4f41f2bb9212879026f14927bea5af89b"
+            },
+            "screenshot": {
+              "path": "original-intro-4.png",
+              "bytes": 70512,
+              "sha256": "35c1bea0a4aa3cdadbb47903c5fea87f980d5b99bb0ff97322deb845b5b25971"
+            },
+            "pid_final": {
+              "path": "original-intro-4-pid-final.txt",
+              "bytes": 5,
+              "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+            }
+          }
+        },
+        {
+          "name": "notification-request",
+          "owner": "com.google.android.permissioncontroller",
+          "pids": [
+            "4062",
+            "4062"
+          ],
+          "resumed_components": [
+            "com.google.android.permissioncontroller/com.android.permissioncontroller.permission.ui.GrantPermissionsActivity"
+          ],
+          "artifacts": {
+            "pid_first": {
+              "path": "original-notification-request-pid-first.txt",
+              "bytes": 5,
+              "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+            },
+            "foreground": {
+              "path": "original-notification-request-foreground.txt",
+              "bytes": 42171,
+              "sha256": "d79fdde1f64608e1c441e548f8cac82417689a5336d35f95f53b7d74789c5558"
+            },
+            "hierarchy": {
+              "path": "original-notification-request.xml",
+              "bytes": 5071,
+              "sha256": "e76b1770090c9aa8d0c3458c9664bbb3d50e020f62585183fcd6fd085bc39772"
+            },
+            "screenshot": {
+              "path": "original-notification-request.png",
+              "bytes": 70017,
+              "sha256": "9142bae1c48456abcb24bf3aab61231fa1d2578baed37d19161c77d4a9ae1a1a"
+            },
+            "pid_final": {
+              "path": "original-notification-request-pid-final.txt",
+              "bytes": 5,
+              "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+            }
+          }
+        },
+        {
+          "name": "home",
+          "owner": "com.arlosoft.macrodroid",
+          "pids": [
+            "4985",
+            "4985"
+          ],
+          "resumed_components": [
+            "com.arlosoft.macrodroid/.homescreen.NewHomeScreenActivity"
+          ],
+          "artifacts": {
+            "pid_first": {
+              "path": "original-home-pid-first.txt",
+              "bytes": 5,
+              "sha256": "8c5268b805b3791e322e923fd4557bc26f4a5954f392bd1588fef671a1bf6dff"
+            },
+            "foreground": {
+              "path": "original-home-foreground.txt",
+              "bytes": 31517,
+              "sha256": "7f3f0a678e683969a558bf68429906de325791551ee0d414e399820186c95400"
+            },
+            "hierarchy": {
+              "path": "original-home.xml",
+              "bytes": 7273,
+              "sha256": "77ccbb1de2f4ce42c402f25c80404b74eece18943f5d003e6cb15c9478d0a4f2"
+            },
+            "screenshot": {
+              "path": "original-home.png",
+              "bytes": 134688,
+              "sha256": "01aab2a065e5087416e74ce96b22050673a3fe675d51716f34c81f038ada4023"
+            },
+            "pid_final": {
+              "path": "original-home-pid-final.txt",
+              "bytes": 5,
+              "sha256": "8c5268b805b3791e322e923fd4557bc26f4a5954f392bd1588fef671a1bf6dff"
+            }
+          }
+        }
+      ],
+      "transitions": [
+        {
+          "to": "intro-2",
+          "action": {
+            "resource-id": "com.arlosoft.macrodroid:id/button_next"
+          },
+          "center": [
+            640,
+            1152
+          ],
+          "age_seconds": 4.507343147000029,
+          "fresh_tree_pid_foreground_and_command_verified": true
+        },
+        {
+          "to": "intro-3",
+          "action": {
+            "resource-id": "com.arlosoft.macrodroid:id/button_next"
+          },
+          "center": [
+            640,
+            1152
+          ],
+          "age_seconds": 4.130444965000038,
+          "fresh_tree_pid_foreground_and_command_verified": true
+        },
+        {
+          "to": "intro-4",
+          "action": {
+            "resource-id": "com.arlosoft.macrodroid:id/button_next"
+          },
+          "center": [
+            640,
+            1152
+          ],
+          "age_seconds": 4.246051668999996,
+          "fresh_tree_pid_foreground_and_command_verified": true
+        },
+        {
+          "to": "notification-request",
+          "action": {
+            "resource-id": "com.arlosoft.macrodroid:id/button_next"
+          },
+          "center": [
+            640,
+            1152
+          ],
+          "age_seconds": 4.22637871400002,
+          "fresh_tree_pid_foreground_and_command_verified": true
+        },
+        {
+          "to": "home",
+          "action": {
+            "resource-id": "com.android.permissioncontroller:id/permission_deny_button"
+          },
+          "center": [
+            360,
+            820
+          ],
+          "age_seconds": 4.032462803999977,
+          "fresh_tree_pid_foreground_and_command_verified": true
+        }
+      ],
+      "pid_changed_after_denial": true
+    },
+    {
+      "label": "candidate",
+      "installed_apk_sha256": "be1138a5cb72c5f79efaa1490b4b9c74ccb637fbb6d0975f6680da48435c50ce",
+      "fresh_install_and_launch_verified": true,
+      "status": "FAILED",
+      "current_step": "home",
+      "reason": "Missing or ambiguous selector: {'resource-id': 'com.arlosoft.macrodroid:id/navigation_home'}",
+      "environment_after_recorded": false,
+      "screens": [
+        {
+          "name": "intro-1",
+          "owner": "com.arlosoft.macrodroid",
+          "pids": [
+            "5545",
+            "5545"
+          ],
+          "resumed_components": [
+            "com.arlosoft.macrodroid/.intro.IntroActivity"
+          ],
+          "artifacts": {
+            "pid_first": {
+              "path": "candidate-intro-1-pid-first.txt",
+              "bytes": 5,
+              "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+            },
+            "foreground": {
+              "path": "candidate-intro-1-foreground.txt",
+              "bytes": 31356,
+              "sha256": "c9519ff1fc98c07362e2b114720ef9a1f1c86be5620a9420f5404aa8f0a009b1"
+            },
+            "hierarchy": {
+              "path": "candidate-intro-1.xml",
+              "bytes": 5939,
+              "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+            },
+            "screenshot": {
+              "path": "candidate-intro-1.png",
+              "bytes": 83895,
+              "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+            },
+            "pid_final": {
+              "path": "candidate-intro-1-pid-final.txt",
+              "bytes": 5,
+              "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+            }
+          }
+        },
+        {
+          "name": "intro-2",
+          "owner": "com.arlosoft.macrodroid",
+          "pids": [
+            "5545",
+            "5545"
+          ],
+          "resumed_components": [
+            "com.arlosoft.macrodroid/.intro.IntroActivity"
+          ],
+          "artifacts": {
+            "pid_first": {
+              "path": "candidate-intro-2-pid-first.txt",
+              "bytes": 5,
+              "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+            },
+            "foreground": {
+              "path": "candidate-intro-2-foreground.txt",
+              "bytes": 31361,
+              "sha256": "8a93029be1c0dccd240a3c8cb85f426268594b46bad803dd3d2c308a5dba0239"
+            },
+            "hierarchy": {
+              "path": "candidate-intro-2.xml",
+              "bytes": 6689,
+              "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+            },
+            "screenshot": {
+              "path": "candidate-intro-2.png",
+              "bytes": 75368,
+              "sha256": "fd6305f1bd200eb2728d1c7fc76d011dc6b14232b6cc64744f35ed5ddf032458"
+            },
+            "pid_final": {
+              "path": "candidate-intro-2-pid-final.txt",
+              "bytes": 5,
+              "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+            }
+          }
+        },
+        {
+          "name": "intro-3",
+          "owner": "com.arlosoft.macrodroid",
+          "pids": [
+            "5545",
+            "5545"
+          ],
+          "resumed_components": [
+            "com.arlosoft.macrodroid/.intro.IntroActivity"
+          ],
+          "artifacts": {
+            "pid_first": {
+              "path": "candidate-intro-3-pid-first.txt",
+              "bytes": 5,
+              "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+            },
+            "foreground": {
+              "path": "candidate-intro-3-foreground.txt",
+              "bytes": 31359,
+              "sha256": "b2069724a9691000f40beb80a698dd88c6e4be9975e78eb27635d4d74550d470"
+            },
+            "hierarchy": {
+              "path": "candidate-intro-3.xml",
+              "bytes": 6685,
+              "sha256": "0d213e7057f57c885997ea2da8840c982d8f1e6b7a266adadb1c33ff894f9fe9"
+            },
+            "screenshot": {
+              "path": "candidate-intro-3.png",
+              "bytes": 79359,
+              "sha256": "b3410bed78ab5591cc3ed8797eb7e62d050f1aae4ce64d8762981f73bfe839f8"
+            },
+            "pid_final": {
+              "path": "candidate-intro-3-pid-final.txt",
+              "bytes": 5,
+              "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+            }
+          }
+        },
+        {
+          "name": "intro-4",
+          "owner": "com.arlosoft.macrodroid",
+          "pids": [
+            "5545",
+            "5545"
+          ],
+          "resumed_components": [
+            "com.arlosoft.macrodroid/.intro.IntroActivity"
+          ],
+          "artifacts": {
+            "pid_first": {
+              "path": "candidate-intro-4-pid-first.txt",
+              "bytes": 5,
+              "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+            },
+            "foreground": {
+              "path": "candidate-intro-4-foreground.txt",
+              "bytes": 31360,
+              "sha256": "b4c640bd5f2fafcfab6bc0490557b53f177070901b7bc39b767fb30d26aafc42"
+            },
+            "hierarchy": {
+              "path": "candidate-intro-4.xml",
+              "bytes": 6682,
+              "sha256": "f05632a504ab0a6aab8608de15b95bc4f41f2bb9212879026f14927bea5af89b"
+            },
+            "screenshot": {
+              "path": "candidate-intro-4.png",
+              "bytes": 70512,
+              "sha256": "35c1bea0a4aa3cdadbb47903c5fea87f980d5b99bb0ff97322deb845b5b25971"
+            },
+            "pid_final": {
+              "path": "candidate-intro-4-pid-final.txt",
+              "bytes": 5,
+              "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+            }
+          }
+        },
+        {
+          "name": "notification-request",
+          "owner": "com.google.android.permissioncontroller",
+          "pids": [
+            "5545",
+            "5545"
+          ],
+          "resumed_components": [
+            "com.google.android.permissioncontroller/com.android.permissioncontroller.permission.ui.GrantPermissionsActivity"
+          ],
+          "artifacts": {
+            "pid_first": {
+              "path": "candidate-notification-request-pid-first.txt",
+              "bytes": 5,
+              "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+            },
+            "foreground": {
+              "path": "candidate-notification-request-foreground.txt",
+              "bytes": 42192,
+              "sha256": "850a4a4f99eb7e7bc95ecbde97d234ae099ba371e157c3353017479468be8419"
+            },
+            "hierarchy": {
+              "path": "candidate-notification-request.xml",
+              "bytes": 5071,
+              "sha256": "e76b1770090c9aa8d0c3458c9664bbb3d50e020f62585183fcd6fd085bc39772"
+            },
+            "screenshot": {
+              "path": "candidate-notification-request.png",
+              "bytes": 74765,
+              "sha256": "cadcfb868f4c5d29a30e5fe38c1a33f9a4004f7cb3e12da2946ab7b60263295e"
+            },
+            "pid_final": {
+              "path": "candidate-notification-request-pid-final.txt",
+              "bytes": 5,
+              "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+            }
+          }
+        },
+        {
+          "name": "home",
+          "owner": "com.arlosoft.macrodroid",
+          "pids": [
+            "6288",
+            "6288"
+          ],
+          "resumed_components": [
+            "com.arlosoft.macrodroid/.homescreen.NewHomeScreenActivity"
+          ],
+          "artifacts": {
+            "pid_first": {
+              "path": "candidate-home-pid-first.txt",
+              "bytes": 5,
+              "sha256": "df817a30f0876f0349aba1c894d1408db8f917b7d788e2ef1ed7d376fb81b8b2"
+            },
+            "foreground": {
+              "path": "candidate-home-foreground.txt",
+              "bytes": 31315,
+              "sha256": "1de9e98bb30b6416dd6c8016a6e176c9ea356f08963ab88916e9f4ddf8738b47"
+            },
+            "hierarchy": {
+              "path": "candidate-home.xml",
+              "bytes": 7273,
+              "sha256": "77ccbb1de2f4ce42c402f25c80404b74eece18943f5d003e6cb15c9478d0a4f2"
+            },
+            "screenshot": {
+              "path": "candidate-home.png",
+              "bytes": 134688,
+              "sha256": "01aab2a065e5087416e74ce96b22050673a3fe675d51716f34c81f038ada4023"
+            },
+            "pid_final": {
+              "path": "candidate-home-pid-final.txt",
+              "bytes": 5,
+              "sha256": "df817a30f0876f0349aba1c894d1408db8f917b7d788e2ef1ed7d376fb81b8b2"
+            }
+          }
+        }
+      ],
+      "transitions": [
+        {
+          "to": "intro-2",
+          "action": {
+            "resource-id": "com.arlosoft.macrodroid:id/button_next"
+          },
+          "center": [
+            640,
+            1152
+          ],
+          "age_seconds": 4.033970090000025,
+          "fresh_tree_pid_foreground_and_command_verified": true
+        },
+        {
+          "to": "intro-3",
+          "action": {
+            "resource-id": "com.arlosoft.macrodroid:id/button_next"
+          },
+          "center": [
+            640,
+            1152
+          ],
+          "age_seconds": 3.922523023999986,
+          "fresh_tree_pid_foreground_and_command_verified": true
+        },
+        {
+          "to": "intro-4",
+          "action": {
+            "resource-id": "com.arlosoft.macrodroid:id/button_next"
+          },
+          "center": [
+            640,
+            1152
+          ],
+          "age_seconds": 4.469988026999999,
+          "fresh_tree_pid_foreground_and_command_verified": true
+        },
+        {
+          "to": "notification-request",
+          "action": {
+            "resource-id": "com.arlosoft.macrodroid:id/button_next"
+          },
+          "center": [
+            640,
+            1152
+          ],
+          "age_seconds": 3.9896029479999697,
+          "fresh_tree_pid_foreground_and_command_verified": true
+        },
+        {
+          "to": "home",
+          "action": {
+            "resource-id": "com.android.permissioncontroller:id/permission_deny_button"
+          },
+          "center": [
+            360,
+            820
+          ],
+          "age_seconds": 4.030523295999956,
+          "fresh_tree_pid_foreground_and_command_verified": true
+        }
+      ],
+      "pid_changed_after_denial": true
+    }
+  ],
+  "full_unmasked_snapshot_pairs": [
+    {
+      "name": "intro-1",
+      "size": [
+        720,
+        1280
+      ],
+      "changed_rgba_pixels": 0,
+      "difference_bounds_exclusive": null,
+      "png_bytes_equal": true,
+      "xml_bytes_equal": true,
+      "complete_xml_tree_equal": true,
+      "png_color_metadata_equal": true,
+      "exact_observed_snapshot_equal": true,
+      "original": {
+        "pid_first": {
+          "path": "original-intro-1-pid-first.txt",
+          "bytes": 5,
+          "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+        },
+        "foreground": {
+          "path": "original-intro-1-foreground.txt",
+          "bytes": 30465,
+          "sha256": "307b4d1144774af4783818a88c2b30da8327d2a105a785853c7897855af2531e"
+        },
+        "hierarchy": {
+          "path": "original-intro-1.xml",
+          "bytes": 5939,
+          "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+        },
+        "screenshot": {
+          "path": "original-intro-1.png",
+          "bytes": 83895,
+          "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+        },
+        "pid_final": {
+          "path": "original-intro-1-pid-final.txt",
+          "bytes": 5,
+          "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+        }
+      },
+      "candidate": {
+        "pid_first": {
+          "path": "candidate-intro-1-pid-first.txt",
+          "bytes": 5,
+          "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+        },
+        "foreground": {
+          "path": "candidate-intro-1-foreground.txt",
+          "bytes": 31356,
+          "sha256": "c9519ff1fc98c07362e2b114720ef9a1f1c86be5620a9420f5404aa8f0a009b1"
+        },
+        "hierarchy": {
+          "path": "candidate-intro-1.xml",
+          "bytes": 5939,
+          "sha256": "9041a607c7b2fd166eb1a3580b85f7a4a6b87da5966c270454fba8eadbdd5a93"
+        },
+        "screenshot": {
+          "path": "candidate-intro-1.png",
+          "bytes": 83895,
+          "sha256": "70a480c34d5fdf732a939f3ecf0f43fa3660a211715251a63e87325204e764bc"
+        },
+        "pid_final": {
+          "path": "candidate-intro-1-pid-final.txt",
+          "bytes": 5,
+          "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+        }
+      }
+    },
+    {
+      "name": "intro-2",
+      "size": [
+        720,
+        1280
+      ],
+      "changed_rgba_pixels": 35,
+      "difference_bounds_exclusive": [
+        313,
+        1184,
+        352,
+        1200
+      ],
+      "png_bytes_equal": false,
+      "xml_bytes_equal": true,
+      "complete_xml_tree_equal": true,
+      "png_color_metadata_equal": true,
+      "exact_observed_snapshot_equal": false,
+      "original": {
+        "pid_first": {
+          "path": "original-intro-2-pid-first.txt",
+          "bytes": 5,
+          "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+        },
+        "foreground": {
+          "path": "original-intro-2-foreground.txt",
+          "bytes": 30726,
+          "sha256": "cb3dcdb37983ab6078b11824b4b57993eeadeed842f26e89fbbba6507fde59a2"
+        },
+        "hierarchy": {
+          "path": "original-intro-2.xml",
+          "bytes": 6689,
+          "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+        },
+        "screenshot": {
+          "path": "original-intro-2.png",
+          "bytes": 75316,
+          "sha256": "6e98d2ba0e7d3bd76b15f3e9f6de6ab698f763caa6d89f43672d00a75067a845"
+        },
+        "pid_final": {
+          "path": "original-intro-2-pid-final.txt",
+          "bytes": 5,
+          "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+        }
+      },
+      "candidate": {
+        "pid_first": {
+          "path": "candidate-intro-2-pid-first.txt",
+          "bytes": 5,
+          "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+        },
+        "foreground": {
+          "path": "candidate-intro-2-foreground.txt",
+          "bytes": 31361,
+          "sha256": "8a93029be1c0dccd240a3c8cb85f426268594b46bad803dd3d2c308a5dba0239"
+        },
+        "hierarchy": {
+          "path": "candidate-intro-2.xml",
+          "bytes": 6689,
+          "sha256": "840d3f966746dea5dffe838eda7b46b0c7f48ee37b59d33cbcb28336f199dfd8"
+        },
+        "screenshot": {
+          "path": "candidate-intro-2.png",
+          "bytes": 75368,
+          "sha256": "fd6305f1bd200eb2728d1c7fc76d011dc6b14232b6cc64744f35ed5ddf032458"
+        },
+        "pid_final": {
+          "path": "candidate-intro-2-pid-final.txt",
+          "bytes": 5,
+          "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+        }
+      }
+    },
+    {
+      "name": "intro-3",
+      "size": [
+        720,
+        1280
+      ],
+      "changed_rgba_pixels": 0,
+      "difference_bounds_exclusive": null,
+      "png_bytes_equal": true,
+      "xml_bytes_equal": true,
+      "complete_xml_tree_equal": true,
+      "png_color_metadata_equal": true,
+      "exact_observed_snapshot_equal": true,
+      "original": {
+        "pid_first": {
+          "path": "original-intro-3-pid-first.txt",
+          "bytes": 5,
+          "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+        },
+        "foreground": {
+          "path": "original-intro-3-foreground.txt",
+          "bytes": 30985,
+          "sha256": "9d81f2f66b334c503fd78fb7bd49f7b6b933b58d302c04e256a246527bbff13c"
+        },
+        "hierarchy": {
+          "path": "original-intro-3.xml",
+          "bytes": 6685,
+          "sha256": "0d213e7057f57c885997ea2da8840c982d8f1e6b7a266adadb1c33ff894f9fe9"
+        },
+        "screenshot": {
+          "path": "original-intro-3.png",
+          "bytes": 79359,
+          "sha256": "b3410bed78ab5591cc3ed8797eb7e62d050f1aae4ce64d8762981f73bfe839f8"
+        },
+        "pid_final": {
+          "path": "original-intro-3-pid-final.txt",
+          "bytes": 5,
+          "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+        }
+      },
+      "candidate": {
+        "pid_first": {
+          "path": "candidate-intro-3-pid-first.txt",
+          "bytes": 5,
+          "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+        },
+        "foreground": {
+          "path": "candidate-intro-3-foreground.txt",
+          "bytes": 31359,
+          "sha256": "b2069724a9691000f40beb80a698dd88c6e4be9975e78eb27635d4d74550d470"
+        },
+        "hierarchy": {
+          "path": "candidate-intro-3.xml",
+          "bytes": 6685,
+          "sha256": "0d213e7057f57c885997ea2da8840c982d8f1e6b7a266adadb1c33ff894f9fe9"
+        },
+        "screenshot": {
+          "path": "candidate-intro-3.png",
+          "bytes": 79359,
+          "sha256": "b3410bed78ab5591cc3ed8797eb7e62d050f1aae4ce64d8762981f73bfe839f8"
+        },
+        "pid_final": {
+          "path": "candidate-intro-3-pid-final.txt",
+          "bytes": 5,
+          "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+        }
+      }
+    },
+    {
+      "name": "intro-4",
+      "size": [
+        720,
+        1280
+      ],
+      "changed_rgba_pixels": 0,
+      "difference_bounds_exclusive": null,
+      "png_bytes_equal": true,
+      "xml_bytes_equal": true,
+      "complete_xml_tree_equal": true,
+      "png_color_metadata_equal": true,
+      "exact_observed_snapshot_equal": true,
+      "original": {
+        "pid_first": {
+          "path": "original-intro-4-pid-first.txt",
+          "bytes": 5,
+          "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+        },
+        "foreground": {
+          "path": "original-intro-4-foreground.txt",
+          "bytes": 31247,
+          "sha256": "55a561a66e06e88d8e6d9af4977a42985ddc106c56659f699a6007fea31d7a8f"
+        },
+        "hierarchy": {
+          "path": "original-intro-4.xml",
+          "bytes": 6682,
+          "sha256": "f05632a504ab0a6aab8608de15b95bc4f41f2bb9212879026f14927bea5af89b"
+        },
+        "screenshot": {
+          "path": "original-intro-4.png",
+          "bytes": 70512,
+          "sha256": "35c1bea0a4aa3cdadbb47903c5fea87f980d5b99bb0ff97322deb845b5b25971"
+        },
+        "pid_final": {
+          "path": "original-intro-4-pid-final.txt",
+          "bytes": 5,
+          "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+        }
+      },
+      "candidate": {
+        "pid_first": {
+          "path": "candidate-intro-4-pid-first.txt",
+          "bytes": 5,
+          "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+        },
+        "foreground": {
+          "path": "candidate-intro-4-foreground.txt",
+          "bytes": 31360,
+          "sha256": "b4c640bd5f2fafcfab6bc0490557b53f177070901b7bc39b767fb30d26aafc42"
+        },
+        "hierarchy": {
+          "path": "candidate-intro-4.xml",
+          "bytes": 6682,
+          "sha256": "f05632a504ab0a6aab8608de15b95bc4f41f2bb9212879026f14927bea5af89b"
+        },
+        "screenshot": {
+          "path": "candidate-intro-4.png",
+          "bytes": 70512,
+          "sha256": "35c1bea0a4aa3cdadbb47903c5fea87f980d5b99bb0ff97322deb845b5b25971"
+        },
+        "pid_final": {
+          "path": "candidate-intro-4-pid-final.txt",
+          "bytes": 5,
+          "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+        }
+      }
+    },
+    {
+      "name": "notification-request",
+      "size": [
+        720,
+        1280
+      ],
+      "changed_rgba_pixels": 570819,
+      "difference_bounds_exclusive": [
+        0,
+        0,
+        720,
+        1280
+      ],
+      "png_bytes_equal": false,
+      "xml_bytes_equal": true,
+      "complete_xml_tree_equal": true,
+      "png_color_metadata_equal": true,
+      "exact_observed_snapshot_equal": false,
+      "original": {
+        "pid_first": {
+          "path": "original-notification-request-pid-first.txt",
+          "bytes": 5,
+          "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+        },
+        "foreground": {
+          "path": "original-notification-request-foreground.txt",
+          "bytes": 42171,
+          "sha256": "d79fdde1f64608e1c441e548f8cac82417689a5336d35f95f53b7d74789c5558"
+        },
+        "hierarchy": {
+          "path": "original-notification-request.xml",
+          "bytes": 5071,
+          "sha256": "e76b1770090c9aa8d0c3458c9664bbb3d50e020f62585183fcd6fd085bc39772"
+        },
+        "screenshot": {
+          "path": "original-notification-request.png",
+          "bytes": 70017,
+          "sha256": "9142bae1c48456abcb24bf3aab61231fa1d2578baed37d19161c77d4a9ae1a1a"
+        },
+        "pid_final": {
+          "path": "original-notification-request-pid-final.txt",
+          "bytes": 5,
+          "sha256": "8398117cab7126519a8feb5dcbdde97c191ce28641226dacaf3173691102106c"
+        }
+      },
+      "candidate": {
+        "pid_first": {
+          "path": "candidate-notification-request-pid-first.txt",
+          "bytes": 5,
+          "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+        },
+        "foreground": {
+          "path": "candidate-notification-request-foreground.txt",
+          "bytes": 42192,
+          "sha256": "850a4a4f99eb7e7bc95ecbde97d234ae099ba371e157c3353017479468be8419"
+        },
+        "hierarchy": {
+          "path": "candidate-notification-request.xml",
+          "bytes": 5071,
+          "sha256": "e76b1770090c9aa8d0c3458c9664bbb3d50e020f62585183fcd6fd085bc39772"
+        },
+        "screenshot": {
+          "path": "candidate-notification-request.png",
+          "bytes": 74765,
+          "sha256": "cadcfb868f4c5d29a30e5fe38c1a33f9a4004f7cb3e12da2946ab7b60263295e"
+        },
+        "pid_final": {
+          "path": "candidate-notification-request-pid-final.txt",
+          "bytes": 5,
+          "sha256": "263e8e499c3005ef53fdf39c9ef30c2543c076fb5b99ed06e24e4dd729d15682"
+        }
+      }
+    },
+    {
+      "name": "home",
+      "size": [
+        720,
+        1280
+      ],
+      "changed_rgba_pixels": 0,
+      "difference_bounds_exclusive": null,
+      "png_bytes_equal": true,
+      "xml_bytes_equal": true,
+      "complete_xml_tree_equal": true,
+      "png_color_metadata_equal": true,
+      "exact_observed_snapshot_equal": true,
+      "original": {
+        "pid_first": {
+          "path": "original-home-pid-first.txt",
+          "bytes": 5,
+          "sha256": "8c5268b805b3791e322e923fd4557bc26f4a5954f392bd1588fef671a1bf6dff"
+        },
+        "foreground": {
+          "path": "original-home-foreground.txt",
+          "bytes": 31517,
+          "sha256": "7f3f0a678e683969a558bf68429906de325791551ee0d414e399820186c95400"
+        },
+        "hierarchy": {
+          "path": "original-home.xml",
+          "bytes": 7273,
+          "sha256": "77ccbb1de2f4ce42c402f25c80404b74eece18943f5d003e6cb15c9478d0a4f2"
+        },
+        "screenshot": {
+          "path": "original-home.png",
+          "bytes": 134688,
+          "sha256": "01aab2a065e5087416e74ce96b22050673a3fe675d51716f34c81f038ada4023"
+        },
+        "pid_final": {
+          "path": "original-home-pid-final.txt",
+          "bytes": 5,
+          "sha256": "8c5268b805b3791e322e923fd4557bc26f4a5954f392bd1588fef671a1bf6dff"
+        }
+      },
+      "candidate": {
+        "pid_first": {
+          "path": "candidate-home-pid-first.txt",
+          "bytes": 5,
+          "sha256": "df817a30f0876f0349aba1c894d1408db8f917b7d788e2ef1ed7d376fb81b8b2"
+        },
+        "foreground": {
+          "path": "candidate-home-foreground.txt",
+          "bytes": 31315,
+          "sha256": "1de9e98bb30b6416dd6c8016a6e176c9ea356f08963ab88916e9f4ddf8738b47"
+        },
+        "hierarchy": {
+          "path": "candidate-home.xml",
+          "bytes": 7273,
+          "sha256": "77ccbb1de2f4ce42c402f25c80404b74eece18943f5d003e6cb15c9478d0a4f2"
+        },
+        "screenshot": {
+          "path": "candidate-home.png",
+          "bytes": 134688,
+          "sha256": "01aab2a065e5087416e74ce96b22050673a3fe675d51716f34c81f038ada4023"
+        },
+        "pid_final": {
+          "path": "candidate-home-pid-final.txt",
+          "bytes": 5,
+          "sha256": "df817a30f0876f0349aba1c894d1408db8f917b7d788e2ef1ed7d376fb81b8b2"
+        }
+      }
+    }
+  ],
+  "observed_app_dialog": {
+    "title": {
+      "index": "0",
+      "text": "LITEAPKS",
+      "resource-id": "",
+      "class": "android.widget.TextView",
+      "package": "com.arlosoft.macrodroid",
+      "content-desc": "",
+      "checkable": "false",
+      "checked": "false",
+      "clickable": "false",
+      "enabled": "true",
+      "focusable": "false",
+      "focused": "false",
+      "scrollable": "false",
+      "long-clickable": "false",
+      "password": "false",
+      "selected": "false",
+      "bounds": "[334,375][560,449]"
+    },
+    "close": {
+      "index": "0",
+      "text": "CLOSE",
+      "resource-id": "",
+      "class": "android.widget.Button",
+      "package": "com.arlosoft.macrodroid",
+      "content-desc": "",
+      "checkable": "false",
+      "checked": "false",
+      "clickable": "true",
+      "enabled": "true",
+      "focusable": "true",
+      "focused": "false",
+      "scrollable": "false",
+      "long-clickable": "false",
+      "password": "false",
+      "selected": "false",
+      "bounds": "[124,832][344,928]"
+    },
+    "download": {
+      "index": "1",
+      "text": "DOWNLOAD\u2705",
+      "resource-id": "",
+      "class": "android.widget.Button",
+      "package": "com.arlosoft.macrodroid",
+      "content-desc": "",
+      "checkable": "false",
+      "checked": "false",
+      "clickable": "true",
+      "enabled": "true",
+      "focusable": "true",
+      "focused": "false",
+      "scrollable": "false",
+      "long-clickable": "false",
+      "password": "false",
+      "selected": "false",
+      "bounds": "[376,832][596,928]"
+    },
+    "close_center": [
+      234,
+      880
+    ],
+    "home_selector_matches": 0
+  },
+  "interpretation": [
+    "Both failed at the planned home selector after four Next actions and notification denial.",
+    "The observed app-owned LITEAPKS dialog overlays NewHomeScreenActivity; its full PNG and full XML bytes match.",
+    "Intro-2 has a 35-pixel difference around the pager indicators, and the permission-request full images differ by 570,819 pixels.",
+    "Visual inspection shows different background dimming behind the permission dialog; the cause has not been established.",
+    "Both app PIDs changed after denial; snapshots at the resulting dialog have stable live PIDs. The existing full-journey comparator retains one initial PID anchor.",
+    "No editor screen was reached. No CLOSE, DOWNLOAD, macro save, macro execution, or permission grant command was issued.",
+    "The original comparator android_runtime_executed=false is a completeness-gate field; actual installation and captures are preserved in both failed runs."
+  ],
+  "new_device_actions_performed_by_analysis": false
+}
