@@ -2,11 +2,25 @@
 
 **The complete source snapshot, editable recovery code, original reference APK,
 and current rebuilt APK are stored in this repository.** The current candidate
-contains 1,242 recovered Java method bodies across 605 classes and builds the
+contains 1,243 recovered Java method bodies across 605 classes and builds the
 remaining code from preserved smali. Whole-app 1:1 Android runtime behavior has
 not been established.
 
-The current source checkpoint is described in
+The current numeric source and signed candidate passed all 16 configured hosted
+acceptance gates: 194,780 three-path cases, 308 project Python tests, 91 compiled
+Java UI fault controls, two actual numeric DEX fault controls, exact positive
+restoration and the signed source-edit experiment. The job also passed 92 tooling
+host controls. Its UI group ran 24,465 cases. The
+[complete numeric artifact](docs/verification/day-numeric-hosted-run-3d91187/) and
+[independent streamed review](docs/verification/day-numeric-hosted-run-3d91187/analysis/)
+preserve the exact result, all 23 fresh reports, and the full 81,298-input snapshot
+`f8fc1cadac8213468e42ac99a2cd5d807827dcdeee25166b8025620ff39a6545`.
+The [nineteen-file source checkpoint](work-in-progress/day-trigger-numeric/08-command-filesystem-source-successor/)
+is the exact overlay used by that job. **Android behavior for this new `0762aad9…`
+APK has not yet been observed.** The existing device observations below belong
+to their explicitly recorded earlier APKs.
+
+The previous 1,242-body source checkpoint is described in
 [RECONSTRUCTION_STATUS.md](project/RECONSTRUCTION_STATUS.md). The combined plugin
 upload and Widget candidate passed all 16 configured host acceptance gates,
 193,489 three-path cases, 273 Python tests, all 78 UI fault controls with exact
@@ -87,8 +101,8 @@ python3 scripts/assemble_artifact.py artifacts/current/manifest.json
 ```
 
 This produces `workspace/artifacts/MacroDroid-5.67.8-current-hybrid.apk`:
-94,683,119 bytes, SHA-256
-`5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182`.
+94,683,136 bytes, SHA-256
+`0762aad956193ef305afc47b4cbe68e6239c94f72732556e650d701b4a288afd`.
 The build scripts retain their historical `v9-hybrid.apk` output filename; the
 candidate manifest and checksum identify the actual development checkpoint.
 
@@ -111,7 +125,16 @@ The original is a comparison input, not a build input. See the
 
 ## What has actually passed
 
-The active 1,242-body combined source passed all 16 configured acceptance gates:
+The active 1,243-body numeric candidate passed all 16 configured acceptance
+gates in hosted run `38238858564`, job `114776169911`. Its 194,780 cases include
+24,465 UI cases; all 308 project Python tests and 92 tooling host tests passed.
+All 91 compiled Java UI faults and both actual numeric DEX faults were detected,
+and the exact positive result and signed source-edit probe passed. The complete
+3,308-member artifact, all 23 fresh reports and the separate review are retained
+in [the numeric host evidence](docs/verification/day-numeric-hosted-run-3d91187/).
+This is host/source/APK evidence; its Android probe remains unexecuted.
+
+The previous 1,242-body combined source passed all 16 configured acceptance gates:
 signed baseline/hybrid builds, complete code and resource verification, the full
 three-path host suite, all fault families, the signed source-edit experiment,
 final positive restoration and unchanged source-input checks. It ran 193,489
@@ -119,7 +142,7 @@ cases with zero mismatches or unsupported executions and passed 273 Python tests
 The ten-method UI group passed 23,174 cases with 15,326 independent expectations;
 all 78 deliberate UI faults were detected and the full positive baseline restored.
 All 551 closed reports and the exact signed artifact are preserved in
-[the current combined evidence](work-in-progress/combined-recovery/05-full-acceptance/).
+[the previous combined evidence](work-in-progress/combined-recovery/05-full-acceptance/).
 
 Hosted source job 114695960566 independently passed all 16 gates for commit
 `dbcad968c5c3e8f084205393a6c0d2d06a203c71`, with the same 193,489 cases,
@@ -133,7 +156,7 @@ The prior 1,240-body source separately passed two complete hosted acceptance run
 9108 candidate also has a complete ten-screen Android observation with a remaining
 26-pixel intro indicator difference. The isolated Widget candidate passed a
 separate eight-case ART probe. These historical measurements do not certify the
-new combined APK beyond the separately recorded device scopes linked above.
+later candidates beyond their separately recorded device scopes.
 
 The previous combined 1,239-body scene, recorder and device-helper checkpoint
 `95077fcb1d3c86f3b1c91026619642d99198f149` passed all 16 configured hosted source
@@ -144,10 +167,12 @@ for both jobs; the isolated recovery proof remains separately identified.
 
 | Check | Measured result | Evidence |
 | --- | --- | --- |
-| Active combined host/artifact proof | All 16 configured gates; 193,489 three-path cases across 1,242 bodies; 273 Python tests; all 78 UI faults and exact restoration | [Complete combined evidence](work-in-progress/combined-recovery/05-full-acceptance/) |
-| Current hosted source reproduction | All 16 gates, 22 fresh report hashes and 78 retained mutants verified; both APK hashes reproduce; all 1,136 original artifact members preserved | [Exact source CI artifact and independent review](docs/verification/source-ci-dbcad968/) |
-| Current cold launch, intro and constructor probe | Cold launch exact; TRIGGERS differs by 35 pixels; other measured intro and raw post-intro pairs exact; constructor ART probe passes | [Unchanged Android evidence](docs/verification/android-ci-dbcad968/) |
-| Current scoped post-home editor session | Ten full-frame/XML/component pairs match; recorded startup crashes and restarts retained; continuous startup remains rejected | [Independent session replay](docs/verification/editor-journey/run-38214498414-attempt-1/analysis/) |
+| Current numeric host/source/APK proof | All 16 configured gates; 194,780 three-path cases across 1,243 bodies; 308 project Python and 92 tooling tests; 91 Java UI faults, two actual numeric DEX faults and exact restoration | [Complete numeric artifact and independent review](docs/verification/day-numeric-hosted-run-3d91187/) |
+| Current numeric Android behavior | Not yet observed for the `0762aad9…` candidate; earlier APK results remain separately recorded | [Pinned current candidate](artifacts/current/manifest.json) |
+| Previous 1,242-body combined host/artifact proof | All 16 configured gates; 193,489 three-path cases across 1,242 bodies; 273 Python tests; all 78 UI faults and exact restoration | [Complete combined evidence](work-in-progress/combined-recovery/05-full-acceptance/) |
+| Previous 1,242-body hosted source reproduction | All 16 gates, 22 fresh report hashes and 78 retained mutants verified; both APK hashes reproduce; all 1,136 original artifact members preserved | [Exact source CI artifact and independent review](docs/verification/source-ci-dbcad968/) |
+| Previous `5f635e16…` cold launch, intro and constructor probe | Cold launch exact; TRIGGERS differs by 35 pixels; other measured intro and raw post-intro pairs exact; constructor ART probe passes | [Unchanged Android evidence](docs/verification/android-ci-dbcad968/) |
+| Previous `5f635e16…` scoped post-home editor session | Ten full-frame/XML/component pairs match; recorded startup crashes and restarts retained; continuous startup remains rejected | [Independent session replay](docs/verification/editor-journey/run-38214498414-attempt-1/analysis/) |
 | Isolated plugin lookup proof | 3,053 cases; all 198 instructions and 34 conditional edges; all 37 UI fault controls and clean restoration | [Signed plugin checkpoint](work-in-progress/plugin-lookup/04-signed-proof/) |
 | Previous hosted 1,239-body source checkpoint | All 16 configured acceptance gates; 185,738 three-path cases; all 1,239 methods; zero mismatches/unsupported executions; 203 Python tests passed | [Fresh source CI evidence](docs/verification/source-ci-95077fc/) |
 | Previous hosted UI deliberate-fault checks | All 22 controls passed; the restored 15,423-case UI suite passed; inputs unchanged | [Actual control report](docs/verification/source-ci-95077fc/reports/ui-negative-controls.json) |
@@ -200,7 +225,7 @@ rewrite either historical run or establish whole-app 1:1 behavior.
 | --- | --- |
 | `vendor/v9/` | Complete immutable v9 source/toolchain archives in 40 ordinary Git binary parts, with a checksum manifest. No LFS download is required. |
 | `project/` | Current authored source, build and verification overlay, as development checkpoints add or update it. |
-| `artifacts/current/` | Current rebuilt APK in 12 checksum-pinned ordinary Git parts. |
+| `artifacts/current/` | Current candidate manifest references 12 checksum-pinned ordinary Git parts; historical parts remain preserved. |
 | `artifacts/baseline/` | Rebuilt baseline APK, retained separately as a code-preservation control. |
 | `vendor/original/` | Exact supplied original APK in 12 checksum-pinned ordinary Git parts. |
 | `scripts/materialize_v9.py` | Verified archive assembly, safe extraction and overlay application. |
@@ -208,7 +233,8 @@ rewrite either historical run or establish whole-app 1:1 behavior.
 | `docs/verification/restored-v9/` | Fresh v9 host build and test evidence from the restored full snapshot. |
 | `docs/verification/current/` | Earlier 1,238-body recovery and verification results; report identities retain their original scope. |
 | `docs/verification/plugin-runtime-integration/` | Previous 1,240-body source merge, five-check clean proof, complete reports and its Android-tooling host checks. |
-| `docs/verification/source-ci-dbcad968/` | Exact complete ZIP and independently verified 16-gate hosted source reproduction for the active 1,242-body candidate. |
+| `docs/verification/day-numeric-hosted-run-3d91187/` | Complete numeric 16-gate host artifact, exact signed `0762aad9…` APK input and independent review for the active 1,243-body candidate. |
+| `docs/verification/source-ci-dbcad968/` | Exact complete ZIP and independently verified 16-gate hosted source reproduction for the previous 1,242-body candidate. |
 | `docs/verification/source-ci-95077fc/` | Successful 16-gate hosted source acceptance for the previous 1,239-body scene/runtime checkpoint. |
 | `docs/verification/source-ci-bebf448/` | Successful 16-gate hosted source acceptance for the previous 1,238-body checkpoint. |
 | `docs/verification/android-ci-*/` | Exact hosted Android evidence, including scoped matches and preserved failed visual comparisons or device preparation. |

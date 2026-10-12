@@ -76,7 +76,8 @@ def main()->int:
            'java-all-path-parity.json','java-ui-three-path-parity.json','ui-oracle-semantics.json','ui-negative-controls.json','java-engine-three-path-parity.json','oracle-semantics.json','engine-oracle-semantics.json',
            'engine-negative-controls.json','core-negative-controls.json','environment-negative-controls.json','negative-control.json',
            'migration-static-proof.json','migration-linkage-check.json','reference-failures-status-v9.json',
-           'constructor-oracle-conformance.json','widget-bitwise-oracle-conformance.json','ui-runtime-policy.json']
+           'constructor-oracle-conformance.json','widget-bitwise-oracle-conformance.json','ui-runtime-policy.json',
+           'day-numeric-dex-controls.json']
     if not args.skip_edit_probe:names.append('full-apk-edit-probe.json')
     result['fresh_evidence_sha256']={n:digest(ROOT/'reports'/n) for n in names}
     result['finished_utc']=datetime.now(timezone.utc).isoformat();result['host_acceptance_passed']=True;save()
