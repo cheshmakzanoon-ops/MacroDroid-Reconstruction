@@ -1,0 +1,21 @@
+# DayTrigger.r0: integrated host types and targeted three-path proof
+
+The isolated integration passes all 1,291 exact numeric inputs through the original fixture, the Java helper and a fresh production D8/transplant. This checkpoint preserves the failed first pin, its complete diagnosis, and the successful replacement. The active application is unchanged. The full UI run, 91 Java controls in that suite, signed numeric-primary packaging and all 16 acceptance gates remain pending.
+
+The [closed successful result](evidence/targeted-pass/result.json) ran from 08:30:37.038605 to 08:33:30.785300 UTC on 2026-10-12. Its 45 bounded commands retain exact arguments, return codes and all streams. The [freeze verification](freeze-verification.json) independently rechecks 96 streams across both attempts and the two diagnostic commands, all 1,291 positive observations, thirteen actual compiled Java faults, two actual D8/transplant faults, two provenance rejections and byte-exact positive restoration.
+
+## The failed pin and precise replacement
+
+The [first attempt](evidence/failed-pin-attempt/result.json) stopped after successful compilation because the helper class did not match the private-study pin. Existing active host nested classes are public and non-final; the earlier study used final nested classes. Their public fields, constructors, serialization and event contracts are retained, as already measured in the [host-contract checkpoint](../04-host-contract-regression/README.md).
+
+The [class parser diagnosis](evidence/class-metadata-diagnosis/result.json) proves that both classfiles contain 823 bytes, with identical constant pools and identical fields/methods and their attributes. Only byte offsets 806, 814 and 822 differ: the three external `InnerClasses` access flags change from `public static final` to `public static`. Substituting only those flags reconstructs the complete integrated class. Both actual classes and both `javap` outputs are preserved. No private-study class was used as the integrated artifact.
+
+The freshly compiled integrated helper is SHA256 `2f8b2d3769749301442dae35aca9fda5314eb1f17d59ea6310bd50be62596211`. A one-class D8 input contains no host stubs. Its freshly emitted helper DEX is `63b80e2a325efeac446cb02c2d2a8f9c3a97abd5dd312a1a3c856330cf5037df`; the [production transplant binding](evidence/targeted-pass/positive-pipeline/method-body-binding.json) yields target DEX `867e137f65908d8360f307cdd0f23b3f910e5606d6b5916f876e85186b813b47`, byte-identical to the independently verified study target. All other 33 methods and non-target class text remain exact. No constructor-owner correction is applied.
+
+## Scope and accounting
+
+The isolated registry contains 1,243 recovered methods in 605 target classes. Fresh fixture extraction from the pinned original APK selects 1,246 methods in 607 classes: 1,243 registered methods and exactly three separately declared original getters. Those getters earn zero recovered-method credit. The original fixture SHA256 is `6a7c7f5acc1bca7b2eab584a40d8037a2256756b7244acf9b6ba2f0880b245b4`. Reconstructing the previous fixture from this selection produces byte-identical previous fixture bytes, preserving all prior selected methods and class metadata.
+
+The exact input inventory is `e083bc1996c5c7191bffe837fc0f30e254848a4754676ba0a8a119d23e8f6e79`: 547 integer inputs, 734 binary64 inputs and ten other/null inputs. Independent expectations use integer bit arithmetic. All 32 selected original instructions, 25 rebuilt instructions and four conditional edges per path execute. Null-entry scope compares the `NullPointerException` class while preserving every raw message; other outcomes compare their complete recorded values and exception details.
+
+The active interpreter source remains `d91ddcd8ec3d67d41d69b8252835e747c2cad2c6d5ea898323794ceec30e6b56`. The three getter bodies are read from `classes3.dex` in the exact active signed APK `5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182`. The rebuilt numeric primary is a separately bound standalone transplant. This run does not claim that primary is already packaged in the signed application, and it does not execute Android scheduling, parceling or ART. All 912 existing read-only classpath files and source/APK inputs rehash unchanged.

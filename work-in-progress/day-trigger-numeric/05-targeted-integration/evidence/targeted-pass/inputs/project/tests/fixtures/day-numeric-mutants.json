@@ -1,0 +1,193 @@
+{
+  "schema": 1,
+  "method": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I",
+  "helper_path": "source/java/recovered/ui/DayTriggerValueMethods.java",
+  "helper_sha256": "b99984c0ca9128f9def8658d874f98d9a8e4529433d0f76f7f86e9e8299cc792",
+  "input_inventory_sha256": "e083bc1996c5c7191bffe837fc0f30e254848a4754676ba0a8a119d23e8f6e79",
+  "reviewed_study_checkpoint_sha256": "d93f08507afce1b6eebe1e3ae64338f86eb04ca01e26118bdd97f98f5d6af631",
+  "host_field_adaptation": "parse-string reads the existing public StringValue.value field; its fault and required case are unchanged.",
+  "controls": [
+    {
+      "name": "integer-zero",
+      "reason": "Measured numeric fault: integer-zero",
+      "edits": [
+        {
+          "find": "return (int) ((VariableValue.IntegerValue) value).getIntValue();",
+          "replace": "return 0;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-numeric:integer-boundary-1"
+      ]
+    },
+    {
+      "name": "decimal-zero",
+      "reason": "Measured numeric fault: decimal-zero",
+      "edits": [
+        {
+          "find": "return (int) ((VariableValue.DecimalValue) value).getDecimalValue();",
+          "replace": "return 0;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-numeric:decimal-boundary-6"
+      ]
+    },
+    {
+      "name": "integer-saturation",
+      "reason": "Measured numeric fault: integer-saturation",
+      "edits": [
+        {
+          "find": "return (int) ((VariableValue.IntegerValue) value).getIntValue();",
+          "replace": "long n = ((VariableValue.IntegerValue) value).getIntValue(); return n > Integer.MAX_VALUE ? Integer.MAX_VALUE : n < Integer.MIN_VALUE ? Integer.MIN_VALUE : (int) n;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-numeric:integer-boundary-15"
+      ]
+    },
+    {
+      "name": "integer-via-double",
+      "reason": "Measured numeric fault: integer-via-double",
+      "edits": [
+        {
+          "find": "return (int) ((VariableValue.IntegerValue) value).getIntValue();",
+          "replace": "return (int) (double) ((VariableValue.IntegerValue) value).getIntValue();",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-numeric:integer-boundary-15"
+      ]
+    },
+    {
+      "name": "integer-via-byte",
+      "reason": "Measured numeric fault: integer-via-byte",
+      "edits": [
+        {
+          "find": "return (int) ((VariableValue.IntegerValue) value).getIntValue();",
+          "replace": "return (byte) ((VariableValue.IntegerValue) value).getIntValue();",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-numeric:integer-boundary-6"
+      ]
+    },
+    {
+      "name": "decimal-round",
+      "reason": "Measured numeric fault: decimal-round",
+      "edits": [
+        {
+          "find": "return (int) ((VariableValue.DecimalValue) value).getDecimalValue();",
+          "replace": "return (int) Math.round(((VariableValue.DecimalValue) value).getDecimalValue());",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-numeric:decimal-boundary-10"
+      ]
+    },
+    {
+      "name": "decimal-floor",
+      "reason": "Measured numeric fault: decimal-floor",
+      "edits": [
+        {
+          "find": "return (int) ((VariableValue.DecimalValue) value).getDecimalValue();",
+          "replace": "return (int) Math.floor(((VariableValue.DecimalValue) value).getDecimalValue());",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-numeric:decimal-boundary-3"
+      ]
+    },
+    {
+      "name": "decimal-nan-one",
+      "reason": "Measured numeric fault: decimal-nan-one",
+      "edits": [
+        {
+          "find": "return (int) ((VariableValue.DecimalValue) value).getDecimalValue();",
+          "replace": "double n = ((VariableValue.DecimalValue) value).getDecimalValue(); return Double.isNaN(n) ? 1 : (int) n;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-numeric:decimal-boundary-35"
+      ]
+    },
+    {
+      "name": "decimal-infinity-zero",
+      "reason": "Measured numeric fault: decimal-infinity-zero",
+      "edits": [
+        {
+          "find": "return (int) ((VariableValue.DecimalValue) value).getDecimalValue();",
+          "replace": "double n = ((VariableValue.DecimalValue) value).getDecimalValue(); return Double.isInfinite(n) ? 0 : (int) n;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-numeric:decimal-boundary-33"
+      ]
+    },
+    {
+      "name": "other-minus-one",
+      "reason": "Measured numeric fault: other-minus-one",
+      "edits": [
+        {
+          "find": "        return 0;",
+          "replace": "        return -1;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-numeric:null-value"
+      ]
+    },
+    {
+      "name": "parse-string",
+      "reason": "Measured numeric fault: parse-string",
+      "edits": [
+        {
+          "find": "        return 0;",
+          "replace": "        if (value instanceof VariableValue.StringValue) return Integer.parseInt(((VariableValue.StringValue) value).value);\n        return 0;",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-numeric:string-numeric"
+      ]
+    },
+    {
+      "name": "null-contained-throws",
+      "reason": "Measured numeric fault: null-contained-throws",
+      "edits": [
+        {
+          "find": "VariableValue value = entry.getVariable();",
+          "replace": "VariableValue value = entry.getVariable(); if (value == null) throw new NullPointerException(\"deliberate contained-null fault\");",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-numeric:null-value"
+      ]
+    },
+    {
+      "name": "null-entry-zero",
+      "reason": "Measured numeric fault: null-entry-zero",
+      "edits": [
+        {
+          "find": "VariableValue value = entry.getVariable();",
+          "replace": "if (entry == null) return 0; VariableValue value = entry.getVariable();",
+          "count": 1
+        }
+      ],
+      "expected_failure_labels": [
+        "day-numeric:null-entry"
+      ]
+    }
+  ]
+}

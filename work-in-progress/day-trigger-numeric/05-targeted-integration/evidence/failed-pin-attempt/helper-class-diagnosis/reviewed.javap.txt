@@ -1,0 +1,93 @@
+Classfile /workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/hostclasses/recovered/ui/DayTriggerValueMethods.class
+  Last modified Oct 12, 2026; size 823 bytes
+  SHA-256 checksum f527fe58f65ff1a079c920d711e25e1bdfb13421fcea7557c3ad653cab401441
+public final class recovered.ui.DayTriggerValueMethods
+  minor version: 0
+  major version: 52
+  flags: (0x0031) ACC_PUBLIC, ACC_FINAL, ACC_SUPER
+  this_class: #25                         // recovered/ui/DayTriggerValueMethods
+  super_class: #2                         // java/lang/Object
+  interfaces: 0, fields: 0, methods: 2, attributes: 1
+Constant pool:
+   #1 = Methodref          #2.#3          // java/lang/Object."<init>":()V
+   #2 = Class              #4             // java/lang/Object
+   #3 = NameAndType        #5:#6          // "<init>":()V
+   #4 = Utf8               java/lang/Object
+   #5 = Utf8               <init>
+   #6 = Utf8               ()V
+   #7 = Methodref          #8.#9          // com/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry.getVariable:()Lcom/arlosoft/macrodroid/variables/VariableValue;
+   #8 = Class              #10            // com/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry
+   #9 = NameAndType        #11:#12        // getVariable:()Lcom/arlosoft/macrodroid/variables/VariableValue;
+  #10 = Utf8               com/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry
+  #11 = Utf8               getVariable
+  #12 = Utf8               ()Lcom/arlosoft/macrodroid/variables/VariableValue;
+  #13 = Class              #14            // com/arlosoft/macrodroid/variables/VariableValue$IntegerValue
+  #14 = Utf8               com/arlosoft/macrodroid/variables/VariableValue$IntegerValue
+  #15 = Methodref          #13.#16        // com/arlosoft/macrodroid/variables/VariableValue$IntegerValue.getIntValue:()J
+  #16 = NameAndType        #17:#18        // getIntValue:()J
+  #17 = Utf8               getIntValue
+  #18 = Utf8               ()J
+  #19 = Class              #20            // com/arlosoft/macrodroid/variables/VariableValue$DecimalValue
+  #20 = Utf8               com/arlosoft/macrodroid/variables/VariableValue$DecimalValue
+  #21 = Methodref          #19.#22        // com/arlosoft/macrodroid/variables/VariableValue$DecimalValue.getDecimalValue:()D
+  #22 = NameAndType        #23:#24        // getDecimalValue:()D
+  #23 = Utf8               getDecimalValue
+  #24 = Utf8               ()D
+  #25 = Class              #26            // recovered/ui/DayTriggerValueMethods
+  #26 = Utf8               recovered/ui/DayTriggerValueMethods
+  #27 = Utf8               Code
+  #28 = Utf8               numericValue
+  #29 = Utf8               (Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I
+  #30 = Utf8               StackMapTable
+  #31 = Class              #32            // com/arlosoft/macrodroid/variables/VariableValue
+  #32 = Utf8               com/arlosoft/macrodroid/variables/VariableValue
+  #33 = Utf8               InnerClasses
+  #34 = Utf8               DictionaryEntry
+  #35 = Utf8               IntegerValue
+  #36 = Utf8               DecimalValue
+{
+  public recovered.ui.DayTriggerValueMethods();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  public static int numericValue(com.arlosoft.macrodroid.variables.VariableValue$DictionaryEntry);
+    descriptor: (Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: aload_0
+         1: invokevirtual #7                  // Method com/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry.getVariable:()Lcom/arlosoft/macrodroid/variables/VariableValue;
+         4: astore_1
+         5: aload_1
+         6: instanceof    #13                 // class com/arlosoft/macrodroid/variables/VariableValue$IntegerValue
+         9: ifeq          21
+        12: aload_1
+        13: checkcast     #13                 // class com/arlosoft/macrodroid/variables/VariableValue$IntegerValue
+        16: invokevirtual #15                 // Method com/arlosoft/macrodroid/variables/VariableValue$IntegerValue.getIntValue:()J
+        19: l2i
+        20: ireturn
+        21: aload_1
+        22: instanceof    #19                 // class com/arlosoft/macrodroid/variables/VariableValue$DecimalValue
+        25: ifeq          37
+        28: aload_1
+        29: checkcast     #19                 // class com/arlosoft/macrodroid/variables/VariableValue$DecimalValue
+        32: invokevirtual #21                 // Method com/arlosoft/macrodroid/variables/VariableValue$DecimalValue.getDecimalValue:()D
+        35: d2i
+        36: ireturn
+        37: iconst_0
+        38: ireturn
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 21
+          locals = [ class com/arlosoft/macrodroid/variables/VariableValue ]
+        frame_type = 15 /* same */
+}
+InnerClasses:
+  public static final #34= #8 of #31;     // DictionaryEntry=class com/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry of class com/arlosoft/macrodroid/variables/VariableValue
+  public static final #35= #13 of #31;    // IntegerValue=class com/arlosoft/macrodroid/variables/VariableValue$IntegerValue of class com/arlosoft/macrodroid/variables/VariableValue
+  public static final #36= #19 of #31;    // DecimalValue=class com/arlosoft/macrodroid/variables/VariableValue$DecimalValue of class com/arlosoft/macrodroid/variables/VariableValue

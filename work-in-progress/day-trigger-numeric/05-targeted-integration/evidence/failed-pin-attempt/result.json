@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "passed": false,
+  "status": "TARGETED_NUMERIC_INTEGRATION_FAILED",
+  "started_utc": "2026-10-12T08:27:37.660108+00:00",
+  "commands": [
+    {
+      "name": "compile-production-level-helper-and-host",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-cp",
+        "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9/build/java/hostclasses",
+        "-d",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/02-targeted-numeric-attempt-01/hostclasses",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/02-targeted-numeric-attempt-01/inputs/project/test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/02-targeted-numeric-attempt-01/inputs/project/source/java/recovered/ui/DayTriggerValueMethods.java"
+      ],
+      "started_utc": "2026-10-12T08:27:44.434049+00:00",
+      "finished_utc": "2026-10-12T08:27:46.354901+00:00",
+      "duration_seconds": 1.9209946640003182,
+      "timeout_seconds": 120,
+      "returncode": 0,
+      "stdout": {
+        "path": "compile-production-level-helper-and-host.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compile-production-level-helper-and-host.stderr.log",
+        "bytes": 268,
+        "sha256": "312e9bd919c699a2f8409f70240177012720c94095f0f4374d44152defc50f7e"
+      }
+    }
+  ],
+  "active_paths_changed": [],
+  "full_source_copy": false,
+  "app_build_started": false,
+  "signed_numeric_primary_packaging_verified": false,
+  "androidRuntime": false,
+  "error": "AssertionError()",
+  "finished_utc": "2026-10-12T08:27:46.375708+00:00"
+}

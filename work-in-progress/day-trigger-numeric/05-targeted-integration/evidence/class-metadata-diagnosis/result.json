@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "status": "EXACT_THREE_INNERCLASS_FINAL_FLAGS_DIFFERENCE",
+  "passed": true,
+  "reviewed_sha256": "f527fe58f65ff1a079c920d711e25e1bdfb13421fcea7557c3ad653cab401441",
+  "integrated_sha256": "2f8b2d3769749301442dae35aca9fda5314eb1f17d59ea6310bd50be62596211",
+  "class_bytes": 823,
+  "constant_pool_byte_identity": true,
+  "all_fields_methods_attributes_byte_identity": true,
+  "complete_difference_accounted_for": true,
+  "reviewed": {
+    "constant_pool_sha256": "84c6491dbdc49a4c53de6629dcd6529905c15f2232973acbe69d1644e32a89fd",
+    "members": {
+      "method:<init>()V": "69319a4ee8ceab5e16c179f934668b6550491311fb6a32eb595d30e75b03a5c8",
+      "method:numericValue(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I": "6b93d1fc4741aa3bad44f31c3bdd6ff878b160d9316b92fb7c08019c7c3ae3ed"
+    },
+    "inner_classes": [
+      {
+        "name": "DictionaryEntry",
+        "offset": 805,
+        "flags": 25
+      },
+      {
+        "name": "IntegerValue",
+        "offset": 813,
+        "flags": 25
+      },
+      {
+        "name": "DecimalValue",
+        "offset": 821,
+        "flags": 25
+      }
+    ]
+  },
+  "integrated": {
+    "constant_pool_sha256": "84c6491dbdc49a4c53de6629dcd6529905c15f2232973acbe69d1644e32a89fd",
+    "members": {
+      "method:<init>()V": "69319a4ee8ceab5e16c179f934668b6550491311fb6a32eb595d30e75b03a5c8",
+      "method:numericValue(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I": "6b93d1fc4741aa3bad44f31c3bdd6ff878b160d9316b92fb7c08019c7c3ae3ed"
+    },
+    "inner_classes": [
+      {
+        "name": "DictionaryEntry",
+        "offset": 805,
+        "flags": 9
+      },
+      {
+        "name": "IntegerValue",
+        "offset": 813,
+        "flags": 9
+      },
+      {
+        "name": "DecimalValue",
+        "offset": 821,
+        "flags": 9
+      }
+    ]
+  },
+  "changed_byte_offsets": [
+    806,
+    814,
+    822
+  ],
+  "commands": [
+    {
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javap",
+        "-v",
+        "-p",
+        "/workspace/scratch/4130730d15aa/day-trigger-numeric-recovery/reports/original-java-01/hostclasses/recovered/ui/DayTriggerValueMethods.class"
+      ],
+      "started_utc": "2026-10-12T08:30:30.358466+00:00",
+      "finished_utc": "2026-10-12T08:30:31.067918+00:00",
+      "duration_seconds": 0.7094580849989143,
+      "timeout_seconds": 30,
+      "returncode": 0,
+      "stdout_sha256": "89c2b47a8e42700d8ef0f8c532bf35cdfedf2d806dad50e5780a04f8a93dca66",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javap",
+        "-v",
+        "-p",
+        "/workspace/scratch/4130730d15aa/day-trigger-integration/reports/02-targeted-numeric-attempt-01/hostclasses/recovered/ui/DayTriggerValueMethods.class"
+      ],
+      "started_utc": "2026-10-12T08:30:31.067963+00:00",
+      "finished_utc": "2026-10-12T08:30:31.932366+00:00",
+      "duration_seconds": 0.8644188930011296,
+      "timeout_seconds": 30,
+      "returncode": 0,
+      "stdout_sha256": "a18d6a4e65390da89e600738bf2d11ac086ed283d86c34c8c0d76893e60709d8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "reason": "The existing active DictionaryEntry/IntegerValue/DecimalValue host classes are non-final; the standalone study used final classes. The integrated helper retains the active host contract. Both compiled method structures and all their attributes are identical."
+}
