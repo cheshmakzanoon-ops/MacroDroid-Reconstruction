@@ -1,0 +1,23 @@
+--- a/tests/test_build.py
++++ b/tests/test_build.py
+@@ -100,9 +100,9 @@
+     def test_original_inventory_count(self):self.assertEqual(len(self.index),71267)
+     def test_method_inventory_count(self):self.assertEqual(sum(i['methods'] for i in self.index.values()),349972)
+     def test_nine_partitions(self):self.assertEqual(len(json.loads((ROOT/'source/partitions.json').read_text())),9)
+-    def test_registry_count(self):self.assertEqual(len(self.registry),1240)
++    def test_registry_count(self):self.assertEqual(len(self.registry),1241)
+     def test_registry_unique(self):self.assertEqual(len({(e['target'],e['method']) for e in self.registry}),len(self.registry))
+-    def test_registered_classes_count(self):self.assertEqual(len({e['target'] for e in self.registry}),603)
++    def test_registered_classes_count(self):self.assertEqual(len({e['target'] for e in self.registry}),604)
+     def test_constant_coverage(self):self.assertEqual(sum(e.get('proof_family')=='constant' for e in self.registry),1119)
+     def test_split_coverage(self):self.assertEqual(sum(e.get('proof_family')=='split-array' for e in self.registry),2)
+     def test_registered_sources_exist(self):
+@@ -112,7 +112,7 @@
+     def test_fixture_provenance(self):
+         p=json.loads((ROOT/'tests/fixtures/provenance.json').read_text())
+         self.assertEqual(hashlib.sha256((ROOT/'tests/fixtures/original-methods.dex').read_bytes()).hexdigest(),p['fixture_sha256'])
+-        self.assertEqual(p['methods'],1240)
++        self.assertEqual(p['methods'],1241)
+     def test_carrier_has_no_executable_dex_or_compiled_resources(self):
+         with zipfile.ZipFile(ROOT/'source/payload.zip') as z:
+             self.assertIsNone(z.testzip())

@@ -1,0 +1,54 @@
+--- checkpoint02/UI_RECOVERY.md
++++ checkpoint04/UI_RECOVERY.md
+@@ -105,7 +105,7 @@
+ 
+ `UiParityTests` compares original selected instructions with recovered Java on the
+ JVM and also supports a rebuilt DEX path whose bytes must match the signed APK.
+-The current upload candidate passes the original/JVM path; its signed path is pending.
++The current upload candidate passes all three paths on the exact signed APK.
+ The suite has 20,832 cases: 1,271 sound-token; 2,065 SMS-validation; 1,494 drag; 945
+ scene-read; 3,158 scene-write; 2,420 touch-blocking; 4,070 scene-dispatch;
+ 3,053 plugin-lookup; and 2,356 plugin-upload cases. Its 15,128 independently
+@@ -124,16 +124,17 @@
+ original defensive return; normal invalid labels must throw.
+ This remains bounded evidence rather than exhaustive path/input coverage.
+ 
+-The complete five-suite original/JVM host acceptance run for this upload candidate
++The complete five-suite original/JVM/rebuilt acceptance run for this upload candidate
+ passes 191,147 cases across exactly all 1,241 bodies, with zero failed cases or
+ unsupported executions and an exact, non-overlapping method-key partition. All 161
+-Python tests pass in this isolation. Its signed rebuild, three-path comparison and
+-independent APK roundtrip are pending. The preceding frozen lookup checkpoint passed 188,791 three-path cases
+-across 1,240 bodies, matched all nine rebuilt DEX partitions to its signed APK and
+-independently compared 71,267 classes and 349,972 methods without structural or opaque
+-payload changes outside the registered bodies. That historical result is described
+-in `PLUGIN_RECOVERY.md`; it does not establish signed acceptance of the added upload
+-body. Current evidence and pending gates are detailed in `PLUGIN_UPLOAD_RECOVERY.md`.
++Python tests pass in this isolation. All nine rebuilt DEX partitions match the signed
++APK, SHA-256 `e4643b554429743703bed5c1aa5e3541dbfc0705d9fd87c353bd968f348baf80`.
++The independent roundtrip accounts for 71,267 classes and 349,972 methods; exactly
++1,241 bodies in 604 classes change, with no structural or opaque-payload changes
++outside the registered bodies. Resource verification passes for all 7,212 decoded
++files (only attrs.xml enum ordering is canonicalized), all 23,854 resource IDs,
++ZIP entry/compression metadata and all 22 original native libraries. Complete
++measured evidence and the exact artifact binding are in `PLUGIN_UPLOAD_RECOVERY.md`.
+ 
+ Touch-blocking cases compare ordered calls, typed Intent tokens and float bits,
+ argument identities, repeated dependency reads, partial effects before failures,
+@@ -182,11 +183,11 @@
+ change request defaults, alter both labels, omit a saved-field clear, remove icon
+ fallback, collapse status reads, delay denied-state mutation, move sink capture,
+ narrow/widen the catch, move logging and replace both identity checks with equality.
+-All 17 new defect sources have unique anchors and compile. Behavioral execution of
+-all 54 controls and the final clean 20,832-case three-path restoration are pending.
+-The preceding lookup candidate's 37-control and 18,476-case restoration results are
+-preserved in its separate frozen proof. Source, fixture and signed APK hashes must
+-remain unchanged throughout the new control run; all full reports/logs will be retained.
++All 54 compiled controls were behaviorally rejected by their named cases with zero
++unsupported executions. The final clean 20,832-case three-path restoration passed.
++Source, fixture and signed APK hashes remained unchanged throughout the control run.
++The complete stage took 1,962.871 seconds on this host. All reports, logs and actual
++mutant source/class artifacts are retained in the final evidence archive.
+ No faulty APK is distributed.
+ 
+ VM-generated null/cast message wording is excluded from equality because it depends

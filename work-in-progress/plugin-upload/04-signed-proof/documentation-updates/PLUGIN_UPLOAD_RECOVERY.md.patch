@@ -1,0 +1,55 @@
+--- checkpoint02/PLUGIN_UPLOAD_RECOVERY.md
++++ checkpoint04/PLUGIN_UPLOAD_RECOVERY.md
+@@ -1,14 +1,30 @@
+ # Plugin upload coroutine recovery
+ 
+-## Original/JVM proof complete; signed proof pending
++## Signed three-path, resource and deliberate-fault proof complete
+ 
+ The replacement for `com.arlosoft.macrodroid.plugins.k.invokeSuspend(Object)` compiles through Java 21 and D8, passes static migration and linkage validation, and passes **2,356 upload cases** within **20,832 UI cases across nine methods**. The original/JVM comparison has **zero mismatches and zero unsupported executions**, with **15,128 independent expected-result/state checks** across the UI suite. The new method visits **163/163 original instructions and 26/26 conditional edges**; both coverage measures are hard gates.
+ 
+-All **161 Python tests** pass in this isolated baseline. The complete five-suite original/JVM host acceptance run passes **191,147 cases across exactly all 1,241 registered bodies**, with zero failures/unsupported executions and an exact, non-overlapping method-key partition. The private registry contains **1,241 bodies across 604 original classes**, including the unchanged 1,119 prior constant/no-op bodies. The signed rebuilt comparison, independent APK roundtrip, execution of all 54 UI deliberate-fault controls and final clean restoration are pending. This source checkpoint does not establish whole-application or Android runtime equivalence.
++All **161 Python tests** pass in this isolated baseline. The complete five-suite original/JVM/rebuilt acceptance run passes **191,147 cases across exactly all 1,241 registered bodies and all three paths**, with zero failures/unsupported executions and an exact, non-overlapping method-key partition. All nine rebuilt DEX partitions are bound to the signed APK. The private registry contains **1,241 bodies across 604 original classes**, including the unchanged 1,119 prior constant/no-op bodies. Independent full-code roundtrip and resource verification pass on the same artifact. This is bounded host and APK-preservation evidence; Android runtime and whole-application equivalence are not established by this checkpoint.
+ 
+-The 17 new upload defects have unique source anchors and compile successfully. Their compilation report explicitly records that behavioral execution is pending. The preceding frozen lookup checkpoint's 37-control signed result is historical evidence; it does not replace the required run for this candidate.
++All **54 deliberate-fault UI controls** compile and are behaviorally rejected by their required named cases, with zero unsupported executions. These comprise the 17 new upload defects and all 37 existing controls. The final clean **20,832-case three-path restoration** passes. Recovered source, original fixture and the signed APK remain unchanged throughout the run. Earlier compile-only and host-only checkpoints retain their original pending labels as historical evidence; their later gates are completed by the signed proof recorded here.
+ 
+ The test-only original fixture was extracted again from the unchanged uploaded APK. It contains **525,652 bytes**, SHA-256 `3038175ccb3eba87ee326352e123aed81ac8f69317283387ca3fa2f136b48bf7`. It covers exactly the 1,241 registered original methods across 604 classes. Neither the fixture nor the uploaded APK is an application build input.
++
++## Exact signed artifact and measured gates
++
++The signed artifact is `dist/MacroDroid-5.67.8-v9-hybrid.apk`, **94,683,177 bytes**, SHA-256 `e4643b554429743703bed5c1aa5e3541dbfc0705d9fd87c353bd968f348baf80`. Its independent roundtrip compares **71,267 classes and 349,972 methods**. Exactly the 1,241 registered bodies in 604 classes change; no classes/methods are missing or extra, no unregistered body changes, and no structural or opaque payload change is accepted.
++
++Resource verification checks **7,212 decoded manifest/resource files**: 7,211 are byte-identical and the sole accepted canonical difference is enum/flag ordering in `res/values/attrs.xml`. All **23,854 resource IDs**, public-visibility values, ZIP entry names and compression methods match. All **22 preserved ARM64 libraries** retain their exact original bytes and pass the bounded ELF 16 KiB load-segment alignment check. These native checks do not execute native code.
++
++| Measured gate | Result | Elapsed seconds | Complete record |
++| --- | --- | ---: | --- |
++| Java/D8 assembly and signing | Passed | 370.740 | `reports/upload-signed-build-03/result.json` |
++| Five-suite original/JVM/rebuilt comparison | 191,147 cases, 1,241 bodies, three paths; no failures/unsupported executions | 331.358 | `reports/upload-signed-proof-03/result.json` and `reports/java-all-path-parity.json` |
++| Independent full-code roundtrip | All 71,267 classes and 349,972 methods accounted for | 202.202 | `reports/hybrid-roundtrip.json` |
++| All UI deliberate faults and clean restoration | 54/54 controls rejected; 20,832 clean cases passed | 1,962.871 | `reports/ui-negative-controls.json` and `reports/upload-signed-proof-03/all-54-ui-negative-controls.log` |
++| Resource/ID/ZIP/native preservation | Passed on the exact signed APK | 28.537 | `reports/upload-resource-proof-03/result.json` and `reports/hybrid-resource-parity.json` |
++
++The signed proof finished on 2026-10-12 at 04:44:15 UTC, and the separate resource gate finished at 04:47:29 UTC. All 35 source/test/doc/fixture paths from the original/JVM checkpoint stayed byte-identical through both gates. Only this document, `UI_RECOVERY.md` and `FOLLOWON_ASSESSMENT.md` were updated afterward to report the measured outcomes; all 32 implementation/test/fixture paths remained unchanged. The complete raw reports and all 54 executed mutant source/class artifacts are retained in the final evidence archive.
+ 
+ ## Exact source and preserved entry behavior
+ 
+@@ -61,7 +77,7 @@
+ 
+ Bitmap compression is a scripted byte-write boundary, not an Android image encoder. User access, API calls, request/part construction and publication are controlled host dependencies. The harness runs no real upload, network request, scheduler, Android lifecycle or LiveData lifecycle. Full instruction and branch-edge coverage remains bounded evidence rather than exhaustive path/input coverage.
+ 
+-The two shared-stub edits are narrow: `plugins.b` adds the original typed API and user-provider fields, and `PluginControl` adds an optional continuation snapshot callback used only when its lookup-continuation field is absent. Reset clears the callback. Existing lookup snapshots remain unchanged. There are no upload-specific edits to `u2f.P`, `e6d.r`, `hb9`, the HTTP exception stub, or BytecodeOracle. Parent-owned constructor, Android recorder and build cleanup changes must be merged separately and retained.
++The two shared-stub edits are narrow: `plugins.b` adds the original typed API and user-provider fields, and `PluginControl` adds an optional continuation snapshot callback used only when its lookup-continuation field is absent. Reset clears the callback. Existing lookup snapshots remain unchanged. There are no upload-specific edits to `u2f.P`, `e6d.r`, `hb9`, the HTTP exception stub, or BytecodeOracle. Parent-owned constructor, Android recorder, shared JVM runtime policy and build cleanup changes must be merged separately and retained. The inactive `ui_negative_control.py` contributes only its 17 upload controls during integration; it must not replace those newer parent policies. A later combined Widget/upload candidate needs its own fresh 1,242-body acceptance and is not validated by this isolated 1,241-body result.
+ 
+ This work uses an independent private copy of all **81,249 frozen lookup input files**, with every copied hash verified and no mutable hardlinks. Generated build/cache outputs, reports and APKs were excluded. The source copy occupied 819,374,473 logical bytes. The original frozen lookup source, signed APK and complete proof remain unchanged. Root-authorized closed generated-cache cleanup receipts are preserved separately; source, dist, reports and checkpoints were retained.
+ 
+@@ -77,7 +93,8 @@
+ python3 test.py --three-way
+ python3 -c 'import build; build.verify("hybrid")'
+ python3 ui_negative_control.py
++python3 resource_verify.py --variant hybrid
+ python3 reference_status.py
+ ```
+ 
+-At this checkpoint, the signed build, three-way comparison, independent roundtrip and all 54 behavioral controls are still pending. The Python count is 161 in this isolation; the parent's newer runtime and constructor tests are counted separately.
++All listed signed comparison, roundtrip, resource and 54-control gates have completed in this isolation. The Python count is 161 here; the parent's newer runtime and constructor tests are counted separately. The measured control stage exceeded 1,200 seconds on this host. This executed recipe bounded the complete control stage at 5,400 seconds and each faulty subprocess at 300 seconds; its final clean restoration relied on the outer bound. The parent is adding a separate 300-second restoration timeout for future combined runs. That tighter launcher is not retroactively claimed as part of this isolated run.

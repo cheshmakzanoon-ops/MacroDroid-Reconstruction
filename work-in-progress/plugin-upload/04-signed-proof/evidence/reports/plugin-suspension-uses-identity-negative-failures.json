@@ -1,0 +1,542 @@
+{
+  "passed": false,
+  "cases": 20832,
+  "failedCases": 1,
+  "unsupportedExecutions": 0,
+  "independentExpectedResultChecks": 15128,
+  "expectedResultFailures": 0,
+  "methodsCovered": 9,
+  "methodKeys": [
+    "Lcom/arlosoft/macrodroid/action/BlockTouchesAction;->invokeAction(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)V",
+    "Lcom/arlosoft/macrodroid/action/CustomSceneAction;->W(ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V",
+    "Lcom/arlosoft/macrodroid/action/PlaySoundAction;->Z(Ljava/lang/String;)Z",
+    "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+    "Lcom/arlosoft/macrodroid/plugins/k;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig$a;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;",
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig;->writeToParcel(Landroid/os/Parcel;I)V",
+    "Lcom/arlosoft/macrodroid/triggers/IncomingSMSTrigger;->isValid()Z",
+    "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z"
+  ],
+  "paths": 3,
+  "androidRuntime": false,
+  "methods": {
+    "Lcom/arlosoft/macrodroid/action/BlockTouchesAction;->invokeAction(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)V": 2420,
+    "Lcom/arlosoft/macrodroid/action/CustomSceneAction;->W(ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V": 4070,
+    "Lcom/arlosoft/macrodroid/action/PlaySoundAction;->Z(Ljava/lang/String;)Z": 1271,
+    "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": 3053,
+    "Lcom/arlosoft/macrodroid/plugins/k;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": 2356,
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig$a;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;": 945,
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig;->writeToParcel(Landroid/os/Parcel;I)V": 3158,
+    "Lcom/arlosoft/macrodroid/triggers/IncomingSMSTrigger;->isValid()Z": 2065,
+    "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z": 1494
+  },
+  "failures": [
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-api-marker-identity",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self",
+            "bundle.new:bundle0",
+            "bundle.putInt:bundle0:key_index:0",
+            "analytics:analytics0:bundle0:app_brain_api_call_made",
+            "keys.get:keys0:0",
+            "api.get:api0:key0:package0:self",
+            "publish:sink0:connectionError"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:0",
+            "0:23:-17:owner0:0",
+            "1:23:-17:owner0:0",
+            "1:23:-17:owner0:1",
+            "1:23:-17:owner0:1",
+            "1:23:-17:owner0:1",
+            "1:23:-17:owner0:1",
+            "2:0:0:owner0:1",
+            "2:0:0:owner0:1"
+          ],
+          "boundaryCalls": 9,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "connectionError",
+              "kind": "connectionError"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "connectionError",
+              "kind": "connectionError"
+            }
+          ],
+          "publishedKinds": [
+            "connectionError"
+          ],
+          "analyticsAttempts": [
+            {
+              "receiver": "analytics0",
+              "bundle": "bundle0",
+              "event": "app_brain_api_call_made",
+              "values": {
+                "key_index": 0
+              }
+            }
+          ],
+          "analytics": [
+            {
+              "receiver": "analytics0",
+              "bundle": "bundle0",
+              "event": "app_brain_api_call_made",
+              "values": {
+                "key_index": 0
+              }
+            }
+          ],
+          "analyticsEvents": [
+            "app_brain_api_call_made"
+          ],
+          "bundles": [
+            {
+              "identity": "bundle0",
+              "values": {
+                "key_index": 0
+              }
+            }
+          ],
+          "created": [],
+          "label": 2,
+          "I0": 0,
+          "I1": 0,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 1,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 1,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 1,
+          "otherApiCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "key": "key0",
+              "keyText": "synthetic-key-0",
+              "package": "package0",
+              "packageText": "app.example.\u03a9",
+              "continuation": "self",
+              "continuationState": "2:0:0",
+              "result": "equalSuspended"
+            }
+          ],
+          "otherApi": [],
+          "apiKeys": [
+            "key0"
+          ],
+          "apiPackages": [
+            "package0"
+          ],
+          "apiContinuationStates": [
+            "2:0:0"
+          ],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:2:0:0:owner0:1"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "value": "COROUTINE_SUSPENDED",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "suspended",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": true,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self",
+            "bundle.new:bundle0",
+            "bundle.putInt:bundle0:key_index:0",
+            "analytics:analytics0:bundle0:app_brain_api_call_made",
+            "keys.get:keys0:0",
+            "api.get:api0:key0:package0:self"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:0",
+            "0:23:-17:owner0:0",
+            "1:23:-17:owner0:0",
+            "1:23:-17:owner0:1",
+            "1:23:-17:owner0:1",
+            "1:23:-17:owner0:1",
+            "1:23:-17:owner0:1",
+            "2:0:0:owner0:1"
+          ],
+          "boundaryCalls": 8,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [
+            {
+              "receiver": "analytics0",
+              "bundle": "bundle0",
+              "event": "app_brain_api_call_made",
+              "values": {
+                "key_index": 0
+              }
+            }
+          ],
+          "analytics": [
+            {
+              "receiver": "analytics0",
+              "bundle": "bundle0",
+              "event": "app_brain_api_call_made",
+              "values": {
+                "key_index": 0
+              }
+            }
+          ],
+          "analyticsEvents": [
+            "app_brain_api_call_made"
+          ],
+          "bundles": [
+            {
+              "identity": "bundle0",
+              "values": {
+                "key_index": 0
+              }
+            }
+          ],
+          "created": [],
+          "label": 2,
+          "I0": 0,
+          "I1": 0,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 1,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 1,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 1,
+          "otherApiCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "key": "key0",
+              "keyText": "synthetic-key-0",
+              "package": "package0",
+              "packageText": "app.example.\u03a9",
+              "continuation": "self",
+              "continuationState": "2:0:0",
+              "result": "equalSuspended"
+            }
+          ],
+          "otherApi": [],
+          "apiKeys": [
+            "key0"
+          ],
+          "apiPackages": [
+            "package0"
+          ],
+          "apiContinuationStates": [
+            "2:0:0"
+          ],
+          "publicationReceivers": [],
+          "steps": [
+            "return:suspended:2:0:0:owner0:1"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self",
+            "bundle.new:bundle0",
+            "bundle.putInt:bundle0:key_index:0",
+            "analytics:analytics0:bundle0:app_brain_api_call_made",
+            "keys.get:keys0:0",
+            "api.get:api0:key0:package0:self",
+            "publish:sink0:connectionError"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:0",
+            "0:23:-17:owner0:0",
+            "1:23:-17:owner0:0",
+            "1:23:-17:owner0:1",
+            "1:23:-17:owner0:1",
+            "1:23:-17:owner0:1",
+            "1:23:-17:owner0:1",
+            "2:0:0:owner0:1",
+            "2:0:0:owner0:1"
+          ],
+          "boundaryCalls": 9,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "connectionError",
+              "kind": "connectionError"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "connectionError",
+              "kind": "connectionError"
+            }
+          ],
+          "publishedKinds": [
+            "connectionError"
+          ],
+          "analyticsAttempts": [
+            {
+              "receiver": "analytics0",
+              "bundle": "bundle0",
+              "event": "app_brain_api_call_made",
+              "values": {
+                "key_index": 0
+              }
+            }
+          ],
+          "analytics": [
+            {
+              "receiver": "analytics0",
+              "bundle": "bundle0",
+              "event": "app_brain_api_call_made",
+              "values": {
+                "key_index": 0
+              }
+            }
+          ],
+          "analyticsEvents": [
+            "app_brain_api_call_made"
+          ],
+          "bundles": [
+            {
+              "identity": "bundle0",
+              "values": {
+                "key_index": 0
+              }
+            }
+          ],
+          "created": [],
+          "label": 2,
+          "I0": 0,
+          "I1": 0,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 1,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 1,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 1,
+          "otherApiCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "key": "key0",
+              "keyText": "synthetic-key-0",
+              "package": "package0",
+              "packageText": "app.example.\u03a9",
+              "continuation": "self",
+              "continuationState": "2:0:0",
+              "result": "equalSuspended"
+            }
+          ],
+          "otherApi": [],
+          "apiKeys": [
+            "key0"
+          ],
+          "apiPackages": [
+            "package0"
+          ],
+          "apiContinuationStates": [
+            "2:0:0"
+          ],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:2:0:0:owner0:1"
+          ],
+          "http": []
+        }
+      },
+      "expectedObservation": {
+        "pluginState": {
+          "returned": "unit",
+          "attempts": 1,
+          "label": 2,
+          "apiCalls": 1,
+          "publishedKinds": [
+            "connectionError"
+          ]
+        }
+      }
+    }
+  ],
+  "failedCaseLabels": [
+    "plugin-api-marker-identity"
+  ],
+  "instructionCoverage": {
+    "Lcom/arlosoft/macrodroid/action/BlockTouchesAction;->invokeAction(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)V": {
+      "instructions": 162,
+      "visited": 162,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 30,
+      "conditionalEdgesVisited": 30,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/action/CustomSceneAction;->W(ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V": {
+      "instructions": 405,
+      "visited": 405,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 40,
+      "conditionalEdgesVisited": 40,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/action/PlaySoundAction;->Z(Ljava/lang/String;)Z": {
+      "instructions": 39,
+      "visited": 39,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 10,
+      "conditionalEdgesVisited": 10,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": {
+      "instructions": 198,
+      "visited": 198,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 34,
+      "conditionalEdgesVisited": 34,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/plugins/k;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": {
+      "instructions": 163,
+      "visited": 163,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 26,
+      "conditionalEdgesVisited": 26,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig$a;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;": {
+      "instructions": 150,
+      "visited": 150,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 16,
+      "conditionalEdgesVisited": 16,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig;->writeToParcel(Landroid/os/Parcel;I)V": {
+      "instructions": 50,
+      "visited": 50,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 0,
+      "conditionalEdgesVisited": 0,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/triggers/IncomingSMSTrigger;->isValid()Z": {
+      "instructions": 80,
+      "visited": 80,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 20,
+      "conditionalEdgesVisited": 20,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z": {
+      "instructions": 82,
+      "visited": 82,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 26,
+      "conditionalEdgesVisited": 26,
+      "unvisitedConditionalEdges": []
+    }
+  },
+  "blockTouchesInstructionAndConditionalCoverage": true,
+  "customSceneInstructionAndConditionalCoverage": true,
+  "customSceneDefensiveNullThrowsUseInjectedReturningLateinitBoundary": true,
+  "pluginLookupInstructionAndConditionalCoverage": true,
+  "pluginInvalidLabelReturnUsesInjectedReturningBoundary": true,
+  "pluginUploadInstructionAndConditionalCoverage": true,
+  "pluginUploadInvalidLabelReturnUsesInjectedReturningBoundary": true
+}

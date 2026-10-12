@@ -1,0 +1,208 @@
+{
+  "pass": true,
+  "paths": 3,
+  "methodsCovered": 12,
+  "methodKeys": [
+    "Laq9;->b(ILjava/util/List;)I",
+    "Laq9;->c(ILjava/util/List;)I",
+    "Laq9;->d(ILjava/util/List;)I",
+    "Laq9;->e(ILjava/util/List;)I",
+    "Laq9;->f(ILjava/util/List;)I",
+    "Laq9;->i(ILjava/util/List;)I",
+    "Laq9;->j(ILjava/util/List;)I",
+    "Laq9;->k(ILjava/util/List;)I",
+    "Lcom/arlosoft/macrodroid/action/Action$a;->d(Ljava/util/List;)Ljava/util/LinkedHashMap;",
+    "Lcom/arlosoft/macrodroid/action/Action;->computeActionScopes(Ljava/util/List;)Ljava/util/Map;",
+    "Lcom/arlosoft/macrodroid/macro/Macro$b;->a(Lcom/arlosoft/macrodroid/macro/Macro;Lcom/arlosoft/macrodroid/action/LoopAction;)Z",
+    "Lcom/arlosoft/macrodroid/macro/Macro;->invokeActions(Ljava/util/List;ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V"
+  ],
+  "methodsExpected": 12,
+  "scope": "Original selected DEX / recovered Java / rebuilt DEX, with controlled Android/action/store/clock/thread boundaries; not Android runtime",
+  "selection": "all",
+  "cases": 9616,
+  "expectedChecks": 474,
+  "failures": 0,
+  "unsupportedExecutions": 0,
+  "methods": {
+    "Laq9;->b(ILjava/util/List;)I": 912,
+    "Laq9;->c(ILjava/util/List;)I": 913,
+    "Laq9;->d(ILjava/util/List;)I": 913,
+    "Laq9;->e(ILjava/util/List;)I": 912,
+    "Laq9;->f(ILjava/util/List;)I": 912,
+    "Laq9;->i(ILjava/util/List;)I": 912,
+    "Laq9;->j(ILjava/util/List;)I": 912,
+    "Laq9;->k(ILjava/util/List;)I": 912,
+    "Lcom/arlosoft/macrodroid/action/Action$a;->d(Ljava/util/List;)Ljava/util/LinkedHashMap;": 404,
+    "Lcom/arlosoft/macrodroid/action/Action;->computeActionScopes(Ljava/util/List;)Ljava/util/Map;": 404,
+    "Lcom/arlosoft/macrodroid/macro/Macro$b;->a(Lcom/arlosoft/macrodroid/macro/Macro;Lcom/arlosoft/macrodroid/action/LoopAction;)Z": 767,
+    "Lcom/arlosoft/macrodroid/macro/Macro;->invokeActions(Ljava/util/List;ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V": 743
+  },
+  "examples": [],
+  "failedCaseLabels": [],
+  "agentTransformedClasses": [
+    "recovered/engine/ActionDispatchMethods:3",
+    "recovered/engine/LoopGuardMethods:2"
+  ],
+  "originalCoverage": {
+    "Laq9;->b(ILjava/util/List;)I": {
+      "branchEdges": 8,
+      "visited": 30,
+      "unvisitedOffsets": [],
+      "instructions": 30
+    },
+    "Laq9;->c(ILjava/util/List;)I": {
+      "branchEdges": 14,
+      "visited": 37,
+      "unvisitedOffsets": [],
+      "instructions": 37
+    },
+    "Laq9;->d(ILjava/util/List;)I": {
+      "branchEdges": 8,
+      "visited": 29,
+      "unvisitedOffsets": [],
+      "instructions": 29
+    },
+    "Laq9;->e(ILjava/util/List;)I": {
+      "branchEdges": 8,
+      "visited": 28,
+      "unvisitedOffsets": [],
+      "instructions": 28
+    },
+    "Laq9;->f(ILjava/util/List;)I": {
+      "branchEdges": 16,
+      "visited": 41,
+      "unvisitedOffsets": [],
+      "instructions": 41
+    },
+    "Laq9;->i(ILjava/util/List;)I": {
+      "branchEdges": 8,
+      "visited": 23,
+      "unvisitedOffsets": [],
+      "instructions": 23
+    },
+    "Laq9;->j(ILjava/util/List;)I": {
+      "branchEdges": 8,
+      "visited": 26,
+      "unvisitedOffsets": [],
+      "instructions": 26
+    },
+    "Laq9;->k(ILjava/util/List;)I": {
+      "branchEdges": 16,
+      "visited": 44,
+      "unvisitedOffsets": [],
+      "instructions": 44
+    },
+    "Lcom/arlosoft/macrodroid/action/Action$a;->d(Ljava/util/List;)Ljava/util/LinkedHashMap;": {
+      "branchEdges": 10,
+      "visited": 86,
+      "unvisitedOffsets": [],
+      "instructions": 86
+    },
+    "Lcom/arlosoft/macrodroid/action/Action;->computeActionScopes(Ljava/util/List;)Ljava/util/Map;": {
+      "branchEdges": 0,
+      "visited": 7,
+      "unvisitedOffsets": [],
+      "instructions": 7
+    },
+    "Lcom/arlosoft/macrodroid/macro/Macro$b;->a(Lcom/arlosoft/macrodroid/macro/Macro;Lcom/arlosoft/macrodroid/action/LoopAction;)Z": {
+      "branchEdges": 14,
+      "visited": 113,
+      "unvisitedOffsets": [],
+      "instructions": 113
+    },
+    "Lcom/arlosoft/macrodroid/macro/Macro;->invokeActions(Ljava/util/List;ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V": {
+      "branchEdges": 302,
+      "visited": 1131,
+      "unvisitedOffsets": [
+        1628,
+        1629,
+        1631
+      ],
+      "instructions": 1134
+    }
+  },
+  "rebuiltCoverage": {
+    "Laq9;->b(ILjava/util/List;)I": {
+      "branchEdges": 8,
+      "visited": 21,
+      "unvisitedOffsets": [],
+      "instructions": 21
+    },
+    "Laq9;->c(ILjava/util/List;)I": {
+      "branchEdges": 14,
+      "visited": 29,
+      "unvisitedOffsets": [],
+      "instructions": 29
+    },
+    "Laq9;->d(ILjava/util/List;)I": {
+      "branchEdges": 8,
+      "visited": 21,
+      "unvisitedOffsets": [],
+      "instructions": 21
+    },
+    "Laq9;->e(ILjava/util/List;)I": {
+      "branchEdges": 8,
+      "visited": 21,
+      "unvisitedOffsets": [],
+      "instructions": 21
+    },
+    "Laq9;->f(ILjava/util/List;)I": {
+      "branchEdges": 16,
+      "visited": 31,
+      "unvisitedOffsets": [],
+      "instructions": 31
+    },
+    "Laq9;->i(ILjava/util/List;)I": {
+      "branchEdges": 8,
+      "visited": 19,
+      "unvisitedOffsets": [],
+      "instructions": 19
+    },
+    "Laq9;->j(ILjava/util/List;)I": {
+      "branchEdges": 8,
+      "visited": 19,
+      "unvisitedOffsets": [],
+      "instructions": 19
+    },
+    "Laq9;->k(ILjava/util/List;)I": {
+      "branchEdges": 16,
+      "visited": 34,
+      "unvisitedOffsets": [],
+      "instructions": 34
+    },
+    "Lcom/arlosoft/macrodroid/action/Action$a;->d(Ljava/util/List;)Ljava/util/LinkedHashMap;": {
+      "branchEdges": 10,
+      "visited": 69,
+      "unvisitedOffsets": [],
+      "instructions": 69
+    },
+    "Lcom/arlosoft/macrodroid/action/Action;->computeActionScopes(Ljava/util/List;)Ljava/util/Map;": {
+      "branchEdges": 0,
+      "visited": 5,
+      "unvisitedOffsets": [],
+      "instructions": 5
+    },
+    "Lcom/arlosoft/macrodroid/macro/Macro$b;->a(Lcom/arlosoft/macrodroid/macro/Macro;Lcom/arlosoft/macrodroid/action/LoopAction;)Z": {
+      "branchEdges": 14,
+      "visited": 93,
+      "unvisitedOffsets": [],
+      "instructions": 93
+    },
+    "Lcom/arlosoft/macrodroid/macro/Macro;->invokeActions(Ljava/util/List;ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V": {
+      "branchEdges": 304,
+      "visited": 1108,
+      "unvisitedOffsets": [
+        1543,
+        1544,
+        1546
+      ],
+      "instructions": 1111
+    }
+  },
+  "messageExclusions": [
+    "VM-generated NPE and ClassCastException text inside dispatcher error logs; exception types and ordered prefixes retained"
+  ],
+  "fixture_sha256": "3038175ccb3eba87ee326352e123aed81ac8f69317283387ca3fa2f136b48bf7",
+  "rebuilt_apk_sha256": "e4643b554429743703bed5c1aa5e3541dbfc0705d9fd87c353bd968f348baf80",
+  "rebuilt_dex_compared_to_apk": true
+}

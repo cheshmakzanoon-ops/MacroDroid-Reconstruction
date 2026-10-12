@@ -1,0 +1,3273 @@
+{
+  "passed": false,
+  "cases": 20832,
+  "failedCases": 6,
+  "unsupportedExecutions": 0,
+  "independentExpectedResultChecks": 15128,
+  "expectedResultFailures": 0,
+  "methodsCovered": 9,
+  "methodKeys": [
+    "Lcom/arlosoft/macrodroid/action/BlockTouchesAction;-\u003einvokeAction(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)V",
+    "Lcom/arlosoft/macrodroid/action/CustomSceneAction;-\u003eW(ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V",
+    "Lcom/arlosoft/macrodroid/action/PlaySoundAction;-\u003eZ(Ljava/lang/String;)Z",
+    "Lcom/arlosoft/macrodroid/plugins/j;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+    "Lcom/arlosoft/macrodroid/plugins/k;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig$a;-\u003ecreateFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;",
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig;-\u003ewriteToParcel(Landroid/os/Parcel;I)V",
+    "Lcom/arlosoft/macrodroid/triggers/IncomingSMSTrigger;-\u003eisValid()Z",
+    "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;-\u003eonTouchEvent(Landroid/view/MotionEvent;)Z"
+  ],
+  "paths": 3,
+  "androidRuntime": false,
+  "methods": {
+    "Lcom/arlosoft/macrodroid/action/BlockTouchesAction;-\u003einvokeAction(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)V": 2420,
+    "Lcom/arlosoft/macrodroid/action/CustomSceneAction;-\u003eW(ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V": 4070,
+    "Lcom/arlosoft/macrodroid/action/PlaySoundAction;-\u003eZ(Ljava/lang/String;)Z": 1271,
+    "Lcom/arlosoft/macrodroid/plugins/j;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": 3053,
+    "Lcom/arlosoft/macrodroid/plugins/k;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": 2356,
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig$a;-\u003ecreateFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;": 945,
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig;-\u003ewriteToParcel(Landroid/os/Parcel;I)V": 3158,
+    "Lcom/arlosoft/macrodroid/triggers/IncomingSMSTrigger;-\u003eisValid()Z": 2065,
+    "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;-\u003eonTouchEvent(Landroid/view/MotionEvent;)Z": 1494
+  },
+  "failures": [
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/k;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "upload-mutate:0:11:0",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "drawable.bitmap:drawable0",
+            "bitmap.compress:bitmap0:PNG:100:java.io.ByteArrayOutputStream#42",
+            "media.parse:image/*",
+            "request.create:requestCompanion0:media0:[B#43:0:12",
+            "multipart.create:icon:request0",
+            "upload.icon:api0:part0:self",
+            "user.current:users0",
+            "user.id:user0",
+            "payload.new:payload0:uploadBody:[Ljava.lang.Object;#45",
+            "upload.plugin:api0:hash0:payload0:self",
+            "payload.new:payload1:uploaded:name0",
+            "publish:sink0:payload1"
+          ],
+          "boundaryStates": [
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner1:false:-9"
+          ],
+          "boundaryCalls": 13,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publishedKinds": [
+            "uploaded"
+          ],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploadBody",
+              "arguments": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ],
+              "stored": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ]
+            },
+            {
+              "identity": "payload1",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [
+            [
+              "123",
+              "name0",
+              "developer0",
+              "description0",
+              "package0",
+              "download0",
+              "uploadedIcon",
+              "website0",
+              "en"
+            ]
+          ],
+          "payloadCount": 1,
+          "compressions": [
+            {
+              "bitmap": "bitmap0",
+              "format": "PNG",
+              "quality": 100,
+              "stream": "java.io.ByteArrayOutputStream#42",
+              "completed": true,
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ]
+            }
+          ],
+          "requests": [
+            {
+              "companion": "requestCompanion0",
+              "mediaType": "media0",
+              "bytesIdentity": "[B#43",
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ],
+              "offset": 0,
+              "mask": 12,
+              "completed": true
+            }
+          ],
+          "requestMediaTypes": [
+            "media0"
+          ],
+          "requestCompanions": [
+            "requestCompanion0"
+          ],
+          "parts": [
+            {
+              "name": "icon",
+              "body": "request0",
+              "completed": true
+            }
+          ],
+          "parseInputs": [
+            "image/*"
+          ],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "label": 2,
+          "saved": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "owner": "owner1",
+          "snapshot": "2:null:null:null:null:null:owner1:false:-9",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 1,
+          "uploadCalls": 1,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "kind": "icon",
+              "argument": "part0",
+              "continuation": "self",
+              "state": "1:null:null:null:null:null:owner0:false:37",
+              "result": "uploadedIcon"
+            },
+            {
+              "receiver": "api0",
+              "kind": "plugin",
+              "hash": "hash0",
+              "argument": "payload0",
+              "continuation": "self",
+              "state": "2:null:null:null:null:null:owner0:false:37",
+              "result": "unit"
+            }
+          ],
+          "otherApi": [],
+          "userReads": 1,
+          "otherUserReads": 0,
+          "idReads": 1,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "return:unit:2:null:null:null:null:null:owner1:false:-9"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "drawable.bitmap:drawable0",
+            "bitmap.compress:bitmap0:PNG:100:java.io.ByteArrayOutputStream#42",
+            "media.parse:image/*",
+            "request.create:requestCompanion0:media0:[B#43:0:12",
+            "multipart.create:icon:request0",
+            "upload.icon:api0:part0:self",
+            "user.current:users0",
+            "user.id:user0",
+            "payload.new:payload0:uploadBody:[Ljava.lang.Object;#45",
+            "upload.plugin:api0:hash0:payload0:self",
+            "payload.new:payload1:uploaded:name0",
+            "publish:sink1:payload1"
+          ],
+          "boundaryStates": [
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner1:false:-9"
+          ],
+          "boundaryCalls": 13,
+          "publicationAttempts": [
+            {
+              "receiver": "sink1",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink1",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publishedKinds": [
+            "uploaded"
+          ],
+          "publicationReceivers": [
+            "sink1"
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploadBody",
+              "arguments": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ],
+              "stored": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ]
+            },
+            {
+              "identity": "payload1",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [
+            [
+              "123",
+              "name0",
+              "developer0",
+              "description0",
+              "package0",
+              "download0",
+              "uploadedIcon",
+              "website0",
+              "en"
+            ]
+          ],
+          "payloadCount": 1,
+          "compressions": [
+            {
+              "bitmap": "bitmap0",
+              "format": "PNG",
+              "quality": 100,
+              "stream": "java.io.ByteArrayOutputStream#42",
+              "completed": true,
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ]
+            }
+          ],
+          "requests": [
+            {
+              "companion": "requestCompanion0",
+              "mediaType": "media0",
+              "bytesIdentity": "[B#43",
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ],
+              "offset": 0,
+              "mask": 12,
+              "completed": true
+            }
+          ],
+          "requestMediaTypes": [
+            "media0"
+          ],
+          "requestCompanions": [
+            "requestCompanion0"
+          ],
+          "parts": [
+            {
+              "name": "icon",
+              "body": "request0",
+              "completed": true
+            }
+          ],
+          "parseInputs": [
+            "image/*"
+          ],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "label": 2,
+          "saved": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "owner": "owner1",
+          "snapshot": "2:null:null:null:null:null:owner1:false:-9",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 1,
+          "uploadCalls": 1,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "kind": "icon",
+              "argument": "part0",
+              "continuation": "self",
+              "state": "1:null:null:null:null:null:owner0:false:37",
+              "result": "uploadedIcon"
+            },
+            {
+              "receiver": "api0",
+              "kind": "plugin",
+              "hash": "hash0",
+              "argument": "payload0",
+              "continuation": "self",
+              "state": "2:null:null:null:null:null:owner0:false:37",
+              "result": "unit"
+            }
+          ],
+          "otherApi": [],
+          "userReads": 1,
+          "otherUserReads": 0,
+          "idReads": 1,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "return:unit:2:null:null:null:null:null:owner1:false:-9"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "drawable.bitmap:drawable0",
+            "bitmap.compress:bitmap0:PNG:100:java.io.ByteArrayOutputStream#42",
+            "media.parse:image/*",
+            "request.create:requestCompanion0:media0:[B#43:0:12",
+            "multipart.create:icon:request0",
+            "upload.icon:api0:part0:self",
+            "user.current:users0",
+            "user.id:user0",
+            "payload.new:payload0:uploadBody:[Ljava.lang.Object;#45",
+            "upload.plugin:api0:hash0:payload0:self",
+            "payload.new:payload1:uploaded:name0",
+            "publish:sink0:payload1"
+          ],
+          "boundaryStates": [
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner1:false:-9"
+          ],
+          "boundaryCalls": 13,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publishedKinds": [
+            "uploaded"
+          ],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploadBody",
+              "arguments": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ],
+              "stored": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ]
+            },
+            {
+              "identity": "payload1",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [
+            [
+              "123",
+              "name0",
+              "developer0",
+              "description0",
+              "package0",
+              "download0",
+              "uploadedIcon",
+              "website0",
+              "en"
+            ]
+          ],
+          "payloadCount": 1,
+          "compressions": [
+            {
+              "bitmap": "bitmap0",
+              "format": "PNG",
+              "quality": 100,
+              "stream": "java.io.ByteArrayOutputStream#42",
+              "completed": true,
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ]
+            }
+          ],
+          "requests": [
+            {
+              "companion": "requestCompanion0",
+              "mediaType": "media0",
+              "bytesIdentity": "[B#43",
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ],
+              "offset": 0,
+              "mask": 12,
+              "completed": true
+            }
+          ],
+          "requestMediaTypes": [
+            "media0"
+          ],
+          "requestCompanions": [
+            "requestCompanion0"
+          ],
+          "parts": [
+            {
+              "name": "icon",
+              "body": "request0",
+              "completed": true
+            }
+          ],
+          "parseInputs": [
+            "image/*"
+          ],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "label": 2,
+          "saved": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "owner": "owner1",
+          "snapshot": "2:null:null:null:null:null:owner1:false:-9",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 1,
+          "uploadCalls": 1,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "kind": "icon",
+              "argument": "part0",
+              "continuation": "self",
+              "state": "1:null:null:null:null:null:owner0:false:37",
+              "result": "uploadedIcon"
+            },
+            {
+              "receiver": "api0",
+              "kind": "plugin",
+              "hash": "hash0",
+              "argument": "payload0",
+              "continuation": "self",
+              "state": "2:null:null:null:null:null:owner0:false:37",
+              "result": "unit"
+            }
+          ],
+          "otherApi": [],
+          "userReads": 1,
+          "otherUserReads": 0,
+          "idReads": 1,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "return:unit:2:null:null:null:null:null:owner1:false:-9"
+          ],
+          "http": []
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/k;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "upload-mutate:0:11:21",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "drawable.bitmap:drawable0",
+            "bitmap.compress:bitmap0:PNG:100:java.io.ByteArrayOutputStream#42",
+            "media.parse:image/*",
+            "request.create:requestCompanion0:media0:[B#43:0:12",
+            "multipart.create:icon:request0",
+            "upload.icon:api0:part0:self",
+            "user.current:users0",
+            "user.id:user0",
+            "payload.new:payload0:uploadBody:[Ljava.lang.Object;#45",
+            "upload.plugin:api0:hash0:payload0:self",
+            "payload.new:payload1:uploaded:name0",
+            "publish:sink0:payload1"
+          ],
+          "boundaryStates": [
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37"
+          ],
+          "boundaryCalls": 13,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publishedKinds": [
+            "uploaded"
+          ],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploadBody",
+              "arguments": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ],
+              "stored": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ]
+            },
+            {
+              "identity": "payload1",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [
+            [
+              "123",
+              "name0",
+              "developer0",
+              "description0",
+              "package0",
+              "download0",
+              "uploadedIcon",
+              "website0",
+              "en"
+            ]
+          ],
+          "payloadCount": 1,
+          "compressions": [
+            {
+              "bitmap": "bitmap0",
+              "format": "PNG",
+              "quality": 100,
+              "stream": "java.io.ByteArrayOutputStream#42",
+              "completed": true,
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ]
+            }
+          ],
+          "requests": [
+            {
+              "companion": "requestCompanion0",
+              "mediaType": "media0",
+              "bytesIdentity": "[B#43",
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ],
+              "offset": 0,
+              "mask": 12,
+              "completed": true
+            }
+          ],
+          "requestMediaTypes": [
+            "media0"
+          ],
+          "requestCompanions": [
+            "requestCompanion0"
+          ],
+          "parts": [
+            {
+              "name": "icon",
+              "body": "request0",
+              "completed": true
+            }
+          ],
+          "parseInputs": [
+            "image/*"
+          ],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "label": 2,
+          "saved": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "owner": "owner0",
+          "snapshot": "2:null:null:null:null:null:owner0:false:37",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 1,
+          "uploadCalls": 1,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "kind": "icon",
+              "argument": "part0",
+              "continuation": "self",
+              "state": "1:null:null:null:null:null:owner0:false:37",
+              "result": "uploadedIcon"
+            },
+            {
+              "receiver": "api0",
+              "kind": "plugin",
+              "hash": "hash0",
+              "argument": "payload0",
+              "continuation": "self",
+              "state": "2:null:null:null:null:null:owner0:false:37",
+              "result": "unit"
+            }
+          ],
+          "otherApi": [],
+          "userReads": 1,
+          "otherUserReads": 0,
+          "idReads": 1,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "return:unit:2:null:null:null:null:null:owner0:false:37"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "drawable.bitmap:drawable0",
+            "bitmap.compress:bitmap0:PNG:100:java.io.ByteArrayOutputStream#42",
+            "media.parse:image/*",
+            "request.create:requestCompanion0:media0:[B#43:0:12",
+            "multipart.create:icon:request0",
+            "upload.icon:api0:part0:self",
+            "user.current:users0",
+            "user.id:user0",
+            "payload.new:payload0:uploadBody:[Ljava.lang.Object;#45",
+            "upload.plugin:api0:hash0:payload0:self",
+            "payload.new:payload1:uploaded:name0",
+            "publish:sink1:payload1"
+          ],
+          "boundaryStates": [
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37"
+          ],
+          "boundaryCalls": 13,
+          "publicationAttempts": [
+            {
+              "receiver": "sink1",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink1",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publishedKinds": [
+            "uploaded"
+          ],
+          "publicationReceivers": [
+            "sink1"
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploadBody",
+              "arguments": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ],
+              "stored": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ]
+            },
+            {
+              "identity": "payload1",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [
+            [
+              "123",
+              "name0",
+              "developer0",
+              "description0",
+              "package0",
+              "download0",
+              "uploadedIcon",
+              "website0",
+              "en"
+            ]
+          ],
+          "payloadCount": 1,
+          "compressions": [
+            {
+              "bitmap": "bitmap0",
+              "format": "PNG",
+              "quality": 100,
+              "stream": "java.io.ByteArrayOutputStream#42",
+              "completed": true,
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ]
+            }
+          ],
+          "requests": [
+            {
+              "companion": "requestCompanion0",
+              "mediaType": "media0",
+              "bytesIdentity": "[B#43",
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ],
+              "offset": 0,
+              "mask": 12,
+              "completed": true
+            }
+          ],
+          "requestMediaTypes": [
+            "media0"
+          ],
+          "requestCompanions": [
+            "requestCompanion0"
+          ],
+          "parts": [
+            {
+              "name": "icon",
+              "body": "request0",
+              "completed": true
+            }
+          ],
+          "parseInputs": [
+            "image/*"
+          ],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "label": 2,
+          "saved": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "owner": "owner0",
+          "snapshot": "2:null:null:null:null:null:owner0:false:37",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 1,
+          "uploadCalls": 1,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "kind": "icon",
+              "argument": "part0",
+              "continuation": "self",
+              "state": "1:null:null:null:null:null:owner0:false:37",
+              "result": "uploadedIcon"
+            },
+            {
+              "receiver": "api0",
+              "kind": "plugin",
+              "hash": "hash0",
+              "argument": "payload0",
+              "continuation": "self",
+              "state": "2:null:null:null:null:null:owner0:false:37",
+              "result": "unit"
+            }
+          ],
+          "otherApi": [],
+          "userReads": 1,
+          "otherUserReads": 0,
+          "idReads": 1,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "return:unit:2:null:null:null:null:null:owner0:false:37"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "drawable.bitmap:drawable0",
+            "bitmap.compress:bitmap0:PNG:100:java.io.ByteArrayOutputStream#42",
+            "media.parse:image/*",
+            "request.create:requestCompanion0:media0:[B#43:0:12",
+            "multipart.create:icon:request0",
+            "upload.icon:api0:part0:self",
+            "user.current:users0",
+            "user.id:user0",
+            "payload.new:payload0:uploadBody:[Ljava.lang.Object;#45",
+            "upload.plugin:api0:hash0:payload0:self",
+            "payload.new:payload1:uploaded:name0",
+            "publish:sink0:payload1"
+          ],
+          "boundaryStates": [
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37"
+          ],
+          "boundaryCalls": 13,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publishedKinds": [
+            "uploaded"
+          ],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploadBody",
+              "arguments": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ],
+              "stored": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ]
+            },
+            {
+              "identity": "payload1",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [
+            [
+              "123",
+              "name0",
+              "developer0",
+              "description0",
+              "package0",
+              "download0",
+              "uploadedIcon",
+              "website0",
+              "en"
+            ]
+          ],
+          "payloadCount": 1,
+          "compressions": [
+            {
+              "bitmap": "bitmap0",
+              "format": "PNG",
+              "quality": 100,
+              "stream": "java.io.ByteArrayOutputStream#42",
+              "completed": true,
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ]
+            }
+          ],
+          "requests": [
+            {
+              "companion": "requestCompanion0",
+              "mediaType": "media0",
+              "bytesIdentity": "[B#43",
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ],
+              "offset": 0,
+              "mask": 12,
+              "completed": true
+            }
+          ],
+          "requestMediaTypes": [
+            "media0"
+          ],
+          "requestCompanions": [
+            "requestCompanion0"
+          ],
+          "parts": [
+            {
+              "name": "icon",
+              "body": "request0",
+              "completed": true
+            }
+          ],
+          "parseInputs": [
+            "image/*"
+          ],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "label": 2,
+          "saved": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "owner": "owner0",
+          "snapshot": "2:null:null:null:null:null:owner0:false:37",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 1,
+          "uploadCalls": 1,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "kind": "icon",
+              "argument": "part0",
+              "continuation": "self",
+              "state": "1:null:null:null:null:null:owner0:false:37",
+              "result": "uploadedIcon"
+            },
+            {
+              "receiver": "api0",
+              "kind": "plugin",
+              "hash": "hash0",
+              "argument": "payload0",
+              "continuation": "self",
+              "state": "2:null:null:null:null:null:owner0:false:37",
+              "result": "unit"
+            }
+          ],
+          "otherApi": [],
+          "userReads": 1,
+          "otherUserReads": 0,
+          "idReads": 1,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "return:unit:2:null:null:null:null:null:owner0:false:37"
+          ],
+          "http": []
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/k;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "upload-mutate:1:5:0",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:uploadedIcon",
+            "user.current:users0",
+            "user.id:user0",
+            "payload.new:payload0:uploadBody:[Ljava.lang.Object;#40",
+            "upload.plugin:api0:hash0:payload0:self",
+            "payload.new:payload1:uploaded:name0",
+            "publish:sink0:payload1"
+          ],
+          "boundaryStates": [
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner1:false:-9"
+          ],
+          "boundaryCalls": 7,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publishedKinds": [
+            "uploaded"
+          ],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploadBody",
+              "arguments": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ],
+              "stored": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ]
+            },
+            {
+              "identity": "payload1",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [
+            [
+              "123",
+              "name0",
+              "developer0",
+              "description0",
+              "package0",
+              "download0",
+              "uploadedIcon",
+              "website0",
+              "en"
+            ]
+          ],
+          "payloadCount": 1,
+          "compressions": [],
+          "requests": [],
+          "requestMediaTypes": [],
+          "requestCompanions": [],
+          "parts": [],
+          "parseInputs": [],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "label": 2,
+          "saved": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "owner": "owner1",
+          "snapshot": "2:null:null:null:null:null:owner1:false:-9",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 0,
+          "uploadCalls": 1,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "kind": "plugin",
+              "hash": "hash0",
+              "argument": "payload0",
+              "continuation": "self",
+              "state": "2:null:null:null:null:null:owner0:false:37",
+              "result": "unit"
+            }
+          ],
+          "otherApi": [],
+          "userReads": 1,
+          "otherUserReads": 0,
+          "idReads": 1,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "return:unit:2:null:null:null:null:null:owner1:false:-9"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:uploadedIcon",
+            "user.current:users0",
+            "user.id:user0",
+            "payload.new:payload0:uploadBody:[Ljava.lang.Object;#40",
+            "upload.plugin:api0:hash0:payload0:self",
+            "payload.new:payload1:uploaded:name0",
+            "publish:sink1:payload1"
+          ],
+          "boundaryStates": [
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner1:false:-9"
+          ],
+          "boundaryCalls": 7,
+          "publicationAttempts": [
+            {
+              "receiver": "sink1",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink1",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publishedKinds": [
+            "uploaded"
+          ],
+          "publicationReceivers": [
+            "sink1"
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploadBody",
+              "arguments": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ],
+              "stored": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ]
+            },
+            {
+              "identity": "payload1",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [
+            [
+              "123",
+              "name0",
+              "developer0",
+              "description0",
+              "package0",
+              "download0",
+              "uploadedIcon",
+              "website0",
+              "en"
+            ]
+          ],
+          "payloadCount": 1,
+          "compressions": [],
+          "requests": [],
+          "requestMediaTypes": [],
+          "requestCompanions": [],
+          "parts": [],
+          "parseInputs": [],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "label": 2,
+          "saved": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "owner": "owner1",
+          "snapshot": "2:null:null:null:null:null:owner1:false:-9",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 0,
+          "uploadCalls": 1,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "kind": "plugin",
+              "hash": "hash0",
+              "argument": "payload0",
+              "continuation": "self",
+              "state": "2:null:null:null:null:null:owner0:false:37",
+              "result": "unit"
+            }
+          ],
+          "otherApi": [],
+          "userReads": 1,
+          "otherUserReads": 0,
+          "idReads": 1,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "return:unit:2:null:null:null:null:null:owner1:false:-9"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:uploadedIcon",
+            "user.current:users0",
+            "user.id:user0",
+            "payload.new:payload0:uploadBody:[Ljava.lang.Object;#40",
+            "upload.plugin:api0:hash0:payload0:self",
+            "payload.new:payload1:uploaded:name0",
+            "publish:sink0:payload1"
+          ],
+          "boundaryStates": [
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner1:false:-9"
+          ],
+          "boundaryCalls": 7,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publishedKinds": [
+            "uploaded"
+          ],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploadBody",
+              "arguments": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ],
+              "stored": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ]
+            },
+            {
+              "identity": "payload1",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [
+            [
+              "123",
+              "name0",
+              "developer0",
+              "description0",
+              "package0",
+              "download0",
+              "uploadedIcon",
+              "website0",
+              "en"
+            ]
+          ],
+          "payloadCount": 1,
+          "compressions": [],
+          "requests": [],
+          "requestMediaTypes": [],
+          "requestCompanions": [],
+          "parts": [],
+          "parseInputs": [],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "label": 2,
+          "saved": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "owner": "owner1",
+          "snapshot": "2:null:null:null:null:null:owner1:false:-9",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 0,
+          "uploadCalls": 1,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "kind": "plugin",
+              "hash": "hash0",
+              "argument": "payload0",
+              "continuation": "self",
+              "state": "2:null:null:null:null:null:owner0:false:37",
+              "result": "unit"
+            }
+          ],
+          "otherApi": [],
+          "userReads": 1,
+          "otherUserReads": 0,
+          "idReads": 1,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "return:unit:2:null:null:null:null:null:owner1:false:-9"
+          ],
+          "http": []
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/k;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "upload-mutate:1:5:21",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:uploadedIcon",
+            "user.current:users0",
+            "user.id:user0",
+            "payload.new:payload0:uploadBody:[Ljava.lang.Object;#40",
+            "upload.plugin:api0:hash0:payload0:self",
+            "payload.new:payload1:uploaded:name0",
+            "publish:sink0:payload1"
+          ],
+          "boundaryStates": [
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37"
+          ],
+          "boundaryCalls": 7,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publishedKinds": [
+            "uploaded"
+          ],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploadBody",
+              "arguments": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ],
+              "stored": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ]
+            },
+            {
+              "identity": "payload1",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [
+            [
+              "123",
+              "name0",
+              "developer0",
+              "description0",
+              "package0",
+              "download0",
+              "uploadedIcon",
+              "website0",
+              "en"
+            ]
+          ],
+          "payloadCount": 1,
+          "compressions": [],
+          "requests": [],
+          "requestMediaTypes": [],
+          "requestCompanions": [],
+          "parts": [],
+          "parseInputs": [],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "label": 2,
+          "saved": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "owner": "owner0",
+          "snapshot": "2:null:null:null:null:null:owner0:false:37",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 0,
+          "uploadCalls": 1,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "kind": "plugin",
+              "hash": "hash0",
+              "argument": "payload0",
+              "continuation": "self",
+              "state": "2:null:null:null:null:null:owner0:false:37",
+              "result": "unit"
+            }
+          ],
+          "otherApi": [],
+          "userReads": 1,
+          "otherUserReads": 0,
+          "idReads": 1,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "return:unit:2:null:null:null:null:null:owner0:false:37"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:uploadedIcon",
+            "user.current:users0",
+            "user.id:user0",
+            "payload.new:payload0:uploadBody:[Ljava.lang.Object;#40",
+            "upload.plugin:api0:hash0:payload0:self",
+            "payload.new:payload1:uploaded:name0",
+            "publish:sink1:payload1"
+          ],
+          "boundaryStates": [
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37"
+          ],
+          "boundaryCalls": 7,
+          "publicationAttempts": [
+            {
+              "receiver": "sink1",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink1",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publishedKinds": [
+            "uploaded"
+          ],
+          "publicationReceivers": [
+            "sink1"
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploadBody",
+              "arguments": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ],
+              "stored": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ]
+            },
+            {
+              "identity": "payload1",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [
+            [
+              "123",
+              "name0",
+              "developer0",
+              "description0",
+              "package0",
+              "download0",
+              "uploadedIcon",
+              "website0",
+              "en"
+            ]
+          ],
+          "payloadCount": 1,
+          "compressions": [],
+          "requests": [],
+          "requestMediaTypes": [],
+          "requestCompanions": [],
+          "parts": [],
+          "parseInputs": [],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "label": 2,
+          "saved": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "owner": "owner0",
+          "snapshot": "2:null:null:null:null:null:owner0:false:37",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 0,
+          "uploadCalls": 1,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "kind": "plugin",
+              "hash": "hash0",
+              "argument": "payload0",
+              "continuation": "self",
+              "state": "2:null:null:null:null:null:owner0:false:37",
+              "result": "unit"
+            }
+          ],
+          "otherApi": [],
+          "userReads": 1,
+          "otherUserReads": 0,
+          "idReads": 1,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "return:unit:2:null:null:null:null:null:owner0:false:37"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:uploadedIcon",
+            "user.current:users0",
+            "user.id:user0",
+            "payload.new:payload0:uploadBody:[Ljava.lang.Object;#40",
+            "upload.plugin:api0:hash0:payload0:self",
+            "payload.new:payload1:uploaded:name0",
+            "publish:sink0:payload1"
+          ],
+          "boundaryStates": [
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "1:bitmap0:savedStream:savedBytes:request0:part0:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37"
+          ],
+          "boundaryCalls": 7,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publishedKinds": [
+            "uploaded"
+          ],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploadBody",
+              "arguments": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ],
+              "stored": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ]
+            },
+            {
+              "identity": "payload1",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [
+            [
+              "123",
+              "name0",
+              "developer0",
+              "description0",
+              "package0",
+              "download0",
+              "uploadedIcon",
+              "website0",
+              "en"
+            ]
+          ],
+          "payloadCount": 1,
+          "compressions": [],
+          "requests": [],
+          "requestMediaTypes": [],
+          "requestCompanions": [],
+          "parts": [],
+          "parseInputs": [],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "label": 2,
+          "saved": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "owner": "owner0",
+          "snapshot": "2:null:null:null:null:null:owner0:false:37",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 0,
+          "uploadCalls": 1,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "kind": "plugin",
+              "hash": "hash0",
+              "argument": "payload0",
+              "continuation": "self",
+              "state": "2:null:null:null:null:null:owner0:false:37",
+              "result": "unit"
+            }
+          ],
+          "otherApi": [],
+          "userReads": 1,
+          "otherUserReads": 0,
+          "idReads": 1,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "return:unit:2:null:null:null:null:null:owner0:false:37"
+          ],
+          "http": []
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/k;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "upload-null-boundary:2:0",
+      "original": {
+        "exception": "java.lang.NullPointerException",
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit"
+          ],
+          "boundaryStates": [
+            "2:storedIcon:savedBody:null:null:null:null:null"
+          ],
+          "boundaryCalls": 1,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "publicationReceivers": [],
+          "created": [],
+          "payloads": [],
+          "payloadCount": 0,
+          "compressions": [],
+          "requests": [],
+          "requestMediaTypes": [],
+          "requestCompanions": [],
+          "parts": [],
+          "parseInputs": [],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "escapedInjectedIdentity": false,
+          "escapedExternalIdentity": false,
+          "label": 2,
+          "saved": [
+            "storedIcon",
+            "savedBody",
+            null,
+            null,
+            null
+          ],
+          "snapshot": "2:storedIcon:savedBody:null:null:null:null:null",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 0,
+          "uploadCalls": 0,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "userReads": 0,
+          "otherUserReads": 0,
+          "idReads": 0,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "throw:java.lang.NullPointerException:2:storedIcon:savedBody:null:null:null:null:null"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "exception": "java.lang.NullPointerException",
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "payload.new:payload0:uploaded:name0"
+          ],
+          "boundaryStates": [
+            "2:storedIcon:savedBody:null:null:null:null:null",
+            "2:storedIcon:savedBody:null:null:null:null:null"
+          ],
+          "boundaryCalls": 2,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "publicationReceivers": [],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [],
+          "payloadCount": 0,
+          "compressions": [],
+          "requests": [],
+          "requestMediaTypes": [],
+          "requestCompanions": [],
+          "parts": [],
+          "parseInputs": [],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "escapedInjectedIdentity": false,
+          "escapedExternalIdentity": false,
+          "label": 2,
+          "saved": [
+            "storedIcon",
+            "savedBody",
+            null,
+            null,
+            null
+          ],
+          "snapshot": "2:storedIcon:savedBody:null:null:null:null:null",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 0,
+          "uploadCalls": 0,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "userReads": 0,
+          "otherUserReads": 0,
+          "idReads": 0,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "throw:java.lang.NullPointerException:2:storedIcon:savedBody:null:null:null:null:null"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "exception": "java.lang.NullPointerException",
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit"
+          ],
+          "boundaryStates": [
+            "2:storedIcon:savedBody:null:null:null:null:null"
+          ],
+          "boundaryCalls": 1,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "publicationReceivers": [],
+          "created": [],
+          "payloads": [],
+          "payloadCount": 0,
+          "compressions": [],
+          "requests": [],
+          "requestMediaTypes": [],
+          "requestCompanions": [],
+          "parts": [],
+          "parseInputs": [],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "escapedInjectedIdentity": false,
+          "escapedExternalIdentity": false,
+          "label": 2,
+          "saved": [
+            "storedIcon",
+            "savedBody",
+            null,
+            null,
+            null
+          ],
+          "snapshot": "2:storedIcon:savedBody:null:null:null:null:null",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 0,
+          "uploadCalls": 0,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "userReads": 0,
+          "otherUserReads": 0,
+          "idReads": 0,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "throw:java.lang.NullPointerException:2:storedIcon:savedBody:null:null:null:null:null"
+          ],
+          "http": []
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/k;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "upload-success-sink-captured-before-payload",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "drawable.bitmap:drawable0",
+            "bitmap.compress:bitmap0:PNG:100:java.io.ByteArrayOutputStream#42",
+            "media.parse:image/*",
+            "request.create:requestCompanion0:media0:[B#43:0:12",
+            "multipart.create:icon:request0",
+            "upload.icon:api0:part0:self",
+            "user.current:users0",
+            "user.id:user0",
+            "payload.new:payload0:uploadBody:[Ljava.lang.Object;#45",
+            "upload.plugin:api0:hash0:payload0:self",
+            "payload.new:payload1:uploaded:name0",
+            "publish:sink0:payload1"
+          ],
+          "boundaryStates": [
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37"
+          ],
+          "boundaryCalls": 13,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publishedKinds": [
+            "uploaded"
+          ],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploadBody",
+              "arguments": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ],
+              "stored": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ]
+            },
+            {
+              "identity": "payload1",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [
+            [
+              "123",
+              "name0",
+              "developer0",
+              "description0",
+              "package0",
+              "download0",
+              "uploadedIcon",
+              "website0",
+              "en"
+            ]
+          ],
+          "payloadCount": 1,
+          "compressions": [
+            {
+              "bitmap": "bitmap0",
+              "format": "PNG",
+              "quality": 100,
+              "stream": "java.io.ByteArrayOutputStream#42",
+              "completed": true,
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ]
+            }
+          ],
+          "requests": [
+            {
+              "companion": "requestCompanion0",
+              "mediaType": "media0",
+              "bytesIdentity": "[B#43",
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ],
+              "offset": 0,
+              "mask": 12,
+              "completed": true
+            }
+          ],
+          "requestMediaTypes": [
+            "media0"
+          ],
+          "requestCompanions": [
+            "requestCompanion0"
+          ],
+          "parts": [
+            {
+              "name": "icon",
+              "body": "request0",
+              "completed": true
+            }
+          ],
+          "parseInputs": [
+            "image/*"
+          ],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "label": 2,
+          "saved": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "owner": "owner0",
+          "snapshot": "2:null:null:null:null:null:owner0:false:37",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 1,
+          "uploadCalls": 1,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "kind": "icon",
+              "argument": "part0",
+              "continuation": "self",
+              "state": "1:null:null:null:null:null:owner0:false:37",
+              "result": "uploadedIcon"
+            },
+            {
+              "receiver": "api0",
+              "kind": "plugin",
+              "hash": "hash0",
+              "argument": "payload0",
+              "continuation": "self",
+              "state": "2:null:null:null:null:null:owner0:false:37",
+              "result": "unit"
+            }
+          ],
+          "otherApi": [],
+          "userReads": 1,
+          "otherUserReads": 0,
+          "idReads": 1,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "return:unit:2:null:null:null:null:null:owner0:false:37"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "drawable.bitmap:drawable0",
+            "bitmap.compress:bitmap0:PNG:100:java.io.ByteArrayOutputStream#42",
+            "media.parse:image/*",
+            "request.create:requestCompanion0:media0:[B#43:0:12",
+            "multipart.create:icon:request0",
+            "upload.icon:api0:part0:self",
+            "user.current:users0",
+            "user.id:user0",
+            "payload.new:payload0:uploadBody:[Ljava.lang.Object;#45",
+            "upload.plugin:api0:hash0:payload0:self",
+            "payload.new:payload1:uploaded:name0",
+            "publish:sink1:payload1"
+          ],
+          "boundaryStates": [
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37"
+          ],
+          "boundaryCalls": 13,
+          "publicationAttempts": [
+            {
+              "receiver": "sink1",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink1",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publishedKinds": [
+            "uploaded"
+          ],
+          "publicationReceivers": [
+            "sink1"
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploadBody",
+              "arguments": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ],
+              "stored": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ]
+            },
+            {
+              "identity": "payload1",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [
+            [
+              "123",
+              "name0",
+              "developer0",
+              "description0",
+              "package0",
+              "download0",
+              "uploadedIcon",
+              "website0",
+              "en"
+            ]
+          ],
+          "payloadCount": 1,
+          "compressions": [
+            {
+              "bitmap": "bitmap0",
+              "format": "PNG",
+              "quality": 100,
+              "stream": "java.io.ByteArrayOutputStream#42",
+              "completed": true,
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ]
+            }
+          ],
+          "requests": [
+            {
+              "companion": "requestCompanion0",
+              "mediaType": "media0",
+              "bytesIdentity": "[B#43",
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ],
+              "offset": 0,
+              "mask": 12,
+              "completed": true
+            }
+          ],
+          "requestMediaTypes": [
+            "media0"
+          ],
+          "requestCompanions": [
+            "requestCompanion0"
+          ],
+          "parts": [
+            {
+              "name": "icon",
+              "body": "request0",
+              "completed": true
+            }
+          ],
+          "parseInputs": [
+            "image/*"
+          ],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "label": 2,
+          "saved": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "owner": "owner0",
+          "snapshot": "2:null:null:null:null:null:owner0:false:37",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 1,
+          "uploadCalls": 1,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "kind": "icon",
+              "argument": "part0",
+              "continuation": "self",
+              "state": "1:null:null:null:null:null:owner0:false:37",
+              "result": "uploadedIcon"
+            },
+            {
+              "receiver": "api0",
+              "kind": "plugin",
+              "hash": "hash0",
+              "argument": "payload0",
+              "continuation": "self",
+              "state": "2:null:null:null:null:null:owner0:false:37",
+              "result": "unit"
+            }
+          ],
+          "otherApi": [],
+          "userReads": 1,
+          "otherUserReads": 0,
+          "idReads": 1,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "return:unit:2:null:null:null:null:null:owner0:false:37"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "uploadState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "drawable.bitmap:drawable0",
+            "bitmap.compress:bitmap0:PNG:100:java.io.ByteArrayOutputStream#42",
+            "media.parse:image/*",
+            "request.create:requestCompanion0:media0:[B#43:0:12",
+            "multipart.create:icon:request0",
+            "upload.icon:api0:part0:self",
+            "user.current:users0",
+            "user.id:user0",
+            "payload.new:payload0:uploadBody:[Ljava.lang.Object;#45",
+            "upload.plugin:api0:hash0:payload0:self",
+            "payload.new:payload1:uploaded:name0",
+            "publish:sink0:payload1"
+          ],
+          "boundaryStates": [
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "0:saved0:saved1:saved2:saved3:saved4:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "1:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37",
+            "2:null:null:null:null:null:owner0:false:37"
+          ],
+          "boundaryCalls": 13,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "payload1",
+              "kind": "uploaded"
+            }
+          ],
+          "publishedKinds": [
+            "uploaded"
+          ],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "uploadBody",
+              "arguments": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ],
+              "stored": [
+                "123",
+                "name0",
+                "developer0",
+                "description0",
+                "package0",
+                "download0",
+                "uploadedIcon",
+                "website0",
+                "en"
+              ]
+            },
+            {
+              "identity": "payload1",
+              "kind": "uploaded",
+              "argument": "name0",
+              "stored": "name0"
+            }
+          ],
+          "payloads": [
+            [
+              "123",
+              "name0",
+              "developer0",
+              "description0",
+              "package0",
+              "download0",
+              "uploadedIcon",
+              "website0",
+              "en"
+            ]
+          ],
+          "payloadCount": 1,
+          "compressions": [
+            {
+              "bitmap": "bitmap0",
+              "format": "PNG",
+              "quality": 100,
+              "stream": "java.io.ByteArrayOutputStream#42",
+              "completed": true,
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ]
+            }
+          ],
+          "requests": [
+            {
+              "companion": "requestCompanion0",
+              "mediaType": "media0",
+              "bytesIdentity": "[B#43",
+              "bytes": [
+                0,
+                1,
+                -1,
+                127
+              ],
+              "offset": 0,
+              "mask": 12,
+              "completed": true
+            }
+          ],
+          "requestMediaTypes": [
+            "media0"
+          ],
+          "requestCompanions": [
+            "requestCompanion0"
+          ],
+          "parts": [
+            {
+              "name": "icon",
+              "body": "request0",
+              "completed": true
+            }
+          ],
+          "parseInputs": [
+            "image/*"
+          ],
+          "logAttempts": 0,
+          "logCompletions": 0,
+          "label": 2,
+          "saved": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "owner": "owner0",
+          "snapshot": "2:null:null:null:null:null:owner0:false:37",
+          "denied": false,
+          "otherDenied": false,
+          "attempts": 37,
+          "otherAttempts": -9,
+          "iconCalls": 1,
+          "uploadCalls": 1,
+          "otherIconCalls": 0,
+          "otherUploadCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "kind": "icon",
+              "argument": "part0",
+              "continuation": "self",
+              "state": "1:null:null:null:null:null:owner0:false:37",
+              "result": "uploadedIcon"
+            },
+            {
+              "receiver": "api0",
+              "kind": "plugin",
+              "hash": "hash0",
+              "argument": "payload0",
+              "continuation": "self",
+              "state": "2:null:null:null:null:null:owner0:false:37",
+              "result": "unit"
+            }
+          ],
+          "otherApi": [],
+          "userReads": 1,
+          "otherUserReads": 0,
+          "idReads": 1,
+          "otherIdReads": 0,
+          "userId": 123,
+          "otherUserId": -456,
+          "fields": [
+            "name0",
+            "developer0",
+            "description0",
+            "package0",
+            "download0",
+            "storedIcon",
+            "website0",
+            "hash0"
+          ],
+          "steps": [
+            "return:unit:2:null:null:null:null:null:owner0:false:37"
+          ],
+          "http": []
+        }
+      },
+      "expectedObservation": {
+        "uploadState": {
+          "returned": "unit",
+          "publicationReceivers": [
+            "sink0"
+          ]
+        }
+      }
+    }
+  ],
+  "failedCaseLabels": [
+    "upload-mutate:0:11:0",
+    "upload-mutate:0:11:21",
+    "upload-mutate:1:5:0",
+    "upload-mutate:1:5:21",
+    "upload-null-boundary:2:0",
+    "upload-success-sink-captured-before-payload"
+  ],
+  "instructionCoverage": {
+    "Lcom/arlosoft/macrodroid/action/BlockTouchesAction;-\u003einvokeAction(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)V": {
+      "instructions": 162,
+      "visited": 162,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 30,
+      "conditionalEdgesVisited": 30,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/action/CustomSceneAction;-\u003eW(ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V": {
+      "instructions": 405,
+      "visited": 405,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 40,
+      "conditionalEdgesVisited": 40,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/action/PlaySoundAction;-\u003eZ(Ljava/lang/String;)Z": {
+      "instructions": 39,
+      "visited": 39,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 10,
+      "conditionalEdgesVisited": 10,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/plugins/j;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": {
+      "instructions": 198,
+      "visited": 198,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 34,
+      "conditionalEdgesVisited": 34,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/plugins/k;-\u003einvokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": {
+      "instructions": 163,
+      "visited": 163,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 26,
+      "conditionalEdgesVisited": 26,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig$a;-\u003ecreateFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;": {
+      "instructions": 150,
+      "visited": 150,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 16,
+      "conditionalEdgesVisited": 16,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig;-\u003ewriteToParcel(Landroid/os/Parcel;I)V": {
+      "instructions": 50,
+      "visited": 50,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 0,
+      "conditionalEdgesVisited": 0,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/triggers/IncomingSMSTrigger;-\u003eisValid()Z": {
+      "instructions": 80,
+      "visited": 80,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 20,
+      "conditionalEdgesVisited": 20,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;-\u003eonTouchEvent(Landroid/view/MotionEvent;)Z": {
+      "instructions": 82,
+      "visited": 82,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 26,
+      "conditionalEdgesVisited": 26,
+      "unvisitedConditionalEdges": []
+    }
+  },
+  "blockTouchesInstructionAndConditionalCoverage": true,
+  "customSceneInstructionAndConditionalCoverage": true,
+  "customSceneDefensiveNullThrowsUseInjectedReturningLateinitBoundary": true,
+  "pluginLookupInstructionAndConditionalCoverage": true,
+  "pluginInvalidLabelReturnUsesInjectedReturningBoundary": true,
+  "pluginUploadInstructionAndConditionalCoverage": true,
+  "pluginUploadInvalidLabelReturnUsesInjectedReturningBoundary": true
+}

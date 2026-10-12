@@ -1,0 +1,4156 @@
+{
+  "passed": false,
+  "cases": 20832,
+  "failedCases": 16,
+  "unsupportedExecutions": 0,
+  "independentExpectedResultChecks": 15128,
+  "expectedResultFailures": 0,
+  "methodsCovered": 9,
+  "methodKeys": [
+    "Lcom/arlosoft/macrodroid/action/BlockTouchesAction;->invokeAction(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)V",
+    "Lcom/arlosoft/macrodroid/action/CustomSceneAction;->W(ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V",
+    "Lcom/arlosoft/macrodroid/action/PlaySoundAction;->Z(Ljava/lang/String;)Z",
+    "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+    "Lcom/arlosoft/macrodroid/plugins/k;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig$a;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;",
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig;->writeToParcel(Landroid/os/Parcel;I)V",
+    "Lcom/arlosoft/macrodroid/triggers/IncomingSMSTrigger;->isValid()Z",
+    "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z"
+  ],
+  "paths": 3,
+  "androidRuntime": false,
+  "methods": {
+    "Lcom/arlosoft/macrodroid/action/BlockTouchesAction;->invokeAction(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)V": 2420,
+    "Lcom/arlosoft/macrodroid/action/CustomSceneAction;->W(ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V": 4070,
+    "Lcom/arlosoft/macrodroid/action/PlaySoundAction;->Z(Ljava/lang/String;)Z": 1271,
+    "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": 3053,
+    "Lcom/arlosoft/macrodroid/plugins/k;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": 2356,
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig$a;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;": 945,
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig;->writeToParcel(Landroid/os/Parcel;I)V": 3158,
+    "Lcom/arlosoft/macrodroid/triggers/IncomingSMSTrigger;->isValid()Z": 2065,
+    "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z": 1494
+  },
+  "failures": [
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-gate:false:false:5:0",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self",
+            "bundle.new:bundle0",
+            "bundle.putInt:bundle0:key_index:0",
+            "analytics:analytics0:bundle0:app_brain_api_call_made",
+            "keys.get:keys0:0",
+            "api.get:api0:key0:package0:self",
+            "payload.new:payload0:found:info0",
+            "publish:sink0:payload0"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5",
+            "1:23:-17:owner0:6",
+            "1:23:-17:owner0:6",
+            "1:23:-17:owner0:6",
+            "1:23:-17:owner0:6",
+            "2:0:0:owner0:6",
+            "2:0:0:owner0:6",
+            "2:0:0:owner0:6"
+          ],
+          "boundaryCalls": 10,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "payload0",
+              "kind": "found"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "payload0",
+              "kind": "found"
+            }
+          ],
+          "publishedKinds": [
+            "found"
+          ],
+          "analyticsAttempts": [
+            {
+              "receiver": "analytics0",
+              "bundle": "bundle0",
+              "event": "app_brain_api_call_made",
+              "values": {
+                "key_index": 0
+              }
+            }
+          ],
+          "analytics": [
+            {
+              "receiver": "analytics0",
+              "bundle": "bundle0",
+              "event": "app_brain_api_call_made",
+              "values": {
+                "key_index": 0
+              }
+            }
+          ],
+          "analyticsEvents": [
+            "app_brain_api_call_made"
+          ],
+          "bundles": [
+            {
+              "identity": "bundle0",
+              "values": {
+                "key_index": 0
+              }
+            }
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "found",
+              "argument": "info0",
+              "storedValue": "info0"
+            }
+          ],
+          "label": 2,
+          "I0": 0,
+          "I1": 0,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 0,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 1,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 1,
+          "otherApiCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "key": "key0",
+              "keyText": "synthetic-key-0",
+              "package": "package0",
+              "packageText": "app.example.\u03a9",
+              "continuation": "self",
+              "continuationState": "2:0:0",
+              "result": "info0"
+            }
+          ],
+          "otherApi": [],
+          "apiKeys": [
+            "key0"
+          ],
+          "apiPackages": [
+            "package0"
+          ],
+          "apiContinuationStates": [
+            "2:0:0"
+          ],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:2:0:0:owner0:0"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "expectedObservation": {
+        "pluginState": {
+          "resultKind": "return",
+          "attempts": 5,
+          "label": 0,
+          "prechecks": 0,
+          "apiCalls": 0,
+          "containsCalls": 1,
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "returned": "unit"
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-gate:false:false:5:1",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 1,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "return:unit:1:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "expectedObservation": {
+        "pluginState": {
+          "resultKind": "return",
+          "attempts": 5,
+          "label": 0,
+          "prechecks": 0,
+          "apiCalls": 0,
+          "containsCalls": 1,
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "returned": "unit"
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-gate:false:false:5:2",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "value": "COROUTINE_SUSPENDED",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "suspended",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": true,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 1,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "return:suspended:1:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "expectedObservation": {
+        "pluginState": {
+          "resultKind": "return",
+          "attempts": 5,
+          "label": 0,
+          "prechecks": 0,
+          "apiCalls": 0,
+          "containsCalls": 1,
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "returned": "unit"
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-gate:false:false:5:3",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "exception": "java.lang.NullPointerException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": false,
+          "escapedExternalIdentity": false,
+          "label": 1,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.NullPointerException:1:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "expectedObservation": {
+        "pluginState": {
+          "resultKind": "return",
+          "attempts": 5,
+          "label": 0,
+          "prechecks": 0,
+          "apiCalls": 0,
+          "containsCalls": 1,
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "returned": "unit"
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-gate:false:false:5:4",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "exception": "java.lang.ClassCastException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": false,
+          "escapedExternalIdentity": false,
+          "label": 1,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.ClassCastException:1:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "expectedObservation": {
+        "pluginState": {
+          "resultKind": "return",
+          "attempts": 5,
+          "label": 0,
+          "prechecks": 0,
+          "apiCalls": 0,
+          "containsCalls": 1,
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "returned": "unit"
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-gate:false:false:5:5",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "exception": "java.io.IOException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": false,
+          "escapedExternalIdentity": true,
+          "escaped": "error0",
+          "exceptionMessage": "scripted precheck checked exception",
+          "label": 1,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.io.IOException:1:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "expectedObservation": {
+        "pluginState": {
+          "resultKind": "return",
+          "attempts": 5,
+          "label": 0,
+          "prechecks": 0,
+          "apiCalls": 0,
+          "containsCalls": 1,
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "returned": "unit"
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-gate:false:false:5:6",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "exception": "java.lang.AssertionError",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": false,
+          "escapedExternalIdentity": true,
+          "escaped": "error0",
+          "exceptionMessage": "scripted precheck Error",
+          "label": 1,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.AssertionError:1:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "expectedObservation": {
+        "pluginState": {
+          "resultKind": "return",
+          "attempts": 5,
+          "label": 0,
+          "prechecks": 0,
+          "apiCalls": 0,
+          "containsCalls": 1,
+          "publishedKinds": [
+            "attemptLimit"
+          ],
+          "returned": "unit"
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-fault:7:2:0",
+      "original": {
+        "exception": "java.lang.IllegalStateException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected state",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.IllegalStateException:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "exception": "java.lang.IllegalStateException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected state",
+          "label": 1,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.IllegalStateException:1:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "exception": "java.lang.IllegalStateException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected state",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.IllegalStateException:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-fault:7:2:1",
+      "original": {
+        "exception": "java.lang.NullPointerException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected null message",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.NullPointerException:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "exception": "java.lang.NullPointerException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected null message",
+          "label": 1,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.NullPointerException:1:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "exception": "java.lang.NullPointerException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected null message",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.NullPointerException:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-fault:7:2:2",
+      "original": {
+        "exception": "java.lang.ClassCastException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected cast message",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.ClassCastException:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "exception": "java.lang.ClassCastException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected cast message",
+          "label": 1,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.ClassCastException:1:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "exception": "java.lang.ClassCastException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected cast message",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.ClassCastException:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-fault:7:2:3",
+      "original": {
+        "exception": "java.lang.AssertionError",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected Error",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.AssertionError:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "exception": "java.lang.AssertionError",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected Error",
+          "label": 1,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.AssertionError:1:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "exception": "java.lang.AssertionError",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected Error",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.AssertionError:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-fault:7:2:4",
+      "original": {
+        "exception": "java.io.IOException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected checked exception",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.io.IOException:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "exception": "java.io.IOException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected checked exception",
+          "label": 1,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.io.IOException:1:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "exception": "java.io.IOException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected checked exception",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.io.IOException:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-fault:7:2:5",
+      "original": {
+        "exception": "java.lang.SecurityException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected security exception",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.SecurityException:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "exception": "java.lang.SecurityException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected security exception",
+          "label": 1,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.SecurityException:1:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "exception": "java.lang.SecurityException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected security exception",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:java.lang.SecurityException:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-fault:7:2:6",
+      "original": {
+        "exception": "retrofit2.HttpException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected 400",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:retrofit2.HttpException:0:23:-17:owner0:5"
+          ],
+          "http": [],
+          "injectedStatusReads": 0
+        }
+      },
+      "java": {
+        "exception": "retrofit2.HttpException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected 400",
+          "label": 1,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:retrofit2.HttpException:1:23:-17:owner0:5"
+          ],
+          "http": [],
+          "injectedStatusReads": 0
+        }
+      },
+      "rebuilt": {
+        "exception": "retrofit2.HttpException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected 400",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:retrofit2.HttpException:0:23:-17:owner0:5"
+          ],
+          "http": [],
+          "injectedStatusReads": 0
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-fault:7:2:7",
+      "original": {
+        "exception": "retrofit2.HttpException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected 429",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:retrofit2.HttpException:0:23:-17:owner0:5"
+          ],
+          "http": [],
+          "injectedStatusReads": 0
+        }
+      },
+      "java": {
+        "exception": "retrofit2.HttpException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected 429",
+          "label": 1,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:retrofit2.HttpException:1:23:-17:owner0:5"
+          ],
+          "http": [],
+          "injectedStatusReads": 0
+        }
+      },
+      "rebuilt": {
+        "exception": "retrofit2.HttpException",
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "throw",
+          "returnedUnitIdentity": false,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:attemptLimit"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "attemptLimit",
+              "kind": "attemptLimit"
+            }
+          ],
+          "publications": [],
+          "publishedKinds": [],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "escapedInjectedIdentity": true,
+          "escapedExternalIdentity": true,
+          "escaped": "injected",
+          "exceptionMessage": "injected 429",
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [],
+          "steps": [
+            "throw:retrofit2.HttpException:0:23:-17:owner0:5"
+          ],
+          "http": [],
+          "injectedStatusReads": 0
+        }
+      }
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+      "case": "plugin-null-boundary:0:14",
+      "original": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:null"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "kind": "null"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "kind": "null"
+            }
+          ],
+          "publishedKinds": [
+            "null"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      },
+      "java": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "precheck:owner0:package0:self",
+            "bundle.new:bundle0",
+            "bundle.putInt:bundle0:key_index:0",
+            "analytics:analytics0:bundle0:app_brain_api_call_made",
+            "keys.get:keys0:0",
+            "api.get:api0:key0:package0:self",
+            "payload.new:payload0:found:info0",
+            "publish:sink0:payload0"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "1:23:-17:owner0:5",
+            "1:23:-17:owner0:6",
+            "1:23:-17:owner0:6",
+            "1:23:-17:owner0:6",
+            "1:23:-17:owner0:6",
+            "2:0:0:owner0:6",
+            "2:0:0:owner0:6",
+            "2:0:0:owner0:6"
+          ],
+          "boundaryCalls": 10,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "value": "payload0",
+              "kind": "found"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "value": "payload0",
+              "kind": "found"
+            }
+          ],
+          "publishedKinds": [
+            "found"
+          ],
+          "analyticsAttempts": [
+            {
+              "receiver": "analytics0",
+              "bundle": "bundle0",
+              "event": "app_brain_api_call_made",
+              "values": {
+                "key_index": 0
+              }
+            }
+          ],
+          "analytics": [
+            {
+              "receiver": "analytics0",
+              "bundle": "bundle0",
+              "event": "app_brain_api_call_made",
+              "values": {
+                "key_index": 0
+              }
+            }
+          ],
+          "analyticsEvents": [
+            "app_brain_api_call_made"
+          ],
+          "bundles": [
+            {
+              "identity": "bundle0",
+              "values": {
+                "key_index": 0
+              }
+            }
+          ],
+          "created": [
+            {
+              "identity": "payload0",
+              "kind": "found",
+              "argument": "info0",
+              "storedValue": "info0"
+            }
+          ],
+          "label": 2,
+          "I0": 0,
+          "I1": 0,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 0,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 1,
+          "otherPrechecks": 0,
+          "precheckPackage": "package0",
+          "precheckContinuation": "self",
+          "precheckContinuationState": "1:23:-17",
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 1,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 1,
+          "otherApiCalls": 0,
+          "api": [
+            {
+              "receiver": "api0",
+              "key": "key0",
+              "keyText": "synthetic-key-0",
+              "package": "package0",
+              "packageText": "app.example.\u03a9",
+              "continuation": "self",
+              "continuationState": "2:0:0",
+              "result": "info0"
+            }
+          ],
+          "otherApi": [],
+          "apiKeys": [
+            "key0"
+          ],
+          "apiPackages": [
+            "package0"
+          ],
+          "apiContinuationStates": [
+            "2:0:0"
+          ],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:2:0:0:owner0:0"
+          ],
+          "http": []
+        }
+      },
+      "rebuilt": {
+        "value": {},
+        "calls": [],
+        "coreCalls": [],
+        "pluginState": {
+          "resultKind": "return",
+          "returned": "unit",
+          "returnedUnitIdentity": true,
+          "returnedSuspendedIdentity": false,
+          "boundaries": [
+            "coroutine.result:unit",
+            "known.contains:known0:package0",
+            "publish:sink0:null"
+          ],
+          "boundaryStates": [
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5",
+            "0:23:-17:owner0:5"
+          ],
+          "boundaryCalls": 3,
+          "publicationAttempts": [
+            {
+              "receiver": "sink0",
+              "kind": "null"
+            }
+          ],
+          "publications": [
+            {
+              "receiver": "sink0",
+              "kind": "null"
+            }
+          ],
+          "publishedKinds": [
+            "null"
+          ],
+          "analyticsAttempts": [],
+          "analytics": [],
+          "analyticsEvents": [],
+          "bundles": [],
+          "created": [],
+          "label": 0,
+          "I0": 23,
+          "I1": -17,
+          "owner": "owner0",
+          "package": "package0",
+          "attempts": 5,
+          "otherAttempts": 91,
+          "denied": false,
+          "prechecks": 0,
+          "otherPrechecks": 0,
+          "containsCalls": 1,
+          "addCalls": 0,
+          "known": [],
+          "otherKnown": [],
+          "keyReads": 0,
+          "keySizeReads": 0,
+          "otherKeyReads": 0,
+          "otherKeySizeReads": 0,
+          "keys": [
+            "synthetic-key-0",
+            "synthetic-key-1"
+          ],
+          "activeKeys": "keys0",
+          "companion": "companion0",
+          "analyticsReceiver": "analytics0",
+          "apiCalls": 0,
+          "otherApiCalls": 0,
+          "api": [],
+          "otherApi": [],
+          "apiKeys": [],
+          "apiPackages": [],
+          "apiContinuationStates": [],
+          "publicationReceivers": [
+            "sink0"
+          ],
+          "steps": [
+            "return:unit:0:23:-17:owner0:5"
+          ],
+          "http": []
+        }
+      }
+    }
+  ],
+  "failedCaseLabels": [
+    "plugin-fault:7:2:0",
+    "plugin-fault:7:2:1",
+    "plugin-fault:7:2:2",
+    "plugin-fault:7:2:3",
+    "plugin-fault:7:2:4",
+    "plugin-fault:7:2:5",
+    "plugin-fault:7:2:6",
+    "plugin-fault:7:2:7",
+    "plugin-gate:false:false:5:0",
+    "plugin-gate:false:false:5:1",
+    "plugin-gate:false:false:5:2",
+    "plugin-gate:false:false:5:3",
+    "plugin-gate:false:false:5:4",
+    "plugin-gate:false:false:5:5",
+    "plugin-gate:false:false:5:6",
+    "plugin-null-boundary:0:14"
+  ],
+  "instructionCoverage": {
+    "Lcom/arlosoft/macrodroid/action/BlockTouchesAction;->invokeAction(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)V": {
+      "instructions": 162,
+      "visited": 162,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 30,
+      "conditionalEdgesVisited": 30,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/action/CustomSceneAction;->W(ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V": {
+      "instructions": 405,
+      "visited": 405,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 40,
+      "conditionalEdgesVisited": 40,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/action/PlaySoundAction;->Z(Ljava/lang/String;)Z": {
+      "instructions": 39,
+      "visited": 39,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 10,
+      "conditionalEdgesVisited": 10,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": {
+      "instructions": 198,
+      "visited": 198,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 34,
+      "conditionalEdgesVisited": 34,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/plugins/k;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": {
+      "instructions": 163,
+      "visited": 163,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 26,
+      "conditionalEdgesVisited": 26,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig$a;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;": {
+      "instructions": 150,
+      "visited": 150,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 16,
+      "conditionalEdgesVisited": 16,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig;->writeToParcel(Landroid/os/Parcel;I)V": {
+      "instructions": 50,
+      "visited": 50,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 0,
+      "conditionalEdgesVisited": 0,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/triggers/IncomingSMSTrigger;->isValid()Z": {
+      "instructions": 80,
+      "visited": 80,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 20,
+      "conditionalEdgesVisited": 20,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z": {
+      "instructions": 82,
+      "visited": 82,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 26,
+      "conditionalEdgesVisited": 26,
+      "unvisitedConditionalEdges": []
+    }
+  },
+  "blockTouchesInstructionAndConditionalCoverage": true,
+  "customSceneInstructionAndConditionalCoverage": true,
+  "customSceneDefensiveNullThrowsUseInjectedReturningLateinitBoundary": true,
+  "pluginLookupInstructionAndConditionalCoverage": true,
+  "pluginInvalidLabelReturnUsesInjectedReturningBoundary": true,
+  "pluginUploadInstructionAndConditionalCoverage": true,
+  "pluginUploadInvalidLabelReturnUsesInjectedReturningBoundary": true
+}

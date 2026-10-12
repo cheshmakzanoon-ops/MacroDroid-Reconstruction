@@ -1,0 +1,6150 @@
+{
+  "passed": false,
+  "cases": 20832,
+  "failedCases": 112,
+  "unsupportedExecutions": 0,
+  "independentExpectedResultChecks": 15128,
+  "expectedResultFailures": 0,
+  "methodsCovered": 9,
+  "methodKeys": [
+    "Lcom/arlosoft/macrodroid/action/BlockTouchesAction;->invokeAction(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)V",
+    "Lcom/arlosoft/macrodroid/action/CustomSceneAction;->W(ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V",
+    "Lcom/arlosoft/macrodroid/action/PlaySoundAction;->Z(Ljava/lang/String;)Z",
+    "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+    "Lcom/arlosoft/macrodroid/plugins/k;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig$a;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;",
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig;->writeToParcel(Landroid/os/Parcel;I)V",
+    "Lcom/arlosoft/macrodroid/triggers/IncomingSMSTrigger;->isValid()Z",
+    "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z"
+  ],
+  "paths": 3,
+  "androidRuntime": false,
+  "methods": {
+    "Lcom/arlosoft/macrodroid/action/BlockTouchesAction;->invokeAction(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)V": 2420,
+    "Lcom/arlosoft/macrodroid/action/CustomSceneAction;->W(ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V": 4070,
+    "Lcom/arlosoft/macrodroid/action/PlaySoundAction;->Z(Ljava/lang/String;)Z": 1271,
+    "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": 3053,
+    "Lcom/arlosoft/macrodroid/plugins/k;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": 2356,
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig$a;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;": 945,
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig;->writeToParcel(Landroid/os/Parcel;I)V": 3158,
+    "Lcom/arlosoft/macrodroid/triggers/IncomingSMSTrigger;->isValid()Z": 2065,
+    "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z": 1494
+  },
+  "failures": [
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:NaN:-2147483648:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:NaN:-2147483648:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:NaN:-20:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:20"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 20,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:20"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 20,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:NaN:-20:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:20"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 20,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:20"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 20,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:NaN:-1:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:NaN:-1:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:NaN:1:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:NaN:1:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:NaN:20:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-20"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -20,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-20"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -20,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:NaN:20:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-20"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -20,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-20"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -20,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:NaN:2147483647:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:NaN:2147483647:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:Infinity:-2147483648:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:Infinity:-2147483648:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:Infinity:-20:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483629"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483629,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483629"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483629,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:Infinity:-20:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:Infinity:-1:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:Infinity:-1:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:Infinity:1:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483646"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483646,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483646"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483646,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:Infinity:1:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:Infinity:20:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483627"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483627,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483627"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483627,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:Infinity:20:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:Infinity:2147483647:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:Infinity:2147483647:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-Infinity:-2147483648:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-Infinity:-2147483648:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-Infinity:-20:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-Infinity:-20:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483629"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483629,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483629"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483629,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-Infinity:-1:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-Infinity:-1:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-Infinity:1:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-Infinity:1:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483646"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483646,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483646"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483646,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-Infinity:20:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-Infinity:20:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483627"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483627,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483627"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483627,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-Infinity:2147483647:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-Infinity:2147483647:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:3.4028235E38:-2147483648:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:3.4028235E38:-2147483648:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:3.4028235E38:-20:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483629"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483629,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483629"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483629,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:3.4028235E38:-20:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:3.4028235E38:-1:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:3.4028235E38:-1:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:3.4028235E38:1:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483646"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483646,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483646"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483646,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:3.4028235E38:1:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:3.4028235E38:20:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483627"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483627,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483627"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483627,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:3.4028235E38:20:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:3.4028235E38:2147483647:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:3.4028235E38:2147483647:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-3.4028235E38:-2147483648:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-3.4028235E38:-2147483648:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-3.4028235E38:-20:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-3.4028235E38:-20:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483629"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483629,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483629"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483629,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-3.4028235E38:-1:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-3.4028235E38:-1:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-3.4028235E38:1:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-3.4028235E38:1:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483646"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483646,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483646"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483646,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-3.4028235E38:20:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483628"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483628,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-3.4028235E38:20:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483627"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483627,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483627"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483627,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-3.4028235E38:2147483647:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-3.4028235E38:2147483647:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-0.0:-2147483648:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-0.0:-2147483648:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-0.0:2147483647:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-0.0:2147483647:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:0.0:-2147483648:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:0.0:-2147483648:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:0.0:2147483647:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:0.0:2147483647:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:1.4E-45:-2147483648:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:1.4E-45:-2147483648:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:1.4E-45:2147483647:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:1.4E-45:2147483647:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-1.4E-45:-2147483648:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-1.4E-45:-2147483648:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-1.4E-45:2147483647:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:-1.4E-45:2147483647:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": 2147483647,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:0.9:-2147483648:7",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:7",
+          "event.y:0",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 7,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:0.9:-2147483648:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:2147483647"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 2147483647,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:-2147483648"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -2147483648,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": -2147483648,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:0.9:-20:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:20"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 20,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:19"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 19,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:20"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -20,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 20,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    },
+    {
+      "method": "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z",
+      "case": "touch-numeric:0.9:-1:11",
+      "original": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "java": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:0"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 0,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "rebuilt": {
+        "value": true,
+        "calls": [
+          "event.action",
+          "event.find:11",
+          "event.y:1",
+          "drag.move:1"
+        ],
+        "coreCalls": [],
+        "dragState": {
+          "anchor": -1,
+          "pointer": 11,
+          "transitionPresent": false,
+          "savedTransition": false,
+          "disallow": false,
+          "distance": 1,
+          "finishes": 0,
+          "ready": true,
+          "dragging": true,
+          "resets": 0,
+          "visibility": 0
+        }
+      },
+      "expected": true
+    }
+  ],
+  "failedCaseLabels": [
+    "touch-numeric:-0.0:-2147483648:11",
+    "touch-numeric:-0.0:-2147483648:7",
+    "touch-numeric:-0.0:2147483647:11",
+    "touch-numeric:-0.0:2147483647:7",
+    "touch-numeric:-0.9:-1:7",
+    "touch-numeric:-0.9:-20:7",
+    "touch-numeric:-0.9:-2147483648:11",
+    "touch-numeric:-0.9:-2147483648:7",
+    "touch-numeric:-0.9:1:11",
+    "touch-numeric:-0.9:20:11",
+    "touch-numeric:-0.9:2147483647:11",
+    "touch-numeric:-0.9:2147483647:7",
+    "touch-numeric:-1.4E-45:-2147483648:11",
+    "touch-numeric:-1.4E-45:-2147483648:7",
+    "touch-numeric:-1.4E-45:2147483647:11",
+    "touch-numeric:-1.4E-45:2147483647:7",
+    "touch-numeric:-2.1474836E9:-1:11",
+    "touch-numeric:-2.1474836E9:-1:7",
+    "touch-numeric:-2.1474836E9:-20:11",
+    "touch-numeric:-2.1474836E9:-20:7",
+    "touch-numeric:-2.1474836E9:-2147483648:11",
+    "touch-numeric:-2.1474836E9:1:11",
+    "touch-numeric:-2.1474836E9:1:7",
+    "touch-numeric:-2.1474836E9:20:11",
+    "touch-numeric:-2.1474836E9:20:7",
+    "touch-numeric:-2.1474836E9:2147483647:7",
+    "touch-numeric:-3.4028235E38:-1:11",
+    "touch-numeric:-3.4028235E38:-1:7",
+    "touch-numeric:-3.4028235E38:-20:11",
+    "touch-numeric:-3.4028235E38:-20:7",
+    "touch-numeric:-3.4028235E38:-2147483648:11",
+    "touch-numeric:-3.4028235E38:-2147483648:7",
+    "touch-numeric:-3.4028235E38:1:11",
+    "touch-numeric:-3.4028235E38:1:7",
+    "touch-numeric:-3.4028235E38:20:11",
+    "touch-numeric:-3.4028235E38:20:7",
+    "touch-numeric:-3.4028235E38:2147483647:11",
+    "touch-numeric:-3.4028235E38:2147483647:7",
+    "touch-numeric:-Infinity:-1:11",
+    "touch-numeric:-Infinity:-1:7",
+    "touch-numeric:-Infinity:-20:11",
+    "touch-numeric:-Infinity:-20:7",
+    "touch-numeric:-Infinity:-2147483648:11",
+    "touch-numeric:-Infinity:-2147483648:7",
+    "touch-numeric:-Infinity:1:11",
+    "touch-numeric:-Infinity:1:7",
+    "touch-numeric:-Infinity:20:11",
+    "touch-numeric:-Infinity:20:7",
+    "touch-numeric:-Infinity:2147483647:11",
+    "touch-numeric:-Infinity:2147483647:7",
+    "touch-numeric:0.0:-2147483648:11",
+    "touch-numeric:0.0:-2147483648:7",
+    "touch-numeric:0.0:2147483647:11",
+    "touch-numeric:0.0:2147483647:7",
+    "touch-numeric:0.9:-1:11",
+    "touch-numeric:0.9:-20:11",
+    "touch-numeric:0.9:-2147483648:11",
+    "touch-numeric:0.9:-2147483648:7",
+    "touch-numeric:0.9:1:7",
+    "touch-numeric:0.9:20:7",
+    "touch-numeric:0.9:2147483647:11",
+    "touch-numeric:0.9:2147483647:7",
+    "touch-numeric:1.4E-45:-2147483648:11",
+    "touch-numeric:1.4E-45:-2147483648:7",
+    "touch-numeric:1.4E-45:2147483647:11",
+    "touch-numeric:1.4E-45:2147483647:7",
+    "touch-numeric:2.1474836E9:-1:11",
+    "touch-numeric:2.1474836E9:-1:7",
+    "touch-numeric:2.1474836E9:-20:11",
+    "touch-numeric:2.1474836E9:-20:7",
+    "touch-numeric:2.1474836E9:-2147483648:7",
+    "touch-numeric:2.1474836E9:1:11",
+    "touch-numeric:2.1474836E9:1:7",
+    "touch-numeric:2.1474836E9:20:11",
+    "touch-numeric:2.1474836E9:20:7",
+    "touch-numeric:2.1474836E9:2147483647:11",
+    "touch-numeric:3.4028235E38:-1:11",
+    "touch-numeric:3.4028235E38:-1:7",
+    "touch-numeric:3.4028235E38:-20:11",
+    "touch-numeric:3.4028235E38:-20:7",
+    "touch-numeric:3.4028235E38:-2147483648:11",
+    "touch-numeric:3.4028235E38:-2147483648:7",
+    "touch-numeric:3.4028235E38:1:11",
+    "touch-numeric:3.4028235E38:1:7",
+    "touch-numeric:3.4028235E38:20:11",
+    "touch-numeric:3.4028235E38:20:7",
+    "touch-numeric:3.4028235E38:2147483647:11",
+    "touch-numeric:3.4028235E38:2147483647:7",
+    "touch-numeric:Infinity:-1:11",
+    "touch-numeric:Infinity:-1:7",
+    "touch-numeric:Infinity:-20:11",
+    "touch-numeric:Infinity:-20:7",
+    "touch-numeric:Infinity:-2147483648:11",
+    "touch-numeric:Infinity:-2147483648:7",
+    "touch-numeric:Infinity:1:11",
+    "touch-numeric:Infinity:1:7",
+    "touch-numeric:Infinity:20:11",
+    "touch-numeric:Infinity:20:7",
+    "touch-numeric:Infinity:2147483647:11",
+    "touch-numeric:Infinity:2147483647:7",
+    "touch-numeric:NaN:-1:11",
+    "touch-numeric:NaN:-1:7",
+    "touch-numeric:NaN:-20:11",
+    "touch-numeric:NaN:-20:7",
+    "touch-numeric:NaN:-2147483648:11",
+    "touch-numeric:NaN:-2147483648:7",
+    "touch-numeric:NaN:1:11",
+    "touch-numeric:NaN:1:7",
+    "touch-numeric:NaN:20:11",
+    "touch-numeric:NaN:20:7",
+    "touch-numeric:NaN:2147483647:11",
+    "touch-numeric:NaN:2147483647:7"
+  ],
+  "instructionCoverage": {
+    "Lcom/arlosoft/macrodroid/action/BlockTouchesAction;->invokeAction(Lcom/arlosoft/macrodroid/triggers/TriggerContextInfo;)V": {
+      "instructions": 162,
+      "visited": 162,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 30,
+      "conditionalEdgesVisited": 30,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/action/CustomSceneAction;->W(ILcom/arlosoft/macrodroid/triggers/TriggerContextInfo;ZLjava/util/Stack;Lcom/arlosoft/macrodroid/data/ResumeMacroInfo;)V": {
+      "instructions": 405,
+      "visited": 405,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 40,
+      "conditionalEdgesVisited": 40,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/action/PlaySoundAction;->Z(Ljava/lang/String;)Z": {
+      "instructions": 39,
+      "visited": 39,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 10,
+      "conditionalEdgesVisited": 10,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/plugins/j;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": {
+      "instructions": 198,
+      "visited": 198,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 34,
+      "conditionalEdgesVisited": 34,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/plugins/k;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;": {
+      "instructions": 163,
+      "visited": 163,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 26,
+      "conditionalEdgesVisited": 26,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig$a;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;": {
+      "instructions": 150,
+      "visited": 150,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 16,
+      "conditionalEdgesVisited": 16,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/scene/components/SceneTextConfig;->writeToParcel(Landroid/os/Parcel;I)V": {
+      "instructions": 50,
+      "visited": 50,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 0,
+      "conditionalEdgesVisited": 0,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/triggers/IncomingSMSTrigger;->isValid()Z": {
+      "instructions": 80,
+      "visited": 80,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 20,
+      "conditionalEdgesVisited": 20,
+      "unvisitedConditionalEdges": []
+    },
+    "Lcom/arlosoft/macrodroid/widget/DragLinearLayout;->onTouchEvent(Landroid/view/MotionEvent;)Z": {
+      "instructions": 82,
+      "visited": 82,
+      "unvisitedOffsets": [],
+      "conditionalEdges": 26,
+      "conditionalEdgesVisited": 26,
+      "unvisitedConditionalEdges": []
+    }
+  },
+  "blockTouchesInstructionAndConditionalCoverage": true,
+  "customSceneInstructionAndConditionalCoverage": true,
+  "customSceneDefensiveNullThrowsUseInjectedReturningLateinitBoundary": true,
+  "pluginLookupInstructionAndConditionalCoverage": true,
+  "pluginInvalidLabelReturnUsesInjectedReturningBoundary": true,
+  "pluginUploadInstructionAndConditionalCoverage": true,
+  "pluginUploadInvalidLabelReturnUsesInjectedReturningBoundary": true
+}

@@ -1,0 +1,26 @@
+--- a/ui_negative_control.py
++++ b/ui_negative_control.py
+@@ -145,6 +145,23 @@
+      '                if (pendingFailure == null && result == suspended) return suspended;',
+      '                if (pendingFailure == null && result != null && result.equals(suspended)) return suspended;',
+      'plugin-api-marker-identity'),
++    ('upload-retain-saved-part-cast', 'PluginUploadMethods', '            MultipartBody$Part ignoredPart = (MultipartBody$Part) self.L$4;', '            Object ignoredPart = self.L$4;', 'upload-saved-cast:1:4:true'),
++    ('upload-compression-result-is-ignored', 'PluginUploadMethods', '                        bitmap.compress(Bitmap$CompressFormat.PNG, 100, stream);', '                        if (!bitmap.compress(Bitmap$CompressFormat.PNG, 100, stream)) return blg.a;', 'upload-compress-false-is-ignored'),
++    ('upload-nested-media-catch', 'PluginUploadMethods', '                        } catch (IllegalArgumentException invalidType) {', '                        } catch (NullPointerException invalidType) {', 'upload-nested-media-argument-handler'),
++    ('upload-request-companion-capture', 'PluginUploadMethods', 'RequestBody$Companion.d(requestCompanion, mediaType, bytes, 0, 12);', 'RequestBody$Companion.d(RequestBody.Companion, mediaType, bytes, 0, 12);', 'upload-request-companion-captured-before-media'),
++    ('upload-request-default-mask', 'PluginUploadMethods', 'RequestBody$Companion.d(requestCompanion, mediaType, bytes, 0, 12);', 'RequestBody$Companion.d(requestCompanion, mediaType, bytes, 0, 4);', 'upload-flow:0:true:0:0'),
++    ('upload-icon-suspension-label', 'PluginUploadMethods', '                        self.label = 1;', '                        self.label = 0;', 'upload-two-suspensions'),
++    ('upload-plugin-suspension-label', 'PluginUploadMethods', '                self.label = 2;', '                self.label = 1;', 'upload-two-suspensions'),
++    ('upload-icon-clears-saved-part', 'PluginUploadMethods', '                        self.L$4 = null;\n                        self.label = 1;', '                        self.label = 1;', 'upload-flow:0:true:1:0'),
++    ('upload-null-icon-uses-fallback', 'PluginUploadMethods', 'uploadedIcon == null ? self.$iconUrl : uploadedIcon,', 'uploadedIcon,', 'upload-null-icon-fallback'),
++    ('upload-http-status-is-read-twice', 'PluginUploadMethods', '            boolean alreadyExists = failure instanceof HttpException\n                    && ((HttpException) failure).a() == 409;\n            boolean userNotAllowed = failure instanceof HttpException\n                    && ((HttpException) failure).a() == 403;', '            int status = failure instanceof HttpException ? ((HttpException) failure).a() : 0;\n            boolean alreadyExists = status == 409;\n            boolean userNotAllowed = status == 403;', 'upload-second-status-read-and-priority'),
++    ('upload-denied-flag-before-publication', 'PluginUploadMethods', '                owner.i = true;\n                cne sink = owner.j;\n                ((hb9) sink).i(new g(b$c.USER_NOT_ALLOWED));', '                cne sink = owner.j;\n                ((hb9) sink).i(new g(b$c.USER_NOT_ALLOWED));\n                owner.i = true;', 'upload-no-icon:4'),
++    ('upload-success-sink-before-payload', 'PluginUploadMethods', '            cne sink = self.this$0.j;\n            ((hb9) sink).i(new f(self.$name));', '            f value = new f(self.$name);\n            cne sink = self.this$0.j;\n            ((hb9) sink).i(value);', 'upload-success-sink-captured-before-payload'),
++    ('upload-catch-includes-checked-exception', 'PluginUploadMethods', '        } catch (Exception failure) {', '        } catch (RuntimeException failure) {', 'upload-fault:0:1:4'),
++    ('upload-catch-must-not-swallow-error', 'PluginUploadMethods', '        } catch (Exception failure) {', '        } catch (Throwable failure) {', 'upload-fault:0:1:3'),
++    ('upload-error-publication-precedes-log', 'PluginUploadMethods', '                ((hb9) sink).i(new g(b$c.CONNECTION_ERROR));\n                l1g.b.getClass();\n                agd.j();', '                l1g.b.getClass();\n                agd.j();\n                ((hb9) sink).i(new g(b$c.CONNECTION_ERROR));', 'upload-no-icon:5'),
++    ('upload-icon-suspension-uses-identity', 'PluginUploadMethods', '                        if (iconResult == suspended) return suspended;', '                        if (iconResult != null && iconResult.equals(suspended)) return suspended;', 'upload-icon-marker-identity'),
++    ('upload-plugin-suspension-uses-identity', 'PluginUploadMethods', '                if (uploadResult == suspended) return suspended;', '                if (uploadResult != null && uploadResult.equals(suspended)) return suspended;', 'upload-plugin-marker-identity'),
+ ]
+ 
+ def sha(path:Path)->str:return hashlib.sha256(path.read_bytes()).hexdigest()
