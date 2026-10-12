@@ -26,7 +26,7 @@ def main()->None:
     for label,cls,old,new in variants:
         source=build.ROOT/'source/java/recovered/environment'/(cls+'.java');raw=source.read_bytes();text=raw.decode()
         if text.count(old)!=1:raise RuntimeError('Mutation anchor must be unique: '+label)
-        work=build.WORK/'negative-environment'/label;shutil.rmtree(work,ignore_errors=True)
+        work=build.WORK/'negative-environment'/label;build.remove_generated_directory(work)
         temporary_source=work/'src/recovered/environment'/(cls+'.java');temporary_source.parent.mkdir(parents=True);temporary_source.write_text(text.replace(old,new))
         classes=work/'classes';classes.mkdir()
         build.run(['javac','--release','8','-g:none','-cp',host,'-d',classes,temporary_source],label+'-negative-javac.log')

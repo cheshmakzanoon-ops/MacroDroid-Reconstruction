@@ -4,11 +4,13 @@ The runtime tools compare the supplied MacroDroid 5.67.8 original with the commi
 
 ## Actual measurements so far
 
-The hosted run at source commit `ba52fd6` installed and launched both APKs on the pinned API 35 emulator with ARM64 translation. Both remained alive and foreground for the captured interval. Their complete UI hierarchies were byte-identical, with 16 application-owned nodes. The 720 × 1280 screenshots differed in 75 decoded pixels, all inside Android's signal-strength icon at x=614..630, y=17..33 inclusive. The comparator correctly returned `CAPTURE_DIFFERENCE`.
+Hosted run `38194498356`, at source commit `95077fcb1d3c86f3b1c91026619642d99198f149`, successfully installed and launched the exact original and reconstructed candidate on the pinned API 35 Google APIs x86_64 emulator with ARM64 translation. Device-side `base.apk` hashes matched the prevalidated local inputs before either launch. The original was 95,725,918 bytes, SHA-256 `84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800`; the tested 1,239-body hybrid was 94,683,342 bytes, SHA-256 `be1138a5cb72c5f79efaa1490b4b9c74ccb637fbb6d0975f6680da48435c50ce`. These identities and the complete recorded command evidence are preserved in the [successful capture archive][android-success] and [recorder result][recorder-success].
 
-The next hosted run at source commit `bebf448` stopped at device configuration, before app installation. Its old gate required identical raw signal measurements even when Android's computed signal level remained 4. The corrected helper requires a stable primary radio type and computed level while retaining the varying raw observations. A new device run must measure the effect of this correction.
+The strict reports returned `EXACT_COLD_LAUNCH_MATCH_ONLY` and `EXACT_FOUR_PAGE_INTRO_MATCH_ONLY`. All four 720 × 1280 PNG pairs and all four complete UI XML pairs were byte-identical. Independent RGBA comparison found **zero changed pixels on each page**, including the system bars, and reproduced both comparator reports. The original and candidate completed the three observed Next transitions. This is actual device evidence for the declared English still-capture scenario, recorded with the real signal configuration, SystemUI demo clock and zero animation scales described below. See the [cold report][cold-success], [four-page report][intro-success] and [independent verification][independent-success].
 
-Both complete failed artifacts and their analyses are retained under `docs/verification/android-ci-ba52fd6/` and `docs/verification/android-ci-bebf448/` in the repository. The successful 16-command source acceptance for the 1,238-body candidate is separately preserved under `docs/verification/source-ci-bebf448/`. Host source acceptance is not a device result. The four-page recorder described below has synthetic regression coverage; no four-page device result is claimed by this source checkpoint.
+The earlier hosted run at source commit `ba52fd6` installed and launched both APKs but reported `CAPTURE_DIFFERENCE`: the complete hierarchies matched, while 75 screenshot pixels differed inside Android's signal-strength icon. The subsequent `bebf448` run stopped before app installation because its configuration gate required identical raw signal measurements despite a stable computed level. Both failures remain unchanged in their [first comparison archive][signal-failure] and [configuration-failure archive][configuration-failure]. The successful `95077fcb` run measured the corrected primary-radio/level gate on the real emulator; it did not replace the failed records.
+
+The [separate source acceptance archive][source-success] records all 16 source/host gates for `95077fcb`; those gates are distinct from the Android measurements. The installed-identity, cold and four-page results belong to the exact APK pair above. **The newly added `--post-intro` capture and independent ART constructor probe remain pending, as do device results for later candidate identities.** No full-app, animation, home-feature or permission-choice parity is established.
 
 ## Cold-capture prerequisites
 
@@ -39,6 +41,24 @@ Each subsequent page must preserve the original process, remain in the intro act
 
 A failed intro sequence preserves a fully completed cold capture as a separate measured result. The recorder still exits unsuccessfully if either requested sequence is incomplete. `EXACT_FOUR_PAGE_INTRO_MATCH_ONLY` requires both complete sequences, matching three input targets, matching four full captures, and a matching cold capture.
 
+## First surface after completion — pending
+
+The separate optional `--post-intro` flag requires `--intro-pages`. Before acting on the fourth page, the recorder again observes the installed APK path and SHA-256, unchanged device settings, a fresh complete `CONSTRAINTS` hierarchy, the same live process, and foreground `IntroActivity`. The fresh precondition must be no more than ten seconds old. The already recorded fourth-page hierarchies expose the same enabled, clickable `button_next` ImageButton with description `Next`. Its center is derived again from the fresh observed bounds. See the [recorded final-page hierarchy][final-page].
+
+The recorder issues **exactly one** completion tap, then saves the resulting full PNG, hierarchy, foreground and process evidence before classifying the surface. It accepts the app's `NewHomeScreenActivity` as an observed landing surface, or Android's notification-permission activity with the expected MacroDroid notification message and both permission controls. It makes **zero permission choices** and does not dismiss app dialogs. An unexpected surface fails this scope while preserving its initial captured evidence.
+
+`android_post_intro.py` revalidates the fresh completion input, installed identity, process continuity, before/after environment and stable resulting hierarchy/foreground. It compares the entire PNG and XML, including a system-owned permission prompt if that is the observed surface. `EXACT_POST_INTRO_SURFACE_MATCH_ONLY` additionally requires the prior full intro comparison to pass. A matching landing surface does not establish working home features. Host controls cover this new flow, but its actual device result is still pending.
+
+A later post-intro failure retains completed cold and four-page evidence under `COLD_AND_INTRO_CAPTURES_RECORDED_POST_INTRO_INCOMPLETE`. The two earlier comparators may report their actual narrower success while the requested post-intro capture and overall recorder exit remain unsuccessful.
+
+## Independent ART constructor probe — pending
+
+The repository's `tools/android/android_constructor_probe.py` runs a separate, pinned single-class DEX against the unchanged original APK. The 1,436-byte probe has SHA-256 `85f53ad51a1a85fd2161bd485db9f12556f737b0745f6e26ffdff31a927d5281`; its provenance binds the [frozen constructor Java/D8/roundtrip checkpoint][constructor-proof]. It contains no compile-only stub classes. The original APK supplies the real application classes. This probe installs no app, changes no app resource and makes no UI interaction.
+
+Before execution, the helper checks the local original/probe identities and the selected pinned disposable emulator, pushes both files into a fresh owned temporary directory, makes them read-only, and verifies their device-side hashes. It invokes Android 15 ART with `-Xverify:all` and a bounded guest timeout. A successful allocation requires the exact output `CONSTRUCTOR_ALLOCATION_OK class=zhh arity=2`, a zero exit and no ART error; cleanup is checked separately. Raw commands, outputs and the actual VM identity are retained in `constructor-probe/probe-result.json` and its referenced files.
+
+This scope concerns one `Lzhh;` allocation through the original public `Lrff;` constructor. It does not execute a reconstructed Widget flow or establish Widget behavior. Actual ART execution is pending. The CI driver keeps its result independent: an ART failure still permits the app captures and all three comparators, while a later capture failure preserves an already observed constructor result.
+
 ## Declared device settings
 
 The hosted orchestration uses `configure_capture_device.py` from `tools/android/`. It verifies the expected disposable AVD, stabilizes the real primary radio type and computed level, enables SystemUI demo mode, and requests a displayed clock of 12:00. The device's actual wall clock and battery readings remain recorded. Demo mode can hold other status indicators at their entry state.
@@ -49,7 +69,7 @@ These are full-page still comparisons under explicitly reduced system animation 
 
 ## Run and preserve the outcome
 
-On an already configured disposable ARM64 environment with ADB available:
+On an already configured disposable ARM64-capable environment with ADB available, the complete requested still-capture scenario is:
 
 ```sh
 python3 android_acceptance.py \
@@ -57,10 +77,24 @@ python3 android_acceptance.py \
   --original /absolute/path/to/original.apk \
   --candidate dist/MacroDroid-5.67.8-v9-hybrid.apk \
   --accept-package-data-removal \
-  --intro-pages \
+  --intro-pages --post-intro \
   --output reports/new-intro-capture
 python3 android_compare.py reports/new-intro-capture
 python3 android_intro.py reports/new-intro-capture
+python3 android_post_intro.py reports/new-intro-capture
 ```
 
-The recorder does not configure animation or demo settings itself. `tools/android/run_ci_runtime.py` creates the declared environment, runs both comparisons, requires their actual successful exits and results, and stops only its own emulator. Successful and failed results retain their commands, device configuration, APK identities, complete captures, and comparison reports. Synthetic test fixtures exercise rejection behavior; they are never Android execution evidence.
+Omit `--post-intro` and its comparator to request only the already measured cold/four-page scope. The recorder does not configure animation or demo settings itself. `tools/android/run_ci_runtime.py` creates the declared environment, requests all three capture comparisons plus the independent ART probe, and stops only its own emulator. It always attempts all three comparators, including after a previous stage fails, so completed narrower evidence remains reviewable.
+
+`requested_capture_gate_passed` requires a configured device, successful recorder exit and all three actual comparison statuses/booleans bound to the current input pair. `constructor_probe_gate_passed` requires the independently rechecked ART result, successful helper exit and completed cleanup. The overall CI gate requires both and a successful service exit; all pass fields begin false. Successful and failed results retain their commands, device configuration, APK identities, complete captures and comparison reports. Synthetic test fixtures exercise rejection behavior; they are never Android execution evidence.
+
+[android-success]: https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/blob/0c5913324bcf60bacdb46554d80b3eda684dd79d/docs/verification/android-ci-95077fc/README.md
+[recorder-success]: https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/blob/0c5913324bcf60bacdb46554d80b3eda684dd79d/docs/verification/android-ci-95077fc/capture/result.json
+[cold-success]: https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/blob/0c5913324bcf60bacdb46554d80b3eda684dd79d/docs/verification/android-ci-95077fc/capture/cold-launch-comparison.json
+[intro-success]: https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/blob/0c5913324bcf60bacdb46554d80b3eda684dd79d/docs/verification/android-ci-95077fc/capture/intro-comparison.json
+[independent-success]: https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/blob/0c5913324bcf60bacdb46554d80b3eda684dd79d/docs/verification/android-ci-95077fc/independent-capture-analysis.json
+[final-page]: https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/blob/0c5913324bcf60bacdb46554d80b3eda684dd79d/docs/verification/android-ci-95077fc/capture/original-intro-4-hierarchy.xml
+[signal-failure]: https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/tree/0c5913324bcf60bacdb46554d80b3eda684dd79d/docs/verification/android-ci-ba52fd6
+[configuration-failure]: https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/tree/0c5913324bcf60bacdb46554d80b3eda684dd79d/docs/verification/android-ci-bebf448
+[source-success]: https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/tree/3b2b7e8f539e746c9b99fbeb9a093bda1074fb92/docs/verification/source-ci-95077fc
+[constructor-proof]: https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/tree/c7abf086ebffbc70cb3143f909a7f48648de22bc/work-in-progress/constructor-owner/02-pipeline-proof

@@ -3,15 +3,27 @@
 The original APK/DEX files are NOT build inputs. Test doubles never enter the APK.
 """
 from __future__ import annotations
-import argparse,hashlib,json,os,re,shutil,struct,subprocess,sys,zipfile,zlib,time
+import argparse,hashlib,json,os,re,shutil,struct,subprocess,sys,tempfile,uuid,zipfile,zlib,time
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from constructor_owner import restore_from_preserved_source
 ROOT=Path(__file__).resolve().parent
 JAR=ROOT/'tools/lib/jadx-r2721.4574686-all.jar'
 TOOLS=ROOT/'tools/classes'
 WORK=ROOT/'build'
 REPORTS=ROOT/'reports'
 APKTOOL=ROOT/'tools/apktool_v3.0.3-26-0a1c54f7-SNAPSHOT.jar'
+
+def remove_generated_directory(path:Path)->None:
+    """Never continue a build or control with a partially removed staging tree."""
+    if path.is_symlink():raise RuntimeError('Generated staging must not be a symbolic link: '+str(path))
+    if not path.exists():return
+    if not path.is_dir():raise RuntimeError('Generated staging must be a directory: '+str(path))
+    retired=path.with_name(path.name+'-retired-'+uuid.uuid4().hex)
+    if retired.exists():raise RuntimeError('Generated retirement path already exists: '+str(retired))
+    path.rename(retired)
+    shutil.rmtree(retired)
+    if path.exists():raise RuntimeError('Generated staging reappeared during retirement: '+str(path))
 
 def run(args:list[str|Path],log:str)->None:
     REPORTS.mkdir(exist_ok=True)
@@ -43,7 +55,7 @@ def resources()->Path:
     d=WORK/'resources';d.mkdir(exist_ok=True);s=ROOT/'source/android'
     # Apktool's generated public.xml enumerates ALL IDs, not original visibility.
     # Stable IDs are supplied separately; preserve original public/private visibility.
-    stage=d/'res';shutil.rmtree(stage,ignore_errors=True)
+    stage=d/'res';remove_generated_directory(stage)
     shutil.copytree(s/'res',stage,copy_function=os.link if os.name!='nt' else shutil.copy2)
     pub=stage/'values/public.xml';tree=ET.parse(pub);el=tree.getroot()
     original_public=set(json.loads((s/'original-public-resources.json').read_text())['public_resources'])
@@ -87,9 +99,10 @@ def relocate_class(raw:bytes)->bytes:
     return b''.join(chunks)+raw[pos:]
 
 def compile_java()->Path:
-    d=WORK/'java'
-    # A failed cleanup must stop before javac/D8 can mix old and new artifacts.
-    if d.exists():shutil.rmtree(d)
+    # Every compiler invocation writes to a never-reused generation. Publish only
+    # after javac, D8 and disassembly complete; a failure retains the prior output.
+    WORK.mkdir(parents=True,exist_ok=True)
+    d=Path(tempfile.mkdtemp(prefix='java-stage-',dir=WORK))
     (d/'hostclasses').mkdir(parents=True)
     sources=sorted((ROOT/'source/java').rglob('*.java'))+sorted((ROOT/'test-support/java').rglob('*.java'))
     af=d/'sources.args';af.write_text(''.join('"'+str(p).replace('\\','/')+'"\n' for p in sources))
@@ -105,7 +118,15 @@ def compile_java()->Path:
     (d/'dex').mkdir()
     java('com.android.tools.r8.D8','--release','--no-desugaring','--min-api','23','--output',d/'dex',inputs,log='d8-methods.log')
     java('com.android.tools.smali.baksmali.Main','d','--api','23','--use-locals','-o',d/'smali',d/'dex/classes.dex',log='disassemble-java-methods.log')
-    return d
+    helper_hash=dex_integrity(d/'dex/classes.dex')
+    if not (d/'smali').is_dir():raise RuntimeError('Compiled helper disassembly is missing')
+    target=WORK/'java';remove_generated_directory(target)
+    d.rename(target)
+    (REPORTS/'java-staging.json').write_text(json.dumps({'compiled_generation':d.relative_to(ROOT).as_posix(),
+        'published_directory':target.relative_to(ROOT).as_posix(),'published_after_all_compiler_commands':True,
+        'helper_dex_sha256':helper_hash,
+        'scope':'Fresh generated Java/D8 staging; not Android execution'},indent=2)+'\n')
+    return target
 
 METHOD=re.compile(r'^\.method [^\n]*\n.*?^\.end method',re.M|re.S)
 ANNOT=re.compile(r'(?m)^\s*\.annotation .*?^\s*\.end annotation\n?',re.S)
@@ -113,9 +134,9 @@ def methods(text:str)->dict[str,str]:
     return {m[0].splitlines()[0].split()[-1]:m[0] for m in METHOD.finditer(text)}
 
 def hybrid_source(javadir:Path)->Path:
-    target=WORK/'hybrid-smali';shutil.rmtree(target,ignore_errors=True)
+    target=WORK/'hybrid-smali';remove_generated_directory(target)
     shutil.copytree(ROOT/'source/smali',target,copy_function=os.link if os.name!='nt' else shutil.copy2)
-    registry=json.loads((ROOT/'source/java-method-map.json').read_text());idx=index();bytype={v['descriptor']:v for v in idx.values()};changes=[]
+    registry=json.loads((ROOT/'source/java-method-map.json').read_text());idx=index();bytype={v['descriptor']:v for v in idx.values()};changes=[];constructor_proofs=[]
     for e in registry:
         original=bytype[e['target']];path=target/Path(original['path']).relative_to('source/smali')
         helperpath=javadir/'smali'/(e['helper'][1:-1]+'.smali')
@@ -123,7 +144,9 @@ def hybrid_source(javadir:Path)->Path:
         suffix=e['method'][e['method'].index('('):]
         expected=e.get('helper_descriptor',e['helper_method']+'('+ (e['target'] if e['instance'] else '')+suffix[1:])
         if expected not in hm:raise RuntimeError('Compiled method descriptor mismatch: '+expected)
-        body=hm[expected].split('\n',1)[1].rsplit('.end method',1)[0]
+        compiled,proofs=restore_from_preserved_source(e,hm[expected],old,idx,ROOT)
+        constructor_proofs.extend({'target':e['target'],'method':e['method'],**proof} for proof in proofs)
+        body=compiled.split('\n',1)[1].rsplit('.end method',1)[0]
         body=ANNOT.sub('',body)
         if 'Lrecovered/' in body or 'Ldefpackage/' in body:raise RuntimeError('Unexpected helper/stub reference in runtime body')
         anns=ANNOT.findall(old)
@@ -132,7 +155,7 @@ def hybrid_source(javadir:Path)->Path:
         # Atomic replacement avoids changing the immutable baseline through a hard link.
         temp=path.with_suffix('.tmp');temp.write_text(newtext);temp.replace(path)
         changes.append({'class':e['target'],'method':e['method'],'source':e['java_source'],'source_partition':original['partition']})
-    (REPORTS/'java-integration.json').write_text(json.dumps({'methods':len(changes),'classes':len(set(x['class'] for x in changes)),'changes':changes,'runtime_stub_classes_included':0},indent=2))
+    (REPORTS/'java-integration.json').write_text(json.dumps({'methods':len(changes),'classes':len(set(x['class'] for x in changes)),'changes':changes,'runtime_stub_classes_included':0,'constructor_owner_corrections':constructor_proofs},indent=2))
     return target
 
 def write_aligned(z:zipfile.ZipFile,name:str,data:bytes,compression:int=zipfile.ZIP_STORED)->None:
@@ -218,7 +241,7 @@ def verify(variant:str)->None:
     apk=ROOT/'dist'/('MacroDroid-5.67.8-v9-'+variant+'.apk')
     java('BuildSupport','verify',apk,log=variant+'-signature-verification.log')
     idx=index();expected=idx;seen={};changed=[];missing=[];extra=[];methodchanges=[];source_changes=[]
-    out=WORK/('verify-'+variant);shutil.rmtree(out,ignore_errors=True);out.mkdir()
+    out=WORK/('verify-'+variant);remove_generated_directory(out);out.mkdir()
     with zipfile.ZipFile(apk) as z:
         bad=z.testzip()
         if bad:raise RuntimeError('APK ZIP checksum failure '+bad)

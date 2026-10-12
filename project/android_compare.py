@@ -81,7 +81,7 @@ def color_metadata(data:bytes)->tuple:
         offset+=size+12
     return tuple(sorted(values))
 
-def xml_state(data:bytes)->tuple[tuple,int]:
+def xml_state(data:bytes,*,owner_package:str=PACKAGE)->tuple[tuple,int]:
     if len(data)>8_000_000:raise CaptureError('UI XML exceeds safe bound')
     text=data.decode('utf-8')
     if '<!DOCTYPE' in text.upper() or '<!ENTITY' in text.upper():raise CaptureError('UI XML declarations not allowed')
@@ -90,7 +90,7 @@ def xml_state(data:bytes)->tuple[tuple,int]:
     if root.tag!='hierarchy':raise CaptureError('Unexpected UI XML root')
     nodes=list(root.iter())
     if len(nodes)>50_000:raise CaptureError('UI node limit exceeded')
-    owned=sum(n.tag=='node' and n.get('package')==PACKAGE for n in nodes)
+    owned=sum(n.tag=='node' and n.get('package')==owner_package for n in nodes)
     if not owned:raise CaptureError('No target-app nodes in hierarchy')
     # Attribute ordering and formatting whitespace are irrelevant to an XML tree.
     # Values, child ordering, bounds, text, selection and every other attribute remain.
@@ -180,6 +180,9 @@ def compare_capture(folder:Path)->dict:
         if type(schema) is not int or schema not in (2,3):raise CaptureError('A schema-2 or schema-3 recorder run is required')
         cold_complete=report.get('status')=='CAPTURES_RECORDED_NOT_PARITY'
         if schema==3 and report.get('intro_pages_requested') is True and report.get('status')=='COLD_CAPTURES_RECORDED_INTRO_INCOMPLETE':cold_complete=True
+        if (schema==3 and report.get('post_intro_requested') is True and report.get('intro_pages_requested') is True
+                and report.get('cold_intro_capture_complete') is True
+                and report.get('status')=='COLD_AND_INTRO_CAPTURES_RECORDED_POST_INTRO_INCOMPLETE'):cold_complete=True
         if not cold_complete:raise CaptureError('Recorder did not complete both cold captures')
         runs=report.get('runs',[])
         if len(runs)!=2 or [r.get('label') for r in runs]!=['original','candidate']:raise CaptureError('Missing unique original/candidate capture')

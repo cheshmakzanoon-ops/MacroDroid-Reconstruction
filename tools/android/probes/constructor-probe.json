@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "scope": "One standalone Lzhh allocation through the original public Lrff constructor; runtime status is recorded separately",
+  "probe_sha256": "85f53ad51a1a85fd2161bd485db9f12556f737b0745f6e26ffdff31a927d5281",
+  "probe_bytes": 1436,
+  "original_apk_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+  "original_apk_bytes": 95725918,
+  "main_class": "recovered.probe.ConstructorProbe",
+  "runtime_classes": [
+    "Lrecovered/probe/ConstructorProbe;"
+  ],
+  "compile_only_stub_classes_in_runtime_dex": 0,
+  "constructor_checkpoint": {
+    "repository_path": "work-in-progress/constructor-owner/02-pipeline-proof/checkpoint.json",
+    "manifest_sha256": "98d73cb9f3c73731e2a376bfdb446704674b2019e996a59483263f0d37b31e9a",
+    "proof_files": [
+      {
+        "path": "probe/source/recovered/probe/ConstructorProbe.java",
+        "bytes": 560,
+        "sha256": "5f2a9f080a3c812db23aa180c0630c0724f59265b101e53349cec51b354d1528"
+      },
+      {
+        "path": "reports/probe-03/constructor-probe.dex",
+        "bytes": 1436,
+        "sha256": "85f53ad51a1a85fd2161bd485db9f12556f737b0745f6e26ffdff31a927d5281"
+      },
+      {
+        "path": "reports/probe-03/result.json",
+        "bytes": 3633,
+        "sha256": "436735096f51b73e5a64150942b4014c4e4413a6d76f6a3cace533740ed402b4"
+      },
+      {
+        "path": "reports/probe-03/roundtrip-smali/recovered/probe/ConstructorProbe.smali",
+        "bytes": 2122,
+        "sha256": "f532a831fed9b1cf875a4aa8be9d9c6cab90b828dd24d5af0188c202208e40d4"
+      }
+    ],
+    "commit": "c7abf086ebffbc70cb3143f909a7f48648de22bc"
+  },
+  "allocation": {
+    "allocated_type": "Lzhh;",
+    "constructor_owner": "Lrff;",
+    "constructor_signature": "<init>(ILm73;)V",
+    "arguments": [
+      2,
+      null
+    ],
+    "expected_stdout": "CONSTRUCTOR_ALLOCATION_OK class=zhh arity=2"
+  },
+  "runtime_classpath": [
+    "tools/android/probes/constructor-probe.dex",
+    "unchanged exact original APK"
+  ],
+  "required_verification_option": "-Xverify:all",
+  "android_execution_established_by_this_provenance": false,
+  "full_runtime_1_to_1_established": false,
+  "app_apk_modified": false,
+  "primary_sources": [
+    {
+      "url": "https://android.googlesource.com/platform/art/+/refs/tags/android-15.0.0_r1/runtime/parsed_options.cc",
+      "bytes": 33939,
+      "sha256": "d2f297f90c0fb1efa36815995dcdce1337b3b28b32e672e8b0fc8104b3ba31c8",
+      "observation": "-Xverify:all maps to VerifyMode::kEnable"
+    },
+    {
+      "url": "https://android.googlesource.com/platform/art/+/refs/tags/android-15.0.0_r1/dalvikvm/dalvikvm.cc",
+      "bytes": 7328,
+      "sha256": "b685e53f81650df930723193f74e125747801216160fdd527eedb3bb1191a52f",
+      "observation": "The VM accepts -classpath/-cp with the following classpath argument; unrecognized VM options are not ignored"
+    },
+    {
+      "url": "https://android.googlesource.com/platform/external/toybox/+/refs/tags/android-15.0.0_r1/toys/other/timeout.c",
+      "bytes": 2870,
+      "sha256": "aec05810836d18782417ff227897ea5d1e8f188bbbc45861eec2272f1887e277",
+      "observation": "timeout accepts -s SIGNAL DURATION COMMAND; KILL terminates the command group at the guest deadline"
+    }
+  ]
+}

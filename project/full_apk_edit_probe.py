@@ -29,7 +29,7 @@ def main()->None:
     verified=build.WORK/'verify-hybrid/classes3'
     if not original_apk.is_file() or not verified.is_dir():raise RuntimeError('First build, verify, and test the hybrid APK.')
     inputs_before=release_integrity.snapshot();apk_before=sha(original_apk)
-    probe=build.WORK/'signed-edit-probe';shutil.rmtree(probe,ignore_errors=True);probe.mkdir()
+    probe=build.WORK/'signed-edit-probe';build.remove_generated_directory(probe);probe.mkdir()
     copier=os.link if os.name!='nt' else shutil.copy2
     for name in ['source','test-support','signing','tools']:
         shutil.copytree(build.ROOT/name,probe/name,copy_function=copier,ignore=shutil.ignore_patterns('classes','__pycache__') if name=='tools' else shutil.ignore_patterns('__pycache__'))

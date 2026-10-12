@@ -14,7 +14,7 @@ def main():
     build.run(['javac','-cp',cp,'-d',build.TOOLS,*sorted((build.ROOT/'tests/java').glob('*.java'))],'negative-control-compile-tests.log')
     source=build.ROOT/'source/java/recovered/text/LowerCaseManipulationMethods.java';data=source.read_bytes()
     text=data.decode();assert text.count('.toLowerCase()')==1
-    negative=build.WORK/'negative-control';shutil.rmtree(negative,ignore_errors=True)
+    negative=build.WORK/'negative-control';build.remove_generated_directory(negative)
     path=negative/'src/recovered/text/LowerCaseManipulationMethods.java';path.parent.mkdir(parents=True)
     path.write_text(text.replace('.toLowerCase()','.toUpperCase()'));classes=negative/'classes';classes.mkdir()
     build.run(['javac','--release','8','-g:none','-cp',host,'-d',classes,path],'negative-control-javac.log')

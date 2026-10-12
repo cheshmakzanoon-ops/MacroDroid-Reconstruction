@@ -42,8 +42,8 @@ The exact supplied reference APK is committed in 12 parts under `vendor/original
 It is 95,725,918 bytes with SHA-256
 `84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800`.
 The current reconstructed candidate is committed in 12 parts under
-`artifacts/current/`; it is 94,683,342 bytes with SHA-256
-`be1138a5cb72c5f79efaa1490b4b9c74ccb637fbb6d0975f6680da48435c50ce`.
+`artifacts/current/`; it is 94,683,497 bytes with SHA-256
+`9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2`.
 The baseline control is separately preserved under `artifacts/baseline/`:
 94,677,674 bytes, SHA-256
 `aa8ad3013ad211c8a39d083943b0a671d75e0bbbedccc924ea0093c590c9a096`.
@@ -68,12 +68,12 @@ All older repository documentation, quality reports and recovered Java samples
 remain available. There is no assertion that GitHub release attachments exist.
 
 
-## Latest scene and runtime checkpoint
+## Previous scene and runtime checkpoint
 
-The active overlay now contains 1,239 recovered bodies across 602 classes. Its
+That checkpoint introduced 1,239 recovered bodies across 602 classes. Its
 81,211 build inputs are pinned by canonical SHA-256
 `8c8999f971f61def792cdf4ecd7999220c2fa2e56a5bdfecf3b04dee113bf7b0`.
-The candidate manifest binds the new APK bytes to that input snapshot and the
+The candidate manifest at that historical commit binds its APK bytes to that input snapshot and the
 [exact integration checkpoint](verification/scene-runtime-integration/checkpoint.json).
 The isolated scene proof passed 185,738 three-path host cases and all 22 UI
 negative controls. The combined source checkpoint `95077fcb` subsequently passed
@@ -124,9 +124,17 @@ are preserved under `work-in-progress/constructor-owner/`. Initial checkpoint 01
 passed 20 focused host regressions and the standalone DEX roundtrip. Reviewed
 pipeline checkpoint 02 preserves 102 files, 31 passing regressions, the repeated
 D8 proof and unchanged/static/linkage checks for 1,239 existing methods. Android
-proof and active integration remain pending. The generated-directory cleanup proposal and subsequent local failed
+proof and active integration were still pending at that historical freeze. The generated-directory cleanup proposal and subsequent local failed
 acceptance are retained under `work-in-progress/staging-cleanup/`. The initial constructor and staging-failure checkpoints were
 published at `56327dd3ddd04c78ebf461cdf810e209fd571f10` without changing active
 application inputs; subsequent checkpoint directories retain their own frozen
 manifests. Their frozen reports retain their actual failure and pending
 scopes even though the separate clean hosted checkpoint succeeded.
+
+## Active plugin and runtime integration
+
+The active overlay contains 1,240 recovered bodies across 603 classes. Its 81,245 build/test inputs have canonical SHA-256 `19ea47f8563262c255b1d11632bfc404eb68819f332ececdf68d0a686643c183`. The exact input-manifest file SHA-256 is `713c40cfcab17ce42294e37af68f758d0c0f488748c47aaba3a2e54f9b3e7883`. The [integration checkpoint](verification/plugin-runtime-integration/checkpoint.json) preserves the 54 changed build/test inputs, six current project documents, eight Android tooling/workflow files and full evidence archives. The prior scene APK remains preserved by its manifest and historical commits.
+
+All five planned clean integration checks passed: hybrid assembly, full code/resource verification, all three-path host suites, and final unchanged-input verification. The fresh APK reproduced the already preserved final plugin candidate exactly. Actual counts were 188,791 cases, 1,240 methods, zero mismatches/unsupported executions and 259 Python tests. The independent integrated Android-tooling host suite passed all 27 tests. The original plugin checkpoint's 37 deliberate-fault controls retain their isolated scope.
+
+The guarded constructor-owner facility is now integrated with zero active mappings and zero applied corrections in all three build/static/linkage gates. Fresh-generation compiler staging and the reviewed post-intro recorder are also active. The updated workflow requests full source acceptance and actual cold/intro/post-intro measurements plus a separate bounded ART allocation probe. Those new hosted outcomes remain pending at this freeze. No Widget recovery or plugin-upload body is activated by this integration, and no whole-application 1:1 claim is made.

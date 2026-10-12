@@ -2,17 +2,19 @@
 
 **The complete source snapshot, editable recovery code, original reference APK,
 and current rebuilt APK are stored in this repository.** The current candidate
-contains 1,239 recovered Java method bodies across 602 classes and builds the
+contains 1,240 recovered Java method bodies across 603 classes and builds the
 remaining code from preserved smali. Whole-app 1:1 Android runtime behavior has
 not been established.
 
 The current source checkpoint is described in
 [RECONSTRUCTION_STATUS.md](project/RECONSTRUCTION_STATUS.md); completed hosted
-results are recorded below. The latest hosted checkpoint passed all 16 source
-acceptance gates and exact cold-launch/four-page intro still comparisons.
-The [verification workflow](.github/workflows/reconstruction.yml) rebuilds the
-committed source and separately measures Android cold launches and four English
-intro pages; its
+results are recorded below. The new combined checkpoint passed all five planned
+clean host/artifact checks and reproduced its signed candidate exactly. Its full
+hosted acceptance and new Android measurements remain pending. The previous
+1,239-body checkpoint passed all 16 hosted source gates and exact cold-launch/
+four-page intro still comparisons. The [verification workflow](.github/workflows/reconstruction.yml)
+rebuilds the committed source and separately measures cold launch, four English
+intro pages, the observed post-intro surface, and a bounded ART constructor probe; its
 [actual runs](https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/actions)
 show whether those checks have completed and passed.
 
@@ -46,8 +48,8 @@ python3 scripts/assemble_artifact.py artifacts/current/manifest.json
 ```
 
 This produces `workspace/artifacts/MacroDroid-5.67.8-current-hybrid.apk`:
-94,683,342 bytes, SHA-256
-`be1138a5cb72c5f79efaa1490b4b9c74ccb637fbb6d0975f6680da48435c50ce`.
+94,683,497 bytes, SHA-256
+`9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2`.
 The build scripts retain their historical `v9-hybrid.apk` output filename; the
 candidate manifest and checksum identify the actual development checkpoint.
 
@@ -70,7 +72,16 @@ The original is a comparison input, not a build input. See the
 
 ## What has actually passed
 
-The combined 1,239-body scene, recorder and device-helper checkpoint
+The active 1,240-body plugin/runtime checkpoint passed five clean integration
+checks: fresh signed hybrid assembly, complete code and resource verification,
+the full three-path host suite, and final source-input integrity. It ran 188,791
+cases with zero mismatches or unsupported executions, and 259 Python tests. The
+separate integrated Android-tooling suite passed 27 host tests. Every closed report
+and source-merge receipt is retained in [the combined evidence](docs/verification/plugin-runtime-integration/).
+The matching isolated plugin proof also passed all 37 UI deliberate-fault controls.
+Its new full hosted acceptance and Android scopes are not yet measured.
+
+The previous combined 1,239-body scene, recorder and device-helper checkpoint
 `95077fcb1d3c86f3b1c91026619642d99198f149` passed all 16 configured hosted source
 acceptance gates on 12 October 2026. Its fresh-built APK exactly matches the
 committed `be1138a5…` candidate. The separate Android job also passed the declared
@@ -79,8 +90,10 @@ for both jobs; the isolated recovery proof remains separately identified.
 
 | Check | Measured result | Evidence |
 | --- | --- | --- |
-| Current source checkpoint on GitHub | All 16 configured acceptance gates; 185,738 three-path cases; all 1,239 methods; zero mismatches/unsupported executions; 203 Python tests passed | [Fresh source CI evidence](docs/verification/source-ci-95077fc/) |
-| Current hosted UI deliberate-fault checks | All 22 controls passed; the restored 15,423-case UI suite passed; inputs unchanged | [Actual control report](docs/verification/source-ci-95077fc/reports/ui-negative-controls.json) |
+| Active combined host/artifact proof | All five planned checks; 188,791 three-path cases across 1,240 bodies; 259 Python tests; exact signed candidate reproduced | [Complete combined evidence](docs/verification/plugin-runtime-integration/) |
+| Isolated plugin lookup proof | 3,053 cases; all 198 instructions and 34 conditional edges; all 37 UI fault controls and clean restoration | [Signed plugin checkpoint](work-in-progress/plugin-lookup/04-signed-proof/) |
+| Previous hosted 1,239-body source checkpoint | All 16 configured acceptance gates; 185,738 three-path cases; all 1,239 methods; zero mismatches/unsupported executions; 203 Python tests passed | [Fresh source CI evidence](docs/verification/source-ci-95077fc/) |
+| Previous hosted UI deliberate-fault checks | All 22 controls passed; the restored 15,423-case UI suite passed; inputs unchanged | [Actual control report](docs/verification/source-ci-95077fc/reports/ui-negative-controls.json) |
 | Isolated scene build: original instructions, recovered JVM code, and signed rebuilt DEX | 185,738 cases; all 1,239 registered methods covered; zero mismatches or unsupported executions | [Signed scene recovery report](work-in-progress/custom-scene/02-signed-proof-evidence/custom-scene-recovery.json) |
 | New custom-scene recovery | 4,070 cases; all 405 original instructions and 40 conditional branch edges visited | [Source and recovery account](project/SCENE_RECOVERY.md) |
 | Isolated scene build: full hybrid bytecode round trip | 71,267 classes / 349,972 method definitions; exactly 1,239 intended body changes and no unexpected changes | [Signed scene recovery report](work-in-progress/custom-scene/02-signed-proof-evidence/custom-scene-recovery.json) |
@@ -137,7 +150,8 @@ rewrite either historical run or establish whole-app 1:1 behavior.
 | `scripts/import_v9.py` | Import the exact historical source/toolchain ZIPs when supplied separately. |
 | `docs/verification/restored-v9/` | Fresh v9 host build and test evidence from the restored full snapshot. |
 | `docs/verification/current/` | Earlier 1,238-body recovery and verification results; report identities retain their original scope. |
-| `docs/verification/source-ci-95077fc/` | Successful 16-gate hosted source acceptance for the current 1,239-body scene/runtime checkpoint. |
+| `docs/verification/plugin-runtime-integration/` | Active 1,240-body source merge, five-check clean proof, complete reports and new Android-tooling host checks. |
+| `docs/verification/source-ci-95077fc/` | Successful 16-gate hosted source acceptance for the previous 1,239-body scene/runtime checkpoint. |
 | `docs/verification/source-ci-bebf448/` | Successful 16-gate hosted source acceptance for the previous 1,238-body checkpoint. |
 | `docs/verification/android-ci-*/` | Exact hosted Android evidence, including the latest cold-launch/four-page still match and earlier failed comparisons or preparation. |
 | `work-in-progress/` | Immutable recovery checkpoints and proof archives, including incomplete work; the materializer does not apply these directories. |

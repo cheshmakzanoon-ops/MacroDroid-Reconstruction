@@ -1,7 +1,7 @@
-# UI, scene-state, selection, touch-blocking and scene-dispatch recovery
+# UI, scene-state, selection, touch-blocking, scene-dispatch and plugin recovery
 
-Seven existing method bodies in this family are compiled from readable Java. The full
-registry has 1,239 bodies across 602 classes; 1,119 are prior constant/no-op bodies.
+Eight existing method bodies in this family are compiled from readable Java. The full
+registry has 1,240 bodies across 603 classes; 1,119 are prior constant/no-op bodies.
 This is not a complete Java/Kotlin application or Android runtime equivalence.
 
 | Original method | Recovered helper | Scope |
@@ -13,6 +13,7 @@ This is not a complete Java/Kotlin application or Android runtime equivalence.
 | `SceneTextConfig.writeToParcel(Parcel,int)` | `SceneStateMethods.write` | Original field/write sequence and Parcelable flags |
 | `BlockTouchesAction.invokeAction(TriggerContextInfo)` | `BlockTouchesMethods.invoke` | Trigger restrictions, block/unblock/toggle selection, original service calls and typed Intent payloads |
 | `CustomSceneAction.W(int,TriggerContextInfo,boolean,Stack,ResumeMacroInfo)` | `CustomSceneMethods.display` | Overlay/dialog/full-screen selection, existing-scene dispatch, original permission-warning fallthrough and ordered payloads/events |
+| `plugins.j.invokeSuspend(Object)` | `PluginLookupMethods.lookup` | Lookup gates, suspension/resumption state, original repeated-key retry behavior, analytics and result/error publication |
 
 `source/ui-methods.json` pins the exact descriptors and original method hashes.
 Only the registered bodies replace existing implementations. Class structure,
@@ -66,6 +67,14 @@ Intent construction/start has the original narrow Exception handler. Repeated
 macro, scene, context and identifier reads and all companion/null checks remain in
 their original order. See `SCENE_RECOVERY.md` for the complete scope and evidence.
 
+Plugin lookup preserves the denied/known-package/attempt-limit gates, both suspension
+labels, continuation-field write/read order and identity-based suspension detection.
+The original retry loop keeps selecting key index 0. Repeated HTTP status reads,
+restored retry flags, analytics order, captured owners/sinks and later field reads
+remain distinct. Only the original `Exception` regions catch failures; Error and
+handler failures escape. Counter reset follows successful result publication.
+See `PLUGIN_RECOVERY.md` for the literal retry behavior and detailed proof scope.
+
 Scene state retains its 21-field read/write protocol in this order:
 
 ```
@@ -85,19 +94,23 @@ are not reconstructed by these two methods.
 
 `UiParityTests` compares original selected instructions, recovered Java on the JVM
 and rebuilt DEX instructions whose bytes are checked against the signed APK. The
-suite has 15,423 cases: 1,271 sound-token; 2,065 SMS-validation; 1,494 drag; 945
-scene-read; 3,158 scene-write; 2,420 touch-blocking; and 4,070 scene-dispatch cases. Its 13,555 independently
+suite has 18,476 cases: 1,271 sound-token; 2,065 SMS-validation; 1,494 drag; 945
+scene-read; 3,158 scene-write; 2,420 touch-blocking; 4,070 scene-dispatch; and
+3,053 plugin-lookup cases. Its 14,552 independently
 specified result/state expectations supplement the three-path comparisons. All
-968 represented original instructions in these seven methods were visited. The
+1,166 represented original instructions in these eight methods were visited. The
 new touch-blocking method visited all 162 original instructions and both outcomes
 of its 15 conditional branches (30/30 edges); the suite requires that coverage.
 Scene dispatch visits all 405 original instructions and all 40 conditional edges,
 and the suite requires that coverage as well. Eight explicitly identified cases
 inject a returning `j68.h0` boundary to exercise the defensive `throw null` instructions;
 they do not claim that the original null-guard implementation returns.
+Plugin lookup visits all 198 original instructions and all 34 conditional edges,
+also enforced as a hard gate. One explicit case substitutes a returning invalid-label
+guard to exercise the original defensive return; normal invalid labels must throw.
 This remains bounded evidence rather than exhaustive path/input coverage.
 
-The complete `test.py --three-way` run passes 185,738 cases across all 1,239
+The complete `test.py --three-way` run passes 188,791 cases across all 1,240
 registered method bodies, with zero failed cases or unsupported executions and an
 exact, non-overlapping method-key partition across the five suites. All nine rebuilt
 DEX partitions were matched byte-for-byte to the signed APK. The independent hybrid
@@ -130,7 +143,7 @@ opcode implementation is checked by `UiOracleConformance`: 6,270 cases including
 21 fixed expected vectors, generated raw floating-point values, saturation,
 NaN/zero, subnormal values and integer-subtraction overflow. This is not ART.
 
-Twenty-two temporary host defects must be rejected by named cases. The five existing
+Thirty-seven temporary host defects must be rejected by named cases. The five existing
 controls move the drag cast, accept only boolean integer 1, substitute italic for
 bold during writing, swallow SMS provider Error, and reject generic sound tokens.
 Seven touch-blocking controls recompute the toggle state after stopping, omit the
@@ -144,11 +157,16 @@ description key, alter the dialog Runnable discriminator, reuse a destroyed
 activity, launch before posting the clear event, substitute the macro identifier
 for the item identifier, omit the description reread after context lookup, narrow
 the catch to RuntimeException, swallow Error, and hard-code the activity description
-key. Each is required to reject a specific named case. All 22 controls passed,
-each rejecting its named case with zero unsupported executions and unchanged
-source/fixture/APK hashes. The final clean 15,423-case positive restoration passed.
-These results are recorded in `reports/ui-negative-controls.json` and
-`reports/ui-positive-restoration.json`.
+key. Fifteen plugin controls alter the denied gate, attempt threshold, false precheck,
+precheck/API labels, repeated key selection, repeated HTTP status reads, counter-reset
+order, checked-exception catch, Error escape, restored error index, retained retry flag,
+owner capture, analytics index and suspension identity. Each is required to reject a
+specific named case. All 37 controls passed for this signed candidate, with each
+required behavioral rejection and zero unsupported executions. The final clean
+18,476-case three-path restoration also passed, including all 14,552 independent
+expected-result/state checks. Source, fixture and signed APK hashes stayed unchanged.
+The executed aggregate results are recorded in `reports/ui-negative-controls.json`
+and `reports/ui-positive-restoration.json`; full negative reports and logs are retained.
 No faulty APK is distributed.
 
 VM-generated null/cast message wording is excluded from equality because it depends

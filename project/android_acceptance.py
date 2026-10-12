@@ -65,6 +65,8 @@ def main()->int:
     ap.add_argument('--probe-only',action='store_true',help='Availability only; installs nothing.')
     ap.add_argument('--intro-pages',action='store_true',
                     help='Also record four English intro pages using three observed app Next buttons.')
+    ap.add_argument('--post-intro',action='store_true',
+                    help='After --intro-pages, tap the observed completion button once and capture the first resulting surface; makes no permission choice.')
     ap.add_argument('--install-timeout',type=positive_timeout,default=180,
                     help='Maximum seconds for each APK install (default: 180).')
     ap.add_argument('--launch-timeout',type=positive_timeout,default=90,
@@ -73,13 +75,16 @@ def main()->int:
                     help='Maximum seconds for each UI hierarchy dump (default: 90).')
     ap.add_argument('--output',type=Path,default=ROOT/'reports/android-runtime')
     args=ap.parse_args()
+    if args.post_intro and not args.intro_pages:ap.error('--post-intro requires --intro-pages')
     if not args.probe_only and args.output.is_dir() and any(args.output.iterdir()):ap.error('A new or empty capture output directory is required')
     args.output.mkdir(parents=True,exist_ok=True)
     report={'schema_version':3,'time_utc':datetime.now(timezone.utc).isoformat(),'android_runtime_executed':False,
             'full_parity_established':False,'status':'BLOCKED','runs':[],'scope':'Cold-launch capture only; no feature parity claim'}
     report['command_timeouts_seconds']={'install':args.install_timeout,'launch':args.launch_timeout,'ui_dump':args.ui_timeout}
     report['intro_pages_requested']=args.intro_pages
+    report['post_intro_requested']=args.post_intro
     if args.intro_pages:report['scope']='Cold launch plus four intro pages and three Next transitions only'
+    if args.post_intro:report['scope']='Cold launch, four intro page stills, and first surface after one observed completion tap; no permission choice'
     # A killed or timed-out capture must leave a current non-success result.
     (args.output/'result.json').write_text(json.dumps(report,indent=2)+'\n')
     adb=shutil.which('adb')
@@ -259,14 +264,29 @@ def main()->int:
                     except (Blocked,CaptureError,OSError,ValueError,zipfile.BadZipFile,subprocess.TimeoutExpired) as exc:
                         sequence=run.setdefault('intro_sequence',{})
                         sequence['status']='INTRO_CAPTURE_FAILED';sequence['reason']=str(exc)
+                if args.post_intro and run.get('intro_sequence',{}).get('status')=='INTRO_PAGES_RECORDED':
+                    # Save earlier evidence before entering the additional scope.
+                    def checkpoint():
+                        (args.output/'result.json').write_text(json.dumps(report,indent=2)+'\n')
+                    checkpoint()
+                    try:
+                        from android_post_intro import CaptureIO,capture_after_intro
+                        io=CaptureIO(args.output,args.ui_timeout,shell,device,save,checked,evidence,environment,checkpoint)
+                        capture_after_intro(run,label,io)
+                    except (Blocked,CaptureError,OSError,ValueError,zipfile.BadZipFile,subprocess.TimeoutExpired) as exc:
+                        post=run.setdefault('post_intro',{})
+                        post['status']='POST_INTRO_CAPTURE_FAILED';post['reason']=str(exc)
             except (Blocked,CaptureError,OSError,ValueError,zipfile.BadZipFile,subprocess.TimeoutExpired) as exc:
                 run['status']='CAPTURE_FAILED';run['reason']=str(exc)
             (args.output/'result.json').write_text(json.dumps(report,indent=2)+'\n')
         complete=len(report['runs'])==2 and all(r['status']=='APP_CAPTURE_RECORDED' for r in report['runs'])
         intro_complete=not args.intro_pages or all(r.get('intro_sequence',{}).get('status')=='INTRO_PAGES_RECORDED' for r in report['runs'])
-        report['requested_capture_complete']=complete and intro_complete
+        post_complete=not args.post_intro or all(r.get('post_intro',{}).get('status')=='POST_INTRO_SURFACE_RECORDED' for r in report['runs'])
+        report['cold_intro_capture_complete']=complete and intro_complete
+        report['requested_capture_complete']=complete and intro_complete and post_complete
         report['status']='CAPTURES_RECORDED_NOT_PARITY' if complete else 'CAPTURE_INCOMPLETE'
         if complete and not intro_complete:report['status']='COLD_CAPTURES_RECORDED_INTRO_INCOMPLETE'
+        if complete and intro_complete and not post_complete:report['status']='COLD_AND_INTRO_CAPTURES_RECORDED_POST_INTRO_INCOMPLETE'
         return 0 if report['requested_capture_complete'] else 2
     except (Blocked,CaptureError,OSError,ValueError,zipfile.BadZipFile,subprocess.TimeoutExpired) as exc:report['reason']=str(exc);return 2
     finally:

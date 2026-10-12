@@ -35,7 +35,7 @@ def main()->None:
     for name,cls,selection,old,new,required_case in CONTROLS:
         src=build.ROOT/'source/java/recovered/engine'/(cls+'.java');text=src.read_text()
         if text.count(old)!=1:raise RuntimeError('Mutation anchor is not unique: '+name)
-        out=build.WORK/'negative-engine'/name;shutil.rmtree(out,ignore_errors=True)
+        out=build.WORK/'negative-engine'/name;build.remove_generated_directory(out)
         java=out/'src/recovered/engine'/(cls+'.java');java.parent.mkdir(parents=True);java.write_text(text.replace(old,new))
         classes=out/'classes';classes.mkdir()
         build.run(['javac','--release','8','-g:none','-cp',host,'-d',classes,java],name+'-negative-javac.log')

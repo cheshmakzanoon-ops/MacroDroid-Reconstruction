@@ -74,6 +74,7 @@ jobs:
             workspace/MacroDroid_v9/reports/*-parity.json
             workspace/MacroDroid_v9/reports/*-semantics.json
             workspace/MacroDroid_v9/reports/python-unit-tests.log
+            workspace/MacroDroid_v9/reports/java-staging.json
             workspace/MacroDroid_v9/reports/*-differential-tests.log
             workspace/MacroDroid_v9/reports/full-apk-edit-probe.json
             workspace/MacroDroid_v9/reports/migration-static-proof.json
@@ -94,6 +95,16 @@ jobs:
           python3 scripts/materialize_v9.py
           python3 scripts/assemble_artifact.py vendor/original/manifest.json
           python3 scripts/assemble_artifact.py artifacts/current/manifest.json
+      - name: Run focused Android tooling host controls
+        run: python3 -B -m unittest discover -s tools/android -p 'test_*.py' -v > android-tooling-host-tests.log 2>&1
+      - name: Preserve Android tooling host-control results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: android-tooling-host-tests-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: warn
+          path: android-tooling-host-tests.log
       - name: Install the checksum-pinned Android runtime
         run: python3 tools/android/bootstrap_android_runtime.py --root "$RUNNER_TEMP/macrodroid-tooling" --create-avd
       - name: Enable the runner user to use its allocated KVM device
@@ -101,7 +112,7 @@ jobs:
           test -c /dev/kvm
           sudo setfacl -m "u:$(id -un):rw" /dev/kvm
           "$RUNNER_TEMP/macrodroid-tooling/android/emulator/emulator" -no-window -accel-check
-      - name: Compare complete cold-launch captures and four observed intro pages
+      - name: Compare intro completion and independently test constructor allocation on ART
         run: |
           python3 tools/android/run_ci_runtime.py \
             --tooling "$RUNNER_TEMP/macrodroid-tooling" \
@@ -123,6 +134,8 @@ jobs:
             ci-runtime/emulator-diagnostics.log
             ci-runtime/capture-device/
             ci-runtime/capture/
+            ci-runtime/constructor-probe/
+            ci-runtime/stages/
             ci-runtime/environment/emulator-launch.json
             ci-runtime/environment/runtime-status.json
             ci-runtime/environment/runtime-properties.json

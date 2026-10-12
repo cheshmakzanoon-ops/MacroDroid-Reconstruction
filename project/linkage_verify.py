@@ -10,6 +10,7 @@ import functools,json,re,sys
 from dataclasses import dataclass
 from pathlib import Path
 import build
+from constructor_owner import restore_from_preserved_source
 
 @dataclass(frozen=True)
 class Declaration:
@@ -45,8 +46,8 @@ def check_field(caller:str,opcode:str,actual:str,flags:frozenset[str])->list[str
     return errors
 
 def verify()->dict:
-    by={}
-    for e in build.index().values():by.setdefault(e['descriptor'],[]).append(e)
+    by={};idx=build.index()
+    for e in idx.values():by.setdefault(e['descriptor'],[]).append(e)
     @functools.lru_cache(None)
     def declaration(descriptor:str,domain:str):
         choices=[e for e in by.get(descriptor,[]) if (e['partition'].startswith('embedded_'))==(domain=='embedded')]
@@ -67,7 +68,7 @@ def verify()->dict:
                 found=resolve(parent,member,kind,domain,seen)
                 if found:return found
         return None
-    errors=[];counts={'invocations_seen':0,'fields_seen':0,'original_invocations_checked':0,'original_fields_checked':0,'external_or_unresolved':0}
+    errors=[];constructor_proofs=[];counts={'invocations_seen':0,'fields_seen':0,'original_invocations_checked':0,'original_fields_checked':0,'external_or_unresolved':0}
     entries=json.loads((build.ROOT/'source/java-method-map.json').read_text())
     for e in entries:
         candidates=by[e['target']];domains={'embedded' if x['partition'].startswith('embedded_') else 'main' for x in candidates}
@@ -77,6 +78,11 @@ def verify()->dict:
         suffix=e['method'][e['method'].index('('):]
         signature=e.get('helper_descriptor',e['helper_method']+'('+(e['target'] if e['instance'] else '')+suffix[1:])
         body=build.methods(helper.read_text())[signature]
+        if e.get('constructor_owner_mappings') is not None:
+            if len(candidates)!=1:raise ValueError('Constructor migration target is ambiguous: '+e['target'])
+            old=build.methods((build.ROOT/candidates[0]['path']).read_text())[e['method']]
+            body,corrections=restore_from_preserved_source(e,body,old,idx,build.ROOT)
+            constructor_proofs.extend({'target':e['target'],'method':e['method'],**proof} for proof in corrections)
         for raw in body.splitlines():
             line=raw.strip();inv=re.match(r'(invoke-\S+) .*?, (L[^;]+;)->(\S+)',line);field=re.match(r'([is][gp]et\S*) .*?, (L[^;]+;)->(\S+)',line)
             if not inv and not field:continue
@@ -87,7 +93,7 @@ def verify()->dict:
             problems=check_method(e['target'],opcode,owner,actual,member,flags,declaration(owner,domain).flags) if inv else check_field(e['target'],opcode,actual,flags)
             counts['original_invocations_checked' if inv else 'original_fields_checked']+=1
             for problem in problems:errors.append({'caller':e['target']+'->'+e['method'],'line':line,'declaring_class':actual,'problem':problem})
-    report={'pass':not errors,'registered_methods':len(entries),**counts,'errors':errors,'android_runtime_executed':False,'scope':__doc__.strip()}
+    report={'pass':not errors,'registered_methods':len(entries),**counts,'errors':errors,'android_runtime_executed':False,'scope':__doc__.strip(),'constructor_owner_corrections':constructor_proofs}
     (build.REPORTS/'migration-linkage-check.json').write_text(json.dumps(report,indent=2)+'\n')
     return report
 

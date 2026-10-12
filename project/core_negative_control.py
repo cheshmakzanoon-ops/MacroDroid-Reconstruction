@@ -17,7 +17,7 @@ def main():
     for label,cls,old,new in variants:
         source=build.ROOT/('source/java/recovered/core/'+cls+'.java');raw=source.read_bytes();text=raw.decode()
         if text.count(old)!=1:raise RuntimeError('Mutation anchor is not unique: '+label)
-        work=build.WORK/'negative-core'/label;shutil.rmtree(work,ignore_errors=True)
+        work=build.WORK/'negative-core'/label;build.remove_generated_directory(work)
         java=work/'src/recovered/core'/(cls+'.java');java.parent.mkdir(parents=True);java.write_text(text.replace(old,new));classes=work/'classes';classes.mkdir()
         build.run(['javac','--release','8','-g:none','-cp',host,'-d',classes,java],label+'-negative-javac.log')
         command=['java','-Xmx1200m','-cp',str(classes)+os.pathsep+cp,'CoreParityTests',str(build.ROOT),str(build.WORK/'hybrid')]

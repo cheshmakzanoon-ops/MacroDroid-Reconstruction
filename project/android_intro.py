@@ -89,7 +89,11 @@ def compare_intro(folder: Path) -> dict:
             raise CaptureError('Intro sequence requires schema-3 installed-APK identity evidence')
         if report.get('intro_pages_requested') is not True:
             raise CaptureError('Recorder did not request the intro sequence')
-        if report.get('status') != 'CAPTURES_RECORDED_NOT_PARITY' or report.get('requested_capture_complete') is not True:
+        complete = report.get('status') == 'CAPTURES_RECORDED_NOT_PARITY' and report.get('requested_capture_complete') is True
+        post_incomplete = (report.get('post_intro_requested') is True and report.get('cold_intro_capture_complete') is True
+            and report.get('requested_capture_complete') is False
+            and report.get('status') == 'COLD_AND_INTRO_CAPTURES_RECORDED_POST_INTRO_INCOMPLETE')
+        if not (complete or post_incomplete):
             raise CaptureError('Recorder did not complete the requested intro capture')
         states = []
         transition_targets = []

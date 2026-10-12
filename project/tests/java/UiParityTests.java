@@ -88,11 +88,12 @@ public final class UiParityTests {
         catch(InvocationTargetException e){throw e.getCause();}
     }
     static JsonObject outcome(String key,String path,Supplier<Object[]> make,boolean serializeAgain) {
-        EngineRuntime.active=false;UiTrace.reset();CoreTrace.reset();TouchControl.reset();SceneControl.reset();SceneParityCases.current=null;
+        EngineRuntime.active=false;UiTrace.reset();CoreTrace.reset();TouchControl.reset();SceneControl.reset();SceneParityCases.current=null;PluginControl.reset();PluginParityCases.current=null;
         Object[] args=make.get();UiTrace.calls.clear();CoreTrace.calls.clear();
         JsonObject result=new JsonObject();
         try {
-            Object value=call(key,path,args); result.add("value",canonical(value));
+            Object value=key.equals(PluginParityCases.KEY)?PluginParityCases.execute(path,args):call(key,path,args); result.add("value",canonical(value));
+            if(key.equals(PluginParityCases.KEY))PluginControl.returned=value;
             if(value instanceof SceneTextConfig && args.length>1 && args[1] instanceof Parcel) {
                 JsonArray identities=new JsonArray();Parcel in=(Parcel)args[1];
                 for(int index:OBJECTS)identities.add(SceneTextConfig.class.getField(FIELDS[index]).get(value)==in.tokens.get(index));
@@ -105,8 +106,9 @@ public final class UiParityTests {
             }
         } catch(Throwable e) {
             if(key.equals(SceneParityCases.KEY))SceneControl.escaped=e;
+            if(key.equals(PluginParityCases.KEY))PluginControl.escaped=e;
             result.addProperty("exception",e.getClass().getName());
-            boolean supported=e instanceof NullPointerException || e instanceof ClassCastException || e instanceof IndexOutOfBoundsException || e instanceof IllegalStateException || e instanceof SecurityException || e instanceof AssertionError || e instanceof java.io.IOException || e instanceof kotlin.UninitializedPropertyAccessException;
+            boolean supported=e instanceof NullPointerException || e instanceof ClassCastException || e instanceof IndexOutOfBoundsException || e instanceof IllegalStateException || e instanceof SecurityException || e instanceof AssertionError || e instanceof java.io.IOException || e instanceof kotlin.UninitializedPropertyAccessException || e instanceof retrofit2.HttpException;
             if(e instanceof BytecodeOracle.Unsupported || !supported) {unsupported++;result.addProperty("unsupported",e.toString());}
         }
         result.add("calls",canonical(UiTrace.calls));result.add("coreCalls",canonical(CoreTrace.calls));
@@ -146,6 +148,7 @@ public final class UiParityTests {
             result.add("blockState",state);
         }
         if(key.equals(SceneParityCases.KEY))SceneParityCases.observe(args,result);
+        if(key.equals(PluginParityCases.KEY))PluginParityCases.observe(args,result);
         return result;
     }
     static void check(String key,String label,Supplier<Object[]> make,Object expected) {check(key,label,make,expected,false);}
@@ -435,9 +438,9 @@ public final class UiParityTests {
         original=new BytecodeOracle(root.resolve("tests/fixtures/original-methods.dex"),registry.keySet());
         if(original.methods.size()!=registry.size())throw new IllegalStateException("Original UI fixture incomplete");
         if(args.length>1) {rebuilt=new BytecodeOracle();try(var stream=Files.list(Paths.get(args[1]))) {for(Path path:stream.filter(p->p.toString().endsWith(".dex")).toList())rebuilt.add(path,registry.keySet());}if(rebuilt.methods.size()!=registry.size())throw new IllegalStateException("Rebuilt UI methods incomplete");}
-        sound();sms();touch();parcel();blockTouches();SceneParityCases.run();
+        sound();sms();touch();parcel();blockTouches();SceneParityCases.run();PluginParityCases.run();
         JsonObject report=new JsonObject();report.addProperty("passed",mismatches==0&&unsupported==0&&counts.keySet().equals(registry.keySet()));report.addProperty("cases",cases);report.addProperty("failedCases",mismatches);report.addProperty("unsupportedExecutions",unsupported);report.addProperty("independentExpectedResultChecks",expectedChecks);report.addProperty("expectedResultFailures",expectedFailures);report.addProperty("methodsCovered",counts.size());report.add("methodKeys",G.toJsonTree(counts.keySet()));report.addProperty("paths",rebuilt==null?2:3);report.addProperty("androidRuntime",false);report.add("methods",G.toJsonTree(counts));report.add("failures",G.toJsonTree(failures));report.add("failedCaseLabels",G.toJsonTree(failedLabels));
-        JsonObject coverage=new JsonObject();boolean blockBranchesCovered=false,sceneBranchesCovered=false;
+        JsonObject coverage=new JsonObject();boolean blockBranchesCovered=false,sceneBranchesCovered=false,pluginBranchesCovered=false;
         for(String key:registry.keySet()) {
             JsonObject c=new JsonObject();Set<Integer> visited=original.executed.getOrDefault(key,Collections.emptySet());
             Set<String> edges=original.branchEdges.getOrDefault(key,Collections.emptySet());
@@ -455,11 +458,14 @@ public final class UiParityTests {
             c.addProperty("conditionalEdges",possibleEdges);c.addProperty("conditionalEdgesVisited",possibleEdges-missingEdges.size());c.add("unvisitedConditionalEdges",G.toJsonTree(missingEdges));coverage.add(key,c);
             if(key.equals(BLOCK))blockBranchesCovered=unseen.isEmpty()&&missingEdges.isEmpty();
             if(key.equals(SceneParityCases.KEY))sceneBranchesCovered=unseen.isEmpty()&&missingEdges.isEmpty();
+            if(key.equals(PluginParityCases.KEY))pluginBranchesCovered=unseen.isEmpty()&&missingEdges.isEmpty();
         }
         report.add("instructionCoverage",coverage);report.addProperty("blockTouchesInstructionAndConditionalCoverage",blockBranchesCovered);
         report.addProperty("customSceneInstructionAndConditionalCoverage",sceneBranchesCovered);
         report.addProperty("customSceneDefensiveNullThrowsUseInjectedReturningLateinitBoundary",true);
-        if(!blockBranchesCovered||!sceneBranchesCovered)report.addProperty("passed",false);
+        report.addProperty("pluginLookupInstructionAndConditionalCoverage",pluginBranchesCovered);
+        report.addProperty("pluginInvalidLabelReturnUsesInjectedReturningBoundary",true);
+        if(!blockBranchesCovered||!sceneBranchesCovered||!pluginBranchesCovered)report.addProperty("passed",false);
         Path reportPath=System.getProperty("ui.report")==null?root.resolve("reports/java-ui-"+(rebuilt==null?"two":"three")+"-path-parity.json"):Paths.get(System.getProperty("ui.report"));
         Files.writeString(reportPath,G.toJson(report));
         System.out.println("UI cases="+cases+" methods="+counts.size()+" mismatches="+mismatches+" unsupported="+unsupported+" expected="+expectedChecks);
