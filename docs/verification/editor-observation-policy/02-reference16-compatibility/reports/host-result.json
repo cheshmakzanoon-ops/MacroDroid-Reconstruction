@@ -1,0 +1,185 @@
+{
+  "schema": 1,
+  "status": "PASSED",
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/parity_journeys",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "tests": 81,
+  "individual_success_lines": 81,
+  "seconds": 39.604,
+  "log": "reports/host-tests-01.log",
+  "log_sha256": "ed1d53da4ae1d9e6f739076a2df161027bbfe258770189fb3cb12a60f22c9f32",
+  "prior_controls_retained": 76,
+  "additional_external_tests": 2,
+  "additional_compatibility_controls": 3,
+  "external_dependency_commit": "736da1920f7dada1d0c3444032ffcf4eb8759888",
+  "preserved_dependencies": [
+    {
+      "repository_path": "tools/parity_journeys/editor-plan.json",
+      "bytes": 2305,
+      "sha256": "28ea38698dcfcf0146955be9ddd07d1df0fe01a234c13633dac85628edbbc448"
+    },
+    {
+      "repository_path": "tools/parity_journeys/robust_capture.py",
+      "bytes": 1136,
+      "sha256": "ab4fea3dfb4220bcfc790027c8eda3b7a3421ca9dc45a3b486a89fb34757ba3d"
+    },
+    {
+      "repository_path": "tools/parity_journeys/supplied_reference_journey.py",
+      "bytes": 2025,
+      "sha256": "7c03b5cf3c7aaeb4211e444a7e86d7b93ccb621c508516f07e7bf1f56b5321b0"
+    },
+    {
+      "repository_path": "tools/parity_journeys/test_editor_journey.py",
+      "bytes": 17573,
+      "sha256": "6e349fdabb35a595ca5ef372ae0c4cbce06991c46bb24b77f9c8c049e0af6e29"
+    },
+    {
+      "repository_path": "tools/parity_journeys/test_robust_capture.py",
+      "bytes": 2004,
+      "sha256": "7d761726f51395f5783cb558a8401f49349d97ecbb30e99a33eaab736ee7844c"
+    },
+    {
+      "repository_path": "tools/parity_journeys/test_supplied_reference_journey.py",
+      "bytes": 4427,
+      "sha256": "1ffd2cca663e083f3309b6d1de5a29bf206cb70ffcda8cce5e8c2a39a0ca0a01"
+    }
+  ],
+  "project_comparator": {
+    "bytes": 16351,
+    "sha256": "0b9a50cec26d0cc97a2b8c5592aaf614a40b5dc339bccf85d85f1d753500126f"
+  },
+  "required_archives": [
+    {
+      "repository_path": "docs/verification/editor-journey/run-38198783416-attempt-1/evidence.zip",
+      "bytes": 3892915,
+      "sha256": "abf947195917bb8f090cee7ae2eff250963c8d0ddd5d5663d7b76103a850c46e",
+      "copy_in_this_capsule": false,
+      "already_durable": true
+    },
+    {
+      "repository_path": "docs/verification/editor-journey/run-38202401351-attempt-1/evidence.zip",
+      "bytes": 6517530,
+      "sha256": "fa2eca5f893ae181b91aa7a7bf5df8320620bbc8da21b87eacffb1de0c3bc7ee",
+      "copy_in_this_capsule": false,
+      "already_durable": true
+    }
+  ],
+  "ten_screen_plan": [
+    [
+      "intro-1",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "MACRODROID"
+      },
+      null
+    ],
+    [
+      "intro-2",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "TRIGGERS"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/button_next"
+      }
+    ],
+    [
+      "intro-3",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "ACTIONS"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/button_next"
+      }
+    ],
+    [
+      "intro-4",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "CONSTRAINTS"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/button_next"
+      }
+    ],
+    [
+      "notification-request",
+      "com.google.android.permissioncontroller",
+      {
+        "resource-id": "com.android.permissioncontroller:id/permission_deny_button"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/button_next"
+      }
+    ],
+    [
+      "reference-promotion",
+      "com.arlosoft.macrodroid",
+      {
+        "text": "LITEAPKS"
+      },
+      {
+        "resource-id": "com.android.permissioncontroller:id/permission_deny_button"
+      }
+    ],
+    [
+      "home",
+      "com.arlosoft.macrodroid",
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/navigation_home"
+      },
+      {
+        "text": "CLOSE"
+      }
+    ],
+    [
+      "empty-editor",
+      "com.arlosoft.macrodroid",
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/edit_macro_addTriggerButton"
+      },
+      {
+        "text": "Add Macro"
+      }
+    ],
+    [
+      "favourite-triggers-info",
+      "com.arlosoft.macrodroid",
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/alertTitle",
+        "text": "Favourite Triggers"
+      },
+      {
+        "resource-id": "com.arlosoft.macrodroid:id/edit_macro_addTriggerButton"
+      }
+    ],
+    [
+      "after-favourite-info",
+      "com.arlosoft.macrodroid",
+      null,
+      {
+        "resource-id": "android:id/button1",
+        "text": "OK"
+      }
+    ]
+  ],
+  "ten_screen_plan_fingerprint": "5a8ca21b8e96b0ae2cfe55bc944e93749534209ca81b04141ce77eef0416c453",
+  "first_eight_historical_and_current_external_steps_equal": true,
+  "workflow_changes_only_entrypoint_and_two_opt_in_flags": true,
+  "frozen_checkpoint01_members_unchanged": 42,
+  "host_only": true,
+  "actual_new_android_result": "PENDING",
+  "full_runtime_1_to_1_established": false
+}

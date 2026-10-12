@@ -1,0 +1,171 @@
+--- checkpoint01/tools/parity_journeys/favourite_info_journey.py
++++ checkpoint02/tools/parity_journeys/favourite_info_journey.py
+@@ -1,7 +1,7 @@
+ #!/usr/bin/env python3
+ """Observe the supplied APK's Favourite Triggers dialog, tap OK once, then stop.
+ 
+-The earlier 13/14-step plans remain unchanged. This opt-in ten-screen plan records
++The base 13-step and external 16-step plans remain unchanged. This ten-screen plan records
+ the actual first app surface after OK; it does not assume a trigger catalog or
+ issue another input. A matched continuation may include a recorded shared crash.
+ """
+@@ -16,7 +16,7 @@
+ import observed_journey as observed
+ import supplied_reference_journey as reference
+ 
+-REFERENCE_PLAN_SHA256 = '69bae4f2af8e2f14c407808dbcdea91cdca009af2ae390e13b5c7fbf035a3065'
++REFERENCE_PLAN_SHA256 = '735a31dfda8ed8ebdcf718e5c52f5d5fabd24c608acbd4644e94d13911316b22'
+ EDITOR = runner.PACKAGE + '/' + runner.PACKAGE + '.editscreen.EditMacroActivity'
+ TITLE = {'resource-id': runner.PACKAGE + ':id/alertTitle', 'text': 'Favourite Triggers'}
+ OK = {'resource-id': 'android:id/button1', 'text': 'OK'}
+--- checkpoint01/tools/parity_journeys/test_observed_journey.py
++++ checkpoint02/tools/parity_journeys/test_observed_journey.py
+@@ -2,6 +2,8 @@
+ from __future__ import annotations
+ 
+ import copy
++from contextlib import contextmanager
++import hashlib
+ import json
+ from pathlib import Path
+ import shlex
+@@ -14,10 +16,25 @@
+ import editor_journey as runner
+ import observed_journey as observed
+ from robust_capture import EvidenceRecorder
+-import supplied_reference_journey as adapter
+ import test_editor_journey as legacy
+ 
+ proof = legacy.proof
++
++
++def reviewed_historical_plan():
++    data = (Path(__file__).with_name('fixtures') / 'reviewed-reference-plan14.json').read_bytes()
++    if hashlib.sha256(data).hexdigest() != 'ff578443029fff6da5056f0e8eb30e07cc7c74c8bada126939062e5bbc311df3':
++        raise runner.JourneyError('Pinned historical fourteen-step test fixture changed')
++    return json.loads(data)
++
++
++@contextmanager
++def configured_historical_plan():
++    # Retain the original synthetic controls without replacing the external
++    # sixteen-step adapter or enabling any new device action in this test policy.
++    with patch.object(runner, 'PLAN', reviewed_historical_plan()), \
++            patch.object(runner, 'Recorder', EvidenceRecorder):
++        yield runner.PLAN
+ 
+ 
+ class ObservedFixture:
+@@ -26,7 +43,7 @@
+         plan = runner.PLAN
+         try:
+             if len(plan) == 10:
+-                runner.PLAN = json.loads(adapter.PLAN_PATH.read_text())
++                runner.PLAN = reviewed_historical_plan()
+             self.legacy.setUp()
+         finally:
+             runner.PLAN = plan
+@@ -209,7 +226,7 @@
+ 
+ class ObservedVerifierTests(unittest.TestCase):
+     def setUp(self):
+-        self.context = adapter.configured_plan()
++        self.context = configured_historical_plan()
+         self.context.__enter__()
+         self.addCleanup(self.context.__exit__, None, None, None)
+         self.fixture = ObservedFixture()
+--- checkpoint01/tools/parity_journeys/test_favourite_info_journey.py
++++ checkpoint02/tools/parity_journeys/test_favourite_info_journey.py
+@@ -15,7 +15,7 @@
+ import favourite_info_journey as favourite
+ import observed_journey as observed
+ import supplied_reference_journey as reference
+-from test_observed_journey import ObservedFixture, VirtualRecorder, proof
++from test_observed_journey import ObservedFixture, VirtualRecorder, proof, reviewed_historical_plan
+ 
+ FIXTURES = Path(__file__).with_name('fixtures')
+ 
+@@ -131,13 +131,31 @@
+     def test_new_plan_stops_after_one_ok_and_preserves_reference_bytes(self):
+         plan = runner.PLAN
+         old = json.loads(reference.PLAN_PATH.read_text())
++        self.assertEqual(len(old), 16)
+         self.assertEqual(len(plan), 10)
+         self.assertEqual(plan[:8], old[:8])
++        self.assertEqual(plan[:8], reviewed_historical_plan()[:8])
+         self.assertEqual(plan[-1], ['after-favourite-info', runner.PACKAGE, None, favourite.OK])
+         self.assertEqual(sum(step[3] == favourite.OK for step in plan), 1)
+-        self.assertEqual(hashlib.sha256(reference.PLAN_PATH.read_bytes()).hexdigest(), 'ff578443029fff6da5056f0e8eb30e07cc7c74c8bada126939062e5bbc311df3')
++        self.assertEqual(hashlib.sha256(reference.PLAN_PATH.read_bytes()).hexdigest(), '28ea38698dcfcf0146955be9ddd07d1df0fe01a234c13633dac85628edbbc448')
+         with patch.object(runner, 'PLAN', plan + [old[-1]]), self.assertRaises(runner.JourneyError):
+             favourite.require_plan()
++
++    def test_historical_fixture_drift_is_rejected(self):
++        with patch.object(Path, 'read_bytes', return_value=b'[]'), self.assertRaisesRegex(runner.JourneyError, 'historical'):
++            reviewed_historical_plan()
++
++    def test_new_external_plan_drift_is_not_silently_adopted(self):
++        plan = json.loads(reference.PLAN_PATH.read_text())
++        plan[-1][0] = 'unreviewed-external-step'
++        with patch.object(Path, 'read_text', return_value=json.dumps(plan)), \
++                self.assertRaisesRegex(runner.JourneyError, 'reference plan changed'):
++            favourite.expected_plan()
++
++    def test_observation_policy_does_not_implicitly_enable_external_sixteen_steps(self):
++        plan = json.loads(reference.PLAN_PATH.read_text())
++        with patch.object(runner, 'PLAN', plan), self.assertRaises(runner.JourneyError):
++            observed.require_plan()
+ 
+ 
+ class ContinuationControls(unittest.TestCase):
+--- checkpoint01/tools/parity_journeys/OBSERVED_CAPTURE.md
++++ checkpoint02/tools/parity_journeys/OBSERVED_CAPTURE.md
+@@ -1,8 +1,10 @@
+ # Explicit process-boundary and full-frame observations
+ 
+-The new capture policy is opt-in. The existing thirteen-step `editor_journey.py` and fourteen-step `supplied_reference_journey.py` plans retain their original action sequences and default initial-PID continuity checks. The external XML ParseError retry adapter and `editor-plan.json` remain byte-identical.
++The new capture policy is opt-in. The existing thirteen-step `editor_journey.py` and external sixteen-step `supplied_reference_journey.py` plans retain their current action sequences and default initial-PID continuity checks. The external adapter, its tests, `editor-plan.json`, and XML ParseError retry adapter remain byte-identical to the preserved incoming files.
+ 
+ `favourite_info_journey.py` selects a separate ten-screen plan. It preserves the first eight reference steps, records the observed Favourite Triggers information dialog, taps its verified OK button once, records the actual first resulting app surface, and stops. It requires both `--observe-denial-handoff` and `--settle-full-frames`. The workflow uses that entry point and both flags; downloader tests, bootstrap logging, raw lifecycle logging, and artifact preservation from `cada56c8` remain intact.
++
++The reference dependency is pinned to the exact sixteen-step plan from commit `736da1920f7dada1d0c3444032ffcf4eb8759888` (JSON fingerprint `735a31dfda8ed8ebdcf718e5c52f5d5fabd24c608acbd4644e94d13911316b22`). Its first eight steps equal those of the previous fourteen-step plan, so this dependency update leaves the complete ten-screen action sequence unchanged. The previous fourteen-step JSON is preserved as the hash-pinned `fixtures/reviewed-reference-plan14.json` for the historical synthetic verifier controls. It is not installed as the external plan or selected by the workflow. The new observation policy does not implicitly enable the later actions in the external sixteen-step journey. [Checkpoint 01](../../docs/verification/editor-observation-policy/01-observed-device-policy/) remains immutable, inactive evidence of the earlier dependency and host tests.
+ 
+ ## What is accepted as a stable observation
+ 
+--- checkpoint01/tools/parity_journeys/fixtures/observed-fixtures.json
++++ checkpoint02/tools/parity_journeys/fixtures/observed-fixtures.json
+@@ -76,5 +76,14 @@
+     "copy": "exact complete artifact member"
+   },
+   "original_and_candidate_favourite_xml_and_png_are_byte_identical": true,
+-  "screenshots_modified": false
++  "screenshots_modified": false,
++  "historical_reference_plan_fixture": {
++    "path": "reviewed-reference-plan14.json",
++    "bytes": 1965,
++    "sha256": "ff578443029fff6da5056f0e8eb30e07cc7c74c8bada126939062e5bbc311df3",
++    "source_commit": "cada56c8a11ff5cbd892ec6d0beaeab60b3e644d",
++    "source_path": "tools/parity_journeys/editor-plan.json",
++    "copy": "exact complete prior external JSON file",
++    "scope": "historical synthetic fourteen-step controls only; not the active external plan or workflow"
++  }
+ }
+--- /dev/null
++++ checkpoint02/tools/parity_journeys/fixtures/reviewed-reference-plan14.json
+@@ -0,0 +1,16 @@
++[
++  ["intro-1", "com.arlosoft.macrodroid", {"text": "MACRODROID"}, null],
++  ["intro-2", "com.arlosoft.macrodroid", {"text": "TRIGGERS"}, {"resource-id": "com.arlosoft.macrodroid:id/button_next"}],
++  ["intro-3", "com.arlosoft.macrodroid", {"text": "ACTIONS"}, {"resource-id": "com.arlosoft.macrodroid:id/button_next"}],
++  ["intro-4", "com.arlosoft.macrodroid", {"text": "CONSTRAINTS"}, {"resource-id": "com.arlosoft.macrodroid:id/button_next"}],
++  ["notification-request", "com.google.android.permissioncontroller", {"resource-id": "com.android.permissioncontroller:id/permission_deny_button"}, {"resource-id": "com.arlosoft.macrodroid:id/button_next"}],
++  ["reference-promotion", "com.arlosoft.macrodroid", {"text": "LITEAPKS"}, {"resource-id": "com.android.permissioncontroller:id/permission_deny_button"}],
++  ["home", "com.arlosoft.macrodroid", {"resource-id": "com.arlosoft.macrodroid:id/navigation_home"}, {"text": "CLOSE"}],
++  ["empty-editor", "com.arlosoft.macrodroid", {"resource-id": "com.arlosoft.macrodroid:id/edit_macro_addTriggerButton"}, {"text": "Add Macro"}],
++  ["trigger-catalog", "com.arlosoft.macrodroid", {"text": "Add Trigger"}, {"resource-id": "com.arlosoft.macrodroid:id/edit_macro_addTriggerButton"}],
++  ["editor-after-trigger-back", "com.arlosoft.macrodroid", {"resource-id": "com.arlosoft.macrodroid:id/edit_macro_addActionButton"}, "BACK"],
++  ["action-catalog", "com.arlosoft.macrodroid", {"text": "Add Action"}, {"resource-id": "com.arlosoft.macrodroid:id/edit_macro_addActionButton"}],
++  ["editor-after-action-back", "com.arlosoft.macrodroid", {"resource-id": "com.arlosoft.macrodroid:id/edit_macro_addConstraintButton"}, "BACK"],
++  ["constraint-catalog", "com.arlosoft.macrodroid", {"text": "Add constraint"}, {"resource-id": "com.arlosoft.macrodroid:id/edit_macro_addConstraintButton"}],
++  ["editor-after-constraint-back", "com.arlosoft.macrodroid", {"resource-id": "com.arlosoft.macrodroid:id/edit_macro_addTriggerButton"}, "BACK"]
++]
