@@ -9,4 +9,4 @@
 - **v8:** 1,232 methods; action dispatcher, navigation, flow-control helpers.
 - **v9 (latest):** 1,237 methods; drag handling, sound recognition, SMS validation, scene-state serialization. Reports show 179,248 bounded three-way host comparison cases, and no observed Android execution.
 
-Earlier reports are retained under \`docs/history/\` for traceability, not as proof of later acceptance. The complete application sources and APKs have not been uploaded to this public repository.
+Earlier reports are retained under `docs/history/` for traceability, not as proof of later acceptance. The complete application sources and APKs have not been uploaded to this public repository.
