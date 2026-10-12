@@ -42,3 +42,42 @@ but deliberate-fault execution and signed rebuilt-APK comparisons had not run at
 this freeze. Those pending stages prevent promotion to active application inputs.
 The checkpoint's 1,240-body registry remains inactive. See
 [PLUGIN_RECOVERY.md](02-original-jvm/PLUGIN_RECOVERY.md) for its exact scope.
+
+
+## 03: Signed proof and roundtrip passed; controls still running
+
+[The third frozen checkpoint](03-signed-controls-pending/checkpoint.json) retains
+40 source/test/document/fixture paths, 75 closed evidence files and two narrow
+merge patches. Its SHA-256 is
+`d8ef00d69158325e4c03292a53a980712cfbdcbd882f04293ac5c13a48e3053b`.
+
+All 188,791 original-instruction/JVM/rebuilt-APK comparisons passed, including
+3,053 plugin cases and 18,476 total UI cases. There were zero mismatches and zero
+unsupported executions. All 198 plugin instructions and 34 conditional branch
+edges were visited; the independent signed DEX roundtrip also passed. All 37
+deliberate-fault controls and final positive restoration remained incomplete at
+this freeze. The 1,240-body / 603-class registry and APK remain inactive.
+
+The [complete evidence archive](03-signed-controls-pending/evidence-archive/manifest.json)
+preserves all 75 closed files with an [entry-by-entry verification receipt](03-signed-controls-pending/evidence-archive/extraction-receipt.json).
+Seventy-four compact files are also visible normally in
+[evidence/](03-signed-controls-pending/evidence/). The 18 MB resource table is
+retained inside the archive. The earlier failed staging attempt and successful
+retry are preserved with their actual outcomes. Running control logs are excluded
+from this immutable checkpoint.
+
+The [inactive APK manifest](03-signed-controls-pending/artifact/manifest.json)
+pins 94,683,497 bytes and SHA-256
+`9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2`.
+Assemble it without changing the current application:
+
+```bash
+python scripts/assemble_artifact.py work-in-progress/plugin-lookup/03-signed-controls-pending/artifact/manifest.json
+```
+
+To restore the complete evidence, assemble its manifest and extract the resulting
+`workspace/artifacts/plugin-signed-proof-controls-pending-evidence.tar.gz` into
+`work-in-progress/plugin-lookup/03-signed-controls-pending/`. Archive entry paths
+start at `evidence/`; exact hashes are listed in the receipt and original checkpoint.
+Future integration must retain parent build/runtime changes and apply the two
+provided merge patches only after their recorded baseline checks.

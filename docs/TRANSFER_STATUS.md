@@ -94,5 +94,9 @@ initial checkpoint is preserved under `work-in-progress/plugin-lookup/` at
 `88155fd82c5b894649c9257e0e2bb03b85c33593`; its coverage gate remains failed.
 The subsequent `02-original-jvm` checkpoint passed 3,053 plugin cases and complete
 198-instruction / 34-edge coverage. Signed rebuilt proof and control execution
-were still pending, so both checkpoints retain inactive registries. The materializer applies only `project/`, so
+were still pending at that freeze. The subsequent `03-signed-controls-pending`
+checkpoint passed all 188,791 signed three-path cases and an independent DEX
+roundtrip; its exact APK and complete closed evidence are now preserved beside
+the source. All 37 control executions were still pending at that checkpoint.
+All three plugin checkpoints retain inactive registries. The materializer applies only `project/`, so
 preserving unfinished work does not adopt it as active application source.
