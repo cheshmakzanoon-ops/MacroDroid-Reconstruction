@@ -1,0 +1,164 @@
+--- animation-diagnostic/checkpoints/01-normal-animation-source/enable_normal_animations.py
++++ enable_still_animations.py
+@@ -1,8 +1,8 @@
+ #!/usr/bin/env python3
+-"""Set and prove animation scale 1 on the exact disposable API35 emulator.
++"""Set and prove animation scale 0 on the exact disposable API35 emulator.
+ 
+ This prepares a separately declared still-frame diagnostic. It does not modify
+-APKs, screen captures, comparison thresholds, or the existing scale-zero run.
++APKs, screen captures, comparison thresholds, or historical run evidence.
+ """
+ from __future__ import annotations
+ 
+@@ -42,9 +42,9 @@
+     result += [(label, ['shell', 'getprop', key], exact_line(value)) for label, key, value in props]
+     result += [('avd-name', ['emu', 'avd', 'name'], exact_line(AVD + '\nOK'))]
+     result += [('before-' + key, ['shell', 'settings', 'get', 'global', key], None) for key in SCALES]
+-    result += [('set-' + key, ['shell', 'settings', 'put', 'global', key, '1'], (b'',)) for key in SCALES]
++    result += [('set-' + key, ['shell', 'settings', 'put', 'global', key, '0'], (b'',)) for key in SCALES]
+     result += [('after-' + key, ['shell', 'settings', 'get', 'global', key],
+-                exact_line('1') + exact_line('1.0')) for key in SCALES]
++                exact_line('0') + exact_line('0.0')) for key in SCALES]
+     result += [('final-' + label, ['shell', 'getprop', key], exact_line(value)) for label, key, value in props]
+     return result
+ 
+@@ -74,7 +74,7 @@
+ 
+ def verify_report(folder, report):
+     if (report.get('schema') != 1 or report.get('serial') != SERIAL or report.get('expected_avd') != AVD
+-            or report.get('requested_scales') != {key: '1' for key in SCALES}
++            or report.get('requested_scales') != {key: '0' for key in SCALES}
+             or type(report.get('android_executed')) is not bool
+             or report.get('apks_modified') is not False or report.get('screenshots_modified') is not False
+             or report.get('comparison_rules_changed') is not False
+@@ -103,17 +103,17 @@
+         validate_stdout(label, stdout, expected)
+     if not previous <= report['finished_monotonic'] <= report['started_monotonic'] + 300:
+         raise EvidenceError('Diagnostic exceeded its total deadline')
+-    return {key: '1' for key in SCALES}
++    return {key: '0' for key in SCALES}
+ 
+ 
+ def run(args, executor=None):
+     args.output = args.output.resolve()
+     args.output.mkdir(parents=True, exist_ok=False)
+     report = {'schema': 1, 'status': 'PREPARING_ANIMATION_DIAGNOSTIC',
+-              'scope': 'Explicit animation-scale-one preparation for an independent still-frame comparison',
++              'scope': 'Explicit animation-scale-zero preparation for an independent still-frame comparison',
+               'serial': args.serial, 'expected_avd': AVD, 'adb': str(Path(args.adb).resolve()),
+               'source_sha256': digest(Path(__file__))['sha256'],
+-              'requested_scales': {key: '1' for key in SCALES},
++              'requested_scales': {key: '0' for key in SCALES},
+               'apks_modified': False, 'screenshots_modified': False, 'comparison_rules_changed': False,
+               'animation_timing_parity_established': False, 'full_runtime_1_to_1_established': False,
+               'android_executed': executor is None, 'commands': [],
+@@ -148,8 +148,8 @@
+             validate_stdout(label, stdout, expected)
+         report['finished_monotonic'] = time.monotonic()
+         report['observed_scales'] = verify_report(args.output, report)
+-        report['status'] = ('ANIMATION_SCALE_ONE_VERIFIED' if report['android_executed']
+-                            else 'SIMULATED_ANIMATION_SCALE_ONE_VERIFIED')
++        report['status'] = ('ANIMATION_SCALE_ZERO_VERIFIED' if report['android_executed']
++                            else 'SIMULATED_ANIMATION_SCALE_ZERO_VERIFIED')
+         report['passed'] = True
+     except (OSError, ValueError, KeyError, TypeError) as exc:
+         report.update(status='ANIMATION_SCALE_DIAGNOSTIC_FAILED', passed=False, reason=str(exc),
+--- animation-diagnostic/checkpoints/01-normal-animation-source/test_enable_normal_animations.py
++++ test_enable_still_animations.py
+@@ -11,7 +11,7 @@
+ import tempfile
+ import unittest
+ 
+-import enable_normal_animations as diagnostic
++import enable_still_animations as diagnostic
+ 
+ 
+ class Simulation:
+@@ -24,7 +24,7 @@
+         label, expected_args, outputs = diagnostic.specification()[number]
+         assert argv[1:] == ['-s', diagnostic.SERIAL, *expected_args]
+         self.calls.append(argv)
+-        value = outputs[0] if outputs is not None else b'0.0\n'
++        value = outputs[0] if outputs is not None else b'1.0\n'
+         code, error = 0, b''
+         if self.edit:
+             code, value, error = self.edit(label, code, value, error)
+@@ -58,13 +58,43 @@
+     def test_complete_exact_lf_sequence_verifies_all_three_scale_readbacks(self):
+         code, report, simulator, folder = self.execute()
+         self.assertEqual(code, 0, report)
+-        self.assertEqual(report['status'], 'SIMULATED_ANIMATION_SCALE_ONE_VERIFIED')
++        self.assertEqual(report['status'], 'SIMULATED_ANIMATION_SCALE_ZERO_VERIFIED')
+         self.assertFalse(report['android_executed'])
+         self.assertEqual(len(simulator.calls), 19)
+-        self.assertEqual(diagnostic.verify_report(folder, report), {key: '1' for key in diagnostic.SCALES})
++        self.assertEqual(diagnostic.verify_report(folder, report), {key: '0' for key in diagnostic.SCALES})
+         self.assertFalse(report['apks_modified'])
+         self.assertFalse(report['screenshots_modified'])
+         self.assertFalse(report['comparison_rules_changed'])
++
++    def test_independent_literal_nineteen_command_zero_scale_sequence(self):
++        code, report, simulator, _ = self.execute()
++        expected = [
++            ['get-state'],
++            ['shell', 'getprop', 'ro.kernel.qemu'],
++            ['shell', 'getprop', 'sys.boot_completed'],
++            ['shell', 'getprop', 'ro.build.version.sdk'],
++            ['shell', 'getprop', 'ro.build.fingerprint'],
++            ['emu', 'avd', 'name'],
++            ['shell', 'settings', 'get', 'global', 'animator_duration_scale'],
++            ['shell', 'settings', 'get', 'global', 'window_animation_scale'],
++            ['shell', 'settings', 'get', 'global', 'transition_animation_scale'],
++            ['shell', 'settings', 'put', 'global', 'animator_duration_scale', '0'],
++            ['shell', 'settings', 'put', 'global', 'window_animation_scale', '0'],
++            ['shell', 'settings', 'put', 'global', 'transition_animation_scale', '0'],
++            ['shell', 'settings', 'get', 'global', 'animator_duration_scale'],
++            ['shell', 'settings', 'get', 'global', 'window_animation_scale'],
++            ['shell', 'settings', 'get', 'global', 'transition_animation_scale'],
++            ['shell', 'getprop', 'ro.kernel.qemu'],
++            ['shell', 'getprop', 'sys.boot_completed'],
++            ['shell', 'getprop', 'ro.build.version.sdk'],
++            ['shell', 'getprop', 'ro.build.fingerprint'],
++        ]
++        self.assertEqual(code, 0, report)
++        self.assertEqual([row[3:] for row in simulator.calls], expected)
++        self.assertEqual(report['requested_scales'], {
++            'animator_duration_scale': '0', 'window_animation_scale': '0',
++            'transition_animation_scale': '0'})
++        self.assertEqual(report['observed_scales'], report['requested_scales'])
+ 
+     def test_crlf_console_and_shell_lines_are_exactly_supported(self):
+         code, report, _, folder = self.execute(lambda label, code, out, err: (code, out.replace(b'\n', b'\r\n'), err))
+@@ -91,11 +121,11 @@
+                     (code, b'changed\n' if name == label else out, err))
+                 self.assertEqual(code, 2, report)
+ 
+-    def test_every_scale_readback_must_equal_one(self):
++    def test_every_scale_readback_must_equal_zero(self):
+         for key in diagnostic.SCALES:
+             with self.subTest(key=key):
+                 code, report, _, _ = self.execute(lambda label, code, out, err:
+-                    (code, b'0\n' if label == 'after-' + key else out, err))
++                    (code, b'1\n' if label == 'after-' + key else out, err))
+                 self.assertEqual(code, 2, report)
+ 
+     def test_nonzero_boolean_diagnostic_and_malformed_avd_outputs_are_rejected(self):
+@@ -120,7 +150,7 @@
+         row = original['commands'][12]
+         path = folder / row['stdout']['path']
+         previous = path.read_bytes()
+-        path.write_bytes(b'0\n')
++        path.write_bytes(b'1\n')
+         changed = copy.deepcopy(original)
+         changed['commands'][12]['stdout'].update(diagnostic.digest(path))
+         with self.assertRaises(diagnostic.EvidenceError):
+@@ -148,7 +178,7 @@
+             if kind == 'order':
+                 changed['commands'][6:8] = reversed(changed['commands'][6:8])
+             elif kind == 'argv':
+-                changed['commands'][9]['argv'][-1] = '0'
++                changed['commands'][9]['argv'][-1] = '1'
+             elif kind == 'boolean-code':
+                 changed['commands'][0]['exit_code'] = False
+             elif kind == 'source-hash':

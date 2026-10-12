@@ -1,0 +1,1105 @@
+{
+  "started_utc": "2026-10-12T08:12:21Z",
+  "status": "CAPTURE_DEVICE_CONFIGURED",
+  "serial": "emulator-5560",
+  "expected_avd": "MacroDroid_API35_Disposable",
+  "requested_signal_profile": 4,
+  "required_stable_seconds": 15,
+  "signal_timeout_seconds": 90,
+  "signal_stability_fields": [
+    "primary",
+    "level"
+  ],
+  "demo_clock_requested": "1200",
+  "systemui_demo_mode_requested": true,
+  "disable_animations_requested": false,
+  "animation_scales_requested": null,
+  "requested_animation_scales_observed": false,
+  "animation_timing_and_motion_parity_tested": false,
+  "battery_modified": false,
+  "device_wall_clock_modified": false,
+  "app_apk_modified": false,
+  "app_resources_modified": false,
+  "screenshots_modified": false,
+  "full_runtime_1_to_1_established": false,
+  "sources": [
+    "https://developer.android.com/studio/run/emulator-console#telephony-emulation",
+    "https://android.googlesource.com/platform/external/qemu/+/refs/heads/emu-master-dev/android/android-emu/android/console.cpp",
+    "https://android.googlesource.com/platform/external/qemu/+/refs/heads/emu-master-dev/android/emu/telephony/src/android/telephony/modem.c",
+    "https://android.googlesource.com/platform/frameworks/base/+/refs/tags/android-15.0.0_r1/telephony/java/android/telephony/SignalStrength.java",
+    "https://android.googlesource.com/platform/frameworks/base/+/refs/tags/android-15.0.0_r1/telephony/java/android/telephony/CellSignalStrengthLte.java",
+    "https://android.googlesource.com/platform/frameworks/base/+/refs/tags/android-15.0.0_r1/packages/SystemUI/docs/demo_mode.md",
+    "https://android.googlesource.com/platform/frameworks/base/+/refs/tags/android-15.0.0_r1/packages/SystemUI/src/com/android/systemui/demomode/DemoModeController.kt",
+    "https://developer.android.com/reference/android/provider/Settings.Global#ANIMATOR_DURATION_SCALE",
+    "https://developer.android.com/reference/android/provider/Settings.Global#WINDOW_ANIMATION_SCALE",
+    "https://developer.android.com/reference/android/provider/Settings.Global#TRANSITION_ANIMATION_SCALE"
+  ],
+  "commands": [
+    {
+      "label": "emulator-check",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop",
+        "ro.kernel.qemu"
+      ],
+      "started_utc": "2026-10-12T08:12:21Z",
+      "stdout": {
+        "path": "001-emulator-check.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "001-emulator-check.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.101
+    },
+    {
+      "label": "boot-check",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "started_utc": "2026-10-12T08:12:21Z",
+      "stdout": {
+        "path": "002-boot-check.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "002-boot-check.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.167
+    },
+    {
+      "label": "avd-name",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "avd",
+        "name"
+      ],
+      "started_utc": "2026-10-12T08:12:21Z",
+      "stdout": {
+        "path": "003-avd-name.stdout.txt",
+        "bytes": 31,
+        "sha256": "62a1e4b000e2ac5515b17b01343573dc503548c479fa3d76f9c673672fd0ed21"
+      },
+      "stderr": {
+        "path": "003-avd-name.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.009
+    },
+    {
+      "label": "before-gsm",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "status"
+      ],
+      "started_utc": "2026-10-12T08:12:21Z",
+      "stdout": {
+        "path": "004-before-gsm.stdout.txt",
+        "bytes": 47,
+        "sha256": "789e286291b09f4414c6645a2aa5220ebd8e63f8f425f59d2f67a1e118a764ce"
+      },
+      "stderr": {
+        "path": "004-before-gsm.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.009
+    },
+    {
+      "label": "before-power",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "power",
+        "display"
+      ],
+      "started_utc": "2026-10-12T08:12:21Z",
+      "stdout": {
+        "path": "005-before-power.stdout.txt",
+        "bytes": 72,
+        "sha256": "e4c69616c2e1a4c794f2749d55dc6e8c9446629124191524ed0a0e07aef8c640"
+      },
+      "stderr": {
+        "path": "005-before-power.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.007
+    },
+    {
+      "label": "before-battery",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "battery"
+      ],
+      "started_utc": "2026-10-12T08:12:21Z",
+      "stdout": {
+        "path": "006-before-battery.stdout.txt",
+        "bytes": 370,
+        "sha256": "62647c8633411cff11ba336c3c99ac02a1be43920b1811a4f6ac8277db859464"
+      },
+      "stderr": {
+        "path": "006-before-battery.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.07
+    },
+    {
+      "label": "before-clock",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "date",
+        "-u",
+        "+%Y-%m-%dT%H:%M:%SZ"
+      ],
+      "started_utc": "2026-10-12T08:12:21Z",
+      "stdout": {
+        "path": "007-before-clock.stdout.txt",
+        "bytes": 21,
+        "sha256": "ac753eb6725da66c5a65d635019a8c6a934047c81b258f74ff589556031d2761"
+      },
+      "stderr": {
+        "path": "007-before-clock.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.042
+    },
+    {
+      "label": "before-demo-allowed",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "sysui_demo_allowed"
+      ],
+      "started_utc": "2026-10-12T08:12:21Z",
+      "stdout": {
+        "path": "008-before-demo-allowed.stdout.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      "stderr": {
+        "path": "008-before-demo-allowed.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.034
+    },
+    {
+      "label": "before-demo-on",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "sysui_tuner_demo_on"
+      ],
+      "started_utc": "2026-10-12T08:12:21Z",
+      "stdout": {
+        "path": "009-before-demo-on.stdout.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      "stderr": {
+        "path": "009-before-demo-on.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.049
+    },
+    {
+      "label": "before-animator_duration_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "animator_duration_scale"
+      ],
+      "started_utc": "2026-10-12T08:12:21Z",
+      "stdout": {
+        "path": "010-before-animator_duration_scale.stdout.txt",
+        "bytes": 5,
+        "sha256": "38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed"
+      },
+      "stderr": {
+        "path": "010-before-animator_duration_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.037
+    },
+    {
+      "label": "before-window_animation_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "window_animation_scale"
+      ],
+      "started_utc": "2026-10-12T08:12:22Z",
+      "stdout": {
+        "path": "011-before-window_animation_scale.stdout.txt",
+        "bytes": 4,
+        "sha256": "5717e7c840171019a4eeab5b79a7f894a4986eaff93d04ec5b12c9a189f594bf"
+      },
+      "stderr": {
+        "path": "011-before-window_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.035
+    },
+    {
+      "label": "before-transition_animation_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "transition_animation_scale"
+      ],
+      "started_utc": "2026-10-12T08:12:22Z",
+      "stdout": {
+        "path": "012-before-transition_animation_scale.stdout.txt",
+        "bytes": 4,
+        "sha256": "5717e7c840171019a4eeab5b79a7f894a4986eaff93d04ec5b12c9a189f594bf"
+      },
+      "stderr": {
+        "path": "012-before-transition_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.04
+    },
+    {
+      "label": "before-telephony",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "started_utc": "2026-10-12T08:12:22Z",
+      "stdout": {
+        "path": "013-before-telephony.stdout.txt",
+        "bytes": 59590,
+        "sha256": "30c07d0975eaecfb063a8ec6643530be792ec28b1b0d5720cfc45b2cb996f856"
+      },
+      "stderr": {
+        "path": "013-before-telephony.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.061
+    },
+    {
+      "label": "signal-profile-help",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "help",
+        "gsm",
+        "signal-profile"
+      ],
+      "started_utc": "2026-10-12T08:12:22Z",
+      "stdout": {
+        "path": "014-signal-profile-help.stdout.txt",
+        "bytes": 110,
+        "sha256": "2a7edfcc86a08e34eafc51843fd66b82bd07ac735a05017d2881a83f95aca84b"
+      },
+      "stderr": {
+        "path": "014-signal-profile-help.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "voice-home",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "voice",
+        "home"
+      ],
+      "started_utc": "2026-10-12T08:12:22Z",
+      "stdout": {
+        "path": "015-voice-home.stdout.txt",
+        "bytes": 3,
+        "sha256": "a12b7cb43c9d9134b5bb1b35e9096b66775d9e92e7611d1cc92b02edd6782a87"
+      },
+      "stderr": {
+        "path": "015-voice-home.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "data-home",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "data",
+        "home"
+      ],
+      "started_utc": "2026-10-12T08:12:22Z",
+      "stdout": {
+        "path": "016-data-home.stdout.txt",
+        "bytes": 3,
+        "sha256": "a12b7cb43c9d9134b5bb1b35e9096b66775d9e92e7611d1cc92b02edd6782a87"
+      },
+      "stderr": {
+        "path": "016-data-home.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "signal-profile-four",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "signal-profile",
+        "4"
+      ],
+      "started_utc": "2026-10-12T08:12:22Z",
+      "stdout": {
+        "path": "017-signal-profile-four.stdout.txt",
+        "bytes": 3,
+        "sha256": "a12b7cb43c9d9134b5bb1b35e9096b66775d9e92e7611d1cc92b02edd6782a87"
+      },
+      "stderr": {
+        "path": "017-signal-profile-four.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "telephony",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "started_utc": "2026-10-12T08:12:22Z",
+      "stdout": {
+        "path": "018-telephony.stdout.txt",
+        "bytes": 59590,
+        "sha256": "30c07d0975eaecfb063a8ec6643530be792ec28b1b0d5720cfc45b2cb996f856"
+      },
+      "stderr": {
+        "path": "018-telephony.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.066
+    },
+    {
+      "label": "telephony",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "started_utc": "2026-10-12T08:12:27Z",
+      "stdout": {
+        "path": "019-telephony.stdout.txt",
+        "bytes": 63739,
+        "sha256": "354ccf0de7238a4397173c39c44fdcd240c020b5078fb19bc82b35c3275445d3"
+      },
+      "stderr": {
+        "path": "019-telephony.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.047
+    },
+    {
+      "label": "telephony",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "started_utc": "2026-10-12T08:12:32Z",
+      "stdout": {
+        "path": "020-telephony.stdout.txt",
+        "bytes": 68158,
+        "sha256": "5f94d3afb86de5d7adfd52365230118e460a18d6e8f051a0f4483c6b778e8985"
+      },
+      "stderr": {
+        "path": "020-telephony.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.105
+    },
+    {
+      "label": "telephony",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "started_utc": "2026-10-12T08:12:37Z",
+      "stdout": {
+        "path": "021-telephony.stdout.txt",
+        "bytes": 69372,
+        "sha256": "a4bbf20dbe562dafacaf12ebe981bc044045d74452258be45d89cc79896905b9"
+      },
+      "stderr": {
+        "path": "021-telephony.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.057
+    },
+    {
+      "label": "telephony",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "started_utc": "2026-10-12T08:12:42Z",
+      "stdout": {
+        "path": "022-telephony.stdout.txt",
+        "bytes": 69372,
+        "sha256": "7d46a1d93a4c1d80f88de9526df5f623edba8a42ff0a570de7e00cf2c9eb5f6a"
+      },
+      "stderr": {
+        "path": "022-telephony.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.078
+    },
+    {
+      "label": "confirmed-gsm",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "status"
+      ],
+      "started_utc": "2026-10-12T08:12:42Z",
+      "stdout": {
+        "path": "023-confirmed-gsm.stdout.txt",
+        "bytes": 47,
+        "sha256": "789e286291b09f4414c6645a2aa5220ebd8e63f8f425f59d2f67a1e118a764ce"
+      },
+      "stderr": {
+        "path": "023-confirmed-gsm.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "allow-demo",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "sysui_demo_allowed",
+        "1"
+      ],
+      "started_utc": "2026-10-12T08:12:42Z",
+      "stdout": {
+        "path": "024-allow-demo.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "024-allow-demo.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.055
+    },
+    {
+      "label": "start-demo",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "sysui_tuner_demo_on",
+        "1"
+      ],
+      "started_utc": "2026-10-12T08:12:42Z",
+      "stdout": {
+        "path": "025-start-demo.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "025-start-demo.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.09
+    },
+    {
+      "label": "demo-controller",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "activity",
+        "service",
+        "com.android.systemui/.SystemUIService",
+        "DemoModeController"
+      ],
+      "started_utc": "2026-10-12T08:12:42Z",
+      "stdout": {
+        "path": "026-demo-controller.stdout.txt",
+        "bytes": 1186,
+        "sha256": "f16ac978dd642d29cd92becbe96288456f2bc15d2ba572c84c0b922550dab2a3"
+      },
+      "stderr": {
+        "path": "026-demo-controller.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.056
+    },
+    {
+      "label": "demo-controller",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "activity",
+        "service",
+        "com.android.systemui/.SystemUIService",
+        "DemoModeController"
+      ],
+      "started_utc": "2026-10-12T08:12:43Z",
+      "stdout": {
+        "path": "027-demo-controller.stdout.txt",
+        "bytes": 1497,
+        "sha256": "905d053faf0f5952a5a2956618133eac4b847e511e1a8df4089202d531181e0a"
+      },
+      "stderr": {
+        "path": "027-demo-controller.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.07
+    },
+    {
+      "label": "demo-clock",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "am",
+        "broadcast",
+        "-a",
+        "com.android.systemui.demo",
+        "-e",
+        "command",
+        "clock",
+        "-e",
+        "hhmm",
+        "1200"
+      ],
+      "started_utc": "2026-10-12T08:12:43Z",
+      "stdout": {
+        "path": "028-demo-clock.stdout.txt",
+        "bytes": 111,
+        "sha256": "7a6c83f579f25f54b24b0ee589a08d3aa758d6f90dd6f1df6180828f148998e8"
+      },
+      "stderr": {
+        "path": "028-demo-clock.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.092
+    },
+    {
+      "label": "after-gsm",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "gsm",
+        "status"
+      ],
+      "started_utc": "2026-10-12T08:12:44Z",
+      "stdout": {
+        "path": "029-after-gsm.stdout.txt",
+        "bytes": 47,
+        "sha256": "789e286291b09f4414c6645a2aa5220ebd8e63f8f425f59d2f67a1e118a764ce"
+      },
+      "stderr": {
+        "path": "029-after-gsm.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.003
+    },
+    {
+      "label": "after-power",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "power",
+        "display"
+      ],
+      "started_utc": "2026-10-12T08:12:44Z",
+      "stdout": {
+        "path": "030-after-power.stdout.txt",
+        "bytes": 72,
+        "sha256": "e4c69616c2e1a4c794f2749d55dc6e8c9446629124191524ed0a0e07aef8c640"
+      },
+      "stderr": {
+        "path": "030-after-power.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.004
+    },
+    {
+      "label": "after-battery",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "battery"
+      ],
+      "started_utc": "2026-10-12T08:12:44Z",
+      "stdout": {
+        "path": "031-after-battery.stdout.txt",
+        "bytes": 370,
+        "sha256": "62647c8633411cff11ba336c3c99ac02a1be43920b1811a4f6ac8277db859464"
+      },
+      "stderr": {
+        "path": "031-after-battery.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.042
+    },
+    {
+      "label": "after-clock",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "date",
+        "-u",
+        "+%Y-%m-%dT%H:%M:%SZ"
+      ],
+      "started_utc": "2026-10-12T08:12:44Z",
+      "stdout": {
+        "path": "032-after-clock.stdout.txt",
+        "bytes": 21,
+        "sha256": "b829cdbd7c2229a13bb4ab386667530e36fa7a5cf414fbe59b481fe204510781"
+      },
+      "stderr": {
+        "path": "032-after-clock.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.097
+    },
+    {
+      "label": "after-demo-allowed",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "sysui_demo_allowed"
+      ],
+      "started_utc": "2026-10-12T08:12:45Z",
+      "stdout": {
+        "path": "033-after-demo-allowed.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "033-after-demo-allowed.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.09
+    },
+    {
+      "label": "after-demo-on",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "sysui_tuner_demo_on"
+      ],
+      "started_utc": "2026-10-12T08:12:45Z",
+      "stdout": {
+        "path": "034-after-demo-on.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "034-after-demo-on.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.084
+    },
+    {
+      "label": "after-animator_duration_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "animator_duration_scale"
+      ],
+      "started_utc": "2026-10-12T08:12:45Z",
+      "stdout": {
+        "path": "035-after-animator_duration_scale.stdout.txt",
+        "bytes": 5,
+        "sha256": "38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed"
+      },
+      "stderr": {
+        "path": "035-after-animator_duration_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.067
+    },
+    {
+      "label": "after-window_animation_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "window_animation_scale"
+      ],
+      "started_utc": "2026-10-12T08:12:45Z",
+      "stdout": {
+        "path": "036-after-window_animation_scale.stdout.txt",
+        "bytes": 4,
+        "sha256": "5717e7c840171019a4eeab5b79a7f894a4986eaff93d04ec5b12c9a189f594bf"
+      },
+      "stderr": {
+        "path": "036-after-window_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.086
+    },
+    {
+      "label": "after-transition_animation_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "transition_animation_scale"
+      ],
+      "started_utc": "2026-10-12T08:12:45Z",
+      "stdout": {
+        "path": "037-after-transition_animation_scale.stdout.txt",
+        "bytes": 4,
+        "sha256": "5717e7c840171019a4eeab5b79a7f894a4986eaff93d04ec5b12c9a189f594bf"
+      },
+      "stderr": {
+        "path": "037-after-transition_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.224
+    },
+    {
+      "label": "after-telephony",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "dumpsys",
+        "telephony.registry"
+      ],
+      "started_utc": "2026-10-12T08:12:45Z",
+      "stdout": {
+        "path": "038-after-telephony.stdout.txt",
+        "bytes": 68489,
+        "sha256": "f0f7bf9b5cf241d6f3f2d1f803842ed52a8e8190ab612e8eafe5d8f6d246fa14"
+      },
+      "stderr": {
+        "path": "038-after-telephony.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_code": 0,
+      "seconds": 0.043
+    }
+  ],
+  "signal_observations": [
+    {
+      "observed_utc": "2026-10-12T08:12:22Z",
+      "signals": [
+        {
+          "primary": "CellSignalStrengthLte",
+          "level": 4,
+          "primary_measurements": "rssi=2147483647 rsrp=-68 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=4 parametersUseForLevel=0",
+          "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=2147483647 ber=2147483647 rscp=2147483647 ecno=2147483647 level=0,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=-68 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=4 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthLte}"
+        }
+      ]
+    },
+    {
+      "observed_utc": "2026-10-12T08:12:27Z",
+      "signals": [
+        {
+          "primary": "CellSignalStrengthWcdma",
+          "level": 4,
+          "primary_measurements": "ss=-53 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4",
+          "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=-53 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=2147483647 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=0 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthWcdma}"
+        }
+      ]
+    },
+    {
+      "observed_utc": "2026-10-12T08:12:32Z",
+      "signals": [
+        {
+          "primary": "CellSignalStrengthWcdma",
+          "level": 4,
+          "primary_measurements": "ss=-55 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4",
+          "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=-55 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=2147483647 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=0 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthWcdma}"
+        }
+      ]
+    },
+    {
+      "observed_utc": "2026-10-12T08:12:37Z",
+      "signals": [
+        {
+          "primary": "CellSignalStrengthWcdma",
+          "level": 4,
+          "primary_measurements": "ss=-55 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4",
+          "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=-55 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=2147483647 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=0 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthWcdma}"
+        }
+      ]
+    },
+    {
+      "observed_utc": "2026-10-12T08:12:42Z",
+      "signals": [
+        {
+          "primary": "CellSignalStrengthWcdma",
+          "level": 4,
+          "primary_measurements": "ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4",
+          "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=2147483647 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=0 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthWcdma}"
+        }
+      ]
+    }
+  ],
+  "before": {
+    "gsm_status": "gsm voice state: home\ngsm data state:  home\nOK\n",
+    "power_state": "AC: online\nstatus: Charging\nhealth: Good\npresent: true\ncapacity: 100\nOK\n",
+    "android_battery": "Current Battery Service state:\n  AC powered: true\n  USB powered: false\n  Wireless powered: false\n  Dock powered: false\n  Max charging current: 5000000\n  Max charging voltage: 5000000\n  Charge counter: 10000\n  status: 2\n  health: 2\n  present: true\n  level: 100\n  scale: 100\n  voltage: 5000\n  temperature: 250\n  technology: Li-ion\n  Charging state: 0\n  Charging policy: 0\n",
+    "device_utc": "2026-10-12T08:12:21Z",
+    "sysui_demo_allowed": "0",
+    "sysui_tuner_demo_on": "0",
+    "animation_scales": {
+      "animator_duration_scale": "null",
+      "window_animation_scale": "1.0",
+      "transition_animation_scale": "1.0"
+    },
+    "primary_signals": [
+      {
+        "primary": "CellSignalStrengthLte",
+        "level": 4,
+        "primary_measurements": "rssi=2147483647 rsrp=-68 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=4 parametersUseForLevel=0",
+        "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=2147483647 ber=2147483647 rscp=2147483647 ecno=2147483647 level=0,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=-68 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=4 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthLte}"
+      }
+    ]
+  },
+  "signal_stable_seconds": 15.25,
+  "confirmed_primary_signal": {
+    "primary": "CellSignalStrengthWcdma",
+    "level": 4,
+    "primary_measurements": "ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4",
+    "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=2147483647 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=0 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthWcdma}"
+  },
+  "systemui_demo_mode_observed": true,
+  "after": {
+    "gsm_status": "gsm voice state: home\ngsm data state:  home\nOK\n",
+    "power_state": "AC: online\nstatus: Charging\nhealth: Good\npresent: true\ncapacity: 100\nOK\n",
+    "android_battery": "Current Battery Service state:\n  AC powered: true\n  USB powered: false\n  Wireless powered: false\n  Dock powered: false\n  Max charging current: 5000000\n  Max charging voltage: 5000000\n  Charge counter: 10000\n  status: 2\n  health: 2\n  present: true\n  level: 100\n  scale: 100\n  voltage: 5000\n  temperature: 250\n  technology: Li-ion\n  Charging state: 0\n  Charging policy: 0\n",
+    "device_utc": "2026-10-12T08:12:44Z",
+    "sysui_demo_allowed": "1",
+    "sysui_tuner_demo_on": "1",
+    "animation_scales": {
+      "animator_duration_scale": "null",
+      "window_animation_scale": "1.0",
+      "transition_animation_scale": "1.0"
+    },
+    "primary_signals": [
+      {
+        "primary": "CellSignalStrengthWcdma",
+        "level": 4,
+        "primary_measurements": "ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4",
+        "registry_line": "mSignalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=-57 ber=2147483647 rscp=2147483647 ecno=2147483647 level=4,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=2147483647 rsrp=2147483647 rsrq=2147483647 rssnr=2147483647 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=0 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthWcdma}"
+      }
+    ]
+  },
+  "finished_utc": "2026-10-12T08:12:45Z"
+}

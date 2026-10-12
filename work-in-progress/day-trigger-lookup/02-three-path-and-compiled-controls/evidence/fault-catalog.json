@@ -1,0 +1,62 @@
+[
+  {
+    "name": "case-sensitive",
+    "old": "key.equalsIgnoreCase(entry.getKey())",
+    "new": "key.equals(entry.getKey())",
+    "requiredFailingCase": "first-duplicate-entry-identity"
+  },
+  {
+    "name": "reverse-receiver",
+    "old": "key.equalsIgnoreCase(entry.getKey())",
+    "new": "entry.getKey().equalsIgnoreCase(key)",
+    "requiredFailingCase": "null-entry-key-is-not-a-match"
+  },
+  {
+    "name": "skip-null-entry",
+    "old": "            if (key.equalsIgnoreCase(entry.getKey())) return entry;",
+    "new": "            if (entry == null) continue;\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;",
+    "requiredFailingCase": "null-first-entry"
+  },
+  {
+    "name": "null-query-early-return",
+    "old": "        for (DictionaryEntry entry : dictionary.getEntries()) {",
+    "new": "        if (key == null) return null;\n        for (DictionaryEntry entry : dictionary.getEntries()) {",
+    "requiredFailingCase": "null-query-nonempty"
+  },
+  {
+    "name": "last-match",
+    "old": "        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;",
+    "new": "        DictionaryEntry match = null;\n        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) match = entry;\n        }\n        return match;",
+    "requiredFailingCase": "empty-string-match"
+  },
+  {
+    "name": "trim-query",
+    "old": "key.equalsIgnoreCase(entry.getKey())",
+    "new": "key.trim().equalsIgnoreCase(entry.getKey())",
+    "requiredFailingCase": "query-whitespace-is-significant"
+  },
+  {
+    "name": "indexed-loop",
+    "old": "        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;",
+    "new": "        java.util.List<DictionaryEntry> entries = dictionary.getEntries();\n        for (int i = 0; i < entries.size(); i++) {\n            DictionaryEntry entry = entries.get(i);\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;",
+    "requiredFailingCase": "empty"
+  },
+  {
+    "name": "extra-iteration-after-match",
+    "old": "        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;",
+    "new": "        java.util.Iterator<DictionaryEntry> entries = dictionary.getEntries().iterator();\n        while (entries.hasNext()) {\n            DictionaryEntry entry = entries.next();\n            if (key.equalsIgnoreCase(entry.getKey())) { entries.hasNext(); return entry; }\n        }\n        return null;",
+    "requiredFailingCase": "match-before-later-iterator-fault"
+  },
+  {
+    "name": "swallow-iterator-fault",
+    "old": "        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;",
+    "new": "        try {\n        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;\n        } catch (RuntimeException failure) { return null; }",
+    "requiredFailingCase": "injected-iterator-state"
+  },
+  {
+    "name": "replace-injected-npe-identity",
+    "old": "        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;",
+    "new": "        try {\n        for (DictionaryEntry entry : dictionary.getEntries()) {\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;\n        }\n        return null;\n        } catch (NullPointerException failure) { throw new NullPointerException(failure.getMessage()); }",
+    "requiredFailingCase": "injected-iterator-npe"
+  }
+]

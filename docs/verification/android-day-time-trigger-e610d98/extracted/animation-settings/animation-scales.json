@@ -1,0 +1,526 @@
+{
+  "schema": 1,
+  "status": "ANIMATION_SCALE_ZERO_VERIFIED",
+  "scope": "Explicit animation-scale-zero preparation for an independent still-frame comparison",
+  "serial": "emulator-5560",
+  "expected_avd": "MacroDroid_API35_Disposable",
+  "adb": "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+  "source_sha256": "a6d846be94ba4f93ddaf19fc90b28b58d2fb7b7c288da1e962d87815e5bb4862",
+  "requested_scales": {
+    "animator_duration_scale": "0",
+    "window_animation_scale": "0",
+    "transition_animation_scale": "0"
+  },
+  "apks_modified": false,
+  "screenshots_modified": false,
+  "comparison_rules_changed": false,
+  "animation_timing_parity_established": false,
+  "full_runtime_1_to_1_established": false,
+  "android_executed": true,
+  "commands": [
+    {
+      "label": "device-state",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "get-state"
+      ],
+      "started_monotonic": 331.710137093,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 331.712513587,
+      "stdout": {
+        "path": "001-device-state.stdout.txt",
+        "bytes": 7,
+        "sha256": "c98373c1abef78070f6beef6b4ae4fbf3de348dac280195c7f93441920584af9"
+      },
+      "stderr": {
+        "path": "001-device-state.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "emulator",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop",
+        "ro.kernel.qemu"
+      ],
+      "started_monotonic": 331.712985333,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 331.742393175,
+      "stdout": {
+        "path": "002-emulator.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "002-emulator.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "boot",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "started_monotonic": 331.743032441,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 331.778078984,
+      "stdout": {
+        "path": "003-boot.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "003-boot.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "sdk",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "started_monotonic": 331.77892053,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 331.812263518,
+      "stdout": {
+        "path": "004-sdk.stdout.txt",
+        "bytes": 3,
+        "sha256": "90d7ec0f0acef104d8b6252794295f661a0149634868d02a1ae0c358099638f5"
+      },
+      "stderr": {
+        "path": "004-sdk.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "fingerprint",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop",
+        "ro.build.fingerprint"
+      ],
+      "started_monotonic": 331.813170928,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 331.842327557,
+      "stdout": {
+        "path": "005-fingerprint.stdout.txt",
+        "bytes": 82,
+        "sha256": "633fbfc3b92b012914165717ce367282664c75ad9f6e533b4a1ad6e2418ec93a"
+      },
+      "stderr": {
+        "path": "005-fingerprint.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "avd-name",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "emu",
+        "avd",
+        "name"
+      ],
+      "started_monotonic": 331.843278213,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 331.845704019,
+      "stdout": {
+        "path": "006-avd-name.stdout.txt",
+        "bytes": 33,
+        "sha256": "8522ad4bd14867dd505fdecb0e0657c506a22c36d86c8a8634fdfda384bae977"
+      },
+      "stderr": {
+        "path": "006-avd-name.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "before-animator_duration_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "animator_duration_scale"
+      ],
+      "started_monotonic": 331.846546043,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 331.898364608,
+      "stdout": {
+        "path": "007-before-animator_duration_scale.stdout.txt",
+        "bytes": 5,
+        "sha256": "38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed"
+      },
+      "stderr": {
+        "path": "007-before-animator_duration_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "before-window_animation_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "window_animation_scale"
+      ],
+      "started_monotonic": 331.899522424,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 331.965568442,
+      "stdout": {
+        "path": "008-before-window_animation_scale.stdout.txt",
+        "bytes": 4,
+        "sha256": "5717e7c840171019a4eeab5b79a7f894a4986eaff93d04ec5b12c9a189f594bf"
+      },
+      "stderr": {
+        "path": "008-before-window_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "before-transition_animation_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "transition_animation_scale"
+      ],
+      "started_monotonic": 331.966571614,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 332.008852788,
+      "stdout": {
+        "path": "009-before-transition_animation_scale.stdout.txt",
+        "bytes": 4,
+        "sha256": "5717e7c840171019a4eeab5b79a7f894a4986eaff93d04ec5b12c9a189f594bf"
+      },
+      "stderr": {
+        "path": "009-before-transition_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "set-animator_duration_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "animator_duration_scale",
+        "0"
+      ],
+      "started_monotonic": 332.009862036,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 332.069971664,
+      "stdout": {
+        "path": "010-set-animator_duration_scale.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "010-set-animator_duration_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "set-window_animation_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "window_animation_scale",
+        "0"
+      ],
+      "started_monotonic": 332.071043551,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 332.148900552,
+      "stdout": {
+        "path": "011-set-window_animation_scale.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "011-set-window_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "set-transition_animation_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "put",
+        "global",
+        "transition_animation_scale",
+        "0"
+      ],
+      "started_monotonic": 332.149983797,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 332.19865188,
+      "stdout": {
+        "path": "012-set-transition_animation_scale.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "012-set-transition_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "after-animator_duration_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "animator_duration_scale"
+      ],
+      "started_monotonic": 332.199710385,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 332.244844266,
+      "stdout": {
+        "path": "013-after-animator_duration_scale.stdout.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      "stderr": {
+        "path": "013-after-animator_duration_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "after-window_animation_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "window_animation_scale"
+      ],
+      "started_monotonic": 332.246021566,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 332.284942379,
+      "stdout": {
+        "path": "014-after-window_animation_scale.stdout.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      "stderr": {
+        "path": "014-after-window_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "after-transition_animation_scale",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "transition_animation_scale"
+      ],
+      "started_monotonic": 332.286131559,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 332.329902981,
+      "stdout": {
+        "path": "015-after-transition_animation_scale.stdout.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      "stderr": {
+        "path": "015-after-transition_animation_scale.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "final-emulator",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop",
+        "ro.kernel.qemu"
+      ],
+      "started_monotonic": 332.331167314,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 332.354321412,
+      "stdout": {
+        "path": "016-final-emulator.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "016-final-emulator.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "final-boot",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "started_monotonic": 332.355577853,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 332.375891392,
+      "stdout": {
+        "path": "017-final-boot.stdout.txt",
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "stderr": {
+        "path": "017-final-boot.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "final-sdk",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "started_monotonic": 332.377105414,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 332.396405705,
+      "stdout": {
+        "path": "018-final-sdk.stdout.txt",
+        "bytes": 3,
+        "sha256": "90d7ec0f0acef104d8b6252794295f661a0149634868d02a1ae0c358099638f5"
+      },
+      "stderr": {
+        "path": "018-final-sdk.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "final-fingerprint",
+      "argv": [
+        "/home/runner/work/_temp/macrodroid-day-time-trigger-tooling/android/platform-tools/adb",
+        "-s",
+        "emulator-5560",
+        "shell",
+        "getprop",
+        "ro.build.fingerprint"
+      ],
+      "started_monotonic": 332.397996583,
+      "timed_out": false,
+      "exit_code": 0,
+      "finished_monotonic": 332.421910153,
+      "stdout": {
+        "path": "019-final-fingerprint.stdout.txt",
+        "bytes": 82,
+        "sha256": "633fbfc3b92b012914165717ce367282664c75ad9f6e533b4a1ad6e2418ec93a"
+      },
+      "stderr": {
+        "path": "019-final-fingerprint.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "started_utc": "2026-10-12T08:12:45.996349+00:00",
+  "started_monotonic": 331.710080499,
+  "finished_monotonic": 332.423339185,
+  "observed_scales": {
+    "animator_duration_scale": "0",
+    "window_animation_scale": "0",
+    "transition_animation_scale": "0"
+  },
+  "passed": true,
+  "finished_utc": "2026-10-12T08:12:46.717132+00:00"
+}

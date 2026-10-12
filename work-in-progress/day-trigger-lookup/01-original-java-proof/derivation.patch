@@ -1,0 +1,125 @@
+--- numeric/prepare_inputs.py
++++ lookup/prepare_inputs.py
+@@ -7,11 +7,12 @@
+ PROJECT = ROOT.parent / 'current/MacroDroid_v9'
+ INPUTS = ROOT / 'inputs'
+ SELECTED = {
+-    'Lcom/arlosoft/macrodroid/triggers/DayTrigger;': 'r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I',
+-    'Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;': 'getVariable()Lcom/arlosoft/macrodroid/variables/VariableValue;',
+-    'Lcom/arlosoft/macrodroid/variables/VariableValue$IntegerValue;': 'getIntValue()J',
+-    'Lcom/arlosoft/macrodroid/variables/VariableValue$DecimalValue;': 'getDecimalValue()D',
++    'Lcom/arlosoft/macrodroid/triggers/DayTrigger;': 'p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;',
++    'Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;': 'getEntries()Ljava/util/List;',
++    'Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;': 'getKey()Ljava/lang/String;',
+ }
++ACTIVE = ROOT.parent / 'MacroDroid-Reconstruction/project'
++
+ 
+ def identity(path):
+     content = path.read_bytes()
+@@ -25,7 +26,7 @@
+     assert identity(source) == identity(target)
+ 
+ def main():
+-    copy(PROJECT / 'tests/java/BytecodeOracle.java', INPUTS / 'BytecodeOracle.java')
++    copy(ACTIVE / 'tests/java/BytecodeOracle.java', INPUTS / 'BytecodeOracle.java')
+     for name in ('build.py', 'constructor_owner.py'):
+         copy(PROJECT / name, INPUTS / 'production-pipeline' / name)
+     index = json.loads((PROJECT / 'source/class-index.json').read_text())
+@@ -44,10 +45,10 @@
+                      'sourcePath': row['path'], 'sourceIdentity': identity(source),
+                      'methodTextSha256': hashlib.sha256(method[0].encode()).hexdigest()})
+     (INPUTS / 'production-pipeline/source/class-index-selected.json').write_text(json.dumps(selected, indent=2) + '\n')
+-    registry = json.loads((PROJECT / 'source/java-method-map.json').read_text())
++    registry = json.loads((ACTIVE / 'source/java-method-map.json').read_text())
+     assert not any(row['target'] == 'Lcom/arlosoft/macrodroid/triggers/DayTrigger;'
+                    and row['method'] == SELECTED[row['target']] for row in registry)
+-    pins = {'scope': 'One private, unregistered DayTrigger numeric method; source and production helpers are read-only copies.',
++    pins = {'scope': 'One private, unregistered DayTrigger dictionary lookup method; source and production helpers are read-only copies.',
+             'selectedOriginalMethods': sorted(rows, key=lambda row: row['descriptor']),
+             'originalApk': {'path': str(ROOT.parent / 'recovered/automation android app'),
+                             **identity(ROOT.parent / 'recovered/automation android app')},
+--- numeric/run_day_study.py
++++ lookup/run_day_study.py
+@@ -41,6 +41,7 @@
+     for role in ('java', 'javac'):
+         path = JDK / 'bin' / role
+         external[role] = {'path': str(path), **identity(path)}
++    external['jdkModules'] = {'path': str(JDK / 'lib/modules'), **identity(JDK / 'lib/modules')}
+     (output / 'external-input-identities.json').write_text(json.dumps(external, indent=2) + '\n')
+ 
+     def run(name, argv, timeout=120, expected=0):
+@@ -68,10 +69,10 @@
+         run('compile-host-helper', [JDK / 'bin/javac', '--release', '8', '-g:none', '-Xlint:-options', '-d', host, *host_sources])
+         classpath = os.pathsep.join(map(str, (jar, host)))
+         run('compile-study', [JDK / 'bin/javac', '-cp', classpath, '-d', harness,
+-                              INPUTS / 'BytecodeOracle.java', INPUTS / 'DayValueStudy.java', INPUTS / 'ExtractDayFixture.java'])
++                              INPUTS / 'BytecodeOracle.java', INPUTS / 'DayLookupStudy.java', INPUTS / 'ExtractDayLookupFixture.java'])
+         classpath = os.pathsep.join(map(str, (jar, host, harness)))
+         original = output / 'original-selected.dex'
+-        run('extract-original-methods', [JDK / 'bin/java', '-Xmx768m', '-cp', classpath, 'ExtractDayFixture',
++        run('extract-original-methods', [JDK / 'bin/java', '-Xmx768m', '-cp', classpath, 'ExtractDayLookupFixture',
+                                          pins['originalApk']['path'], original, output / 'original-method-inventory.json'])
+         class_pins = {}
+         for root in (host, harness):
+@@ -82,20 +83,20 @@
+         config = {'originalDex': str(original), 'originalDexSha256': identity(original)['sha256'], 'classPins': class_pins}
+         (output / 'study-config.json').write_text(json.dumps(config, indent=2) + '\n')
+         run('positive-original-java', [JDK / 'bin/java', '-Xmx512m', '-Xverify:all', '-cp', classpath,
+-                                       'DayValueStudy', output / 'study-config.json', output / 'positive-report.json'])
++                                       'DayLookupStudy', output / 'study-config.json', output / 'positive-report.json'])
+         report = json.loads((output / 'positive-report.json').read_text())
+         if not report['passed']: raise RuntimeError('Positive report did not pass')
+         # A wrong loaded-helper identity must reject before a report is written.
+         wrong = json.loads(json.dumps(config))
+-        wrong['classPins']['recovered.ui.DayTriggerValueMethods']['sha256'] = '0' * 64
++        wrong['classPins']['recovered.ui.DayTriggerLookupMethods']['sha256'] = '0' * 64
+         (output / 'wrong-helper-config.json').write_text(json.dumps(wrong, indent=2) + '\n')
+         run('wrong-helper-origin-control', [JDK / 'bin/java', '-Xmx512m', '-Xverify:all', '-cp', classpath,
+-                                            'DayValueStudy', output / 'wrong-helper-config.json', output / 'wrong-helper-report.json'], expected=1)
++                                            'DayLookupStudy', output / 'wrong-helper-config.json', output / 'wrong-helper-report.json'], expected=1)
+         if (output / 'wrong-helper-report.json').exists(): raise RuntimeError('Wrong helper identity produced a report')
+-        if 'Wrong loaded class hash: recovered.ui.DayTriggerValueMethods' not in (output / 'wrong-helper-origin-control.stderr.txt').read_text():
++        if 'Wrong loaded class hash: recovered.ui.DayTriggerLookupMethods' not in (output / 'wrong-helper-origin-control.stderr.txt').read_text():
+             raise RuntimeError('Origin control rejected for the wrong reason')
+         run('positive-restored', [JDK / 'bin/java', '-Xmx512m', '-Xverify:all', '-cp', classpath,
+-                                  'DayValueStudy', output / 'study-config.json', output / 'restored-report.json'])
++                                  'DayLookupStudy', output / 'study-config.json', output / 'restored-report.json'])
+         if identity(output / 'positive-report.json') != identity(output / 'restored-report.json'):
+             raise RuntimeError('Positive report was not restored exactly')
+         for name, pin in class_pins.items():
+--- numeric/inputs/ExtractDayFixture.java
++++ lookup/inputs/ExtractDayLookupFixture.java
+@@ -6,8 +6,8 @@
+ import java.nio.file.*;
+ import java.util.*;
+ 
+-/** Extract actual original method bodies and their three original field getters. */
+-public final class ExtractDayFixture {
++/** Extract actual original method bodies and their two original field getters. */
++public final class ExtractDayLookupFixture {
+     static String signature(Method method) {
+         return method.getName() + "(" + String.join("", method.getParameterTypes()) + ")" + method.getReturnType();
+     }
+@@ -15,10 +15,9 @@
+     public static void main(String[] args) throws Exception {
+         String variables = "Lcom/arlosoft/macrodroid/variables/VariableValue";
+         Map<String, String> wanted = Map.of(
+-            "Lcom/arlosoft/macrodroid/triggers/DayTrigger;", "r0(" + variables + "$DictionaryEntry;)I",
+-            variables + "$DictionaryEntry;", "getVariable()" + variables + ";",
+-            variables + "$IntegerValue;", "getIntValue()J",
+-            variables + "$DecimalValue;", "getDecimalValue()D");
++            "Lcom/arlosoft/macrodroid/triggers/DayTrigger;", "p0(" + variables + "$Dictionary;Ljava/lang/String;)" + variables + "$DictionaryEntry;",
++            variables + "$Dictionary;", "getEntries()Ljava/util/List;",
++            variables + "$DictionaryEntry;", "getKey()Ljava/lang/String;");
+         var container = DexFileFactory.loadDexContainer(new java.io.File(args[0]), Opcodes.forApi(23));
+         List<ClassDef> classes = new ArrayList<>();
+         Set<String> found = new TreeSet<>();
+@@ -57,6 +56,6 @@
+         if (!found.equals(wanted.keySet())) throw new IllegalStateException("Incomplete original fixture");
+         DexPool.writeTo(args[1], new ImmutableDexFile(Opcodes.forApi(23), classes));
+         Files.writeString(Paths.get(args[2]), new GsonBuilder().setPrettyPrinting().create().toJson(inventory) + "\n");
+-        System.out.println("Extracted four exact original methods into a test-only fixture");
++        System.out.println("Extracted three exact original methods into a test-only fixture");
+     }
+ }

@@ -1,0 +1,174 @@
+--- numeric02/run_day_dex_controls.py
++++ lookup/run_day_dex_controls.py
+@@ -11,10 +11,10 @@
+ JDK = ROOT.parent / 'tooling/jdk21'
+ BASELINE = ROOT / 'reports/original-java-01'
+ CHECKPOINT = ROOT / 'checkpoints/01-original-java-proof'
+-CHECKPOINT_SHA = '6c78e9a5498e516f4a2b6f939055151fa2ab1d5585e12b77a4c991534593da0e'
++CHECKPOINT_SHA = '4a39dd17902f68c5cba369fc927f08117ba9905556c7cf2890db8c29e46e9899'
+ TARGET = 'Lcom/arlosoft/macrodroid/triggers/DayTrigger;'
+-METHOD = 'r0(Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;)I'
+-HELPER = 'recovered.ui.DayTriggerValueMethods'
++METHOD = 'p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;'
++HELPER = 'recovered.ui.DayTriggerLookupMethods'
+ 
+ def main():
+     parser = argparse.ArgumentParser(); parser.add_argument('--output', required=True)
+@@ -72,7 +72,7 @@
+         jar = Path(pins['externalToolchainJar']['path']); host = BASELINE / 'hostclasses'; harness = BASELINE / 'harnessclasses'
+         base_config = json.loads((BASELINE / 'study-config.json').read_text())
+         sys.path.insert(0, str(INPUTS / 'production-pipeline'))
+-        spec = importlib.util.spec_from_file_location('day_bound_production_build', INPUTS / 'production-pipeline/build.py')
++        spec = importlib.util.spec_from_file_location('day_lookup_bound_production_build', INPUTS / 'production-pipeline/build.py')
+         build = importlib.util.module_from_spec(spec); spec.loader.exec_module(build)
+         selected = json.loads((INPUTS / 'production-pipeline/source/class-index-selected.json').read_text())
+         originals = [row for row in selected.values() if row['descriptor'] == TARGET]
+@@ -83,22 +83,22 @@
+         import hashlib
+         text_sha = lambda text: hashlib.sha256(text.encode()).hexdigest()
+         if text_sha(old) != selected_pin['methodTextSha256']: raise RuntimeError('Original primary body changed')
+-        entry = {'target': TARGET, 'method': METHOD, 'helper': 'Lrecovered/ui/DayTriggerValueMethods;',
+-                 'helper_method': 'numericValue', 'instance': False,
+-                 'java_source': 'source/java/recovered/ui/DayTriggerValueMethods.java'}
++        entry = {'target': TARGET, 'method': METHOD, 'helper': 'Lrecovered/ui/DayTriggerLookupMethods;',
++                 'helper_method': 'findEntry', 'instance': False,
++                 'java_source': 'source/java/recovered/ui/DayTriggerLookupMethods.java'}
+         (output / 'proposed-method-entry.json').write_text(json.dumps(entry, indent=2) + '\n')
+ 
+         def dex_from_helper(helper_class, folder):
+             folder.mkdir(parents=True)
+-            relocated = folder / 'relocated/recovered/ui/DayTriggerValueMethods.class'
++            relocated = folder / 'relocated/recovered/ui/DayTriggerLookupMethods.class'
+             relocated.parent.mkdir(parents=True)
+             relocated.write_bytes(build.relocate_class(helper_class.read_bytes()))
+             jar_input = folder / 'inputs.jar'
+             with zipfile.ZipFile(jar_input, 'x') as stream:
+-                item = zipfile.ZipInfo('recovered/ui/DayTriggerValueMethods.class', (1980, 1, 1, 0, 0, 0)); item.external_attr = 0o100644 << 16
++                item = zipfile.ZipInfo('recovered/ui/DayTriggerLookupMethods.class', (1980, 1, 1, 0, 0, 0)); item.external_attr = 0o100644 << 16
+                 stream.writestr(item, relocated.read_bytes())
+             with zipfile.ZipFile(jar_input) as stream:
+-                if stream.namelist() != ['recovered/ui/DayTriggerValueMethods.class'] or stream.read(stream.namelist()[0]) != relocated.read_bytes():
++                if stream.namelist() != ['recovered/ui/DayTriggerLookupMethods.class'] or stream.read(stream.namelist()[0]) != relocated.read_bytes():
+                     raise RuntimeError('Unexpected D8 input class')
+             dexdir = folder / 'd8'; dexdir.mkdir()
+             run(folder, 'd8-one-helper', [JDK / 'bin/java', '-Xmx512m', '-cp', jar, 'com.android.tools.r8.D8',
+@@ -108,11 +108,11 @@
+             smali = folder / 'helper-smali'
+             run(folder, 'disassemble-helper', [JDK / 'bin/java', '-Xmx512m', '-cp', jar, 'com.android.tools.smali.baksmali.Main',
+                                                'd', '--api', '23', '--use-locals', '-o', smali, dexdir / 'classes.dex'])
+-            if sorted(path.relative_to(smali).as_posix() for path in smali.rglob('*.smali')) != ['recovered/ui/DayTriggerValueMethods.smali']:
++            if sorted(path.relative_to(smali).as_posix() for path in smali.rglob('*.smali')) != ['recovered/ui/DayTriggerLookupMethods.smali']:
+                 raise RuntimeError('Unexpected emitted helper classes')
+-            helper_method = build.methods((smali / 'recovered/ui/DayTriggerValueMethods.smali').read_text())['numericValue' + METHOD[METHOD.index('('):]]
++            helper_method = build.methods((smali / 'recovered/ui/DayTriggerLookupMethods.smali').read_text())['findEntry' + METHOD[METHOD.index('('):]]
+             compiled, corrections = build.restore_from_preserved_source(entry, helper_method, old, selected, INPUTS / 'production-pipeline')
+-            if corrections or compiled != helper_method: raise RuntimeError('Numeric method must need no constructor-owner correction')
++            if corrections or compiled != helper_method: raise RuntimeError('Lookup method must need no constructor-owner correction')
+             body = build.ANNOT.sub('', compiled.split('\n', 1)[1].rsplit('.end method', 1)[0])
+             if 'Lrecovered/' in body or 'Ldefpackage/' in body: raise RuntimeError('Runtime helper/stub reference escaped')
+             replacement = old.splitlines()[0] + '\n' + ''.join(build.ANNOT.findall(old)) + body + '.end method'
+@@ -139,7 +139,7 @@
+             (folder / 'method-body-binding.json').write_text(json.dumps(binding, indent=2) + '\n')
+             return dex, binding
+ 
+-        helper_class = host / 'recovered/ui/DayTriggerValueMethods.class'
++        helper_class = host / 'recovered/ui/DayTriggerLookupMethods.class'
+         rebuilt, binding = dex_from_helper(helper_class, output / 'positive-pipeline')
+         config = json.loads(json.dumps(base_config)); config.update({'rebuiltDex': str(rebuilt), 'rebuiltDexSha256': identity(rebuilt)['sha256']})
+ 
+@@ -148,12 +148,12 @@
+             config_path = folder / 'config.json'; config_path.write_text(json.dumps(cfg, indent=2) + '\n')
+             roots = ([mutant_host] if mutant_host else []) + [host, harness, jar]
+             run(folder, 'execute-study', [JDK / 'bin/java', '-Xmx512m', '-Xverify:all', '-cp', os.pathsep.join(map(str, roots)),
+-                                          'DayValueStudy', config_path, folder / 'parity.json'], expected=expected)
++                                          'DayLookupStudy', config_path, folder / 'parity.json'], expected=expected)
+             path = folder / 'parity.json'
+             return json.loads(path.read_text()) if path.exists() else None
+ 
+         positive = execute(output / 'positive', config)
+-        if not positive['passed'] or positive['cases'] != 1291 or positive['executionPaths'] != 3:
++        if not positive['passed'] or positive['cases'] != 371 or positive['executionPaths'] != 3:
+             raise RuntimeError('Three-path positive criteria not satisfied')
+         controls = []
+         wrong = json.loads(json.dumps(config)); wrong['rebuiltDex'] = wrong['originalDex']; wrong['rebuiltDexSha256'] = wrong['originalDexSha256']
+@@ -167,23 +167,38 @@
+             raise RuntimeError('Wrong-helper control did not reject for the expected reason')
+         controls.append({'name': 'wrong-loaded-helper', 'rejectedBeforeReport': True})
+ 
+-        source = (INPUTS / 'source/java/recovered/ui/DayTriggerValueMethods.java').read_text()
+-        integer = 'return (int) ((VariableValue.IntegerValue) value).getIntValue();'
+-        decimal = 'return (int) ((VariableValue.DecimalValue) value).getDecimalValue();'
++        source = (INPUTS / 'source/java/recovered/ui/DayTriggerLookupMethods.java').read_text()
++        loop = """        for (DictionaryEntry entry : dictionary.getEntries()) {
++            if (key.equalsIgnoreCase(entry.getKey())) return entry;
++        }
++        return null;"""
+         faults = [
+-            ('integer-zero', integer, 'return 0;', 'integer-boundary-1'),
+-            ('decimal-zero', decimal, 'return 0;', 'decimal-boundary-6'),
+-            ('integer-saturation', integer, 'long n = ((VariableValue.IntegerValue) value).getIntValue(); return n > Integer.MAX_VALUE ? Integer.MAX_VALUE : n < Integer.MIN_VALUE ? Integer.MIN_VALUE : (int) n;', 'integer-boundary-15'),
+-            ('integer-via-double', integer, 'return (int) (double) ((VariableValue.IntegerValue) value).getIntValue();', 'integer-boundary-15'),
+-            ('integer-via-byte', integer, 'return (byte) ((VariableValue.IntegerValue) value).getIntValue();', 'integer-boundary-6'),
+-            ('decimal-round', decimal, 'return (int) Math.round(((VariableValue.DecimalValue) value).getDecimalValue());', 'decimal-boundary-10'),
+-            ('decimal-floor', decimal, 'return (int) Math.floor(((VariableValue.DecimalValue) value).getDecimalValue());', 'decimal-boundary-3'),
+-            ('decimal-nan-one', decimal, 'double n = ((VariableValue.DecimalValue) value).getDecimalValue(); return Double.isNaN(n) ? 1 : (int) n;', 'decimal-boundary-35'),
+-            ('decimal-infinity-zero', decimal, 'double n = ((VariableValue.DecimalValue) value).getDecimalValue(); return Double.isInfinite(n) ? 0 : (int) n;', 'decimal-boundary-33'),
+-            ('other-minus-one', '        return 0;', '        return -1;', 'null-value'),
+-            ('parse-string', '        return 0;', '        if (value instanceof VariableValue.StringValue) return Integer.parseInt(((VariableValue.StringValue) value).text);\n        return 0;', 'string-numeric'),
+-            ('null-contained-throws', 'VariableValue value = entry.getVariable();', 'VariableValue value = entry.getVariable(); if (value == null) throw new NullPointerException("deliberate contained-null fault");', 'null-value'),
+-            ('null-entry-zero', 'VariableValue value = entry.getVariable();', 'if (entry == null) return 0; VariableValue value = entry.getVariable();', 'null-entry'),
++            ('case-sensitive', 'key.equalsIgnoreCase(entry.getKey())', 'key.equals(entry.getKey())', 'first-duplicate-entry-identity'),
++            ('reverse-receiver', 'key.equalsIgnoreCase(entry.getKey())', 'entry.getKey().equalsIgnoreCase(key)', 'null-entry-key-is-not-a-match'),
++            ('skip-null-entry', '            if (key.equalsIgnoreCase(entry.getKey())) return entry;',
++             '            if (entry == null) continue;\n            if (key.equalsIgnoreCase(entry.getKey())) return entry;', 'null-first-entry'),
++            ('null-query-early-return', '        for (DictionaryEntry entry : dictionary.getEntries()) {',
++             '        if (key == null) return null;\n        for (DictionaryEntry entry : dictionary.getEntries()) {', 'null-query-nonempty'),
++            ('last-match', loop, """        DictionaryEntry match = null;
++        for (DictionaryEntry entry : dictionary.getEntries()) {
++            if (key.equalsIgnoreCase(entry.getKey())) match = entry;
++        }
++        return match;""", 'empty-string-match'),
++            ('trim-query', 'key.equalsIgnoreCase(entry.getKey())', 'key.trim().equalsIgnoreCase(entry.getKey())', 'query-whitespace-is-significant'),
++            ('indexed-loop', loop, """        java.util.List<DictionaryEntry> entries = dictionary.getEntries();
++        for (int i = 0; i < entries.size(); i++) {
++            DictionaryEntry entry = entries.get(i);
++            if (key.equalsIgnoreCase(entry.getKey())) return entry;
++        }
++        return null;""", 'empty'),
++            ('extra-iteration-after-match', loop, """        java.util.Iterator<DictionaryEntry> entries = dictionary.getEntries().iterator();
++        while (entries.hasNext()) {
++            DictionaryEntry entry = entries.next();
++            if (key.equalsIgnoreCase(entry.getKey())) { entries.hasNext(); return entry; }
++        }
++        return null;""", 'match-before-later-iterator-fault'),
++            ('swallow-iterator-fault', loop, '        try {\n' + loop + '\n        } catch (RuntimeException failure) { return null; }', 'injected-iterator-state'),
++            ('replace-injected-npe-identity', loop, '        try {\n' + loop + '\n        } catch (NullPointerException failure) { throw new NullPointerException(failure.getMessage()); }', 'injected-iterator-npe'),
+         ]
+         (output / 'fault-catalog.json').write_text(json.dumps([{'name': name, 'old': old_anchor, 'new': changed, 'requiredFailingCase': required}
+                                                             for name, old_anchor, changed, required in faults], indent=2) + '\n')
+@@ -191,13 +206,13 @@
+         for name, old_anchor, changed, required in faults:
+             if source.count(old_anchor) != 1: raise RuntimeError('Fault anchor is not unique: ' + name)
+             folder = output / 'controls' / name
+-            mutant_source = folder / 'source/recovered/ui/DayTriggerValueMethods.java'; mutant_source.parent.mkdir(parents=True)
++            mutant_source = folder / 'source/recovered/ui/DayTriggerLookupMethods.java'; mutant_source.parent.mkdir(parents=True)
+             mutant_source.write_text(source.replace(old_anchor, changed, 1))
+             mutant_host = folder / 'hostclasses'; mutant_host.mkdir()
+             run(folder, 'compile-actual-source-fault', [JDK / 'bin/javac', '--release', '8', '-g:none', '-Xlint:-options',
+                                                        '-cp', host, '-d', mutant_host, mutant_source])
+-            mutant_class = mutant_host / 'recovered/ui/DayTriggerValueMethods.class'
+-            if sorted(path.relative_to(mutant_host).as_posix() for path in mutant_host.rglob('*.class')) != ['recovered/ui/DayTriggerValueMethods.class']:
++            mutant_class = mutant_host / 'recovered/ui/DayTriggerLookupMethods.class'
++            if sorted(path.relative_to(mutant_host).as_posix() for path in mutant_host.rglob('*.class')) != ['recovered/ui/DayTriggerLookupMethods.class']:
+                 raise RuntimeError('Fault compilation emitted unexpected classes')
+             cfg = json.loads(json.dumps(config)); cfg['classPins'][HELPER] = {'path': str(mutant_class), **identity(mutant_class)}
+             observed = execute(folder / 'execution', cfg, mutant_host, expected=3)
+@@ -215,7 +230,7 @@
+             compiled_faults[name] = mutant_class
+ 
+         dex_controls = []
+-        for name, required in [('integer-zero', 'integer-boundary-1'), ('decimal-zero', 'decimal-boundary-6')]:
++        for name, required in [('case-sensitive', 'first-duplicate-entry-identity'), ('last-match', 'empty-string-match')]:
+             dex, faulty_binding = dex_from_helper(compiled_faults[name], output / 'controls' / (name + '-rebuilt-pipeline'))
+             cfg = json.loads(json.dumps(config)); cfg.update({'rebuiltDex': str(dex), 'rebuiltDexSha256': identity(dex)['sha256']})
+             observed = execute(output / 'controls' / (name + '-rebuilt-execution'), cfg, expected=3)

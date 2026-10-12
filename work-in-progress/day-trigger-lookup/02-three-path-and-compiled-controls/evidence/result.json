@@ -1,0 +1,1597 @@
+{
+  "startedUtc": "2026-10-12T08:19:11.756184+00:00",
+  "scope": "Private one-method original/JVM/rebuilt-bytecode proof and actual compiled controls; no APK or active registry changes.",
+  "commands": [
+    {
+      "name": "d8-one-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/positive-pipeline/d8",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/positive-pipeline/inputs.jar"
+      ],
+      "startedUtc": "2026-10-12T08:19:15.184357+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:19:18.785475+00:00",
+      "durationSeconds": 3.601180113000737,
+      "stdout": {
+        "path": "positive-pipeline/d8-one-helper.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "positive-pipeline/d8-one-helper.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "disassemble-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/positive-pipeline/helper-smali",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/positive-pipeline/d8/classes.dex"
+      ],
+      "startedUtc": "2026-10-12T08:19:18.790472+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:19:19.719553+00:00",
+      "durationSeconds": 0.9291028340012417,
+      "stdout": {
+        "path": "positive-pipeline/disassemble-helper.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "positive-pipeline/disassemble-helper.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "assemble-target",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-j",
+        "2",
+        "-o",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/positive-pipeline/rebuilt-day-trigger.dex",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/positive-pipeline/target-smali"
+      ],
+      "startedUtc": "2026-10-12T08:19:19.733062+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:19:21.274981+00:00",
+      "durationSeconds": 1.54192659200271,
+      "stdout": {
+        "path": "positive-pipeline/assemble-target.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "positive-pipeline/assemble-target.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/positive/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/positive/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:19:21.286147+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:19:22.917793+00:00",
+      "durationSeconds": 1.6320066289990791,
+      "stdout": {
+        "path": "positive/execute-study.stdout.txt",
+        "bytes": 93,
+        "sha256": "eb64bae9ca71688fb1e62b3e03bcb6b2b424d175f6e466ff96b7bd79eb4cf1e0"
+      },
+      "stderr": {
+        "path": "positive/execute-study.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/original-as-rebuilt/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/original-as-rebuilt/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:19:22.949274+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 1,
+      "finishedUtc": "2026-10-12T08:19:23.867070+00:00",
+      "durationSeconds": 0.9178056819982885,
+      "stdout": {
+        "path": "controls/original-as-rebuilt/execute-study.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/original-as-rebuilt/execute-study.stderr.txt",
+        "bytes": 206,
+        "sha256": "73bb0a92301d92348b5d50ab1e4e168c89bc0a9ec9654612e69d33a92f3d82b3"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/wrong-loaded-helper/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/wrong-loaded-helper/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:19:23.872499+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 1,
+      "finishedUtc": "2026-10-12T08:19:24.396964+00:00",
+      "durationSeconds": 0.5244907699998294,
+      "stdout": {
+        "path": "controls/wrong-loaded-helper/execute-study.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/wrong-loaded-helper/execute-study.stderr.txt",
+        "bytes": 275,
+        "sha256": "75cfe0117b7f7712d4f7823bd4c190ba269b67f32334536ecf069335e2438bf5"
+      }
+    },
+    {
+      "name": "compile-actual-source-fault",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-Xlint:-options",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses",
+        "-d",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/case-sensitive/hostclasses",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/case-sensitive/source/recovered/ui/DayTriggerLookupMethods.java"
+      ],
+      "startedUtc": "2026-10-12T08:19:24.409467+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:19:26.000659+00:00",
+      "durationSeconds": 1.5912078750006913,
+      "stdout": {
+        "path": "controls/case-sensitive/compile-actual-source-fault.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/case-sensitive/compile-actual-source-fault.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/case-sensitive/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/case-sensitive/execution/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/case-sensitive/execution/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:19:26.008071+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 3,
+      "finishedUtc": "2026-10-12T08:19:28.533061+00:00",
+      "durationSeconds": 2.5250762499999837,
+      "stdout": {
+        "path": "controls/case-sensitive/execution/execute-study.stdout.txt",
+        "bytes": 98,
+        "sha256": "7aaf311c4f84b5a91e6bf56b1ef887ab1c2c4d268c3706130d6025ee7668ae11"
+      },
+      "stderr": {
+        "path": "controls/case-sensitive/execution/execute-study.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "compile-actual-source-fault",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-Xlint:-options",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses",
+        "-d",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/reverse-receiver/hostclasses",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/reverse-receiver/source/recovered/ui/DayTriggerLookupMethods.java"
+      ],
+      "startedUtc": "2026-10-12T08:19:28.570834+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:19:29.959147+00:00",
+      "durationSeconds": 1.3888396449983702,
+      "stdout": {
+        "path": "controls/reverse-receiver/compile-actual-source-fault.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/reverse-receiver/compile-actual-source-fault.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/reverse-receiver/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/reverse-receiver/execution/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/reverse-receiver/execution/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:19:29.976606+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 3,
+      "finishedUtc": "2026-10-12T08:19:32.411180+00:00",
+      "durationSeconds": 2.436304951999773,
+      "stdout": {
+        "path": "controls/reverse-receiver/execution/execute-study.stdout.txt",
+        "bytes": 94,
+        "sha256": "b4419aa6272fcf9b09a3a5872dbaa1425fcfbacf4160ad45f8697fc12f8c9f7f"
+      },
+      "stderr": {
+        "path": "controls/reverse-receiver/execution/execute-study.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "compile-actual-source-fault",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-Xlint:-options",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses",
+        "-d",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/skip-null-entry/hostclasses",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/skip-null-entry/source/recovered/ui/DayTriggerLookupMethods.java"
+      ],
+      "startedUtc": "2026-10-12T08:19:32.579858+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:19:34.410937+00:00",
+      "durationSeconds": 1.8321910449994903,
+      "stdout": {
+        "path": "controls/skip-null-entry/compile-actual-source-fault.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/skip-null-entry/compile-actual-source-fault.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/skip-null-entry/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/skip-null-entry/execution/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/skip-null-entry/execution/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:19:34.442579+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 3,
+      "finishedUtc": "2026-10-12T08:19:37.869759+00:00",
+      "durationSeconds": 3.427354112998728,
+      "stdout": {
+        "path": "controls/skip-null-entry/execution/execute-study.stdout.txt",
+        "bytes": 94,
+        "sha256": "27203a83a88861d0d146c83fde787447db5ab50f60945a99bd80617d9586b23d"
+      },
+      "stderr": {
+        "path": "controls/skip-null-entry/execution/execute-study.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "compile-actual-source-fault",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-Xlint:-options",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses",
+        "-d",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/null-query-early-return/hostclasses",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/null-query-early-return/source/recovered/ui/DayTriggerLookupMethods.java"
+      ],
+      "startedUtc": "2026-10-12T08:19:37.929995+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:19:39.625425+00:00",
+      "durationSeconds": 1.6963269900006708,
+      "stdout": {
+        "path": "controls/null-query-early-return/compile-actual-source-fault.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/null-query-early-return/compile-actual-source-fault.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/null-query-early-return/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/null-query-early-return/execution/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/null-query-early-return/execution/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:19:39.640599+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 3,
+      "finishedUtc": "2026-10-12T08:19:42.624597+00:00",
+      "durationSeconds": 2.984271985002124,
+      "stdout": {
+        "path": "controls/null-query-early-return/execution/execute-study.stdout.txt",
+        "bytes": 94,
+        "sha256": "b4419aa6272fcf9b09a3a5872dbaa1425fcfbacf4160ad45f8697fc12f8c9f7f"
+      },
+      "stderr": {
+        "path": "controls/null-query-early-return/execution/execute-study.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "compile-actual-source-fault",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-Xlint:-options",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses",
+        "-d",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/last-match/hostclasses",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/last-match/source/recovered/ui/DayTriggerLookupMethods.java"
+      ],
+      "startedUtc": "2026-10-12T08:19:42.877090+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:19:44.525291+00:00",
+      "durationSeconds": 1.648200612002256,
+      "stdout": {
+        "path": "controls/last-match/compile-actual-source-fault.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/last-match/compile-actual-source-fault.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/last-match/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/last-match/execution/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/last-match/execution/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:19:44.532912+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 3,
+      "finishedUtc": "2026-10-12T08:19:47.825432+00:00",
+      "durationSeconds": 3.2925280070012377,
+      "stdout": {
+        "path": "controls/last-match/execution/execute-study.stdout.txt",
+        "bytes": 98,
+        "sha256": "5ffd32946adda0a66735e1c9cfcd6e0afc83dd3ae629674f0eb7f2dc08876b2c"
+      },
+      "stderr": {
+        "path": "controls/last-match/execution/execute-study.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "compile-actual-source-fault",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-Xlint:-options",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses",
+        "-d",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/trim-query/hostclasses",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/trim-query/source/recovered/ui/DayTriggerLookupMethods.java"
+      ],
+      "startedUtc": "2026-10-12T08:19:47.906003+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:19:50.986480+00:00",
+      "durationSeconds": 3.0806553740003437,
+      "stdout": {
+        "path": "controls/trim-query/compile-actual-source-fault.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/trim-query/compile-actual-source-fault.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/trim-query/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/trim-query/execution/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/trim-query/execution/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:19:50.995428+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 3,
+      "finishedUtc": "2026-10-12T08:19:53.783715+00:00",
+      "durationSeconds": 2.788298097999359,
+      "stdout": {
+        "path": "controls/trim-query/execution/execute-study.stdout.txt",
+        "bytes": 94,
+        "sha256": "ad295b502ba6138af09b27fd066d4f01f23fc2d3e1ca677d1a4c81b1cafda491"
+      },
+      "stderr": {
+        "path": "controls/trim-query/execution/execute-study.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "compile-actual-source-fault",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-Xlint:-options",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses",
+        "-d",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/indexed-loop/hostclasses",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/indexed-loop/source/recovered/ui/DayTriggerLookupMethods.java"
+      ],
+      "startedUtc": "2026-10-12T08:19:53.846682+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:19:58.446581+00:00",
+      "durationSeconds": 4.599679540002398,
+      "stdout": {
+        "path": "controls/indexed-loop/compile-actual-source-fault.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/indexed-loop/compile-actual-source-fault.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/indexed-loop/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/indexed-loop/execution/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/indexed-loop/execution/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:19:58.533271+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 3,
+      "finishedUtc": "2026-10-12T08:20:05.743613+00:00",
+      "durationSeconds": 7.211234654998407,
+      "stdout": {
+        "path": "controls/indexed-loop/execution/execute-study.stdout.txt",
+        "bytes": 98,
+        "sha256": "522a8ca8091822d1f443c53c88a5126f8f466c6c4e56860fdda8814fe6264c59"
+      },
+      "stderr": {
+        "path": "controls/indexed-loop/execution/execute-study.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "compile-actual-source-fault",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-Xlint:-options",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses",
+        "-d",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/extra-iteration-after-match/hostclasses",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/extra-iteration-after-match/source/recovered/ui/DayTriggerLookupMethods.java"
+      ],
+      "startedUtc": "2026-10-12T08:20:05.920093+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:20:07.870578+00:00",
+      "durationSeconds": 1.9505495320008777,
+      "stdout": {
+        "path": "controls/extra-iteration-after-match/compile-actual-source-fault.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/extra-iteration-after-match/compile-actual-source-fault.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/extra-iteration-after-match/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/extra-iteration-after-match/execution/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/extra-iteration-after-match/execution/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:20:07.964211+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 3,
+      "finishedUtc": "2026-10-12T08:20:13.939044+00:00",
+      "durationSeconds": 5.974636686998565,
+      "stdout": {
+        "path": "controls/extra-iteration-after-match/execution/execute-study.stdout.txt",
+        "bytes": 98,
+        "sha256": "5ffd32946adda0a66735e1c9cfcd6e0afc83dd3ae629674f0eb7f2dc08876b2c"
+      },
+      "stderr": {
+        "path": "controls/extra-iteration-after-match/execution/execute-study.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "compile-actual-source-fault",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-Xlint:-options",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses",
+        "-d",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/swallow-iterator-fault/hostclasses",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/swallow-iterator-fault/source/recovered/ui/DayTriggerLookupMethods.java"
+      ],
+      "startedUtc": "2026-10-12T08:20:14.005817+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:20:25.031556+00:00",
+      "durationSeconds": 11.025789046001591,
+      "stdout": {
+        "path": "controls/swallow-iterator-fault/compile-actual-source-fault.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/swallow-iterator-fault/compile-actual-source-fault.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/swallow-iterator-fault/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/swallow-iterator-fault/execution/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/swallow-iterator-fault/execution/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:20:25.051302+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 3,
+      "finishedUtc": "2026-10-12T08:20:32.028986+00:00",
+      "durationSeconds": 6.977647339001123,
+      "stdout": {
+        "path": "controls/swallow-iterator-fault/execution/execute-study.stdout.txt",
+        "bytes": 96,
+        "sha256": "2e2cea3adb0164df38825f848e7c2019c45f4f42ed55a5b487aaa3690f6bc315"
+      },
+      "stderr": {
+        "path": "controls/swallow-iterator-fault/execution/execute-study.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "compile-actual-source-fault",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/javac",
+        "--release",
+        "8",
+        "-g:none",
+        "-Xlint:-options",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses",
+        "-d",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/replace-injected-npe-identity/hostclasses",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/replace-injected-npe-identity/source/recovered/ui/DayTriggerLookupMethods.java"
+      ],
+      "startedUtc": "2026-10-12T08:20:32.097849+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:20:34.596090+00:00",
+      "durationSeconds": 2.4981276460021036,
+      "stdout": {
+        "path": "controls/replace-injected-npe-identity/compile-actual-source-fault.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/replace-injected-npe-identity/compile-actual-source-fault.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/replace-injected-npe-identity/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/replace-injected-npe-identity/execution/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/replace-injected-npe-identity/execution/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:20:34.607356+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 3,
+      "finishedUtc": "2026-10-12T08:20:38.300845+00:00",
+      "durationSeconds": 3.6935061380027037,
+      "stdout": {
+        "path": "controls/replace-injected-npe-identity/execution/execute-study.stdout.txt",
+        "bytes": 94,
+        "sha256": "bdab213b477b7dc3efe2df71c7ad8a959bb604725357568ea2e6c0cc43281610"
+      },
+      "stderr": {
+        "path": "controls/replace-injected-npe-identity/execution/execute-study.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "d8-one-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/case-sensitive-rebuilt-pipeline/d8",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/case-sensitive-rebuilt-pipeline/inputs.jar"
+      ],
+      "startedUtc": "2026-10-12T08:20:38.414560+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:20:41.144850+00:00",
+      "durationSeconds": 2.730296523997822,
+      "stdout": {
+        "path": "controls/case-sensitive-rebuilt-pipeline/d8-one-helper.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/case-sensitive-rebuilt-pipeline/d8-one-helper.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "disassemble-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/case-sensitive-rebuilt-pipeline/helper-smali",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/case-sensitive-rebuilt-pipeline/d8/classes.dex"
+      ],
+      "startedUtc": "2026-10-12T08:20:41.147208+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:20:42.131871+00:00",
+      "durationSeconds": 0.9846790519986826,
+      "stdout": {
+        "path": "controls/case-sensitive-rebuilt-pipeline/disassemble-helper.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/case-sensitive-rebuilt-pipeline/disassemble-helper.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "assemble-target",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-j",
+        "2",
+        "-o",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/case-sensitive-rebuilt-pipeline/rebuilt-day-trigger.dex",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/case-sensitive-rebuilt-pipeline/target-smali"
+      ],
+      "startedUtc": "2026-10-12T08:20:42.146481+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:20:43.836182+00:00",
+      "durationSeconds": 1.6897123050002847,
+      "stdout": {
+        "path": "controls/case-sensitive-rebuilt-pipeline/assemble-target.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/case-sensitive-rebuilt-pipeline/assemble-target.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/case-sensitive-rebuilt-execution/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/case-sensitive-rebuilt-execution/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:20:43.850975+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 3,
+      "finishedUtc": "2026-10-12T08:20:47.253030+00:00",
+      "durationSeconds": 3.402060034000897,
+      "stdout": {
+        "path": "controls/case-sensitive-rebuilt-execution/execute-study.stdout.txt",
+        "bytes": 98,
+        "sha256": "7aaf311c4f84b5a91e6bf56b1ef887ab1c2c4d268c3706130d6025ee7668ae11"
+      },
+      "stderr": {
+        "path": "controls/case-sensitive-rebuilt-execution/execute-study.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "d8-one-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.r8.D8",
+        "--release",
+        "--no-desugaring",
+        "--min-api",
+        "23",
+        "--output",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/last-match-rebuilt-pipeline/d8",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/last-match-rebuilt-pipeline/inputs.jar"
+      ],
+      "startedUtc": "2026-10-12T08:20:47.306768+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:20:49.702490+00:00",
+      "durationSeconds": 2.3959695490011654,
+      "stdout": {
+        "path": "controls/last-match-rebuilt-pipeline/d8-one-helper.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/last-match-rebuilt-pipeline/d8-one-helper.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "disassemble-helper",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.baksmali.Main",
+        "d",
+        "--api",
+        "23",
+        "--use-locals",
+        "-o",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/last-match-rebuilt-pipeline/helper-smali",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/last-match-rebuilt-pipeline/d8/classes.dex"
+      ],
+      "startedUtc": "2026-10-12T08:20:49.724829+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:20:50.533907+00:00",
+      "durationSeconds": 0.8090894640008628,
+      "stdout": {
+        "path": "controls/last-match-rebuilt-pipeline/disassemble-helper.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/last-match-rebuilt-pipeline/disassemble-helper.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "assemble-target",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "com.android.tools.smali.smali.Main",
+        "a",
+        "--api",
+        "23",
+        "-j",
+        "2",
+        "-o",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/last-match-rebuilt-pipeline/rebuilt-day-trigger.dex",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/last-match-rebuilt-pipeline/target-smali"
+      ],
+      "startedUtc": "2026-10-12T08:20:50.568719+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:20:52.469539+00:00",
+      "durationSeconds": 1.9008319479980855,
+      "stdout": {
+        "path": "controls/last-match-rebuilt-pipeline/assemble-target.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "controls/last-match-rebuilt-pipeline/assemble-target.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/last-match-rebuilt-execution/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/controls/last-match-rebuilt-execution/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:20:52.477626+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 3,
+      "finishedUtc": "2026-10-12T08:20:54.434024+00:00",
+      "durationSeconds": 1.956411734001449,
+      "stdout": {
+        "path": "controls/last-match-rebuilt-execution/execute-study.stdout.txt",
+        "bytes": 98,
+        "sha256": "5ffd32946adda0a66735e1c9cfcd6e0afc83dd3ae629674f0eb7f2dc08876b2c"
+      },
+      "stderr": {
+        "path": "controls/last-match-rebuilt-execution/execute-study.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "execute-study",
+      "argv": [
+        "/workspace/scratch/4130730d15aa/tooling/jdk21/bin/java",
+        "-Xmx512m",
+        "-Xverify:all",
+        "-cp",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/hostclasses:/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/original-java-01/harnessclasses:/workspace/scratch/4130730d15aa/current/MacroDroid_v9/tools/lib/jadx-r2721.4574686-all.jar",
+        "DayLookupStudy",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/positive-restored/config.json",
+        "/workspace/scratch/4130730d15aa/day-trigger-lookup-recovery/reports/three-path-controls-02/positive-restored/parity.json"
+      ],
+      "startedUtc": "2026-10-12T08:20:54.452922+00:00",
+      "timeoutSeconds": 120,
+      "returncode": 0,
+      "finishedUtc": "2026-10-12T08:20:56.387636+00:00",
+      "durationSeconds": 1.9347211660024186,
+      "stdout": {
+        "path": "positive-restored/execute-study.stdout.txt",
+        "bytes": 93,
+        "sha256": "eb64bae9ca71688fb1e62b3e03bcb6b2b424d175f6e466ff96b7bd79eb4cf1e0"
+      },
+      "stderr": {
+        "path": "positive-restored/execute-study.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "status": "THREE_PATH_AND_COMPILED_CONTROLS_PASSED",
+  "passed": true,
+  "cases": 371,
+  "executionPaths": 3,
+  "mismatchCount": 0,
+  "unsupportedCount": 0,
+  "independentExpectedChecks": 371,
+  "independentExpectedFailures": 0,
+  "originalCoverage": {
+    "methods": [
+      {
+        "key": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+        "primaryRecovery": true,
+        "requiredOffsets": [
+          0,
+          1,
+          4,
+          5,
+          8,
+          9,
+          10,
+          13,
+          14,
+          16,
+          19,
+          20,
+          22,
+          25,
+          26,
+          29,
+          30,
+          32,
+          33,
+          34,
+          35
+        ],
+        "executedOffsets": [
+          0,
+          1,
+          4,
+          5,
+          8,
+          9,
+          10,
+          13,
+          14,
+          16,
+          19,
+          20,
+          22,
+          25,
+          26,
+          29,
+          30,
+          32,
+          33,
+          34,
+          35
+        ],
+        "missingOffsets": [],
+        "requiredEdges": [
+          "14:16",
+          "14:33",
+          "30:32",
+          "30:9"
+        ],
+        "executedEdges": [
+          "14:16",
+          "14:33",
+          "30:32",
+          "30:9"
+        ],
+        "missingEdges": [],
+        "instructionCount": 21,
+        "exceptionRegions": 0
+      },
+      {
+        "key": "Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;->getEntries()Ljava/util/List;",
+        "primaryRecovery": false,
+        "requiredOffsets": [
+          0,
+          2
+        ],
+        "executedOffsets": [
+          0,
+          2
+        ],
+        "missingOffsets": [],
+        "requiredEdges": [],
+        "executedEdges": [],
+        "missingEdges": [],
+        "instructionCount": 2,
+        "exceptionRegions": 0
+      },
+      {
+        "key": "Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;->getKey()Ljava/lang/String;",
+        "primaryRecovery": false,
+        "requiredOffsets": [
+          0,
+          1,
+          3
+        ],
+        "executedOffsets": [
+          0,
+          1,
+          3
+        ],
+        "missingOffsets": [],
+        "requiredEdges": [],
+        "executedEdges": [],
+        "missingEdges": [],
+        "instructionCount": 3,
+        "exceptionRegions": 0
+      }
+    ],
+    "instructionCount": 26,
+    "executedInstructionCount": 26,
+    "requiredBranchEdges": 4,
+    "executedBranchEdges": 4,
+    "allInstructionsAndEdgesExecuted": true
+  },
+  "rebuiltCoverage": {
+    "methods": [
+      {
+        "key": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+        "primaryRecovery": true,
+        "requiredOffsets": [
+          0,
+          3,
+          4,
+          7,
+          8,
+          11,
+          12,
+          14,
+          17,
+          18,
+          20,
+          23,
+          24,
+          27,
+          28,
+          30,
+          31,
+          32
+        ],
+        "executedOffsets": [
+          0,
+          3,
+          4,
+          7,
+          8,
+          11,
+          12,
+          14,
+          17,
+          18,
+          20,
+          23,
+          24,
+          27,
+          28,
+          30,
+          31,
+          32
+        ],
+        "missingOffsets": [],
+        "requiredEdges": [
+          "12:14",
+          "12:31",
+          "28:30",
+          "28:8"
+        ],
+        "executedEdges": [
+          "12:14",
+          "12:31",
+          "28:30",
+          "28:8"
+        ],
+        "missingEdges": [],
+        "instructionCount": 18,
+        "exceptionRegions": 0
+      },
+      {
+        "key": "Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;->getEntries()Ljava/util/List;",
+        "primaryRecovery": false,
+        "requiredOffsets": [
+          0,
+          2
+        ],
+        "executedOffsets": [
+          0,
+          2
+        ],
+        "missingOffsets": [],
+        "requiredEdges": [],
+        "executedEdges": [],
+        "missingEdges": [],
+        "instructionCount": 2,
+        "exceptionRegions": 0
+      },
+      {
+        "key": "Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;->getKey()Ljava/lang/String;",
+        "primaryRecovery": false,
+        "requiredOffsets": [
+          0,
+          1,
+          3
+        ],
+        "executedOffsets": [
+          0,
+          1,
+          3
+        ],
+        "missingOffsets": [],
+        "requiredEdges": [],
+        "executedEdges": [],
+        "missingEdges": [],
+        "instructionCount": 3,
+        "exceptionRegions": 0
+      }
+    ],
+    "instructionCount": 23,
+    "executedInstructionCount": 23,
+    "requiredBranchEdges": 4,
+    "executedBranchEdges": 4,
+    "allInstructionsAndEdgesExecuted": true
+  },
+  "positiveBinding": {
+    "primaryMethod": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+    "originalClass": {
+      "bytes": 102706,
+      "sha256": "73914856377629c12077f34916a8674d7d0bdf7799ebc3357c299ce424a7789e"
+    },
+    "originalMethodSha256": "afdaa9b0977db46a2f333cccb0de57a401b77e2e3b66b535b2bff50991e4614e",
+    "loadedHelperClass": {
+      "bytes": 991,
+      "sha256": "d0ff3559a30190eb120161faa943700d5a2e6bfeaba85cb97807c19fa219ad61"
+    },
+    "relocatedHelperClass": {
+      "bytes": 991,
+      "sha256": "d0ff3559a30190eb120161faa943700d5a2e6bfeaba85cb97807c19fa219ad61"
+    },
+    "compilerInput": {
+      "bytes": 1173,
+      "sha256": "3bed734b5f9a1532a92b8e15c1983f38ac22e4ac7e22e9c6c541742f67127197"
+    },
+    "compilerInputClassCount": 1,
+    "hostStubsSentToD8": 0,
+    "helperDexSha256": "9f91c97823884c6677313fa4e1177f1f9d5849b3738c2c4c57a8740fda1af025",
+    "compiledMethodSha256": "4d21eccf2cbcc044efcabb702b97c3421ea60dfee6ffe05d73715599ecf0f1e5",
+    "transplantedMethodSha256": "9f64495b741330b70ab15b4a73fa17237ab87ceef83efcbab3158cb51c0ec131",
+    "transplantedClass": {
+      "bytes": 102414,
+      "sha256": "2330d67090670059890f6b36d374034eb40457340170d3d7c56dc884a0f017b1"
+    },
+    "rebuiltDexSha256": "cf79aff20187504abf4168c081b0cbd7d80ac664bce7ead175db835d8d06e596",
+    "otherOriginalMethodsUnchanged": 33,
+    "allNonTargetClassTextUnchanged": true,
+    "constructorOwnerCorrections": [],
+    "productionBuild": {
+      "bytes": 20325,
+      "sha256": "dd599090fc075fed0835875937a2c2b76d91381936c26f4275f876edf47345f0"
+    },
+    "productionConstructorOwner": {
+      "bytes": 12830,
+      "sha256": "b77672c0fb1cca53a2cb88280c2688c93fd6a95f95ee0325cabdddad00f58014"
+    }
+  },
+  "positiveReport": {
+    "bytes": 617109,
+    "sha256": "5c96ace92ac83a7eaf191881431154649437c816c46db74d5947abebb0782d07"
+  },
+  "originControls": [
+    {
+      "name": "original-as-rebuilt",
+      "rejectedBeforeReport": true
+    },
+    {
+      "name": "wrong-loaded-helper",
+      "rejectedBeforeReport": true
+    }
+  ],
+  "compiledJavaFaults": [
+    {
+      "name": "case-sensitive",
+      "source": {
+        "bytes": 570,
+        "sha256": "8c09b947d1b939dae63e45b9d3408e988e5d73e17d37ca6f03c4977f15285e15"
+      },
+      "compiledClass": {
+        "bytes": 981,
+        "sha256": "061252491e3356e64583d66cffa232475afb6fe9a423366bb80cf87a1408b8d9"
+      },
+      "requiredFailingCase": "first-duplicate-entry-identity",
+      "mismatchCount": 127,
+      "unsupportedCount": 0,
+      "referencePathsUnchanged": true,
+      "actualCompiledFaultDetected": true
+    },
+    {
+      "name": "reverse-receiver",
+      "source": {
+        "bytes": 580,
+        "sha256": "ed424cece1950b3b82395d7f21216cbd72aebe0725611bb96747a92fc4852e6a"
+      },
+      "compiledClass": {
+        "bytes": 991,
+        "sha256": "668a9d07b878e7869732886a7f132e05d1a4ddd6e1f68dfdb0e17bac18e160d1"
+      },
+      "requiredFailingCase": "null-entry-key-is-not-a-match",
+      "mismatchCount": 3,
+      "unsupportedCount": 0,
+      "referencePathsUnchanged": true,
+      "actualCompiledFaultDetected": true
+    },
+    {
+      "name": "skip-null-entry",
+      "source": {
+        "bytes": 621,
+        "sha256": "dc3104354c2c358a51cbbd784151d6fe79f7102e49ddf9df5d15e97676f23588"
+      },
+      "compiledClass": {
+        "bytes": 1006,
+        "sha256": "d0bdfd71658ed2d1f62c8ec8850ef3c6f4f4af91d23df8bc33fbe3df52a2c0fa"
+      },
+      "requiredFailingCase": "null-first-entry",
+      "mismatchCount": 2,
+      "unsupportedCount": 0,
+      "referencePathsUnchanged": true,
+      "actualCompiledFaultDetected": true
+    },
+    {
+      "name": "null-query-early-return",
+      "source": {
+        "bytes": 618,
+        "sha256": "66d9b2beea9b50fe723bea3b9ca09e77075b8e61f6ca29767a7c51c454b0d6f2"
+      },
+      "compiledClass": {
+        "bytes": 998,
+        "sha256": "571ce6dd3b4b59352902315e2932f4c281d224d7091c5f32d56d34c0b1a41c18"
+      },
+      "requiredFailingCase": "null-query-nonempty",
+      "mismatchCount": 3,
+      "unsupportedCount": 0,
+      "referencePathsUnchanged": true,
+      "actualCompiledFaultDetected": true
+    },
+    {
+      "name": "last-match",
+      "source": {
+        "bytes": 620,
+        "sha256": "5621cc40faa2dd2ca829ada75a22480b09ae3e993c4538668d848596bd54cde1"
+      },
+      "compiledClass": {
+        "bytes": 999,
+        "sha256": "8fd14ea302913d9d0bc2a43f40c01614397708b786c9d154237e83eb86087260"
+      },
+      "requiredFailingCase": "empty-string-match",
+      "mismatchCount": 233,
+      "unsupportedCount": 0,
+      "referencePathsUnchanged": true,
+      "actualCompiledFaultDetected": true
+    },
+    {
+      "name": "trim-query",
+      "source": {
+        "bytes": 587,
+        "sha256": "98cb0df9e0768871795797e466f9cf091dc79f9d75137ccb7e8d4afa9195164e"
+      },
+      "compiledClass": {
+        "bytes": 1011,
+        "sha256": "fc4f394bbce872390d752db1499df281670c5e78f9418ef0b952b6f01c37e9a7"
+      },
+      "requiredFailingCase": "query-whitespace-is-significant",
+      "mismatchCount": 1,
+      "unsupportedCount": 0,
+      "referencePathsUnchanged": true,
+      "actualCompiledFaultDetected": true
+    },
+    {
+      "name": "indexed-loop",
+      "source": {
+        "bytes": 694,
+        "sha256": "11b6df77c5e297a519d621031604a7fa9399aa8cd4d670e2fbf2339b44183efb"
+      },
+      "compiledClass": {
+        "bytes": 924,
+        "sha256": "c45cd241f7981ef312705465a68a1288e9bf29b84542f036b15cfba333a42f25"
+      },
+      "requiredFailingCase": "empty",
+      "mismatchCount": 369,
+      "unsupportedCount": 0,
+      "referencePathsUnchanged": true,
+      "actualCompiledFaultDetected": true
+    },
+    {
+      "name": "extra-iteration-after-match",
+      "source": {
+        "bytes": 717,
+        "sha256": "2b0afe6dd6c93b4330a62cb33d71d1ea9d4de0dc9358871c73a3c59450f7009f"
+      },
+      "compiledClass": {
+        "bytes": 996,
+        "sha256": "575daa0eba80452a0366021c45d921ef6dac0247dfaaf7fbd0e9102d6057a23c"
+      },
+      "requiredFailingCase": "match-before-later-iterator-fault",
+      "mismatchCount": 233,
+      "unsupportedCount": 0,
+      "referencePathsUnchanged": true,
+      "actualCompiledFaultDetected": true
+    },
+    {
+      "name": "swallow-iterator-fault",
+      "source": {
+        "bytes": 654,
+        "sha256": "2255618e7be63b89a55fe2d851f98cf0e6050c234a349044eaab517cf077ed0f"
+      },
+      "compiledClass": {
+        "bytes": 1046,
+        "sha256": "030cf33ca37a4f83e28131143e988039f1e4bb1c4ea46b078c8fcae8fa3e5c28"
+      },
+      "requiredFailingCase": "injected-iterator-state",
+      "mismatchCount": 25,
+      "unsupportedCount": 0,
+      "referencePathsUnchanged": true,
+      "actualCompiledFaultDetected": true
+    },
+    {
+      "name": "replace-injected-npe-identity",
+      "source": {
+        "bytes": 699,
+        "sha256": "926739728dedb548f28e79cd5927384d0f466c186d0b861121dc135bfebac68b"
+      },
+      "compiledClass": {
+        "bytes": 1117,
+        "sha256": "ec1f834532d6b6a47d334cea8f146f0a8121ac69ab104c3820fd1ccdb37810a7"
+      },
+      "requiredFailingCase": "injected-iterator-npe",
+      "mismatchCount": 6,
+      "unsupportedCount": 0,
+      "referencePathsUnchanged": true,
+      "actualCompiledFaultDetected": true
+    }
+  ],
+  "compiledRebuiltFaults": [
+    {
+      "name": "case-sensitive",
+      "mismatchCount": 127,
+      "unsupportedCount": 0,
+      "requiredFailingCase": "first-duplicate-entry-identity",
+      "referencePathsUnchanged": true,
+      "actualCompiledRebuiltFaultDetected": true,
+      "binding": {
+        "primaryMethod": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+        "originalClass": {
+          "bytes": 102706,
+          "sha256": "73914856377629c12077f34916a8674d7d0bdf7799ebc3357c299ce424a7789e"
+        },
+        "originalMethodSha256": "afdaa9b0977db46a2f333cccb0de57a401b77e2e3b66b535b2bff50991e4614e",
+        "loadedHelperClass": {
+          "bytes": 981,
+          "sha256": "061252491e3356e64583d66cffa232475afb6fe9a423366bb80cf87a1408b8d9"
+        },
+        "relocatedHelperClass": {
+          "bytes": 981,
+          "sha256": "061252491e3356e64583d66cffa232475afb6fe9a423366bb80cf87a1408b8d9"
+        },
+        "compilerInput": {
+          "bytes": 1163,
+          "sha256": "d857cb43971fc12f062b5fa64b8b28d621c41c18c79c3a4516f611abb0d46e9a"
+        },
+        "compilerInputClassCount": 1,
+        "hostStubsSentToD8": 0,
+        "helperDexSha256": "f01105126a093372d9bd03672e121ac343c0c290389d2a743952394979577bf0",
+        "compiledMethodSha256": "7efb0da887c2c5fe987ac1b4dec8a4cd4735ef0573eac14653d900ee0ee976dd",
+        "transplantedMethodSha256": "2f35dda9a04af287020d25981d2c50b18c0d6960ea60fdac6fc7f12c2c74304d",
+        "transplantedClass": {
+          "bytes": 102404,
+          "sha256": "8f7c21dd64a26b9ae1faac621da0aaffbbc575f2aa34defc91b70cda6209800b"
+        },
+        "rebuiltDexSha256": "97ac97bc119077260583e372ff360c7644b5029890a82e9304f9eed4277bf0a6",
+        "otherOriginalMethodsUnchanged": 33,
+        "allNonTargetClassTextUnchanged": true,
+        "constructorOwnerCorrections": [],
+        "productionBuild": {
+          "bytes": 20325,
+          "sha256": "dd599090fc075fed0835875937a2c2b76d91381936c26f4275f876edf47345f0"
+        },
+        "productionConstructorOwner": {
+          "bytes": 12830,
+          "sha256": "b77672c0fb1cca53a2cb88280c2688c93fd6a95f95ee0325cabdddad00f58014"
+        }
+      }
+    },
+    {
+      "name": "last-match",
+      "mismatchCount": 233,
+      "unsupportedCount": 0,
+      "requiredFailingCase": "empty-string-match",
+      "referencePathsUnchanged": true,
+      "actualCompiledRebuiltFaultDetected": true,
+      "binding": {
+        "primaryMethod": "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;",
+        "originalClass": {
+          "bytes": 102706,
+          "sha256": "73914856377629c12077f34916a8674d7d0bdf7799ebc3357c299ce424a7789e"
+        },
+        "originalMethodSha256": "afdaa9b0977db46a2f333cccb0de57a401b77e2e3b66b535b2bff50991e4614e",
+        "loadedHelperClass": {
+          "bytes": 999,
+          "sha256": "8fd14ea302913d9d0bc2a43f40c01614397708b786c9d154237e83eb86087260"
+        },
+        "relocatedHelperClass": {
+          "bytes": 999,
+          "sha256": "8fd14ea302913d9d0bc2a43f40c01614397708b786c9d154237e83eb86087260"
+        },
+        "compilerInput": {
+          "bytes": 1181,
+          "sha256": "b067809d79d80a110da927083d989331e447c7548227efa9c38d791a4dedbc80"
+        },
+        "compilerInputClassCount": 1,
+        "hostStubsSentToD8": 0,
+        "helperDexSha256": "76a15b41643d9b91825cc68bec5149eecc51d5463333b8f410de9f842df927f0",
+        "compiledMethodSha256": "e455899d7bf2000b3903f19fef424a2614d3d3dd833688001c4e505c9432a07d",
+        "transplantedMethodSha256": "0a164d81dae6968754deac04833a10e081e31b8ec073bd8043bd3bad6171ea0f",
+        "transplantedClass": {
+          "bytes": 102446,
+          "sha256": "fec69a35f6d7d847d7f394ccb39220c38b0b58db3014f64f75917c70878dbd02"
+        },
+        "rebuiltDexSha256": "75a5abe1e796473f7382aa4ac8ef7bb434b848ca27f6d669d3dba241c70916c9",
+        "otherOriginalMethodsUnchanged": 33,
+        "allNonTargetClassTextUnchanged": true,
+        "constructorOwnerCorrections": [],
+        "productionBuild": {
+          "bytes": 20325,
+          "sha256": "dd599090fc075fed0835875937a2c2b76d91381936c26f4275f876edf47345f0"
+        },
+        "productionConstructorOwner": {
+          "bytes": 12830,
+          "sha256": "b77672c0fb1cca53a2cb88280c2688c93fd6a95f95ee0325cabdddad00f58014"
+        }
+      }
+    }
+  ],
+  "allCompiledFaultsDetected": true,
+  "allInputBaselineAndToolBytesUnchanged": true,
+  "positiveReportRestoredExactly": true,
+  "activeRegistryChanged": false,
+  "signedApkBuilt": false,
+  "androidExecuted": false,
+  "finishedUtc": "2026-10-12T08:20:57.485486+00:00"
+}
