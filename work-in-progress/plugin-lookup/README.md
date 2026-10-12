@@ -23,3 +23,22 @@ as the current application's accepted registry.
 the bounded body recovery. [FOLLOWON_ASSESSMENT.md](01-original-jvm-coverage-pending/FOLLOWON_ASSESSMENT.md)
 records the separate widget-constructor pipeline gap. Existing root-owned build
 and runtime changes must be preserved during any future deliberate integration.
+
+
+## 02: Original/JVM coverage passed; signed proof and controls pending
+
+[The second frozen checkpoint](02-original-jvm/checkpoint.json) preserves
+39 source/test/document/fixture paths and 19 exact evidence files. Its SHA-256 is
+`8ac757470ddbca4ad6a36e73201e78875057dac99b2ccd333010669e503501ec`.
+
+The expanded two-path suite passed 3,053 plugin cases and 18,476 total UI cases,
+with 14,552 independent expected-result checks, zero mismatches and zero unsupported
+executions. Coverage reached all 198 instructions and all 34 conditional branch
+edges. All 161 Python tests passed. This is a new measured checkpoint; the first
+checkpoint's failed coverage report remains unchanged.
+
+All 37 control anchors (including 15 plugin controls) were authored and validated,
+but deliberate-fault execution and signed rebuilt-APK comparisons had not run at
+this freeze. Those pending stages prevent promotion to active application inputs.
+The checkpoint's 1,240-body registry remains inactive. See
+[PLUGIN_RECOVERY.md](02-original-jvm/PLUGIN_RECOVERY.md) for its exact scope.
