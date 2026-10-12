@@ -1,0 +1,35 @@
+--- review.py
++++ review-02.py
+@@ -14,7 +14,7 @@
+ import traceback
+ 
+ BASE = Path('/dev/shm/macrodroid-combined-host-tooling-review')
+-OUT = BASE / 'closed-01'
++OUT = BASE / 'closed-02'
+ CAP = Path('/dev/shm/macrodroid-day-lookup-integration/checkpoints/08-combined-tooling-controls')
+ DESIGN = Path('/dev/shm/macrodroid-day-lookup-integration/checkpoints/06-combined-host-workflow-design')
+ SOURCE = CAP / 'source'
+@@ -208,7 +208,11 @@
+         assert stderr.rstrip().endswith('\nOK')
+         boundary = read(CAP / 'review/05-source-and-workflow-boundaries-corrected/result.json')
+         assert boundary['passed'] is True and boundary['all_bound_reads_unchanged'] is True
+-        assert len(boundary['commands']) == 12
++        expected_names = ['shell-syntax-' + str(n).zfill(2) for n in range(5, 10)] + [
++            'literal-preflight-' + name for name in ['clean', 'changed-runtime-source', 'extra-runtime-file',
++            'changed-runtime-manifest', 'wrong-workflow-pin', 'symlink-runtime-source']]
++        assert [row['name'] for row in boundary['commands']] == expected_names
++        assert len(boundary['commands']) == 11
+         for command in boundary['commands']:
+             assert command['returncode'] == command['expected_returncode'] and command['timeout_seconds'] == 15
+             for role in ('stdout', 'stderr'):
+@@ -218,8 +222,8 @@
+         write('literal-tooling-controls-and-boundaries.json', {'tests': 153, 'individual_successes': len(successes),
+             'wall_seconds': controls['elapsed_seconds'], 'unittest_seconds': float(summaries[0][1]),
+             'all_nine_sources_and_execution_copy_equal': True, 'source_reads_checked': 569,
+-            'shell_syntax_commands': 6, 'bootstrap_positive': 1, 'bootstrap_rejections': 5,
+-            'commands_and_streams_hash_checked': 12, 'new_corpus_execution_performed': False})
++            'shell_syntax_commands': 5, 'bootstrap_positive': 1, 'bootstrap_rejections': 5,
++            'commands_and_streams_hash_checked': 11, 'new_corpus_execution_performed': False})
+         result.update(passed=True, status='COMBINED_HOST_TOOLING_INDEPENDENT_REVIEW_PASSED',
+             capsule_files_checked=65, streamed_archive_members=12451, external_inputs_checked=569,
+             exact_parent_definitions=50, command_vectors={'numeric': 17, 'lookup': 19},
