@@ -1,0 +1,36 @@
+{
+  "android_executed": false,
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "/workspace/scratch/4130730d15aa/animation-diagnostic/checkpoints/03-reviewed-workflow/prepare_normal_journey.py",
+    "--root",
+    "/workspace/scratch/4130730d15aa/normal-preflight-review/independent-03/private-cases/changed-source-empty-inventory/root",
+    "--output",
+    "/workspace/scratch/4130730d15aa/normal-preflight-review/independent-03/private-cases/changed-source-empty-inventory/root/ci-normal-animation",
+    "--materialized"
+  ],
+  "baseline_inventory_entries": 190,
+  "case": "changed-source-empty-inventory",
+  "deliberately_modified_private_files": [
+    {
+      "bytes": 9931,
+      "path": "tools/android/bootstrap_android_runtime.py",
+      "sha256": "2d07059e53803f422081867e99eb1eb48a856d4b5620b47ba770caba5516854a"
+    },
+    {
+      "bytes": 9931,
+      "path": "ci-normal-animation/executed-inputs/tools/android/bootstrap_android_runtime.py",
+      "sha256": "2d07059e53803f422081867e99eb1eb48a856d4b5620b47ba770caba5516854a"
+    }
+  ],
+  "exit_code": 1,
+  "false_acceptance": false,
+  "final_entry_rejected": true,
+  "historical_false_acceptance_case": true,
+  "input_inventory_entries": 0,
+  "materialized_passed": false,
+  "materialized_status": "MATERIALIZED_INPUT_PREFLIGHT_FAILED",
+  "seconds": 0.5443602320010541,
+  "started_utc": "2026-10-12T06:23:56.319122+00:00"
+}

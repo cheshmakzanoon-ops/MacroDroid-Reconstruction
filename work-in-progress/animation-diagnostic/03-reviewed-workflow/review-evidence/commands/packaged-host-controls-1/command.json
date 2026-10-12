@@ -1,0 +1,15 @@
+{
+  "label": "packaged-host-controls-1",
+  "argv": [
+    "bash",
+    "-o",
+    "pipefail",
+    "-c",
+    "python3 -B -m unittest discover -s ci-normal-animation/reviewed-source/tools/parity_journeys -p 'test_*.py' -v 2>&1 | tee ci-normal-animation/journey-host-tests.log"
+  ],
+  "cwd": "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-03/reports/validation-01/private-inputs",
+  "exit_code": 0,
+  "timed_out": false,
+  "seconds": 165.144986,
+  "android_executed": false
+}

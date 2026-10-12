@@ -1,0 +1,164 @@
+{
+  "observed_utc": "2026-10-12T06:07:45.635405+00:00",
+  "processes": [
+    {
+      "argv_executable": "/usr/bin/python3",
+      "comm": "supervisord",
+      "emulator_or_qemu": false,
+      "physical_pid": 1
+    },
+    {
+      "argv_executable": "rsync",
+      "comm": "rsync",
+      "emulator_or_qemu": false,
+      "physical_pid": 3
+    },
+    {
+      "argv_executable": "/bin/bash",
+      "comm": "sync_share.sh",
+      "emulator_or_qemu": false,
+      "physical_pid": 4
+    },
+    {
+      "argv_executable": "/bin/bash",
+      "comm": "sync_share.sh",
+      "emulator_or_qemu": false,
+      "physical_pid": 5
+    },
+    {
+      "argv_executable": "/usr/local/bin/caas-prefix-transfer-server",
+      "comm": "caas-prefix-tra",
+      "emulator_or_qemu": false,
+      "physical_pid": 6
+    },
+    {
+      "argv_executable": "/usr/local/bin/sites-preview",
+      "comm": "sites-preview",
+      "emulator_or_qemu": false,
+      "physical_pid": 7
+    },
+    {
+      "argv_executable": "inotifywait",
+      "comm": "inotifywait",
+      "emulator_or_qemu": false,
+      "physical_pid": 93
+    },
+    {
+      "argv_executable": "/opt/codex/bin/codex",
+      "comm": "codex",
+      "emulator_or_qemu": false,
+      "physical_pid": 169
+    },
+    {
+      "argv_executable": "/opt/codex/bin/codex",
+      "comm": "codex",
+      "emulator_or_qemu": false,
+      "physical_pid": 251
+    },
+    {
+      "argv_executable": "bwrap",
+      "comm": "bwrap",
+      "emulator_or_qemu": false,
+      "physical_pid": 77951
+    },
+    {
+      "argv_executable": "/root/.codex/tmp/arg0/codex-arg0kaqN5w/codex-linux-sandbox",
+      "comm": "codex-linux-san",
+      "emulator_or_qemu": false,
+      "physical_pid": 77952
+    },
+    {
+      "argv_executable": "/root/.codex/tmp/arg0/codex-arg0kaqN5w/codex-linux-sandbox",
+      "comm": "codex-linux-san",
+      "emulator_or_qemu": false,
+      "physical_pid": 77953
+    },
+    {
+      "argv_executable": "codex-linux-sandbox",
+      "comm": "codex",
+      "emulator_or_qemu": false,
+      "physical_pid": 77958
+    },
+    {
+      "argv_executable": "python3",
+      "comm": "python3",
+      "emulator_or_qemu": false,
+      "physical_pid": 77959
+    },
+    {
+      "argv_executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "comm": "python3",
+      "emulator_or_qemu": false,
+      "physical_pid": 77978
+    },
+    {
+      "argv_executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "comm": "python3",
+      "emulator_or_qemu": false,
+      "physical_pid": 95231
+    },
+    {
+      "argv_executable": "java",
+      "comm": "java",
+      "emulator_or_qemu": false,
+      "physical_pid": 95318
+    },
+    {
+      "argv_executable": "bwrap",
+      "comm": "bwrap",
+      "emulator_or_qemu": false,
+      "physical_pid": 95396
+    },
+    {
+      "argv_executable": "/root/.codex/tmp/arg0/codex-arg0kaqN5w/codex-linux-sandbox",
+      "comm": "codex-linux-san",
+      "emulator_or_qemu": false,
+      "physical_pid": 95397
+    },
+    {
+      "argv_executable": "/root/.codex/tmp/arg0/codex-arg0kaqN5w/codex-linux-sandbox",
+      "comm": "codex-linux-san",
+      "emulator_or_qemu": false,
+      "physical_pid": 95398
+    },
+    {
+      "argv_executable": "codex-linux-sandbox",
+      "comm": "codex",
+      "emulator_or_qemu": false,
+      "physical_pid": 95403
+    },
+    {
+      "argv_executable": "/bin/bash",
+      "comm": "bash",
+      "emulator_or_qemu": false,
+      "physical_pid": 95404
+    },
+    {
+      "argv_executable": "python",
+      "comm": "python",
+      "emulator_or_qemu": false,
+      "physical_pid": 95407
+    },
+    {
+      "argv_executable": "inotifywait",
+      "comm": "inotifywait",
+      "emulator_or_qemu": false,
+      "physical_pid": 95431
+    },
+    {
+      "argv_executable": "rsync",
+      "comm": "rsync",
+      "emulator_or_qemu": false,
+      "physical_pid": 95432
+    },
+    {
+      "argv_executable": "rsync",
+      "comm": "rsync",
+      "emulator_or_qemu": false,
+      "physical_pid": 95433
+    }
+  ],
+  "reader_namespace_pid": 5,
+  "reader_physical_pid": 95407,
+  "visibility_scope": "All readable physical /proc comm and cmdline executable identities; other-process cwd/fd/exe may be denied. Closure also binds the preserved local runtime stop and watchdog evidence."
+}

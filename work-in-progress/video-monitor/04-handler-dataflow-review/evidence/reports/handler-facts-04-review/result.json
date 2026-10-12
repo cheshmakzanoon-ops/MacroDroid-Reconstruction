@@ -1,0 +1,371 @@
+{
+  "status": "STRUCTURAL_FACTS_VERIFIED_SYNCHRONOUS_HOST_ARGUMENT_FOR_REVIEW",
+  "started_utc": "2026-10-12T06:20:13.128595+00:00",
+  "app_method_executed": false,
+  "android_executed": false,
+  "original_coverage_credit_added": 0,
+  "coverage_exemption_implemented": false,
+  "original_coverage_gate_remains_failed": true,
+  "scope": "Narrow mechanical facts and pinned synchronous host constructor argument for independent review; no runtime or complete-coverage claim.",
+  "collection_result_sha256": "2815ca1b9c3268b90850508734f90695911f502c31e035756abc51c396dd5c18",
+  "every_collected_file_hash_verified": 29,
+  "structural_facts": {
+    "protected_region": {
+      "start": 122,
+      "end": 159,
+      "handlers": [
+        {
+          "type": "Ljava/lang/Exception;",
+          "offset": 232
+        }
+      ]
+    },
+    "protected_instruction_count": 17,
+    "protected_instructions": [
+      {
+        "offset": 122,
+        "opcode": "IGET_WIDE",
+        "units": 2,
+        "A": 5,
+        "B": 14,
+        "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->x:J"
+      },
+      {
+        "offset": 124,
+        "opcode": "CMP_LONG",
+        "units": 2,
+        "A": 0,
+        "B": 5,
+        "C": 15
+      },
+      {
+        "offset": 126,
+        "opcode": "CONST_WIDE_32",
+        "units": 3,
+        "A": 19,
+        "literal": 1048576
+      },
+      {
+        "offset": 129,
+        "opcode": "CONST_WIDE_32",
+        "units": 3,
+        "A": 19,
+        "literal": 1048576
+      },
+      {
+        "offset": 132,
+        "opcode": "IF_LEZ",
+        "units": 2,
+        "A": 0,
+        "target": 150
+      },
+      {
+        "offset": 134,
+        "opcode": "CONST_WIDE_32",
+        "units": 3,
+        "A": 21,
+        "literal": 104857600
+      },
+      {
+        "offset": 137,
+        "opcode": "CONST_WIDE_32",
+        "units": 3,
+        "A": 21,
+        "literal": 104857600
+      },
+      {
+        "offset": 140,
+        "opcode": "SUB_LONG",
+        "units": 2,
+        "A": 5,
+        "B": 5,
+        "C": 21
+      },
+      {
+        "offset": 142,
+        "opcode": "CMP_LONG",
+        "units": 2,
+        "A": 0,
+        "B": 12,
+        "C": 5
+      },
+      {
+        "offset": 144,
+        "opcode": "IF_GEZ",
+        "units": 2,
+        "A": 0,
+        "target": 147
+      },
+      {
+        "offset": 146,
+        "opcode": "GOTO",
+        "units": 1,
+        "target": 150
+      },
+      {
+        "offset": 147,
+        "opcode": "MOVE_FROM16",
+        "units": 2,
+        "A": 21,
+        "B": 10
+      },
+      {
+        "offset": 149,
+        "opcode": "GOTO",
+        "units": 1,
+        "target": 187
+      },
+      {
+        "offset": 150,
+        "opcode": "IPUT_WIDE",
+        "units": 2,
+        "A": 12,
+        "B": 14,
+        "reference": "Lcom/arlosoft/macrodroid/action/services/BaseVideoRecordingService;->x:J"
+      },
+      {
+        "offset": 152,
+        "opcode": "DIV_LONG",
+        "units": 2,
+        "A": 5,
+        "B": 12,
+        "C": 19
+      },
+      {
+        "offset": 154,
+        "opcode": "NEW_INSTANCE",
+        "units": 2,
+        "A": 0,
+        "reference": "Ljava/lang/StringBuilder;"
+      },
+      {
+        "offset": 156,
+        "opcode": "INVOKE_DIRECT",
+        "units": 3,
+        "invokeRegisters": [
+          0
+        ],
+        "reference": "Ljava/lang/StringBuilder;-><init>()V"
+      }
+    ],
+    "conservative_graph_reachable_instructions": 262,
+    "selected_normal_predecessors": {
+      "122": [
+        120
+      ],
+      "150": [
+        132,
+        146
+      ],
+      "152": [
+        150
+      ],
+      "154": [
+        152
+      ],
+      "156": [
+        154
+      ],
+      "232": [],
+      "233": [
+        232
+      ],
+      "235": [
+        233
+      ]
+    },
+    "selected_dominators": {
+      "122": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        80,
+        82,
+        85,
+        87,
+        89,
+        91,
+        93,
+        109,
+        110,
+        112,
+        114,
+        116,
+        119,
+        120,
+        122
+      ],
+      "152": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        80,
+        82,
+        85,
+        87,
+        89,
+        91,
+        93,
+        109,
+        110,
+        112,
+        114,
+        116,
+        119,
+        120,
+        122,
+        124,
+        126,
+        129,
+        132,
+        150,
+        152
+      ],
+      "156": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        80,
+        82,
+        85,
+        87,
+        89,
+        91,
+        93,
+        109,
+        110,
+        112,
+        114,
+        116,
+        119,
+        120,
+        122,
+        124,
+        126,
+        129,
+        132,
+        150,
+        152,
+        154,
+        156
+      ]
+    },
+    "captured_owner_register": 14,
+    "owner_defined_at": 112,
+    "successful_nonnull_receiver_call_at": 116,
+    "owner_reloads_within_protected_region": [],
+    "constant_divisor": 1048576,
+    "handler_has_no_normal_entry": true,
+    "handler_chain": [
+      232,
+      233,
+      235
+    ],
+    "handler_destination": 495
+  },
+  "installed_host_constructor_facts": {
+    "default_capacity": 16,
+    "compact_array_length": 16,
+    "utf16_array_length": 32,
+    "utf16_limit": 1073741823,
+    "negative_array_guard_reachable_for_16": false,
+    "size_limit_guard_reachable_for_16": false,
+    "actual_jrt_members": {
+      "StringBuilder()": "  public java.lang.StringBuilder();\n    descriptor: ()V\n    Code:\n       0: aload_0\n       1: bipush        16\n       3: invokespecial #1                  // Method java/lang/AbstractStringBuilder.\"<init>\":(I)V\n       6: return",
+      "AbstractStringBuilder(int)": "  java.lang.AbstractStringBuilder(int);\n    descriptor: (I)V\n    Code:\n       0: aload_0\n       1: invokespecial #3                  // Method java/lang/Object.\"<init>\":()V\n       4: getstatic     #18                 // Field java/lang/String.COMPACT_STRINGS:Z\n       7: ifeq          25\n      10: aload_0\n      11: iload_1\n      12: newarray       byte\n      14: putfield      #15                 // Field value:[B\n      17: aload_0\n      18: iconst_0\n      19: putfield      #22                 // Field coder:B\n      22: goto          38\n      25: aload_0\n      26: iload_1\n      27: invokestatic  #26                 // Method java/lang/StringUTF16.newBytesFor:(I)[B\n      30: putfield      #15                 // Field value:[B\n      33: aload_0\n      34: iconst_1\n      35: putfield      #22                 // Field coder:B\n      38: return",
+      "StringUTF16.newBytesFor(int)": "  public static byte[] newBytesFor(int);\n    descriptor: (I)[B\n    Code:\n       0: iload_0\n       1: invokestatic  #11                 // Method newBytesLength:(I)I\n       4: newarray       byte\n       6: areturn",
+      "StringUTF16.newBytesLength(int)": "  public static int newBytesLength(int);\n    descriptor: (I)I\n    Code:\n       0: iload_0\n       1: ifge          12\n       4: new           #17                 // class java/lang/NegativeArraySizeException\n       7: dup\n       8: invokespecial #19                 // Method java/lang/NegativeArraySizeException.\"<init>\":()V\n      11: athrow\n      12: iload_0\n      13: ldc           #20                 // int 1073741823\n      15: if_icmplt     55\n      18: new           #21                 // class java/lang/OutOfMemoryError\n      21: dup\n      22: new           #23                 // class java/lang/StringBuilder\n      25: dup\n      26: invokespecial #25                 // Method java/lang/StringBuilder.\"<init>\":()V\n      29: ldc           #26                 // String UTF16 String size is\n      31: invokevirtual #28                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;\n      34: iload_0\n      35: invokevirtual #32                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;\n      38: ldc           #35                 // String , should be less than\n      40: invokevirtual #28                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;\n      43: ldc           #20                 // int 1073741823\n      45: invokevirtual #32                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;\n      48: invokevirtual #37                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;\n      51: invokespecial #41                 // Method java/lang/OutOfMemoryError.\"<init>\":(Ljava/lang/String;)V\n      54: athrow\n      55: iload_0\n      56: iconst_1\n      57: ishl\n      58: ireturn",
+      "Object()": "  public java.lang.Object();\n    descriptor: ()V\n    Code:\n       0: return"
+    }
+  },
+  "synthetic_fact_guard_controls": [
+    {
+      "label": "last-divisor-becomes-zero",
+      "rejected": true,
+      "reason": "Instruction operands changed at 129",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "wide-write-clobbers-owner",
+      "rejected": true,
+      "reason": "Captured v14 overwritten",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "branch-bypasses-receiver-call",
+      "rejected": true,
+      "reason": "Constant divisor does not dominate division",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "normal-entry-into-handler",
+      "rejected": true,
+      "reason": "Ordinary entry into handler chain",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "different-field-receiver",
+      "rejected": true,
+      "reason": "Instruction operands changed at 150",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "different-constructor-arity",
+      "rejected": true,
+      "reason": "Instruction operands changed at 156",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "extended-protected-range",
+      "rejected": true,
+      "reason": "Exact Exception-only protected interval changed",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "catch-Throwable-instead-of-Exception",
+      "rejected": true,
+      "reason": "Exact Exception-only protected interval changed",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    },
+    {
+      "label": "negative-default-capacity",
+      "rejected": true,
+      "reason": "Default constructor capacity differs",
+      "scope": "Synthetic structural-proof input only; not an app method execution"
+    }
+  ],
+  "primary_android_source_scope": "AOSP android-15.0.0_r1 source corroborates capacity16 and positive array lengths; the hosted Google APIs boot library was not extracted or matched byte-for-byte.",
+  "unmodified_original_coverage": {
+    "visited": 259,
+    "instructions": 262,
+    "unvisited": [
+      232,
+      233,
+      235
+    ],
+    "conditional_edges_visited": 46,
+    "conditional_edges": 46
+  },
+  "finished_utc": "2026-10-12T06:20:13.302542+00:00"
+}

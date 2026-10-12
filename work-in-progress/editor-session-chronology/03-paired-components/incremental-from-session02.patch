@@ -1,0 +1,205 @@
+--- a/tools/parity_journeys/POST_ONBOARDING.md
++++ b/tools/parity_journeys/POST_ONBOARDING.md
+@@ -14,12 +14,12 @@
+ The two endpoints each re-read the installed APK path and SHA-256, environment,
+ PID, and foreground owner. An old capture with no endpoint identities is rejected;
+ identity evidence is never invented or inferred from the intended APK filename.
+-The start must be the actual NewHomeScreenActivity, not just any activity in the
+-application's package. All screens and transitions inside the declared session
++The start must be the observed NewHomeScreenActivity and the final boundary must
++be the observed EditMacroActivity. All screens and transitions inside the declared session
+ require one continuous process, fresh non-reused pre-input artifacts, correct
+ foreground, successful input commands, and exactly the observed target coordinates.
+ 
+-The proposed corrected session result has schema 3. It requires `session_observation`
++The proposed corrected session result has schema 4. It requires `session_observation`
+ start/finish monotonic timestamps recorded around every complete snapshot, including
+ fresh snapshots before input. The recorder saves those observations separately as
+ raw JSON before collecting any endpoint identity. A result capture must begin
+@@ -32,6 +32,16 @@
+ component must equal the captured component; Android's equivalent abbreviated and
+ fully qualified component spellings are accepted.
+ 
++Each original/candidate screen pair also requires the same normalized foreground
++component. Its result records both component names and `foreground_component_equal`
++alongside the unchanged full-pixel and full-hierarchy measurements. A same-package
++activity difference cannot pass solely because the pixels and XML match. The final
++Editor requirement is bound to the actual `editor-after-constraint-back` capture
++and separate endpoint foreground commands for both APKs in preserved run
++[38206460588](../../docs/verification/editor-journey/run-38206460588-attempt-1/).
++This compares observed components at the scoped capture boundaries; it does not
++establish complete activity lifecycle equivalence or validate unobserved events.
++
+ A single published ledger of resolved paths and file identities covers both variants and every in-scope
+ snapshot, pre-input sample, input command stream and endpoint command stream.
+ Reusing another observation's file, including through a `./` or symbolic path
+@@ -40,7 +50,7 @@
+ identity outputs after its own eight files were deleted, and a later input reused
+ an earlier input's PID/foreground outputs after its own files were deleted.
+ 
+-Older schema 1 and schema 2 session results and their exact source remain historical evidence.
++Older schema 1, schema 2 and schema 3 session results and their exact source remain historical evidence.
+ The corrected verifier refuses captures lacking the new absolute observation
+ intervals; it does not infer timestamps, rename old snapshots, or revise an old
+ comparison. A fresh Android run is required to establish this corrected gate.
+@@ -72,6 +82,6 @@
+ 
+ This proposed timing follow-up is based on commit `47458097056fd023bad8b47b6464978b0d02e85c`. It retains `session_evidence.py`, its exact path-and-inode ledger, all twelve published ledger tests, the reproduction helper, and `SESSION_EVIDENCE.md` unchanged. The ledger is checked before chronology so a reused observation remains an explicit file-identity rejection. Equal bytes in distinct fresh files remain valid.
+ 
+-The comparator result advances to schema 3 because the additional capture/input chronology is mandatory. Generic journey capture schema 2 remains the outer container, with versioned `session_observation` records added by this session recorder. Older schema-2 device artifacts lack those records: preserve and replay them with their exact historical source, and record the stronger gate as pending a fresh device run. Do not invent missing capture times or replace historical reports.
++The comparator result advances to schema 4 because capture/input chronology and paired normalized foreground components are mandatory. The separately preserved inactive schema-3 proposal checked each endpoint against its own capture; review reproduced a false pass when both candidate final foreground records changed to another same-package activity with 294 distinct semantic files and unchanged pixels/XML. Schema 4 compares the paired components and requires the observed final Editor activity. Generic journey capture schema 2 remains the outer container, with versioned `session_observation` records added by this session recorder. Older schema-2 device artifacts lack those records: preserve and replay them with their exact historical source, and record the stronger gate as pending a fresh device run. Do not invent missing capture times or replace historical reports.
+ 
+ The separate current ten-screen observed policy and the twelve-screen trigger proposal are unchanged by this session-only overlay. No animation setting, reference plan, app APK, selector, screenshot, XML or workflow is changed here.
+--- a/tools/parity_journeys/post_onboarding.py
++++ b/tools/parity_journeys/post_onboarding.py
+@@ -18,6 +18,7 @@
+ from session_evidence import verify_session_evidence
+ 
+ HOME_CLASS = runner.PACKAGE + '.homescreen.NewHomeScreenActivity'
++EDITOR_CLASS = runner.PACKAGE + '.editscreen.EditMacroActivity'
+ END = 'editor-after-constraint-back'
+ 
+ 
+@@ -131,6 +132,8 @@
+         raise runner.JourneyError('Session endpoint differs from its captured foreground component')
+     if shot['name'] == 'home' and not home_foreground(out, proof):
+         raise runner.JourneyError('Session did not start in the observed home activity')
++    if shot['name'] == END and component(out, proof) != runner.PACKAGE + '/' + EDITOR_CLASS:
++        raise runner.JourneyError('Session did not end in the observed editor activity')
+     return windows[0][0], windows[-1][1]
+ 
+ 
+@@ -179,8 +182,8 @@
+ 
+ 
+ def compare_session(folder: Path, report: dict, plan: list, proof) -> dict:
+-    result = {'schema': 3, 'status': 'REJECTED', 'editor_session_equal': False,
+-              'evidence_policy': 'Ordered captures, inputs and endpoints with the retained external session evidence ledger',
++    result = {'schema': 4, 'status': 'REJECTED', 'editor_session_equal': False,
++              'evidence_policy': 'Ordered captures, inputs and endpoints, paired foreground components and the retained external session evidence ledger',
+               'scope': 'Observed home through empty-editor catalog navigation, AFTER onboarding only',
+               'scope_start': 'home', 'scope_end': END, 'startup_parity_established': False,
+               'full_runtime_1_to_1_established': False, 'masks_used': False,
+@@ -205,7 +208,7 @@
+                 or env['ro.kernel.qemu'] != '1' or env['ro.build.version.sdk'] != '35'
+                 or 'arm64-v8a' not in env['ro.product.cpu.abilist'].split(',')):
+             raise runner.JourneyError('Unsupported or unequal environments')
+-        states = []
++        states, foregrounds = [], []
+         for run in runs:
+             if run['status'] != 'COMPLETE' or run['environment_after'] != env:
+                 raise runner.JourneyError('Incomplete run or changed environment')
+@@ -221,7 +224,7 @@
+             if not home_foreground(proof.artifact(folder, home['artifacts']['foreground']), proof):
+                 raise runner.JourneyError('Home foreground is not the observed landing activity')
+             anchor = proof.artifact(folder, home['artifacts']['pid_first']).decode()
+-            series = []
++            series, series_components = [], []
+             previous_finish = initial_window[1]
+             for index in range(start, len(plan)):
+                 shot, step = run['screens'][index], plan[index]
+@@ -240,15 +243,20 @@
+                     if capture_window[0] < previous_finish:
+                         raise runner.JourneyError('Session result capture began before its input finished')
+                 series.append(state)
++                series_components.append(component(proof.artifact(folder, shot['artifacts']['foreground']), proof))
+             if final_window[0] < previous_finish:
+                 raise runner.JourneyError('Final session identity precedes the final input')
+             states.append(series)
+-        for step, left, right in zip(plan[start:], *states):
++            foregrounds.append(series_components)
++        for step, left, right, left_component, right_component in zip(plan[start:], *states, *foregrounds):
+             same_size = left[1:3] == right[1:3]
+             changes = sum(left[3][i:i+4] != right[3][i:i+4] for i in range(0, len(left[3]), 4)) if same_size else None
+-            result['screens'].append({'name': step[0], 'equal': left == right, 'changed_pixels': changes,
++            same_component = left_component == right_component
++            result['screens'].append({'name': step[0], 'equal': left == right and same_component, 'changed_pixels': changes,
+                                       'hierarchy_equal': left[0] == right[0], 'same_size': same_size,
+-                                      'color_metadata_equal': left[4] == right[4]})
++                                      'color_metadata_equal': left[4] == right[4],
++                                      'foreground_component_equal': same_component,
++                                      'foreground_components': {'original': left_component, 'candidate': right_component}})
+         result['editor_session_equal'] = all(s['equal'] for s in result['screens'])
+         result['status'] = 'EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY' if result['editor_session_equal'] else 'EDITOR_SESSION_DIFFERENCE'
+         result['apk_sha256'] = [r['apk_sha256'] for r in runs]
+--- a/tools/parity_journeys/test_post_onboarding.py
++++ b/tools/parity_journeys/test_post_onboarding.py
+@@ -33,6 +33,9 @@
+                     shot['artifacts'][key] = self.put(run, f'{index}-session-{key}', b'44')
+                 if index == self.start:
+                     shot['artifacts']['foreground'] = self.put(run, 'home-resumed', self.home())
++                if index == len(self.plan) - 1:
++                    shot['artifacts']['foreground'] = self.put(run, 'final-editor-resumed',
++                        ('topResumedActivity=' + runner.PACKAGE + '/.editscreen.EditMacroActivity').encode())
+                 if index > self.start:
+                     t = run['transitions'][index - 1]
+                     for key in ('pid_first', 'pid_final'):
+@@ -77,6 +80,7 @@
+         result = self.result()
+         self.assertTrue(result['editor_session_equal'], result)
+         self.assertEqual(len(result['screens']), len(self.plan)-self.start)
++        self.assertTrue(all(row['foreground_component_equal'] for row in result['screens']))
+         self.assertFalse(result['startup_parity_established'])
+         self.assertFalse(result['full_runtime_1_to_1_established'])
+         with adapter.configured_plan():
+@@ -259,9 +263,59 @@
+         run = self.report['runs'][1]
+         item = run['screens'][-1]['session_identity']['foreground']
+         item['stdout'] = self.put(run, 'fully-qualified-final-component',
+-                                 ('topResumedActivity=' + runner.PACKAGE + '/' + runner.PACKAGE + '.Activity').encode())
++                                 ('topResumedActivity=' + runner.PACKAGE + '/' + session.EDITOR_CLASS).encode())
+         result = self.result()
+         self.assertTrue(result['editor_session_equal'], result)
++
++    def test_final_capture_and_own_identity_cannot_jointly_change_to_another_activity(self):
++        run = self.report['runs'][1]
++        shot = run['screens'][-1]
++        changed = ('topResumedActivity=' + runner.PACKAGE + '/.DifferentFinalActivity').encode()
++        shot['artifacts']['foreground'] = self.put(run, 'changed-final-capture', changed)
++        shot['session_identity']['foreground']['stdout'] = self.put(run, 'changed-final-identity', changed)
++        result = self.result()
++        self.assertFalse(result['editor_session_equal'])
++        self.assertEqual(result['evidence_identity_check']['unique_observation_files'], 294)
++        self.assertIn('observed editor activity', result['reason'])
++
++    def test_matching_wrong_final_activity_in_both_variants_is_rejected(self):
++        for run in self.report['runs']:
++            shot = run['screens'][-1]
++            changed = ('topResumedActivity=' + runner.PACKAGE + '/.DifferentFinalActivity').encode()
++            shot['artifacts']['foreground'] = self.put(run, 'both-wrong-final-capture', changed)
++            shot['session_identity']['foreground']['stdout'] = self.put(run, 'both-wrong-final-identity', changed)
++        result = self.result()
++        self.assertFalse(result['editor_session_equal'])
++        self.assertIn('observed editor activity', result['reason'])
++
++    def test_each_intermediate_paired_component_difference_remains_visible_with_equal_pixels(self):
++        run = self.report['runs'][1]
++        for index in range(self.start + 1, len(self.plan) - 1):
++            with self.subTest(screen=index):
++                shot = run['screens'][index]
++                old = shot['artifacts']['foreground']
++                shot['artifacts']['foreground'] = self.put(run, f'{index}-changed-activity',
++                    ('topResumedActivity=' + runner.PACKAGE + '/.OtherActivity').encode())
++                result = self.result()
++                self.assertEqual(result['status'], 'EDITOR_SESSION_DIFFERENCE', result)
++                row = result['screens'][index - self.start]
++                self.assertFalse(row['equal'])
++                self.assertFalse(row['foreground_component_equal'])
++                self.assertEqual(row['changed_pixels'], 0)
++                self.assertTrue(row['hierarchy_equal'])
++                self.assertNotEqual(row['foreground_components']['original'], row['foreground_components']['candidate'])
++                shot['artifacts']['foreground'] = old
++
++    def test_paired_components_accept_equivalent_fully_qualified_activity_spelling(self):
++        run = self.report['runs'][1]
++        shot = run['screens'][self.start + 1]
++        shot['artifacts']['foreground'] = self.put(run, 'equivalent-captured-activity',
++            ('topResumedActivity=' + runner.PACKAGE + '/' + runner.PACKAGE + '.Activity').encode())
++        result = self.result()
++        self.assertTrue(result['editor_session_equal'], result)
++        self.assertEqual(result['screens'][1]['foreground_components'], {
++            'original': runner.PACKAGE + '/' + runner.PACKAGE + '.Activity',
++            'candidate': runner.PACKAGE + '/' + runner.PACKAGE + '.Activity'})
+ 
+     def test_session_result_capture_cannot_precede_the_input_even_with_distinct_files(self):
+         run = self.report['runs'][1]

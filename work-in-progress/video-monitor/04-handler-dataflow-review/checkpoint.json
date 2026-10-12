@@ -1,0 +1,286 @@
+{
+  "status": "SCOPED_DATAFLOW_REVIEW_NO_COVERAGE_EXEMPTION",
+  "frozen_utc": "2026-10-12T06:21:23.764411+00:00",
+  "scope": "Original register/control-flow facts, installed JRT class bytes and pinned primary AOSP15 sources. Argument is for independent review; original coverage gate stays failed.",
+  "target": "Lcom/arlosoft/macrodroid/action/services/a;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+  "protected_interval": [
+    122,
+    159
+  ],
+  "protected_instructions": 17,
+  "handler_offsets": [
+    232,
+    233,
+    235
+  ],
+  "catch_type": "Ljava/lang/Exception;",
+  "app_method_executions_added": 0,
+  "android_executed": false,
+  "original_coverage_credit_added": 0,
+  "coverage_exemption_implemented": false,
+  "positive_coverage_still_failed": true,
+  "synthetic_structural_guard_controls": 9,
+  "synthetic_controls_rejected": 9,
+  "oracle_modified": false,
+  "active_source_changed": false,
+  "host_scope": "Actual installed Temurin21.0.12.1+1-LTS JRT classfiles, full collected byte hashes and disassembly.",
+  "android_source_scope": "android-15.0.0_r1 libcore source; hosted Google APIs boot-library bytes not extracted/matched.",
+  "facts_result_sha256": "baf6e34c902b5117e39e3fb39f8f5e78dbfaac261a46ce2e5fbe0e5e270adeb0",
+  "positive_study_dependencies": [
+    {
+      "path": "/workspace/scratch/4130730d15aa/video-monitor-recovery/checkpoints/03-original-jvm-coverage-gap/checkpoint.json",
+      "sha256": "48932d02bd05ea3dc319be19b4cc902cd0e170b5a6bc4aeaf6051ae4e1d3bbc5",
+      "status": "ORIGINAL_JVM_ZERO_MISMATCHES_ORIGINAL_COVERAGE_GATE_FAILED"
+    },
+    {
+      "path": "/workspace/scratch/4130730d15aa/video-monitor-recovery/checkpoints/05-expanded-original-jvm-coverage-gap/checkpoint.json",
+      "sha256": "1e94ebcdb8644fbada96e702e4000d0268a5b1d22d5247e6a56e55c90b8ad0fe",
+      "status": "ORIGINAL_JVM_ZERO_MISMATCHES_ORIGINAL_COVERAGE_GATE_FAILED"
+    }
+  ],
+  "files": [
+    {
+      "path": "HANDLER_DATAFLOW_REVIEW.md",
+      "bytes": 10410,
+      "sha256": "8c7b61f4237c112a2bd8bee3a2661db65beaf900c8fc15843684d77bbb972543"
+    },
+    {
+      "path": "VideoHandlerInventory.java",
+      "bytes": 5279,
+      "sha256": "06d86e88dd685e53382ec6b9773a8ca9a26e6862336ddc57f5319ce7beb821e2"
+    },
+    {
+      "path": "collect_handler_proof.py",
+      "bytes": 6243,
+      "sha256": "13693c651f76395726ac66d7281a2e16b089f421b1915f4dda85fb1d287252a4"
+    },
+    {
+      "path": "freeze_handler_review.py",
+      "bytes": 6806,
+      "sha256": "b98729a4591b261a80380d43a0607172b58386eb01a6ef585f6faf6fce30a3e7"
+    },
+    {
+      "path": "verify_handler_dataflow.py",
+      "bytes": 15132,
+      "sha256": "3dede9be9b29d7fbc680df5e11cf3b331ea4bb339fbff96e01cfb733216c8160"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "bound-original-source-and-oracle/source/smali/classes/0d/a_0dfe0f87312c8ea9.smali",
+      "bytes": 25564,
+      "sha256": "05149221b78ddab67933f4aa8aba10330787889c9a3749d6d7296eaeb6cd6d4d"
+    },
+    {
+      "path": "bound-original-source-and-oracle/source/smali/classes/ab/BaseVideoRecordingService_ab6e65d7c841bab5.smali",
+      "bytes": 98152,
+      "sha256": "7645b23e26a9e9e6be0f03bbe6b4c5702676af315fa17360c60790b0a8f915c7"
+    },
+    {
+      "path": "bound-original-source-and-oracle/tests/java/BytecodeOracle.java",
+      "bytes": 25146,
+      "sha256": "d91ddcd8ec3d67d41d69b8252835e747c2cad2c6d5ea898323794ceec30e6b56"
+    },
+    {
+      "path": "handler-facts-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "handler-facts-stdout.txt",
+      "bytes": 3136,
+      "sha256": "7a6ee9174e1caaff81e6980ed6157756379926242c4dc8a00d8b1a6193a9b7c6"
+    },
+    {
+      "path": "handler-proof-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "handler-proof-stdout.txt",
+      "bytes": 8251,
+      "sha256": "28575134c0746a214901b829a4f724b44b9fd27b301a7e109b8b7e3a836bc9f7"
+    },
+    {
+      "path": "original-video-monitor.dex",
+      "bytes": 4552,
+      "sha256": "940aee4861d9bd52951ccc835e91a917bb56748b4eaad5deb8a0fa1c7d2c3254"
+    },
+    {
+      "path": "positive-study-checkpoints/03-original-jvm-coverage-gap/checkpoint.json",
+      "bytes": 12234,
+      "sha256": "48932d02bd05ea3dc319be19b4cc902cd0e170b5a6bc4aeaf6051ae4e1d3bbc5"
+    },
+    {
+      "path": "positive-study-checkpoints/05-expanded-original-jvm-coverage-gap/checkpoint.json",
+      "bytes": 12260,
+      "sha256": "1e94ebcdb8644fbada96e702e4000d0268a5b1d22d5247e6a56e55c90b8ad0fe"
+    },
+    {
+      "path": "reports/handler-dataflow-04/VideoHandlerInventory.java",
+      "bytes": 5279,
+      "sha256": "06d86e88dd685e53382ec6b9773a8ca9a26e6862336ddc57f5319ce7beb821e2"
+    },
+    {
+      "path": "reports/handler-dataflow-04/android15-primary/AbstractStringBuilder.java",
+      "bytes": 66620,
+      "sha256": "f2937d269b7a01a310d9bf5db2ded2dcabdf93f60b3551e4677b58ea721798fb"
+    },
+    {
+      "path": "reports/handler-dataflow-04/android15-primary/AbstractStringBuilder.java.response-base64.txt",
+      "bytes": 88828,
+      "sha256": "c60456c9c63dc9506dcaaedd1d2379bc318dfbf0b09762ef598596b5f8dbd240"
+    },
+    {
+      "path": "reports/handler-dataflow-04/android15-primary/StringBuilder.java",
+      "bytes": 16157,
+      "sha256": "9f86d83c39ad46ba87f42afd2744bfaad8f6bfffab8cfa97802dd170f9e882b0"
+    },
+    {
+      "path": "reports/handler-dataflow-04/android15-primary/StringBuilder.java.response-base64.txt",
+      "bytes": 21544,
+      "sha256": "e87b3afd6adbd82102c0fea0468a57229f12b8f2ee08262ece1e66ba132f3003"
+    },
+    {
+      "path": "reports/handler-dataflow-04/android15-primary/StringUTF16.java",
+      "bytes": 65441,
+      "sha256": "549455d1c9e8fbd0998abb8c3f910faf3753f2683023b8aee28ae4c941b71f9b"
+    },
+    {
+      "path": "reports/handler-dataflow-04/android15-primary/StringUTF16.java.response-base64.txt",
+      "bytes": 87256,
+      "sha256": "85e26dce03cfc2998d5dafe343668c45cf5a83aedd0fa382e72358f5ca02f509"
+    },
+    {
+      "path": "reports/handler-dataflow-04/compile-inventory.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-dataflow-04/compile-inventory.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-dataflow-04/host-sources/AbstractStringBuilder.java",
+      "bytes": 75913,
+      "sha256": "5cdef262c70a814ebd7eaca13d3c820b7f86abba4f28fdb360fc3c981b21ad6f"
+    },
+    {
+      "path": "reports/handler-dataflow-04/host-sources/StringBuilder.java",
+      "bytes": 16053,
+      "sha256": "d45975c4b0358fb1e3ac49efacfbd7667b0d87a17c8963ce884c6ad539ae9a15"
+    },
+    {
+      "path": "reports/handler-dataflow-04/host-sources/StringUTF16.java",
+      "bytes": 67091,
+      "sha256": "3679f04911b9025b800f9c95170895b9c003afed3d22aa1ae4a9fe2bb9dfb6e5"
+    },
+    {
+      "path": "reports/handler-dataflow-04/host-sources/release",
+      "bytes": 1628,
+      "sha256": "ebbd70bf00bab6d39addf51969c5ff244030b86b29de400b9fb10612ebd3ceec"
+    },
+    {
+      "path": "reports/handler-dataflow-04/inspect-original-and-jrt.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-dataflow-04/inspect-original-and-jrt.stdout.txt",
+      "bytes": 95,
+      "sha256": "9969a6d24f0977cf9a7d50f6c726c80f5b48413539b8fb0e1c2c8412ef8a3aa7"
+    },
+    {
+      "path": "reports/handler-dataflow-04/javap-AbstractStringBuilder.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-dataflow-04/javap-AbstractStringBuilder.stdout.txt",
+      "bytes": 91596,
+      "sha256": "6c4ee77294902e331277a8a8918d08e9f33d2d2913cb8aae221dc9a540ceb50d"
+    },
+    {
+      "path": "reports/handler-dataflow-04/javap-Object.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-dataflow-04/javap-Object.stdout.txt",
+      "bytes": 5067,
+      "sha256": "55ac3db4d20f4ae417cc9c2b9ecdaaef3a3b2576d810deed6e5860327b3b5cf1"
+    },
+    {
+      "path": "reports/handler-dataflow-04/javap-StringBuilder.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-dataflow-04/javap-StringBuilder.stdout.txt",
+      "bytes": 32558,
+      "sha256": "9dd80fb96b823d0ce9bf2e55382dff5f16d218142c1c9bff4de6c2f024c586a1"
+    },
+    {
+      "path": "reports/handler-dataflow-04/javap-StringUTF16.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/handler-dataflow-04/javap-StringUTF16.stdout.txt",
+      "bytes": 119339,
+      "sha256": "ea0800a4ed57f2739594c9e838f508631a46770c5cb1a422f029a027a37aaab1"
+    },
+    {
+      "path": "reports/handler-dataflow-04/jrt-classfiles/AbstractStringBuilder.class",
+      "bytes": 22080,
+      "sha256": "f1ccca2afbe6d7d0ba5a1f19b7095b555796701dfafd5c529366350f7c9c94e4"
+    },
+    {
+      "path": "reports/handler-dataflow-04/jrt-classfiles/Object.class",
+      "bytes": 2487,
+      "sha256": "10cc90d16479279e1d6ee258fdaea4c5640ac6125acb5a7100a7b0a20237a9f2"
+    },
+    {
+      "path": "reports/handler-dataflow-04/jrt-classfiles/StringBuilder.class",
+      "bytes": 14050,
+      "sha256": "14c9ab4b30fdb96f62b74b2cd6a53c3a790a221981f59a1d349b0dc09ecc592e"
+    },
+    {
+      "path": "reports/handler-dataflow-04/jrt-classfiles/StringUTF16.class",
+      "bytes": 27314,
+      "sha256": "e03e9a012b6c29de2130ef49badab77d421f5272e1c72224838545e1091488b5"
+    },
+    {
+      "path": "reports/handler-dataflow-04/original-instructions.json",
+      "bytes": 42249,
+      "sha256": "2d368ab110348b3934f217d084d0b66df4d61a0ef3ddb41d3e804ec876efcfda"
+    },
+    {
+      "path": "reports/handler-dataflow-04/result.json",
+      "bytes": 13592,
+      "sha256": "2815ca1b9c3268b90850508734f90695911f502c31e035756abc51c396dd5c18"
+    },
+    {
+      "path": "reports/handler-dataflow-04/toolclasses/VideoHandlerInventory.class",
+      "bytes": 9559,
+      "sha256": "3b9fb8b04763ec8724ffb9f808165f44bd7a29ed82bfa81a21db8a2e7a5b4333"
+    },
+    {
+      "path": "reports/handler-facts-04-review/executed-verifier.py",
+      "bytes": 15132,
+      "sha256": "3dede9be9b29d7fbc680df5e11cf3b331ea4bb339fbff96e01cfb733216c8160"
+    },
+    {
+      "path": "reports/handler-facts-04-review/result.json",
+      "bytes": 11513,
+      "sha256": "baf6e34c902b5117e39e3fb39f8f5e78dbfaac261a46ce2e5fbe0e5e270adeb0"
+    }
+  ],
+  "evidence_bundle": {
+    "path": "/workspace/scratch/4130730d15aa/video-monitor-recovery/checkpoints/04-handler-dataflow-review-evidence.tar.gz",
+    "bytes": 217130,
+    "sha256": "39776f04193333be3e9f4b1f4ae67e8a3d1aa7a5516975f326d0ac6c0773240a"
+  },
+  "archive_members_hash_verified": true
+}

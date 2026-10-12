@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-03/reports/validation-01/input-faults/changed-original-manifest/work-in-progress/animation-diagnostic/03-reviewed-workflow/prepare_normal_journey.py", line 227, in <module>
+    main()
+  File "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-03/reports/validation-01/input-faults/changed-original-manifest/work-in-progress/animation-diagnostic/03-reviewed-workflow/prepare_normal_journey.py", line 223, in main
+    print(json.dumps(function(args.root.resolve(), args.output.resolve()), indent=2))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-03/reports/validation-01/input-faults/changed-original-manifest/work-in-progress/animation-diagnostic/03-reviewed-workflow/prepare_normal_journey.py", line 167, in prepare
+    for row in expected_inputs(root):
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-03/reports/validation-01/input-faults/changed-original-manifest/work-in-progress/animation-diagnostic/03-reviewed-workflow/prepare_normal_journey.py", line 89, in expected_inputs
+    add(name, digest)
+  File "/workspace/scratch/4130730d15aa/animation-diagnostic/workflow-03/reports/validation-01/input-faults/changed-original-manifest/work-in-progress/animation-diagnostic/03-reviewed-workflow/prepare_normal_journey.py", line 81, in add
+    raise ValueError('Pinned input changed: ' + name)
+ValueError: Pinned input changed: vendor/original/manifest.json
