@@ -1,0 +1,233 @@
+{
+  "started_utc": "2026-10-10T23:48:22.160981+00:00",
+  "input_snapshot_before": "6fe077dcb64a21abd82fb92f3633941235675cf5ecc0c29c86980f5534d42d1a",
+  "input_files": 79251,
+  "commands": [
+    {
+      "label": "input-integrity",
+      "command": [
+        "/opt/pyvenv/bin/python3",
+        "release_integrity.py",
+        "verify"
+      ],
+      "log": "reports/acceptance-20261010T234750395493Z/01-input-integrity.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 9.517,
+      "log_sha256": "a19a67a182f398fcad9fea1d9e38719026814e87a8c82bdce4942d1b390cb1e2"
+    },
+    {
+      "label": "baseline-build",
+      "command": [
+        "/opt/pyvenv/bin/python3",
+        "build.py",
+        "build",
+        "--variant",
+        "baseline"
+      ],
+      "log": "reports/acceptance-20261010T234750395493Z/02-baseline-build.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 211.451,
+      "log_sha256": "669c51fc578ef10c6807c9496536af2caa6f7ae782fec5160a0b62b1ee085fef"
+    },
+    {
+      "label": "hybrid-build",
+      "command": [
+        "/opt/pyvenv/bin/python3",
+        "build.py",
+        "build",
+        "--variant",
+        "hybrid"
+      ],
+      "log": "reports/acceptance-20261010T234750395493Z/03-hybrid-build.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 191.144,
+      "log_sha256": "af9a4480babff85c874ea05e43903e6e9eacc1984fccd327418e699d0999989e"
+    },
+    {
+      "label": "baseline-code",
+      "command": [
+        "/opt/pyvenv/bin/python3",
+        "build.py",
+        "verify",
+        "--variant",
+        "baseline"
+      ],
+      "log": "reports/acceptance-20261010T234750395493Z/04-baseline-code.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 92.064,
+      "log_sha256": "a82ee71c10de50427deee7d8ceaecc7acfd19d68642324fbf07e26ccdd04a232"
+    },
+    {
+      "label": "hybrid-code",
+      "command": [
+        "/opt/pyvenv/bin/python3",
+        "build.py",
+        "verify",
+        "--variant",
+        "hybrid"
+      ],
+      "log": "reports/acceptance-20261010T234750395493Z/05-hybrid-code.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 90.596,
+      "log_sha256": "60736c31be573d1d42da8c2093601f74564f12c33b944e89086b4bc720e4ce51"
+    },
+    {
+      "label": "baseline-resources",
+      "command": [
+        "/opt/pyvenv/bin/python3",
+        "resource_verify.py",
+        "--variant",
+        "baseline"
+      ],
+      "log": "reports/acceptance-20261010T234750395493Z/06-baseline-resources.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 25.906,
+      "log_sha256": "f570b9dd243be220d60f1ba5a944573f9f0de97c31ed165ef597ecec6e711fea"
+    },
+    {
+      "label": "hybrid-resources",
+      "command": [
+        "/opt/pyvenv/bin/python3",
+        "resource_verify.py",
+        "--variant",
+        "hybrid"
+      ],
+      "log": "reports/acceptance-20261010T234750395493Z/07-hybrid-resources.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 18.681,
+      "log_sha256": "821424d8d69ac2aabd1f51b2cc77dd0a0d331341999dde133d0eb97faac59b9f"
+    },
+    {
+      "label": "positive-host-tests",
+      "command": [
+        "/opt/pyvenv/bin/python3",
+        "test.py",
+        "--three-way"
+      ],
+      "log": "reports/acceptance-20261010T234750395493Z/08-positive-host-tests.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 205.063,
+      "log_sha256": "81ae70a1b1c688c59ff4b1625f7863a3158c2e03934e12a6764e07b7eec2cf17"
+    },
+    {
+      "label": "engine-negative-controls",
+      "command": [
+        "/opt/pyvenv/bin/python3",
+        "engine_negative_control.py"
+      ],
+      "log": "reports/acceptance-20261010T234750395493Z/09-engine-negative-controls.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 35.717,
+      "log_sha256": "9fcecf607c59b40d4132e220c74d6b384060096d3a0d65236b98c40bc0d09a8d"
+    },
+    {
+      "label": "core-negative-controls",
+      "command": [
+        "/opt/pyvenv/bin/python3",
+        "core_negative_control.py"
+      ],
+      "log": "reports/acceptance-20261010T234750395493Z/10-core-negative-controls.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 35.602,
+      "log_sha256": "ca716316a69f355527f045b037ced485c63653b04dd04acfcff53e8191d7a0ba"
+    },
+    {
+      "label": "environment-negative-controls",
+      "command": [
+        "/opt/pyvenv/bin/python3",
+        "environment_negative_control.py"
+      ],
+      "log": "reports/acceptance-20261010T234750395493Z/11-environment-negative-controls.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 94.157,
+      "log_sha256": "9433b1c60aee7fc250fc300ed2b804728f24bb0d5ec6b62119af4538068b9eb4"
+    },
+    {
+      "label": "legacy-negative-control",
+      "command": [
+        "/opt/pyvenv/bin/python3",
+        "negative_control.py"
+      ],
+      "log": "reports/acceptance-20261010T234750395493Z/12-legacy-negative-control.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 175.94,
+      "log_sha256": "1aea8360155182d7ff2c7bb103493c1e380cd52bcbcbfd99e2e46ce3d687070a"
+    },
+    {
+      "label": "signed-source-edit",
+      "command": [
+        "/opt/pyvenv/bin/python3",
+        "full_apk_edit_probe.py"
+      ],
+      "log": "reports/acceptance-20261010T234750395493Z/13-signed-source-edit.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 114.797,
+      "log_sha256": "db176a4049f7468b4640c94c721cec9ed492ea1d1a88efdef4cd3b0133af9539"
+    },
+    {
+      "label": "final-positive-host-tests",
+      "command": [
+        "/opt/pyvenv/bin/python3",
+        "test.py",
+        "--three-way"
+      ],
+      "log": "reports/acceptance-20261010T234750395493Z/14-final-positive-host-tests.log",
+      "exit_code": 0,
+      "passed": true,
+      "seconds": 141.025,
+      "log_sha256": "81ae70a1b1c688c59ff4b1625f7863a3158c2e03934e12a6764e07b7eec2cf17"
+    }
+  ],
+  "host_acceptance_passed": true,
+  "android_runtime_executed": false,
+  "full_runtime_1_to_1_established": false,
+  "complete_high_level_java_kotlin_source": false,
+  "source_edit_probe_skipped": false,
+  "input_snapshot_after": "6fe077dcb64a21abd82fb92f3633941235675cf5ecc0c29c86980f5534d42d1a",
+  "build_inputs_unchanged": true,
+  "android_probe_exit_code": 2,
+  "android_status": "BLOCKED",
+  "apks": {
+    "baseline": {
+      "bytes": 94677674,
+      "sha256": "aa8ad3013ad211c8a39d083943b0a671d75e0bbbedccc924ea0093c590c9a096",
+      "path": "dist/MacroDroid-5.67.8-v8-baseline.apk"
+    },
+    "hybrid": {
+      "bytes": 94682893,
+      "sha256": "ae03a70edcf35c3c2b4f7c8a3b10594a75cb5e16893fd25d262a1e7e6d6e86e8",
+      "path": "dist/MacroDroid-5.67.8-v8-hybrid.apk"
+    }
+  },
+  "fresh_evidence_sha256": {
+    "baseline-roundtrip.json": "65df2516932c8fb6971b5a6625521af18108c222b1ceca1775f0aa85a9b0c80f",
+    "hybrid-roundtrip.json": "cdea733401a422ac67a05c34982ec328b563a0625afcfcc32ec24f3db9e8cabd",
+    "baseline-resource-parity.json": "29ef896b451e39ce5a9c507d5cbdb56d8caa367b580581bafe8660dbd83ea14f",
+    "hybrid-resource-parity.json": "d7454003f959114f39fea3bb724bef2253b856252bdc4762ecf25a60745e466e",
+    "java-all-path-parity.json": "81ae70a1b1c688c59ff4b1625f7863a3158c2e03934e12a6764e07b7eec2cf17",
+    "java-engine-three-path-parity.json": "f3521240bc65132341c7ef69671fbbbf8e7695c00ab41c1005d6b2d9b67c3302",
+    "oracle-semantics.json": "4114dc8bee417402fb1064b92d43891c257890b4f9663766b00bd071b339a57f",
+    "engine-oracle-semantics.json": "efc253aea23a98a5549623021127861b67e032b143639974d7661fd6a29e55be",
+    "engine-negative-controls.json": "9fcecf607c59b40d4132e220c74d6b384060096d3a0d65236b98c40bc0d09a8d",
+    "core-negative-controls.json": "ea8e7e4432e773e15759c8c76c33ca8cb0c02fd6ef6f43838ae8c97f5fd5aaa8",
+    "environment-negative-controls.json": "87ae5a40169618c50cb9e33dcda72bb167d5fc481b6b96020728b321dea1f440",
+    "negative-control.json": "c9d0deb0e2c14e2e7f5a5343452a54e9b1ef403b4de170a28d1c01f62a9fdfca",
+    "migration-static-proof.json": "2764ce955d44641af62217f0af8b76ebc90f53c2ffb697cfc48f70b10a84b0f4",
+    "migration-linkage-check.json": "a31ecf5d0234727e9810fa914468219d068519865076df5b77f42b01afd94eb9",
+    "full-apk-edit-probe.json": "db176a4049f7468b4640c94c721cec9ed492ea1d1a88efdef4cd3b0133af9539"
+  },
+  "finished_utc": "2026-10-11T00:12:37.386308+00:00"
+}
