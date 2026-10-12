@@ -2,7 +2,7 @@ package defpackage;
 public class kjf {
  public static void t(long guid,String text){CoreTrace.add("log.debug:"+guid+":"+text);}
  public static void c(String text,Integer index,long guid){CoreTrace.add("log.constraint:"+index+":"+guid+":"+text);}
- public static void h(String text){CoreTrace.add("log.error:"+text);}
+ public static void h(String text){CoreTrace.add("log.error:"+text);WidgetControl.hit("log.error:"+text);}
  public static void r(String text){CoreTrace.add("log.sensor:"+text);}
  public static void g(long guid,String text){if(SceneControl.active)TouchControl.hit("log.guid:"+guid+":"+text);else CoreTrace.add("log.guid:"+guid+":"+text);}
  public static void l(String text){CoreTrace.add("log.regex:"+text);}

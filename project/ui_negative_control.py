@@ -8,6 +8,8 @@ from __future__ import annotations
 import hashlib,json,os,shutil,subprocess
 from pathlib import Path
 import build
+import ui_runtime_policy
+import ui_mutation_catalog
 
 CONTROLS=[
     ('cast-before-subtract','InteractionMethods','int distance = (int) event.getY(pointer) - self.g;',
@@ -145,46 +147,132 @@ CONTROLS=[
      '                if (pendingFailure == null && result == suspended) return suspended;',
      '                if (pendingFailure == null && result != null && result.equals(suspended)) return suspended;',
      'plugin-api-marker-identity'),
+    ('upload-retain-saved-part-cast', 'PluginUploadMethods', '            MultipartBody$Part ignoredPart = (MultipartBody$Part) self.L$4;', '            Object ignoredPart = self.L$4;', 'upload-saved-cast:1:4:true'),
+    ('upload-compression-result-is-ignored', 'PluginUploadMethods', '                        bitmap.compress(Bitmap$CompressFormat.PNG, 100, stream);', '                        if (!bitmap.compress(Bitmap$CompressFormat.PNG, 100, stream)) return blg.a;', 'upload-compress-false-is-ignored'),
+    ('upload-nested-media-catch', 'PluginUploadMethods', '                        } catch (IllegalArgumentException invalidType) {', '                        } catch (NullPointerException invalidType) {', 'upload-nested-media-argument-handler'),
+    ('upload-request-companion-capture', 'PluginUploadMethods', 'RequestBody$Companion.d(requestCompanion, mediaType, bytes, 0, 12);', 'RequestBody$Companion.d(RequestBody.Companion, mediaType, bytes, 0, 12);', 'upload-request-companion-captured-before-media'),
+    ('upload-request-default-mask', 'PluginUploadMethods', 'RequestBody$Companion.d(requestCompanion, mediaType, bytes, 0, 12);', 'RequestBody$Companion.d(requestCompanion, mediaType, bytes, 0, 4);', 'upload-flow:0:true:0:0'),
+    ('upload-icon-suspension-label', 'PluginUploadMethods', '                        self.label = 1;', '                        self.label = 0;', 'upload-two-suspensions'),
+    ('upload-plugin-suspension-label', 'PluginUploadMethods', '                self.label = 2;', '                self.label = 1;', 'upload-two-suspensions'),
+    ('upload-icon-clears-saved-part', 'PluginUploadMethods', '                        self.L$4 = null;\n                        self.label = 1;', '                        self.label = 1;', 'upload-flow:0:true:1:0'),
+    ('upload-null-icon-uses-fallback', 'PluginUploadMethods', 'uploadedIcon == null ? self.$iconUrl : uploadedIcon,', 'uploadedIcon,', 'upload-null-icon-fallback'),
+    ('upload-http-status-is-read-twice', 'PluginUploadMethods', '            boolean alreadyExists = failure instanceof HttpException\n                    && ((HttpException) failure).a() == 409;\n            boolean userNotAllowed = failure instanceof HttpException\n                    && ((HttpException) failure).a() == 403;', '            int status = failure instanceof HttpException ? ((HttpException) failure).a() : 0;\n            boolean alreadyExists = status == 409;\n            boolean userNotAllowed = status == 403;', 'upload-second-status-read-and-priority'),
+    ('upload-denied-flag-before-publication', 'PluginUploadMethods', '                owner.i = true;\n                cne sink = owner.j;\n                ((hb9) sink).i(new g(b$c.USER_NOT_ALLOWED));', '                cne sink = owner.j;\n                ((hb9) sink).i(new g(b$c.USER_NOT_ALLOWED));\n                owner.i = true;', 'upload-no-icon:4'),
+    ('upload-success-sink-before-payload', 'PluginUploadMethods', '            cne sink = self.this$0.j;\n            ((hb9) sink).i(new f(self.$name));', '            f value = new f(self.$name);\n            cne sink = self.this$0.j;\n            ((hb9) sink).i(value);', 'upload-success-sink-captured-before-payload'),
+    ('upload-catch-includes-checked-exception', 'PluginUploadMethods', '        } catch (Exception failure) {', '        } catch (RuntimeException failure) {', 'upload-fault:0:1:4'),
+    ('upload-catch-must-not-swallow-error', 'PluginUploadMethods', '        } catch (Exception failure) {', '        } catch (Throwable failure) {', 'upload-fault:0:1:3'),
+    ('upload-error-publication-precedes-log', 'PluginUploadMethods', '                ((hb9) sink).i(new g(b$c.CONNECTION_ERROR));\n                l1g.b.getClass();\n                agd.j();', '                l1g.b.getClass();\n                agd.j();\n                ((hb9) sink).i(new g(b$c.CONNECTION_ERROR));', 'upload-no-icon:5'),
+    ('upload-icon-suspension-uses-identity', 'PluginUploadMethods', '                        if (iconResult == suspended) return suspended;', '                        if (iconResult != null && iconResult.equals(suspended)) return suspended;', 'upload-icon-marker-identity'),
+    ('upload-plugin-suspension-uses-identity', 'PluginUploadMethods', '                if (uploadResult == suspended) return suspended;', '                if (uploadResult != null && uploadResult.equals(suspended)) return suspended;', 'upload-plugin-marker-identity'),
 ]
 
-def sha(path:Path)->str:return hashlib.sha256(path.read_bytes()).hexdigest()
+def sha(path:Path)->str:
+    with path.open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
+
+
+def prepared_mutations():
+    jobs=[]
+    for name,classname,old,new,case in CONTROLS:
+        source=build.ROOT/'source/java/recovered/ui'/(classname+'.java');text=source.read_text()
+        count=text.count(old)
+        # Retain the original first-field-only boolean control unchanged.
+        if count<1 or (name!='parcel-nonzero-boolean' and count!=1):raise RuntimeError('Mutation anchor invalid: '+name)
+        jobs.append({'name':name,'classname':classname,'source':source,'mutant':text.replace(old,new,1),
+                     'required_cases':[case],'widget':False})
+    jobs.extend(ui_mutation_catalog.load_widget_mutations(build.ROOT))
+    if len(CONTROLS)!=54 or len(jobs)!=78 or len({job['name'] for job in jobs})!=78:
+        raise RuntimeError('The exact 54 existing and 24 Widget fault controls are required')
+    return jobs
+
 
 def main()->None:
     host=build.WORK/'java/hostclasses'
     apk=build.ROOT/'dist/MacroDroid-5.67.8-v9-hybrid.apk'
     if not host.is_dir() or not apk.is_file():raise RuntimeError('Build hybrid and run test.py --three-way first.')
-    pins={p:sha(p) for p in [apk,build.ROOT/'tests/fixtures/original-methods.dex',*(build.ROOT/'source/java/recovered/ui').glob('*.java')]}
-    cp=os.pathsep.join(map(str,[build.JAR,host,build.TOOLS]));records=[]
-    for name,classname,old,new,case in CONTROLS:
-        source=build.ROOT/'source/java/recovered/ui'/(classname+'.java');text=source.read_text()
-        count=text.count(old)
-        # The boolean expression occurs for multiple fields: mutate only its first use.
-        if count<1 or (name!='parcel-nonzero-boolean' and count!=1):raise RuntimeError('Mutation anchor invalid: '+name)
-        folder=build.WORK/'negative-ui'/name;build.remove_generated_directory(folder)
-        java=folder/'src/recovered/ui'/(classname+'.java');java.parent.mkdir(parents=True)
-        java.write_text(text.replace(old,new,1));classes=folder/'classes';classes.mkdir()
-        build.run(['javac','--release','8','-g:none','-cp',host,'-d',classes,java],name+'-negative-javac.log')
-        output=folder/'result.json'
-        command=['java','-Xmx1000m','-Dui.report='+str(output),'-cp',str(classes)+os.pathsep+cp,
-                 'UiParityTests',str(build.ROOT),str(build.WORK/'hybrid')]
-        with (build.REPORTS/(name+'-negative-run.log')).open('w') as stream:
+    fixture=build.ROOT/'tests/fixtures/original-methods.dex'
+    pins={p:sha(p) for p in [apk,fixture,*(build.ROOT/'source/java/recovered/ui').glob('*.java')]}
+    reference_path=build.REPORTS/'java-ui-three-path-parity.json'
+    reference=json.loads(reference_path.read_text())
+    registry=json.loads((build.ROOT/'source/ui-methods.json').read_text())
+    keys={row['target']+'->'+row['method'] for row in registry}
+    if (reference.get('passed') is not True or reference.get('paths')!=3 or reference.get('androidRuntime') is not False
+            or reference.get('failedCases')!=0 or reference.get('unsupportedExecutions')!=0
+            or reference.get('expectedResultFailures')!=0 or set(reference.get('methodKeys',[]))!=keys
+            or reference.get('methodsCovered')!=len(keys) or reference.get('fixture_sha256')!=pins[fixture]
+            or reference.get('rebuilt_apk_sha256')!=pins[apk] or reference.get('rebuilt_dex_compared_to_apk') is not True):
+        raise RuntimeError('A complete current positive UI report bound to this fixture and APK is required')
+    reference_raw={k:v for k,v in reference.items() if k not in {
+        'fixture_sha256','rebuilt_apk_sha256','rebuilt_dex_compared_to_apk'}}
+    (build.REPORTS/'ui-negative-baseline.json').write_text(json.dumps(reference_raw,indent=2)+'\n')
+    policy=ui_runtime_policy.verify(build.REPORTS)
+    cp=os.pathsep.join(map(str,[build.JAR,host,build.TOOLS]))
+    jobs=prepared_mutations();records=[]
+    result={'pass':False,'status':'RUNNING','controls':records,'expectedControlCount':78,
+            'positiveBaselineSha256':sha(reference_path),'androidRuntime':False,
+            'widgetCatalogSha256':ui_mutation_catalog.CATALOG_SHA256}
+    destination=build.REPORTS/'ui-negative-controls.json'
+    def save():destination.write_text(json.dumps(result,indent=2)+'\n')
+    save()
+    try:
+        fixed=['cases','paths','methodsCovered','methodKeys','methods','instructionCoverage',
+               'independentExpectedResultChecks','expectedResultFailures','unsupportedExecutions']
+        for job in jobs:
+            name,classname=job['name'],job['classname'];required=job['required_cases']
+            folder=build.WORK/'negative-ui'/name;build.remove_generated_directory(folder)
+            java=folder/'src/recovered/ui'/(classname+'.java');java.parent.mkdir(parents=True)
+            java.write_text(job['mutant']);classes=folder/'classes';classes.mkdir()
+            build.run(['javac','--release','8','-g:none','-cp',host,'-d',classes,java],name+'-negative-javac.log')
+            target=classes/'recovered/ui'/(classname+'.class')
+            original=host/'recovered/ui'/(classname+'.class')
+            mutant_hash,original_hash=sha(target),sha(original)
+            if mutant_hash==original_hash:raise RuntimeError('Mutation compiled to unchanged helper bytes: '+name)
+            if job['widget'] and sorted(p.relative_to(classes).as_posix() for p in classes.rglob('*') if p.is_file())!=['recovered/ui/WidgetUpdateMethods.class']:
+                raise RuntimeError('Widget mutation emitted another class')
+            retained=build.REPORTS/'ui-mutants'/name;retained.mkdir(parents=True,exist_ok=True)
+            shutil.copyfile(java,retained/java.name);shutil.copyfile(target,retained/target.name)
+            output=folder/'result.json'
+            command=[policy['java_executable'],*ui_runtime_policy.JVM_FLAGS,'-Xmx1000m','-Dui.report='+str(output),
+                     '-cp',str(classes)+os.pathsep+cp,'UiParityTests',str(build.ROOT),str(build.WORK/'hybrid')]
+            with (build.REPORTS/(name+'-negative-run.log')).open('w') as stream:
+                stream.write('COMMAND: '+json.dumps(command)+'\n');stream.flush()
+                code=subprocess.run(command,cwd=build.ROOT,stdout=stream,stderr=subprocess.STDOUT,timeout=300).returncode
+            report=json.loads(output.read_text());labels=set(report.get('failedCaseLabels',[]))
+            unchanged=all(sha(p)==value for p,value in pins.items())
+            inventory_matches=all(report.get(key)==reference_raw[key] for key in fixed)
+            named=all(case in labels for case in required)
+            passed=(code==2 and report.get('passed') is False and type(report.get('failedCases')) is int
+                    and report['failedCases']>0 and report.get('unsupportedExecutions')==0
+                    and report.get('paths')==3 and named and unchanged and inventory_matches)
+            row={'mutation':name,'pass':passed,'failedCases':report['failedCases'],
+                 'requiredCase':required[0],'requiredCases':required,'requiredCaseRejected':named,
+                 'unsupportedExecutions':report['unsupportedExecutions'],'exitCode':code,
+                 'sourceFixtureAndApkUnchanged':unchanged,'originalCoverageAndInventoryUnchanged':inventory_matches,
+                 'mutantSourceSha256':sha(java),'mutantClassSha256':mutant_hash,'positiveClassSha256':original_hash,
+                 'retainedSource':(retained/java.name).relative_to(build.ROOT).as_posix(),
+                 'retainedClass':(retained/target.name).relative_to(build.ROOT).as_posix()}
+            records.append(row)
+            (build.REPORTS/(name+'-negative-failures.json')).write_text(json.dumps(report,indent=2)+'\n');save()
+            if not passed:raise RuntimeError('Deliberate fault not correctly detected: '+json.dumps(row))
+            print(name+': DETECTED',flush=True)
+        positive=build.REPORTS/'ui-positive-restoration.json';positive.unlink(missing_ok=True)
+        command=[policy['java_executable'],*ui_runtime_policy.JVM_FLAGS,'-Xmx1000m','-Dui.report='+str(positive),
+                 '-cp',cp,'UiParityTests',str(build.ROOT),str(build.WORK/'hybrid')]
+        with (build.REPORTS/'ui-positive-restoration.log').open('w') as stream:
+            stream.write('COMMAND: '+json.dumps(command)+'\n');stream.flush()
             code=subprocess.run(command,cwd=build.ROOT,stdout=stream,stderr=subprocess.STDOUT,timeout=300).returncode
-        report=json.loads(output.read_text());labels=set(report.get('failedCaseLabels',[]))
-        unchanged=all(sha(p)==value for p,value in pins.items())
-        passed=(code==2 and report.get('passed') is False and report.get('failedCases',0)>0 and
-                report.get('unsupportedExecutions')==0 and report.get('paths')==3 and case in labels and unchanged)
-        record={'mutation':name,'pass':passed,'failedCases':report['failedCases'],'requiredCase':case,
-                'requiredCaseRejected':case in labels,'unsupportedExecutions':report['unsupportedExecutions'],
-                'exitCode':code,'sourceFixtureAndApkUnchanged':unchanged}
-        records.append(record)
-        (build.REPORTS/(name+'-negative-failures.json')).write_text(json.dumps(report,indent=2)+'\n')
-        if not passed:raise RuntimeError('Deliberate fault not correctly detected: '+json.dumps(record))
-    positive=build.REPORTS/'ui-positive-restoration.json'
-    build.run(['java','-Xmx1000m','-Dui.report='+str(positive),'-cp',cp,'UiParityTests',build.ROOT,build.WORK/'hybrid'],'ui-positive-restoration.log')
-    good=json.loads(positive.read_text())
-    if good.get('passed') is not True or good.get('paths')!=3 or not all(sha(p)==value for p,value in pins.items()):raise RuntimeError('Positive restoration not confirmed')
-    result={'pass':all(x['pass'] for x in records),'controls':records,'positiveRestorationPassed':True,
-            'restorationCases':good['cases'],'androidRuntime':False,'sourceFixtureAndApkUnchanged':True}
-    (build.REPORTS/'ui-negative-controls.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))
+        if code!=0:raise RuntimeError('Positive restoration exited unsuccessfully: '+str(code))
+        good=json.loads(positive.read_text())
+        if good!=reference_raw or not all(sha(p)==value for p,value in pins.items()):
+            raise RuntimeError('Exact positive restoration not confirmed')
+        result.update(status='ALL_78_FAULTS_DETECTED_EXACT_POSITIVE_RESTORED',
+                      positiveRestorationPassed=True,positiveRestorationExactBaseline=True,
+                      restorationCases=good['cases'],sourceFixtureAndApkUnchanged=True,controlsCount=len(records))
+        result['pass']=all(row['pass'] for row in records) and len(records)==78
+    except BaseException as error:
+        result.update(status='UI_FAULT_CONTROL_FAILED',error=repr(error),controlsCount=len(records))
+        raise
+    finally:save()
+    print(json.dumps(result,indent=2))
+
 
 if __name__=='__main__':main()

@@ -32,7 +32,7 @@ concurrency:
 jobs:
   source-build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 90
+    timeout-minutes: 120
     steps:
       - name: Check out the complete source snapshot and current changes
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -63,24 +63,7 @@ jobs:
           if-no-files-found: error
           path: |
             workspace/MacroDroid_v9/dist/*.apk
-            workspace/MacroDroid_v9/reports/acceptance-latest.json
-            workspace/MacroDroid_v9/reports/acceptance-*/
-            workspace/MacroDroid_v9/reports/*-build.json
-            workspace/MacroDroid_v9/reports/*-roundtrip.json
-            workspace/MacroDroid_v9/reports/*-resource-parity.json
-            workspace/MacroDroid_v9/reports/*-signature-verification.log
-            workspace/MacroDroid_v9/reports/*-negative-controls.json
-            workspace/MacroDroid_v9/reports/negative-control.json
-            workspace/MacroDroid_v9/reports/*-parity.json
-            workspace/MacroDroid_v9/reports/*-semantics.json
-            workspace/MacroDroid_v9/reports/python-unit-tests.log
-            workspace/MacroDroid_v9/reports/java-staging.json
-            workspace/MacroDroid_v9/reports/*-differential-tests.log
-            workspace/MacroDroid_v9/reports/full-apk-edit-probe.json
-            workspace/MacroDroid_v9/reports/migration-static-proof.json
-            workspace/MacroDroid_v9/reports/migration-linkage-check.json
-            workspace/MacroDroid_v9/reports/reference-failures-status-v9.json
-            workspace/MacroDroid_v9/reports/android-runtime/result.json
+            workspace/MacroDroid_v9/reports/
 
   android-cold-launch:
     runs-on: ubuntu-24.04

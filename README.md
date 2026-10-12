@@ -2,21 +2,21 @@
 
 **The complete source snapshot, editable recovery code, original reference APK,
 and current rebuilt APK are stored in this repository.** The current candidate
-contains 1,240 recovered Java method bodies across 603 classes and builds the
+contains 1,242 recovered Java method bodies across 605 classes and builds the
 remaining code from preserved smali. Whole-app 1:1 Android runtime behavior has
 not been established.
 
 The current source checkpoint is described in
-[RECONSTRUCTION_STATUS.md](project/RECONSTRUCTION_STATUS.md); completed hosted
-results are recorded below. The new combined checkpoint passed all five planned
-clean host/artifact checks and reproduced its signed candidate exactly. Its full
-hosted acceptance and new Android measurements remain pending. The previous
-1,239-body checkpoint passed all 16 hosted source gates and exact cold-launch/
-four-page intro still comparisons. The [verification workflow](.github/workflows/reconstruction.yml)
-rebuilds the committed source and separately measures cold launch, four English
-intro pages, the observed post-intro surface, and a bounded ART constructor probe; its
-[actual runs](https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/actions)
-show whether those checks have completed and passed.
+[RECONSTRUCTION_STATUS.md](project/RECONSTRUCTION_STATUS.md). The combined plugin
+upload and Widget candidate passed all 16 configured host acceptance gates,
+193,489 three-path cases, 273 Python tests, all 78 UI fault controls with exact
+positive restoration, and the signed source-edit experiment. Its exact source,
+signed APK and every closed report are retained in the
+[complete combined proof](work-in-progress/combined-recovery/05-full-acceptance/).
+Clean hosted reproduction and Android measurements for this new APK have their
+own pending scopes. The [verification workflow](.github/workflows/reconstruction.yml)
+records those actual outcomes separately; previous hosted/device results retain
+their original source and APK identities.
 
 ## Get the working source
 
@@ -48,8 +48,8 @@ python3 scripts/assemble_artifact.py artifacts/current/manifest.json
 ```
 
 This produces `workspace/artifacts/MacroDroid-5.67.8-current-hybrid.apk`:
-94,683,497 bytes, SHA-256
-`9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2`.
+94,683,119 bytes, SHA-256
+`5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182`.
 The build scripts retain their historical `v9-hybrid.apk` output filename; the
 candidate manifest and checksum identify the actual development checkpoint.
 
@@ -72,14 +72,22 @@ The original is a comparison input, not a build input. See the
 
 ## What has actually passed
 
-The active 1,240-body plugin/runtime checkpoint passed five clean integration
-checks: fresh signed hybrid assembly, complete code and resource verification,
-the full three-path host suite, and final source-input integrity. It ran 188,791
-cases with zero mismatches or unsupported executions, and 259 Python tests. The
-separate integrated Android-tooling suite passed 27 host tests. Every closed report
-and source-merge receipt is retained in [the combined evidence](docs/verification/plugin-runtime-integration/).
-The matching isolated plugin proof also passed all 37 UI deliberate-fault controls.
-Its new full hosted acceptance and Android scopes are not yet measured.
+The active 1,242-body combined source passed all 16 configured acceptance gates:
+signed baseline/hybrid builds, complete code and resource verification, the full
+three-path host suite, all fault families, the signed source-edit experiment,
+final positive restoration and unchanged source-input checks. It ran 193,489
+cases with zero mismatches or unsupported executions and passed 273 Python tests.
+The ten-method UI group passed 23,174 cases with 15,326 independent expectations;
+all 78 deliberate UI faults were detected and the full positive baseline restored.
+All 551 closed reports and the exact signed artifact are preserved in
+[the current combined evidence](work-in-progress/combined-recovery/05-full-acceptance/).
+
+The prior 1,240-body source separately passed two complete hosted acceptance runs,
+38200503458 and 38202401393, with 188,791 cases and 259 Python tests each. Its
+9108 candidate also has a complete ten-screen Android observation with a remaining
+26-pixel intro indicator difference. The isolated Widget candidate passed a
+separate eight-case ART probe. These historical measurements do not certify the
+new combined APK's unobserved Android behavior.
 
 The previous combined 1,239-body scene, recorder and device-helper checkpoint
 `95077fcb1d3c86f3b1c91026619642d99198f149` passed all 16 configured hosted source
@@ -90,7 +98,7 @@ for both jobs; the isolated recovery proof remains separately identified.
 
 | Check | Measured result | Evidence |
 | --- | --- | --- |
-| Active combined host/artifact proof | All five planned checks; 188,791 three-path cases across 1,240 bodies; 259 Python tests; exact signed candidate reproduced | [Complete combined evidence](docs/verification/plugin-runtime-integration/) |
+| Active combined host/artifact proof | All 16 configured gates; 193,489 three-path cases across 1,242 bodies; 273 Python tests; all 78 UI faults and exact restoration | [Complete combined evidence](work-in-progress/combined-recovery/05-full-acceptance/) |
 | Isolated plugin lookup proof | 3,053 cases; all 198 instructions and 34 conditional edges; all 37 UI fault controls and clean restoration | [Signed plugin checkpoint](work-in-progress/plugin-lookup/04-signed-proof/) |
 | Previous hosted 1,239-body source checkpoint | All 16 configured acceptance gates; 185,738 three-path cases; all 1,239 methods; zero mismatches/unsupported executions; 203 Python tests passed | [Fresh source CI evidence](docs/verification/source-ci-95077fc/) |
 | Previous hosted UI deliberate-fault checks | All 22 controls passed; the restored 15,423-case UI suite passed; inputs unchanged | [Actual control report](docs/verification/source-ci-95077fc/reports/ui-negative-controls.json) |
@@ -106,9 +114,9 @@ or establish complete feature parity. The complete configured acceptance run and
 actual Android comparisons have separate reports; an unstarted or incomplete run
 is not a pass.
 
-## Measured Android cold launch and four intro stills
+## Historical Android cold launch and four intro stills
 
-[The latest hosted Android evidence](docs/verification/android-ci-95077fc/) records
+[The preserved 1,239-body hosted Android evidence](docs/verification/android-ci-95077fc/) records
 one fresh installation of each APK on the same API 35 emulator configuration.
 The recorder verified the distinct original and candidate APK identities on the
 device, then captured `MACRODROID`, `TRIGGERS`, `ACTIONS` and `CONSTRAINTS`. All four

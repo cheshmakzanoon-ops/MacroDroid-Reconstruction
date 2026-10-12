@@ -19,6 +19,46 @@ public final class BytecodeOracle {
  final Map<String,com.android.tools.smali.dexlib2.iface.Method> methods=new HashMap<>();
  final Map<String,Set<Integer>> executed = new TreeMap<>();
  final Map<String,Set<String>> branchEdges = new TreeMap<>();
+ /** Explicit method-scoped host adapters for an original direct-parent constructor.
+  * Reflection still constructs a compile-only child adapter; this is not ART verification. */
+ final Map<String,Set<String>> parentConstructorAdapters = new TreeMap<>();
+ final Map<String,Integer> parentConstructorAdapterCalls = new TreeMap<>();
+ static String adapterKey(String allocated,String owner,String signature){return allocated+"->"+owner+"->"+signature;}
+ void allowParentConstructor(String methodKey,String allocated,String owner,String constructor,int occurrences) throws Exception {
+  if(!executed.isEmpty()||depth!=0)throw new IllegalStateException("Constructor adapters must be configured before execution");
+  var original=methods.get(methodKey);
+  if(original==null||occurrences<=0||allocated.equals(owner)||!constructor.startsWith("<init>(")||!constructor.endsWith(")V"))
+   throw new IllegalArgumentException("Invalid method-scoped constructor adapter");
+  Class<?> child=type(allocated),parent=type(owner);
+  if(child.isInterface()||Modifier.isAbstract(child.getModifiers())||child.getSuperclass()!=parent)
+   throw new IllegalArgumentException("Constructor adapter requires a concrete child and its direct parent");
+  int count=0,allocations=0;MethodReference found=null;
+  for(Instruction instruction:original.getImplementation().getInstructions()){
+   if(instruction.getOpcode().name().equals("NEW_INSTANCE")&&((TypeReference)((ReferenceInstruction)instruction).getReference()).getType().equals(allocated))allocations++;
+   if(instruction.getOpcode().name().startsWith("INVOKE_DIRECT")){
+    MethodReference candidate=(MethodReference)((ReferenceInstruction)instruction).getReference();
+    if(candidate.getDefiningClass().equals(owner)&&sig(candidate).equals(constructor)){count++;found=candidate;}
+   }
+  }
+  if(count!=occurrences||allocations!=occurrences||found==null)throw new IllegalArgumentException("Constructor adapter occurrence mismatch in selected DEX method");
+  Class<?>[] parameters=new Class<?>[found.getParameterTypes().size()];
+  for(int index=0;index<parameters.length;index++)parameters[index]=type(found.getParameterTypes().get(index).toString());
+  if(!Modifier.isPublic(parent.getDeclaredConstructor(parameters).getModifiers())||!Modifier.isPublic(child.getDeclaredConstructor(parameters).getModifiers()))
+   throw new IllegalArgumentException("Constructor adapter requires explicit public host constructors");
+  String key=adapterKey(allocated,owner,constructor);
+  if(!parentConstructorAdapters.computeIfAbsent(methodKey,k->new TreeSet<>()).add(key))
+   throw new IllegalArgumentException("Duplicate method-scoped constructor adapter");
+ }
+ void validateConstructorOwner(String methodKey,Pending pending,MethodReference target,String opcode) throws Exception {
+  if(!opcode.startsWith("INVOKE_DIRECT")||!target.getReturnType().equals("V"))throw new Unsupported("Constructor requires invoke-direct and void return");
+  String allocated=descriptor(pending.type),owner=target.getDefiningClass();
+  if(allocated.equals(owner))return;
+  String adapter=adapterKey(allocated,owner,sig(target));
+  if(!parentConstructorAdapters.getOrDefault(methodKey,Collections.emptySet()).contains(adapter))
+   throw new Unsupported("Unconfigured constructor owner mismatch in "+methodKey+": "+adapter);
+  if(pending.type.getSuperclass()!=type(owner))throw new Unsupported("Constructor adapter parent changed");
+  parentConstructorAdapterCalls.merge(methodKey+":"+adapter,1,Integer::sum);
+ }
  static final Object UNDEFINED = new Object();
  int depth;
  static String sig(MethodReference m){return m.getName()+"("+String.join("",m.getParameterTypes())+")"+m.getReturnType();}
@@ -136,6 +176,7 @@ public final class BytecodeOracle {
      case "IF_GTZ":if(integer(r[a(i)])>0)next=pc+offset(i);break;
      case "IF_GEZ":if(integer(r[a(i)])>=0)next=pc+offset(i);break;
      case "ADD_INT_LIT8":case "ADD_INT_LIT16":r[a(i)]=integer(r[b(i)])+((NarrowLiteralInstruction)i).getNarrowLiteral();break;
+     case "AND_INT":r[a(i)]=integer(r[b(i)])&integer(r[c(i)]);break;
      case "AND_INT_LIT8":case "AND_INT_LIT16":r[a(i)]=integer(r[b(i)])&((NarrowLiteralInstruction)i).getNarrowLiteral();break;
      case "OR_INT_LIT8":case "OR_INT_LIT16":r[a(i)]=integer(r[b(i)])|((NarrowLiteralInstruction)i).getNarrowLiteral();break;
      case "ADD_INT_2ADDR":r[a(i)]=integer(r[a(i)])+integer(r[b(i)]);break;
@@ -196,6 +237,7 @@ public final class BytecodeOracle {
        for(CharSequence pt:target.getParameterTypes()){String d=pt.toString();arguments.add(argument(r[rs[k]],d));k+=d.equals("J")||d.equals("D")?2:1;}
        if(target.getName().equals("<init>")){
         Object pending=arguments.get(0);if(!(pending instanceof Pending))throw new Unsupported("Constructor receiver already initialized");Class<?>[] pts=new Class<?>[target.getParameterTypes().size()];for(int q=0;q<pts.length;q++)pts[q]=type(target.getParameterTypes().get(q).toString());Object initialized;
+        validateConstructorOwner(key(m),(Pending)pending,target,op);
         try{var constructor=((Pending)pending).type.getDeclaredConstructor(pts);constructor.setAccessible(true);initialized=constructor.newInstance(arguments.subList(1,arguments.size()).toArray());}catch(InvocationTargetException e){throw e.getCause();}
         for(Object cell:r)if(cell instanceof Ref&&((Ref)cell).value==pending)((Ref)cell).value=initialized;frame.result=null;
        }else{Object value=call(target,op,arguments.toArray());frame.result=wrap(value,target.getReturnType());}

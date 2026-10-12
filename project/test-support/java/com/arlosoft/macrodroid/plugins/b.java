@@ -1,5 +1,7 @@
 package com.arlosoft.macrodroid.plugins;
 import com.arlosoft.macrodroid.plugins.api.AppBrainApi;
+import com.arlosoft.macrodroid.plugins.api.PluginListApi;
+import defpackage.jsg;
 import defpackage.PluginControl;
 import defpackage.cne;
 import defpackage.o73;
@@ -8,7 +10,9 @@ import java.util.List;
 public final class b {
     public static b$a k = new b$a();
     public static List l;
+    public PluginListApi b;
     public AppBrainApi c;
+    public jsg d;
     public ArrayList g = new ArrayList();
     public int h;
     public boolean i;

@@ -53,6 +53,10 @@ def configured_plan():
 
 def dialog_identity(folder, shot, proof):
     require_plan()
+    return _dialog_identity(folder, shot, proof)
+
+
+def _dialog_identity(folder, shot, proof):
     if shot['owner'] != runner.PACKAGE:
         raise runner.JourneyError('Information dialog has an unexpected owner')
     for key in ['foreground', 'foreground_final']:
@@ -111,6 +115,10 @@ def installed_guard(recorder, run):
 
 def verify_installed_guard(folder, transition, run, proof):
     require_plan()
+    return _verify_installed_guard(folder, transition, run, proof)
+
+
+def _verify_installed_guard(folder, transition, run, proof):
     if transition['to'] != 'after-favourite-info' or transition['action'] != OK:
         raise runner.JourneyError('Installed-APK OK guard has the wrong boundary')
     records = transition['pre_ok_installed_identity']

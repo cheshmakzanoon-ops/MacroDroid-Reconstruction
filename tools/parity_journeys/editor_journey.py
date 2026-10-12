@@ -247,7 +247,7 @@ def _capture_transition(recorder, previous, label, name, action, proof, run=None
         if action == DENY:
             diagnostics = observed_journey.boundary_diagnostics(recorder)
         if name == 'after-favourite-info':
-            import favourite_info_journey as favourite
+            favourite = observed_journey.information_adapter()
             favourite.require_plan()
             installed_guard = favourite.installed_guard(recorder, run)
     before = recorder.snapshot(label + '-before', previous['owner'])
@@ -408,7 +408,7 @@ def compare(folder, report, proof):
                         elif 'process_handoff' in transition or 'pre_denial_diagnostics' in transition:
                             raise JourneyError('Unplanned process-boundary evidence')
                         if name == 'after-favourite-info':
-                            import favourite_info_journey as favourite
+                            favourite = observed_journey.information_adapter()
                             favourite.verify_installed_guard(folder, transition, run, proof)
                         elif 'pre_ok_installed_identity' in transition:
                             raise JourneyError('Unplanned information-dialog installed-APK guard')
@@ -448,6 +448,11 @@ def compare(folder, report, proof):
             result['scope'] = 'Nine observed intro, notification, promotion, home/editor and information-dialog stills; one OK tap and its first app surface only'
             result['catalog_navigation_established'] = False
             result['status'] = 'EXACT_OBSERVED_DIALOG_JOURNEY_MATCH_ONLY' if result['journey_equal'] else 'JOURNEY_DIFFERENCE'
+            if len(PLAN) == 12:
+                result['scope'] = 'Observed first-use dialog, trigger catalog and one Date/Time category tap; the resulting app surface only'
+                result['catalog_navigation_established'] = True
+                result['trigger_selected'] = False
+                result['status'] = 'EXACT_TRIGGER_CATEGORY_OBSERVATION_ONLY' if result['journey_equal'] else 'JOURNEY_DIFFERENCE'
         if result['journey_equal'] and result.get('post_crash_continuation_observed_in_both'):
             result['status'] = 'MATCHED_POST_CRASH_CONTINUATION_ONLY'
         result['apk_sha256'] = [r['apk_sha256'] for r in runs]

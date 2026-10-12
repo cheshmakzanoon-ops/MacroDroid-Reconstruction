@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "status": "INDEPENDENT_COMBINED05_COHERENCE_REVIEW_PASSED",
+  "passed": true,
+  "started_utc": "2026-10-12T06:34:07.691305+00:00",
+  "combined_checkpoint_sha256": "e4cd0b6af4cf95d7131138b3ad3dab8a070042cea077a80cf83c322168457063",
+  "reviewed_preparation_checkpoint_sha256": "da0a1a8944e24f2d559083ac7232634be257756a5073ea1755eb5006761191e6",
+  "build_executed": false,
+  "tests_reexecuted": false,
+  "android_executed": false,
+  "active_source_modified": false,
+  "whole_application_1_to_1_established": false,
+  "capsule_files_verified": 125,
+  "preparation_files_verified": 90,
+  "source_coherence": {
+    "old_pin": "19ea47f8563262c255b1d11632bfc404eb68819f332ececdf68d0a686643c183",
+    "new_pin": "b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553",
+    "added": 46,
+    "changed": 17,
+    "removed": 0,
+    "all_63_reviewed04_delta_files_exact": true,
+    "entire_new_manifest_reconstructed_from_current_baseline": true,
+    "existing_registry_entries_retained": 1240,
+    "new_registry_entries": [
+      {
+        "target": "Lcom/arlosoft/macrodroid/plugins/k;",
+        "method": "invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;",
+        "helper": "Lrecovered/ui/PluginUploadMethods;",
+        "helper_method": "upload",
+        "instance": true,
+        "java_source": "source/java/recovered/ui/PluginUploadMethods.java",
+        "proof_family": "v9-ui",
+        "original_method_sha256": "e1e358c48fd74e5bff3dae102917559cbc463795413aa0d329f3bede881609fe"
+      },
+      {
+        "target": "Lcom/arlosoft/macrodroid/widget/custom/WidgetUpdateManager;",
+        "method": "m(Landroid/content/Context;Ljava/util/List;Lo73;)Ljava/lang/Object;",
+        "instance": true,
+        "helper": "Lrecovered/ui/WidgetUpdateMethods;",
+        "helper_method": "update",
+        "java_source": "source/java/recovered/ui/WidgetUpdateMethods.java",
+        "proof_family": "v9-ui",
+        "original_method_sha256": "a1dd490bbfd6837fa72e6bf8ae4c75736612989fcba050fe2f0582aa03640e34",
+        "constructor_owner_mappings": [
+          {
+            "allocated_type": "Lzhh;",
+            "original_owner": "Lrff;",
+            "constructor": "<init>(ILm73;)V",
+            "occurrences": 1
+          }
+        ]
+      }
+    ],
+    "registry_classes": 605
+  },
+  "archive_members_verified": 551,
+  "fresh_report_hashes_verified": 22,
+  "gate_logs_verified": 16,
+  "retained_mutant_source_class_pairs_verified": 78,
+  "full_positive_restoration_json_equal": true,
+  "actual_python_tests": 273,
+  "actual_python_seconds": 17.639,
+  "actual_three_path_cases": 193489,
+  "actual_registered_methods": 1242,
+  "multipart_apk_bytes": 94683119,
+  "multipart_apk_sha256": "5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182",
+  "current_baseline_input_files_rehashed": 81245,
+  "closed_candidate_input_files_rehashed": 81291,
+  "source_delta_files": 63,
+  "full_input_rehash": [
+    {
+      "root": "/workspace/scratch/4130730d15aa/current/MacroDroid_v9",
+      "files_rehashed": 81245,
+      "total_bytes_rehashed": 819399298,
+      "actual_input_inventory_exact": true,
+      "canonical_sha256": "19ea47f8563262c255b1d11632bfc404eb68819f332ececdf68d0a686643c183",
+      "elapsed_seconds": 88.36736398499852
+    },
+    {
+      "root": "/tmp/macrodroid-widget-plugin-combined-qmngc23u/MacroDroid_v9",
+      "files_rehashed": 81291,
+      "total_bytes_rehashed": 819562916,
+      "actual_input_inventory_exact": true,
+      "canonical_sha256": "b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553",
+      "elapsed_seconds": 71.4410996580009
+    }
+  ],
+  "publication_verdict": "APPROVED_AS_SCOPED_CLOSED_HOST_EVIDENCE; ANDROID_RESULT_PENDING_FOR_THIS_APK",
+  "finished_utc": "2026-10-12T06:36:58.681825+00:00"
+}

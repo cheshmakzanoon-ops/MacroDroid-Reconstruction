@@ -42,8 +42,8 @@ The exact supplied reference APK is committed in 12 parts under `vendor/original
 It is 95,725,918 bytes with SHA-256
 `84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800`.
 The current reconstructed candidate is committed in 12 parts under
-`artifacts/current/`; it is 94,683,497 bytes with SHA-256
-`9108b5811757e20f079ab22f2d19e65135e4b863489e6c17a6a3f524bfc7c1e2`.
+`artifacts/current/`; it is 94,683,119 bytes with SHA-256
+`5f635e165479895cabc4608a0a82452b99a62bf9f9b03cb09b1ac5e3a45e5182`.
 The baseline control is separately preserved under `artifacts/baseline/`:
 94,677,674 bytes, SHA-256
 `aa8ad3013ad211c8a39d083943b0a671d75e0bbbedccc924ea0093c590c9a096`.
@@ -131,10 +131,49 @@ application inputs; subsequent checkpoint directories retain their own frozen
 manifests. Their frozen reports retain their actual failure and pending
 scopes even though the separate clean hosted checkpoint succeeded.
 
-## Active plugin and runtime integration
+## Previous 1,240-body plugin and runtime integration
 
-The active overlay contains 1,240 recovered bodies across 603 classes. Its 81,245 build/test inputs have canonical SHA-256 `19ea47f8563262c255b1d11632bfc404eb68819f332ececdf68d0a686643c183`. The exact input-manifest file SHA-256 is `713c40cfcab17ce42294e37af68f758d0c0f488748c47aaba3a2e54f9b3e7883`. The [integration checkpoint](verification/plugin-runtime-integration/checkpoint.json) preserves the 54 changed build/test inputs, six current project documents, eight Android tooling/workflow files and full evidence archives. The prior scene APK remains preserved by its manifest and historical commits.
+That overlay contained 1,240 recovered bodies across 603 classes. Its 81,245 build/test inputs have canonical SHA-256 `19ea47f8563262c255b1d11632bfc404eb68819f332ececdf68d0a686643c183`. The exact input-manifest file SHA-256 is `713c40cfcab17ce42294e37af68f758d0c0f488748c47aaba3a2e54f9b3e7883`. The [integration checkpoint](verification/plugin-runtime-integration/checkpoint.json) preserves the 54 changed build/test inputs, six current project documents, eight Android tooling/workflow files and full evidence archives. The prior scene APK remains preserved by its manifest and historical commits.
 
 All five planned clean integration checks passed: hybrid assembly, full code/resource verification, all three-path host suites, and final unchanged-input verification. The fresh APK reproduced the already preserved final plugin candidate exactly. Actual counts were 188,791 cases, 1,240 methods, zero mismatches/unsupported executions and 259 Python tests. The independent integrated Android-tooling host suite passed all 27 tests. The original plugin checkpoint's 37 deliberate-fault controls retain their isolated scope.
 
-The guarded constructor-owner facility is now integrated with zero active mappings and zero applied corrections in all three build/static/linkage gates. Fresh-generation compiler staging and the reviewed post-intro recorder are also active. The updated workflow requests full source acceptance and actual cold/intro/post-intro measurements plus a separate bounded ART allocation probe. Those new hosted outcomes remain pending at this freeze. No Widget recovery or plugin-upload body is activated by this integration, and no whole-application 1:1 claim is made.
+The guarded constructor-owner facility is now integrated with zero active mappings and zero applied corrections in all three build/static/linkage gates. Fresh-generation compiler staging and the reviewed post-intro recorder are also active. The updated workflow requests full source acceptance and actual cold/intro/post-intro measurements plus a separate bounded ART allocation probe. Those hosted outcomes were pending at that historical freeze; subsequent exact reports are retained separately. No Widget recovery or plugin-upload body was activated by that integration.
+
+## Current combined source, artifact, and capture guards
+
+The active overlay now contains 1,242 recovered bodies across 605 classes. Its
+81,291 build/test inputs have canonical SHA-256
+`b8eccfa12bc6bf0111616b2b5e812c921ca95568e019b769582041d8c852b553`;
+the complete manifest file SHA-256 is
+`ca3bed290f18a378c7a3d6cc70d924c8d6ec85481e236b4e7561c31fedafdfbe`.
+The exact delta is 46 additions and 17 changes, with no removed input. It combines
+the plugin-upload and Widget implementations with their fixtures and controls.
+
+All 16 configured clean host acceptance gates passed: 193,489 original/JVM/rebuilt
+cases across all 1,242 methods, 273 Python tests, 23,174 UI cases with 15,326
+independent checks, all 78 actual UI fault controls, and exact positive restoration.
+The accepted APK is the current 94,683,119-byte `5f635e16…` artifact. The complete
+[immutable proof](../work-in-progress/combined-recovery/05-full-acceptance/),
+including all 551 reports, 22 fresh evidence hashes, 16 command logs, every retained
+source/class mutant, and all twelve APK parts, was published and fetched at
+`c9373851d4408fb4db63c21873ac2d0bb6867270`. The complete report archive retains its
+original bytes through three verified parts and an explicit reassembly mapping.
+The [independent review](verification/combined-recovery/05-full-acceptance-independent-review/)
+rechecked both full input inventories, all 63 delta inputs, every report member,
+all fault artifacts, and every APK part.
+
+The reviewed Trigger05/session03 guard union is activated with its exact 148-test
+host proof. It rejects stale capture order and resolved-path/physical-file reuse,
+and verifies paired final activity components. The source workflow allows 120
+minutes and preserves the complete nested reports tree; its Android job is
+unchanged. Fresh hosted source, Android, and editor results for this promoted
+candidate remain pending at this publication.
+
+The separate normal-animation diagnostic checked out its frozen original/9108
+inputs at `3edcddd86660ea10c8aff71b651b446f86412525` before this promotion.
+[Run 38212813248](https://github.com/cheshmakzanoon-ops/MacroDroid-Reconstruction/actions/runs/38212813248)
+failed to obtain stable consecutive TRIGGERS frames for both APKs with animation
+scales verified as 1. Its incomplete runtime result is preserved separately;
+it does not establish an outcome for the new combined candidate. Historical
+26-pixel differences and earlier failure reports remain unchanged. No whole-app
+1:1 runtime claim is made.

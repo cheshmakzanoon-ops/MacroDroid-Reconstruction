@@ -33,7 +33,7 @@ class UiSourceTests(unittest.TestCase):
     def setUpClass(cls):
         cls.entries=json.loads((build.ROOT/'source/ui-methods.json').read_text());cls.registry=json.loads((build.ROOT/'source/java-method-map.json').read_text())
         cls.index={x['descriptor']:x for x in build.index().values()}
-    def test_exact_eight_methods_and_classes(self):self.assertEqual((len(self.entries),len({e['target'] for e in self.entries})),(8,8))
+    def test_exact_ten_methods_and_classes(self):self.assertEqual((len(self.entries),len({e['target'] for e in self.entries})),(10,10))
     def test_registry_partition(self):self.assertEqual(self.entries,[e for e in self.registry if e.get('proof_family')=='v9-ui'])
     def test_each_original_hash(self):
         for e in self.entries:

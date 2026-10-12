@@ -7,6 +7,7 @@ from __future__ import annotations
 import argparse,hashlib,json,os,sys,zipfile
 from pathlib import Path
 import build
+import ui_runtime_policy
 
 def aggregate_reports(reports:dict[str,dict],expected:int,paths:int)->dict:
     """Fail closed on missing suites, malformed counts, failures or wrong paths."""
@@ -58,6 +59,22 @@ def main()->None:
         ('ui-opcodes.smali','ui-opcodes.dex','UiOracleConformance','ui-oracle')]:
         build.java('com.android.tools.smali.smali.Main','a','--api','23','-o',build.WORK/output,build.ROOT/'tests/fixtures'/fixture,log=logbase+'-assemble.log')
         build.run(['java','-Xmx500m','-cp',cp,mainclass,build.ROOT],logbase+'-run.log')
+    # These fixtures take explicit DEX/report paths, not the app root used above.
+    # The constructor reflection adapter remains host-only; ART proof is separate.
+    for fixture, output, mainclass, stem, expected_cases in [
+        ('constructor-owner-opcodes.smali','constructor-owner-opcodes.dex','ConstructorOracleConformance','constructor-oracle',16),
+        ('widget-bitwise-opcodes.smali','widget-bitwise-opcodes.dex','WidgetOracleOpcodeConformance','widget-bitwise-oracle',4546)]:
+        fixture_path=build.ROOT/'tests/fixtures'/fixture
+        dex_path=build.WORK/output
+        report_path=build.REPORTS/(stem+'-conformance.json')
+        report_path.unlink(missing_ok=True)
+        build.java('com.android.tools.smali.smali.Main','a','--api','23','-o',dex_path,fixture_path,log=stem+'-assemble.log')
+        build.run(['java','-Xmx500m','-cp',cp,mainclass,dex_path,report_path],stem+'-run.log')
+        conformance=json.loads(report_path.read_text())
+        if conformance.get('passed') is not True or type(conformance.get('cases')) is not int or conformance['cases']!=expected_cases or conformance.get('androidRuntime') is not False:
+            raise RuntimeError('Incomplete explicit host conformance: '+stem)
+        conformance.update(fixtureSourceSha256=hashlib.sha256(fixture_path.read_bytes()).hexdigest(),fixtureDexSha256=hashlib.sha256(dex_path.read_bytes()).hexdigest())
+        report_path.write_text(json.dumps(conformance,indent=2)+'\n')
     apk=None
     if args.three_way:
         apk=build.ROOT/'dist/MacroDroid-5.67.8-v9-hybrid.apk'
@@ -82,6 +99,9 @@ def main()->None:
         # Never accept a previously saved result if the executable fails to emit a new report.
         reportpath.unlink(missing_ok=True)
         argv=['java','-Xmx1200m']
+        if key=='ui':
+            policy=ui_runtime_policy.verify(build.REPORTS)
+            argv=[policy['java_executable'],*ui_runtime_policy.JVM_FLAGS,'-Xmx1200m']
         if key in ('environment','engine'):argv+=['-javaagent:'+str(agent)]
         argv+=['-cp',cp,mainclass,str(build.ROOT)]
         if key=='engine':

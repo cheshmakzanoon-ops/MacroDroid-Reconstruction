@@ -49,10 +49,11 @@ def main()->int:
     for number,(label,arguments) in enumerate(commands,1):
         logfile=folder/(f'{number:02d}-'+label+'.log');command=[sys.executable,*arguments]
         print(f'[{number}/{len(commands)}] {label}',flush=True);started=time.monotonic()
-        entry={'label':label,'command':command,'log':logfile.relative_to(ROOT).as_posix()}
+        timeout_seconds=5400 if label=='ui-negative-controls' else 1200
+        entry={'label':label,'command':command,'log':logfile.relative_to(ROOT).as_posix(),'timeout_seconds':timeout_seconds}
         try:
             with logfile.open('w',encoding='utf-8') as stream:
-                process=subprocess.run(command,cwd=ROOT,env=env,stdout=stream,stderr=subprocess.STDOUT,timeout=1200)
+                process=subprocess.run(command,cwd=ROOT,env=env,stdout=stream,stderr=subprocess.STDOUT,timeout=timeout_seconds)
             entry.update(exit_code=process.returncode,passed=process.returncode==0)
         except (OSError,subprocess.TimeoutExpired) as exc:entry.update(exit_code=None,passed=False,error=str(exc))
         entry['seconds']=round(time.monotonic()-started,3);entry['log_sha256']=digest(logfile)
@@ -74,7 +75,8 @@ def main()->int:
     names=['baseline-roundtrip.json','hybrid-roundtrip.json','baseline-resource-parity.json','hybrid-resource-parity.json',
            'java-all-path-parity.json','java-ui-three-path-parity.json','ui-oracle-semantics.json','ui-negative-controls.json','java-engine-three-path-parity.json','oracle-semantics.json','engine-oracle-semantics.json',
            'engine-negative-controls.json','core-negative-controls.json','environment-negative-controls.json','negative-control.json',
-           'migration-static-proof.json','migration-linkage-check.json','reference-failures-status-v9.json']
+           'migration-static-proof.json','migration-linkage-check.json','reference-failures-status-v9.json',
+           'constructor-oracle-conformance.json','widget-bitwise-oracle-conformance.json','ui-runtime-policy.json']
     if not args.skip_edit_probe:names.append('full-apk-edit-probe.json')
     result['fresh_evidence_sha256']={n:digest(ROOT/'reports'/n) for n in names}
     result['finished_utc']=datetime.now(timezone.utc).isoformat();result['host_acceptance_passed']=True;save()

@@ -20,6 +20,7 @@ public final class PluginControl {
     public static Object returned;
     public static Runnable mutation;
     public static j self;
+    public static java.util.function.Supplier<String> continuationSnapshot;
     public static final List<String> boundaries = new ArrayList<String>();
     public static final List<String> states = new ArrayList<String>();
     public static final List<Bundle> bundles = new ArrayList<Bundle>();
@@ -31,7 +32,7 @@ public final class PluginControl {
     public static final IdentityHashMap<Object,String> identities = new IdentityHashMap<Object,String>();
     public static void reset() {
         active = false; invalidLabelReturns = false; boundaryCalls = 0; failAt = -1; mutateAt = -1;
-        failure = null; escaped = null; returned = null; mutation = null; self = null;
+        failure = null; escaped = null; returned = null; mutation = null; self = null; continuationSnapshot = null;
         boundaries.clear(); states.clear(); bundles.clear(); created.clear();
         publicationAttempts.clear(); publications.clear(); analyticsAttempts.clear(); analytics.clear(); identities.clear();
         b.k = new b$a(); b.l = new ArrayList();
@@ -50,7 +51,7 @@ public final class PluginControl {
     public static void hit(String call) {
         if (!active) return;
         boundaries.add(call);
-        states.add(self == null ? "null" : self.label + ":" + self.I$0 + ":" + self.I$1 + ":" + id(self.this$0) + ":" + (self.this$0 == null ? "null" : self.this$0.h));
+        states.add(self == null ? (continuationSnapshot == null ? "null" : continuationSnapshot.get()) : self.label + ":" + self.I$0 + ":" + self.I$1 + ":" + id(self.this$0) + ":" + (self.this$0 == null ? "null" : self.this$0.h));
         int index = boundaryCalls++;
         if (index == mutateAt && mutation != null) mutation.run();
         if (index == failAt && failure != null) raise(failure);

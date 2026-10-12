@@ -154,6 +154,9 @@ class ObservedFixture:
             new = '41' if run_number == 0 else ('61' if candidate_replaced else '51')
             run['screens'], run['transitions'] = [], []
             now = 1000.0 + run_number * 1000
+            # Authored timestamps for this synthetic schema-three launch.
+            run['launch'].update(argv=['shell', 'am start -W -n ' + runner.PACKAGE + '/.intro.IntroActivity'],
+                                 started_monotonic=now - 0.2, finished_monotonic=now - 0.1, timed_out=False)
             for index, (name, owner, required, action) in enumerate(runner.PLAN):
                 prefix = run['label'] + '-' + name
                 if index:

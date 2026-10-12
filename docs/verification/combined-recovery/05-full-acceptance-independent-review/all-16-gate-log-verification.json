@@ -1,0 +1,293 @@
+[
+  {
+    "label": "input-integrity",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "release_integrity.py",
+      "verify"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/01-input-integrity.log",
+    "timeout_seconds": 1200,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 17.231,
+    "log_sha256": "f595d4a4b1649835674cba80e0b7ad0a536d68286519469b8482a2a9ede2879f",
+    "local_and_archived_log": {
+      "bytes": 183,
+      "sha256": "f595d4a4b1649835674cba80e0b7ad0a536d68286519469b8482a2a9ede2879f"
+    }
+  },
+  {
+    "label": "baseline-build",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "build.py",
+      "build",
+      "--variant",
+      "baseline"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/02-baseline-build.log",
+    "timeout_seconds": 1200,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 215.833,
+    "log_sha256": "b3858803786effeb9c336a3aed1b2448d51ad162c6d2b911f3cf53cf9efc2e9b",
+    "local_and_archived_log": {
+      "bytes": 460,
+      "sha256": "b3858803786effeb9c336a3aed1b2448d51ad162c6d2b911f3cf53cf9efc2e9b"
+    }
+  },
+  {
+    "label": "hybrid-build",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "build.py",
+      "build",
+      "--variant",
+      "hybrid"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/03-hybrid-build.log",
+    "timeout_seconds": 1200,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 143.901,
+    "log_sha256": "765ddd463d8ddeabc703be947dbfe88cf72b061e2d192024f8a6b7c00f97b624",
+    "local_and_archived_log": {
+      "bytes": 446,
+      "sha256": "765ddd463d8ddeabc703be947dbfe88cf72b061e2d192024f8a6b7c00f97b624"
+    }
+  },
+  {
+    "label": "baseline-code",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "build.py",
+      "verify",
+      "--variant",
+      "baseline"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/04-baseline-code.log",
+    "timeout_seconds": 1200,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 104.686,
+    "log_sha256": "a82ee71c10de50427deee7d8ceaecc7acfd19d68642324fbf07e26ccdd04a232",
+    "local_and_archived_log": {
+      "bytes": 381,
+      "sha256": "a82ee71c10de50427deee7d8ceaecc7acfd19d68642324fbf07e26ccdd04a232"
+    }
+  },
+  {
+    "label": "hybrid-code",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "build.py",
+      "verify",
+      "--variant",
+      "hybrid"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/05-hybrid-code.log",
+    "timeout_seconds": 1200,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 99.12,
+    "log_sha256": "2d1c64ed8eaa034d4e0b4122ea5b6f6b36ae7607b3b76552cb3b703c8e27291e",
+    "local_and_archived_log": {
+      "bytes": 379,
+      "sha256": "2d1c64ed8eaa034d4e0b4122ea5b6f6b36ae7607b3b76552cb3b703c8e27291e"
+    }
+  },
+  {
+    "label": "baseline-resources",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "resource_verify.py",
+      "--variant",
+      "baseline"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/06-baseline-resources.log",
+    "timeout_seconds": 1200,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 30.175,
+    "log_sha256": "f570b9dd243be220d60f1ba5a944573f9f0de97c31ed165ef597ecec6e711fea",
+    "local_and_archived_log": {
+      "bytes": 66,
+      "sha256": "f570b9dd243be220d60f1ba5a944573f9f0de97c31ed165ef597ecec6e711fea"
+    }
+  },
+  {
+    "label": "hybrid-resources",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "resource_verify.py",
+      "--variant",
+      "hybrid"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/07-hybrid-resources.log",
+    "timeout_seconds": 1200,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 23.171,
+    "log_sha256": "821424d8d69ac2aabd1f51b2cc77dd0a0d331341999dde133d0eb97faac59b9f",
+    "local_and_archived_log": {
+      "bytes": 64,
+      "sha256": "821424d8d69ac2aabd1f51b2cc77dd0a0d331341999dde133d0eb97faac59b9f"
+    }
+  },
+  {
+    "label": "positive-host-tests",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "test.py",
+      "--three-way"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/08-positive-host-tests.log",
+    "timeout_seconds": 1200,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 327.641,
+    "log_sha256": "9d703cf3937284598ce668f0d5b8931f166226120d8cd4102a83e5ce80647ef5",
+    "local_and_archived_log": {
+      "bytes": 646,
+      "sha256": "9d703cf3937284598ce668f0d5b8931f166226120d8cd4102a83e5ce80647ef5"
+    }
+  },
+  {
+    "label": "reference-status",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "reference_status.py"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/09-reference-status.log",
+    "timeout_seconds": 1200,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 1.288,
+    "log_sha256": "518184919e15cbd7e910640f928a6cf3acb55f75b477fcce67205a622eaff6df",
+    "local_and_archived_log": {
+      "bytes": 354,
+      "sha256": "518184919e15cbd7e910640f928a6cf3acb55f75b477fcce67205a622eaff6df"
+    }
+  },
+  {
+    "label": "engine-negative-controls",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "engine_negative_control.py"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/10-engine-negative-controls.log",
+    "timeout_seconds": 1200,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 42.661,
+    "log_sha256": "9fcecf607c59b40d4132e220c74d6b384060096d3a0d65236b98c40bc0d09a8d",
+    "local_and_archived_log": {
+      "bytes": 1334,
+      "sha256": "9fcecf607c59b40d4132e220c74d6b384060096d3a0d65236b98c40bc0d09a8d"
+    }
+  },
+  {
+    "label": "ui-negative-controls",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "ui_negative_control.py"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/11-ui-negative-controls.log",
+    "timeout_seconds": 5400,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 2661.218,
+    "log_sha256": "355b7ade132bcdaf6805f2869bce257b293cf5600a8fd58f9e5e07db75e314ea",
+    "local_and_archived_log": {
+      "bytes": 76101,
+      "sha256": "355b7ade132bcdaf6805f2869bce257b293cf5600a8fd58f9e5e07db75e314ea"
+    }
+  },
+  {
+    "label": "core-negative-controls",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "core_negative_control.py"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/12-core-negative-controls.log",
+    "timeout_seconds": 1200,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 39.678,
+    "log_sha256": "ca716316a69f355527f045b037ced485c63653b04dd04acfcff53e8191d7a0ba",
+    "local_and_archived_log": {
+      "bytes": 522,
+      "sha256": "ca716316a69f355527f045b037ced485c63653b04dd04acfcff53e8191d7a0ba"
+    }
+  },
+  {
+    "label": "environment-negative-controls",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "environment_negative_control.py"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/13-environment-negative-controls.log",
+    "timeout_seconds": 1200,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 171.764,
+    "log_sha256": "ad7ed8c0c38917ce0fc316f2a05d2eda9b9f899fd437652e93b8b92915eed847",
+    "local_and_archived_log": {
+      "bytes": 1351,
+      "sha256": "ad7ed8c0c38917ce0fc316f2a05d2eda9b9f899fd437652e93b8b92915eed847"
+    }
+  },
+  {
+    "label": "legacy-negative-control",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "negative_control.py"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/14-legacy-negative-control.log",
+    "timeout_seconds": 1200,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 249.204,
+    "log_sha256": "1aea8360155182d7ff2c7bb103493c1e380cd52bcbcbfd99e2e46ce3d687070a",
+    "local_and_archived_log": {
+      "bytes": 268,
+      "sha256": "1aea8360155182d7ff2c7bb103493c1e380cd52bcbcbfd99e2e46ce3d687070a"
+    }
+  },
+  {
+    "label": "signed-source-edit",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "full_apk_edit_probe.py"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/15-signed-source-edit.log",
+    "timeout_seconds": 1200,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 262.078,
+    "log_sha256": "46fd25765dfb47a66c9287cf502bef521e2cc7970f59075f09209b457488dbb0",
+    "local_and_archived_log": {
+      "bytes": 1115,
+      "sha256": "46fd25765dfb47a66c9287cf502bef521e2cc7970f59075f09209b457488dbb0"
+    }
+  },
+  {
+    "label": "final-positive-host-tests",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "test.py",
+      "--three-way"
+    ],
+    "log": "reports/acceptance-20261012T050133452222Z/16-final-positive-host-tests.log",
+    "timeout_seconds": 1200,
+    "exit_code": 0,
+    "passed": true,
+    "seconds": 358.807,
+    "log_sha256": "9d703cf3937284598ce668f0d5b8931f166226120d8cd4102a83e5ce80647ef5",
+    "local_and_archived_log": {
+      "bytes": 646,
+      "sha256": "9d703cf3937284598ce668f0d5b8931f166226120d8cd4102a83e5ce80647ef5"
+    }
+  }
+]

@@ -51,20 +51,31 @@ def finite(value):
     return type(value) in (int, float) and math.isfinite(value)
 
 
+def information_adapter():
+    if len(runner.PLAN) == 10:
+        import favourite_info_journey as adapter
+    elif len(runner.PLAN) == 12:
+        import trigger_category_journey as adapter
+    else:
+        raise runner.JourneyError('No reviewed information adapter for this plan')
+    return adapter
+
+
 def require_plan():
-    if (len(runner.PLAN) not in (10, 14)
+    if (len(runner.PLAN) not in (10, 12, 14)
             or list(runner.PLAN[4]) != ['notification-request', runner.PERMISSION, runner.DENY, runner.NEXT]
             or list(runner.PLAN[5]) != ['reference-promotion', runner.PACKAGE, {'text': 'LITEAPKS'}, runner.DENY]
             or list(runner.PLAN[6]) != ['home', runner.PACKAGE,
                                        {'resource-id': runner.PACKAGE + ':id/navigation_home'}, {'text': 'CLOSE'}]):
         raise runner.JourneyError('Observed policy requires the unchanged reviewed reference adapter')
-    if len(runner.PLAN) == 10:
-        import favourite_info_journey as favourite
-        favourite.require_plan()
+    if len(runner.PLAN) in (10, 12):
+        information_adapter().require_plan()
 
 
 def required_surface(folder, shot, required, proof):
-    """Only the separate ten-step plan may end with an unassumed app surface."""
+    """Only an exact reviewed adapter may declare its final unassumed surface."""
+    if len(runner.PLAN) == 12:
+        return information_adapter().required_surface(folder, shot, required, proof)
     if len(runner.PLAN) == 10:
         import favourite_info_journey as favourite
         favourite.require_plan()
@@ -273,11 +284,13 @@ def input_identity(folder, previous, before, action, name, proof, label):
                 or button.get('enabled') != 'true' or button.get('clickable') != 'true'):
             raise runner.JourneyError('Observed promotion title or CLOSE button changed')
     if name == 'after-favourite-info':
-        import favourite_info_journey as favourite
+        favourite = information_adapter()
         favourite.require_plan()
         if action != favourite.OK or previous.get('name') != 'favourite-triggers-info':
             raise runner.JourneyError('Favourite information input is outside its observed boundary')
         favourite.dialog_identity(folder, before, proof)
+    if len(runner.PLAN) == 12:
+        information_adapter().input_identity(folder, previous, before, action, name, proof)
     return prior_front
 
 
@@ -580,3 +593,5 @@ def capture_events(folder, report, proof):
         for shot in shots:
             if runner.artifact_path(folder, shot['settling'], proof) not in paths:
                 raise runner.JourneyError('Accepted observation is missing from the acquisition ledger')
+    import capture_chronology
+    capture_chronology.verify(folder, report, proof)

@@ -1,7 +1,8 @@
-# UI, scene-state, selection, touch-blocking, scene-dispatch and plugin recovery
+# UI, scene, plugin and Widget recovery
 
-Eight existing method bodies in this family are compiled from readable Java. The full
-registry has 1,240 bodies across 603 classes; 1,119 are prior constant/no-op bodies.
+Ten existing method bodies in this family are registered for compilation from readable
+Java. The combined registry has 1,242 bodies across 605 classes; 1,119 are prior
+constant/no-op bodies. All 16 configured acceptance gates passed for this source copy.
 This is not a complete Java/Kotlin application or Android runtime equivalence.
 
 | Original method | Recovered helper | Scope |
@@ -14,6 +15,8 @@ This is not a complete Java/Kotlin application or Android runtime equivalence.
 | `BlockTouchesAction.invokeAction(TriggerContextInfo)` | `BlockTouchesMethods.invoke` | Trigger restrictions, block/unblock/toggle selection, original service calls and typed Intent payloads |
 | `CustomSceneAction.W(int,TriggerContextInfo,boolean,Stack,ResumeMacroInfo)` | `CustomSceneMethods.display` | Overlay/dialog/full-screen selection, existing-scene dispatch, original permission-warning fallthrough and ordered payloads/events |
 | `plugins.j.invokeSuspend(Object)` | `PluginLookupMethods.lookup` | Lookup gates, suspension/resumption state, original repeated-key retry behavior, analytics and result/error publication |
+| `plugins.k.invokeSuspend(Object)` | `PluginUploadMethods.upload` | Optional icon preparation/upload, plugin upload, two suspension states and original result/error publication |
+| `WidgetUpdateManager.m(Context,List,o73)` | `WidgetUpdateMethods.update` | Continuation reuse, original list iteration and saved-state protocol, two suspension boundaries and narrow exception handling |
 
 `source/ui-methods.json` pins the exact descriptors and original method hashes.
 Only the registered bodies replace existing implementations. Class structure,
@@ -90,7 +93,31 @@ the caller's flags to each nested Parcelable. Class-loader calls and casts remai
 in their original order. The original constructor and nested Parcelable behavior
 are not reconstructed by these two methods.
 
-## Executed host comparisons
+## Combined candidate evidence
+
+The two methods contribute 2,356 plugin-upload cases and 2,342 Widget cases. Their
+isolated signed candidates passed all three execution paths, complete code and
+resource comparisons, and unchanged-input checks. The upload proof rejected all
+54 then-configured UI faults and passed its clean 20,832-case rerun. The independent
+Widget mutation study rejected all 24 compiled faults and both class-origin controls.
+The Widget signed five-gate proof passed 191,133 total cases and 265 Python tests.
+These are separate source/APK identities, not an executed combined result.
+
+The combined source passed 23,174 UI cases, 15,326 independent expected-result
+checks, and all 78 actual Java fault controls. Every required case rejected its
+intended defect, with zero unsupported executions and unchanged original coverage;
+the final clean UI run restored the complete positive baseline exactly. The actual
+78-control gate took 2,661.218 seconds. All retained mutant sources/classes and
+the [fresh control report](../work-in-progress/combined-recovery/05-full-acceptance/reviewable/ui-negative-controls.json) are
+bound in the closed proof. `COMBINED_RECOVERY.md` describes both methods and the
+host runtime policy; the original message normalizer remains unchanged.
+
+## Inherited eight-method host comparisons
+
+The rest of this measured-host section records the published 1,240-method baseline,
+whose complete hosted acceptance passed before these two bodies were combined.
+Its counts and artifact identities are historical; they do not certify this candidate.
+
 
 `UiParityTests` compares original selected instructions, recovered Java on the JVM
 and rebuilt DEX instructions whose bytes are checked against the signed APK. The

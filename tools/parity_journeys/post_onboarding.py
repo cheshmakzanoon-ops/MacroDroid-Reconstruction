@@ -6,8 +6,10 @@ All full-frame pixels, UI attributes, input evidence and in-scope PIDs are check
 """
 from __future__ import annotations
 import json
+import math
 import re
 import shlex
+import time
 import zlib
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -16,7 +18,40 @@ from robust_capture import EvidenceRecorder
 from session_evidence import verify_session_evidence
 
 HOME_CLASS = runner.PACKAGE + '.homescreen.NewHomeScreenActivity'
+EDITOR_CLASS = runner.PACKAGE + '.editscreen.EditMacroActivity'
 END = 'editor-after-constraint-back'
+
+
+def component(data: bytes, proof) -> str:
+    values = proof.resumed_components(data.decode())
+    if len(values) != 1:
+        raise runner.JourneyError('Session evidence lacks one resumed component')
+    package, activity = values[0].split('/', 1)
+    return package + '/' + (package + activity if activity.startswith('.') else activity)
+
+
+def command_window(item):
+    def finite(value):
+        return type(value) in (int, float) and math.isfinite(value)
+    start, finish, timeout = (item.get(key) for key in
+                              ('started_monotonic', 'finished_monotonic', 'timeout_seconds'))
+    if (not all(finite(value) for value in (start, finish, timeout))
+            or start < 0 or not start <= finish or timeout <= 0 or finish - start > timeout
+            or item.get('timed_out') is not False):
+        raise runner.JourneyError('Invalid or timed-out session command timing')
+    return start, finish
+
+
+def observation_window(shot):
+    observed = shot['session_observation']
+    start, finish = observed.get('started_monotonic'), observed.get('finished_monotonic')
+    interval = shot['sample_interval_seconds']
+    if (type(observed.get('schema')) is not int or observed['schema'] != 1
+            or any(type(value) not in (int, float) or not math.isfinite(value)
+                   for value in (start, finish, interval))
+            or start < 0 or finish <= start or interval <= 0 or finish - start < interval):
+        raise runner.JourneyError('Invalid session capture observation interval')
+    return start, finish
 
 
 def home_foreground(data: bytes, proof) -> bool:
@@ -29,7 +64,11 @@ def home_foreground(data: bytes, proof) -> bool:
 class SessionRecorder(EvidenceRecorder):
     """Bind both endpoints of the independently declared editor session to the APK."""
     def snapshot(self, label, owner):
+        started = time.monotonic()
         shot = super().snapshot(label, owner)
+        shot['session_observation'] = {'schema': 1, 'started_monotonic': started,
+                                       'finished_monotonic': time.monotonic()}
+        self.save(label + '-session-observation.json', (json.dumps(shot, indent=2) + '\n').encode())
         if not any(label.endswith('-' + name) for name in ('home', END)):
             return shot
         context = {'environment': self.environment()}
@@ -48,8 +87,10 @@ class SessionRecorder(EvidenceRecorder):
         out, _ = command('pid', ['pidof', runner.PACKAGE])
         self.proof.live_pids(self.proof.artifact(self.folder, shot['artifacts']['pid_final']).decode(), out.decode())
         out, _ = command('foreground', ['dumpsys', 'activity', 'activities'])
-        if not runner.resumed(out.decode(), owner):
-            raise runner.JourneyError('Session endpoint lost its foreground owner')
+        if (not runner.resumed(out.decode(), owner)
+                or component(out, self.proof) != component(
+                    self.proof.artifact(self.folder, shot['artifacts']['foreground']), self.proof)):
+            raise runner.JourneyError('Session endpoint lost its captured foreground component')
         shot['session_identity'] = context
         self.save(label + '-session-identity.json', (json.dumps(context, indent=2) + '\n').encode())
         return shot
@@ -59,6 +100,8 @@ def checked_identity(folder, run, shot, proof):
     identity = shot['session_identity']
     if identity['environment'] != run['environment']:
         raise runner.JourneyError('Session endpoint environment changed')
+    capture_finish = observation_window(shot)[1]
+    windows = []
     def read(name, argv):
         item = identity[name]
         if item['argv'] != ['shell', shlex.join(argv)]:
@@ -66,6 +109,12 @@ def checked_identity(folder, run, shot, proof):
         for record in (item['stdout'], item['stderr']):
             if not record['path'].startswith(run['label'] + '-'):
                 raise runner.JourneyError('Cross-run identity evidence')
+        window = command_window(item)
+        if window[0] < capture_finish:
+            raise runner.JourneyError('Session endpoint command precedes its captured observation')
+        if windows and windows[-1][1] > window[0]:
+            raise runner.JourneyError('Session endpoint commands are out of order')
+        windows.append(window)
         return runner.evidence_command(folder, item, proof)
     out, err = read('package_path', ['pm', 'path', runner.PACKAGE])
     path = proof.installed_path(0, out.decode(), err.decode())
@@ -79,16 +128,22 @@ def checked_identity(folder, run, shot, proof):
     out, err = read('foreground', ['dumpsys', 'activity', 'activities'])
     if err.strip() or not runner.resumed(out.decode(), runner.PACKAGE):
         raise runner.JourneyError('Session endpoint is no longer foreground')
+    if component(out, proof) != component(proof.artifact(folder, shot['artifacts']['foreground']), proof):
+        raise runner.JourneyError('Session endpoint differs from its captured foreground component')
     if shot['name'] == 'home' and not home_foreground(out, proof):
         raise runner.JourneyError('Session did not start in the observed home activity')
+    if shot['name'] == END and component(out, proof) != runner.PACKAGE + '/' + EDITOR_CLASS:
+        raise runner.JourneyError('Session did not end in the observed editor activity')
+    return windows[0][0], windows[-1][1]
 
 
-def checked_transition(folder, run, prior, transition, step, anchor, prior_state, proof):
+def checked_transition(folder, run, prior, transition, step, anchor, prior_state, proof, earliest):
     name, owner, required, action = step
     before = transition['before']
     if before['owner'] != prior['owner'] or any(
             not record['path'].startswith(run['label'] + '-') for record in before['artifacts'].values()):
         raise runner.JourneyError('Wrong transition owner or cross-run artifacts')
+    before_window = observation_window(before)
     if runner.validate_snapshot(folder, before, proof)[0] != prior_state[0]:
         raise runner.JourneyError('UI changed before the scoped input')
     proof.live_pids(anchor, proof.artifact(folder, before['artifacts']['pid_final']).decode())
@@ -115,11 +170,20 @@ def checked_transition(folder, run, prior, transition, step, anchor, prior_state
         prior_state[1], prior_state[2]))]
     if transition['to'] != name or transition['action'] != action or transition['command']['argv'] != ['shell', shlex.join(expected)]:
         raise runner.JourneyError('Scoped input command does not match its observed target')
+    start, finish = command_window(transition['command'])
+    if start - age < earliest:
+        raise runner.JourneyError('Session input acquisition precedes the previous boundary or input')
+    if (before_window[0] < max(earliest, observation_window(prior)[1])
+            or not before_window[1] <= start
+            or not 0 <= start - before_window[0] <= runner.MAX_PRECONDITION_AGE):
+        raise runner.JourneyError('Session pre-input capture timing is stale or out of order')
     runner.evidence_command(folder, transition['command'], proof, clean=True)
+    return finish
 
 
 def compare_session(folder: Path, report: dict, plan: list, proof) -> dict:
-    result = {'schema': 2, 'status': 'REJECTED', 'editor_session_equal': False,
+    result = {'schema': 4, 'status': 'REJECTED', 'editor_session_equal': False,
+              'evidence_policy': 'Ordered captures, inputs and endpoints, paired foreground components and the retained external session evidence ledger',
               'scope': 'Observed home through empty-editor catalog navigation, AFTER onboarding only',
               'scope_start': 'home', 'scope_end': END, 'startup_parity_established': False,
               'full_runtime_1_to_1_established': False, 'masks_used': False,
@@ -144,19 +208,24 @@ def compare_session(folder: Path, report: dict, plan: list, proof) -> dict:
                 or env['ro.kernel.qemu'] != '1' or env['ro.build.version.sdk'] != '35'
                 or 'arm64-v8a' not in env['ro.product.cpu.abilist'].split(',')):
             raise runner.JourneyError('Unsupported or unequal environments')
-        states = []
+        states, foregrounds = [], []
         for run in runs:
             if run['status'] != 'COMPLETE' or run['environment_after'] != env:
                 raise runner.JourneyError('Incomplete run or changed environment')
             if [s['name'] for s in run['screens']] != names or len(run['transitions']) != len(plan) - 1:
                 raise runner.JourneyError('Incomplete or reordered capture sequence')
-            for shot in (run['screens'][start], run['screens'][-1]):
-                checked_identity(folder, run, shot, proof)
+        # Retain the published path-and-inode ledger and its exact role sets.
+        # Register distinct observations before inspecting their chronology.
+        result['evidence_identity_check'] = verify_session_evidence(folder, runs, start, proof)
+        for run in runs:
+            initial_window = checked_identity(folder, run, run['screens'][start], proof)
+            final_window = checked_identity(folder, run, run['screens'][-1], proof)
             home = run['screens'][start]
             if not home_foreground(proof.artifact(folder, home['artifacts']['foreground']), proof):
                 raise runner.JourneyError('Home foreground is not the observed landing activity')
             anchor = proof.artifact(folder, home['artifacts']['pid_first']).decode()
-            series, seen = [], set()
+            series, series_components = [], []
+            previous_finish = initial_window[1]
             for index in range(start, len(plan)):
                 shot, step = run['screens'][index], plan[index]
                 if shot['owner'] != runner.PACKAGE or step[1] != runner.PACKAGE:
@@ -164,25 +233,30 @@ def compare_session(folder: Path, report: dict, plan: list, proof) -> dict:
                 if any(not r['path'].startswith(run['label'] + '-') for r in shot['artifacts'].values()):
                     raise runner.JourneyError('Cross-run editor artifacts')
                 state = runner.validate_snapshot(folder, shot, proof)
+                capture_window = observation_window(shot)
                 runner.select(runner.tree(proof.artifact(folder, shot['artifacts']['hierarchy']), shot['owner']), shot['owner'], step[2])
                 proof.live_pids(anchor, proof.artifact(folder, shot['artifacts']['pid_final']).decode())
-                for key in ('screenshot', 'hierarchy'):
-                    path = runner.artifact_path(folder, shot['artifacts'][key], proof)
-                    if path in seen:
-                        raise runner.JourneyError('Repeated snapshot path in editor session')
-                    seen.add(path)
                 if index > start:
-                    checked_transition(folder, run, run['screens'][index - 1], run['transitions'][index - 1],
-                                       step, anchor, series[-1], proof)
+                    previous_finish = checked_transition(
+                        folder, run, run['screens'][index - 1], run['transitions'][index - 1],
+                        step, anchor, series[-1], proof, previous_finish)
+                    if capture_window[0] < previous_finish:
+                        raise runner.JourneyError('Session result capture began before its input finished')
                 series.append(state)
+                series_components.append(component(proof.artifact(folder, shot['artifacts']['foreground']), proof))
+            if final_window[0] < previous_finish:
+                raise runner.JourneyError('Final session identity precedes the final input')
             states.append(series)
-        result['evidence_identity_check'] = verify_session_evidence(folder, runs, start, proof)
-        for step, left, right in zip(plan[start:], *states):
+            foregrounds.append(series_components)
+        for step, left, right, left_component, right_component in zip(plan[start:], *states, *foregrounds):
             same_size = left[1:3] == right[1:3]
             changes = sum(left[3][i:i+4] != right[3][i:i+4] for i in range(0, len(left[3]), 4)) if same_size else None
-            result['screens'].append({'name': step[0], 'equal': left == right, 'changed_pixels': changes,
+            same_component = left_component == right_component
+            result['screens'].append({'name': step[0], 'equal': left == right and same_component, 'changed_pixels': changes,
                                       'hierarchy_equal': left[0] == right[0], 'same_size': same_size,
-                                      'color_metadata_equal': left[4] == right[4]})
+                                      'color_metadata_equal': left[4] == right[4],
+                                      'foreground_component_equal': same_component,
+                                      'foreground_components': {'original': left_component, 'candidate': right_component}})
         result['editor_session_equal'] = all(s['equal'] for s in result['screens'])
         result['status'] = 'EXACT_POST_ONBOARDING_EDITOR_MATCH_ONLY' if result['editor_session_equal'] else 'EDITOR_SESSION_DIFFERENCE'
         result['apk_sha256'] = [r['apk_sha256'] for r in runs]

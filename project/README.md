@@ -5,10 +5,20 @@ Android replacement or the publisher's original source project.**
 
 The uploaded APK is the comparison target, package `com.arlosoft.macrodroid`, version
 code `896700008`. Eight main DEX files plus one embedded DEX build from editable smali;
-1,237 selected method bodies across 602 classes in the hybrid are compiled from Java.
+1,242 selected method bodies across 605 classes in the hybrid are compiled from Java.
 The manifest and resources rebuild from source. Original native libraries and opaque
 assets remain binary dependencies. The original APK and application DEX files are
 not build inputs. A selected original-instruction fixture is used only by tests.
+
+## Current candidate and evidence
+
+This combined candidate adds plugin upload and Widget update bodies to the prior
+1,240-method source. Its complete configured acceptance passed on 12 October 2026:
+all 16 gates, 193,489 three-path cases across 1,242 methods, 273 Python tests, all 78
+UI faults with exact positive restoration, and the signed source-edit experiment.
+The [closed proof](../work-in-progress/combined-recovery/05-full-acceptance/result.json) binds the exact source and signed APK.
+Android observations for this new combined APK remain pending. See
+`RECONSTRUCTION_STATUS.md` and `COMBINED_RECOVERY.md` for measured scopes.
 
 ## Extract and build
 
@@ -66,8 +76,9 @@ it is not the complete release acceptance configuration.
 ## Editing
 
 Recovered text, core, environment, engine and UI implementations are under `source/java/`.
-The new drag-event, sound/SMS validation and scene-state methods are under
-`source/java/recovered/ui/`; dispatcher helpers remain under `source/java/recovered/engine/`. `source/java-method-map.json` maps compiled helper
+Touch events, selection validation, scene state/dispatch, plugin lookup/upload and
+Widget update bodies are under `source/java/recovered/ui/`; dispatcher helpers remain
+under `source/java/recovered/engine/`. `source/java-method-map.json` maps compiled helper
 bodies back into the original class structures. Only registered bodies are
 transplanted; test-support classes and helper classes never ship in the APK.
 
@@ -83,8 +94,8 @@ preserved baseline smali also require intentional review of the original compari
 inventory; do not delete checks merely to make them green.
 
 `UI_RECOVERY.md`, `ENGINE_RECOVERY.md`, `CORE_RECOVERY.md` and `ENVIRONMENT_RECOVERY.md` explain the
-method mappings and boundaries. The final `QUALITY_REPORT.md` distinguishes measured
-results from unresolved gates. Historical reports are not current acceptance.
+method mappings and boundaries. `RECONSTRUCTION_STATUS.md` distinguishes current measured results from unresolved
+gates. `QUALITY_REPORT.md` and older reports retain their historical scope.
 
 ## Signing and runtime limitations
 
@@ -94,12 +105,13 @@ as publisher authenticity. Certificate-dependent updates, permissions, integrati
 accounts, purchases and remote services may behave differently. No licensing,
 authentication, payment or integrity bypass is introduced.
 
-The historical local environment lacked ADB/emulator execution. A later hosted run
-installed and cold-launched both APKs with complete captures; exact comparison
-reported 75 differing pixels in Android's signal-strength icon. Actual macro execution,
-permissions, accessibility, background work, persistence/reboot, native loading and
-performance have not been verified by that capture.
-The host interpreter is not ART, and host test doubles are not Android services.
+The historical Android runs retain their exact source/APK identities. The prior
+9108 candidate's ten-screen observation completed and retained a 26-pixel indicator
+difference on the second intro page; all ten XML pairs matched. Both APKs also
+encountered the supplied promotion-listener exception. The isolated Widget APK
+passed a separate eight-case ART method probe. Those results do not execute this
+new combined APK or establish full macro, service, persistence or device behavior.
+The host interpreter and controlled dependencies have their own explicit scope.
 
 `android_acceptance.py` is a separate explicit cold-launch recorder for a disposable ARM64
 device. It requires an explicit serial and consent to removal of this package's data;
