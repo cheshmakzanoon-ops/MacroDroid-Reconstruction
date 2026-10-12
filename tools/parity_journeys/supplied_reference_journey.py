@@ -24,8 +24,13 @@ def load_plan():
     expected = copy.deepcopy(baseline)
     expected.insert(5, ['reference-promotion', runner.PACKAGE, {'text': 'LITEAPKS'}, runner.DENY])
     expected[6][3] = {'text': 'CLOSE'}
+    # The first + tap is consumed by the shared first-use tip (sflpi).
+    expected.insert(8, ['trigger-favourites-tip', runner.PACKAGE,
+                        {'text': 'Favourite Triggers'}, runner.TRIGGER])
+    expected.insert(9, ['editor-after-favourites-tip', runner.PACKAGE, runner.TRIGGER,
+                        {'resource-id': 'android:id/button1'}])
     if plan != expected:
-        raise runner.JourneyError('Reference plan differs from the reviewed close-only sequence')
+        raise runner.JourneyError('Reference plan differs from the reviewed promotion/tip sequence')
     return plan
 
 
