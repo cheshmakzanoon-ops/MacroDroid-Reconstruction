@@ -22,6 +22,31 @@ ART probe. The separately reviewed
 has ten exact scoped still pairs while preserving the recorded startup crashes
 and restarts. These measured outcomes retain their separate acceptance scopes.
 
+## Latest trigger-navigation observations
+
+The [twelve-screen trigger-catalog comparison](docs/verification/android-trigger-category-6331410/)
+completed both runs with the exact active APK and reference APK at animation
+scale zero. All UI hierarchy pairs and eleven complete screenshot pairs match;
+the second introduction screen retains a five-pixel difference. That run remains
+a failed exact comparison.
+
+The [thirteen-screen Day/Time observation](docs/verification/android-day-time-trigger-e610d98/analysis/)
+then recorded five matching paired screens before the original run failed at the
+notification-result boundary with an absent main PID. The candidate completed
+all thirteen screens and reached an exact-alarm permission explanation. That
+candidate-only terminal observation does not establish a paired match or a
+configured trigger.
+
+The [corrected notification-readiness guard](work-in-progress/notification-readiness/01-corrected-host-guard/)
+preserves both initial counterexamples and their corrections. Its 21 focused
+tests pass, and its exact historical replays preserve both device outcomes above.
+The [separate thirteen-screen readiness workflow](work-in-progress/notification-readiness-workflow/01-thirteen-screen/)
+also passed all 166 packaged journey tests, six downloader tests, ten animation
+tests, and 55 actual offline commands with their required outcomes. It adds a
+bounded read-only process/foreground phase before the existing full-frame
+capture. Its fresh Android result must be assessed separately; no historical
+difference, crash, or incomplete run is converted into a pass.
+
 ## Get the working source
 
 Clone this repository, install Python 3.11 or newer, then run:
