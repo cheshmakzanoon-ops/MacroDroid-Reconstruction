@@ -2,7 +2,7 @@
 
 The named GitHub repository is **public**. The connected GitHub API can write text and Git objects, but the session's local git cannot reach github.com (DNS resolution fails), and the connector cannot directly ingest a local 225 MB ZIP or an 81,000-file tree.
 
-**Pushed:** repository index, release inventory/checksums, quality and delivery reports, importer, safeguards and provenance.
+**Pushed:** repository index, four exact Java recovered-source samples, release inventory/checksums, quality and delivery reports, importer, safeguards and provenance.
 
 **Not pushed:** the complete v9 executable sources (71,267 smali class files; 1,237 Java-migrated methods among the project), Android assets, native libraries, original and rebuilt APKs, third-party build tool binaries, development signing keystore, unreviewed historic raw dumps. They remain in the conversation's v9 download artifacts, not GitHub. Any claim that the full source has been pushed would be inaccurate.
 

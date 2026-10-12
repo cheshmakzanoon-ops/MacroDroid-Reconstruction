@@ -1,0 +1,79 @@
+{
+  "pass": true,
+  "version": 8,
+  "time_utc": "2026-10-11T00:19:22.428260+00:00",
+  "scope": "Actual closed-archive integrity and independent source-build/static/bounded-host evidence, NOT whole-app Android parity",
+  "archives": [
+    {
+      "archive": "MacroDroid_v8_Source.zip",
+      "bytes": 220413966,
+      "sha256": "389a84091a0af5d46db61d1fb761ec89307acd301af635a070262d82930e754b",
+      "entries": 81785,
+      "uncompressed_bytes": 876180162,
+      "closed_central_directory": true,
+      "second_complete_member_crc_and_sha256_read": true
+    },
+    {
+      "archive": "MacroDroid_v8_Toolchain.zip",
+      "bytes": 103380748,
+      "sha256": "99572f5464600050ecdfb2ae72659f6baf873a3132adf52c074361baea86d98c",
+      "entries": 14,
+      "uncompressed_bytes": 122067246,
+      "closed_central_directory": true,
+      "second_complete_member_crc_and_sha256_read": true
+    }
+  ],
+  "total_unique_archive_entries": 81799,
+  "clean_tested_input_files_verified_in_final_archives": 79251,
+  "clean_tested_input_snapshot_sha256": "6fe077dcb64a21abd82fb92f3633941235675cf5ecc0c29c86980f5534d42d1a",
+  "missing_pinned_inputs": [],
+  "changed_pinned_inputs": [],
+  "application_shaped_archive_files": [
+    "tests/fixtures/original-methods.dex",
+    "tools/framework-res.apk"
+  ],
+  "original_instruction_fixture_is_test_only": true,
+  "framework_apk_is_resource_compiler_dependency": true,
+  "opaque_payload_entries": 2334,
+  "opaque_payload_contains_no_dex": true,
+  "clean_build_reproduced_both_working_apks": true,
+  "freshly_assembled_clean_baseline_partitions": 9,
+  "apks": {
+    "baseline": {
+      "file": "MacroDroid_v8_Baseline.apk",
+      "bytes": 94677674,
+      "sha256": "aa8ad3013ad211c8a39d083943b0a671d75e0bbbedccc924ea0093c590c9a096",
+      "copied_from_clean_build": true,
+      "android_runtime_executed": false,
+      "zip_integrity_checked_again": true
+    },
+    "hybrid": {
+      "file": "MacroDroid_v8_Hybrid.apk",
+      "bytes": 94682893,
+      "sha256": "ae03a70edcf35c3c2b4f7c8a3b10594a75cb5e16893fd25d262a1e7e6d6e86e8",
+      "copied_from_clean_build": true,
+      "android_runtime_executed": false,
+      "zip_integrity_checked_again": true
+    }
+  },
+  "python_tests_passed": 106,
+  "primitive_opcode_cases": 6603,
+  "positive_three_way_cases": 170315,
+  "suite_cases": {
+    "legacy": 95262,
+    "core": 34753,
+    "environment": 30684,
+    "engine": 9616
+  },
+  "java_migrated_methods": 1232,
+  "java_migrated_classes": 599,
+  "deliberate_host_faults_rejected": 10,
+  "signed_source_edit_probe_passed": true,
+  "fresh_original_source_comparison_passed": true,
+  "all_fourteen_clean_acceptance_commands_exited_zero": true,
+  "final_packaging_only_updates_non_build_documentation_and_evidence": true,
+  "android_runtime_executed": false,
+  "full_runtime_1_to_1_established": false,
+  "complete_high_level_java_kotlin_source": false,
+  "publisher_signing_key_recovered": false
+}

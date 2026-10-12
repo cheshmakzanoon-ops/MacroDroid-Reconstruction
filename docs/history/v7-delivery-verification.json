@@ -1,0 +1,241 @@
+{
+  "pass": true,
+  "time_utc": "2026-10-10T16:14:41.462782+00:00",
+  "version": 7,
+  "scope": "Artifact integrity and completed clean source build/static/bounded host tests; not Android runtime equivalence",
+  "archives": [
+    {
+      "archive": "MacroDroid_v7_Source.zip",
+      "bytes": 193153697,
+      "sha256": "dea84e161b6b88d6a8ac5d71eed793bbebb34a2481f39aa115aecbc59ba6e7e5",
+      "entries": 81538,
+      "uncompressed_bytes": 787851287,
+      "closed_central_directory": true,
+      "all_members_crc_and_sha256_checked": true,
+      "second_complete_member_crc_read": true,
+      "pinned_inputs_checked_against_clean_tested_manifest": true
+    },
+    {
+      "archive": "MacroDroid_v7_Toolchain.zip",
+      "bytes": 103380748,
+      "sha256": "edf9eadaf50db6a57e34b468f68003fa2f2caeec415118bfa1f6d6601d3633f2",
+      "entries": 14,
+      "uncompressed_bytes": 122067246,
+      "closed_central_directory": true,
+      "all_members_crc_and_sha256_checked": true,
+      "second_complete_member_crc_read": true,
+      "pinned_inputs_checked_against_clean_tested_manifest": true
+    }
+  ],
+  "total_unique_archive_entries": 81552,
+  "clean_tested_input_files_verified_in_final_archives": 79193,
+  "clean_tested_input_snapshot_sha256": "09a7c8322b43c5b6537bc4a2b4393f3730863c500b1101a3fcad6a393b35ddd5",
+  "missing_pinned_inputs": [],
+  "changed_pinned_inputs": [],
+  "final_non_build_documentation_and_evidence_updated": true,
+  "clean_build_reproduced_both_working_apks": true,
+  "freshly_assembled_clean_baseline_partitions": 9,
+  "apks": {
+    "baseline": {
+      "file": "MacroDroid_v7_Baseline.apk",
+      "bytes": 94677674,
+      "sha256": "aa8ad3013ad211c8a39d083943b0a671d75e0bbbedccc924ea0093c590c9a096",
+      "copied_from_clean_build": true,
+      "android_runtime_executed": false
+    },
+    "hybrid": {
+      "file": "MacroDroid_v7_Hybrid.apk",
+      "bytes": 94682288,
+      "sha256": "460340b04ee7ef05ddb9f11898d2d13f055ce951662ee97631213283754ba9ec",
+      "copied_from_clean_build": true,
+      "android_runtime_executed": false
+    }
+  },
+  "positive_three_way_cases": 160699,
+  "python_tests_passed": 85,
+  "opcode_conformance_cases": 2458,
+  "new_environment_cases": 30684,
+  "new_environment_expected_checks": 15536,
+  "java_migrated_methods": 1220,
+  "java_migrated_classes": 596,
+  "new_environment_negative_controls": {
+    "pass": true,
+    "controls": [
+      {
+        "mutation": "invalid-integer-default",
+        "pass": true,
+        "failedCases": 190,
+        "unsupportedExecutions": 0,
+        "exitCode": 1,
+        "sourceUnchanged": true,
+        "apkUnchanged": true
+      },
+      {
+        "mutation": "hotspot-api-29-boundary",
+        "pass": true,
+        "failedCases": 160,
+        "unsupportedExecutions": 0,
+        "exitCode": 1,
+        "sourceUnchanged": true,
+        "apkUnchanged": true
+      },
+      {
+        "mutation": "sunrise-widened-catch",
+        "pass": true,
+        "failedCases": 192,
+        "unsupportedExecutions": 0,
+        "exitCode": 1,
+        "sourceUnchanged": true,
+        "apkUnchanged": true
+      }
+    ],
+    "positiveRestorationPassed": true,
+    "positiveCases": 30684,
+    "apkSha256": "460340b04ee7ef05ddb9f11898d2d13f055ce951662ee97631213283754ba9ec",
+    "androidRuntime": false
+  },
+  "retained_core_negative_controls": {
+    "pass": true,
+    "controls": [
+      {
+        "mutation": "macro-all-disabled",
+        "pass": true,
+        "failedCases": 104,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceUnchanged": true,
+        "apkUnchanged": true
+      },
+      {
+        "mutation": "light-equality",
+        "pass": true,
+        "failedCases": 53,
+        "unsupportedExecutions": 0,
+        "exitCode": 2,
+        "sourceUnchanged": true,
+        "apkUnchanged": true
+      }
+    ],
+    "positiveRestorationPassed": true,
+    "androidRuntime": false
+  },
+  "retained_text_negative_control": {
+    "pass": true,
+    "mutation": "LowerCaseManipulation.apply: toLowerCase -> toUpperCase",
+    "exit_code": 2,
+    "failed_vectors": 1110,
+    "source_and_apk_mutated": false,
+    "source_sha256_unchanged": "20dea426400041098295dee694a3a6b14ba5fde6c75aaa319009ccb4dd8fea84"
+  },
+  "fresh_original_source_audit": {
+    "original_sha256": "84333011a4803b296ebe030564a549495de61b76c51263488aa46af594351800",
+    "original_is_build_input": false,
+    "android_runtime_executed": false,
+    "classes_compared": 71267,
+    "method_definitions_compared": 349972,
+    "partitions": [
+      {
+        "name": "embedded_audience",
+        "original_dex_sha256": "215dbef81a8373f008ab324db1d90458ccd44273b3621c331fa1f42374b6a70a",
+        "classes": 3605,
+        "expected_classes": 3605
+      },
+      {
+        "name": "classes",
+        "original_dex_sha256": "2d091500fd399d5afb3a29131037558451b72729a5dfe5f32ba3d85c40d18111",
+        "classes": 10037,
+        "expected_classes": 10037
+      },
+      {
+        "name": "classes2",
+        "original_dex_sha256": "21d2ac9baa3f429494760ec77e492bfdcd5cd844f413f4291c5d383c2a9e9cbb",
+        "classes": 611,
+        "expected_classes": 611
+      },
+      {
+        "name": "classes3",
+        "original_dex_sha256": "31d090fd8084e00b1ba2f6414d5dbc61d672c0aa0589bc52e1eef671c7690804",
+        "classes": 9842,
+        "expected_classes": 9842
+      },
+      {
+        "name": "classes4",
+        "original_dex_sha256": "0703cf3c0e7e9dab591d63aef46a52c52dfc8b8994f212fae4f768b23c524911",
+        "classes": 12678,
+        "expected_classes": 12678
+      },
+      {
+        "name": "classes5",
+        "original_dex_sha256": "9d84a5ae13d2e5c4fc53de8adc986145d9adfb12183713a1a4515f36eb46a27b",
+        "classes": 13631,
+        "expected_classes": 13631
+      },
+      {
+        "name": "classes6",
+        "original_dex_sha256": "38c7669ae6716ea973a2dddbb8bfb3ceff138f44285b5e6a589ce78be2a636c5",
+        "classes": 14151,
+        "expected_classes": 14151
+      },
+      {
+        "name": "classes7",
+        "original_dex_sha256": "7f5ec677b9ea2d36eff551d7126408072b7ea5b9a37d690f976cc03f9024c46c",
+        "classes": 6664,
+        "expected_classes": 6664
+      },
+      {
+        "name": "classes8",
+        "original_dex_sha256": "361c9d4f6d770008b6385ff588f7ff9818f54fe17b2e3d64a7cdf19e7ca5aefb",
+        "classes": 48,
+        "expected_classes": 48
+      }
+    ],
+    "changed_classes": [],
+    "missing_classes": [],
+    "extra_classes": [],
+    "duplicate_classes": [],
+    "source_index_hash_mismatches": [],
+    "resource_files_compared": 7212,
+    "resource_byte_changes": [],
+    "missing_resource_files": [],
+    "extra_resource_files": [],
+    "resource_ids_compared": 23854,
+    "resource_ids_identical": true,
+    "resource_visibility_identical": true,
+    "opaque_payload_changes": [],
+    "non_signature_entries": 9243,
+    "missing_payload_entries": [],
+    "extra_payload_entries": [],
+    "changed_zip_compression": [],
+    "pass": true
+  },
+  "android_runtime_executed": false,
+  "full_runtime_1_to_1_established": false,
+  "complete_high_level_java_kotlin_source": false,
+  "publisher_signing_key_recovered": false,
+  "deduplicated_identical_report_files": [
+    {
+      "omitted_duplicate": "reports/clean-export-v7/hybrid-resource-table.txt",
+      "identical_retained_file": "reports/hybrid-resource-table.txt",
+      "bytes": 17999325,
+      "sha256": "dc3f4de623cc61a44982a6c44816b8403044fe20c23bb378a32fb5a396f654b8"
+    },
+    {
+      "omitted_duplicate": "reports/clean-export-v7/baseline-resource-table.txt",
+      "identical_retained_file": "reports/baseline-resource-table.txt",
+      "bytes": 17999327,
+      "sha256": "ae5e047859ab57cbff3d7b79da2568e92b1e953fd26640df0a8a221012cb2b08"
+    },
+    {
+      "omitted_duplicate": "reports/clean-export-v7/resource-linked-table.txt",
+      "identical_retained_file": "reports/resource-linked-table.txt",
+      "bytes": 18219595,
+      "sha256": "b8efff5c7b06573bdd8d4dcbdea1a815a2bbadff3cade1a6935f1c9b9d35a8fd"
+    },
+    {
+      "omitted_duplicate": "reports/clean-export-v7/release-input-snapshot.json",
+      "identical_retained_file": "reports/release-input-snapshot.json",
+      "bytes": 14082201,
+      "sha256": "4239a1bc364fec69bfeac49a47ff314a6c5e4f7db4c23b726790a97a126c0524"
+    }
+  ]
+}
