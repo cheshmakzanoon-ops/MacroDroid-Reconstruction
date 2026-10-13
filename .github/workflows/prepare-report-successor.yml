@@ -1,0 +1,127 @@
+name: Prepare report source successor
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/prepare-report-successor.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          sparse-checkout-cone-mode: true
+          sparse-checkout: |
+            tools/day_trigger_acceptance
+            tools/recovery_resume
+            .github/workflows
+            work-in-progress/day-trigger-lookup/08-numeric-filesystem-merge
+            work-in-progress/day-trigger-lookup/14-ui-report-null-preservation
+      - name: Derive only the five reviewed tooling replacements
+        run: python3 -B tools/recovery_resume/prepare_report_successor.py --repository . --output successor-evidence
+      - name: Run every existing combined-tooling control without skips
+        shell: bash
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+          DAY_TRIGGER_CONTROL_EVIDENCE_ROOT: ${{ github.workspace }}/successor-evidence/host-controls
+        run: |
+          set -euo pipefail
+          timeout 300s python3 -B -m unittest discover -s tools/day_trigger_acceptance -p 'test_*.py' -v 2>&1 | tee successor-evidence/host-tests.log
+      - name: Verify replacements and upload exact source and evidence blobs without moving a branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 -B - <<'PY'
+          import base64, hashlib, json, os, subprocess, time, urllib.error, urllib.request, zipfile
+          from pathlib import Path
+          repository = 'cheshmakzanoon-ops/MacroDroid-Reconstruction'
+          if os.environ['GITHUB_REPOSITORY'] != repository or os.environ['GITHUB_REF'] != 'refs/heads/main':
+              raise SystemExit('Unexpected publication repository or branch')
+          evidence = Path('successor-evidence')
+          receipt = json.loads((evidence / 'source-change-receipt.json').read_text())
+          expected = {row['path'] for row in receipt['changed_tooling_files']}
+          actual = set(subprocess.check_output(['git', 'diff', '--name-only']).decode().splitlines())
+          if len(expected) != 5 or actual != expected:
+              raise SystemExit('Unreviewed tracked changes')
+          def identity(data):
+              return {'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
+          sources = {}
+          for row in receipt['changed_tooling_files']:
+              path = Path(row['path'])
+              before = subprocess.check_output(['git', 'show', 'HEAD:' + row['path']])
+              if identity(before) != row['before'] or identity(path.read_bytes()) != row['after']:
+                  raise SystemExit('Source replacement bytes differ')
+              sources[row['path']] = path.read_bytes()
+          # Store the complete raw test evidence as data; never execute an artifact.
+          archive = Path('successor-host-evidence.zip')
+          members = []
+          with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+              for path in sorted(evidence.rglob('*')):
+                  if path.is_symlink():
+                      raise SystemExit('Symlink in evidence')
+                  if path.is_file():
+                      data = path.read_bytes()
+                      name = path.relative_to(evidence).as_posix()
+                      z.writestr(name, data)
+                      members.append({'path': name, **identity(data)})
+          with zipfile.ZipFile(archive) as z:
+              if z.testzip() is not None:
+                  raise SystemExit('Evidence archive CRC mismatch')
+          prefix = 'docs/verification/report-source-resume-20261013/'
+          sources[prefix + 'host-evidence.zip'] = archive.read_bytes()
+          sources[prefix + 'source-change-receipt.json'] = (evidence / 'source-change-receipt.json').read_bytes()
+          sources[prefix + 'host-tests.log'] = (evidence / 'host-tests.log').read_bytes()
+          manifest = {'schema': 1, 'run_id': int(os.environ['GITHUB_RUN_ID']), 'base_commit': os.environ['GITHUB_SHA'],
+                      'archive': identity(archive.read_bytes()), 'members': members,
+                      'full_application_acceptance_executed': False, 'full_runtime_1_to_1_established': False}
+          sources[prefix + 'manifest.json'] = (json.dumps(manifest, indent=2) + '\n').encode()
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, *args, **kwargs): return None
+          opener = urllib.request.build_opener(NoRedirect())
+          elements = []
+          for name, data in sources.items():
+              if len(data) > 90 * 1024 * 1024:
+                  raise SystemExit('Git blob size bound exceeded')
+              payload = json.dumps({'content': base64.b64encode(data).decode(), 'encoding': 'base64'}).encode()
+              request = urllib.request.Request('https://api.github.com/repos/' + repository + '/git/blobs', data=payload,
+                  headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json',
+                           'Content-Type': 'application/json', 'X-GitHub-Api-Version': '2022-11-28'})
+              for attempt in range(3):
+                  try:
+                      with opener.open(request, timeout=120) as response:
+                          blob = json.load(response)
+                      break
+                  except urllib.error.HTTPError as error:
+                      if error.code not in (500, 502, 503, 504) or attempt == 2: raise
+                      time.sleep(2 ** attempt)
+              oid = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+              if blob['sha'] != oid:
+                  raise SystemExit('Returned Git blob identity differs')
+              elements.append({'path': name, 'mode': '100644', 'type': 'blob', 'sha': oid, **identity(data)})
+          result = {'schema': 1, 'base_commit': os.environ['GITHUB_SHA'], 'run_id': int(os.environ['GITHUB_RUN_ID']),
+                    'status': 'TESTED_GIT_OBJECTS_READY_NOT_COMMITTED', 'tree_elements': elements}
+          Path('publication.json').write_text(json.dumps(result, indent=2) + '\n')
+          print(json.dumps(result, indent=2))
+          PY
+      - name: Retain literal results even when preparation or tests fail
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: report-source-successor-${{ github.sha }}
+          if-no-files-found: error
+          retention-days: 30
+          path: |
+            publication.json
+            successor-host-evidence.zip
+            successor-evidence/source-change-receipt.json
+            successor-evidence/host-tests.log
+            tools/day_trigger_acceptance/
+            .github/workflows/day-trigger-wip-acceptance.yml
