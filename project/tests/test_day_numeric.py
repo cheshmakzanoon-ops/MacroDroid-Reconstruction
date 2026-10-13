@@ -65,11 +65,11 @@ class DayNumericCatalogTests(unittest.TestCase):
     def test_exact_recovered_and_uncredited_dependency_inventory(self):
         registry = read(ROOT / 'source/java-method-map.json')
         dependencies = numeric.validate_dependencies(ROOT, registry)
-        self.assertEqual(len(registry), 1243)
+        self.assertEqual(len(registry), 1244)
         self.assertEqual(len({row['target'] for row in registry}), 605)
         self.assertEqual(dependencies, set(numeric.GETTERS))
         keys = {row['target'] + '->' + row['method'] for row in registry}
-        self.assertEqual(len(keys | dependencies), 1246)
+        self.assertEqual(len(keys | dependencies), 1247)
         self.assertFalse(keys & dependencies)
         self.assertEqual(len({key.split('->', 1)[0] for key in keys | dependencies}), 607)
 
@@ -265,7 +265,7 @@ class DayOriginalSelectorExecutionTests(unittest.TestCase):
                                    'NumericSelectionTestProbe', a, b], 30)
         if error is None:
             self.assertEqual(result.returncode, 0, result.stderr)
-            self.assertEqual(json.loads(result.stdout), {'registered': 1243, 'dependencies': 3, 'selected': 1246, 'classes': 607})
+            self.assertEqual(json.loads(result.stdout), {'registered': 1244, 'dependencies': 5, 'selected': 1249, 'classes': 607})
         else:
             self.assertNotEqual(result.returncode, 0)
             self.assertIn(error, result.stderr)

@@ -20,7 +20,7 @@ public final class DayTriggerParityCases {
         BASE + "$DecimalValue;->getDecimalValue()D");
     static final Set<String> ALL;
     static { TreeSet<String> keys = new TreeSet<>(GETTERS); keys.add(KEY); ALL = Collections.unmodifiableSet(keys); }
-    static final String DEPENDENCIES_SHA256 = "e30552cc8ba0520bbee3a993298cb0bcaa973a9d4633649e80362d35b3eda631";
+    static final String DEPENDENCIES_SHA256 = "159061ce552e3364c113f28e72e5a4c1bc091a21153d0d5e0a793d2f773b0229";
     static final String INPUT_INVENTORY_SHA256 = "e083bc1996c5c7191bffe837fc0f30e254848a4754676ba0a8a119d23e8f6e79";
     static final Gson JSON = new GsonBuilder().serializeNulls().disableHtmlEscaping().create();
     static Input current;
@@ -44,20 +44,39 @@ public final class DayTriggerParityCases {
         JsonArray rows = new JsonArray(); for (Input input : inputs) rows.add(inputIdentity(input));
         return sha(JSON.toJson(rows).getBytes(java.nio.charset.StandardCharsets.UTF_8));
     }
-    static Set<String> loadDependencies(Path root, Set<String> registeredKeys) throws Exception {
-        require(registeredKeys.contains(KEY), "Numeric primary is not registered");
+    static final String LOOKUP_KEY = "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;";
+    static final Set<String> LOOKUP_GETTERS = Set.of(
+        BASE + "$Dictionary;->getEntries()Ljava/util/List;", BASE + "$DictionaryEntry;->getKey()Ljava/lang/String;");
+    static final Map<String, String> DECLARED_GETTER_HASHES = Map.ofEntries(
+            Map.entry("Lcom/arlosoft/macrodroid/variables/VariableValue$DecimalValue;->getDecimalValue()D", "89c5a3751f7de7f7bdfaddba05f28651eb8b0b78413e4263e05c9dc795acf7ae"),
+            Map.entry("Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;->getVariable()Lcom/arlosoft/macrodroid/variables/VariableValue;", "b3674d51703eb3811fc4918e739777c37de3c580bee961343b80c21e014ca5c0"),
+            Map.entry("Lcom/arlosoft/macrodroid/variables/VariableValue$IntegerValue;->getIntValue()J", "1760568e68babc8e32459eed0352a8a20cfdbe35e02b87f2fc6dacc914399993"),
+            Map.entry("Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;->getEntries()Ljava/util/List;", "f3959381d2067a3611069ac45c01a34078ef9e718f9c4906f74bb545da48be0e"),
+            Map.entry("Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;->getKey()Ljava/lang/String;", "41c4ec0e7f0ec7f3b6638765a92670cdbae7c839b794b8f3de9ba1c2b431b1a3"));
+    static Map<String, Set<String>> validatedDependencies(Path root, Set<String> registeredKeys) throws Exception {
+        require(registeredKeys.contains(KEY) && registeredKeys.contains(LOOKUP_KEY), "Numeric or lookup primary is not registered");
         byte[] data = Files.readAllBytes(root.resolve("tests/fixtures/original-dependencies.json"));
         require(sha(data).equals(DEPENDENCIES_SHA256), "Numeric original dependency declaration changed");
         JsonObject manifest = JsonParser.parseString(new String(data, java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();
-        require(manifest.get("schema").getAsInt() == 1, "Unknown original dependency schema");
-        Set<String> selected = new TreeSet<>();
+        require(manifest.keySet().equals(Set.of("schema", "purpose", "dependencies")) && manifest.get("schema").isJsonPrimitive()
+            && manifest.getAsJsonPrimitive("schema").isNumber() && manifest.get("schema").getAsString().equals("1"), "Unknown original dependency schema");
+        Map<String, Set<String>> selected = new TreeMap<>(); selected.put(KEY, new TreeSet<>()); selected.put(LOOKUP_KEY, new TreeSet<>());
+        Set<String> all = new TreeSet<>();
         for (JsonElement item : manifest.getAsJsonArray("dependencies")) {
-            JsonObject row = item.getAsJsonObject(); String key = row.get("target").getAsString() + "->" + row.get("method").getAsString();
-            require(row.get("consumer").getAsString().equals(KEY), "Wrong numeric dependency consumer");
-            require(!registeredKeys.contains(key) && selected.add(key), "Registered or duplicate dependency");
+            JsonObject row = item.getAsJsonObject();
+            require(row.keySet().equals(Set.of("consumer", "target", "method", "original_method_sha256")), "Invalid original dependency fields");
+            String key = row.get("target").getAsString() + "->" + row.get("method").getAsString();
+            String consumer = row.get("consumer").getAsString();
+            require(selected.containsKey(consumer) && !registeredKeys.contains(key) && all.add(key), "Registered, duplicate or misbound dependency");
+            require(Objects.equals(DECLARED_GETTER_HASHES.get(key), row.get("original_method_sha256").getAsString()), "Original getter hash changed");
+            selected.get(consumer).add(key);
         }
-        require(selected.equals(GETTERS), "Exactly the three original numeric getters are required");
-        return Collections.unmodifiableSet(selected);
+        require(selected.get(KEY).equals(GETTERS) && selected.get(LOOKUP_KEY).equals(LOOKUP_GETTERS)
+            && all.equals(DECLARED_GETTER_HASHES.keySet()), "Exactly the three numeric and two lookup getters are required");
+        return Map.of(KEY, Collections.unmodifiableSet(selected.get(KEY)), LOOKUP_KEY, Collections.unmodifiableSet(selected.get(LOOKUP_KEY)));
+    }
+    static Set<String> loadDependencies(Path root, Set<String> registeredKeys) throws Exception {
+        return validatedDependencies(root, registeredKeys).get(KEY);
     }
     static Observed observe(Throwing body) {
         try {

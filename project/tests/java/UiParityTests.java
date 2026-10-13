@@ -88,11 +88,11 @@ public final class UiParityTests {
         catch(InvocationTargetException e){throw e.getCause();}
     }
     static JsonObject outcome(String key,String path,Supplier<Object[]> make,boolean serializeAgain) {
-        EngineRuntime.active=false;UiTrace.reset();CoreTrace.reset();TouchControl.reset();SceneControl.reset();SceneParityCases.current=null;PluginControl.reset();PluginParityCases.current=null;PluginUploadControl.reset();PluginUploadParityCases.current=null;WidgetControl.reset();WidgetParityCases.current=null;DayTriggerParityCases.current=null;
+        EngineRuntime.active=false;UiTrace.reset();CoreTrace.reset();TouchControl.reset();SceneControl.reset();SceneParityCases.current=null;PluginControl.reset();PluginParityCases.current=null;PluginUploadControl.reset();PluginUploadParityCases.current=null;WidgetControl.reset();WidgetParityCases.current=null;DayTriggerParityCases.current=null;DayLookupParityCases.current=null;
         Object[] args=make.get();UiTrace.calls.clear();CoreTrace.calls.clear();
         JsonObject result=new JsonObject();
         try {
-            Object value=key.equals(PluginParityCases.KEY)?PluginParityCases.execute(path,args):key.equals(PluginUploadParityCases.KEY)?PluginUploadParityCases.execute(path,args):key.equals(WidgetParityCases.KEY)?WidgetParityCases.execute(path,args):call(key,path,args); result.add("value",canonical(value));
+            Object value=key.equals(PluginParityCases.KEY)?PluginParityCases.execute(path,args):key.equals(PluginUploadParityCases.KEY)?PluginUploadParityCases.execute(path,args):key.equals(WidgetParityCases.KEY)?WidgetParityCases.execute(path,args):call(key,path,args); if(key.equals(DayLookupParityCases.KEY))DayLookupParityCases.recordReturn(value,result);else result.add("value",canonical(value));
             if(key.equals(PluginParityCases.KEY)||key.equals(PluginUploadParityCases.KEY))PluginControl.returned=value;
             if(key.equals(WidgetParityCases.KEY))WidgetControl.returned=value;
             if(value instanceof SceneTextConfig && args.length>1 && args[1] instanceof Parcel) {
@@ -111,6 +111,7 @@ public final class UiParityTests {
             if(key.equals(WidgetParityCases.KEY))WidgetControl.escaped=e;
             result.addProperty("exception",e.getClass().getName());
             if(key.equals(DayTriggerParityCases.KEY))DayTriggerParityCases.recordException(path,e,result);
+            if(key.equals(DayLookupParityCases.KEY))DayLookupParityCases.recordException(e);
             boolean supported=e instanceof NullPointerException || e instanceof ClassCastException || e instanceof IndexOutOfBoundsException || e instanceof IllegalStateException || e instanceof SecurityException || e instanceof AssertionError || e instanceof java.io.IOException || e instanceof kotlin.UninitializedPropertyAccessException || e instanceof retrofit2.HttpException || e instanceof IllegalArgumentException || e instanceof java.util.NoSuchElementException;
             if(e instanceof BytecodeOracle.Unsupported || !supported) {unsupported++;result.addProperty("unsupported",e.toString());}
         }
@@ -154,6 +155,7 @@ public final class UiParityTests {
         if(key.equals(PluginParityCases.KEY))PluginParityCases.observe(args,result);
         if(key.equals(PluginUploadParityCases.KEY))PluginUploadParityCases.observe(args,result);
         if(key.equals(WidgetParityCases.KEY))WidgetParityCases.observe(args,result);
+        if(key.equals(DayLookupParityCases.KEY))DayLookupParityCases.observeUi(path,result);
         return result;
     }
     static void check(String key,String label,Supplier<Object[]> make,Object expected) {check(key,label,make,expected,false);}
@@ -442,6 +444,7 @@ public final class UiParityTests {
         for(JsonElement element:JsonParser.parseString(Files.readString(root.resolve("source/ui-methods.json"))).getAsJsonArray()) {JsonObject entry=element.getAsJsonObject();registry.put(entry.get("target").getAsString()+"->"+entry.get("method").getAsString(),entry);}
         Set<String> fixtureKeys=new TreeSet<>(registry.keySet());
         if(registry.containsKey(DayTriggerParityCases.KEY))fixtureKeys.addAll(DayTriggerParityCases.loadDependencies(root,registry.keySet()));
+        if(registry.containsKey(DayLookupParityCases.KEY))fixtureKeys.addAll(DayLookupParityCases.loadDependencies(root,registry.keySet()));
         original=new BytecodeOracle(root.resolve("tests/fixtures/original-methods.dex"),fixtureKeys);
         if(!original.methods.keySet().equals(fixtureKeys))throw new IllegalStateException("Original UI fixture incomplete");
         if(args.length>1) {rebuilt=new BytecodeOracle();try(var stream=Files.list(Paths.get(args[1]))) {for(Path path:stream.filter(p->p.toString().endsWith(".dex")).toList())rebuilt.add(path,fixtureKeys);}if(!rebuilt.methods.keySet().equals(fixtureKeys))throw new IllegalStateException("Rebuilt UI methods or original getter dependencies incomplete");}
@@ -449,6 +452,7 @@ public final class UiParityTests {
         sound();sms();touch();parcel();blockTouches();SceneParityCases.run();PluginParityCases.run();PluginUploadParityCases.run();
         if(registry.containsKey(WidgetParityCases.KEY))WidgetParityCases.run();
         if(registry.containsKey(DayTriggerParityCases.KEY))DayTriggerParityCases.run();
+        if(registry.containsKey(DayLookupParityCases.KEY))DayLookupParityCases.run();
         JsonObject report=new JsonObject();report.addProperty("passed",mismatches==0&&unsupported==0&&counts.keySet().equals(registry.keySet()));report.addProperty("cases",cases);report.addProperty("failedCases",mismatches);report.addProperty("unsupportedExecutions",unsupported);report.addProperty("independentExpectedResultChecks",expectedChecks);report.addProperty("expectedResultFailures",expectedFailures);report.addProperty("methodsCovered",counts.size());report.add("methodKeys",G.toJsonTree(counts.keySet()));report.addProperty("paths",rebuilt==null?2:3);report.addProperty("androidRuntime",false);report.add("methods",G.toJsonTree(counts));report.add("failures",G.toJsonTree(failures));report.add("failedCaseLabels",G.toJsonTree(failedLabels));
         JsonObject coverage=new JsonObject();boolean blockBranchesCovered=false,sceneBranchesCovered=false,pluginBranchesCovered=false,uploadBranchesCovered=false,widgetBranchesCovered=!registry.containsKey(WidgetParityCases.KEY);
         for(String key:registry.keySet()) {
@@ -484,9 +488,10 @@ public final class UiParityTests {
         report.add("hostParentConstructorAdapterCalls",G.toJsonTree(original.parentConstructorAdapterCalls));
         report.add("widgetGeneratedNullMessageExclusions",G.toJsonTree(WidgetParityCases.generatedNullMessageExclusions));
         if(registry.containsKey(DayTriggerParityCases.KEY)&&!DayTriggerParityCases.addReport(report,original,rebuilt))report.addProperty("passed",false);
+        if(registry.containsKey(DayLookupParityCases.KEY)&&!DayLookupParityCases.addReport(report,original,rebuilt))report.addProperty("passed",false);
         if(!blockBranchesCovered||!sceneBranchesCovered||!pluginBranchesCovered||!uploadBranchesCovered||!widgetBranchesCovered)report.addProperty("passed",false);
         Path reportPath=System.getProperty("ui.report")==null?root.resolve("reports/java-ui-"+(rebuilt==null?"two":"three")+"-path-parity.json"):Paths.get(System.getProperty("ui.report"));
-        Files.writeString(reportPath,G.toJson(report));
+        Files.writeString(reportPath,G.newBuilder().serializeNulls().create().toJson(report));
         System.out.println("UI cases="+cases+" methods="+counts.size()+" mismatches="+mismatches+" unsupported="+unsupported+" expected="+expectedChecks);
         if(!report.get("passed").getAsBoolean())System.exit(2);
     }

@@ -108,3 +108,49 @@ def load_day_mutations(root: Path) -> list[dict]:
                      "required_cases": list(required), "catalog_sha256": DAY_CATALOG_SHA256,
                      "reason": control["reason"], "widget": False, "day_numeric": True})
     return jobs
+
+
+
+LOOKUP_CATALOG_PATH = "tests/fixtures/day-lookup-mutants.json"
+LOOKUP_CATALOG_SHA256 = "2865811594ad3a04b133e1bcbfe9d6c3e5fafbb9288d4d946aaf37777a6245e8"
+LOOKUP_HELPER_PATH = "source/java/recovered/ui/DayTriggerLookupMethods.java"
+LOOKUP_HELPER_SHA256 = "020256ed2d78740183aa9ac8d92e8c775db0d4fc647dfc12f1bea0a6881243e5"
+LOOKUP_METHOD = "Lcom/arlosoft/macrodroid/triggers/DayTrigger;->p0(Lcom/arlosoft/macrodroid/variables/VariableValue$Dictionary;Ljava/lang/String;)Lcom/arlosoft/macrodroid/variables/VariableValue$DictionaryEntry;"
+LOOKUP_INPUT_INVENTORY_SHA256 = "02dd119966191ad2f56937eda28e63644979080158465ffb13767710f34e32e6"
+
+
+def load_lookup_mutations(root: Path) -> list[dict]:
+    """Append ten lookup faults; no existing Widget or numeric job is altered."""
+    data, original = (root / LOOKUP_CATALOG_PATH).read_bytes(), (root / LOOKUP_HELPER_PATH).read_bytes()
+    if hashlib.sha256(data).hexdigest() != LOOKUP_CATALOG_SHA256:
+        raise RuntimeError("Day lookup mutation catalog differs from its frozen bytes")
+    if hashlib.sha256(original).hexdigest() != LOOKUP_HELPER_SHA256:
+        raise RuntimeError("Day lookup helper differs from its measured positive source")
+    catalog = json.loads(data)
+    if (set(catalog) != {"schema", "method", "helper_path", "helper_sha256", "input_inventory_sha256", "controls"}
+            or type(catalog.get("schema")) is not int or catalog["schema"] != 1
+            or catalog.get("method") != LOOKUP_METHOD or catalog.get("helper_path") != LOOKUP_HELPER_PATH
+            or catalog.get("helper_sha256") != LOOKUP_HELPER_SHA256
+            or catalog.get("input_inventory_sha256") != LOOKUP_INPUT_INVENTORY_SHA256):
+        raise RuntimeError("Day lookup catalog identifies another method or case inventory")
+    controls = catalog.get("controls")
+    if not isinstance(controls, list) or len(controls) != 10:
+        raise RuntimeError("Exactly ten Day lookup mutations are required")
+    jobs, names = [], set()
+    for control in controls:
+        if (not isinstance(control, dict)
+                or set(control) != {"name", "reason", "edits", "expected_failure_labels"}
+                or not isinstance(control["name"], str)
+                or re.fullmatch(r"[a-z][a-z0-9-]+", control["name"]) is None
+                or control["name"] in names or not isinstance(control["reason"], str) or not control["reason"]):
+            raise RuntimeError("Invalid or duplicate Day lookup mutation name")
+        names.add(control["name"])
+        required = control["expected_failure_labels"]
+        if (not isinstance(required, list) or not required or len(set(required)) != len(required)
+                or any(not isinstance(label, str) or not label.startswith("day-lookup:") for label in required)):
+            raise RuntimeError("Day lookup mutation must name its required observed failure")
+        jobs.append({"name": "day-lookup-" + control["name"], "classname": "DayTriggerLookupMethods",
+                     "source": root / LOOKUP_HELPER_PATH, "mutant": apply_edits(original.decode(), control["edits"]),
+                     "required_cases": list(required), "catalog_sha256": LOOKUP_CATALOG_SHA256,
+                     "reason": control["reason"], "widget": False, "day_lookup": True})
+    return jobs

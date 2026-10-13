@@ -11,6 +11,7 @@ import build
 import ui_runtime_policy
 import ui_mutation_catalog
 import day_numeric_dex_controls
+import day_lookup_dex_controls
 
 CONTROLS=[
     ('cast-before-subtract','InteractionMethods','int distance = (int) event.getY(pointer) - self.g;',
@@ -186,6 +187,9 @@ def prepared_mutations():
     jobs.extend(ui_mutation_catalog.load_day_mutations(build.ROOT))
     if len(jobs)!=91 or len({job['name'] for job in jobs})!=91:
         raise RuntimeError('All 78 existing controls and thirteen Day numeric controls are required')
+    jobs.extend(ui_mutation_catalog.load_lookup_mutations(build.ROOT))
+    if len(jobs)!=101 or len({job['name'] for job in jobs})!=101:
+        raise RuntimeError('All 91 existing controls and ten Day lookup controls are required')
     return jobs
 
 
@@ -196,7 +200,7 @@ def main()->None:
     fixture=build.ROOT/'tests/fixtures/original-methods.dex'
     pins={p:sha(p) for p in [apk,fixture,*(build.ROOT/'source/java/recovered/ui').glob('*.java'),
         build.ROOT/'test-support/java/com/arlosoft/macrodroid/variables/VariableValue.java',
-        host/day_numeric_dex_controls.HELPER_CLASS,
+        host/day_numeric_dex_controls.HELPER_CLASS, host/day_lookup_dex_controls.HELPER_CLASS,
         *(host/'com/arlosoft/macrodroid/variables').glob('VariableValue*.class')]}
     reference_path=build.REPORTS/'java-ui-three-path-parity.json'
     reference=json.loads(reference_path.read_text())
@@ -213,16 +217,25 @@ def main()->None:
             or reference.get('dayNumericInstructionAndConditionalCoverage') is not True
             or set(reference.get('dayNumericOriginalDependencyKeys',[]))!=set(day_numeric_dex_controls.GETTERS)):
         raise RuntimeError('The current numeric method and uncredited dependency coverage are required')
+    if (reference.get('dayLookupRecoveredMethods')!=1 or reference.get('dayLookupOriginalDependencyMethods')!=2
+            or reference.get('dayLookupInputInventorySha256')!=ui_mutation_catalog.LOOKUP_INPUT_INVENTORY_SHA256
+            or reference.get('dayLookupInstructionAndConditionalCoverage') is not True
+            or reference.get('dayLookupOriginalDependencyKeys')!=sorted(day_lookup_dex_controls.GETTERS)
+            or reference.get('dayLookupGeneratedNullMessageCases')!=sorted(day_lookup_dex_controls.VM_NULL_CASES)):
+        raise RuntimeError('The current lookup method, exact exception scope and uncredited dependency coverage are required')
+    day_lookup_dex_controls.validate_positive_coverage(reference.get('dayLookupOriginalCoverage',{}),26)
+    day_lookup_dex_controls.validate_positive_coverage(reference.get('dayLookupRebuiltCoverage',{}),23)
     reference_raw={k:v for k,v in reference.items() if k not in {
         'fixture_sha256','rebuilt_apk_sha256','rebuilt_dex_compared_to_apk'}}
     (build.REPORTS/'ui-negative-baseline.json').write_text(json.dumps(reference_raw,indent=2)+'\n')
     policy=ui_runtime_policy.verify(build.REPORTS)
     cp=os.pathsep.join(map(str,[build.JAR,host,build.TOOLS]))
     jobs=prepared_mutations();records=[]
-    result={'pass':False,'status':'RUNNING','controls':records,'expectedControlCount':91,
+    result={'pass':False,'status':'RUNNING','controls':records,'expectedControlCount':101,
             'positiveBaselineSha256':sha(reference_path),'androidRuntime':False,
             'widgetCatalogSha256':ui_mutation_catalog.CATALOG_SHA256,
-            'dayNumericCatalogSha256':ui_mutation_catalog.DAY_CATALOG_SHA256}
+            'dayNumericCatalogSha256':ui_mutation_catalog.DAY_CATALOG_SHA256,
+            'dayLookupCatalogSha256':ui_mutation_catalog.LOOKUP_CATALOG_SHA256}
     destination=build.REPORTS/'ui-negative-controls.json'
     def save():destination.write_text(json.dumps(result,indent=2)+'\n')
     save()
@@ -230,7 +243,10 @@ def main()->None:
         fixed=['cases','paths','methodsCovered','methodKeys','methods','instructionCoverage',
                'independentExpectedResultChecks','expectedResultFailures','unsupportedExecutions',
                'dayNumericRecoveredMethods','dayNumericOriginalDependencyMethods','dayNumericOriginalDependencyKeys',
-               'dayNumericInputInventorySha256','dayNumericOriginalCoverage']
+               'dayNumericInputInventorySha256','dayNumericOriginalCoverage',
+               'dayLookupRecoveredMethods','dayLookupOriginalDependencyMethods','dayLookupOriginalDependencyKeys',
+               'dayLookupInputInventorySha256','dayLookupOriginalCoverage','dayLookupGeneratedNullMessageCases',
+               'dayLookupObserverRecordControls']
         for job in jobs:
             name,classname=job['name'],job['classname'];required=job['required_cases']
             folder=build.WORK/'negative-ui'/name;build.remove_generated_directory(folder)
@@ -245,6 +261,8 @@ def main()->None:
                 raise RuntimeError('Widget mutation emitted another class')
             if job.get('day_numeric') and sorted(p.relative_to(classes).as_posix() for p in classes.rglob('*') if p.is_file())!=[day_numeric_dex_controls.HELPER_CLASS]:
                 raise RuntimeError('Day numeric mutation emitted another class')
+            if job.get('day_lookup') and sorted(p.relative_to(classes).as_posix() for p in classes.rglob('*') if p.is_file())!=[day_lookup_dex_controls.HELPER_CLASS]:
+                raise RuntimeError('Day lookup mutation emitted another class')
             retained=build.REPORTS/'ui-mutants'/name;retained.mkdir(parents=True,exist_ok=True)
             shutil.copyfile(java,retained/java.name);shutil.copyfile(target,retained/target.name)
             output=folder/'result.json'
@@ -281,15 +299,20 @@ def main()->None:
         good=json.loads(positive.read_text())
         if good!=reference_raw or not all(sha(p)==value for p,value in pins.items()):
             raise RuntimeError('Exact positive restoration not confirmed')
-        result.update(status='ALL_91_JAVA_FAULTS_DETECTED_EXACT_POSITIVE_RESTORED',
+        result.update(status='ALL_101_JAVA_FAULTS_DETECTED_EXACT_POSITIVE_RESTORED',
                       positiveRestorationPassed=True,positiveRestorationExactBaseline=True,
                       restorationCases=good['cases'],sourceFixtureAndApkUnchanged=True,controlsCount=len(records))
         save()
         numeric=day_numeric_dex_controls.run_controls(build.ROOT,records)
         result.update(dayNumericDexControlsPassed=numeric.get('passed') is True,
                       dayNumericDexControlsSha256=sha(build.REPORTS/'day-numeric-dex-controls.json'),
-                      status='ALL_91_JAVA_AND_TWO_NUMERIC_DEX_FAULTS_DETECTED_EXACT_POSITIVE_RESTORED')
-        result['pass']=all(row['pass'] for row in records) and len(records)==91 and numeric.get('passed') is True
+                      status='ALL_101_JAVA_AND_TWO_NUMERIC_DEX_FAULTS_DETECTED_EXACT_POSITIVE_RESTORED')
+        save()
+        lookup=day_lookup_dex_controls.run_controls(build.ROOT,records)
+        result.update(dayLookupDexControlsPassed=lookup.get('passed') is True,
+                      dayLookupDexControlsSha256=sha(build.REPORTS/'day-lookup-dex-controls.json'),
+                      status='ALL_101_JAVA_AND_FOUR_DAY_DEX_FAULTS_DETECTED_EXACT_POSITIVE_RESTORED')
+        result['pass']=all(row['pass'] for row in records) and len(records)==101 and numeric.get('passed') is True and lookup.get('passed') is True
     except BaseException as error:
         result.update(status='UI_FAULT_CONTROL_FAILED',error=repr(error),controlsCount=len(records))
         raise
