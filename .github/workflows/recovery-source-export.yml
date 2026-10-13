@@ -1,0 +1,46 @@
+name: Compact recovery source export
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/recovery-source-export.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          sparse-checkout-cone-mode: true
+          sparse-checkout: |
+            project
+            scripts
+            tools
+            .github/workflows
+            work-in-progress/day-trigger-numeric/08-command-filesystem-source-successor
+            work-in-progress/day-trigger-lookup/08-numeric-filesystem-merge
+            work-in-progress/day-trigger-lookup/09-lookup-recorder-successor
+            work-in-progress/day-trigger-lookup/14-ui-report-null-preservation
+      - name: Archive exact tracked source and object inventory, not generated caches
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir export
+          git archive --format=tar HEAD project scripts tools .github README.md .gitignore .gitattributes work-in-progress/day-trigger-numeric/08-command-filesystem-source-successor work-in-progress/day-trigger-lookup/08-numeric-filesystem-merge work-in-progress/day-trigger-lookup/09-lookup-recorder-successor work-in-progress/day-trigger-lookup/14-ui-report-null-preservation | gzip -n > export/source.tar.gz
+          git rev-parse HEAD > export/COMMIT.txt
+          git ls-tree -r HEAD > export/git-tree.txt
+          sha256sum export/source.tar.gz export/git-tree.txt > export/SHA256SUMS.txt
+          printf '%s\n' 'Source transport only; no build, method or Android parity claim. Combine with the already pinned v9 source/toolchain archives. Work-in-progress inputs remain inactive.' > export/SCOPE.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: compact-recovery-source-${{ github.sha }}
+          path: export/
+          if-no-files-found: error
+          retention-days: 30
