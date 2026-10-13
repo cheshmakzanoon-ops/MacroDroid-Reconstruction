@@ -39,10 +39,11 @@ jobs:
         run: |
           set -euo pipefail
           printf '%s\n' \
-            'ca160cb61c11de87a733274ac347ab3f1cc33976e9d57eea46f2f404d5d0fb05  tools/recovery_resume/stage_lookup_acceptance.py' \
-            '92db2171d2e80c44c87b5ef37c69e11e3d42a517e39261695d38f1ef726d2ba5  tools/recovery_resume/test_stage_lookup_acceptance.py' | sha256sum -c -
+            'a8bc43bf20ecce610a89e50afa8e88d42ee14e1f1058d58e43bb5546ae54e43f  tools/recovery_resume/stage_lookup_acceptance.py' \
+            '92db2171d2e80c44c87b5ef37c69e11e3d42a517e39261695d38f1ef726d2ba5  tools/recovery_resume/test_stage_lookup_acceptance.py' \
+            '837c9f87caee1acc44ea6b72f58d65548a27452e30a6d01afb1f97c8990ee56d  tools/recovery_resume/test_release_input_scope.py' | sha256sum -c -
           mkdir staging-results
-          python3 -B -m unittest discover -s tools/recovery_resume -p 'test_stage_lookup_acceptance.py' -v 2>&1 | tee staging-results/policy-tests.log
+          python3 -B -m unittest discover -s tools/recovery_resume -p 'test_*.py' -v 2>&1 | tee staging-results/policy-tests.log
       - name: Independently check the complete artifact and upload inert verified Git objects
         env:
           GH_TOKEN: ${{ github.token }}
