@@ -104,6 +104,17 @@ jobs:
             --candidate workspace/artifacts/MacroDroid-5.67.8-current-hybrid.apk \
             --output ci-runtime \
             --acceleration on
+      - name: Diagnose entire-frame Android render differences without changing acceptance
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ci-runtime
+          python3 tools/android/audit_render_pairs.py \
+            --pair intro-triggers ci-runtime/capture/original-intro-2.png ci-runtime/capture/candidate-intro-2.png \
+            --pair notification-dialog ci-runtime/capture/original-post-intro.png ci-runtime/capture/candidate-post-intro.png \
+            --output ci-runtime/render-drift-audit.json
       - name: Preserve measured runtime outcomes, including failures
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -113,6 +124,7 @@ jobs:
           if-no-files-found: warn
           path: |
             ci-runtime/runtime-run.json
+            ci-runtime/render-drift-audit.json
             ci-runtime/service.log
             ci-runtime/emulator-diagnostics.log
             ci-runtime/capture-device/
