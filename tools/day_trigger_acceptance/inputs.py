@@ -319,8 +319,8 @@ def contract(baseline_repository, overlay_repository, lookup_repository):
     for row, resolution in zip(pins['lookup_source_changes'], resolutions):
         role = resolution['capsule']
         require(role in roots and resolution['source'] == row['source'], 'Lookup payload capsule or source role differs')
-        require((role == 'successor') == (row['path'] in ('day_lookup_dex_controls.py', 'tests/test_day_lookup.py')),
-                'Lookup successor must replace exactly its two reviewed files')
+        require((role == 'successor') == (row['path'] in ('day_lookup_dex_controls.py', 'tests/test_day_lookup.py', 'tests/java/UiParityTests.java')),
+                'Lookup successor must replace exactly its three reviewed files')
         source = checked_identity(roots[role], resolution['source'], row['candidate'])
         payloads.append({'path': row['path'], 'source': str(source), 'identity': row['candidate']})
     context = {'numeric_root': numeric_root, 'lookup_roots': roots, 'lookup_payloads': payloads,

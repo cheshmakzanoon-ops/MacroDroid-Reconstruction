@@ -22,7 +22,7 @@ concurrency:
 env:
   PYTHONUTF8: '1'
   PYTHONDONTWRITEBYTECODE: '1'
-  DAY_TRIGGER_RUNTIME_MANIFEST_SHA256: 'ae4d37a41a1e9c62e57715d6dbd63a481d14d8bd0052666ffccc78c0ecc84fe7'
+  DAY_TRIGGER_RUNTIME_MANIFEST_SHA256: 'c6a3aa2ed25de5e0e7df89a7fe3480d658d27f93dc48edb681e401adca63541d'
 
 jobs:
   isolated-day-trigger-source:
@@ -66,14 +66,14 @@ jobs:
       - name: Check out both immutable lookup source capsules
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: 39250fac022aee5551f36782bafd72cabbc33718
+          ref: 46a7e331771da1b6559cf817dc776ebc3024739f
           path: lookup-repository
           fetch-depth: 1
           persist-credentials: false
           sparse-checkout-cone-mode: true
           sparse-checkout: |
             work-in-progress/day-trigger-lookup/08-numeric-filesystem-merge
-            work-in-progress/day-trigger-lookup/09-lookup-recorder-successor
+            work-in-progress/day-trigger-lookup/14-ui-report-null-preservation
       - name: Set up the parent workflow's Java 21 toolchain
         uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
         with:
