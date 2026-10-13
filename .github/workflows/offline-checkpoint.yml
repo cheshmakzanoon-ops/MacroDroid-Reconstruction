@@ -20,6 +20,22 @@ jobs:
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           persist-credentials: false
+      - name: Package a compact active-code overlay
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p active-checkpoint
+          git archive --format=tar HEAD project scripts tools .github README.md .gitignore .gitattributes | gzip -n > active-checkpoint/active-source.tar.gz
+          git rev-parse HEAD > active-checkpoint/COMMIT.txt
+          (cd active-checkpoint && sha256sum active-source.tar.gz > SHA256SUMS.txt)
+          printf '%s\n' 'Active-code overlay only. Historical evidence and vendor APK/source/toolchain archives are excluded. This is not a parity or complete-build certification.' > active-checkpoint/SCOPE.txt
+      - name: Preserve compact active code independently of historical evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: active-source-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          path: active-checkpoint/
       - name: Package only committed development inputs and evidence
         shell: bash
         run: |
