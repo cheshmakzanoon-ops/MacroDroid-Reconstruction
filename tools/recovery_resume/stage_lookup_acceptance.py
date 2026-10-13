@@ -77,6 +77,17 @@ def relative(name):
     return path
 
 
+def release_input(name):
+    """Match the pinned release-integrity scope, not root documentation."""
+    path = relative(name)
+    if len(path.parts) == 1:
+        return path.suffix == '.py'
+    if path.parts[0] not in ('source', 'test-support', 'tests', 'signing', 'tools', 'reference'):
+        return False
+    return ('__pycache__' not in path.parts and path.suffix not in ('.pyc', '.pyo')
+            and not (path.parts[0] == 'tools' and 'classes' in path.parts))
+
+
 def checked_run(run):
     require(run.get('id') == RUN_ID and type(run['id']) is int
             and run.get('repository', {}).get('id') == REPO_ID
@@ -355,6 +366,8 @@ def main():
         if not path.is_file() or path == current_snapshot:
             continue
         name = path.relative_to(repository / 'project').as_posix()
+        if not release_input(name):
+            continue
         require(name in entry_map and identity(path.read_bytes()) ==
                 {'bytes': entry_map[name]['size'], 'sha256': entry_map[name]['sha256']},
                 'Unregistered or changed active overlay input: ' + name)
