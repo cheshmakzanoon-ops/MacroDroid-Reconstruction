@@ -1,0 +1,69 @@
+name: Stage accepted lookup checkpoint
+
+on:
+  workflow_run:
+    workflows: [DayTrigger numeric and lookup WIP source acceptance]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage-fixed-lookup-38365018305
+  cancel-in-progress: false
+
+jobs:
+  stage:
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.id == 38365018305 && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - name: Read trusted main publication tools and active numeric source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+          persist-credentials: false
+          fetch-depth: 1
+          sparse-checkout: |
+            project
+            artifacts/current
+            tools/recovery_resume
+            tools/day_trigger_acceptance
+      - name: Check exact publisher and test bytes before execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '%s\n' \
+            'ca160cb61c11de87a733274ac347ab3f1cc33976e9d57eea46f2f404d5d0fb05  tools/recovery_resume/stage_lookup_acceptance.py' \
+            '92db2171d2e80c44c87b5ef37c69e11e3d42a517e39261695d38f1ef726d2ba5  tools/recovery_resume/test_stage_lookup_acceptance.py' | sha256sum -c -
+          mkdir staging-results
+          python3 -B -m unittest discover -s tools/recovery_resume -p 'test_stage_lookup_acceptance.py' -v 2>&1 | tee staging-results/policy-tests.log
+      - name: Independently check the complete artifact and upload inert verified Git objects
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PYTHONDONTWRITEBYTECODE: '1'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B tools/recovery_resume/stage_lookup_acceptance.py --repository . --output staging-results/checkpoint --upload-blobs 2>&1 | tee staging-results/stage.log
+      - name: Preserve the publication receipt and literal outcome without changing main
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: lookup-publication-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          path: |
+            staging-results/policy-tests.log
+            staging-results/stage.log
+            staging-results/checkpoint/publication.json
+            staging-results/checkpoint/staged/artifacts/current/manifest.json
+            staging-results/checkpoint/staged/docs/verification/lookup-hosted-daf5863/candidate/manifest.json
+            staging-results/checkpoint/staged/docs/verification/lookup-hosted-daf5863/raw/manifest.json
+            staging-results/checkpoint/staged/docs/verification/lookup-hosted-daf5863/inventory.json
+            staging-results/checkpoint/staged/docs/verification/lookup-hosted-daf5863/selected/verification.json
